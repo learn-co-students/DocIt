@@ -13,6 +13,7 @@
 		AA9FFBBF1DDA667500847FCF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA9FFBBE1DDA667500847FCF /* Assets.xcassets */; };
 		AA9FFBC21DDA667500847FCF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA9FFBC01DDA667500847FCF /* LaunchScreen.storyboard */; };
 		AA9FFBCB1DDA6A9D00847FCF /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9FFBCA1DDA6A9D00847FCF /* Person.swift */; };
+		DD58FAE71DDBBB63004A7A22 /* symptoms.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD58FAE61DDBBB63004A7A22 /* symptoms.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		AA9FFBC11DDA667500847FCF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AA9FFBC31DDA667500847FCF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA9FFBCA1DDA6A9D00847FCF /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		DD58FAE61DDBBB63004A7A22 /* symptoms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = symptoms.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,13 +58,10 @@
 		AA9FFBB61DDA667500847FCF /* emeraldHail */ = {
 			isa = PBXGroup;
 			children = (
+				DD58FAE51DDBBB40004A7A22 /* Controllers */,
+				DD58FAE41DDBBB1D004A7A22 /* View */,
 				AA9FFBC91DDA6A8E00847FCF /* Model */,
-				AA9FFBB71DDA667500847FCF /* AppDelegate.swift */,
-				AA9FFBB91DDA667500847FCF /* ViewController.swift */,
-				AA9FFBBB1DDA667500847FCF /* Main.storyboard */,
-				AA9FFBBE1DDA667500847FCF /* Assets.xcassets */,
-				AA9FFBC01DDA667500847FCF /* LaunchScreen.storyboard */,
-				AA9FFBC31DDA667500847FCF /* Info.plist */,
+				DD58FAE31DDBBB05004A7A22 /* Supporting Files */,
 			);
 			path = emeraldHail;
 			sourceTree = "<group>";
@@ -71,8 +70,36 @@
 			isa = PBXGroup;
 			children = (
 				AA9FFBCA1DDA6A9D00847FCF /* Person.swift */,
+				DD58FAE61DDBBB63004A7A22 /* symptoms.swift */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		DD58FAE31DDBBB05004A7A22 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				AA9FFBB71DDA667500847FCF /* AppDelegate.swift */,
+				AA9FFBBE1DDA667500847FCF /* Assets.xcassets */,
+				AA9FFBC01DDA667500847FCF /* LaunchScreen.storyboard */,
+				AA9FFBC31DDA667500847FCF /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DD58FAE41DDBBB1D004A7A22 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AA9FFBBB1DDA667500847FCF /* Main.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		DD58FAE51DDBBB40004A7A22 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				AA9FFBB91DDA667500847FCF /* ViewController.swift */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,6 +176,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA9FFBCB1DDA6A9D00847FCF /* Person.swift in Sources */,
+				DD58FAE71DDBBB63004A7A22 /* symptoms.swift in Sources */,
 				AA9FFBBA1DDA667500847FCF /* ViewController.swift in Sources */,
 				AA9FFBB81DDA667500847FCF /* AppDelegate.swift in Sources */,
 			);
@@ -312,6 +340,7 @@
 				AA9FFBC81DDA667500847FCF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
