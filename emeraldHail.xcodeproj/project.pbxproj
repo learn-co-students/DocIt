@@ -18,6 +18,7 @@
 		BB9286851DDE3D2100D3D9A6 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9286841DDE3D2100D3D9A6 /* DataStore.swift */; };
 		BBDD18EC1DDE153B0013F557 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BBDD18EB1DDE153B0013F557 /* GoogleService-Info.plist */; };
 		DD58FAE71DDBBB63004A7A22 /* symptoms.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD58FAE61DDBBB63004A7A22 /* symptoms.swift */; };
+		DDA93D201DDE412000F0A4D4 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA93D1F1DDE412000F0A4D4 /* Secrets.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		BBDD18EB1DDE153B0013F557 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D4BA12601A0F16DED58FEC5E /* Pods_emeraldHail.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_emeraldHail.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD58FAE61DDBBB63004A7A22 /* symptoms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = symptoms.swift; sourceTree = "<group>"; };
+		DDA93D1F1DDE412000F0A4D4 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 				AA9FFBCA1DDA6A9D00847FCF /* Person.swift */,
 				BB9286841DDE3D2100D3D9A6 /* DataStore.swift */,
 				DD58FAE61DDBBB63004A7A22 /* symptoms.swift */,
+				DDA93D1F1DDE412000F0A4D4 /* Secrets.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -261,7 +264,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA9FFBCB1DDA6A9D00847FCF /* Person.swift in Sources */,
+<<<<<<< HEAD
 				BB9286851DDE3D2100D3D9A6 /* DataStore.swift in Sources */,
+=======
+				DDA93D201DDE412000F0A4D4 /* Secrets.swift in Sources */,
+>>>>>>> 0a895baa8b71f4e598c99790b2a5b0c6a001cf13
 				DD58FAE71DDBBB63004A7A22 /* symptoms.swift in Sources */,
 				BB9286821DDE343C00D3D9A6 /* HealthCore.xcdatamodeld in Sources */,
 				AA9FFBBA1DDA667500847FCF /* ViewController.swift in Sources */,

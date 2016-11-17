@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+.DS_Store
+
+emeraldHail/emeraldHail.xcodeproj/project.xcworkspace/xcuserdata/mimicat.xcuserdatad/UserInterfaceState.xcuserstate
+=======
 
 
 
@@ -32,6 +37,7 @@ xcuserdata/
 *.dSYM
 
 GoogleService-Info.plist
+Secrets.swift
 
 ## Playgrounds
 timeline.xctimeline
@@ -69,3 +75,4 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
+>>>>>>> master

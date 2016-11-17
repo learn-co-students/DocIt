@@ -1,4 +1,8 @@
 # ios-0916-team-cookieheart
 
-Hello!
+<<<<<<< HEAD
 
+Hello!
+We are Cookie < 3 :)
+
+=======
