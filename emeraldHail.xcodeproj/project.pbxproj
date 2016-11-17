@@ -14,6 +14,9 @@
 		AA9FFBBF1DDA667500847FCF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA9FFBBE1DDA667500847FCF /* Assets.xcassets */; };
 		AA9FFBC21DDA667500847FCF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA9FFBC01DDA667500847FCF /* LaunchScreen.storyboard */; };
 		AA9FFBCB1DDA6A9D00847FCF /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9FFBCA1DDA6A9D00847FCF /* Person.swift */; };
+		B6ED5B361DDE4CDB00B56DFD /* TempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6ED5B351DDE4CDB00B56DFD /* TempViewController.swift */; };
+		BB9286821DDE343C00D3D9A6 /* HealthCore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BB9286801DDE343C00D3D9A6 /* HealthCore.xcdatamodeld */; };
+		BB9286851DDE3D2100D3D9A6 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9286841DDE3D2100D3D9A6 /* DataStore.swift */; };
 		BBDD18EC1DDE153B0013F557 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BBDD18EB1DDE153B0013F557 /* GoogleService-Info.plist */; };
 		DD58FAE71DDBBB63004A7A22 /* symptoms.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD58FAE61DDBBB63004A7A22 /* symptoms.swift */; };
 		DDA93D201DDE412000F0A4D4 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA93D1F1DDE412000F0A4D4 /* Secrets.swift */; };
@@ -31,6 +34,9 @@
 		AA9FFBC11DDA667500847FCF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AA9FFBC31DDA667500847FCF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA9FFBCA1DDA6A9D00847FCF /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		B6ED5B351DDE4CDB00B56DFD /* TempViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempViewController.swift; sourceTree = "<group>"; };
+		BB9286811DDE343C00D3D9A6 /* HealthCore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HealthCore.xcdatamodel; sourceTree = "<group>"; };
+		BB9286841DDE3D2100D3D9A6 /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		BBDD18EB1DDE153B0013F557 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D4BA12601A0F16DED58FEC5E /* Pods_emeraldHail.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_emeraldHail.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD58FAE61DDBBB63004A7A22 /* symptoms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = symptoms.swift; sourceTree = "<group>"; };
@@ -84,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				AA9FFBCA1DDA6A9D00847FCF /* Person.swift */,
+				BB9286841DDE3D2100D3D9A6 /* DataStore.swift */,
 				DD58FAE61DDBBB63004A7A22 /* symptoms.swift */,
 				DDA93D1F1DDE412000F0A4D4 /* Secrets.swift */,
 			);
@@ -106,6 +113,7 @@
 				AA9FFBBE1DDA667500847FCF /* Assets.xcassets */,
 				AA9FFBC01DDA667500847FCF /* LaunchScreen.storyboard */,
 				AA9FFBC31DDA667500847FCF /* Info.plist */,
+				BB9286801DDE343C00D3D9A6 /* HealthCore.xcdatamodeld */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -122,7 +130,11 @@
 			isa = PBXGroup;
 			children = (
 				AA9FFBB91DDA667500847FCF /* ViewController.swift */,
+
 				DDA93D211DDE508A00F0A4D4 /* FeelingsViewController.swift */,
+
+				B6ED5B351DDE4CDB00B56DFD /* TempViewController.swift */,
+
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -260,10 +272,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6ED5B361DDE4CDB00B56DFD /* TempViewController.swift in Sources */,
 				AA9FFBCB1DDA6A9D00847FCF /* Person.swift in Sources */,
+<<<<<<< HEAD
 				DDA93D221DDE508A00F0A4D4 /* FeelingsViewController.swift in Sources */,
+=======
+				BB9286851DDE3D2100D3D9A6 /* DataStore.swift in Sources */,
+>>>>>>> master
 				DDA93D201DDE412000F0A4D4 /* Secrets.swift in Sources */,
 				DD58FAE71DDBBB63004A7A22 /* symptoms.swift in Sources */,
+				BB9286821DDE343C00D3D9A6 /* HealthCore.xcdatamodeld in Sources */,
 				AA9FFBBA1DDA667500847FCF /* ViewController.swift in Sources */,
 				AA9FFBB81DDA667500847FCF /* AppDelegate.swift in Sources */,
 			);
@@ -432,6 +450,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		BB9286801DDE343C00D3D9A6 /* HealthCore.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				BB9286811DDE343C00D3D9A6 /* HealthCore.xcdatamodel */,
+			);
+			currentVersion = BB9286811DDE343C00D3D9A6 /* HealthCore.xcdatamodel */;
+			path = HealthCore.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = AA9FFBAC1DDA667500847FCF /* Project object */;
 }
