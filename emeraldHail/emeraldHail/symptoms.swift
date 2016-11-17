@@ -60,6 +60,7 @@ struct Mood {
         restless = "Restless",
         sad = "Sad",
         stressed = "Stressed"
+        tired = "Tired"
     }
     
 }
