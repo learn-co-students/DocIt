@@ -3,6 +3,6 @@
 <<<<<<< HEAD
 
 Hello!
-We are Cookie <3 :)
+We are Cookie < 3 :)
 
 =======
