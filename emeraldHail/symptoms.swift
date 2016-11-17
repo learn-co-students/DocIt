@@ -37,7 +37,8 @@ enum Symptoms: String {
     urinaryProblems="Urinary problems",
     vision="Vision Problems",
     vomiting="Vomiting",
-    wheezing="Wheezing"
+    wheezing="Wheezing",
+    disgusted= "Disgusted"
     
 }
 
