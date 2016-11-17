@@ -7,16 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		209EA011342482AB2477F986 /* Pods_emeraldHail.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4BA12601A0F16DED58FEC5E /* Pods_emeraldHail.framework */; };
 		AA9FFBB81DDA667500847FCF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9FFBB71DDA667500847FCF /* AppDelegate.swift */; };
 		AA9FFBBA1DDA667500847FCF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9FFBB91DDA667500847FCF /* ViewController.swift */; };
 		AA9FFBBD1DDA667500847FCF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA9FFBBB1DDA667500847FCF /* Main.storyboard */; };
 		AA9FFBBF1DDA667500847FCF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA9FFBBE1DDA667500847FCF /* Assets.xcassets */; };
 		AA9FFBC21DDA667500847FCF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA9FFBC01DDA667500847FCF /* LaunchScreen.storyboard */; };
 		AA9FFBCB1DDA6A9D00847FCF /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9FFBCA1DDA6A9D00847FCF /* Person.swift */; };
+		BBDD18EC1DDE153B0013F557 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BBDD18EB1DDE153B0013F557 /* GoogleService-Info.plist */; };
 		DD58FAE71DDBBB63004A7A22 /* symptoms.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD58FAE61DDBBB63004A7A22 /* symptoms.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		83A9624BD961F0F9D407BD5A /* Pods-emeraldHail.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-emeraldHail.release.xcconfig"; path = "Pods/Target Support Files/Pods-emeraldHail/Pods-emeraldHail.release.xcconfig"; sourceTree = "<group>"; };
+		A3EAC51EA2232492128E484E /* Pods-emeraldHail.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-emeraldHail.debug.xcconfig"; path = "Pods/Target Support Files/Pods-emeraldHail/Pods-emeraldHail.debug.xcconfig"; sourceTree = "<group>"; };
 		AA9FFBB41DDA667500847FCF /* emeraldHail.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = emeraldHail.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA9FFBB71DDA667500847FCF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA9FFBB91DDA667500847FCF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -25,6 +29,8 @@
 		AA9FFBC11DDA667500847FCF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AA9FFBC31DDA667500847FCF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA9FFBCA1DDA6A9D00847FCF /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		BBDD18EB1DDE153B0013F557 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D4BA12601A0F16DED58FEC5E /* Pods_emeraldHail.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_emeraldHail.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD58FAE61DDBBB63004A7A22 /* symptoms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = symptoms.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -33,6 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				209EA011342482AB2477F986 /* Pods_emeraldHail.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,8 +49,11 @@
 		AA9FFBAB1DDA667500847FCF = {
 			isa = PBXGroup;
 			children = (
+				BBDD18EB1DDE153B0013F557 /* GoogleService-Info.plist */,
 				AA9FFBB61DDA667500847FCF /* emeraldHail */,
 				AA9FFBB51DDA667500847FCF /* Products */,
+				CCB9A50487D0810C41F555DF /* Pods */,
+				E2732CC3AAAB9CB28A1A3DE8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -75,6 +85,15 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		CCB9A50487D0810C41F555DF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A3EAC51EA2232492128E484E /* Pods-emeraldHail.debug.xcconfig */,
+				83A9624BD961F0F9D407BD5A /* Pods-emeraldHail.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		DD58FAE31DDBBB05004A7A22 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -102,6 +121,14 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
+		E2732CC3AAAB9CB28A1A3DE8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D4BA12601A0F16DED58FEC5E /* Pods_emeraldHail.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -109,9 +136,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AA9FFBC61DDA667500847FCF /* Build configuration list for PBXNativeTarget "emeraldHail" */;
 			buildPhases = (
+				DD36893B953A5E8D51931FAA /* [CP] Check Pods Manifest.lock */,
 				AA9FFBB01DDA667500847FCF /* Sources */,
 				AA9FFBB11DDA667500847FCF /* Frameworks */,
 				AA9FFBB21DDA667500847FCF /* Resources */,
+				9154A9323CE69B71F80858C4 /* [CP] Embed Pods Frameworks */,
+				B3D68ECEC00D64AB089045F6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -165,10 +195,59 @@
 				AA9FFBC21DDA667500847FCF /* LaunchScreen.storyboard in Resources */,
 				AA9FFBBF1DDA667500847FCF /* Assets.xcassets in Resources */,
 				AA9FFBBD1DDA667500847FCF /* Main.storyboard in Resources */,
+				BBDD18EC1DDE153B0013F557 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9154A9323CE69B71F80858C4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-emeraldHail/Pods-emeraldHail-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B3D68ECEC00D64AB089045F6 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-emeraldHail/Pods-emeraldHail-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DD36893B953A5E8D51931FAA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		AA9FFBB01DDA667500847FCF /* Sources */ = {
@@ -297,6 +376,7 @@
 		};
 		AA9FFBC71DDA667500847FCF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A3EAC51EA2232492128E484E /* Pods-emeraldHail.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = N2MERYPM36;
@@ -310,6 +390,7 @@
 		};
 		AA9FFBC81DDA667500847FCF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 83A9624BD961F0F9D407BD5A /* Pods-emeraldHail.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = N2MERYPM36;
