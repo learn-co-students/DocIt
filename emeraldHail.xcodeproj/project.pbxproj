@@ -264,11 +264,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA9FFBCB1DDA6A9D00847FCF /* Person.swift in Sources */,
-<<<<<<< HEAD
+
 				BB9286851DDE3D2100D3D9A6 /* DataStore.swift in Sources */,
-=======
+
 				DDA93D201DDE412000F0A4D4 /* Secrets.swift in Sources */,
->>>>>>> 0a895baa8b71f4e598c99790b2a5b0c6a001cf13
+
 				DD58FAE71DDBBB63004A7A22 /* symptoms.swift in Sources */,
 				BB9286821DDE343C00D3D9A6 /* HealthCore.xcdatamodeld in Sources */,
 				AA9FFBBA1DDA667500847FCF /* ViewController.swift in Sources */,
