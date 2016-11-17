@@ -37,6 +37,7 @@ xcuserdata/
 *.dSYM
 
 GoogleService-Info.plist
+Secrets.swift
 
 ## Playgrounds
 timeline.xctimeline
