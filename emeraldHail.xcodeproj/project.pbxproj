@@ -89,8 +89,8 @@
 			children = (
 				AA9FFBCA1DDA6A9D00847FCF /* Person.swift */,
 				BB9286841DDE3D2100D3D9A6 /* DataStore.swift */,
-				DD58FAE61DDBBB63004A7A22 /* Symptoms.swift */,
 				DDA93D1F1DDE412000F0A4D4 /* Secrets.swift */,
+				DD58FAE61DDBBB63004A7A22 /* Symptoms.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
