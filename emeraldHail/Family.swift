@@ -9,12 +9,24 @@
 import Foundation
 import UIKit
 
-struct Family {
+final class Family {
     
+    var id: String
     var name: String
     var email: String
     var coverImage: UIImage?
-    var id: String
+    var coverImageStr: String
     var members: [Member]
+    
+    init(id: String, name: String, email: String, coverImage: UIImage?, coverImageStr: String, members: [Member]) {
+        
+        self.id = id
+        self.name = name
+        self.email = email
+        self.coverImage = coverImage
+        self.coverImageStr = coverImageStr
+        self.members = []
+        
+    }
     
 }

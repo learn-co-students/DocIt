@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum Symptoms: String {
+enum Symptom: String {
     
     case bloodInStool = "Blood in stool",
     chestPain = "Chest pain",
@@ -41,7 +41,6 @@ enum Symptoms: String {
     
 }
 
-
 struct Mood {
     enum Happy: String {
         case amused = "Amused",
@@ -64,4 +63,24 @@ struct Mood {
     }
     
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

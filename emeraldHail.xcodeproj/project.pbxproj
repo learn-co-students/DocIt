@@ -16,11 +16,13 @@
 		AA9FFBBF1DDA667500847FCF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA9FFBBE1DDA667500847FCF /* Assets.xcassets */; };
 		AA9FFBC21DDA667500847FCF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA9FFBC01DDA667500847FCF /* LaunchScreen.storyboard */; };
 		AA9FFBCB1DDA6A9D00847FCF /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9FFBCA1DDA6A9D00847FCF /* Person.swift */; };
+		AAFE445E1DDF5AE900922FB0 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFE445D1DDF5AE900922FB0 /* Event.swift */; };
+		AAFE44641DDF60BB00922FB0 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFE44631DDF60BB00922FB0 /* Post.swift */; };
+		AAFE44661DDF634800922FB0 /* PainLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFE44651DDF634800922FB0 /* PainLevel.swift */; };
 		B6ED5B361DDE4CDB00B56DFD /* TempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6ED5B351DDE4CDB00B56DFD /* TempViewController.swift */; };
-		BB9286821DDE343C00D3D9A6 /* HealthCore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BB9286801DDE343C00D3D9A6 /* HealthCore.xcdatamodeld */; };
 		BB9286851DDE3D2100D3D9A6 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9286841DDE3D2100D3D9A6 /* DataStore.swift */; };
 		BBDD18EC1DDE153B0013F557 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BBDD18EB1DDE153B0013F557 /* GoogleService-Info.plist */; };
-		DD58FAE71DDBBB63004A7A22 /* Symptoms.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD58FAE61DDBBB63004A7A22 /* Symptoms.swift */; };
+		DD58FAE71DDBBB63004A7A22 /* Symptom.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD58FAE61DDBBB63004A7A22 /* Symptom.swift */; };
 		DDA93D201DDE412000F0A4D4 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA93D1F1DDE412000F0A4D4 /* Secrets.swift */; };
 		DDA93D221DDE508A00F0A4D4 /* FeelingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA93D211DDE508A00F0A4D4 /* FeelingsViewController.swift */; };
 /* End PBXBuildFile section */
@@ -38,12 +40,14 @@
 		AA9FFBC11DDA667500847FCF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AA9FFBC31DDA667500847FCF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA9FFBCA1DDA6A9D00847FCF /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		AAFE445D1DDF5AE900922FB0 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		AAFE44631DDF60BB00922FB0 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		AAFE44651DDF634800922FB0 /* PainLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PainLevel.swift; sourceTree = "<group>"; };
 		B6ED5B351DDE4CDB00B56DFD /* TempViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempViewController.swift; sourceTree = "<group>"; };
-		BB9286811DDE343C00D3D9A6 /* HealthCore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HealthCore.xcdatamodel; sourceTree = "<group>"; };
 		BB9286841DDE3D2100D3D9A6 /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		BBDD18EB1DDE153B0013F557 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D4BA12601A0F16DED58FEC5E /* Pods_emeraldHail.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_emeraldHail.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		DD58FAE61DDBBB63004A7A22 /* Symptoms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Symptoms.swift; sourceTree = "<group>"; };
+		DD58FAE61DDBBB63004A7A22 /* Symptom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Symptom.swift; sourceTree = "<group>"; };
 		DDA93D1F1DDE412000F0A4D4 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		DDA93D211DDE508A00F0A4D4 /* FeelingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeelingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -96,9 +100,12 @@
 				AA9FFBCA1DDA6A9D00847FCF /* Person.swift */,
 				BB9286841DDE3D2100D3D9A6 /* DataStore.swift */,
 				DDA93D1F1DDE412000F0A4D4 /* Secrets.swift */,
-				DD58FAE61DDBBB63004A7A22 /* Symptoms.swift */,
+				DD58FAE61DDBBB63004A7A22 /* Symptom.swift */,
 				AA7ED5911DDF4C6F005F9AB2 /* Family.swift */,
 				AA7ED5931DDF4D16005F9AB2 /* Member.swift */,
+				AAFE445D1DDF5AE900922FB0 /* Event.swift */,
+				AAFE44631DDF60BB00922FB0 /* Post.swift */,
+				AAFE44651DDF634800922FB0 /* PainLevel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -119,7 +126,6 @@
 				AA9FFBBE1DDA667500847FCF /* Assets.xcassets */,
 				AA9FFBC01DDA667500847FCF /* LaunchScreen.storyboard */,
 				AA9FFBC31DDA667500847FCF /* Info.plist */,
-				BB9286801DDE343C00D3D9A6 /* HealthCore.xcdatamodeld */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -276,13 +282,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6ED5B361DDE4CDB00B56DFD /* TempViewController.swift in Sources */,
+				AAFE44661DDF634800922FB0 /* PainLevel.swift in Sources */,
+				AAFE445E1DDF5AE900922FB0 /* Event.swift in Sources */,
 				AA9FFBCB1DDA6A9D00847FCF /* Person.swift in Sources */,
+				AAFE44641DDF60BB00922FB0 /* Post.swift in Sources */,
 				DDA93D221DDE508A00F0A4D4 /* FeelingsViewController.swift in Sources */,
 				BB9286851DDE3D2100D3D9A6 /* DataStore.swift in Sources */,
 				DDA93D201DDE412000F0A4D4 /* Secrets.swift in Sources */,
 				AA7ED5921DDF4C6F005F9AB2 /* Family.swift in Sources */,
-				DD58FAE71DDBBB63004A7A22 /* Symptoms.swift in Sources */,
-				BB9286821DDE343C00D3D9A6 /* HealthCore.xcdatamodeld in Sources */,
+				DD58FAE71DDBBB63004A7A22 /* Symptom.swift in Sources */,
 				AA9FFBBA1DDA667500847FCF /* ViewController.swift in Sources */,
 				AA9FFBB81DDA667500847FCF /* AppDelegate.swift in Sources */,
 				AA7ED5941DDF4D16005F9AB2 /* Member.swift in Sources */,
@@ -452,19 +460,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		BB9286801DDE343C00D3D9A6 /* HealthCore.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				BB9286811DDE343C00D3D9A6 /* HealthCore.xcdatamodel */,
-			);
-			currentVersion = BB9286811DDE343C00D3D9A6 /* HealthCore.xcdatamodel */;
-			path = HealthCore.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = AA9FFBAC1DDA667500847FCF /* Project object */;
 }

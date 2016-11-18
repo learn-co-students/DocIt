@@ -7,19 +7,34 @@
 //
 
 import Foundation
+import UIKit
 
-struct Member {
+final class Member {
     
-    var firstName: String
-    var lastNAme: String
     var id: String
-    var isFemale: Bool
+    var firstName: String
+    var lastName: String
     var profileImage: UIImage?
-    var bloodType: BloodType
+    var profileImageStr: String
+    var isFemale: Bool
     var height: Double
     var weight: Double
+    var bloodType: BloodType
     var events: [Event]
     
+    init(id: String, firstName: String, lastName: String, profileImage: UIImage?, profileImageStr: String, isFemale: Bool, height: Double, weight: Double, bloodType: BloodType, events: [Event]) {
+        
+        self.id = id
+        self.firstName = firstName
+        self.lastName = lastName
+        self.profileImage = profileImage
+        self.profileImageStr = profileImageStr
+        self.isFemale = isFemale
+        self.height = height
+        self.weight = weight
+        self.bloodType = bloodType
+        self.events = events
+        
+    }
+    
 }
-
-
