@@ -15,9 +15,13 @@
 		AA9FFBC21DDA667500847FCF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA9FFBC01DDA667500847FCF /* LaunchScreen.storyboard */; };
 		AA9FFBCB1DDA6A9D00847FCF /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9FFBCA1DDA6A9D00847FCF /* Person.swift */; };
 		B6ED5B361DDE4CDB00B56DFD /* TempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6ED5B351DDE4CDB00B56DFD /* TempViewController.swift */; };
-		BB9286821DDE343C00D3D9A6 /* HealthCore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BB9286801DDE343C00D3D9A6 /* HealthCore.xcdatamodeld */; };
 		BB9286851DDE3D2100D3D9A6 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9286841DDE3D2100D3D9A6 /* DataStore.swift */; };
 		BBDD18EC1DDE153B0013F557 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BBDD18EB1DDE153B0013F557 /* GoogleService-Info.plist */; };
+		BBF4EEB11DDF59D400EBD3FE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF4EEB01DDF59D400EBD3FE /* LoginViewController.swift */; };
+		BBF4EEB31DDF59DC00EBD3FE /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF4EEB21DDF59DC00EBD3FE /* RegisterViewController.swift */; };
+		BBF4EEB51DDF59F900EBD3FE /* FamilyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF4EEB41DDF59F900EBD3FE /* FamilyViewController.swift */; };
+		BBF4EEB71DDF59FF00EBD3FE /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF4EEB61DDF59FF00EBD3FE /* EventViewController.swift */; };
+		BBF4EEB91DDF5A0600EBD3FE /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF4EEB81DDF5A0600EBD3FE /* PostViewController.swift */; };
 		DD58FAE71DDBBB63004A7A22 /* Symptoms.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD58FAE61DDBBB63004A7A22 /* Symptoms.swift */; };
 		DDA93D201DDE412000F0A4D4 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA93D1F1DDE412000F0A4D4 /* Secrets.swift */; };
 		DDA93D221DDE508A00F0A4D4 /* FeelingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA93D211DDE508A00F0A4D4 /* FeelingsViewController.swift */; };
@@ -35,9 +39,13 @@
 		AA9FFBC31DDA667500847FCF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA9FFBCA1DDA6A9D00847FCF /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		B6ED5B351DDE4CDB00B56DFD /* TempViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempViewController.swift; sourceTree = "<group>"; };
-		BB9286811DDE343C00D3D9A6 /* HealthCore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HealthCore.xcdatamodel; sourceTree = "<group>"; };
 		BB9286841DDE3D2100D3D9A6 /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		BBDD18EB1DDE153B0013F557 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		BBF4EEB01DDF59D400EBD3FE /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		BBF4EEB21DDF59DC00EBD3FE /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		BBF4EEB41DDF59F900EBD3FE /* FamilyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilyViewController.swift; sourceTree = "<group>"; };
+		BBF4EEB61DDF59FF00EBD3FE /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
+		BBF4EEB81DDF5A0600EBD3FE /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		D4BA12601A0F16DED58FEC5E /* Pods_emeraldHail.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_emeraldHail.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD58FAE61DDBBB63004A7A22 /* Symptoms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Symptoms.swift; sourceTree = "<group>"; };
 		DDA93D1F1DDE412000F0A4D4 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
@@ -113,7 +121,6 @@
 				AA9FFBBE1DDA667500847FCF /* Assets.xcassets */,
 				AA9FFBC01DDA667500847FCF /* LaunchScreen.storyboard */,
 				AA9FFBC31DDA667500847FCF /* Info.plist */,
-				BB9286801DDE343C00D3D9A6 /* HealthCore.xcdatamodeld */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -130,11 +137,13 @@
 			isa = PBXGroup;
 			children = (
 				AA9FFBB91DDA667500847FCF /* ViewController.swift */,
-
 				DDA93D211DDE508A00F0A4D4 /* FeelingsViewController.swift */,
-
+				BBF4EEB01DDF59D400EBD3FE /* LoginViewController.swift */,
+				BBF4EEB21DDF59DC00EBD3FE /* RegisterViewController.swift */,
+				BBF4EEB41DDF59F900EBD3FE /* FamilyViewController.swift */,
+				BBF4EEB61DDF59FF00EBD3FE /* EventViewController.swift */,
+				BBF4EEB81DDF5A0600EBD3FE /* PostViewController.swift */,
 				B6ED5B351DDE4CDB00B56DFD /* TempViewController.swift */,
-
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -273,13 +282,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6ED5B361DDE4CDB00B56DFD /* TempViewController.swift in Sources */,
+				BBF4EEB31DDF59DC00EBD3FE /* RegisterViewController.swift in Sources */,
 				AA9FFBCB1DDA6A9D00847FCF /* Person.swift in Sources */,
+				BBF4EEB91DDF5A0600EBD3FE /* PostViewController.swift in Sources */,
 				DDA93D221DDE508A00F0A4D4 /* FeelingsViewController.swift in Sources */,
 				BB9286851DDE3D2100D3D9A6 /* DataStore.swift in Sources */,
+				BBF4EEB71DDF59FF00EBD3FE /* EventViewController.swift in Sources */,
 				DDA93D201DDE412000F0A4D4 /* Secrets.swift in Sources */,
 				DD58FAE71DDBBB63004A7A22 /* Symptoms.swift in Sources */,
-				BB9286821DDE343C00D3D9A6 /* HealthCore.xcdatamodeld in Sources */,
 				AA9FFBBA1DDA667500847FCF /* ViewController.swift in Sources */,
+				BBF4EEB11DDF59D400EBD3FE /* LoginViewController.swift in Sources */,
+				BBF4EEB51DDF59F900EBD3FE /* FamilyViewController.swift in Sources */,
 				AA9FFBB81DDA667500847FCF /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -447,19 +460,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		BB9286801DDE343C00D3D9A6 /* HealthCore.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				BB9286811DDE343C00D3D9A6 /* HealthCore.xcdatamodel */,
-			);
-			currentVersion = BB9286811DDE343C00D3D9A6 /* HealthCore.xcdatamodel */;
-			path = HealthCore.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = AA9FFBAC1DDA667500847FCF /* Project object */;
 }
