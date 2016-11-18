@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		209EA011342482AB2477F986 /* Pods_emeraldHail.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4BA12601A0F16DED58FEC5E /* Pods_emeraldHail.framework */; };
+		AA7ED5921DDF4C6F005F9AB2 /* Family.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7ED5911DDF4C6F005F9AB2 /* Family.swift */; };
+		AA7ED5941DDF4D16005F9AB2 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7ED5931DDF4D16005F9AB2 /* Member.swift */; };
 		AA9FFBB81DDA667500847FCF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9FFBB71DDA667500847FCF /* AppDelegate.swift */; };
 		AA9FFBBA1DDA667500847FCF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9FFBB91DDA667500847FCF /* ViewController.swift */; };
 		AA9FFBBD1DDA667500847FCF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA9FFBBB1DDA667500847FCF /* Main.storyboard */; };
@@ -26,6 +28,8 @@
 /* Begin PBXFileReference section */
 		83A9624BD961F0F9D407BD5A /* Pods-emeraldHail.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-emeraldHail.release.xcconfig"; path = "Pods/Target Support Files/Pods-emeraldHail/Pods-emeraldHail.release.xcconfig"; sourceTree = "<group>"; };
 		A3EAC51EA2232492128E484E /* Pods-emeraldHail.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-emeraldHail.debug.xcconfig"; path = "Pods/Target Support Files/Pods-emeraldHail/Pods-emeraldHail.debug.xcconfig"; sourceTree = "<group>"; };
+		AA7ED5911DDF4C6F005F9AB2 /* Family.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Family.swift; sourceTree = "<group>"; };
+		AA7ED5931DDF4D16005F9AB2 /* Member.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
 		AA9FFBB41DDA667500847FCF /* emeraldHail.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = emeraldHail.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA9FFBB71DDA667500847FCF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA9FFBB91DDA667500847FCF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -93,6 +97,8 @@
 				BB9286841DDE3D2100D3D9A6 /* DataStore.swift */,
 				DDA93D1F1DDE412000F0A4D4 /* Secrets.swift */,
 				DD58FAE61DDBBB63004A7A22 /* Symptoms.swift */,
+				AA7ED5911DDF4C6F005F9AB2 /* Family.swift */,
+				AA7ED5931DDF4D16005F9AB2 /* Member.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -130,11 +136,8 @@
 			isa = PBXGroup;
 			children = (
 				AA9FFBB91DDA667500847FCF /* ViewController.swift */,
-
 				DDA93D211DDE508A00F0A4D4 /* FeelingsViewController.swift */,
-
 				B6ED5B351DDE4CDB00B56DFD /* TempViewController.swift */,
-
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -277,10 +280,12 @@
 				DDA93D221DDE508A00F0A4D4 /* FeelingsViewController.swift in Sources */,
 				BB9286851DDE3D2100D3D9A6 /* DataStore.swift in Sources */,
 				DDA93D201DDE412000F0A4D4 /* Secrets.swift in Sources */,
+				AA7ED5921DDF4C6F005F9AB2 /* Family.swift in Sources */,
 				DD58FAE71DDBBB63004A7A22 /* Symptoms.swift in Sources */,
 				BB9286821DDE343C00D3D9A6 /* HealthCore.xcdatamodeld in Sources */,
 				AA9FFBBA1DDA667500847FCF /* ViewController.swift in Sources */,
 				AA9FFBB81DDA667500847FCF /* AppDelegate.swift in Sources */,
+				AA7ED5941DDF4D16005F9AB2 /* Member.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
