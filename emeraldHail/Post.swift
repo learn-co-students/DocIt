@@ -13,6 +13,28 @@ final class Post {
     
     var id: String
     var postType: PostType
+    
+    var content: Content! {
+        didSet {
+            
+            switch content {
+                
+            case is Symptom:
+                
+                cell = tableView.dequereusableCell(at: IndexPath) as! SymptomCell
+                cell.symptom = post.content as! Symptom
+                
+                print("Hi")
+            case is PainLevel:
+                print("Pain")
+            default:
+                fatalError("Nope.")
+                
+                
+            }
+            
+        }
+    }
         
     var timestamp: Date
     

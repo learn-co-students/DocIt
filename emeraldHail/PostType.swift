@@ -12,15 +12,9 @@ import UIKit
 
 protocol Content {
 
-    var symptoms: [Symptom]? { get }
-    var photo: UIImage? { get }
-    var note: String? { get }
-    var painLevel: PainLevel? { get }
-    
-    
-    
-    
 }
 
+extension Symptom: Content { }
+extension PainLevel: Content { }
 
 
