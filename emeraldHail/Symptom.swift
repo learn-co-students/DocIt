@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum Symptom: String {
     
@@ -39,7 +40,21 @@ enum Symptom: String {
     vomiting = "Vomiting",
     wheezing = "Wheezing"
     
+    var image: UIImage {
+        
+        switch self {
+            
+            
+        default:
+            return UIImage()
+            
+        }
+        
+        
+    }
 }
+
+
 
 struct Mood {
     enum Happy: String {

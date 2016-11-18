@@ -19,6 +19,9 @@
 		AAFE445E1DDF5AE900922FB0 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFE445D1DDF5AE900922FB0 /* Event.swift */; };
 		AAFE44641DDF60BB00922FB0 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFE44631DDF60BB00922FB0 /* Post.swift */; };
 		AAFE44661DDF634800922FB0 /* PainLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFE44651DDF634800922FB0 /* PainLevel.swift */; };
+		AAFE44681DDF68BE00922FB0 /* SymptomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAFE44671DDF68BE00922FB0 /* SymptomView.xib */; };
+		AAFE446A1DDF68E600922FB0 /* SymptomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFE44691DDF68E600922FB0 /* SymptomView.swift */; };
+		AAFE446C1DDF6B6C00922FB0 /* PostType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFE446B1DDF6B6C00922FB0 /* PostType.swift */; };
 		B6ED5B361DDE4CDB00B56DFD /* TempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6ED5B351DDE4CDB00B56DFD /* TempViewController.swift */; };
 		BB9286851DDE3D2100D3D9A6 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9286841DDE3D2100D3D9A6 /* DataStore.swift */; };
 		BBDD18EC1DDE153B0013F557 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BBDD18EB1DDE153B0013F557 /* GoogleService-Info.plist */; };
@@ -43,6 +46,9 @@
 		AAFE445D1DDF5AE900922FB0 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		AAFE44631DDF60BB00922FB0 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		AAFE44651DDF634800922FB0 /* PainLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PainLevel.swift; sourceTree = "<group>"; };
+		AAFE44671DDF68BE00922FB0 /* SymptomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SymptomView.xib; sourceTree = "<group>"; };
+		AAFE44691DDF68E600922FB0 /* SymptomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SymptomView.swift; sourceTree = "<group>"; };
+		AAFE446B1DDF6B6C00922FB0 /* PostType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostType.swift; sourceTree = "<group>"; };
 		B6ED5B351DDE4CDB00B56DFD /* TempViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempViewController.swift; sourceTree = "<group>"; };
 		BB9286841DDE3D2100D3D9A6 /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		BBDD18EB1DDE153B0013F557 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -106,6 +112,7 @@
 				AAFE445D1DDF5AE900922FB0 /* Event.swift */,
 				AAFE44631DDF60BB00922FB0 /* Post.swift */,
 				AAFE44651DDF634800922FB0 /* PainLevel.swift */,
+				AAFE446B1DDF6B6C00922FB0 /* PostType.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -134,6 +141,8 @@
 			isa = PBXGroup;
 			children = (
 				AA9FFBBB1DDA667500847FCF /* Main.storyboard */,
+				AAFE44671DDF68BE00922FB0 /* SymptomView.xib */,
+				AAFE44691DDF68E600922FB0 /* SymptomView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -221,6 +230,7 @@
 			files = (
 				AA9FFBC21DDA667500847FCF /* LaunchScreen.storyboard in Resources */,
 				AA9FFBBF1DDA667500847FCF /* Assets.xcassets in Resources */,
+				AAFE44681DDF68BE00922FB0 /* SymptomView.xib in Resources */,
 				AA9FFBBD1DDA667500847FCF /* Main.storyboard in Resources */,
 				BBDD18EC1DDE153B0013F557 /* GoogleService-Info.plist in Resources */,
 			);
@@ -284,9 +294,11 @@
 				B6ED5B361DDE4CDB00B56DFD /* TempViewController.swift in Sources */,
 				AAFE44661DDF634800922FB0 /* PainLevel.swift in Sources */,
 				AAFE445E1DDF5AE900922FB0 /* Event.swift in Sources */,
+				AAFE446C1DDF6B6C00922FB0 /* PostType.swift in Sources */,
 				AA9FFBCB1DDA6A9D00847FCF /* Person.swift in Sources */,
 				AAFE44641DDF60BB00922FB0 /* Post.swift in Sources */,
 				DDA93D221DDE508A00F0A4D4 /* FeelingsViewController.swift in Sources */,
+				AAFE446A1DDF68E600922FB0 /* SymptomView.swift in Sources */,
 				BB9286851DDE3D2100D3D9A6 /* DataStore.swift in Sources */,
 				DDA93D201DDE412000F0A4D4 /* Secrets.swift in Sources */,
 				AA7ED5921DDF4C6F005F9AB2 /* Family.swift in Sources */,
