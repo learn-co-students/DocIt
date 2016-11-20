@@ -11,6 +11,7 @@ import UIKit
 
 final class Family {
     
+    //family properties
     var id: String
     var name: String
     var email: String
@@ -18,6 +19,7 @@ final class Family {
     var coverImageStr: String?
     var members: [Member]
     
+    //initializers
     init(id: String, name: String, email: String, coverImage: UIImage?, coverImageStr: String?, members: [Member]) {
         
         self.id = id

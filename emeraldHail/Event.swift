@@ -10,12 +10,14 @@ import Foundation
 
 final class Event {
     
+    //event properties
     var id: String
     var name: String
     var startDate: Date
     var isComplete: Bool = false
     var posts: [Post]
     
+    //initializers
     init(id: String, name: String, startDate: Date, posts: [Post]) {
         
         self.id = id
