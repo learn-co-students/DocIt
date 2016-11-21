@@ -57,3 +57,25 @@ class LoginViewController: UIViewController {
         }
     }
 }
+
+class ForgotViewController: UIViewController {
+    
+    @IBOutlet weak var textEmail: UITextField!
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+    }
+    
+    @IBAction func sendPassword(_ sender: UIButton) {
+        print("send email")
+    }
+    
+    @IBAction func cancel(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
+    
+}
