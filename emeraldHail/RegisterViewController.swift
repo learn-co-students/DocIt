@@ -21,6 +21,7 @@ class RegisterViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
+    
     @IBAction func addFamily(_ sender: UIButton) {
         register()
     }
@@ -28,7 +29,6 @@ class RegisterViewController: UIViewController {
     @IBAction func cancel(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
-    
 
     func register() {
         
