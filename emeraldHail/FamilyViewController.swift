@@ -15,6 +15,8 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var uploadPhotoLibraryView: UIImageView!
     @IBOutlet weak var memberProfilesView: UICollectionView!
     
+    
+    
     let imageSelected = UIImagePickerController()
     
     var membersInFamily: [Member] = [ ]
@@ -33,7 +35,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         
         firebaseReference()
         
-        configDatabase()
+       // configDatabase() --> See Tanira's Note.
         
         memberProfilesView.reloadData()
     }
@@ -42,20 +44,23 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         super.viewWillAppear(true)
         self.memberProfilesView.reloadData()
     }
-    
-    @IBAction func uploadPhotoFromLibrary(_ sender: Any) {
+
+    @IBAction func uploadPhotoGesture(_ sender: UITapGestureRecognizer) {
         let myPickerController = UIImagePickerController()
-        myPickerController.delegate = self
-        myPickerController.sourceType = UIImagePickerControllerSourceType.photoLibrary
+                myPickerController.delegate = self
+                myPickerController.sourceType = UIImagePickerControllerSourceType.photoLibrary
         
         
-        self.present(myPickerController, animated: true, completion: nil)
-    }
+                self.present(myPickerController, animated: true, completion: nil)
+            }
     
     
-    @IBAction func addFamilyButton(_ sender: Any) {
-        print("addFamilyButton pressed")
+    
+    @IBAction func addFamilyMember(_ sender: Any) {
+        
+        print("Segue to Luna")
     }
+  
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -67,12 +72,10 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = memberProfilesView.dequeueReusableCell(withReuseIdentifier: "memberProfileCell", for: indexPath) as! CellCollectionViewCell
+        let cell = memberProfilesView.dequeueReusableCell(withReuseIdentifier: "memberCell", for: indexPath) as! MemberCollectionViewCell
         
-        cell.firstNameLabel.text = membersInFamily[indexPath.item].firstName
-        cell.lastNameLabel.text = membersInFamily[indexPath.item].lastName
-        cell.majorAllergenLabel.text = membersInFamily[indexPath.item].majorAllergens
-        cell.dOBLabel.text = membersInFamily[indexPath.item].dateOfBirth
+        cell.memberNameLabel.text = membersInFamily[indexPath.item].firstName
+       
         
         return cell
     }
@@ -89,13 +92,11 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
             if let snapDict = snapshot.value as? [String:AnyObject]{
                 for child in snapDict{
                     guard let firstName = child.value["FirstName"] as? String else { return }
-                    guard let lastName = child.value["LastName"] as? String else { return }
-                    guard let dateOfBirth = child.value["DateOfBirth"] as? String else { return }
-                    guard let majorAllergens = child.value["MajorAllergens"] as? String else { return }
+                   
                     
-                    let member = Member(firstName: firstName, lastName: lastName, dateOfBirth: dateOfBirth, majorAllergens: majorAllergens)
+                   
                     
-                    self.membersInFamily.insert(member, at: 0)
+                    //self.membersInFamily.insert(member, at: 0)
                     self.memberProfilesView.reloadData()
                 }
             }
@@ -126,33 +127,35 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     //        })
     //    }
     
-    func configDatabase() {
+    
         
         // Henry: This method regenerates the family member data each time a snapshot is taken. Not the most efficient, but it works if the number of family members is minimal. Not idea for a chat message app, but for our use it should be okay.
-        
-        let membersRef = FIRDatabase.database().reference().child("Members")
-        
-        membersRef.observe(.value, with: { snapshot in
-            
-            print(snapshot)
-            
-            var newItem = [Member]()
-            
-            for item in snapshot.children {
-                
-                let newMember = Member(snapshot: item as! FIRDataSnapshot)
-                
-                newItem.append(newMember)
-                
-            }
-            
-            self.membersInFamily = newItem
-            self.memberProfilesView.reloadData()
-        })
-        
-    }
+    // Tanira: --> Wait to implement this function once we get to Luna's Add Member VC.
     
-    
+//    func configDatabase() {
+//        let membersRef = FIRDatabase.database().reference().child("Members")
+//        
+//        membersRef.observe(.value, with: { snapshot in
+//            
+//            print(snapshot)
+//            
+//            var newItem = [Member]()
+//            
+//            for item in snapshot.children {
+//                
+//                let newMember = Member(snapshot: item as! FIRDataSnapshot)
+//                
+//                newItem.append(newMember)
+//                
+//            }
+//            
+//            self.membersInFamily = newItem
+//            self.memberProfilesView.reloadData()
+//        })
+//        
+//    }
+//    
+//    
     
     
 }

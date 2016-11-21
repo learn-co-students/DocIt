@@ -147,14 +147,24 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="memberCell" id="swP-Lg-vbj">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="memberCell" id="swP-Lg-vbj" customClass="MemberCollectionViewCell" customModule="emeraldHail" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GSq-JP-80B">
+                                                    <rect key="frame" x="54" y="96" width="45" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.36002563947375887" green="0.98229738829892554" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </view>
-                                        <size key="customSize" width="50" height="50"/>
+                                        <color key="backgroundColor" red="0.37909023164421407" green="0.22270962609492784" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <size key="customSize" width="150" height="150"/>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -170,15 +180,26 @@
                                 <rect key="frame" x="122" y="214" width="133" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Add family member"/>
+                                <connections>
+                                    <action selector="addFamilyMember:" destination="0wC-jh-3aM" eventType="touchUpInside" id="xIw-iI-CJB"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.97647058823529409" green="0.97254901960784312" blue="0.97254901960784312" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
+                    <connections>
+                        <outlet property="memberProfilesView" destination="aH9-m5-cgZ" id="hi7-nU-R9P"/>
+                        <outlet property="uploadPhotoLibraryView" destination="G4z-Ti-p91" id="zSu-ZI-h8y"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5FR-mW-isp" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="bJQ-dc-OHZ"/>
+                <tapGestureRecognizer id="bJQ-dc-OHZ">
+                    <connections>
+                        <action selector="uploadPhotoGesture:" destination="0wC-jh-3aM" id="kj8-5A-NpU"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="765.60000000000002" y="166.8665667166417"/>
+            <point key="canvasLocation" x="581.60000000000002" y="166.8665667166417"/>
         </scene>
         <!--Forgot View Controller-->
         <scene sceneID="C5y-MP-vld">
