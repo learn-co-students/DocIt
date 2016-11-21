@@ -7,29 +7,53 @@
 //
 
 import UIKit
+import Firebase
 
 class LoginViewController: UIViewController {
 
+    @IBOutlet weak var textEmail: UITextField!
+    @IBOutlet weak var textPassword: UITextField!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    // actions
+    
+    @IBAction func signIn(_ sender: UIButton) {
+    login()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func signUp(_ sender: UIButton) {
+        performSegue(withIdentifier: "segueRegister", sender: self)
     }
-    */
+    
+    @IBAction func forgot(_ sender: UIButton) {
+        performSegue(withIdentifier: "segueForgot", sender: self)
 
+    }
+    
+    
+    
+   
+    // functions
+    func login() {
+        
+        guard let email = textEmail.text else { return }
+        guard let password = textPassword.text else { return }
+        
+        FIRAuth.auth()?.signIn(withEmail: email, password: password) { (user, error) in
+            
+            if let error = error {
+                print(error.localizedDescription)
+                
+            } else if (FIRAuth.auth()?.currentUser) != nil {
+                
+                self.performSegue(withIdentifier: "segueFamily", sender: nil)
+                
+            }
+        }
+    }
 }

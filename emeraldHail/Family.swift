@@ -9,18 +9,18 @@
 import Foundation
 import UIKit
 
-final class Family {
+class Family {
     
     //family properties
-    var id: String
-    var name: String
-    var email: String
+    var id: String?
+    var name: String?
+    var email: String?
     var coverImage: UIImage?
     var coverImageStr: String?
-    var members: [Member]
+    var members: [Member]?
     
-    //initializers
-    init(id: String, name: String, email: String, coverImage: UIImage?, coverImageStr: String?, members: [Member]) {
+    // initializers
+    init(id: String, name: String, email: String, coverImage: UIImage?, coverImageStr: String?, members: [Member]?) {
         
         self.id = id
         self.name = name
@@ -28,7 +28,7 @@ final class Family {
         self.coverImage = coverImage
         self.coverImageStr = coverImageStr
         self.members = []
-        
-    }
     
+    }
+
 }
