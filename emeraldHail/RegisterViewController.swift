@@ -7,29 +7,50 @@
 //
 
 import UIKit
+import Firebase
 
 class RegisterViewController: UIViewController {
 
+    @IBOutlet weak var textEmail: UITextField!
+    @IBOutlet weak var textPassword: UITextField!
+    
+    let family = FIRDatabase.database().reference().child("family")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func addFamily(_ sender: UIButton) {
+        register()
+    }
+    
+    @IBAction func cancel(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func register() {
+        
+        guard let email = textEmail.text else { return }
+        guard let password = textPassword.text else { return }
+        
+        if email != "" && password != "" {
+            
+            FIRAuth.auth()?.createUser(withEmail: email, password: password) { (user, error) in
+                if error == nil {
+                    self.family.child((user?.uid)!).child("email").setValue(email)
+                    self.family.child((user?.uid)!).child("name").setValue("new family")
+                    
+                    self.dismiss(animated: true, completion: nil)
+                    
+                } else {
+                    
+                    if error != nil {
+                        print(error!)
+                    }
+                }
+            }
+        }
     }
-    */
-
 }
