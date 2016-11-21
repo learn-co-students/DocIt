@@ -30,9 +30,6 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         memberProfilesView.delegate = self
         memberProfilesView.dataSource = self
         
-        
-//        firebaseReference()
-        
         configDatabase()
         
         memberProfilesView.reloadData()
@@ -52,14 +49,6 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
                 self.present(myPickerController, animated: true, completion: nil)
             }
     
-    
-    
-    @IBAction func addFamilyMember(_ sender: Any) {
-        
-        print("Segue to Luna")
-    }
-  
-    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -68,19 +57,11 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         return membersInFamily.count
     }
     
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = memberProfilesView.dequeueReusableCell(withReuseIdentifier: "memberCell", for: indexPath) as! MemberCollectionViewCell
-        
-//        print(membersInFamily)
-        print(membersInFamily[indexPath.row].firstName)
-        
         let eachMember = membersInFamily[indexPath.row]
-        
         cell.memberNameLabel?.text = eachMember.firstName
         
-//        cell.memberNameLabel.text = membersInFamily[indexPath.row].firstName
-       
         return cell
     }
     
@@ -88,55 +69,12 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         print("item at indexpath.row: \(indexPath.row) selected!")
     }
     
-//    ///// Firebase Database Access
-//    func firebaseReference(){
-//        let databaseMembersRef = FIRDatabase.database().reference().child("Members")
-//        databaseMembersRef.queryOrderedByKey().observeSingleEvent(of: .value, with: { snapshot in
-//            
-//            if let snapDict = snapshot.value as? [String:AnyObject]{
-//                for child in snapDict{
-//                    guard let firstName = child.value["FirstName"] as? String else { return }
-//                   let member = Member(
-//                    self.membersInFamily.insert(member, at: 0)
-//                    self.memberProfilesView.reloadData()
-//                }
-//            }
-//        })
-//    }
-    
-//        func firebaseReference(){
-//            let databaseMembersRef = FIRDatabase.database().reference().child("Members")
-//    
-//            databaseMembersRef.observe(.childAdded, with: { snapshot in
-//    
-//                if let snapshotValue = snapshot.value as? [String : AnyObject] {
-//    
-//                    print(snapshot)
-//    
-//                    for child in snapshotValue{
-//                        guard let firstName = child.value["firstName"] as? String else { return }
-//                        guard let lastName = child.value["lastName"] as? String else { return }
-//                        guard let gender = child.value["gender"] as? String else { return }
-//                        guard let dob = child.value["dob"] as? String else { return }
-//            
-//                        let newMember = Member(firstName: firstName, lastName: lastName, gender: gender, birthday: dob)
-//    
-//                        self.membersInFamily.append(newMember)
-//                        self.memberProfilesView.reloadData()
-//                    }
-//                }
-//            })
-//        }
-    
-    
+    func configDatabase() { 
         
-        // Henry: This method regenerates the family member data each time a snapshot is taken. Not the most efficient, but it works if the number of family members is minimal. Not idea for a chat message app, but for our use it should be okay.
-    // Tanira: --> Wait to implement this function once we get to Luna's Add Member VC.
-    
-    func configDatabase() {
         let membersRef = FIRDatabase.database().reference().child("Members")
+        let familyRef = membersRef.child((FIRAuth.auth()?.currentUser?.uid)!)
         
-        membersRef.observe(.value, with: { snapshot in
+        familyRef.observe(.value, with: { snapshot in
             
             print(snapshot)
             
@@ -147,7 +85,6 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
                 let newMember = Member(snapshot: item as! FIRDataSnapshot)
                 
                 newItem.append(newMember)
-                
             }
             
             self.membersInFamily = newItem
