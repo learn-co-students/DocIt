@@ -11,9 +11,8 @@ import Firebase
 
 class LoginViewController: UIViewController {
     
-    @IBOutlet weak var textEmail: UITextField!
-    @IBOutlet weak var textPassword: UITextField!
-    
+    @IBOutlet weak var emailField: UITextField!
+    @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var signIn: UIButton!
     @IBOutlet weak var createAccount: UIButton!
     
@@ -24,57 +23,41 @@ class LoginViewController: UIViewController {
     }
     
     // actions
-    
     @IBAction func signIn(_ sender: UIButton) {
+        print("didTapSignIn")
         login()
     }
     
     @IBAction func signUp(_ sender: UIButton) {
-        performSegue(withIdentifier: "segueRegister", sender: self)
+        print("didTapCreateAccount")
+        performSegue(withIdentifier: "showRegister", sender: self)
     }
     
     @IBAction func forgot(_ sender: UIButton) {
-        performSegue(withIdentifier: "segueForgot", sender: self)
+        performSegue(withIdentifier: "showForgot", sender: self)
     }
 
     // functions
-    
     func setupViews() {
-        
         signIn.layer.cornerRadius = 2
-        
         createAccount.layer.borderWidth = 1
         createAccount.layer.borderColor = UIColor.lightGray.cgColor
         createAccount.layer.cornerRadius = 2
-        
     }
-    
-    @IBAction func didTapCreateAccount(_ sender: Any) {
-        print("didTapCreateAccount")
-    }
-    
-    
-    @IBAction func didTapSignIn(_ sender: Any) {
-        print("didTapSignIn")
-    }
-    
-    
     
     func login() {
-        
-        guard let email = textEmail.text else { return }
-        guard let password = textPassword.text else { return }
+        guard let email = emailField.text else { return }
+        guard let password = passwordField.text else { return }
         
         FIRAuth.auth()?.signIn(withEmail: email, password: password) { (user, error) in
-            
             if let error = error {
                 print(error.localizedDescription)
-                
-            } else if (FIRAuth.auth()?.currentUser) != nil {
-                self.performSegue(withIdentifier: "segueFamily", sender: nil)
+                return
             }
+            self.performSegue(withIdentifier: "showFamily", sender: nil)
         }
     }
+    
 }
 
 class ForgotViewController: UIViewController {
