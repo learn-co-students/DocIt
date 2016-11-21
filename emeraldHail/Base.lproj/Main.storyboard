@@ -74,10 +74,38 @@
                         <outlet property="textPassword" destination="HKX-dZ-sjJ" id="syR-OE-gMC"/>
                         <segue destination="asG-Gp-r91" kind="show" identifier="segueRegister" id="bn8-t8-zjs"/>
                         <segue destination="Gc7-sz-7cA" kind="show" identifier="segueForgot" id="52C-7b-Oe4"/>
+                        <segue destination="0wC-jh-3aM" kind="show" identifier="segueFamily" id="C4Q-6Y-LBY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+        </scene>
+        <!--Family View Controller-->
+        <scene sceneID="Vaw-QG-Cac">
+            <objects>
+                <viewController id="0wC-jh-3aM" customClass="FamilyViewController" customModule="emeraldHail" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="aoX-6A-UzR"/>
+                        <viewControllerLayoutGuide type="bottom" id="xUF-wS-Qp3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6Hd-p7-ndl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Family" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RKs-mR-2Yf">
+                                <rect key="frame" x="158" y="108" width="75" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5FR-mW-isp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1045.5999999999999" y="477.21139430284859"/>
         </scene>
         <!--Forgot View Controller-->
         <scene sceneID="C5y-MP-vld">
