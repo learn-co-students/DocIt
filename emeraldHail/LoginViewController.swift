@@ -14,8 +14,13 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var textEmail: UITextField!
     @IBOutlet weak var textPassword: UITextField!
     
+    @IBOutlet weak var signIn: UIButton!
+    @IBOutlet weak var createAccount: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupViews()
     }
     
     // actions
@@ -33,6 +38,28 @@ class LoginViewController: UIViewController {
     }
 
     // functions
+    
+    func setupViews() {
+        
+        signIn.layer.cornerRadius = 2
+        
+        createAccount.layer.borderWidth = 1
+        createAccount.layer.borderColor = UIColor.lightGray.cgColor
+        createAccount.layer.cornerRadius = 2
+        
+    }
+    
+    @IBAction func didTapCreateAccount(_ sender: Any) {
+        print("didTapCreateAccount")
+    }
+    
+    
+    @IBAction func didTapSignIn(_ sender: Any) {
+        print("didTapSignIn")
+    }
+    
+    
+    
     func login() {
         
         guard let email = textEmail.text else { return }
