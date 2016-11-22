@@ -40,12 +40,15 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         
         memberProfilesView.reloadData()
         hideKeyboardWhenTappedAround()
+        getFamilyID()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.memberProfilesView.reloadData()
     }
+    
+    // actions 
     
     @IBAction func changeFamilyName(_ sender: UIButton) {
         changeFamilyName()
@@ -132,18 +135,13 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         
         let alertController = UIAlertController(title: "Change family name", message: "Give us a funny name", preferredStyle: .alert)
         let save = UIAlertAction(title: "Save", style: .default, handler: { (action) -> Void in
-            
             guard let name = nameTextField?.text, name != "" else { return }
-            
-            let databaseEventsRef = FIRDatabase.database().reference().child("family").child((FIRAuth.auth()?.currentUser?.uid)!)
-            git sta
-            let family = Family(name: name)
-            
-            databaseEventsRef.setValue(family.serialize(), withCompletionBlock: { error, dataRef in
+            let databaseEventsRef = FIRDatabase.database().reference().child("family").child(Logics.sharedInstance.familyID)
+            databaseEventsRef.updateChildValues(["name": name], withCompletionBlock: { (error, dataRef) in
             })
-            
             print("Save Button Pressed")
         })
+        
         let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
             
             print("Cancel Button Pressed")
@@ -152,7 +150,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         alertController.addAction(cancel)
         alertController.addTextField { (textField) -> Void in
             
-            self.familyName.titleLabel?.text = nameTextField?.text
+            nameTextField = textField
         }
         
         present(alertController, animated: true, completion: nil)
