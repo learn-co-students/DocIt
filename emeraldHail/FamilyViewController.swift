@@ -12,7 +12,7 @@ import FirebaseDatabase
 
 class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    @IBOutlet weak var uploadPhotoLibraryView: UIImageView!
+//    @IBOutlet weak var uploadPhotoLibraryView: UIImageView!
     @IBOutlet weak var memberProfilesView: UICollectionView!
     
     let imageSelected = UIImagePickerController()
@@ -61,17 +61,21 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         let cell = memberProfilesView.dequeueReusableCell(withReuseIdentifier: "memberCell", for: indexPath) as! MemberCollectionViewCell
         let eachMember = membersInFamily[indexPath.row]
         cell.memberNameLabel?.text = eachMember.firstName
-        
+        EventLogics.sharedInstance.memberID = membersInFamily[indexPath.row].uniqueID
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+//        EventLogics.sharedInstance.memberID = membersInFamily[indexPath.row].uniqueID
+//        print("=============================\(EventLogics.sharedInstance.memberID)")
         print("Item at indexPath.row: \(indexPath.row) selected!")
     }
     
+    
     func configDatabase() {
         
-        let membersRef = FIRDatabase.database().reference().child("Members")
+        let membersRef = FIRDatabase.database().reference().child("members")
         let familyRef = membersRef.child((FIRAuth.auth()?.currentUser?.uid)!)
         
         familyRef.observe(.value, with: { snapshot in

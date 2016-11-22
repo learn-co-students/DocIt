@@ -23,7 +23,7 @@ struct Member {
     //var profileImage: UIImage?
     var birthday: String
     //var userImage: String
-    //var uniqueID: String
+    var uniqueID: String
     
     
     init(firstName: String, lastName: String, gender: String, birthday: String, uniqueID: String = "") {
@@ -33,7 +33,7 @@ struct Member {
         self.gender = gender
         self.birthday = birthday
         //self.userImage = userImage
-//        self.uniqueID = uniqueID
+        self.uniqueID = uniqueID
         
     }
     
@@ -44,7 +44,7 @@ struct Member {
         gender = dictionary["gender"] as? String ?? "No Gender"
         //userImage = dictionary["UserImage"] as? String ?? "No URL"
         
-//        self.uniqueID = uniqueID
+        self.uniqueID = uniqueID
     }
     
     init(snapshot: FIRDataSnapshot) {
@@ -55,11 +55,12 @@ struct Member {
         lastName = snapshotValue["lastName"] as! String
         birthday = snapshotValue["dob"] as! String
         gender = snapshotValue["gender"] as! String
+        uniqueID = snapshotValue["uniqueID"] as! String
         
     }
     
     func serialize() -> [String : Any] {
-        return  ["firstName" : firstName, "lastName": lastName, "gender" : gender, "dob" : birthday]
+        return  ["firstName" : firstName, "lastName": lastName, "gender" : gender, "dob" : birthday, "uniqueID" : uniqueID]
     }
 }
 

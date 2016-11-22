@@ -40,7 +40,7 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
             let gender = genderField.text, gender != ""
             else { return }
         
-        let databaseMembersRef = database.child("Members").child((FIRAuth.auth()?.currentUser?.uid)!).childByAutoId()
+        let databaseMembersRef = database.child("members").child((FIRAuth.auth()?.currentUser?.uid)!).childByAutoId()
         
         let uniqueID = databaseMembersRef.key
         
