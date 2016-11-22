@@ -15,6 +15,8 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     // outlets
     @IBOutlet weak var familyName: UIButton!
     
+    @IBOutlet weak var familyNameLabel: UILabel!
+    
     //    @IBOutlet weak var uploadPhotoLibraryView: UIImageView!
     @IBOutlet weak var memberProfilesView: UICollectionView!
     
@@ -22,11 +24,16 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     let imageSelected = UIImagePickerController()
     var membersInFamily = [Member]()
+    var family = [Family]()
     
     // loads 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        hideKeyboardWhenTappedAround()
+        getFamilyID()
+        
         imageSelected.delegate = self
 //        uploadPhotoLibraryView.image = UIImage(named: "blackfam")
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
@@ -36,11 +43,11 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         memberProfilesView.delegate = self
         memberProfilesView.dataSource = self
         
-        configDatabase()
+        configDatabaseFamily()
+        configDatabaseMember()
         
         memberProfilesView.reloadData()
-        hideKeyboardWhenTappedAround()
-        getFamilyID()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -106,7 +113,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     
-    func configDatabase() {
+    func configDatabaseMember() {
         
         let membersRef = FIRDatabase.database().reference().child("members")
         let familyRef = membersRef.child((FIRAuth.auth()?.currentUser?.uid)!)
@@ -129,6 +136,24 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         })
     }
     
+    func configDatabaseFamily() {
+        
+        let membersRef = FIRDatabase.database().reference().child("family")
+        let familyRef = membersRef.child(Logics.sharedInstance.familyID)
+        
+        familyRef.observe(.value, with: { snapshot in
+            
+            var name = snapshot.value as! [String:Any]
+            
+            
+            self.familyNameLabel.text = name["name"] as! String
+            print("======================")
+            print(name["name"] as! String)
+            
+        
+    })
+}
+
     func changeFamilyName() {
         
         var nameTextField: UITextField?
