@@ -30,6 +30,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        configDatabase()
         self.eventsTable.reloadData()
     }
     
@@ -48,6 +49,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             var date = dateTextField?.text
             
             let databaseEventsRef = self.database.child("events").child(EventLogics.sharedInstance.memberID).childByAutoId()
+            
             
             let uniqueID = databaseEventsRef.key
             

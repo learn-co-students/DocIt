@@ -67,8 +67,9 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-//        EventLogics.sharedInstance.memberID = membersInFamily[indexPath.row].uniqueID
-//        print("=============================\(EventLogics.sharedInstance.memberID)")
+        
+        EventLogics.sharedInstance.memberID = membersInFamily[indexPath.row].uniqueID
+        print("=============================\(EventLogics.sharedInstance.memberID)")
         print("Item at indexPath.row: \(indexPath.row) selected!")
     }
     
