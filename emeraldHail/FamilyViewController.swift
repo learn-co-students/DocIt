@@ -13,6 +13,7 @@ import FirebaseDatabase
 class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
     
     // outlets
+    @IBOutlet weak var familyName: UIButton!
     
     //    @IBOutlet weak var uploadPhotoLibraryView: UIImageView!
     @IBOutlet weak var memberProfilesView: UICollectionView!
@@ -46,6 +47,9 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         self.memberProfilesView.reloadData()
     }
     
+    @IBAction func changeFamilyName(_ sender: UIButton) {
+        changeFamilyName()
+    }
 //    @IBAction func uploadPhotoGesture(_ sender: UITapGestureRecognizer) {
 //        let myPickerController = UIImagePickerController()
 //        myPickerController.delegate = self
@@ -73,6 +77,11 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        Logics.sharedInstance.memberID = membersInFamily[indexPath.row].uniqueID
+    }
+    
     // methods
     
     override var prefersStatusBarHidden : Bool {
@@ -89,9 +98,8 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         view.endEditing(true)
     }
 
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        Logics.sharedInstance.memberID = membersInFamily[indexPath.row].uniqueID
+    func getFamilyID() {
+        Logics.sharedInstance.familyID = (FIRAuth.auth()?.currentUser?.uid)!
     }
     
     
@@ -117,4 +125,37 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
             self.memberProfilesView.reloadData()
         })
     }
+    
+    func changeFamilyName() {
+        
+        var nameTextField: UITextField?
+        
+        let alertController = UIAlertController(title: "Change family name", message: "Give us a funny name", preferredStyle: .alert)
+        let save = UIAlertAction(title: "Save", style: .default, handler: { (action) -> Void in
+            
+            guard let name = nameTextField?.text, name != "" else { return }
+            
+            let databaseEventsRef = FIRDatabase.database().reference().child("family").child((FIRAuth.auth()?.currentUser?.uid)!)
+            git sta
+            let family = Family(name: name)
+            
+            databaseEventsRef.setValue(family.serialize(), withCompletionBlock: { error, dataRef in
+            })
+            
+            print("Save Button Pressed")
+        })
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+            
+            print("Cancel Button Pressed")
+        }
+        alertController.addAction(save)
+        alertController.addAction(cancel)
+        alertController.addTextField { (textField) -> Void in
+            
+            self.familyName.titleLabel?.text = nameTextField?.text
+        }
+        
+        present(alertController, animated: true, completion: nil)
+    }
+
 }

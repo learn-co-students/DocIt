@@ -136,7 +136,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             databaseEventsRef.setValue(event.serialize(), withCompletionBlock: { error, dataRef in
                 
             })
-            
+             
             print("Save Button Pressed")
         })
         let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
@@ -181,6 +181,7 @@ class Logics {
     
     static let sharedInstance = Logics()
     
+    var familyID = ""
     var memberID = ""
     var eventID = ""
     

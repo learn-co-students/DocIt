@@ -30,5 +30,13 @@ class Family {
         self.members = []
     
     }
+    
+    init(name: String) {
+        self.name = name
+    }
+    
+    func serialize() -> [String:Any] {
+        return ["email":email!, "name":name!]
+    }
 
 }
