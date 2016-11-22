@@ -70,7 +70,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return cell
     }
     
-    // methods
+    // methods for tableView
     
     func configDatabase() {
         

@@ -11,6 +11,16 @@ import Firebase
 
 class AddMembersViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    // outlets
+    
+    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var firstNameField: UITextField!
+    @IBOutlet weak var lastNameField: UITextField!
+    @IBOutlet weak var birthdayField: UITextField!
+    @IBOutlet weak var genderField: UITextField!
+    
+    // properties
+    
     // Reference to database
     var database: FIRDatabaseReference = FIRDatabase.database().reference()
     //Reference to members
@@ -20,11 +30,7 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
     // Reference to storage URL
     let storageRef = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
     
-    @IBOutlet weak var profileImageView: UIImageView!
-    @IBOutlet weak var firstNameField: UITextField!
-    @IBOutlet weak var lastNameField: UITextField!
-    @IBOutlet weak var birthdayField: UITextField!
-    @IBOutlet weak var genderField: UITextField!
+    // loads 
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +38,7 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
         profileImageView.isUserInteractionEnabled = true
     }
     
+    // actions 
     
     @IBAction func saveButtonTapped(_ sender: Any) {
         guard let name = firstNameField.text, name != "",
@@ -49,16 +56,14 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
         databaseMembersRef.setValue(member.serialize(), withCompletionBlock: { error, dataRef in
             
             self.dismiss(animated: true, completion: nil)
-            
         })
-        
     }
-    
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)
-
     }
+    
+    // methods
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
