@@ -17,12 +17,12 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     let imageSelected = UIImagePickerController()
     
-    var membersInFamily: [Member] = [ ]
+    var membersInFamily = [Member]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         imageSelected.delegate = self
-        uploadPhotoLibraryView.image = UIImage(named: "defaultImage")
+//        uploadPhotoLibraryView.image = UIImage(named: "blackfam")
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
@@ -39,15 +39,15 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         super.viewWillAppear(true)
         self.memberProfilesView.reloadData()
     }
-
-    @IBAction func uploadPhotoGesture(_ sender: UITapGestureRecognizer) {
-        let myPickerController = UIImagePickerController()
-                myPickerController.delegate = self
-                myPickerController.sourceType = UIImagePickerControllerSourceType.photoLibrary
-        
-        
-                self.present(myPickerController, animated: true, completion: nil)
-            }
+    
+//    @IBAction func uploadPhotoGesture(_ sender: UITapGestureRecognizer) {
+//        let myPickerController = UIImagePickerController()
+//        myPickerController.delegate = self
+//        myPickerController.sourceType = UIImagePickerControllerSourceType.photoLibrary
+//        
+//        
+//        self.present(myPickerController, animated: true, completion: nil)
+//    }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -66,10 +66,10 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("item at indexpath.row: \(indexPath.row) selected!")
+        print("Item at indexPath.row: \(indexPath.row) selected!")
     }
     
-    func configDatabase() { 
+    func configDatabase() {
         
         let membersRef = FIRDatabase.database().reference().child("Members")
         let familyRef = membersRef.child((FIRAuth.auth()?.currentUser?.uid)!)

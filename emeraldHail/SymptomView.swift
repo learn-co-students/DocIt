@@ -10,24 +10,24 @@ import UIKit
 
 class SymptomView: UIView {
     
-     var symptoms: [Symptom]! {
-        
-        didSet {
-            
-            for symptom in symptoms {
-                
-                let currentImage = symptom.image
-                
-                // add that image to a stack view
-                
-                // display title of symptom somewhere
-                
-            }
-            
-            
-            
-        }
-    }
+//     var symptoms: [Symptom]! {
+//        
+//        didSet {
+//            
+//            for symptom in symptoms {
+//                
+//                // let currentImage = symptom.image
+//                
+//                // add that image to a stack view
+//                
+//                // display title of symptom somewhere
+//                
+//            }
+//            
+//            
+//            
+//        }
+//    }
 
   
     override init(frame: CGRect) {
