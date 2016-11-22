@@ -65,6 +65,10 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
     
     // methods
     
+    override var prefersStatusBarHidden : Bool {
+        return true
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }

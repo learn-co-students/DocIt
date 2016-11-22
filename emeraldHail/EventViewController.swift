@@ -70,7 +70,11 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return cell
     }
     
-    // methods for tableView
+    // methods
+    
+    override var prefersStatusBarHidden : Bool {
+        return true
+    }
     
     func configDatabase() {
         

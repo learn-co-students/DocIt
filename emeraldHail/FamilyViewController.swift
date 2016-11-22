@@ -74,6 +74,10 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     // methods
     
+    override var prefersStatusBarHidden : Bool {
+        return true
+    }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         Logics.sharedInstance.memberID = membersInFamily[indexPath.row].uniqueID

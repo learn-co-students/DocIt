@@ -72,6 +72,10 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     // methods
     
+    override var prefersStatusBarHidden : Bool {
+        return true
+    }
+    
     func createPost() {
         var noteTextField: UITextField?
         

@@ -39,6 +39,10 @@ class RegisterViewController: UIViewController {
 
     // methods
     
+    override var prefersStatusBarHidden : Bool {
+        return true
+    }
+    
     func register() {
         
         guard let email = textEmail.text else { return }

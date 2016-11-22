@@ -44,6 +44,10 @@ class LoginViewController: UIViewController {
 
     // methods
     
+    override var prefersStatusBarHidden : Bool {
+        return true
+    }
+    
     func setupViews() {
         signIn.layer.cornerRadius = 2
         createAccount.layer.borderWidth = 1
