@@ -11,15 +11,23 @@ import Firebase
 
 class RegisterViewController: UIViewController {
 
+    // outlets
+    
     @IBOutlet weak var textEmail: UITextField!
     @IBOutlet weak var textPassword: UITextField!
     
+    // properties
+    
     let family = FIRDatabase.database().reference().child("family")
+    
+    // loads 
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
     }
+    
+    // actions
     
     @IBAction func addFamily(_ sender: UIButton) {
         register()
@@ -29,6 +37,8 @@ class RegisterViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
 
+    // methods
+    
     func register() {
         
         guard let email = textEmail.text else { return }

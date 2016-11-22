@@ -13,11 +13,17 @@ import FirebaseDatabase
 
 class EventViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    // outlets
+    
     @IBOutlet weak var eventsTable: UITableView!
+    
+    // properties
     
     var events = [Event]()
     var database: FIRDatabaseReference = FIRDatabase.database().reference()
     var memberID = ""
+    
+    // loads
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,61 +40,17 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.eventsTable.reloadData()
     }
     
+    // actions
+    
     @IBAction func members(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction func addEvent(_ sender: UIButton) {
-        
-        var nameTextField: UITextField?
-        var dateTextField: UITextField?
-        let alertController = UIAlertController(title: "Create event", message: "Put a name that describe the event and the date when started", preferredStyle: .alert)
-        let save = UIAlertAction(title: "Save", style: .default, handler: { (action) -> Void in
-            
-            guard let name = nameTextField?.text, name != "", let date = dateTextField?.text, date != "" else { return }
-            
-            
-            let databaseEventsRef = self.database.child("events").child(Logics.sharedInstance.memberID).childByAutoId()
-            
-            print("================ I'm breaking here 0")
-            let uniqueID = databaseEventsRef.key
-            
-            print("================ I'm breaking here 1 \(uniqueID)")
-            
-            let event = Event(name: name, startDate: date, uniqueID: uniqueID)
-            
-            print("================ I'm breaking here 2")
-            
-            databaseEventsRef.setValue(event.serialize(), withCompletionBlock: { error, dataRef in
-                print("================ I'm breaking here 3")
-                
-            })
-            
-//            self.eventsTable.reloadData()
-
-            print("Save Button Pressed")
-        })
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
-        
-            print("Cancel Button Pressed")
-        }
-        alertController.addAction(save)
-        alertController.addAction(cancel)
-        alertController.addTextField { (textField) -> Void in
-            // Enter the textfiled customization code here.
-            nameTextField = textField
-            nameTextField?.placeholder = "Event name"
-        }
-        alertController.addTextField { (textField) -> Void in
-            // Enter the textfiled customization code here.
-            dateTextField = textField
-            dateTextField?.placeholder = "Date"
-        }
-        
-        present(alertController, animated: true, completion: nil)
-        
-           }
+        createEvent()
+    }
     
+    // tableView methods
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -108,6 +70,8 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return cell
     }
     
+    // methods
+    
     func configDatabase() {
         
         let memberID: String = Logics.sharedInstance.memberID
@@ -117,7 +81,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         eventsRef.observe(.value, with: { snapshot in
             
             var newEvents = [Event]()
-        
+            
             for event in snapshot.children {
                 
                 let newEvent = Event(snapshot: event as! FIRDataSnapshot)
@@ -127,16 +91,60 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
             
             self.events = newEvents
-        
+            
             self.eventsTable.reloadData()
         })
         
+    }
+    
+    func createEvent() {
+        
+        var nameTextField: UITextField?
+        var dateTextField: UITextField?
+        let alertController = UIAlertController(title: "Create event", message: "Put a name that describe the event and the date when started", preferredStyle: .alert)
+        let save = UIAlertAction(title: "Save", style: .default, handler: { (action) -> Void in
+            
+            guard let name = nameTextField?.text, name != "", let date = dateTextField?.text, date != "" else { return }
+            
+            
+            let databaseEventsRef = self.database.child("events").child(Logics.sharedInstance.memberID).childByAutoId()
+            
+            let uniqueID = databaseEventsRef.key
+            
+            let event = Event(name: name, startDate: date, uniqueID: uniqueID)
+            
+            databaseEventsRef.setValue(event.serialize(), withCompletionBlock: { error, dataRef in
+                
+            })
+            
+            print("Save Button Pressed")
+        })
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+            
+            print("Cancel Button Pressed")
+        }
+        alertController.addAction(save)
+        alertController.addAction(cancel)
+        alertController.addTextField { (textField) -> Void in
+            
+            nameTextField = textField
+            nameTextField?.placeholder = "Event name"
+        }
+        alertController.addTextField { (textField) -> Void in
+            
+            dateTextField = textField
+            dateTextField?.placeholder = "Date"
+        }
+        
+        present(alertController, animated: true, completion: nil)
     }
 }
 
 
 
 class EventTableViewCell: UITableViewCell {
+    
+    // outlets
     
     @IBOutlet weak var eventName: UILabel!
     @IBOutlet weak var eventDate: UILabel!
@@ -145,7 +153,11 @@ class EventTableViewCell: UITableViewCell {
 
 class Logics {
     
+    // initializers
+    
     private init() {}
+    
+    // properties
     
     static let sharedInstance = Logics()
     
@@ -153,4 +165,4 @@ class Logics {
     var eventID = ""
     
 }
- 
+
