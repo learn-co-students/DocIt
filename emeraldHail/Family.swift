@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Firebase
 
 class Family {
     
@@ -29,6 +30,22 @@ class Family {
         self.coverImageStr = coverImageStr
         self.members = []
     
+    }
+    
+    init(name: String) {
+        self.name = name
+    }
+    
+//    init(snapshot: FIRDataSnapshot) {
+//        
+//        let snapshotValue = snapshot.value as! String : AnyObject]
+//        
+//        name = snapshotValue["name"] as! String
+//
+//    }
+    
+    func serialize() -> [String:Any] {
+        return ["email":email!, "name":name!]
     }
 
 }
