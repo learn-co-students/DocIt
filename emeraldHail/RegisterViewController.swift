@@ -24,7 +24,7 @@ class RegisterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        hideKeyboardWhenTappedAround()
     }
     
     // actions
@@ -43,6 +43,16 @@ class RegisterViewController: UIViewController {
         return true
     }
     
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboardView")
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboardView() {
+        view.endEditing(true)
+    }
+
     func register() {
         
         guard let email = textEmail.text else { return }

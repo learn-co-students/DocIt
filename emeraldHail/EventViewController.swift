@@ -32,6 +32,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         configDatabase()
         eventsTable.reloadData()
+        hideKeyboardWhenTappedAround()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -81,6 +82,16 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return true
     }
     
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboardView")
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboardView() {
+        view.endEditing(true)
+    }
+
     func configDatabase() {
         
         let memberID: String = Logics.sharedInstance.memberID

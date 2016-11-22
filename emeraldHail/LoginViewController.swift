@@ -22,12 +22,12 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupViews()
+        hideKeyboardWhenTappedAround()
     }
     
     // actions
-    
+
     @IBAction func signIn(_ sender: UIButton) {
         print("didTapSignIn")
         login()
@@ -47,6 +47,17 @@ class LoginViewController: UIViewController {
     override var prefersStatusBarHidden : Bool {
         return true
     }
+    
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboardView")
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboardView() {
+        view.endEditing(true)
+    }
+
     
     func setupViews() {
         signIn.layer.cornerRadius = 2

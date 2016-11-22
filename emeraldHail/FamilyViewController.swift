@@ -38,6 +38,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         configDatabase()
         
         memberProfilesView.reloadData()
+        hideKeyboardWhenTappedAround()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -78,6 +79,16 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         return true
     }
     
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboardView")
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboardView() {
+        view.endEditing(true)
+    }
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         Logics.sharedInstance.memberID = membersInFamily[indexPath.row].uniqueID

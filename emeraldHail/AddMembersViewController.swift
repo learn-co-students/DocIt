@@ -36,6 +36,7 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
         super.viewDidLoad()
         addGestureRecognizer(imageView: profileImageView)
         profileImageView.isUserInteractionEnabled = true
+        hideKeyboardWhenTappedAround()
     }
     
     // actions 
@@ -69,6 +70,16 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
         return true
     }
     
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboardView")
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboardView() {
+        view.endEditing(true)
+    }
+
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }

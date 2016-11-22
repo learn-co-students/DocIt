@@ -31,6 +31,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         configDatabase()
         postTableView.reloadData()
+        hideKeyboardWhenTappedAround()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -76,6 +77,16 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         return true
     }
     
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboardView")
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboardView() {
+        view.endEditing(true)
+    }
+
     func createPost() {
         var noteTextField: UITextField?
         
