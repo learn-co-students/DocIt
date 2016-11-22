@@ -2,14 +2,14 @@
 //  AddMembersViewController.swift
 //  emeraldHail
 //
-//  Created by Mirim An on 11/21/16.
-//  Copyright © 2016 Flatiron School. All rights reserved.
+//  Created by Luna An on 11/21/16.
+//  Copyright © 2016 Mimicatcodes. All rights reserved.
 //
 
 import UIKit
 import Firebase
 
-class AddMembersViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class AddMembersViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
     // outlets
     
@@ -19,24 +19,14 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var birthdayField: UITextField!
     @IBOutlet weak var genderField: UITextField!
     
-    // properties
-    
-    // Reference to database
-    var database: FIRDatabaseReference = FIRDatabase.database().reference()
-    //Reference to members
-    var membersRef: FIRDatabaseReference = FIRDatabase.database().reference().child("Members")
-    // Reference to storage
-    let storage: FIRStorage = FIRStorage.storage()
-    // Reference to storage URL
-    let storageRef = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
-    
+
     // loads 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         addGestureRecognizer(imageView: profileImageView)
         profileImageView.isUserInteractionEnabled = true
-        hideKeyboardWhenTappedAround()
+
     }
     
     // actions 
@@ -47,17 +37,33 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
             let dob = birthdayField.text, dob != "",
             let gender = genderField.text, gender != ""
             else { return }
-        
+        let database: FIRDatabaseReference = FIRDatabase.database().reference()
         let databaseMembersRef = database.child("members").child((FIRAuth.auth()?.currentUser?.uid)!).childByAutoId()
-        
         let uniqueID = databaseMembersRef.key
         
-        let member = Member(firstName: name, lastName: lastName, gender: gender, birthday: dob, uniqueID: uniqueID)
+        let storageRef = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
+        let imageId = uniqueID
+        let storageImageRef = storageRef.child("profileImages").child("\(imageId).png")
         
-        databaseMembersRef.setValue(member.serialize(), withCompletionBlock: { error, dataRef in
+        if let uploadData = UIImagePNGRepresentation(self.profileImageView.image!) {
+            storageImageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
+                if error != nil {
+                    print ("ERROR!")
+                    return
+                }
+                if let profileImageUrl = metadata?.downloadURL()?.absoluteString {
+                    let member = Member(profileImage: profileImageUrl, firstName: name, lastName: lastName, gender: gender, birthday: dob, uniqueID: uniqueID)
+        
+                    
+                    databaseMembersRef.setValue(member.serialize(), withCompletionBlock: { error, dataRef in
+                        self.dismiss(animated: true, completion: nil)
+                    
+                    })
+                }
             
-            self.dismiss(animated: true, completion: nil)
-        })
+            })
+        }
+        
     }
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
@@ -69,16 +75,6 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
     override var prefersStatusBarHidden : Bool {
         return true
     }
-    
-    func hideKeyboardWhenTappedAround() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboardView")
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-    
-    func dismissKeyboardView() {
-        view.endEditing(true)
-    }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
@@ -86,7 +82,7 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
     
     func textFieldShouldReturn(textField: UITextField) -> Bool     {
         textField.resignFirstResponder()
-        return true
+        return false
     }
     
     func addGestureRecognizer(imageView: UIImageView){

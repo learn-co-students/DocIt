@@ -78,7 +78,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func hideKeyboardWhenTappedAround() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboardView")
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(PostViewController.dismissKeyboardView))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
     }
@@ -93,9 +93,9 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         let alertController = UIAlertController(title: "Create post", message: "what's cracking?", preferredStyle: .alert)
         let save = UIAlertAction(title: "Save", style: .default, handler: { (action) -> Void in
             
-            var note = noteTextField?.text
+            let note = noteTextField?.text
             let databaseEventsRef = self.database.child("posts").child(Logics.sharedInstance.eventID).childByAutoId()
-            let uniqueID = databaseEventsRef.key
+            //let uniqueID = databaseEventsRef.key
             let post = Post(note: note!)
             
             databaseEventsRef.setValue(post.serialize(), withCompletionBlock: { error, dataRef in
