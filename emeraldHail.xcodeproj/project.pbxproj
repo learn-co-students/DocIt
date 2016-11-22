@@ -465,6 +465,7 @@
 				CODE_SIGN_ENTITLEMENTS = emeraldHail/emeraldHail.entitlements;
 				DEVELOPMENT_TEAM = N2MERYPM36;
 				INFOPLIST_FILE = emeraldHail/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.flatironschool.emeraldHail;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -480,6 +481,7 @@
 				CODE_SIGN_ENTITLEMENTS = emeraldHail/emeraldHail.entitlements;
 				DEVELOPMENT_TEAM = N2MERYPM36;
 				INFOPLIST_FILE = emeraldHail/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.flatironschool.emeraldHail;
 				PRODUCT_NAME = "$(TARGET_NAME)";
