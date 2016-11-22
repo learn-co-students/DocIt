@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -133,7 +134,7 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="aH9-m5-cgZ">
                                 <rect key="frame" x="0.0" y="263" width="375" height="322"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.97647058823529409" green="0.97254901960784312" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="322" id="DB1-mK-TPU"/>
                                 </constraints>
@@ -151,16 +152,27 @@
                                             <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GSq-JP-80B">
-                                                    <rect key="frame" x="55" y="124" width="40" height="18"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GSq-JP-80B">
+                                                    <rect key="frame" x="0.0" y="124" width="150" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kid_silhouette" translatesAutoresizingMaskIntoConstraints="NO" id="nGD-pi-dzc">
+                                                    <rect key="frame" x="30" y="30" width="90" height="90"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="90" id="4vS-QP-k7b"/>
+                                                        <constraint firstAttribute="width" constant="90" id="89K-49-I7x"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                         </view>
-                                        <color key="backgroundColor" red="0.12549019610000001" green="0.75294117650000003" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="nGD-pi-dzc" firstAttribute="centerX" secondItem="swP-Lg-vbj" secondAttribute="centerX" id="JMg-PL-7gA"/>
+                                            <constraint firstItem="nGD-pi-dzc" firstAttribute="centerY" secondItem="swP-Lg-vbj" secondAttribute="centerY" id="VMZ-NN-mMW"/>
+                                            <constraint firstItem="GSq-JP-80B" firstAttribute="centerX" secondItem="swP-Lg-vbj" secondAttribute="centerX" id="rc6-hh-mSd"/>
+                                            <constraint firstItem="GSq-JP-80B" firstAttribute="width" secondItem="swP-Lg-vbj" secondAttribute="width" id="smy-sb-uRf"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="GSq-JP-80B" secondAttribute="bottom" id="uTT-Fn-lt0"/>
+                                        </constraints>
                                         <size key="customSize" width="150" height="150"/>
                                         <connections>
                                             <outlet property="memberNameLabel" destination="GSq-JP-80B" id="I6j-36-Dl3"/>
@@ -472,5 +484,6 @@
     <resources>
         <image name="adorablebaby" width="395" height="502"/>
         <image name="blackfam" width="2290" height="1526"/>
+        <image name="kid_silhouette" width="347" height="347"/>
     </resources>
 </document>
