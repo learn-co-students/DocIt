@@ -45,21 +45,26 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let alertController = UIAlertController(title: "Create event", message: "Put a name that describe the event and the date when started", preferredStyle: .alert)
         let save = UIAlertAction(title: "Save", style: .default, handler: { (action) -> Void in
             
-            var name = nameTextField?.text
-            var date = dateTextField?.text
-            
-            let databaseEventsRef = self.database.child("events").child(EventLogics.sharedInstance.memberID).childByAutoId()
+            guard let name = nameTextField?.text, name != "", let date = dateTextField?.text, date != "" else { return }
             
             
+            let databaseEventsRef = self.database.child("events").child(Logics.sharedInstance.memberID).childByAutoId()
+            
+            print("================ I'm breaking here 0")
             let uniqueID = databaseEventsRef.key
             
-            let event = Event(name: name!, startDate: date!)
+            print("================ I'm breaking here 1 \(uniqueID)")
+            
+            let event = Event(name: name, startDate: date, uniqueID: uniqueID)
+            
+            print("================ I'm breaking here 2")
             
             databaseEventsRef.setValue(event.serialize(), withCompletionBlock: { error, dataRef in
+                print("================ I'm breaking here 3")
                 
             })
             
-            self.eventsTable.reloadData()
+//            self.eventsTable.reloadData()
 
             print("Save Button Pressed")
         })
@@ -98,12 +103,14 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let event = events[indexPath.row]
         cell.eventName.text = event.name
         cell.eventDate.text = event.startDate
+        
+        Logics.sharedInstance.eventID =  event.uniqueID
         return cell
     }
     
     func configDatabase() {
         
-        let memberID: String = EventLogics.sharedInstance.memberID
+        let memberID: String = Logics.sharedInstance.memberID
         
         let eventsRef = FIRDatabase.database().reference().child("events").child(memberID)
         
@@ -136,13 +143,14 @@ class EventTableViewCell: UITableViewCell {
     
 }
 
-class EventLogics {
+class Logics {
     
     private init() {}
     
-    static let sharedInstance = EventLogics()
+    static let sharedInstance = Logics()
     
     var memberID = ""
+    var eventID = ""
     
 }
  

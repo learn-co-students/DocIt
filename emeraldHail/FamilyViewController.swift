@@ -61,15 +61,15 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         let cell = memberProfilesView.dequeueReusableCell(withReuseIdentifier: "memberCell", for: indexPath) as! MemberCollectionViewCell
         let eachMember = membersInFamily[indexPath.row]
         cell.memberNameLabel?.text = eachMember.firstName
-        EventLogics.sharedInstance.memberID = membersInFamily[indexPath.row].uniqueID
+        Logics.sharedInstance.memberID = membersInFamily[indexPath.row].uniqueID
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         
-        EventLogics.sharedInstance.memberID = membersInFamily[indexPath.row].uniqueID
-        print("=============================\(EventLogics.sharedInstance.memberID)")
+        Logics.sharedInstance.memberID = membersInFamily[indexPath.row].uniqueID
+        print("=============================\(Logics.sharedInstance.memberID)")
         print("Item at indexPath.row: \(indexPath.row) selected!")
     }
     

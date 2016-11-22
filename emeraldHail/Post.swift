@@ -8,9 +8,33 @@
 
 import Foundation
 import UIKit
+import Firebase
 
 final class Post {
     
+    var note: String
+    
+    init(note: String) {
+        
+        self.note = note
+    
+    }
+    
+    init(snapshot: FIRDataSnapshot) {
+        
+        let snapshotValue = snapshot.value as! [String:AnyObject]
+        
+        note = snapshotValue["note"] as! String
+        
+    }
+    
+    func serialize() -> [String: Any] {
+        
+        return ["note" : note]
+    }
+    
+}
+
     //post properties
 //    var id: String
 //    var postType: PostType
@@ -43,7 +67,7 @@ final class Post {
 //    
 //    var photo: UIImage?
 //    var photoStr: String?
-//    var note: String?
+//    var note: String
 //    var painLevel: PainLevel?
 //    
 //    init(id: String, postType: PostType, timestamp: Date, sympotoms: Symptom?, temp: Double?, photo: UIImage?, note: String?, painLevel: PainLevel?) {
@@ -76,7 +100,6 @@ final class Post {
 //    //
 //    
     
-}
 
 enum PostType {
     
