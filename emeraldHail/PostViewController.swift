@@ -16,7 +16,6 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBOutlet weak var postTableView: UITableView!
     
-    
     // properties
     
     var posts = [Post]()
@@ -30,13 +29,13 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         postTableView.delegate = self
         postTableView.dataSource = self
         
-                configDatabase()
+        configDatabase()
         postTableView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-                configDatabase()
+        configDatabase()
         postTableView.reloadData()
     }
     
@@ -70,6 +69,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
     
+    
     // methods
     
     override var prefersStatusBarHidden : Bool {
@@ -83,7 +83,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         let save = UIAlertAction(title: "Save", style: .default, handler: { (action) -> Void in
             
             var note = noteTextField?.text
-            let databaseEventsRef = self.database.child("posts").child(Logics.sharedInstance.eventID ).childByAutoId()
+            let databaseEventsRef = self.database.child("posts").child(Logics.sharedInstance.eventID).childByAutoId()
             let uniqueID = databaseEventsRef.key
             let post = Post(note: note!)
             

@@ -70,6 +70,11 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        Logics.sharedInstance.eventID =  events[indexPath.row].uniqueID
+    }
+    
     // methods
     
     override var prefersStatusBarHidden : Bool {
