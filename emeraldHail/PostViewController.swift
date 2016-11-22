@@ -17,7 +17,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var postTableView: UITableView!
     
     
-    // variables
+    // properties
     
     var posts = [Post]()
     var database: FIRDatabaseReference = FIRDatabase.database().reference()
@@ -50,7 +50,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         createPost()
     }
     
-    // methods
+    // methods for tableView
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -69,6 +69,8 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         return cell
     }
+    
+    // methods
     
     func createPost() {
         var noteTextField: UITextField?
@@ -132,6 +134,8 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
 }
 
 class PostTableViewCell: UITableViewCell {
+    
+    // outlets
     
     @IBOutlet weak var noteLabel: UILabel!
     

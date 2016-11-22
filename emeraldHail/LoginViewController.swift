@@ -11,10 +11,14 @@ import Firebase
 
 class LoginViewController: UIViewController {
     
+    // outlets
+    
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var signIn: UIButton!
     @IBOutlet weak var createAccount: UIButton!
+    
+    // loads
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +27,7 @@ class LoginViewController: UIViewController {
     }
     
     // actions
+    
     @IBAction func signIn(_ sender: UIButton) {
         print("didTapSignIn")
         login()
@@ -37,7 +42,8 @@ class LoginViewController: UIViewController {
         performSegue(withIdentifier: "showForgot", sender: self)
     }
 
-    // functions
+    // methods
+    
     func setupViews() {
         signIn.layer.cornerRadius = 2
         createAccount.layer.borderWidth = 1
@@ -57,16 +63,21 @@ class LoginViewController: UIViewController {
             self.performSegue(withIdentifier: "showFamily", sender: nil)
         }
     }
-    
 }
 
 class ForgotViewController: UIViewController {
     
+    // outlets 
+    
     @IBOutlet weak var textEmail: UITextField!
+    
+    // loads 
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    // actions
     
     @IBAction func sendPassword(_ sender: UIButton) {
         print("send email")
@@ -75,5 +86,4 @@ class ForgotViewController: UIViewController {
     @IBAction func cancel(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
-
 }

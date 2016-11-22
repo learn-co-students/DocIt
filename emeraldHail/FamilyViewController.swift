@@ -12,12 +12,17 @@ import FirebaseDatabase
 
 class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
     
-//    @IBOutlet weak var uploadPhotoLibraryView: UIImageView!
+    // outlets
+    
+    //    @IBOutlet weak var uploadPhotoLibraryView: UIImageView!
     @IBOutlet weak var memberProfilesView: UICollectionView!
     
-    let imageSelected = UIImagePickerController()
+    // properties
     
+    let imageSelected = UIImagePickerController()
     var membersInFamily = [Member]()
+    
+    // loads 
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +54,8 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
 //        self.present(myPickerController, animated: true, completion: nil)
 //    }
     
+    // methods for collectionView
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -65,12 +72,11 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         return cell
     }
     
+    // methods
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        
         Logics.sharedInstance.memberID = membersInFamily[indexPath.row].uniqueID
-        print("=============================\(Logics.sharedInstance.memberID)")
-        print("Item at indexPath.row: \(indexPath.row) selected!")
     }
     
     
@@ -95,10 +101,5 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
             self.membersInFamily = newItem
             self.memberProfilesView.reloadData()
         })
-        
     }
-    
-    
-    
-    
 }
