@@ -39,7 +39,7 @@ class AddNotesViewController: UIViewController {
     
     @IBAction func addNotesSaveButton(_ sender: Any) {
         guard let note = addNotesTextField.text, note != "" else { return }
-        let databasePostRef = database.child("Post").child((FIRAuth.auth()?.currentUser?.uid)!).childByAutoId()
+       let databasePostRef = database.child("posts").child(Logics.sharedInstance.eventID)
         let uniqueID = databasePostRef.key
         let post = Post(note: note)
         databasePostRef.setValue(post.serialize(), withCompletionBlock: {error, FIRDatabaseReference in
@@ -50,12 +50,12 @@ class AddNotesViewController: UIViewController {
         
         
         }
+    //Tanira: Keyboard was not responding uncomment for last resort solution.
+//    func displayKeyboard(){
+//        self.addNotesTextField.becomeFirstResponder()
+//        self.dismiss(animated: true, completion: nil)
+//    }
     
-    func displayKeyboard(){
-        self.addNotesTextField.becomeFirstResponder()
-        self.dismiss(animated: true, completion: nil)
-    }
-        
         
     }
 
