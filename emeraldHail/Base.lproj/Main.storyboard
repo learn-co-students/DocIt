@@ -501,7 +501,6 @@
                     </view>
                     <connections>
                         <outlet property="postTableView" destination="QY9-3s-j0B" id="3qW-Cp-Zkx"/>
-                        <segue destination="xCx-Yr-OUd" kind="presentation" identifier="addNotes" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="cuk-Id-rQH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YR2-Bj-4Yh" userLabel="First Responder" sceneMemberID="firstResponder"/>
