@@ -19,6 +19,15 @@ class AddNotesView: UIView {
         // Drawing code
     }
     */
+    
+    // Reference to database
+    var database: FIRDatabaseReference = FIRDatabase.database().reference()
+    // Reference to Post
+    var postRef : FIRDatabaseReference = FIRDatabase.database().reference().child("Post")
+    //Reference to storage 
+    let storage : FIRStorage = FIRStorage.storage()
+    
+    
     @IBOutlet var AddNotesContentView: AddNotesView!
     @IBOutlet weak var inputAdditionalNotesTextField: UITextField!
     
@@ -33,22 +42,33 @@ class AddNotesView: UIView {
     }
     
     func commonInit(){
+//'Bundle.main.loadNibNamed("AddNotesView", owner: self, options: nil)
+     //   self.addSubview(AddNotesContentView)
         Bundle.main.loadNibNamed("AddNotesView", owner: self, options: nil)
-        self.addSubview(AddNotesContentView)
-        
     }
     
     
+    
+
     
     
     
     @IBAction func saveAdditionalNotesButton(_ sender: Any) {
-        if inputAdditionalNotesTextField.text != "" {
-            
-        }
+        guard let note = inputAdditionalNotesTextField.text, note != "" else { return }
+            let databasePostRef = database.child("Post").child((FIRAuth.auth()?.currentUser?.uid)!).childByAutoId()
+            let uniqueID = databasePostRef.key
+            let post = Post(note: note)
+        databasePostRef.setValue(post.serialize(), withCompletionBlock: {error, FIRDatabaseReference in
+        
+           
+        })
         
         
     }
+    
+    
+    
+    
     
     
 

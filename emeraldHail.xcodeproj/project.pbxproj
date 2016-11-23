@@ -26,6 +26,7 @@
 		B69638C41DE4E83A00FE7023 /* TemperatureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B69638C31DE4E83A00FE7023 /* TemperatureView.xib */; };
 		B69638C61DE4E84900FE7023 /* Temperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69638C51DE4E84900FE7023 /* Temperature.swift */; };
 		B69638CA1DE4F1ED00FE7023 /* AddNotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69638C91DE4F1ED00FE7023 /* AddNotesView.swift */; };
+		B69638D21DE602FD00FE7023 /* AddNotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69638D11DE602FD00FE7023 /* AddNotesViewController.swift */; };
 		B6ED5B361DDE4CDB00B56DFD /* TempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6ED5B351DDE4CDB00B56DFD /* TempViewController.swift */; };
 		BB9286851DDE3D2100D3D9A6 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9286841DDE3D2100D3D9A6 /* DataStore.swift */; };
 		BBF453B91DE34ACD00E054E9 /* Symptom.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF453B81DE34ACD00E054E9 /* Symptom.swift */; };
@@ -64,6 +65,7 @@
 		B69638C31DE4E83A00FE7023 /* TemperatureView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TemperatureView.xib; sourceTree = "<group>"; };
 		B69638C51DE4E84900FE7023 /* Temperature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Temperature.swift; sourceTree = "<group>"; };
 		B69638C91DE4F1ED00FE7023 /* AddNotesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNotesView.swift; sourceTree = "<group>"; };
+		B69638D11DE602FD00FE7023 /* AddNotesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNotesViewController.swift; sourceTree = "<group>"; };
 		B6ED5B351DDE4CDB00B56DFD /* TempViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempViewController.swift; sourceTree = "<group>"; };
 		BB9286841DDE3D2100D3D9A6 /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		BBF453B81DE34ACD00E054E9 /* Symptom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Symptom.swift; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 				BBF4EEB41DDF59F900EBD3FE /* FamilyViewController.swift */,
 				AABA5C381DE3A3DF0041D112 /* MemberCollectionViewCell.swift */,
 				DD755E191DE3A99F002478D0 /* AddMembersViewController.swift */,
+				B69638D11DE602FD00FE7023 /* AddNotesViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -354,6 +357,7 @@
 				AABA5C391DE3A3DF0041D112 /* MemberCollectionViewCell.swift in Sources */,
 				BBF4EEB11DDF59D400EBD3FE /* LoginViewController.swift in Sources */,
 				BBF4EEB51DDF59F900EBD3FE /* FamilyViewController.swift in Sources */,
+				B69638D21DE602FD00FE7023 /* AddNotesViewController.swift in Sources */,
 				AA9FFBB81DDA667500847FCF /* AppDelegate.swift in Sources */,
 				AA7ED5941DDF4D16005F9AB2 /* Member.swift in Sources */,
 				BBF453B91DE34ACD00E054E9 /* Symptom.swift in Sources */,

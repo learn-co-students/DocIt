@@ -32,6 +32,8 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         
                 configDatabase()
         postTableView.reloadData()
+        
+        performSegue(withIdentifier: "addNotes", sender: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -127,9 +129,18 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         })
         
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        
+        
+        
+    }
 
     
 }
+
+
 
 class PostTableViewCell: UITableViewCell {
     

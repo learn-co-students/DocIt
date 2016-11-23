@@ -501,11 +501,40 @@
                     </view>
                     <connections>
                         <outlet property="postTableView" destination="QY9-3s-j0B" id="3qW-Cp-Zkx"/>
+                        <segue destination="xCx-Yr-OUd" kind="presentation" identifier="addNotes" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="cuk-Id-rQH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YR2-Bj-4Yh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2376.8000000000002" y="-161.46926536731635"/>
+        </scene>
+        <!--Add Notes View Controller-->
+        <scene sceneID="VHJ-My-v70">
+            <objects>
+                <viewController id="xCx-Yr-OUd" customClass="AddNotesViewController" customModule="emeraldHail" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8mz-QM-0S7"/>
+                        <viewControllerLayoutGuide type="bottom" id="Jjc-Dv-1jK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1zD-lC-LGA">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FG9-vq-s0Z" customClass="AddNotesView" customModule="emeraldHail" customModuleProvider="target">
+                                <rect key="frame" x="67" y="219" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.59846443965517238" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="addNotesView" destination="FG9-vq-s0Z" id="pu3-5k-EwZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5tf-uz-2dn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3324" y="-161"/>
         </scene>
         <!--Forgot View Controller-->
         <scene sceneID="C5y-MP-vld">
