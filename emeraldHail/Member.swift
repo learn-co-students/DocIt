@@ -11,8 +11,10 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 
-struct Member {
 
+
+final class Member {
+    
     var profileImage: String?
     var firstName: String
     var lastName: String
@@ -22,6 +24,11 @@ struct Member {
     var gender: String
     var birthday: String
     var uniqueID: String
+    
+    var image: UIImage?
+    
+    var isDownloadingImage: Bool = false
+    
     
     
     init(profileImage: String, firstName: String, lastName: String, gender: String, birthday: String, uniqueID: String = "") {
@@ -59,6 +66,50 @@ struct Member {
     }
     
     func serialize() -> [String : Any] {
-        return  ["firstName" : firstName, "lastName": lastName, "gender" : gender, "dob" : birthday, "uniqueID" : uniqueID, "profileImage" : profileImage]
+        return  ["firstName" : firstName, "lastName": lastName, "gender" : gender, "dob" : birthday, "uniqueID" : uniqueID, "profileImage" : profileImage ?? ""]
     }
+}
+
+// MARK: - Downloading Image
+extension Member {
+    
+    func downloadProfileImage(at urlString: String, handler: @escaping (Bool, UIImage?) -> Void) {
+        
+        isDownloadingImage = true
+        
+        guard let url = URL(string: urlString) else { handler(false, nil); return }
+        
+        let session = URLSession.shared
+        
+        let request = URLRequest(url: url)
+        
+        session.dataTask(with: request, completionHandler: { [unowned self] data, response, error in
+            
+            DispatchQueue.main.async {
+                
+                guard let rawData = data, let image = UIImage(data: rawData) else { handler(false, nil); return }
+                
+                self.image = image
+                
+                self.isDownloadingImage = false
+                
+                handler(true, image)
+                
+            }
+            
+        }).resume()
+    }
+}
+
+
+
+extension Member: Equatable {
+    
+    static func ==(lhs: Member, rhs: Member) -> Bool {
+        
+        return lhs.uniqueID == rhs.uniqueID
+    }
+    
+    
+    
 }

@@ -7,7 +7,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -145,38 +144,28 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="memberCell" id="swP-Lg-vbj" customClass="MemberCollectionViewCell" customModule="emeraldHail" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="memberCell" id="swP-Lg-vbj" customClass="MemberViewCollectionCellCollectionViewCell" customModule="emeraldHail" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GSq-JP-80B">
-                                                    <rect key="frame" x="0.0" y="124" width="150" height="18"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kid_silhouette" translatesAutoresizingMaskIntoConstraints="NO" id="nGD-pi-dzc">
-                                                    <rect key="frame" x="30" y="30" width="90" height="90"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="90" id="4vS-QP-k7b"/>
-                                                        <constraint firstAttribute="width" constant="90" id="89K-49-I7x"/>
-                                                    </constraints>
-                                                </imageView>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iIN-BY-H4i" customClass="MemberView" customModule="emeraldHail" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
                                             </subviews>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="nGD-pi-dzc" firstAttribute="centerX" secondItem="swP-Lg-vbj" secondAttribute="centerX" id="JMg-PL-7gA"/>
-                                            <constraint firstItem="nGD-pi-dzc" firstAttribute="centerY" secondItem="swP-Lg-vbj" secondAttribute="centerY" id="VMZ-NN-mMW"/>
-                                            <constraint firstItem="GSq-JP-80B" firstAttribute="centerX" secondItem="swP-Lg-vbj" secondAttribute="centerX" id="rc6-hh-mSd"/>
-                                            <constraint firstItem="GSq-JP-80B" firstAttribute="width" secondItem="swP-Lg-vbj" secondAttribute="width" id="smy-sb-uRf"/>
-                                            <constraint firstAttribute="bottomMargin" secondItem="GSq-JP-80B" secondAttribute="bottom" id="uTT-Fn-lt0"/>
+                                            <constraint firstAttribute="trailing" secondItem="iIN-BY-H4i" secondAttribute="trailing" id="8xY-Wj-9vU"/>
+                                            <constraint firstItem="iIN-BY-H4i" firstAttribute="top" secondItem="swP-Lg-vbj" secondAttribute="top" id="U6z-Dp-0dh"/>
+                                            <constraint firstAttribute="bottom" secondItem="iIN-BY-H4i" secondAttribute="bottom" id="fgB-C8-3Yb"/>
+                                            <constraint firstItem="iIN-BY-H4i" firstAttribute="leading" secondItem="swP-Lg-vbj" secondAttribute="leading" id="i83-q9-j1t"/>
                                         </constraints>
                                         <size key="customSize" width="150" height="150"/>
                                         <connections>
-                                            <outlet property="memberNameLabel" destination="GSq-JP-80B" id="DXX-Gf-p1K"/>
-                                            <outlet property="profileImageView" destination="nGD-pi-dzc" id="eIc-bh-YLd"/>
+                                            <outlet property="memberView" destination="iIN-BY-H4i" id="4Uy-xH-44t"/>
                                             <segue destination="ZlU-EQ-FGQ" kind="presentation" id="AyQ-2m-HY5"/>
                                         </connections>
                                     </collectionViewCell>
@@ -913,6 +902,5 @@
     <resources>
         <image name="adorablebaby" width="395" height="502"/>
         <image name="blackfam" width="2290" height="1526"/>
-        <image name="kid_silhouette" width="347" height="347"/>
     </resources>
 </document>

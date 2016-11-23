@@ -10,16 +10,15 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 
+var imageCache = [String: UIImage]()
+
 class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
     
     // outlets
     @IBOutlet weak var familyName: UIButton!
-    
     @IBOutlet weak var familyNameLabel: UILabel!
-   
     @IBOutlet weak var memberProfilesView: UICollectionView!
     
-
     // properties
     
     let imageSelected = UIImagePickerController()
@@ -80,30 +79,17 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = memberProfilesView.dequeueReusableCell(withReuseIdentifier: "memberCell", for: indexPath) as! MemberCollectionViewCell
+        let cell = memberProfilesView.dequeueReusableCell(withReuseIdentifier: "memberCell", for: indexPath) as! MemberViewCollectionCellCollectionViewCell
+        
         let member = membersInFamily[indexPath.row]
-        cell.memberNameLabel?.text = member.firstName
-        cell.profileImageView.image = UIImage(named: "kid_silhouette")
-        cell.profileImageView.contentMode = .scaleAspectFill
-        cell.profileImageView.setRounded()
         
-        if let profileImageUrl = member.profileImage {
-            let url = URL(string: profileImageUrl)
-            URLSession.shared.dataTask(with: url!, completionHandler: {
-                (data, response, error) in
-                
-                if error != nil {
-                    print("Error occurred")
-                    return
-                }
-                
-                OperationQueue.main.addOperation {
-                    cell.profileImageView.image = UIImage(data: data!)
-                }
-            }).resume()
-        }
+        if cell.memberView.delegate == nil { cell.memberView.delegate = self }
         
+        cell.member = member
+        
+        // TODO: What is this?
         Logics.sharedInstance.memberID = member.uniqueID
+        
         return cell
     }
     
@@ -144,9 +130,13 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
             
             var newItem = [Member]()
             
+            // TODO: Don't re-add new members IF they already exist in our membersInFamily array.
+            // TODO:
             for item in snapshot.children {
                 
                 let newMember = Member(snapshot: item as! FIRDataSnapshot)
+                
+                if self.membersInFamily.contains(newMember) { continue }
                 
                 newItem.append(newMember)
             }
@@ -196,3 +186,31 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         present(alertController, animated: true, completion: nil)
     }
 }
+
+// MARK: - Image Delegate
+
+extension FamilyViewController: ImageDelegate {
+    
+    func canDisplayImage(member: Member) -> Bool {
+        
+        var visibleMemberIDS: [String] = []
+        
+        let indexPaths = memberProfilesView.indexPathsForVisibleItems
+        
+        for indexPath in indexPaths {
+            
+            let idOfMember = membersInFamily[indexPath.row].uniqueID
+            
+            visibleMemberIDS.append(idOfMember)
+            
+        }
+        
+        return visibleMemberIDS.contains(member.uniqueID)
+        
+    }
+    
+    
+    
+}
+
+

@@ -35,6 +35,9 @@
 		BBF4EEB51DDF59F900EBD3FE /* FamilyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF4EEB41DDF59F900EBD3FE /* FamilyViewController.swift */; };
 		BBF4EEB71DDF59FF00EBD3FE /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF4EEB61DDF59FF00EBD3FE /* EventViewController.swift */; };
 		BBF4EEB91DDF5A0600EBD3FE /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF4EEB81DDF5A0600EBD3FE /* PostViewController.swift */; };
+		DD125EA11DE64B5A00250368 /* MemberView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD125EA01DE64B5A00250368 /* MemberView.xib */; };
+		DD125EA31DE64C0F00250368 /* MemberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD125EA21DE64C0F00250368 /* MemberView.swift */; };
+		DD125EA51DE6513800250368 /* MemberViewCollectionCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD125EA41DE6513800250368 /* MemberViewCollectionCellCollectionViewCell.swift */; };
 		DD755E1A1DE3A99F002478D0 /* AddMembersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD755E191DE3A99F002478D0 /* AddMembersViewController.swift */; };
 		DDA93D201DDE412000F0A4D4 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA93D1F1DDE412000F0A4D4 /* Secrets.swift */; };
 		DDA93D221DDE508A00F0A4D4 /* FeelingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA93D211DDE508A00F0A4D4 /* FeelingsViewController.swift */; };
@@ -73,6 +76,9 @@
 		BBF4EEB61DDF59FF00EBD3FE /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		BBF4EEB81DDF5A0600EBD3FE /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		D4BA12601A0F16DED58FEC5E /* Pods_emeraldHail.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_emeraldHail.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD125EA01DE64B5A00250368 /* MemberView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MemberView.xib; sourceTree = "<group>"; };
+		DD125EA21DE64C0F00250368 /* MemberView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberView.swift; sourceTree = "<group>"; };
+		DD125EA41DE6513800250368 /* MemberViewCollectionCellCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberViewCollectionCellCollectionViewCell.swift; sourceTree = "<group>"; };
 		DD755E191DE3A99F002478D0 /* AddMembersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMembersViewController.swift; sourceTree = "<group>"; };
 		DD755E1B1DE3ACB2002478D0 /* emeraldHail.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = emeraldHail.entitlements; sourceTree = "<group>"; };
 		DDA93D1F1DDE412000F0A4D4 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
@@ -166,6 +172,9 @@
 				AA9FFBBB1DDA667500847FCF /* Main.storyboard */,
 				AAFE44671DDF68BE00922FB0 /* SymptomView.xib */,
 				AAFE44691DDF68E600922FB0 /* SymptomView.swift */,
+				DD125EA01DE64B5A00250368 /* MemberView.xib */,
+				DD125EA21DE64C0F00250368 /* MemberView.swift */,
+				DD125EA41DE6513800250368 /* MemberViewCollectionCellCollectionViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -267,6 +276,7 @@
 			files = (
 				AA9FFBC21DDA667500847FCF /* LaunchScreen.storyboard in Resources */,
 				AA9FFBBF1DDA667500847FCF /* Assets.xcassets in Resources */,
+				DD125EA11DE64B5A00250368 /* MemberView.xib in Resources */,
 				BBF453BD1DE34B5100E054E9 /* GoogleService-Info.plist in Resources */,
 				AAFE44681DDF68BE00922FB0 /* SymptomView.xib in Resources */,
 				AA9FFBBD1DDA667500847FCF /* Main.storyboard in Resources */,
@@ -328,6 +338,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD125EA31DE64C0F00250368 /* MemberView.swift in Sources */,
 				B6ED5B361DDE4CDB00B56DFD /* TempViewController.swift in Sources */,
 				AAFE44661DDF634800922FB0 /* PainLevel.swift in Sources */,
 				BB6DEDB71DE61D9400D8B93A /* MemberSettingViewController.swift in Sources */,
@@ -351,6 +362,7 @@
 				BBF4EEB11DDF59D400EBD3FE /* LoginViewController.swift in Sources */,
 				BBF4EEB51DDF59F900EBD3FE /* FamilyViewController.swift in Sources */,
 				AA9FFBB81DDA667500847FCF /* AppDelegate.swift in Sources */,
+				DD125EA51DE6513800250368 /* MemberViewCollectionCellCollectionViewCell.swift in Sources */,
 				AA7ED5941DDF4D16005F9AB2 /* Member.swift in Sources */,
 				BBF453B91DE34ACD00E054E9 /* Symptom.swift in Sources */,
 			);
