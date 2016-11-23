@@ -12,7 +12,7 @@ import Firebase
 import FirebaseDatabase
 
 struct Member {
-    
+
     var profileImage: String?
     var firstName: String
     var lastName: String
