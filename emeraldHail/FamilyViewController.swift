@@ -16,10 +16,10 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var familyName: UIButton!
     
     @IBOutlet weak var familyNameLabel: UILabel!
-    
-    //    @IBOutlet weak var uploadPhotoLibraryView: UIImageView!
+   
     @IBOutlet weak var memberProfilesView: UICollectionView!
     
+
     // properties
     
     let imageSelected = UIImagePickerController()
@@ -81,9 +81,29 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = memberProfilesView.dequeueReusableCell(withReuseIdentifier: "memberCell", for: indexPath) as! MemberCollectionViewCell
-        let eachMember = membersInFamily[indexPath.row]
-        cell.memberNameLabel?.text = eachMember.firstName
-        Logics.sharedInstance.memberID = membersInFamily[indexPath.row].uniqueID
+        let member = membersInFamily[indexPath.row]
+        cell.memberNameLabel?.text = member.firstName
+        cell.profileImageView.image = UIImage(named: "kid_silhouette")
+        cell.profileImageView.contentMode = .scaleAspectFill
+        cell.profileImageView.setRounded()
+        
+        if let profileImageUrl = member.profileImage {
+            let url = URL(string: profileImageUrl)
+            URLSession.shared.dataTask(with: url!, completionHandler: {
+                (data, response, error) in
+                
+                if error != nil {
+                    print("Error occurred")
+                    return
+                }
+                
+                OperationQueue.main.addOperation {
+                    cell.profileImageView.image = UIImage(data: data!)
+                }
+            }).resume()
+        }
+        
+        Logics.sharedInstance.memberID = member.uniqueID
         return cell
     }
     
@@ -145,7 +165,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
             
             var name = snapshot.value as! [String:Any]
             
-            self.familyNameLabel.text = name["name"] as! String
+            self.familyNameLabel.text = name["name"] as? String
     })
 }
 
