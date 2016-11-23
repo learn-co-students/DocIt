@@ -49,10 +49,6 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     // actions
     
-    @IBAction func goBack(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
-    }
-    
     @IBAction func addPost(_ sender: UIButton) {
 //        createPost()
 
@@ -160,9 +156,18 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         })
         
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        
+        
+        
+    }
 
     
 }
+
+
 
 class PostTableViewCell: UITableViewCell {
     

@@ -10,8 +10,15 @@ import UIKit
 
 class MemberSettingViewController: UIViewController {
 
+    @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var firstName: UILabel!
+    @IBOutlet weak var lastName: UILabel!
     
-    
+    @IBOutlet weak var gender: UILabel!
+    @IBOutlet weak var dob: UILabel!
+    @IBOutlet weak var bloodType: UILabel!
+    @IBOutlet weak var totalPost: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
