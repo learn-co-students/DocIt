@@ -38,8 +38,6 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         configDatabase()
         postTableView.reloadData()
-
-        performSegue(withIdentifier: "addNotes", sender: nil)
         hideKeyboardWhenTappedAround()
     }
     

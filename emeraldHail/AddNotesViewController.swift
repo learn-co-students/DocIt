@@ -7,17 +7,26 @@
 //
 
 import UIKit
+import FirebaseDatabase
+import Firebase
 
 class AddNotesViewController: UIViewController {
     
     var notes: String?
     
-    @IBOutlet weak var addNotesView: AddNotesView!
+    @IBOutlet weak var addNotesTextField: UITextField!
+    
+    // Reference to database
+    var database: FIRDatabaseReference = FIRDatabase.database().reference()
+    // Reference to Post
+    var postRef : FIRDatabaseReference = FIRDatabase.database().reference().child("Post")
+    //Reference to storage
+    let storage : FIRStorage = FIRStorage.storage()
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        dismiss(animated: true, completion: nil)
+       
         
 
         // Do any additional setup after loading the view.
@@ -28,15 +37,24 @@ class AddNotesViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func addNotesSaveButton(_ sender: Any) {
+        
+            guard let note = addNotesTextField.text, note != "" else { return }
+            let databasePostRef = database.child("Post").child((FIRAuth.auth()?.currentUser?.uid)!).childByAutoId()
+            let uniqueID = databasePostRef.key
+            let post = Post(note: note)
+            databasePostRef.setValue(post.serialize(), withCompletionBlock: {error, FIRDatabaseReference in
+                 self.dismiss(animated: true, completion: nil)
+                
+            })
+            
+            
+        }
+        
+        
+        
     }
-    */
 
-}
+  
+
+
