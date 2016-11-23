@@ -70,7 +70,7 @@ class RegisterViewController: UIViewController {
                 } else {
                     
                     if error != nil {
-                        print(error!)
+                        print(error?.localizedDescription)
                     }
                 }
             }

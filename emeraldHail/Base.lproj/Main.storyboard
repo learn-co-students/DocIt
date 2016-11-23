@@ -282,14 +282,9 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Gender" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fpa-lS-Kwj">
-                                <rect key="frame" x="30" y="428" width="315" height="50"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Io-NH-AVo">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Io-NH-AVo">
                                 <rect key="frame" x="30" y="490" width="315" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.12549019610000001" green="0.75294117650000003" blue="0.8862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                                 <state key="normal" title="Save">
@@ -317,6 +312,18 @@
                                     <action selector="cancelButtonTapped:" destination="y9d-zF-vg4" eventType="touchUpInside" id="6oY-7K-YPi"/>
                                 </connections>
                             </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="RBC-ca-qAd">
+                                <rect key="frame" x="100" y="439" width="174" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Female"/>
+                                    <segment title="Male"/>
+                                </segments>
+                                <color key="tintColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="genderSegment:" destination="y9d-zF-vg4" eventType="valueChanged" id="F6a-4f-j4h"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="0.97647058823529409" green="0.97254901960784312" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -329,31 +336,22 @@
                             <constraint firstItem="oEA-Hz-mSg" firstAttribute="centerX" secondItem="H7m-8o-HX2" secondAttribute="centerX" id="PRd-Z6-H9h"/>
                             <constraint firstItem="oEA-Hz-mSg" firstAttribute="top" secondItem="H7m-8o-HX2" secondAttribute="bottom" constant="12" id="PzP-lm-SqB"/>
                             <constraint firstItem="H7m-8o-HX2" firstAttribute="centerX" secondItem="86D-xs-b9c" secondAttribute="centerX" id="TRC-k2-8Yf"/>
-                            <constraint firstItem="7Io-NH-AVo" firstAttribute="top" secondItem="fpa-lS-Kwj" secondAttribute="bottom" constant="12" id="TzA-gD-g5f"/>
                             <constraint firstItem="0uJ-V1-1Cd" firstAttribute="height" secondItem="oEA-Hz-mSg" secondAttribute="height" id="V18-Fh-l2l"/>
-                            <constraint firstItem="fpa-lS-Kwj" firstAttribute="width" secondItem="0uJ-V1-1Cd" secondAttribute="width" id="cAc-4E-K1v"/>
-                            <constraint firstItem="fpa-lS-Kwj" firstAttribute="height" secondItem="0uJ-V1-1Cd" secondAttribute="height" id="eyk-JD-vJ3"/>
                             <constraint firstItem="lYU-hc-HMC" firstAttribute="centerX" secondItem="86D-xs-b9c" secondAttribute="centerX" id="hVd-Rl-tve"/>
-                            <constraint firstItem="7Io-NH-AVo" firstAttribute="height" secondItem="fpa-lS-Kwj" secondAttribute="height" id="htw-L6-QJn"/>
                             <constraint firstItem="H7m-8o-HX2" firstAttribute="top" secondItem="lYU-hc-HMC" secondAttribute="bottom" constant="12" id="knZ-vR-NdJ"/>
-                            <constraint firstItem="fpa-lS-Kwj" firstAttribute="top" secondItem="0uJ-V1-1Cd" secondAttribute="bottom" constant="12" id="njb-56-z5o"/>
                             <constraint firstItem="0uJ-V1-1Cd" firstAttribute="width" secondItem="oEA-Hz-mSg" secondAttribute="width" id="uWe-6F-ytg"/>
-                            <constraint firstItem="fpa-lS-Kwj" firstAttribute="centerX" secondItem="0uJ-V1-1Cd" secondAttribute="centerX" id="vzQ-Qx-6cW"/>
-                            <constraint firstItem="7Io-NH-AVo" firstAttribute="width" secondItem="fpa-lS-Kwj" secondAttribute="width" id="wKA-PU-DVw"/>
-                            <constraint firstItem="7Io-NH-AVo" firstAttribute="centerX" secondItem="fpa-lS-Kwj" secondAttribute="centerX" id="yD7-nj-ceJ"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="birthdayField" destination="0uJ-V1-1Cd" id="iaP-7c-vHZ"/>
                         <outlet property="firstNameField" destination="H7m-8o-HX2" id="i43-CY-rfs"/>
-                        <outlet property="genderField" destination="fpa-lS-Kwj" id="Kr7-ND-3YK"/>
                         <outlet property="lastNameField" destination="oEA-Hz-mSg" id="sg1-QN-CzN"/>
                         <outlet property="profileImageView" destination="lYU-hc-HMC" id="DcY-Mu-grA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ic4-r6-4ur" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1481" y="553"/>
+            <point key="canvasLocation" x="1480.8" y="552.77361319340332"/>
         </scene>
         <!--Event View Controller-->
         <scene sceneID="qN4-eY-XuD">

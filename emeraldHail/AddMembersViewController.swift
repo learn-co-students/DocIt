@@ -18,7 +18,7 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var lastNameField: UITextField!
     @IBOutlet weak var birthdayField: UITextField!
     @IBOutlet weak var genderField: UITextField!
-    
+
 
     // loads 
     
@@ -26,7 +26,6 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
         super.viewDidLoad()
         addGestureRecognizer(imageView: profileImageView)
         profileImageView.isUserInteractionEnabled = true
-
     }
     
     // actions 
@@ -34,9 +33,10 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
     @IBAction func saveButtonTapped(_ sender: Any) {
         guard let name = firstNameField.text, name != "",
             let lastName = lastNameField.text, lastName != "",
-            let dob = birthdayField.text, dob != "",
-            let gender = genderField.text, gender != ""
+            let dob = birthdayField.text, dob != ""
             else { return }
+        let gender = Logics.sharedInstance.genderType
+        
         let database: FIRDatabaseReference = FIRDatabase.database().reference()
         let databaseMembersRef = database.child("members").child((FIRAuth.auth()?.currentUser?.uid)!).childByAutoId()
         let uniqueID = databaseMembersRef.key
@@ -64,6 +64,22 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
             })
         }
         
+    }
+    
+    @IBAction func genderSegment(_ sender: UISegmentedControl) {
+    
+        switch sender.selectedSegmentIndex {
+        case 0:
+            Logics.sharedInstance.genderType = "Female"
+        case 1:
+            Logics.sharedInstance.genderType = "Male"
+        default:
+            break
+        }
+    
+        
+    
+    
     }
     
     @IBAction func cancelButtonTapped(_ sender: Any) {

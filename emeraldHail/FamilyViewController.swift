@@ -145,12 +145,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
             
             var name = snapshot.value as! [String:Any]
             
-            
             self.familyNameLabel.text = name["name"] as! String
-            print("======================")
-            print(name["name"] as! String)
-            
-        
     })
 }
 

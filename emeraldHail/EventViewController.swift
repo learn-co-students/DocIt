@@ -171,19 +171,3 @@ class EventTableViewCell: UITableViewCell {
     
 }
 
-class Logics {
-    
-    // initializers
-    
-    private init() {}
-    
-    // properties
-    
-    static let sharedInstance = Logics()
-    
-    var familyID = ""
-    var memberID = ""
-    var eventID = ""
-    
-}
-

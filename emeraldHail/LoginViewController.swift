@@ -29,12 +29,10 @@ class LoginViewController: UIViewController {
     // actions
 
     @IBAction func signIn(_ sender: UIButton) {
-        print("didTapSignIn")
         login()
     }
     
     @IBAction func signUp(_ sender: UIButton) {
-        print("didTapCreateAccount")
         performSegue(withIdentifier: "showRegister", sender: self)
     }
     
@@ -95,7 +93,6 @@ class ForgotViewController: UIViewController {
     // actions
     
     @IBAction func sendPassword(_ sender: UIButton) {
-        print("send email")
     }
     
     @IBAction func cancel(_ sender: UIButton) {
