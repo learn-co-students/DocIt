@@ -88,25 +88,23 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     func createPost() {
-        var noteTextField: UITextField?
         
+        var noteTextField: UITextField?
         let alertController = UIAlertController(title: "Create post", message: "what's cracking?", preferredStyle: .alert)
         let save = UIAlertAction(title: "Save", style: .default, handler: { (action) -> Void in
             
             let note = noteTextField?.text
             let databaseEventsRef = self.database.child("posts").child(Logics.sharedInstance.eventID).childByAutoId()
-            //let uniqueID = databaseEventsRef.key
             let post = Post(note: note!)
             
             databaseEventsRef.setValue(post.serialize(), withCompletionBlock: { error, dataRef in
             })
             
             self.postTableView.reloadData()
-            
             print("Save Button Pressed")
         })
+        
         let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
-            
             print("Cancel Button Pressed")
         }
         alertController.addAction(save)
@@ -123,7 +121,6 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     func configDatabase() {
         
         let eventID: String = Logics.sharedInstance.eventID
-        
         let postsRef = FIRDatabase.database().reference().child("posts").child(eventID)
         
         postsRef.observe(.value, with: { snapshot in
@@ -131,15 +128,11 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
             var newPosts = [Post]()
             
             for post in snapshot.children {
-                
                 let newPost = Post(snapshot: post as! FIRDataSnapshot)
-                
                 newPosts.append(newPost)
-                
             }
             
             self.posts = newPosts
-            
             self.postTableView.reloadData()
         })
         

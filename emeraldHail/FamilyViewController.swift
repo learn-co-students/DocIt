@@ -175,5 +175,4 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         
         present(alertController, animated: true, completion: nil)
     }
-
 }

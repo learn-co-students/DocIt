@@ -69,16 +69,12 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
     
         switch sender.selectedSegmentIndex {
         case 0:
-            Logics.sharedInstance.genderType = "Female"
+            Logics.sharedInstance.genderType = Gender.female.rawValue
         case 1:
-            Logics.sharedInstance.genderType = "Male"
+            Logics.sharedInstance.genderType = Gender.male.rawValue
         default:
             break
         }
-    
-        
-    
-    
     }
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
@@ -118,7 +114,7 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
         picker.sourceType = .photoLibrary
         picker.allowsEditing = true
         
-        self.present(picker, animated: true, completion: nil)
+        self.present(picker, animated: true, completion: nil) 
         
     }
     
