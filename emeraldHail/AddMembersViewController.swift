@@ -24,8 +24,7 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        addGestureRecognizer(imageView: profileImageView)
-        profileImageView.isUserInteractionEnabled = true
+        addProfileSettings()
     }
     
     // actions 
@@ -92,6 +91,14 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
         return true
     }
 
+    func addProfileSettings() {
+        addGestureRecognizer(imageView: profileImageView)
+        profileImageView.isUserInteractionEnabled = true
+        profileImageView.setRounded()
+        profileImageView.layer.borderColor = UIColor.gray.cgColor
+        profileImageView.layer.borderWidth = 0.5
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
@@ -154,4 +161,13 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
         dismiss(animated: true, completion: nil)
     }
 
+}
+
+extension UIImageView {
+    
+    func setRounded() {
+        let radius = self.frame.width / 2
+        self.layer.cornerRadius = radius
+        self.layer.masksToBounds = true
+    }
 }
