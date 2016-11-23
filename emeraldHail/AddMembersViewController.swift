@@ -2,62 +2,97 @@
 //  AddMembersViewController.swift
 //  emeraldHail
 //
-//  Created by Mirim An on 11/21/16.
-//  Copyright © 2016 Flatiron School. All rights reserved.
+//  Created by Luna An on 11/21/16.
+//  Copyright © 2016 Mimicatcodes. All rights reserved.
 //
 
 import UIKit
 import Firebase
 
-class AddMembersViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class AddMembersViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
-    // Reference to database
-    var database: FIRDatabaseReference = FIRDatabase.database().reference()
-    //Reference to members
-    var membersRef: FIRDatabaseReference = FIRDatabase.database().reference().child("Members")
-    // Reference to storage
-    let storage: FIRStorage = FIRStorage.storage()
-    // Reference to storage URL
-    let storageRef = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
+    // outlets
     
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var firstNameField: UITextField!
     @IBOutlet weak var lastNameField: UITextField!
     @IBOutlet weak var birthdayField: UITextField!
     @IBOutlet weak var genderField: UITextField!
+
+
+    // loads 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        addGestureRecognizer(imageView: profileImageView)
-        profileImageView.isUserInteractionEnabled = true
+        addProfileSettings()
     }
     
+    // actions 
     
     @IBAction func saveButtonTapped(_ sender: Any) {
         guard let name = firstNameField.text, name != "",
             let lastName = lastNameField.text, lastName != "",
-            let dob = birthdayField.text, dob != "",
-            let gender = genderField.text, gender != ""
+            let dob = birthdayField.text, dob != ""
             else { return }
+        let gender = Logics.sharedInstance.genderType
         
+        let database: FIRDatabaseReference = FIRDatabase.database().reference()
         let databaseMembersRef = database.child("members").child((FIRAuth.auth()?.currentUser?.uid)!).childByAutoId()
-        
         let uniqueID = databaseMembersRef.key
         
-        let member = Member(firstName: name, lastName: lastName, gender: gender, birthday: dob, uniqueID: uniqueID)
+        let storageRef = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
+        let imageId = uniqueID
+        let storageImageRef = storageRef.child("profileImages").child(imageId)
         
-        databaseMembersRef.setValue(member.serialize(), withCompletionBlock: { error, dataRef in
+        if let uploadData = UIImagePNGRepresentation(self.profileImageView.image!) {
+            storageImageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
+                if error != nil {
+                    print ("ERROR!")
+                    return
+                }
+                if let profileImageUrl = metadata?.downloadURL()?.absoluteString {
+                    let member = Member(profileImage: profileImageUrl, firstName: name, lastName: lastName, gender: gender, birthday: dob, uniqueID: uniqueID)
+        
+                    
+                    databaseMembersRef.setValue(member.serialize(), withCompletionBlock: { error, dataRef in
+                        self.dismiss(animated: true, completion: nil)
+                    
+                    })
+                }
             
-            self.dismiss(animated: true, completion: nil)
-            
-        })
+            })
+        }
         
     }
     
+    @IBAction func genderSegment(_ sender: UISegmentedControl) {
+    
+        switch sender.selectedSegmentIndex {
+        case 0:
+            Logics.sharedInstance.genderType = Gender.female.rawValue
+        case 1:
+            Logics.sharedInstance.genderType = Gender.male.rawValue
+        default:
+            break
+        }
+    }
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)
+    }
+    
+    // methods
+    
+    override var prefersStatusBarHidden : Bool {
+        return true
+    }
 
+    func addProfileSettings() {
+        addGestureRecognizer(imageView: profileImageView)
+        profileImageView.isUserInteractionEnabled = true
+        profileImageView.setRounded()
+        profileImageView.layer.borderColor = UIColor.gray.cgColor
+        profileImageView.layer.borderWidth = 0.5
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -66,7 +101,7 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
     
     func textFieldShouldReturn(textField: UITextField) -> Bool     {
         textField.resignFirstResponder()
-        return true
+        return false
     }
     
     func addGestureRecognizer(imageView: UIImageView){
@@ -79,7 +114,7 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
         picker.sourceType = .photoLibrary
         picker.allowsEditing = true
         
-        self.present(picker, animated: true, completion: nil)
+        self.present(picker, animated: true, completion: nil) 
         
     }
     
@@ -122,4 +157,13 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
         dismiss(animated: true, completion: nil)
     }
 
+}
+
+extension UIImageView {
+    
+    func setRounded() {
+        let radius = self.frame.width / 2
+        self.layer.cornerRadius = radius
+        self.layer.masksToBounds = true
+    }
 }

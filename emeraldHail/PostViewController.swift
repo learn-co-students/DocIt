@@ -15,9 +15,15 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     // outlets
     
     @IBOutlet weak var postTableView: UITableView!
+    @IBOutlet var postButtons: [UIButton]! {
+        didSet {
+            postButtons.forEach {
+                $0.isHidden = true
+            }
+        }
+    }
     
-    
-    // variables
+    // properties
     
     var posts = [Post]()
     var database: FIRDatabaseReference = FIRDatabase.database().reference()
@@ -30,15 +36,16 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         postTableView.delegate = self
         postTableView.dataSource = self
         
-                configDatabase()
+        configDatabase()
         postTableView.reloadData()
-        
+
         performSegue(withIdentifier: "addNotes", sender: nil)
+        hideKeyboardWhenTappedAround()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-                configDatabase()
+        configDatabase()
         postTableView.reloadData()
     }
     
@@ -49,10 +56,17 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     @IBAction func addPost(_ sender: UIButton) {
-        createPost()
+//        createPost()
+
+        UIView.animate(withDuration: 0.3) {
+            self.postButtons.forEach {
+                $0.isHidden = !$0.isHidden
+            }
+        }
+    
     }
     
-    // methods
+    // methods for tableView
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -72,26 +86,50 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            posts.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            
+        } else if editingStyle == .insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+        }
+    }
+    
+    // methods
+    
+    override var prefersStatusBarHidden : Bool {
+        return true
+    }
+    
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(PostViewController.dismissKeyboardView))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboardView() {
+        view.endEditing(true)
+    }
+
     func createPost() {
-        var noteTextField: UITextField?
         
+        var noteTextField: UITextField?
         let alertController = UIAlertController(title: "Create post", message: "what's cracking?", preferredStyle: .alert)
         let save = UIAlertAction(title: "Save", style: .default, handler: { (action) -> Void in
             
-            var note = noteTextField?.text
-            let databaseEventsRef = self.database.child("posts").child(Logics.sharedInstance.eventID ).childByAutoId()
-            let uniqueID = databaseEventsRef.key
+            let note = noteTextField?.text
+            let databaseEventsRef = self.database.child("posts").child(Logics.sharedInstance.eventID).childByAutoId()
             let post = Post(note: note!)
             
             databaseEventsRef.setValue(post.serialize(), withCompletionBlock: { error, dataRef in
             })
             
             self.postTableView.reloadData()
-            
             print("Save Button Pressed")
         })
+        
         let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
-            
             print("Cancel Button Pressed")
         }
         alertController.addAction(save)
@@ -108,7 +146,6 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     func configDatabase() {
         
         let eventID: String = Logics.sharedInstance.eventID
-        
         let postsRef = FIRDatabase.database().reference().child("posts").child(eventID)
         
         postsRef.observe(.value, with: { snapshot in
@@ -116,15 +153,11 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
             var newPosts = [Post]()
             
             for post in snapshot.children {
-                
                 let newPost = Post(snapshot: post as! FIRDataSnapshot)
-                
                 newPosts.append(newPost)
-                
             }
             
             self.posts = newPosts
-            
             self.postTableView.reloadData()
         })
         
@@ -143,6 +176,8 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
 
 
 class PostTableViewCell: UITableViewCell {
+    
+    // outlets
     
     @IBOutlet weak var noteLabel: UILabel!
     

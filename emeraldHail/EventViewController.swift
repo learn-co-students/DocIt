@@ -13,11 +13,17 @@ import FirebaseDatabase
 
 class EventViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    // outlets
+    
     @IBOutlet weak var eventsTable: UITableView!
+    
+    // properties
     
     var events = [Event]()
     var database: FIRDatabaseReference = FIRDatabase.database().reference()
     var memberID = ""
+    
+    // loads
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +32,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         configDatabase()
         eventsTable.reloadData()
+        hideKeyboardWhenTappedAround()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -34,61 +41,17 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.eventsTable.reloadData()
     }
     
+    // actions
+    
     @IBAction func members(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction func addEvent(_ sender: UIButton) {
-        
-        var nameTextField: UITextField?
-        var dateTextField: UITextField?
-        let alertController = UIAlertController(title: "Create event", message: "Put a name that describe the event and the date when started", preferredStyle: .alert)
-        let save = UIAlertAction(title: "Save", style: .default, handler: { (action) -> Void in
-            
-            guard let name = nameTextField?.text, name != "", let date = dateTextField?.text, date != "" else { return }
-            
-            
-            let databaseEventsRef = self.database.child("events").child(Logics.sharedInstance.memberID).childByAutoId()
-            
-            print("================ I'm breaking here 0")
-            let uniqueID = databaseEventsRef.key
-            
-            print("================ I'm breaking here 1 \(uniqueID)")
-            
-            let event = Event(name: name, startDate: date, uniqueID: uniqueID)
-            
-            print("================ I'm breaking here 2")
-            
-            databaseEventsRef.setValue(event.serialize(), withCompletionBlock: { error, dataRef in
-                print("================ I'm breaking here 3")
-                
-            })
-            
-//            self.eventsTable.reloadData()
-
-            print("Save Button Pressed")
-        })
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
-        
-            print("Cancel Button Pressed")
-        }
-        alertController.addAction(save)
-        alertController.addAction(cancel)
-        alertController.addTextField { (textField) -> Void in
-            // Enter the textfiled customization code here.
-            nameTextField = textField
-            nameTextField?.placeholder = "Event name"
-        }
-        alertController.addTextField { (textField) -> Void in
-            // Enter the textfiled customization code here.
-            dateTextField = textField
-            dateTextField?.placeholder = "Date"
-        }
-        
-        present(alertController, animated: true, completion: nil)
-        
-           }
+        createEvent()
+    }
     
+    // tableView methods
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -108,6 +71,36 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        Logics.sharedInstance.eventID =  events[indexPath.row].uniqueID
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            events.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        } else if editingStyle == .insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+        }
+    }
+    
+    // methods
+    
+    override var prefersStatusBarHidden : Bool {
+        return true
+    }
+    
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(EventViewController.dismissKeyboardView))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboardView() {
+        view.endEditing(true)
+    }
+
     func configDatabase() {
         
         let memberID: String = Logics.sharedInstance.memberID
@@ -117,7 +110,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         eventsRef.observe(.value, with: { snapshot in
             
             var newEvents = [Event]()
-        
+            
             for event in snapshot.children {
                 
                 let newEvent = Event(snapshot: event as! FIRDataSnapshot)
@@ -127,10 +120,52 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
             
             self.events = newEvents
-        
+            
             self.eventsTable.reloadData()
         })
         
+    }
+    
+    func createEvent() {
+        
+        var nameTextField: UITextField?
+        var dateTextField: UITextField?
+        let alertController = UIAlertController(title: "Create event", message: "Put a name that describe the event and the date when started", preferredStyle: .alert)
+        let save = UIAlertAction(title: "Save", style: .default, handler: { (action) -> Void in
+            
+            guard let name = nameTextField?.text, name != "", let date = dateTextField?.text, date != "" else { return }
+            
+            
+            let databaseEventsRef = self.database.child("events").child(Logics.sharedInstance.memberID).childByAutoId()
+            
+            let uniqueID = databaseEventsRef.key
+            
+            let event = Event(name: name, startDate: date, uniqueID: uniqueID)
+            
+            databaseEventsRef.setValue(event.serialize(), withCompletionBlock: { error, dataRef in
+                
+            })
+             
+            print("Save Button Pressed")
+        })
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+            
+            print("Cancel Button Pressed")
+        }
+        alertController.addAction(save)
+        alertController.addAction(cancel)
+        alertController.addTextField { (textField) -> Void in
+            
+            nameTextField = textField
+            nameTextField?.placeholder = "Event name"
+        }
+        alertController.addTextField { (textField) -> Void in
+            
+            dateTextField = textField
+            dateTextField?.placeholder = "Date"
+        }
+        
+        present(alertController, animated: true, completion: nil)
     }
 }
 
@@ -138,19 +173,10 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
 class EventTableViewCell: UITableViewCell {
     
+    // outlets
+    
     @IBOutlet weak var eventName: UILabel!
     @IBOutlet weak var eventDate: UILabel!
     
 }
 
-class Logics {
-    
-    private init() {}
-    
-    static let sharedInstance = Logics()
-    
-    var memberID = ""
-    var eventID = ""
-    
-}
- 

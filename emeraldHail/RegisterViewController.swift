@@ -11,15 +11,23 @@ import Firebase
 
 class RegisterViewController: UIViewController {
 
+    // outlets
+    
     @IBOutlet weak var textEmail: UITextField!
     @IBOutlet weak var textPassword: UITextField!
     
+    // properties
+    
     let family = FIRDatabase.database().reference().child("family")
+    
+    // loads 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        hideKeyboardWhenTappedAround()
     }
+    
+    // actions
     
     @IBAction func addFamily(_ sender: UIButton) {
         register()
@@ -27,6 +35,22 @@ class RegisterViewController: UIViewController {
     
     @IBAction func cancel(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
+    }
+
+    // methods
+    
+    override var prefersStatusBarHidden : Bool {
+        return true
+    }
+    
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(RegisterViewController.dismissKeyboardView))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboardView() {
+        view.endEditing(true)
     }
 
     func register() {
@@ -46,7 +70,7 @@ class RegisterViewController: UIViewController {
                 } else {
                     
                     if error != nil {
-                        print(error!)
+                        print(error?.localizedDescription)
                     }
                 }
             }
