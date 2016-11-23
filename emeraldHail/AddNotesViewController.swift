@@ -19,7 +19,7 @@ class AddNotesViewController: UIViewController {
     // Reference to database
     var database: FIRDatabaseReference = FIRDatabase.database().reference()
     // Reference to Post
-    var postRef : FIRDatabaseReference = FIRDatabase.database().reference().child("Post")
+    var postRef : FIRDatabaseReference = FIRDatabase.database().reference().child("posts")
     //Reference to storage
     let storage : FIRStorage = FIRStorage.storage()
     
@@ -39,7 +39,7 @@ class AddNotesViewController: UIViewController {
     
     @IBAction func addNotesSaveButton(_ sender: Any) {
         guard let note = addNotesTextField.text, note != "" else { return }
-       let databasePostRef = database.child("posts").child(Logics.sharedInstance.eventID)
+       let databasePostRef = database.child("posts").child(Logics.sharedInstance.eventID).childByAutoId()
         let uniqueID = databasePostRef.key
         let post = Post(note: note)
         databasePostRef.setValue(post.serialize(), withCompletionBlock: {error, FIRDatabaseReference in
