@@ -23,6 +23,8 @@
 		AAFE446A1DDF68E600922FB0 /* SymptomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFE44691DDF68E600922FB0 /* SymptomView.swift */; };
 		AAFE446C1DDF6B6C00922FB0 /* PostType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFE446B1DDF6B6C00922FB0 /* PostType.swift */; };
 		B6ED5B361DDE4CDB00B56DFD /* TempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6ED5B351DDE4CDB00B56DFD /* TempViewController.swift */; };
+		BB6DEDB51DE61C7D00D8B93A /* FamilySettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6DEDB41DE61C7D00D8B93A /* FamilySettingViewController.swift */; };
+		BB6DEDB71DE61D9400D8B93A /* MemberSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6DEDB61DE61D9400D8B93A /* MemberSettingViewController.swift */; };
 		BB9286851DDE3D2100D3D9A6 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9286841DDE3D2100D3D9A6 /* DataStore.swift */; };
 		BBAD950B1DE5182500C385BC /* Logics.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAD950A1DE5182500C385BC /* Logics.swift */; };
 		BBF453B91DE34ACD00E054E9 /* Symptom.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF453B81DE34ACD00E054E9 /* Symptom.swift */; };
@@ -58,6 +60,8 @@
 		AAFE44691DDF68E600922FB0 /* SymptomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SymptomView.swift; sourceTree = "<group>"; };
 		AAFE446B1DDF6B6C00922FB0 /* PostType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostType.swift; sourceTree = "<group>"; };
 		B6ED5B351DDE4CDB00B56DFD /* TempViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempViewController.swift; sourceTree = "<group>"; };
+		BB6DEDB41DE61C7D00D8B93A /* FamilySettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilySettingViewController.swift; sourceTree = "<group>"; };
+		BB6DEDB61DE61D9400D8B93A /* MemberSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberSettingViewController.swift; sourceTree = "<group>"; };
 		BB9286841DDE3D2100D3D9A6 /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		BBAD950A1DE5182500C385BC /* Logics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logics.swift; sourceTree = "<group>"; };
 		BBF453B81DE34ACD00E054E9 /* Symptom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Symptom.swift; sourceTree = "<group>"; };
@@ -176,6 +180,8 @@
 				BBF4EEB61DDF59FF00EBD3FE /* EventViewController.swift */,
 				BBF4EEB81DDF5A0600EBD3FE /* PostViewController.swift */,
 				B6ED5B351DDE4CDB00B56DFD /* TempViewController.swift */,
+				BB6DEDB41DE61C7D00D8B93A /* FamilySettingViewController.swift */,
+				BB6DEDB61DE61D9400D8B93A /* MemberSettingViewController.swift */,
 				BBF4EEB41DDF59F900EBD3FE /* FamilyViewController.swift */,
 				AABA5C381DE3A3DF0041D112 /* MemberCollectionViewCell.swift */,
 				DD755E191DE3A99F002478D0 /* AddMembersViewController.swift */,
@@ -324,6 +330,7 @@
 			files = (
 				B6ED5B361DDE4CDB00B56DFD /* TempViewController.swift in Sources */,
 				AAFE44661DDF634800922FB0 /* PainLevel.swift in Sources */,
+				BB6DEDB71DE61D9400D8B93A /* MemberSettingViewController.swift in Sources */,
 				AAFE445E1DDF5AE900922FB0 /* Event.swift in Sources */,
 				AAFE446C1DDF6B6C00922FB0 /* PostType.swift in Sources */,
 				AAFE44641DDF60BB00922FB0 /* Post.swift in Sources */,
@@ -339,6 +346,7 @@
 				AA7ED5921DDF4C6F005F9AB2 /* Family.swift in Sources */,
 				AA9FFBBA1DDA667500847FCF /* ViewController.swift in Sources */,
 				AABA5C391DE3A3DF0041D112 /* MemberCollectionViewCell.swift in Sources */,
+				BB6DEDB51DE61C7D00D8B93A /* FamilySettingViewController.swift in Sources */,
 				BBAD950B1DE5182500C385BC /* Logics.swift in Sources */,
 				BBF4EEB11DDF59D400EBD3FE /* LoginViewController.swift in Sources */,
 				BBF4EEB51DDF59F900EBD3FE /* FamilyViewController.swift in Sources */,
