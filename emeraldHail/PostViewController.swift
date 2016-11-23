@@ -15,6 +15,13 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     // outlets
     
     @IBOutlet weak var postTableView: UITableView!
+    @IBOutlet var postButtons: [UIButton]! {
+        didSet {
+            postButtons.forEach {
+                $0.isHidden = true
+            }
+        }
+    }
     
     // properties
     
@@ -47,7 +54,14 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     @IBAction func addPost(_ sender: UIButton) {
-        createPost()
+//        createPost()
+
+        UIView.animate(withDuration: 0.3) {
+            self.postButtons.forEach {
+                $0.isHidden = !$0.isHidden
+            }
+        }
+    
     }
     
     // methods for tableView
