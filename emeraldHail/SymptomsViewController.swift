@@ -48,14 +48,12 @@ class SymptomsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
      func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
         symptomsSelected.append(symptoms[indexPath.row].rawValue)
         print(symptomsSelected)
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        tableView.cellForRow(at: indexPath as IndexPath)?.accessoryType = .none
-        var position = symptomsSelected.index(of: symptoms[indexPath.row].rawValue)
+        let position = symptomsSelected.index(of: symptoms[indexPath.row].rawValue)
         symptomsSelected.remove(at: position!)
         print(symptomsSelected)
     }
