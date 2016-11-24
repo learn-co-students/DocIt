@@ -35,6 +35,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
         postTableView.delegate = self
         postTableView.dataSource = self
+        postTableView.separatorStyle = .none
         
         configDatabase()
         postTableView.reloadData()
