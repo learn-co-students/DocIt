@@ -12,22 +12,22 @@ import FirebaseDatabase
 
 class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    // OUTLETS
-    
-    @IBOutlet weak var familyName: UIButton!
-    @IBOutlet weak var familyNameLabel: UILabel!
-    @IBOutlet weak var memberProfilesView: UICollectionView!
-    
-    // PROPERTIES
-    
+    // MARK: Properties
+    let store = Logics.sharedInstance
     let imageSelected = UIImagePickerController()
     var membersInFamily = [Member]()
     var family = [Family]()
     
-    // LOADS
+    
+    // MARK: Outlets
+    @IBOutlet weak var familyName: UIButton!
+    @IBOutlet weak var familyNameLabel: UILabel!
+    @IBOutlet weak var memberProfilesView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("Inside Family VC, the familyID is: \(store.familyID)")
         
         hideKeyboardWhenTappedAround()
         getFamilyID()
@@ -40,7 +40,6 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         configDatabaseMember()
         
         memberProfilesView.reloadData()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,12 +47,22 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         self.memberProfilesView.reloadData()
     }
     
-    // ACTIONS
+    // TODO: Can anyone tell me what this is doing? -Henry
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let backButton = UIBarButtonItem()
+        backButton.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Arial", size: 15)!], for: UIControlState.normal)
+        navigationItem.backBarButtonItem = backButton
+    }
     
+    //    override var prefersStatusBarHidden : Bool {
+    //        return true
+    //    }
+    
+    // MARK: Actions
     @IBAction func changeFamilyName(_ sender: UIButton) {
         changeFamilyName()
     }
-        
+    
     // COLLECTION VIEW METHODS
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -92,21 +101,10 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        Logics.sharedInstance.memberID = membersInFamily[indexPath.row].uniqueID
+        store.memberID = membersInFamily[indexPath.row].uniqueID
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let backButton = UIBarButtonItem()
-        backButton.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Arial", size: 15)!], for: UIControlState.normal)
-        navigationItem.backBarButtonItem = backButton
-    }
-    
-    // METHODS
-    
-    override var prefersStatusBarHidden : Bool {
-        return true
-    }
-    
+    // MARK: Functions
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(FamilyViewController.dismissKeyboardView))
         tap.cancelsTouchesInView = false
@@ -118,23 +116,18 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     func getFamilyID() {
-        Logics.sharedInstance.familyID = (FIRAuth.auth()?.currentUser?.uid)!
+        store.familyID = (FIRAuth.auth()?.currentUser?.uid)!
     }
     
-    
     func configDatabaseMember() {
-        
         let membersRef = FIRDatabase.database().reference().child("members")
-        let familyRef = membersRef.child((FIRAuth.auth()?.currentUser?.uid)!)
+        let familyRef = membersRef.child(store.familyID)
         
         familyRef.observe(.value, with: { snapshot in
-            
             var newItem = [Member]()
-            
+
             for item in snapshot.children {
-                
                 let newMember = Member(snapshot: item as! FIRDataSnapshot)
-                
                 newItem.append(newMember)
             }
             
@@ -144,12 +137,10 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     func configDatabaseFamily() {
-        
         let membersRef = FIRDatabase.database().reference().child("family")
         let familyRef = membersRef.child(Logics.sharedInstance.familyID)
         
         familyRef.observe(.value, with: { snapshot in
-            
             var name = snapshot.value as! [String:Any]
             
             self.familyNameLabel.text = name["name"] as? String
@@ -157,7 +148,6 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     func changeFamilyName() {
-        
         var nameTextField: UITextField?
         
         let alertController = UIAlertController(title: "Change family name", message: "Give us a funny name", preferredStyle: .alert)
@@ -170,13 +160,12 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         })
         
         let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
-            
             print("Cancel Button Pressed")
         }
+        
         alertController.addAction(save)
         alertController.addAction(cancel)
         alertController.addTextField { (textField) -> Void in
-            
             nameTextField = textField
         }
         
@@ -187,8 +176,6 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
 class MemberCollectionViewCell: UICollectionViewCell {
     
     // OUTLETS
-    
     @IBOutlet weak var memberNameLabel: UILabel!
-    
     @IBOutlet weak var profileImageView: UIImageView!
 }

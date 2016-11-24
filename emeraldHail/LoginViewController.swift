@@ -20,20 +20,21 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupViews()
         hideKeyboardWhenTappedAround()
-        
-        // Make the email field become the first repsonder and show keyboard when this vc loads
-        emailField.becomeFirstResponder()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setupViews()
     }
     
     // TODO: Discuss if we should we be hiding the status bar in the entire app?
-    
 //    override var prefersStatusBarHidden : Bool {
 //        return true
 //    }
     
-    // MARK: IBActions
+    // MARK: Actions
     @IBAction func signIn(_ sender: UIButton) {
         login()
     }
@@ -58,7 +59,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func createAccountPressed(_ sender: Any) {
-        print("createAccountPressed")
+        self.performSegue(withIdentifier: "showCreateAccount", sender: nil)
     }
     
     // This function enables/disables the signIn button when the fields are empty/not empty.
@@ -72,9 +73,16 @@ class LoginViewController: UIViewController {
         }
     }
     
+    // MARK: Functions
     func setupViews() {
+        // Make the email field become the first repsonder and show keyboard when this vc loads
+        emailField.becomeFirstResponder()
+        
         // Set error label to "" on viewDidLoad
-        errorLabel.text = ""
+        // Clear the text fields when logging out and returning to the login screen
+        errorLabel.text = nil
+        emailField.text = nil
+        passwordField.text = nil
         
         emailField.layer.cornerRadius = 2
         emailField.layer.borderColor = UIColor.lightGray.cgColor
@@ -105,7 +113,7 @@ class LoginViewController: UIViewController {
                 // TODO: Format the error.localizedDescription for natural language, ex. "Invalid email", "Password must be 6 characters or more", etc.
                 // Set errorLabel to the error.localizedDescription
                 self.errorLabel.text = error.localizedDescription
-                print(error.localizedDescription)
+                print("===========================\(error.localizedDescription)")
                 return
             }
             self.performSegue(withIdentifier: "showFamily", sender: nil)
