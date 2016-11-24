@@ -130,26 +130,10 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
         
     }
     
-    func uploadImageToFirebaseStorage(data:Data){
-        let storageRef = FIRStorage.storage().reference(withPath: "profileImages/demoPic.png")
-        
-        let uploadMetadata = FIRStorageMetadata()
-        uploadMetadata.contentType = "image/png"
-        storageRef.put(data, metadata: uploadMetadata, completion:{ (metadata, error) in
-            if error != nil {
-                print("Error occured! \(error?.localizedDescription)")
-            } else {
-                print("Upload complete! Here's some metadata \(metadata)")
-                print("Here is the download URL: \(metadata?.downloadURL())")
-            }
-            
-        })
-        
-    }
-    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]){
         
         var selectedImageFromPicker: UIImage?
+        
         if let editedImage = info["UIImagePickerControllerEditedImage"] as? UIImage {
             selectedImageFromPicker = editedImage
         } else if let originalImage = info["UIImagePickerControllerOriginalImage"] as? UIImage {
@@ -158,8 +142,6 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
         if let selectedImage = selectedImageFromPicker {
             profileImageView.image = selectedImage
         }
-        let imageData = UIImagePNGRepresentation(selectedImageFromPicker!)
-        uploadImageToFirebaseStorage(data: imageData!)
         
         dismiss(animated: true, completion: nil)
     }
