@@ -15,7 +15,6 @@
 		AA9FFBBD1DDA667500847FCF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA9FFBBB1DDA667500847FCF /* Main.storyboard */; };
 		AA9FFBBF1DDA667500847FCF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA9FFBBE1DDA667500847FCF /* Assets.xcassets */; };
 		AA9FFBC21DDA667500847FCF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA9FFBC01DDA667500847FCF /* LaunchScreen.storyboard */; };
-		AABA5C391DE3A3DF0041D112 /* MemberCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABA5C381DE3A3DF0041D112 /* MemberCollectionViewCell.swift */; };
 		AAFE445E1DDF5AE900922FB0 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFE445D1DDF5AE900922FB0 /* Event.swift */; };
 		AAFE44641DDF60BB00922FB0 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFE44631DDF60BB00922FB0 /* Post.swift */; };
 		AAFE44661DDF634800922FB0 /* PainLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFE44651DDF634800922FB0 /* PainLevel.swift */; };
@@ -26,6 +25,7 @@
 		B69638C61DE4E84900FE7023 /* Temperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69638C51DE4E84900FE7023 /* Temperature.swift */; };
 		B69638D21DE602FD00FE7023 /* AddNotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69638D11DE602FD00FE7023 /* AddNotesViewController.swift */; };
 		B6ED5B361DDE4CDB00B56DFD /* TempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6ED5B351DDE4CDB00B56DFD /* TempViewController.swift */; };
+		BB5CD3321DE6B41800D82BB3 /* SymptomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5CD3311DE6B41800D82BB3 /* SymptomsViewController.swift */; };
 		BB6DEDB51DE61C7D00D8B93A /* FamilySettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6DEDB41DE61C7D00D8B93A /* FamilySettingViewController.swift */; };
 		BB6DEDB71DE61D9400D8B93A /* MemberSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6DEDB61DE61D9400D8B93A /* MemberSettingViewController.swift */; };
 		BB9286851DDE3D2100D3D9A6 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9286841DDE3D2100D3D9A6 /* DataStore.swift */; };
@@ -55,7 +55,6 @@
 		AA9FFBBE1DDA667500847FCF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA9FFBC11DDA667500847FCF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AA9FFBC31DDA667500847FCF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AABA5C381DE3A3DF0041D112 /* MemberCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberCollectionViewCell.swift; sourceTree = "<group>"; };
 		AAFE445D1DDF5AE900922FB0 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		AAFE44631DDF60BB00922FB0 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		AAFE44651DDF634800922FB0 /* PainLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PainLevel.swift; sourceTree = "<group>"; };
@@ -66,6 +65,7 @@
 		B69638C51DE4E84900FE7023 /* Temperature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Temperature.swift; sourceTree = "<group>"; };
 		B69638D11DE602FD00FE7023 /* AddNotesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNotesViewController.swift; sourceTree = "<group>"; };
 		B6ED5B351DDE4CDB00B56DFD /* TempViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempViewController.swift; sourceTree = "<group>"; };
+		BB5CD3311DE6B41800D82BB3 /* SymptomsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SymptomsViewController.swift; sourceTree = "<group>"; };
 		BB6DEDB41DE61C7D00D8B93A /* FamilySettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilySettingViewController.swift; sourceTree = "<group>"; };
 		BB6DEDB61DE61D9400D8B93A /* MemberSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberSettingViewController.swift; sourceTree = "<group>"; };
 		BB9286841DDE3D2100D3D9A6 /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
@@ -189,9 +189,9 @@
 				BBF4EEB81DDF5A0600EBD3FE /* PostViewController.swift */,
 				B6ED5B351DDE4CDB00B56DFD /* TempViewController.swift */,
 				BB6DEDB41DE61C7D00D8B93A /* FamilySettingViewController.swift */,
+				BB5CD3311DE6B41800D82BB3 /* SymptomsViewController.swift */,
 				BB6DEDB61DE61D9400D8B93A /* MemberSettingViewController.swift */,
 				BBF4EEB41DDF59F900EBD3FE /* FamilyViewController.swift */,
-				AABA5C381DE3A3DF0041D112 /* MemberCollectionViewCell.swift */,
 				DD755E191DE3A99F002478D0 /* AddMembersViewController.swift */,
 				B69638D11DE602FD00FE7023 /* AddNotesViewController.swift */,
 			);
@@ -356,12 +356,12 @@
 				DDA93D201DDE412000F0A4D4 /* Secrets.swift in Sources */,
 				AA7ED5921DDF4C6F005F9AB2 /* Family.swift in Sources */,
 				AA9FFBBA1DDA667500847FCF /* ViewController.swift in Sources */,
-				AABA5C391DE3A3DF0041D112 /* MemberCollectionViewCell.swift in Sources */,
 				BB6DEDB51DE61C7D00D8B93A /* FamilySettingViewController.swift in Sources */,
 				BBAD950B1DE5182500C385BC /* Logics.swift in Sources */,
 				BBF4EEB11DDF59D400EBD3FE /* LoginViewController.swift in Sources */,
 				BBF4EEB51DDF59F900EBD3FE /* FamilyViewController.swift in Sources */,
 				B69638D21DE602FD00FE7023 /* AddNotesViewController.swift in Sources */,
+				BB5CD3321DE6B41800D82BB3 /* SymptomsViewController.swift in Sources */,
 				AA9FFBB81DDA667500847FCF /* AppDelegate.swift in Sources */,
 				AA7ED5941DDF4D16005F9AB2 /* Member.swift in Sources */,
 				BBF453B91DE34ACD00E054E9 /* Symptom.swift in Sources */,

@@ -242,7 +242,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Family" id="XPR-XT-t6y">
-                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="WeV-d6-vBd">
+                        <barButtonItem key="rightBarButtonItem" title="⋯" id="WeV-d6-vBd">
                             <color key="tintColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="bHr-j8-e7W" kind="presentation" id="BNW-6X-Frf"/>
@@ -607,7 +607,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QKB-QM-ocB" id="fxY-VR-Bs9">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ii-kq-hQo">
@@ -659,8 +659,8 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Member" id="EQZ-K7-hkh">
-                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="72m-3y-Lja">
+                    <navigationItem key="navigationItem" title="Events" id="EQZ-K7-hkh">
+                        <barButtonItem key="rightBarButtonItem" title="⋯" id="72m-3y-Lja">
                             <color key="tintColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="lwm-I4-ndx" kind="presentation" id="GpI-7E-LVR"/>
@@ -710,7 +710,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UUt-sg-gbE" id="h81-2d-teZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Post title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YVu-s8-nwW">
@@ -767,6 +767,9 @@
                                 <state key="normal" title="Symptoms">
                                     <color key="titleColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 </state>
+                                <connections>
+                                    <segue destination="z5g-W1-3kv" kind="show" id="FM3-Tz-8Gq"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ttc-3X-xZr">
                                 <rect key="frame" x="30" y="359" width="315" height="50"/>
@@ -777,7 +780,7 @@
                                     <color key="titleColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 </state>
                                 <connections>
-                                    <segue destination="xCx-Yr-OUd" kind="presentation" identifier="noteSegue" id="HWQ-cZ-AXc"/>
+                                    <segue destination="xCx-Yr-OUd" kind="show" identifier="noteSegue" id="HWQ-cZ-AXc"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -792,7 +795,7 @@
                             <constraint firstItem="QY9-3s-j0B" firstAttribute="width" secondItem="0PA-xm-J8G" secondAttribute="width" id="kLy-5c-alm"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Event" id="16Y-b3-0Lu"/>
+                    <navigationItem key="navigationItem" title="History" id="16Y-b3-0Lu"/>
                     <connections>
                         <outlet property="postTableView" destination="QY9-3s-j0B" id="3qW-Cp-Zkx"/>
                         <outletCollection property="postButtons" destination="ttc-3X-xZr" collectionClass="NSMutableArray" id="7Bg-OZ-awT"/>
@@ -806,10 +809,10 @@
             </objects>
             <point key="canvasLocation" x="3308" y="189.3553223388306"/>
         </scene>
-        <!--View Controller-->
+        <!--Symptoms-->
         <scene sceneID="nkE-3G-xCR">
             <objects>
-                <viewController id="z5g-W1-3kv" sceneMemberID="viewController">
+                <viewController title="Symptoms" id="z5g-W1-3kv" customClass="SymptomsViewController" customModule="emeraldHail" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IZf-Df-DrL"/>
                         <viewControllerLayoutGuide type="bottom" id="vMf-1H-ht2"/>
@@ -829,7 +832,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yiu-ZG-DWm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2732" y="-842"/>
+            <point key="canvasLocation" x="4345" y="-510"/>
         </scene>
         <!--Note-->
         <scene sceneID="VHJ-My-v70">
@@ -1051,9 +1054,14 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="XIF-ae-qWP" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ixB-h9-CxZ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ixB-h9-CxZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
+                            <color key="textColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

@@ -16,7 +16,6 @@ class MemberSettingViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var firstName: UILabel!
     @IBOutlet weak var lastName: UILabel!
-    
     @IBOutlet weak var gender: UILabel!
     @IBOutlet weak var dob: UILabel!
     @IBOutlet weak var bloodType: UILabel!
@@ -26,8 +25,6 @@ class MemberSettingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
 
    // ACTIONS 
@@ -36,8 +33,8 @@ class MemberSettingViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    
     @IBAction func saveSetting(_ sender: UIButton) {
+        
     }
     
     // METHODS

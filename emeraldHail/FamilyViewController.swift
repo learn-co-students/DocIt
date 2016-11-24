@@ -15,12 +15,9 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     // OUTLETS
     
     @IBOutlet weak var familyName: UIButton!
-    
     @IBOutlet weak var familyNameLabel: UILabel!
-   
     @IBOutlet weak var memberProfilesView: UICollectionView!
     
-
     // PROPERTIES
     
     let imageSelected = UIImagePickerController()
@@ -56,15 +53,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBAction func changeFamilyName(_ sender: UIButton) {
         changeFamilyName()
     }
-//    @IBAction func uploadPhotoGesture(_ sender: UITapGestureRecognizer) {
-//        let myPickerController = UIImagePickerController()
-//        myPickerController.delegate = self
-//        myPickerController.sourceType = UIImagePickerControllerSourceType.photoLibrary
-//        
-//        
-//        self.present(myPickerController, animated: true, completion: nil)
-//    }
-    
+        
     // COLLECTION VIEW METHODS
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -99,13 +88,17 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
             }).resume()
         }
         
-        Logics.sharedInstance.memberID = member.uniqueID
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
         Logics.sharedInstance.memberID = membersInFamily[indexPath.row].uniqueID
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let backButton = UIBarButtonItem()
+        backButton.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Arial", size: 15)!], for: UIControlState.normal)
+        navigationItem.backBarButtonItem = backButton
     }
     
     // METHODS
@@ -123,7 +116,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     func dismissKeyboardView() {
         view.endEditing(true)
     }
-
+    
     func getFamilyID() {
         Logics.sharedInstance.familyID = (FIRAuth.auth()?.currentUser?.uid)!
     }
@@ -135,8 +128,6 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         let familyRef = membersRef.child((FIRAuth.auth()?.currentUser?.uid)!)
         
         familyRef.observe(.value, with: { snapshot in
-            
-            print(snapshot)
             
             var newItem = [Member]()
             
@@ -162,9 +153,9 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
             var name = snapshot.value as! [String:Any]
             
             self.familyNameLabel.text = name["name"] as? String
-    })
-}
-
+        })
+    }
+    
     func changeFamilyName() {
         
         var nameTextField: UITextField?
@@ -191,4 +182,13 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         
         present(alertController, animated: true, completion: nil)
     }
+}
+
+class MemberCollectionViewCell: UICollectionViewCell {
+    
+    // OUTLETS
+    
+    @IBOutlet weak var memberNameLabel: UILabel!
+    
+    @IBOutlet weak var profileImageView: UIImageView!
 }
