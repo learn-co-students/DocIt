@@ -787,7 +787,7 @@
                                     <color key="titleColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 </state>
                                 <connections>
-                                    <segue destination="xCx-Yr-OUd" kind="show" identifier="noteSegue" id="HWQ-cZ-AXc"/>
+                                    <segue destination="xCx-Yr-OUd" kind="presentation" identifier="noteSegue" id="HWQ-cZ-AXc"/>
                                 </connections>
                             </button>
                         </subviews>
