@@ -35,4 +35,8 @@ class MemberSettingViewController: UIViewController {
     @IBAction func saveSetting(_ sender: UIButton) {
     }
     
+    //method
+    override var prefersStatusBarHidden : Bool {
+        return true
+    }
 }

@@ -22,5 +22,10 @@ class FamilySettingViewController: UIViewController {
    
     @IBAction func saveSettings(_ sender: UIButton) {
     }
+ 
+    //method
+    override var prefersStatusBarHidden : Bool {
+        return true
+    }
     
 }
