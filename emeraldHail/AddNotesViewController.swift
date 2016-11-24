@@ -30,6 +30,10 @@ class AddNotesViewController: UIViewController {
         hideKeyboardWhenTappedAround()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+    }
+    
     // ACTIONS
     
     @IBAction func addNotes(_ sender: UIButton) {
