@@ -18,10 +18,13 @@ class SymptomsViewController: UIViewController, UITableViewDelegate, UITableView
     
     var symptoms:[Symptom] = [.bloodInStool, .chestPain, .constipation, .cough, .diarrhea, .dizziness, .earache, .eyeDiscomfort, .fever, .footPain, .footSwelling, .headache, .heartpalpitations, .itchiness, .kneePain, .legSwelling, .musclePain, .nasalcongestion, .nausea, .neckPain, .shortBreath, .shoulderPain, .skinRashes, .soreThroat, .urinaryProblems, .vision, .vomiting, .wheezing]
     
+    var symptomsSelected:[String] = []
+    
     // LOADS
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        symptomTableView.allowsMultipleSelection = true
         
         symptomTableView.reloadData()
     }
@@ -44,6 +47,18 @@ class SymptomsViewController: UIViewController, UITableViewDelegate, UITableView
         return cell
     }
     
+     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+        symptomsSelected.append(symptoms[indexPath.row].rawValue)
+        print(symptomsSelected)
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        tableView.cellForRow(at: indexPath as IndexPath)?.accessoryType = .none
+        var position = symptomsSelected.index(of: symptoms[indexPath.row].rawValue)
+        symptomsSelected.remove(at: position!)
+        print(symptomsSelected)
+    }
 }
 
 class SymptomViewCell: UITableViewCell {
