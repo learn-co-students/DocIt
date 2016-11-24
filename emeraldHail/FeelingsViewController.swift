@@ -10,6 +10,8 @@ import UIKit
 
 class FeelingsViewController: UIViewController {
 
+    // LOADS
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

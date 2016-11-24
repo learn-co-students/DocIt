@@ -10,7 +10,7 @@ import UIKit
 
 class MemberCollectionViewCell: UICollectionViewCell {
     
-    // outlets 
+    // OUTLETS 
     
     @IBOutlet weak var memberNameLabel: UILabel!
 

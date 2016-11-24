@@ -12,7 +12,8 @@ import FirebaseDatabase
 
 class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    // outlets
+    // OUTLETS
+    
     @IBOutlet weak var familyName: UIButton!
     
     @IBOutlet weak var familyNameLabel: UILabel!
@@ -20,13 +21,13 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var memberProfilesView: UICollectionView!
     
 
-    // properties
+    // PROPERTIES
     
     let imageSelected = UIImagePickerController()
     var membersInFamily = [Member]()
     var family = [Family]()
     
-    // loads 
+    // LOADS
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +51,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         self.memberProfilesView.reloadData()
     }
     
-    // actions 
+    // ACTIONS
     
     @IBAction func changeFamilyName(_ sender: UIButton) {
         changeFamilyName()
@@ -64,7 +65,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
 //        self.present(myPickerController, animated: true, completion: nil)
 //    }
     
-    // methods for collectionView
+    // COLLECTION VIEW METHODS
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -107,7 +108,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         Logics.sharedInstance.memberID = membersInFamily[indexPath.row].uniqueID
     }
     
-    // methods
+    // METHODS
     
     override var prefersStatusBarHidden : Bool {
         return true

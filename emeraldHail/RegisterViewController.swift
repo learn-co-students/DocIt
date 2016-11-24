@@ -11,23 +11,23 @@ import Firebase
 
 class RegisterViewController: UIViewController {
 
-    // outlets
+    // OUTLETS
     
     @IBOutlet weak var textEmail: UITextField!
     @IBOutlet weak var textPassword: UITextField!
     
-    // properties
+    // PROPERTIES
     
     let family = FIRDatabase.database().reference().child("family")
     
-    // loads 
+    // LOADS
     
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
     }
     
-    // actions
+    // ACTIONS
     
     @IBAction func addFamily(_ sender: UIButton) {
         register()
@@ -37,7 +37,7 @@ class RegisterViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
 
-    // methods
+    // METHODS
     
     override var prefersStatusBarHidden : Bool {
         return true

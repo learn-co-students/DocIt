@@ -10,6 +10,8 @@ import UIKit
 
 class MemberSettingViewController: UIViewController {
 
+    // OUTLETS 
+    
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var firstName: UILabel!
@@ -20,13 +22,16 @@ class MemberSettingViewController: UIViewController {
     @IBOutlet weak var bloodType: UILabel!
     @IBOutlet weak var totalPost: UILabel!
     
+    // LOADS 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
 
-   
+   // ACTIONS 
+    
     @IBAction func cancel(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
@@ -35,7 +40,8 @@ class MemberSettingViewController: UIViewController {
     @IBAction func saveSetting(_ sender: UIButton) {
     }
     
-    //method
+    // METHODS
+    
     override var prefersStatusBarHidden : Bool {
         return true
     }

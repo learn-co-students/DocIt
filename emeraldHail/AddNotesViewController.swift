@@ -12,30 +12,25 @@ import Firebase
 
 class AddNotesViewController: UIViewController {
     
-    var notes: String?
+    // OUTLET
     
     @IBOutlet weak var addNotesTextField: UITextField!
     
-    // Reference to database
-    var database: FIRDatabaseReference = FIRDatabase.database().reference()
-    // Reference to Post
-    var postRef : FIRDatabaseReference = FIRDatabase.database().reference().child("posts")
-    //Reference to storage
-    let storage : FIRStorage = FIRStorage.storage()
+    // PROPERTIES
     
+    var database: FIRDatabaseReference = FIRDatabase.database().reference()
+    var postRef : FIRDatabaseReference = FIRDatabase.database().reference().child("posts")
+    let storage : FIRStorage = FIRStorage.storage()
+    var notes: String?
+    
+    // LOADS
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        
-        // Do any additional setup after loading the view.
+        hideKeyboardWhenTappedAround()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    // ACTIONS
     
     @IBAction func addNotes(_ sender: UIButton) {
         guard let note = addNotesTextField.text, note != "" else { return }
@@ -44,23 +39,28 @@ class AddNotesViewController: UIViewController {
         let post = Post(note: note)
         databasePostRef.setValue(post.serialize(), withCompletionBlock: {error, FIRDatabaseReference in
             self.dismiss(animated: true, completion: nil)
-            
         })
-        
-        
-        
     }
-    //Tanira: Keyboard was not responding uncomment for last resort solution.
-    //    func displayKeyboard(){
-    //        self.addNotesTextField.becomeFirstResponder()
-    //        self.dismiss(animated: true, completion: nil)
-    //    }
+    
     @IBAction func cancel(_ sender: UIButton) {
-    dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
+    // METHODS
     
+    override var prefersStatusBarHidden : Bool {
+        return true
+    }
     
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboardView))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboardView() {
+        view.endEditing(true)
+    }
 }
 
 

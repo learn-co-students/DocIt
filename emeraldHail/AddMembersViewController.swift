@@ -11,7 +11,7 @@ import Firebase
 
 class AddMembersViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
-    // outlets
+    // OUTLETS
     
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var firstNameField: UITextField!
@@ -20,14 +20,15 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var genderField: UITextField!
 
 
-    // loads 
+    // LOADS
     
     override func viewDidLoad() {
         super.viewDidLoad()
         addProfileSettings()
+        hideKeyboardWhenTappedAround()
     }
     
-    // actions 
+    // ACTIONS
     
     @IBAction func saveButtonTapped(_ sender: Any) {
         guard let name = firstNameField.text, name != "",
@@ -81,11 +82,22 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
         dismiss(animated: true, completion: nil)
     }
     
-    // methods
+    // METHODS
     
     override var prefersStatusBarHidden : Bool {
         return true
     }
+    
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboardView))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboardView() {
+        view.endEditing(true)
+    }
+
 
     func addProfileSettings() {
         addGestureRecognizer(imageView: profileImageView)
@@ -160,6 +172,8 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
 }
 
 extension UIImageView {
+    
+    // METHODS
     
     func setRounded() {
         let radius = self.frame.width / 2

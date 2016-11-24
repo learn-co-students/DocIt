@@ -13,17 +13,17 @@ import FirebaseDatabase
 
 class EventViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    // outlets
+    // OUTLETS
     
     @IBOutlet weak var eventsTable: UITableView!
     
-    // properties
+    // PROPERTIES
     
     var events = [Event]()
     var database: FIRDatabaseReference = FIRDatabase.database().reference()
     var memberID = ""
     
-    // loads
+    // LOADS
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +41,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.eventsTable.reloadData()
     }
     
-    // actions
+    // ACTIONS
     
     @IBAction func members(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
@@ -51,7 +51,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         createEvent()
     }
     
-    // tableView methods
+    // TABLEVIEW METHODS
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -85,7 +85,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
-    // methods
+    // METHODS
     
     override var prefersStatusBarHidden : Bool {
         return true
@@ -173,7 +173,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
 class EventTableViewCell: UITableViewCell {
     
-    // outlets
+    // OUTLETS
     
     @IBOutlet weak var eventName: UILabel!
     @IBOutlet weak var eventDate: UILabel!

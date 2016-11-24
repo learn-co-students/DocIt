@@ -12,7 +12,7 @@ import FirebaseDatabase
 
 class PostViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    // outlets
+    // OUTLETS
     
     @IBOutlet weak var postTableView: UITableView!
     @IBOutlet var postButtons: [UIButton]! {
@@ -23,13 +23,13 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    // properties
+    // PROPERTIES
     
     var posts = [Post]()
     var database: FIRDatabaseReference = FIRDatabase.database().reference()
     var eventID = ""
     
-    // loads
+    // LOADS
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,10 +44,15 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         configDatabase()
+        
+        postButtons.forEach {
+            $0.isHidden = true
+        }
+        
         postTableView.reloadData()
     }
     
-    // actions
+    // ACTIONS
     
     @IBAction func addPost(_ sender: UIButton) {
 //        createPost()
@@ -60,7 +65,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     }
     
-    // methods for tableView
+    // TABLEVIEW METHODS
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -90,7 +95,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    // methods
+    // METHODS
     
     override var prefersStatusBarHidden : Bool {
         return true
@@ -156,22 +161,13 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         })
         
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        
-        
-        
-    }
-
-    
 }
 
 
 
 class PostTableViewCell: UITableViewCell {
     
-    // outlets
+    // OUTLETS
     
     @IBOutlet weak var noteLabel: UILabel!
     

@@ -10,6 +10,9 @@ import UIKit
 
 class TempViewController: UIViewController {
 
+    
+    // LOADS 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

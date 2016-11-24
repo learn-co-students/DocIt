@@ -11,14 +11,14 @@ import Firebase
 
 class LoginViewController: UIViewController {
     
-    // outlets
+    // OUTLETS
     
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var signIn: UIButton!
     @IBOutlet weak var createAccount: UIButton!
     
-    // loads
+    // LOADS
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +26,7 @@ class LoginViewController: UIViewController {
         hideKeyboardWhenTappedAround()
     }
     
-    // actions
+    // ACTIONS
 
     @IBAction func signIn(_ sender: UIButton) {
         login()
@@ -40,7 +40,7 @@ class LoginViewController: UIViewController {
         performSegue(withIdentifier: "showForgot", sender: self)
     }
 
-    // methods
+    // METHODS
     
     override var prefersStatusBarHidden : Bool {
         return true
@@ -80,17 +80,17 @@ class LoginViewController: UIViewController {
 
 class ForgotViewController: UIViewController {
     
-    // outlets 
+    // OUTLETS
     
     @IBOutlet weak var textEmail: UITextField!
     
-    // loads 
+    // LOADS
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
-    // actions
+    // ACTIONS
     
     @IBAction func sendPassword(_ sender: UIButton) {
     }

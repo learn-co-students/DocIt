@@ -10,12 +10,15 @@ import UIKit
 
 class FamilySettingViewController: UIViewController {
 
+    // LOADS
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
     }
 
+    // ACTIONS 
+    
     @IBAction func cancel(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
@@ -23,7 +26,8 @@ class FamilySettingViewController: UIViewController {
     @IBAction func saveSettings(_ sender: UIButton) {
     }
  
-    //method
+    // METHODS
+    
     override var prefersStatusBarHidden : Bool {
         return true
     }
