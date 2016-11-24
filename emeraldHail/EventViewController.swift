@@ -16,6 +16,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     // OUTLETS
     
     @IBOutlet weak var eventsTable: UITableView!
+    @IBOutlet weak var profileImageView: UIImageView!
     
     // PROPERTIES
     
@@ -29,10 +30,11 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewDidLoad()
         eventsTable.delegate = self
         eventsTable.dataSource = self
-        
-        configDatabase()
-        eventsTable.reloadData()
         hideKeyboardWhenTappedAround()
+        configDatabase()
+        self.eventsTable.separatorStyle = .none
+        eventsTable.reloadData()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,6 +69,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         cell.eventName.text = event.name
         cell.eventDate.text = event.startDate
         
+        
         Logics.sharedInstance.eventID =  event.uniqueID
         return cell
     }
@@ -100,11 +103,10 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func dismissKeyboardView() {
         view.endEditing(true)
     }
-
+    
     func configDatabase() {
         
         let memberID: String = Logics.sharedInstance.memberID
-        
         let eventsRef = FIRDatabase.database().reference().child("events").child(memberID)
         
         eventsRef.observe(.value, with: { snapshot in
@@ -145,7 +147,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             databaseEventsRef.setValue(event.serialize(), withCompletionBlock: { error, dataRef in
                 
             })
-             
+            
             print("Save Button Pressed")
         })
         let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
@@ -168,6 +170,38 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         present(alertController, animated: true, completion: nil)
     }
 }
+//    func profilePic() {
+//        let member = Logics.sharedInstance.eventID
+//        let ref = FIRDatabase.database().reference().child(member)
+//        var profilePic: UIImage!
+//        
+//        ref.observe(.value, with: { snapshot in
+//            
+//            snapshot
+//            
+//            cell.profileImageView.image = UIImage(named: "kid_silhouette")
+//            snapshot.profileImageView.contentMode = .scaleAspectFill
+//            cell.profileImageView.setRounded()
+//            
+//            if let profileImageUrl = member.profileImage {
+//                let url = URL(string: profileImageUrl)
+//                URLSession.shared.dataTask(with: url!, completionHandler: {
+//                    (data, response, error) in
+//                    
+//                    if error != nil {
+//                        print("Error occurred")
+//                        return
+//                    }
+//                    
+//                    OperationQueue.main.addOperation {
+//                        cell.profileImageView.image = UIImage(data: data!)
+//                    }
+//                }).resume()
+//                
+//            }
+//        }
+//    }
+//}
 
 
 
