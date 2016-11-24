@@ -11,43 +11,84 @@ import Firebase
 
 class LoginViewController: UIViewController {
     
-    // OUTLETS
-    
+    // MARK: Outlets
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
-    @IBOutlet weak var signIn: UIButton!
-    @IBOutlet weak var createAccount: UIButton!
+    @IBOutlet weak var errorLabel: UILabel!
     
-    // LOADS
+    @IBOutlet weak var signIn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         hideKeyboardWhenTappedAround()
+        
+        // Make the email field become the first repsonder and show keyboard when this vc loads
+        emailField.becomeFirstResponder()
     }
     
-    // ACTIONS
-
+    // TODO: Discuss if we should we be hiding the status bar in the entire app?
+    
+//    override var prefersStatusBarHidden : Bool {
+//        return true
+//    }
+    
+    // MARK: IBActions
     @IBAction func signIn(_ sender: UIButton) {
         login()
     }
     
-    @IBAction func signUp(_ sender: UIButton) {
-        performSegue(withIdentifier: "showRegister", sender: self)
+    @IBAction func forgotPressed(_ sender: Any) {
+        let alert = UIAlertController(title: "Forgot?", message: "Please enter your login email address.\n\nWe'll send you an email with instructions on how to reset your password.", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: { (action) in
+            let userInput = alert.textFields![0].text
+            if (userInput!.isEmpty) { return }
+            FIRAuth.auth()?.sendPasswordReset(withEmail: userInput!, completion: { (error) in
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+            })
+        })
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alert.addTextField(configurationHandler: nil)
+        alert.textFields![0].placeholder = "yourname@gmail.com"
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        present(alert, animated: true, completion: nil)
     }
     
-    @IBAction func forgot(_ sender: UIButton) {
-        performSegue(withIdentifier: "showForgot", sender: self)
+    @IBAction func createAccountPressed(_ sender: Any) {
+        print("createAccountPressed")
     }
-
-    // METHODS
     
-    override var prefersStatusBarHidden : Bool {
-        return true
+    // This function enables/disables the signIn button when the fields are empty/not empty.
+    @IBAction func textDidChange(_ sender: UITextField) {
+        if !(emailField.text?.characters.isEmpty)! && !(passwordField.text?.characters.isEmpty)! {
+            signIn.isEnabled = true
+            signIn.backgroundColor = Constants.Colors.scooter
+        } else {
+            signIn.isEnabled = false
+            signIn.backgroundColor = UIColor.lightGray
+        }
+    }
+    
+    func setupViews() {
+        // Set error label to "" on viewDidLoad
+        errorLabel.text = ""
+        
+        emailField.layer.cornerRadius = 2
+        emailField.layer.borderColor = UIColor.lightGray.cgColor
+        
+        passwordField.layer.cornerRadius = 2
+        passwordField.layer.borderColor = UIColor.lightGray.cgColor
+        
+        signIn.isEnabled = false
+        signIn.backgroundColor = UIColor.lightGray
+        signIn.layer.cornerRadius = 2
     }
     
     func hideKeyboardWhenTappedAround() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboardView))
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboardView))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
     }
@@ -56,46 +97,19 @@ class LoginViewController: UIViewController {
         view.endEditing(true)
     }
 
-    
-    func setupViews() {
-        signIn.layer.cornerRadius = 2
-        createAccount.layer.borderWidth = 1
-        createAccount.layer.borderColor = UIColor.lightGray.cgColor
-        createAccount.layer.cornerRadius = 2
-    }
-    
     func login() {
-        guard let email = emailField.text else { return }
-        guard let password = passwordField.text else { return }
+        guard let email = emailField.text, let password = passwordField.text else { return }
         
         FIRAuth.auth()?.signIn(withEmail: email, password: password) { (user, error) in
             if let error = error {
+                // TODO: Format the error.localizedDescription for natural language, ex. "Invalid email", "Password must be 6 characters or more", etc.
+                // Set errorLabel to the error.localizedDescription
+                self.errorLabel.text = error.localizedDescription
                 print(error.localizedDescription)
                 return
             }
             self.performSegue(withIdentifier: "showFamily", sender: nil)
         }
     }
-}
-
-class ForgotViewController: UIViewController {
     
-    // OUTLETS
-    
-    @IBOutlet weak var textEmail: UITextField!
-    
-    // LOADS
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
-    // ACTIONS
-    
-    @IBAction func sendPassword(_ sender: UIButton) {
-    }
-    
-    @IBAction func cancel(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
-    }
 }

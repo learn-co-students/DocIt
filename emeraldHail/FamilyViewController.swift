@@ -2,7 +2,7 @@
 //  FamilyViewController.swift
 //  emeraldHail
 //
-//   Created by Tanira Wiggins on 11/20/16.
+//  Created by Tanira Wiggins on 11/20/16.
 //  Copyright © 2016 Flatiron School. All rights reserved.
 //
 

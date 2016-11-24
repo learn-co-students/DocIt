@@ -10,26 +10,31 @@ import UIKit
 
 class WelcomeViewController: UIViewController {
 
+    @IBOutlet weak var createAccount: UIButton!
+    @IBOutlet weak var signIn: UIButton!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
+        setupViews()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func createAccountPressed(_ sender: Any) {
+        print("createAccountPressed")
     }
-    */
+    
+    @IBAction func signInPressed(_ sender: Any) {
+        print("signInPressed")
+    }
+    
+    func setupViews() {
+        view.backgroundColor = Constants.Colors.desertStorm
+        
+        createAccount.layer.cornerRadius = 2
+        
+        signIn.layer.borderWidth = 1
+        signIn.layer.borderColor = UIColor.lightGray.cgColor
+        signIn.layer.cornerRadius = 2
+    }
 
 }

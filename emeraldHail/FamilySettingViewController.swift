@@ -6,30 +6,30 @@
 //  Copyright © 2016 Flatiron School. All rights reserved.
 //
 
+import Foundation
 import UIKit
+import Firebase
+import FirebaseAuth
+import FirebaseDatabase
 
 class FamilySettingViewController: UIViewController {
 
-    // LOADS
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
-
-    // ACTIONS 
-    
-    @IBAction func cancel(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
-    }
-   
-    @IBAction func saveSettings(_ sender: UIButton) {
-    }
- 
-    // METHODS
     
     override var prefersStatusBarHidden : Bool {
         return true
     }
     
+    // TODO: When the logout button is pressed, it takes you back to the sign in screen, but the text fiels still have user information there. We should clear that out or figure out how to proceed in that situation.
+    @IBAction func logoutPressed(_ sender: Any) {
+        do {
+            try FIRAuth.auth()?.signOut()
+            dismiss(animated: true, completion: nil)
+        } catch let signOutError as NSError {
+            print ("Error signing out: \(signOutError.localizedDescription)")
+        }
+    }
+
 }
