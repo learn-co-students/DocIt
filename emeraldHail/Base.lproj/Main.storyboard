@@ -822,17 +822,57 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uH2-9c-3vs">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="204"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="174"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="kid_silhouette" translatesAutoresizingMaskIntoConstraints="NO" id="LLE-N1-lgR">
+                                        <rect key="frame" x="153" y="85" width="69" height="69"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                </subviews>
                                 <color key="backgroundColor" red="0.98039132360000003" green="0.97655218840000002" blue="0.97635632750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="34" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nqx-H7-96D">
+                                <rect key="frame" x="0.0" y="182" width="375" height="433"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="symptomCell" rowHeight="34" id="SDQ-ud-T3F" customClass="SymptomViewCell" customModule="emeraldHail" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="34"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SDQ-ud-T3F" id="SCt-Q1-PQQ">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="33"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zwl-Ic-cdE">
+                                                    <rect key="frame" x="8" y="6" width="267" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                                    <color key="textColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="symptomLabel" destination="Zwl-Ic-cdE" id="Wz3-UC-it7"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="z5g-W1-3kv" id="TTb-Wv-Icu"/>
+                                    <outlet property="delegate" destination="z5g-W1-3kv" id="X4E-Js-yym"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="symptomTableView" destination="nqx-H7-96D" id="nFb-jb-CAT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yiu-ZG-DWm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4345" y="-510"/>
+            <point key="canvasLocation" x="4344.8000000000002" y="-510.49475262368821"/>
         </scene>
         <!--Note-->
         <scene sceneID="VHJ-My-v70">
@@ -1054,7 +1094,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="XIF-ae-qWP" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ixB-h9-CxZ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ixB-h9-CxZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
