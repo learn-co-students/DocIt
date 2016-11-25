@@ -11,7 +11,6 @@ import Firebase
 import FirebaseDatabase
 import SDWebImage
 
-
 class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
     
     // MARK: Properties
@@ -23,6 +22,12 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     var refresher = UIRefreshControl()
     
     // MARK: Outlets
+    @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
+    
+    var spacing: CGFloat!
+    var insets: UIEdgeInsets!
+    var itemSize: CGSize!
+    
     @IBOutlet weak var memberProfilesView: UICollectionView!
     
     override func viewDidLoad() {
@@ -49,7 +54,28 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         refresher.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
         memberProfilesView.addSubview(refresher)
         
+        // MARK: Flow Layout
+        configureLayout()
+        self.flowLayout.itemSize = itemSize
+        self.flowLayout.minimumInteritemSpacing = spacing
+        self.flowLayout.minimumLineSpacing = spacing
+        self.flowLayout.sectionInset = insets
+    }
+    
+    func configureLayout() {
+        let screenWidth = UIScreen.main.bounds.width
+        let screenHeight = UIScreen.main.bounds.height
+        let numberOfColumns: CGFloat = 2
         
+        spacing = 12
+        insets = UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing)
+        
+        let widthDeductionPerItem: CGFloat = (spacing*(numberOfColumns-1) + insets.left + insets.right)/numberOfColumns
+        let heightDeductionPerItem: CGFloat = (spacing*(numberOfColumns-1) + insets.top + insets.bottom)/numberOfColumns
+        
+//        itemSize = CGSize(width: screenWidth/numberOfColumns - widthDeductionPerItem, height: screenHeight/numberOfColumns - heightDeductionPerItem)
+        
+        itemSize = CGSize(width: screenWidth/numberOfColumns - widthDeductionPerItem, height: screenWidth/numberOfColumns - heightDeductionPerItem)
     }
     
     override func viewWillAppear(_ animated: Bool) {

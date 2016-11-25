@@ -48,7 +48,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     // ACTIONS
     
-    @IBAction func addEvent(_ sender: UIButton) {
+    @IBAction func addEvent(_ sender: Any) {
         createEvent()
     }
     
@@ -89,9 +89,9 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     // METHODS
     
-    override var prefersStatusBarHidden : Bool {
-        return true
-    }
+//    override var prefersStatusBarHidden : Bool {
+//        return true
+//    }
     
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(EventViewController.dismissKeyboardView))
