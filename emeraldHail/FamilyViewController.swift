@@ -88,19 +88,6 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
             let profileImgUrl = URL(string: profileImg)
             cell.profileImageView.sd_setImage(with: profileImgUrl)
     
-//            let url = URL(string: profileImageUrl)
-//            URLSession.shared.dataTask(with: url!, completionHandler: {
-//                (data, response, error) in
-//                
-//                if error != nil {
-//                    print("Error occurred")
-//                    return
-//                }
-//                
-//                OperationQueue.main.addOperation {
-//                    cell.profileImageView.image = UIImage(data: data!)
-//                }
-//            }).resume()
         }
         
         return cell

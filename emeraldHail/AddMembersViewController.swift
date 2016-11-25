@@ -68,7 +68,7 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     @IBAction func genderSegment(_ sender: UISegmentedControl) {
-    
+        
         switch sender.selectedSegmentIndex {
         case 0:
             Logics.sharedInstance.genderType = Gender.female.rawValue

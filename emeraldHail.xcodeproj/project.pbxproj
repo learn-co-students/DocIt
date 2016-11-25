@@ -83,7 +83,7 @@
 		BBF4EEB61DDF59FF00EBD3FE /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		BBF4EEB81DDF5A0600EBD3FE /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		D4BA12601A0F16DED58FEC5E /* Pods_emeraldHail.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_emeraldHail.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		DD3BD97B1DE7B9A800311BE9 /* emeraldHail-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "emeraldHail-Bridging-Header.h"; sourceTree = "<group>"; };
+		DD3BD97B1DE7B9A800311BE9 /* emeraldHail-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "emeraldHail-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		DD755E191DE3A99F002478D0 /* AddMembersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMembersViewController.swift; sourceTree = "<group>"; };
 		DD755E1B1DE3ACB2002478D0 /* emeraldHail.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = emeraldHail.entitlements; sourceTree = "<group>"; };
 		DDA93D1F1DDE412000F0A4D4 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
@@ -109,7 +109,6 @@
 				AA9FFBB51DDA667500847FCF /* Products */,
 				CCB9A50487D0810C41F555DF /* Pods */,
 				E2732CC3AAAB9CB28A1A3DE8 /* Frameworks */,
-				DD3BD97B1DE7B9A800311BE9 /* emeraldHail-Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -169,6 +168,7 @@
 				AA9FFBC01DDA667500847FCF /* LaunchScreen.storyboard */,
 				AA9FFBC31DDA667500847FCF /* Info.plist */,
 				AA6E4D221DE74B1400C8FEE3 /* Constants.swift */,
+				DD3BD97B1DE7B9A800311BE9 /* emeraldHail-Bridging-Header.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";

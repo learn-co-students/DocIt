@@ -24,7 +24,7 @@ struct Member {
     var uniqueID: String
     
     
-    init(profileImage: String, firstName: String, lastName: String, gender: String, birthday: String, uniqueID: String = "") {
+    init(profileImage: String, firstName: String, lastName: String, gender: String , birthday: String, uniqueID: String = "") {
         self.profileImage = profileImage
         self.firstName = firstName
         self.lastName = lastName
