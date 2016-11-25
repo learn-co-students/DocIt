@@ -18,9 +18,9 @@ class FamilySettingViewController: UIViewController {
         super.viewDidLoad()
     }
     
-//    override var prefersStatusBarHidden : Bool {
-//        return true
-//    }
+    override var prefersStatusBarHidden : Bool {
+        return true
+    }
     
     // TODO: When the logout button is pressed, it takes you back to the sign in screen, but the text fiels still have user information there. We should clear that out or figure out how to proceed in that situation.
     @IBAction func logoutPressed(_ sender: Any) {

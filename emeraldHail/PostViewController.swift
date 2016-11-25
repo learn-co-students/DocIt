@@ -14,6 +14,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     // OUTLETS
     
+    @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var postTableView: UITableView!
     @IBOutlet var postButtons: [UIButton]! {
         didSet {
@@ -28,6 +29,8 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     var posts = [Post]()
     var database: FIRDatabaseReference = FIRDatabase.database().reference()
     var eventID = ""
+    var store = Logics.sharedInstance
+    
     
     // LOADS
     
@@ -40,6 +43,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         configDatabase()
         postTableView.reloadData()
         hideKeyboardWhenTappedAround()
+        showPicture()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -160,8 +164,27 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.posts = newPosts
             self.postTableView.reloadData()
         })
-        
     }
+    
+    func showPicture() {
+        
+        let member = FIRDatabase.database().reference().child("members").child(store.familyID).child(store.memberID)
+        
+        member.observe(.value, with: { snapshot in
+            
+            var image = snapshot.value as! [String:Any]
+            let imageString = image["profileImage"] as! String
+            
+            let profileImgUrl = URL(string: imageString)
+            self.profileImageView.sd_setImage(with: profileImgUrl)
+            
+            self.profileImageView.setRounded()
+            self.profileImageView.layer.borderColor = UIColor.gray.cgColor
+            self.profileImageView.layer.borderWidth = 0.5
+            
+        })
+    }
+    
 }
 
 
