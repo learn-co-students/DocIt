@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16C48b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Lab-UU-Fjj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Lab-UU-Fjj">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -136,7 +135,7 @@
             </objects>
             <point key="canvasLocation" x="-1292" y="-349"/>
         </scene>
-        <!--Family-->
+        <!--Your Family-->
         <scene sceneID="Vaw-QG-Cac">
             <objects>
                 <viewController id="0wC-jh-3aM" customClass="FamilyViewController" customModule="emeraldHail" customModuleProvider="target" sceneMemberID="viewController">
@@ -149,20 +148,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="aH9-m5-cgZ">
-                                <rect key="frame" x="0.0" y="241" width="375" height="344"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" red="0.97647058823529409" green="0.97254901960784312" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="344" id="DB1-mK-TPU"/>
-                                </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="5vy-SK-epm">
                                     <size key="itemSize" width="150" height="150"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="headerReferenceSize" width="50" height="150"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="memberCell" id="swP-Lg-vbj" customClass="MemberCollectionViewCell" customModule="emeraldHail" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                        <rect key="frame" x="0.0" y="150" width="150" height="150"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
@@ -197,83 +193,70 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="header" id="fPh-it-nY7" customClass="HeaderCollectionReusableView" customModule="emeraldHail" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Family Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cLw-J8-NoL">
+                                            <rect key="frame" x="-0.5" y="112" width="375" height="30"/>
+                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="25"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blackfam" translatesAutoresizingMaskIntoConstraints="NO" id="hNa-6z-wVq">
+                                            <rect key="frame" x="137.5" y="12" width="100" height="100"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="100" id="PFX-Db-ico"/>
+                                                <constraint firstAttribute="width" constant="100" id="Tkv-KM-0bK"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.12549019610000001" green="0.75294117650000003" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="bottomMargin" secondItem="cLw-J8-NoL" secondAttribute="bottom" id="B81-Me-DB2"/>
+                                        <constraint firstItem="cLw-J8-NoL" firstAttribute="width" secondItem="fPh-it-nY7" secondAttribute="width" id="Koz-j0-eb1"/>
+                                        <constraint firstItem="cLw-J8-NoL" firstAttribute="top" secondItem="hNa-6z-wVq" secondAttribute="bottom" id="MCi-gq-kxa"/>
+                                        <constraint firstItem="cLw-J8-NoL" firstAttribute="centerX" secondItem="fPh-it-nY7" secondAttribute="centerX" id="TvN-JY-kIb"/>
+                                        <constraint firstItem="hNa-6z-wVq" firstAttribute="centerX" secondItem="fPh-it-nY7" secondAttribute="centerX" id="UOH-fk-Cqu"/>
+                                    </constraints>
+                                    <connections>
+                                        <outlet property="familyNameLabel" destination="cLw-J8-NoL" id="jKV-WN-jxc"/>
+                                        <outlet property="profileImage" destination="hNa-6z-wVq" id="etb-yK-Wd8"/>
+                                    </connections>
+                                </collectionReusableView>
                             </collectionView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="blackfam" translatesAutoresizingMaskIntoConstraints="NO" id="ZGn-VS-FMm">
-                                <rect key="frame" x="-11" y="0.0" width="401" height="290"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="ZGn-VS-FMm" secondAttribute="height" multiplier="125:82" id="GiK-um-NRJ"/>
-                                </constraints>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mTm-aS-yj5">
-                                <rect key="frame" x="30" y="597" width="315" height="50"/>
-                                <color key="backgroundColor" red="0.12549019607843137" green="0.75294117647058822" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="jPP-4U-jIn"/>
-                                </constraints>
-                                <state key="normal" title="Add family member">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="y9d-zF-vg4" kind="presentation" id="sRx-tS-jed"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Id-r5-FFm">
-                                <rect key="frame" x="0.0" y="196" width="375" height="50"/>
-                                <color key="backgroundColor" red="0.12549019610000001" green="0.75294117650000003" blue="0.8862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="uDS-4v-XmY"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
-                                <state key="normal">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="changeFamilyName:" destination="0wC-jh-3aM" eventType="touchUpInside" id="8dy-Yn-dsZ"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Family Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zAB-9r-Knf">
-                                <rect key="frame" x="0.0" y="209" width="375" height="24"/>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.97647058823529409" green="0.97254901960784312" blue="0.97254901960784312" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="ZGn-VS-FMm" firstAttribute="width" secondItem="6Hd-p7-ndl" secondAttribute="width" id="4Qs-1I-eU5"/>
                             <constraint firstItem="aH9-m5-cgZ" firstAttribute="centerX" secondItem="6Hd-p7-ndl" secondAttribute="centerX" id="4zm-uN-5Kr"/>
-                            <constraint firstItem="xUF-wS-Qp3" firstAttribute="top" secondItem="mTm-aS-yj5" secondAttribute="bottom" constant="20" id="Jp4-hO-DAQ"/>
-                            <constraint firstItem="zAB-9r-Knf" firstAttribute="width" secondItem="4Id-r5-FFm" secondAttribute="width" id="LTn-q8-4nS"/>
-                            <constraint firstItem="4Id-r5-FFm" firstAttribute="bottom" secondItem="ZGn-VS-FMm" secondAttribute="bottom" id="OCH-6r-jWB"/>
-                            <constraint firstItem="zAB-9r-Knf" firstAttribute="centerX" secondItem="4Id-r5-FFm" secondAttribute="centerX" id="QkH-3L-P3y"/>
-                            <constraint firstItem="mTm-aS-yj5" firstAttribute="width" secondItem="6Hd-p7-ndl" secondAttribute="width" constant="-60" id="SWS-o4-b9c"/>
-                            <constraint firstItem="4Id-r5-FFm" firstAttribute="centerX" secondItem="ZGn-VS-FMm" secondAttribute="centerX" id="f8W-FY-XQd"/>
-                            <constraint firstItem="zAB-9r-Knf" firstAttribute="centerY" secondItem="4Id-r5-FFm" secondAttribute="centerY" id="pC7-Ks-wCN"/>
+                            <constraint firstItem="aH9-m5-cgZ" firstAttribute="height" secondItem="6Hd-p7-ndl" secondAttribute="height" id="F2F-rG-JGb"/>
+                            <constraint firstItem="aH9-m5-cgZ" firstAttribute="centerY" secondItem="6Hd-p7-ndl" secondAttribute="centerY" id="P2i-0F-VQU"/>
                             <constraint firstItem="aH9-m5-cgZ" firstAttribute="width" secondItem="6Hd-p7-ndl" secondAttribute="width" id="qM8-x3-igk"/>
-                            <constraint firstItem="ZGn-VS-FMm" firstAttribute="centerX" secondItem="6Hd-p7-ndl" secondAttribute="centerX" id="qwJ-4J-VTc"/>
-                            <constraint firstItem="ZGn-VS-FMm" firstAttribute="top" secondItem="aoX-6A-UzR" secondAttribute="bottom" constant="-20" id="tge-id-aZR"/>
-                            <constraint firstItem="mTm-aS-yj5" firstAttribute="top" secondItem="aH9-m5-cgZ" secondAttribute="bottom" constant="12" id="xK7-lg-Axg"/>
-                            <constraint firstItem="4Id-r5-FFm" firstAttribute="width" secondItem="ZGn-VS-FMm" secondAttribute="width" id="xO1-pe-fER"/>
-                            <constraint firstItem="mTm-aS-yj5" firstAttribute="centerX" secondItem="6Hd-p7-ndl" secondAttribute="centerX" id="xoL-Y1-ioo"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Family" id="XPR-XT-t6y">
-                        <barButtonItem key="rightBarButtonItem" title="⋯" id="WeV-d6-vBd">
-                            <color key="tintColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Your Family" id="7Lc-ix-efT">
+                        <barButtonItem key="leftBarButtonItem" title="⋯" id="3ZH-68-5Ls">
+                            <color key="tintColor" red="0.12549019610000001" green="0.75294117650000003" blue="0.8862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
-                                <segue destination="bHr-j8-e7W" kind="show" id="BNW-6X-Frf"/>
+                                <segue destination="bHr-j8-e7W" kind="show" identifier="showSettings" id="SFm-76-6kz"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="v3b-RE-Fc7">
+                            <color key="tintColor" red="0.12549019610000001" green="0.75294117650000003" blue="0.8862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <segue destination="y9d-zF-vg4" kind="presentation" id="GZf-xe-mpk"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="familyName" destination="4Id-r5-FFm" id="Alx-nl-pHK"/>
-                        <outlet property="familyNameLabel" destination="zAB-9r-Knf" id="ON5-Fs-9do"/>
                         <outlet property="memberProfilesView" destination="aH9-m5-cgZ" id="hi7-nU-R9P"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5FR-mW-isp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="441" y="-349"/>
+            <point key="canvasLocation" x="440.80000000000001" y="-349.47526236881561"/>
         </scene>
         <!--Add Members View Controller-->
         <scene sceneID="eWs-6l-YnY">
@@ -1157,6 +1140,13 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RuX-TL-eqM" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2102" y="-347"/>
+        </scene>
+        <!--Storyboard Reference-->
+        <scene sceneID="dDG-Tx-wr3">
+            <objects>
+                <viewControllerPlaceholder id="WsP-2m-nef" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fke-qm-kjU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
         </scene>
     </scenes>
     <resources>

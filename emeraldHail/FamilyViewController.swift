@@ -20,10 +20,9 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     var membersInFamily = [Member]()
     var family = [Family]()
     
+    var refresher = UIRefreshControl()
     
     // MARK: Outlets
-    @IBOutlet weak var familyName: UIButton!
-    @IBOutlet weak var familyNameLabel: UILabel!
     @IBOutlet weak var memberProfilesView: UICollectionView!
     
     override func viewDidLoad() {
@@ -42,6 +41,15 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         configDatabaseMember()
         
         memberProfilesView.reloadData()
+        
+        
+        // TODO: Pull to refresh tests
+        self.memberProfilesView.alwaysBounceVertical = true
+        refresher.tintColor = Constants.Colors.scooter
+        refresher.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        memberProfilesView.addSubview(refresher)
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -56,17 +64,16 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         navigationItem.backBarButtonItem = backButton
     }
     
-    override var prefersStatusBarHidden : Bool {
-        return true
-    }
+//    override var prefersStatusBarHidden : Bool {
+//        return true
+//    }
     
     // MARK: Actions
-    @IBAction func changeFamilyName(_ sender: UIButton) {
-        changeFamilyName()
-    }
+//    @IBAction func changeFamilyName(_ sender: UIButton) {
+//        changeFamilyName()
+//    }
     
-    // COLLECTION VIEW METHODS
-    
+    // MARK: Collection view methods
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -95,6 +102,21 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         store.memberID = membersInFamily[indexPath.row].uniqueID
+    }
+    
+    // MARK: Header resuable view
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        switch kind {
+        case UICollectionElementKindSectionHeader:
+            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) as! HeaderCollectionReusableView
+            print("made a header")
+            headerView.familyNameLabel.text = store.familyName
+            headerView.profileImage.setRounded()
+            return headerView
+        default:
+            assert(false, "Unexpected element kind")
+        }
     }
     
     // MARK: Functions
@@ -136,9 +158,13 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         let familyRef = membersRef.child(store.familyID)
         
         familyRef.observe(.value, with: { snapshot in
-            var name = snapshot.value as! [String:Any]
+            var name = snapshot.value as! [String : Any]
             
-            self.familyNameLabel.text = name["name"] as? String
+            guard let familyName = name["name"] else { return }
+            
+//            self.familyNameLabel.text = name["name"] as? String
+            
+            self.store.familyName = familyName as! String
         })
     }
     
@@ -169,6 +195,13 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         
         present(alertController, animated: true, completion: nil)
     }
+    
+    // Pull to refresh!
+    func handleRefresh() {
+        memberProfilesView.reloadData()
+        refresher.endRefreshing()
+    }
+    
 }
 
 class MemberCollectionViewCell: UICollectionViewCell {

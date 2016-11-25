@@ -19,6 +19,8 @@ class Logics {
     static let sharedInstance = Logics()
     
     var familyID = ""
+    var familyName = ""
+    
     var memberID = ""
     var eventID = ""
     var genderType = ""

@@ -11,6 +11,8 @@ import Firebase
 
 class LoginViewController: UIViewController {
     
+    let store = Logics.sharedInstance
+    
     // MARK: Outlets
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
@@ -115,8 +117,9 @@ class LoginViewController: UIViewController {
                 // Set errorLabel to the error.localizedDescription
                 self.errorLabel.text = error.localizedDescription
                 print("===========================\(error.localizedDescription)")
-                return
             }
+            // Set the sharedInstance familyID to the current user.uid
+            self.store.familyID = (user?.uid)!
             self.performSegue(withIdentifier: "showFamily", sender: nil)
         }
     }
