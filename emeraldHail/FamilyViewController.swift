@@ -49,16 +49,16 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         self.memberProfilesView.reloadData()
     }
     
-    // TODO: Can anyone tell me what this is doing? -Henry
+    // TODO: Can anyone tell me what this is doing? -Henry Is giving format to the text next to the < sign
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let backButton = UIBarButtonItem()
         backButton.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Arial", size: 15)!], for: UIControlState.normal)
         navigationItem.backBarButtonItem = backButton
     }
     
-    //    override var prefersStatusBarHidden : Bool {
-    //        return true
-    //    }
+    override var prefersStatusBarHidden : Bool {
+        return true
+    }
     
     // MARK: Actions
     @IBAction func changeFamilyName(_ sender: UIButton) {
@@ -83,12 +83,12 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         cell.profileImageView.contentMode = .scaleAspectFill
         cell.profileImageView.setRounded()
         
-        if let profileImg = member.profileImage {
-            
-            let profileImgUrl = URL(string: profileImg)
+//        if let profileImg = member.profileImage {
+        
+            let profileImgUrl = URL(string: member.profileImage)
             cell.profileImageView.sd_setImage(with: profileImgUrl)
-    
-        }
+            
+//        }
         
         return cell
     }
@@ -118,7 +118,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         
         familyRef.observe(.value, with: { snapshot in
             var newItem = [Member]()
-
+            
             for item in snapshot.children {
                 let newMember = Member(snapshot: item as! FIRDataSnapshot)
                 newItem.append(newMember)

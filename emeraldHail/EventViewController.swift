@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseDatabase
-
+import SDWebImage
 
 class EventViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -20,9 +20,11 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     // PROPERTIES
     
+    var store = Logics.sharedInstance
     var events = [Event]()
     var database: FIRDatabaseReference = FIRDatabase.database().reference()
     var memberID = ""
+    var member = [Member]()
     
     // LOADS
     
@@ -34,7 +36,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         configDatabase()
         self.eventsTable.separatorStyle = .none
         eventsTable.reloadData()
-        
+        showPicture()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -104,6 +106,26 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         view.endEditing(true)
     }
     
+    func showPicture() {
+        
+        let member = FIRDatabase.database().reference().child("members").child(store.familyID).child(store.memberID)
+
+        member.observe(.value, with: { snapshot in
+
+            var image = snapshot.value as! [String:Any]
+            let imageString = image["profileImage"] as! String
+            
+            let profileImgUrl = URL(string: imageString)
+            self.profileImageView.sd_setImage(with: profileImgUrl)
+            
+            self.profileImageView.setRounded()
+            self.profileImageView.layer.borderColor = UIColor.gray.cgColor
+            self.profileImageView.layer.borderWidth = 0.5
+            
+            })
+        }
+    
+    
     func configDatabase() {
         
         let memberID: String = Logics.sharedInstance.memberID
@@ -138,7 +160,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             guard let name = nameTextField?.text, name != "", let date = dateTextField?.text, date != "" else { return }
             
             
-            let databaseEventsRef = self.database.child("events").child(Logics.sharedInstance.memberID).childByAutoId()
+            let databaseEventsRef = self.database.child("events").child(self.store.memberID).childByAutoId()
             
             let uniqueID = databaseEventsRef.key
             
@@ -174,30 +196,30 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
 //        let member = Logics.sharedInstance.eventID
 //        let ref = FIRDatabase.database().reference().child(member)
 //        var profilePic: UIImage!
-//        
+//
 //        ref.observe(.value, with: { snapshot in
-//            
+//
 //            snapshot
-//            
+//
 //            cell.profileImageView.image = UIImage(named: "kid_silhouette")
 //            snapshot.profileImageView.contentMode = .scaleAspectFill
 //            cell.profileImageView.setRounded()
-//            
+//
 //            if let profileImageUrl = member.profileImage {
 //                let url = URL(string: profileImageUrl)
 //                URLSession.shared.dataTask(with: url!, completionHandler: {
 //                    (data, response, error) in
-//                    
+//
 //                    if error != nil {
 //                        print("Error occurred")
 //                        return
 //                    }
-//                    
+//
 //                    OperationQueue.main.addOperation {
 //                        cell.profileImageView.image = UIImage(data: data!)
 //                    }
 //                }).resume()
-//                
+//
 //            }
 //        }
 //    }

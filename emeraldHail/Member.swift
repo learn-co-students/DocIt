@@ -13,7 +13,7 @@ import FirebaseDatabase
 
 struct Member {
 
-    var profileImage: String?
+    var profileImage: String
     var firstName: String
     var lastName: String
     var fullName: String {
@@ -49,7 +49,7 @@ struct Member {
         
         let snapshotValue = snapshot.value as! [String : AnyObject]
         
-        profileImage = snapshotValue["profileImage"] as? String
+        profileImage = snapshotValue["profileImage"] as! String
         firstName = snapshotValue["firstName"] as! String
         lastName = snapshotValue["lastName"] as! String
         birthday = snapshotValue["dob"] as! String
