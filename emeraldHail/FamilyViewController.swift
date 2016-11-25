@@ -112,6 +112,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         store.familyID = (FIRAuth.auth()?.currentUser?.uid)!
     }
     
+    // TODO: Rethink some of the variable names here and in configDatabaseFamily for clarity
     func configDatabaseMember() {
         let membersRef = FIRDatabase.database().reference().child("members")
         let familyRef = membersRef.child(store.familyID)
@@ -129,9 +130,10 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         })
     }
     
+    // TODO: Rethink some of the variable names here for clarity
     func configDatabaseFamily() {
         let membersRef = FIRDatabase.database().reference().child("family")
-        let familyRef = membersRef.child(Logics.sharedInstance.familyID)
+        let familyRef = membersRef.child(store.familyID)
         
         familyRef.observe(.value, with: { snapshot in
             var name = snapshot.value as! [String:Any]
@@ -143,12 +145,15 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     func changeFamilyName() {
         var nameTextField: UITextField?
         
-        let alertController = UIAlertController(title: "Change family name", message: "Give us a funny name", preferredStyle: .alert)
-        let save = UIAlertAction(title: "Save", style: .default, handler: { (action) -> Void in
+        let alertController = UIAlertController(title: nil, message: "Change your family name", preferredStyle: .alert)
+        let save = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
             guard let name = nameTextField?.text, name != "" else { return }
-            let databaseEventsRef = FIRDatabase.database().reference().child("family").child(Logics.sharedInstance.familyID)
+            let databaseEventsRef = FIRDatabase.database().reference().child("family").child(self.store.familyID)
+            
+            // TODO: We shoul be handling all the errors properly
             databaseEventsRef.updateChildValues(["name": name], withCompletionBlock: { (error, dataRef) in
             })
+            
             print("Save Button Pressed")
         })
         

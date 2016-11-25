@@ -105,6 +105,7 @@ class LoginViewController: UIViewController {
         view.endEditing(true)
     }
 
+    // TODO: Need to prevent users from being able to press the login button multiple times
     func login() {
         guard let email = emailField.text, let password = passwordField.text else { return }
         
