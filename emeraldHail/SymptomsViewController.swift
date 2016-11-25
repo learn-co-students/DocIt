@@ -29,6 +29,15 @@ class SymptomsViewController: UIViewController, UITableViewDelegate, UITableView
         symptomTableView.reloadData()
     }
     
+    // ACTIONS
+    
+    @IBAction func save(_ sender: UIButton) {
+        
+        
+        
+    }
+    
+    
     // TABLEVIEW METHODS
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -57,6 +66,13 @@ class SymptomsViewController: UIViewController, UITableViewDelegate, UITableView
         symptomsSelected.remove(at: position!)
         print(symptomsSelected)
     }
+    
+    // METHODS
+    
+    override var prefersStatusBarHidden : Bool {
+        return true
+    }
+
 }
 
 class SymptomViewCell: UITableViewCell {

@@ -16,6 +16,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     // OUTLETS
     
     @IBOutlet weak var eventsTable: UITableView!
+    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
     
     // PROPERTIES
@@ -36,7 +37,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         configDatabase()
         self.eventsTable.separatorStyle = .none
         eventsTable.reloadData()
-        showPicture()
+        showPictureAndName()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -102,22 +103,23 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         view.endEditing(true)
     }
     
-    func showPicture() {
+    func showPictureAndName() {
         
         let member = FIRDatabase.database().reference().child("members").child(store.familyID).child(store.memberID)
 
         member.observe(.value, with: { snapshot in
 
-            var image = snapshot.value as! [String:Any]
-            let imageString = image["profileImage"] as! String
+            var member = snapshot.value as! [String:Any]
+            let imageString = member["profileImage"] as! String
+            let name = member["firstName"] as! String
             
             let profileImgUrl = URL(string: imageString)
             self.profileImageView.sd_setImage(with: profileImgUrl)
-            
             self.profileImageView.setRounded()
             self.profileImageView.layer.borderColor = UIColor.gray.cgColor
             self.profileImageView.layer.borderWidth = 0.5
             
+            self.nameLabel.text = name
             })
         }
     

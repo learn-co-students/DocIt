@@ -14,6 +14,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     // OUTLETS
     
+    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var postTableView: UITableView!
     @IBOutlet var postButtons: [UIButton]! {
@@ -43,7 +44,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         configDatabase()
         postTableView.reloadData()
         hideKeyboardWhenTappedAround()
-        showPicture()
+        showPictureAndName()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -166,21 +167,24 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         })
     }
     
-    func showPicture() {
+    func showPictureAndName() {
         
         let member = FIRDatabase.database().reference().child("members").child(store.familyID).child(store.memberID)
         
         member.observe(.value, with: { snapshot in
             
-            var image = snapshot.value as! [String:Any]
-            let imageString = image["profileImage"] as! String
+            var member = snapshot.value as! [String:Any]
+            let imageString = member["profileImage"] as! String
+            let name = member["firstName"] as! String
             
             let profileImgUrl = URL(string: imageString)
             self.profileImageView.sd_setImage(with: profileImgUrl)
-            
             self.profileImageView.setRounded()
             self.profileImageView.layer.borderColor = UIColor.gray.cgColor
             self.profileImageView.layer.borderWidth = 0.5
+            
+            self.nameLabel.text = name
+
             
         })
     }
