@@ -47,10 +47,6 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     // ACTIONS
     
-    @IBAction func members(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
-    }
-    
     @IBAction func addEvent(_ sender: UIButton) {
         createEvent()
     }
@@ -192,40 +188,6 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         present(alertController, animated: true, completion: nil)
     }
 }
-//    func profilePic() {
-//        let member = Logics.sharedInstance.eventID
-//        let ref = FIRDatabase.database().reference().child(member)
-//        var profilePic: UIImage!
-//
-//        ref.observe(.value, with: { snapshot in
-//
-//            snapshot
-//
-//            cell.profileImageView.image = UIImage(named: "kid_silhouette")
-//            snapshot.profileImageView.contentMode = .scaleAspectFill
-//            cell.profileImageView.setRounded()
-//
-//            if let profileImageUrl = member.profileImage {
-//                let url = URL(string: profileImageUrl)
-//                URLSession.shared.dataTask(with: url!, completionHandler: {
-//                    (data, response, error) in
-//
-//                    if error != nil {
-//                        print("Error occurred")
-//                        return
-//                    }
-//
-//                    OperationQueue.main.addOperation {
-//                        cell.profileImageView.image = UIImage(data: data!)
-//                    }
-//                }).resume()
-//
-//            }
-//        }
-//    }
-//}
-
-
 
 class EventTableViewCell: UITableViewCell {
     
