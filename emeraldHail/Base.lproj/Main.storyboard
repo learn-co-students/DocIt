@@ -573,7 +573,7 @@
                         <outlet property="gender" destination="hfz-8Y-X4k" id="FRU-lf-yre"/>
                         <outlet property="lastName" destination="5A7-KO-3WC" id="8iR-5E-lCI"/>
                         <outlet property="nameLabel" destination="BMb-Td-KYq" id="n7p-P5-dr4"/>
-                        <outlet property="profileImage" destination="gad-FM-YUK" id="2RL-U5-Ccr"/>
+                        <outlet property="profileImageView" destination="gad-FM-YUK" id="ESd-p5-yvH"/>
                         <outlet property="totalPost" destination="sOw-Yj-WF8" id="4zS-xU-w9b"/>
                     </connections>
                 </viewController>
