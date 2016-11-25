@@ -277,19 +277,19 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="yes" spellCheckingType="yes"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oEA-Hz-mSg">
                                 <rect key="frame" x="30" y="304" width="315" height="50"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="yes" spellCheckingType="yes"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Birthday" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0uJ-V1-1Cd">
                                 <rect key="frame" x="30" y="366" width="315" height="50"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Io-NH-AVo">
                                 <rect key="frame" x="30" y="490" width="315" height="50"/>
@@ -388,12 +388,29 @@
                                     <action selector="logoutPressed:" destination="bHr-j8-e7W" eventType="touchUpInside" id="YMA-51-bqG"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tkA-Uo-Tn7">
+                                <rect key="frame" x="37" y="246.5" width="300" height="50"/>
+                                <color key="backgroundColor" red="0.12549019610000001" green="0.75294117650000003" blue="0.8862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="WEf-LJ-n6S"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                                <state key="normal" title="Change family name">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="changeFamilyNamePressed:" destination="bHr-j8-e7W" eventType="touchUpInside" id="K3T-7l-F8o"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="TgT-Sn-ZkG" firstAttribute="centerY" secondItem="HND-Eo-G97" secondAttribute="centerY" id="Tkh-UN-TIO"/>
+                            <constraint firstItem="tkA-Uo-Tn7" firstAttribute="width" secondItem="TgT-Sn-ZkG" secondAttribute="width" id="X0T-kf-auj"/>
+                            <constraint firstItem="TgT-Sn-ZkG" firstAttribute="top" secondItem="tkA-Uo-Tn7" secondAttribute="bottom" constant="12" id="iqL-a4-xER"/>
                             <constraint firstItem="TgT-Sn-ZkG" firstAttribute="centerX" secondItem="HND-Eo-G97" secondAttribute="centerX" id="soP-ZY-JIr"/>
                             <constraint firstItem="TgT-Sn-ZkG" firstAttribute="width" secondItem="HND-Eo-G97" secondAttribute="width" multiplier="0.8" id="srA-rT-v4F"/>
+                            <constraint firstItem="tkA-Uo-Tn7" firstAttribute="centerX" secondItem="TgT-Sn-ZkG" secondAttribute="centerX" id="zyj-03-X1B"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="JL3-N3-RR3"/>
