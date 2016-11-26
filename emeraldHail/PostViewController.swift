@@ -12,8 +12,7 @@ import FirebaseDatabase
 
 class PostViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    // OUTLETS
-    
+    // MARK: Outlets
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var postTableView: UITableView!
@@ -25,16 +24,12 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    // PROPERTIES
-    
+    // MARK: Properties
     var posts = [Post]()
     var database: FIRDatabaseReference = FIRDatabase.database().reference()
     var eventID = ""
     var store = Logics.sharedInstance
-    
-    
-    // LOADS
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         postTableView.delegate = self
@@ -58,8 +53,11 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         postTableView.reloadData()
     }
     
-    // ACTIONS
+//    override var prefersStatusBarHidden : Bool {
+//        return true
+//    }
     
+    // MARK: Actions
     @IBAction func addPost(_ sender: UIButton) {
 //        createPost()
 
@@ -71,8 +69,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     }
     
-    // TABLEVIEW METHODS
-    
+    // MARK: TableView Methods
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -83,10 +80,10 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "postCell", for: indexPath) as! PostTableViewCell
-        
         let post = posts[indexPath.row]
         
         cell.noteLabel.text = post.note
+        cell.backgroundColor = UIColor.getRandomColor()
         
         return cell
     }
@@ -95,18 +92,12 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         if editingStyle == .delete {
             posts.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
-            
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
     }
     
-    // METHODS
-    
-    override var prefersStatusBarHidden : Bool {
-        return true
-    }
-    
+    // MARK: Functions
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(PostViewController.dismissKeyboardView))
         tap.cancelsTouchesInView = false
@@ -118,11 +109,9 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     func createPost() {
-        
         var noteTextField: UITextField?
         let alertController = UIAlertController(title: "Create post", message: "what's cracking?", preferredStyle: .alert)
         let save = UIAlertAction(title: "Save", style: .default, handler: { (action) -> Void in
-            
             let note = noteTextField?.text
             let databaseEventsRef = self.database.child("posts").child(Logics.sharedInstance.eventID).childByAutoId()
             let post = Post(note: note!)
@@ -133,7 +122,6 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.postTableView.reloadData()
             print("Save Button Pressed")
         })
-        
         let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
             print("Cancel Button Pressed")
         }
@@ -144,17 +132,14 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
             noteTextField = textField
             noteTextField?.placeholder = "What just happened?"
         }
-        
         present(alertController, animated: true, completion: nil)
     }
     
     func configDatabase() {
-        
         let eventID: String = Logics.sharedInstance.eventID
         let postsRef = FIRDatabase.database().reference().child("posts").child(eventID)
         
         postsRef.observe(.value, with: { snapshot in
-            
             var newPosts = [Post]()
             
             for post in snapshot.children {
@@ -168,24 +153,19 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func showPictureAndName() {
-        
         let member = FIRDatabase.database().reference().child("members").child(store.familyID).child(store.memberID)
         
         member.observe(.value, with: { snapshot in
-            
             var member = snapshot.value as! [String:Any]
             let imageString = member["profileImage"] as! String
             let name = member["firstName"] as! String
-            
             let profileImgUrl = URL(string: imageString)
+            
             self.profileImageView.sd_setImage(with: profileImgUrl)
             self.profileImageView.setRounded()
             self.profileImageView.layer.borderColor = UIColor.gray.cgColor
             self.profileImageView.layer.borderWidth = 0.5
-            
             self.nameLabel.text = name
-
-            
         })
     }
     

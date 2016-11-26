@@ -13,21 +13,17 @@ import SDWebImage
 
 class EventViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    // OUTLETS
-    
+    // MARK: Outlets
     @IBOutlet weak var eventsTable: UITableView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
     
-    // PROPERTIES
-    
+    // MARK: Properties
     var store = Logics.sharedInstance
     var events = [Event]()
     var database: FIRDatabaseReference = FIRDatabase.database().reference()
     var memberID = ""
     var member = [Member]()
-    
-    // LOADS
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,14 +42,16 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.eventsTable.reloadData()
     }
     
-    // ACTIONS
+    //    override var prefersStatusBarHidden : Bool {
+    //        return true
+    //    }
     
+    // MARK: Actions
     @IBAction func addEvent(_ sender: Any) {
         createEvent()
     }
     
-    // TABLEVIEW METHODS
-    
+    // MARK: TableView Methods
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -75,7 +73,6 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         store.eventID = events[indexPath.row].uniqueID
     }
     
@@ -88,26 +85,8 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
-//    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-//        
-//        switch kind {
-//        case UICollectionElementKindSectionHeader:
-//            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) as! HeaderCollectionReusableView
-//            print("made a header")
-//            headerView.familyNameLabel.text = store.familyName
-//            headerView.profileImage.setRounded()
-//            return headerView
-//        default:
-//            assert(false, "Unexpected element kind")
-//        }
-//    }
     
-    // METHODS
-    
-//    override var prefersStatusBarHidden : Bool {
-//        return true
-//    }
-    
+    // MARK: Functions
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(EventViewController.dismissKeyboardView))
         tap.cancelsTouchesInView = false
@@ -119,11 +98,9 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func showPictureAndName() {
-        
         let member = FIRDatabase.database().reference().child("members").child(store.familyID).child(store.memberID)
-
+        
         member.observe(.value, with: { snapshot in
-
             var member = snapshot.value as! [String : Any]
             let imageString = member["profileImage"] as! String
             let name = member["firstName"] as! String
@@ -132,8 +109,8 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             self.profileImageView.sd_setImage(with: profileImgUrl)
             self.profileImageView.setRounded()
             self.nameLabel.text = name
-            })
-        }
+        })
+    }
     
     
     func configDatabase() {
@@ -161,7 +138,6 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func createEvent() {
-        
         var nameTextField: UITextField?
         var dateTextField: UITextField?
         let alertController = UIAlertController(title: "Create event", message: "Put a name that describe the event and the date when started", preferredStyle: .alert)
@@ -169,36 +145,27 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             
             guard let name = nameTextField?.text, name != "", let date = dateTextField?.text, date != "" else { return }
             
-            
             let databaseEventsRef = self.database.child("events").child(self.store.memberID).childByAutoId()
-            
             let uniqueID = databaseEventsRef.key
-            
             let event = Event(name: name, startDate: date, uniqueID: uniqueID)
             
             databaseEventsRef.setValue(event.serialize(), withCompletionBlock: { error, dataRef in
-                
             })
-            
             print("Save Button Pressed")
         })
         let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
-            
             print("Cancel Button Pressed")
         }
         alertController.addAction(save)
         alertController.addAction(cancel)
         alertController.addTextField { (textField) -> Void in
-            
             nameTextField = textField
             nameTextField?.placeholder = "Event name"
         }
         alertController.addTextField { (textField) -> Void in
-            
             dateTextField = textField
             dateTextField?.placeholder = "Date"
         }
-        
         present(alertController, animated: true, completion: nil)
     }
 }

@@ -28,6 +28,7 @@ class AddNotesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
+        addNotesTextField.becomeFirstResponder()
     }
     
     override func viewDidAppear(_ animated: Bool) {

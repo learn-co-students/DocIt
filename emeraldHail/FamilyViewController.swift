@@ -64,7 +64,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     func configureLayout() {
         let screenWidth = UIScreen.main.bounds.width
-        let screenHeight = UIScreen.main.bounds.height
+//        let screenHeight = UIScreen.main.bounds.height
         let numberOfColumns: CGFloat = 2
         
         spacing = 12
