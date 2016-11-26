@@ -136,7 +136,6 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         switch kind {
         case UICollectionElementKindSectionHeader:
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) as! HeaderCollectionReusableView
-            print("made a header")
             headerView.familyNameLabel.text = store.familyName
             headerView.profileImage.setRounded()
             return headerView

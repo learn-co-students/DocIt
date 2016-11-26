@@ -66,16 +66,17 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let cell = tableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath) as! EventTableViewCell
         let event = events[indexPath.row]
         cell.eventName.text = event.name
-        cell.eventDate.text = event.startDate
+        cell.eventDate.text = event.startDate.uppercased()
+        cell.backgroundColor = UIColor.getRandomColor()
         
+        store.eventID =  event.uniqueID
         
-        Logics.sharedInstance.eventID =  event.uniqueID
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        Logics.sharedInstance.eventID =  events[indexPath.row].uniqueID
+        store.eventID = events[indexPath.row].uniqueID
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
@@ -86,6 +87,20 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
     }
+    
+//    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+//        
+//        switch kind {
+//        case UICollectionElementKindSectionHeader:
+//            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) as! HeaderCollectionReusableView
+//            print("made a header")
+//            headerView.familyNameLabel.text = store.familyName
+//            headerView.profileImage.setRounded()
+//            return headerView
+//        default:
+//            assert(false, "Unexpected element kind")
+//        }
+//    }
     
     // METHODS
     
@@ -109,16 +124,13 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
         member.observe(.value, with: { snapshot in
 
-            var member = snapshot.value as! [String:Any]
+            var member = snapshot.value as! [String : Any]
             let imageString = member["profileImage"] as! String
             let name = member["firstName"] as! String
             
             let profileImgUrl = URL(string: imageString)
             self.profileImageView.sd_setImage(with: profileImgUrl)
             self.profileImageView.setRounded()
-            self.profileImageView.layer.borderColor = UIColor.gray.cgColor
-            self.profileImageView.layer.borderWidth = 0.5
-            
             self.nameLabel.text = name
             })
         }
@@ -188,6 +200,16 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         
         present(alertController, animated: true, completion: nil)
+    }
+}
+
+extension UIColor {
+    class func getRandomColor() -> UIColor {
+        let red: CGFloat = CGFloat(drand48())
+        let green: CGFloat = CGFloat(drand48())
+        let blue: CGFloat = CGFloat(drand48())
+        
+        return UIColor(red: red, green: green, blue: blue, alpha: 0.7)
     }
 }
 
