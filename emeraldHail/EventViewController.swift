@@ -108,6 +108,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             let profileImgUrl = URL(string: imageString)
             self.profileImageView.sd_setImage(with: profileImgUrl)
             self.profileImageView.setRounded()
+            self.profileImageView.contentMode = .scaleAspectFill
             self.nameLabel.text = name
         })
     }

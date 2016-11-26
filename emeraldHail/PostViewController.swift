@@ -163,6 +163,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             self.profileImageView.sd_setImage(with: profileImgUrl)
             self.profileImageView.setRounded()
+            self.profileImageView.contentMode = .scaleAspectFill
             self.profileImageView.layer.borderColor = UIColor.gray.cgColor
             self.profileImageView.layer.borderWidth = 0.5
             self.nameLabel.text = name
