@@ -12,8 +12,6 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
     
     @IBOutlet weak var painLevelCollectionView: UICollectionView!
     
-    
-    
     var selectedFace: UIImage?
     var selectedPainLevel: PainLevel?
     
@@ -36,7 +34,16 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectedPainLevel = painLevels[indexPath.item]
+    
+        let cell = collectionView.cellForItem(at: indexPath) as! PainLevelCollectionViewCell
+        
+        if selectedPainLevel == painLevels[indexPath.item] {
+            cell.wasDeselected()
+            selectedPainLevel = nil
+        } else {
+            selectedPainLevel = painLevels[indexPath.item]
+            cell.wasSelected()
+        }
         print("Selected pain level is \(selectedPainLevel)")
         
     }
@@ -49,17 +56,17 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
         return true
     }
     
-    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        let cell = collectionView.cellForItem(at: indexPath) as! PainLevelCollectionViewCell
-        
-        if selectedPainLevel == painLevels[indexPath.item] {
-            cell.wasDeselected()
-            selectedPainLevel = nil
-        } else {
-            selectedPainLevel = painLevels[indexPath.item]
-            cell.wasSelected()
-        }
-        return true
-    }
+//    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+//        let cell = collectionView.cellForItem(at: indexPath) as! PainLevelCollectionViewCell
+//        
+//        if selectedPainLevel == painLevels[indexPath.item] {
+//            cell.wasDeselected()
+//            selectedPainLevel = nil
+//        } else {
+//            selectedPainLevel = painLevels[indexPath.item]
+//            cell.wasSelected()
+//        }
+//        return true
+//    }
   
 }
