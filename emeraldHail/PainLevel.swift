@@ -1,12 +1,23 @@
 //
-//  Feeling.swift
+//  PainLevel.swift
 //  emeraldHail
 //
-//  Created by Henry Ly on 11/18/16.
+//  Created by Luna An on 11/27/16.
 //  Copyright © 2016 Flatiron School. All rights reserved.
 //
 
 import Foundation
+
+var noPain: PainLevel = .noPain
+var mild:PainLevel = .mild
+var moderate:PainLevel = .moderate
+var severe: PainLevel = .severe
+var verySevere: PainLevel = .verySevere
+var excruciating: PainLevel = .excruciating
+
+var painLevels: [PainLevel] = [
+    noPain, mild, moderate, severe, verySevere, excruciating
+    ]
 
 enum PainLevel: Int {
     
@@ -17,5 +28,34 @@ enum PainLevel: Int {
     case verySevere = 8
     case excruciating = 10
     
+    var image: UIImage {
+        
+        switch self {
+        case .noPain: return UIImage(named: "Good")!
+        case .mild: return UIImage(named: "notHappy")!
+        case .moderate: return UIImage(named: "veryUnhappy")!
+        case .severe: return UIImage(named: "Good")!
+        case .verySevere: return UIImage(named: "notHappy")!
+        case .excruciating: return UIImage(named: "veryUnhappy")!
+        }
+    }
+    
+    var description: String {
+        switch self {
+        case .noPain: return "0 - No Pain"
+        case .mild: return "2 - Mild"
+        case .moderate: return "4 - Moderate"
+        case .severe: return "6 - Severe"
+        case .verySevere: return "8 - Very Severe"
+        case .excruciating: return "10 - Excruciating"
+        }
+        
+    }
+    
+    
 }
+
+
+
+
 

@@ -53,13 +53,9 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         postTableView.reloadData()
     }
     
-//    override var prefersStatusBarHidden : Bool {
-//        return true
-//    }
     
     // MARK: Actions
     @IBAction func addPost(_ sender: UIButton) {
-//        createPost()
 
         UIView.animate(withDuration: 0.3) {
             self.postButtons.forEach {
