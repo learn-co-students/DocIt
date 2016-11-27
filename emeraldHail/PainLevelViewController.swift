@@ -37,14 +37,17 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
     
         let cell = collectionView.cellForItem(at: indexPath) as! PainLevelCollectionViewCell
         
-        if selectedPainLevel == painLevels[indexPath.item] {
+        if selectedPainLevel != nil {
             cell.wasDeselected()
-            selectedPainLevel = nil
-        } else {
-            selectedPainLevel = painLevels[indexPath.item]
-            cell.wasSelected()
+//            selectedPainLevel = nil
         }
+        
+        let chosenPainLevel = painLevels[indexPath.item]
+        selectedPainLevel = chosenPainLevel
+        cell.wasSelected()
+        
         print("Selected pain level is \(selectedPainLevel)")
+
         
     }
     
@@ -56,17 +59,4 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
         return true
     }
     
-//    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-//        let cell = collectionView.cellForItem(at: indexPath) as! PainLevelCollectionViewCell
-//        
-//        if selectedPainLevel == painLevels[indexPath.item] {
-//            cell.wasDeselected()
-//            selectedPainLevel = nil
-//        } else {
-//            selectedPainLevel = painLevels[indexPath.item]
-//            cell.wasSelected()
-//        }
-//        return true
-//    }
-  
 }
