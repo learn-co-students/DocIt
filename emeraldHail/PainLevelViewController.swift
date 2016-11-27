@@ -45,6 +45,21 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
         selectedPainLevel = nil
     }
     
+    func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        let cell = collectionView.cellForItem(at: indexPath) as! PainLevelCollectionViewCell
+        
+        if selectedPainLevel == painLevels[indexPath.item] {
+            cell.wasDeselected()
+            selectedPainLevel = nil
+        } else {
+            selectedPainLevel = painLevels[indexPath.item]
+            cell.wasSelected()
+        }
+        return true
+    }
   
-
 }
