@@ -135,9 +135,9 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
         
         var selectedImageFromPicker: UIImage?
         
-        if let editedImage = info["UIImagePickerControllerEditedImage"] as? UIImage {
+        if let editedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
             selectedImageFromPicker = editedImage
-        } else if let originalImage = info["UIImagePickerControllerOriginalImage"] as? UIImage {
+        } else if let originalImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             selectedImageFromPicker = originalImage
         }
         if let selectedImage = selectedImageFromPicker {
