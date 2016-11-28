@@ -15,13 +15,13 @@ class PainLevelCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var painLevelDescription: UILabel!
     
     func wasSelected(){
-        layer.borderWidth = 5.0
-        layer.borderColor = UIColor.yellow.cgColor
+        painLevelImage.layer.borderWidth = 5.0
+        painLevelImage.layer.borderColor = UIColor.yellow.cgColor
     }
     
     func wasDeselected(){
-        layer.borderWidth = 0.0
-        layer.borderColor = UIColor.clear.cgColor
+        painLevelImage.layer.borderWidth = 0.0
+        painLevelImage.layer.borderColor = UIColor.clear.cgColor
         
     }
 }

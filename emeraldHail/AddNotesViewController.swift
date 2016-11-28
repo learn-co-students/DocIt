@@ -40,7 +40,7 @@ class AddNotesViewController: UIViewController {
     @IBAction func addNotes(_ sender: UIButton) {
         guard let note = addNotesTextField.text, note != "" else { return }
         let databasePostRef = database.child("posts").child(Logics.sharedInstance.eventID).childByAutoId()
-        let uniqueID = databasePostRef.key
+        //let uniqueID = databasePostRef.key
         let post = Post(note: note)
         databasePostRef.setValue(post.serialize(), withCompletionBlock: {error, FIRDatabaseReference in
             self.dismiss(animated: true, completion: nil)

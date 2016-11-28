@@ -22,7 +22,7 @@ final class Post {
     
     init(snapshot: FIRDataSnapshot) {
         
-        let snapshotValue = snapshot.value as! [String:AnyObject]
+        let snapshotValue = snapshot.value as! [String:Any]
         
         note = snapshotValue["note"] as! String
         

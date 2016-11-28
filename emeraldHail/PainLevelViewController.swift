@@ -7,12 +7,24 @@
 //
 
 import UIKit
+import Firebase
 
 class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    @IBOutlet weak var painLevelCollectionView: UICollectionView!
+    @IBAction func saveButtonTapped(_ sender: Any) {
+        
+        addPainLevel()
+        
+    }
 
+//    let store = DataStore.sharedInstance
+    
+    let storage = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
+    
     var selectedPainLevel: PainLevel?
+ 
+    
+    @IBOutlet weak var painLevelCollectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +33,8 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
         
     }
     
+    
+    // MARK: CollectionView Funcs
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return painLevels.count
     }
@@ -40,9 +54,7 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
         
         let cell = collectionView.cellForItem(at: indexPath) as! PainLevelCollectionViewCell
         
-//        cell.wasSelected()
-        cell.painLevelImage.layer.borderWidth = 5.0
-        cell.painLevelImage.layer.borderColor = UIColor.yellow.cgColor
+        cell.wasSelected()
         selectedPainLevel = painLevels[indexPath.item]
         
     }
@@ -50,12 +62,8 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! PainLevelCollectionViewCell
     
-        //cell.wasDeselected()
-        cell.painLevelImage.layer.borderWidth = 0.0
-        cell.painLevelImage.layer.borderColor = UIColor.clear.cgColor
-
-        
-        
+        cell.wasDeselected()
+    
     }
     
     
@@ -63,4 +71,23 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
         return true
     }
     
+    func addPainLevel(){
+        let postRef : FIRDatabaseReference = FIRDatabase.database().reference().child("posts")
+        
+        guard let painLevelDescription = selectedPainLevel?.description else {return}
+        let databasePostContentRef = postRef.child(Logics.sharedInstance.eventID).childByAutoId()
+   
+        let post = Post(note: painLevelDescription)
+        databasePostContentRef.setValue(post.serialize(), withCompletionBlock: {error, FIRDatabaseReference in
+            self.dismiss(animated: true, completion: nil)
+        
+        }
+)
+        
+    }
+    
+    func addPainLevelImageToStorage(){
+        
+    }
+
 }
