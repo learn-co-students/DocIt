@@ -9,6 +9,7 @@
 import UIKit
 
 class PainLevelCollectionViewCell: UICollectionViewCell {
+    
     @IBOutlet weak var painLevelImage: UIImageView!
     
     @IBOutlet weak var painLevelDescription: UILabel!

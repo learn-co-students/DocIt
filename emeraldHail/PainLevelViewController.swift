@@ -39,15 +39,12 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
         
         if selectedPainLevel != nil {
             cell.wasDeselected()
-//            selectedPainLevel = nil
+            selectedPainLevel = nil
+        } else {
+            selectedPainLevel = painLevels[indexPath.item]
+            cell.wasSelected()
         }
-        
-        let chosenPainLevel = painLevels[indexPath.item]
-        selectedPainLevel = chosenPainLevel
-        cell.wasSelected()
-        
         print("Selected pain level is \(selectedPainLevel)")
-
         
     }
     
