@@ -675,7 +675,7 @@
                                         <rect key="frame" x="0.0" y="178" width="414" height="125"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QKB-QM-ocB" id="fxY-VR-Bs9">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="125"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="124"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QZp-V6-e4Z">
@@ -804,7 +804,7 @@
                                         <rect key="frame" x="0.0" y="178" width="414" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UUt-sg-gbE" id="h81-2d-teZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="65"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="64"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Post content" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YVu-s8-nwW">
@@ -982,7 +982,7 @@
                                         <rect key="frame" x="0.0" y="160" width="414" height="34"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SDQ-ud-T3F" id="SCt-Q1-PQQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="34"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="33"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zwl-Ic-cdE">
@@ -1212,7 +1212,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wF1-Py-2gR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1292" y="413"/>
+            <point key="canvasLocation" x="-2059" y="545"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="tdI-wp-S1Q">
@@ -1310,8 +1310,8 @@
         <image name="kid_silhouette" width="347" height="347"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="C4Q-6Y-LBY"/>
-        <segue reference="ZvI-c8-0Bp"/>
+        <segue reference="vNq-cI-Dwc"/>
         <segue reference="VAJ-Ob-VfQ"/>
+        <segue reference="ZvI-c8-0Bp"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -31,6 +31,7 @@
 		BB5CD3321DE6B41800D82BB3 /* SymptomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5CD3311DE6B41800D82BB3 /* SymptomsViewController.swift */; };
 		BB6DEDB51DE61C7D00D8B93A /* FamilySettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6DEDB41DE61C7D00D8B93A /* FamilySettingViewController.swift */; };
 		BB6DEDB71DE61D9400D8B93A /* MemberSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6DEDB61DE61D9400D8B93A /* MemberSettingViewController.swift */; };
+		BB7BF58B1DECD13C00F290FB /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB7BF58A1DECD13C00F290FB /* LocalAuthentication.framework */; };
 		BB9286851DDE3D2100D3D9A6 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9286841DDE3D2100D3D9A6 /* DataStore.swift */; };
 		BBAD950B1DE5182500C385BC /* Logics.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAD950A1DE5182500C385BC /* Logics.swift */; };
 		BBF453B91DE34ACD00E054E9 /* Symptom.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF453B81DE34ACD00E054E9 /* Symptom.swift */; };
@@ -74,6 +75,7 @@
 		BB5CD3311DE6B41800D82BB3 /* SymptomsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SymptomsViewController.swift; sourceTree = "<group>"; };
 		BB6DEDB41DE61C7D00D8B93A /* FamilySettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilySettingViewController.swift; sourceTree = "<group>"; };
 		BB6DEDB61DE61D9400D8B93A /* MemberSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberSettingViewController.swift; sourceTree = "<group>"; };
+		BB7BF58A1DECD13C00F290FB /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		BB9286841DDE3D2100D3D9A6 /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		BBAD950A1DE5182500C385BC /* Logics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logics.swift; sourceTree = "<group>"; };
 		BBF453B81DE34ACD00E054E9 /* Symptom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Symptom.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB7BF58B1DECD13C00F290FB /* LocalAuthentication.framework in Frameworks */,
 				209EA011342482AB2477F986 /* Pods_emeraldHail.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -212,6 +215,7 @@
 		E2732CC3AAAB9CB28A1A3DE8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BB7BF58A1DECD13C00F290FB /* LocalAuthentication.framework */,
 				D4BA12601A0F16DED58FEC5E /* Pods_emeraldHail.framework */,
 			);
 			name = Frameworks;

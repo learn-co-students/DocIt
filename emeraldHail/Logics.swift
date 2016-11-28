@@ -19,33 +19,26 @@ class Logics {
 //        family = Family(id: id)
 //        
 //        // family should be able to retrieve data based upon this id from firebase
-//        
-//        
-//        
-//        
-//        
-//        
-//    
-//    
-//        
-//        
-//        
 //    }
 //    
     // properties
     
     static let sharedInstance = Logics()
     
-    var family: Family!
     
+    // FAMILY
     var familyID = ""
     var familyName = ""
     var familyPicture = ""
     
+    // MEMBER
     var memberID = ""
-    var eventID = ""
     var genderType = ""
     
+    // EVENT
+    var eventID = ""
+    
+    // METHODS
     func clearDataStore() {
         
         familyID = ""
