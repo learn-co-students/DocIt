@@ -117,6 +117,7 @@ class LoginViewController: UIViewController {
                 // Set errorLabel to the error.localizedDescription
                 self.errorLabel.text = error.localizedDescription
                 print("===========================\(error.localizedDescription)")
+                return
             }
             // Set the sharedInstance familyID to the current user.uid
             self.store.familyID = (user?.uid)!

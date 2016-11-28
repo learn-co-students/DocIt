@@ -49,7 +49,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        configDatabase()
+//        configDatabase()
         
         postButtons.forEach {
             $0.isHidden = true

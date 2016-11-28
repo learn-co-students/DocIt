@@ -21,8 +21,7 @@ class NoteView: UIView {
     
     let offSet: CGFloat = 40.0
     let circleRadius: CGFloat = 10.0
-    
-    
+
     let shapeLayer = CAShapeLayer()
     let lineLayer = CAShapeLayer()
     
