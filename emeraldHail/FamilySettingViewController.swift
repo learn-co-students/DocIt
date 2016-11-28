@@ -31,6 +31,7 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
     @IBAction func logoutPressed(_ sender: Any) {
         do {
             try FIRAuth.auth()?.signOut()
+            store.clearDataStore()
             dismiss(animated: true, completion: nil)
         } catch let signOutError as NSError {
             print ("Error signing out: \(signOutError.localizedDescription)")

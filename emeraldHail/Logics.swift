@@ -46,5 +46,17 @@ class Logics {
     var eventID = ""
     var genderType = ""
     
+    func clearDataStore() {
+        
+        familyID = ""
+        familyName = ""
+        familyPicture = ""
+        
+        memberID = ""
+        eventID = ""
+        genderType = ""
+        
+    }
+    
 }
 
