@@ -847,6 +847,9 @@
                                 <state key="normal" title="Temperature">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
+                                <connections>
+                                    <segue destination="bPG-yb-BOM" kind="presentation" identifier="tempSegue" id="dY3-h7-Km6"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2mw-Nh-Xz1">
                                 <rect key="frame" x="42" y="556" width="331" height="50"/>
@@ -1080,7 +1083,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5tf-uz-2dn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2270" y="1325"/>
+            <point key="canvasLocation" x="2197" y="1541"/>
         </scene>
         <!--Temp View Controller-->
         <scene sceneID="mPV-Hu-Nz6">
@@ -1094,13 +1097,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qd7-6W-pN2">
-                                <rect key="frame" x="0.0" y="472" width="414" height="216"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qd7-6W-pN2">
+                                <rect key="frame" x="0.0" y="515" width="414" height="221"/>
                             </pickerView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="mhn-Db-d6U">
-                                <rect key="frame" x="79" y="430" width="256" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="mhn-Db-d6U">
+                                <rect key="frame" x="65" y="349.66666666666669" width="284" height="38.666666666666629"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="38" id="c2l-MG-Gxs"/>
+                                </constraints>
                                 <segments>
                                     <segment title="Oral"/>
                                     <segment title="Ear"/>
@@ -1111,13 +1115,14 @@
                                     <action selector="segmentTemperatures:" destination="bPG-yb-BOM" eventType="valueChanged" id="Vhc-As-eU5"/>
                                 </connections>
                             </segmentedControl>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9dF-Qh-Ree">
-                                <rect key="frame" x="0.0" y="40" width="414" height="275"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9dF-Qh-Ree">
+                                <rect key="frame" x="0.0" y="19.999999999999986" width="414" height="220.66666666666663"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XIt-Sl-K8W">
-                                <rect key="frame" x="146" y="344" width="123" height="48"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XIt-Sl-K8W">
+                                <rect key="frame" x="155.33333333333331" y="465" width="103.33333333333331" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="0M7-0g-v4v"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                 <state key="normal" title="Save">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1128,6 +1133,22 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="0.77152478448275863" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="XIt-Sl-K8W" firstAttribute="width" secondItem="qd7-6W-pN2" secondAttribute="width" multiplier="0.25" id="12Q-fw-osU"/>
+                            <constraint firstItem="9dF-Qh-Ree" firstAttribute="height" secondItem="zAU-xP-gfB" secondAttribute="height" multiplier="0.3" id="5U5-Va-3w3"/>
+                            <constraint firstItem="9dF-Qh-Ree" firstAttribute="top" secondItem="6y3-0a-err" secondAttribute="bottom" id="Bvl-eA-IZH"/>
+                            <constraint firstItem="qd7-6W-pN2" firstAttribute="centerX" secondItem="zAU-xP-gfB" secondAttribute="centerX" id="DmB-tV-6gu"/>
+                            <constraint firstItem="qd7-6W-pN2" firstAttribute="width" secondItem="zAU-xP-gfB" secondAttribute="width" id="G1a-fB-aO0"/>
+                            <constraint firstItem="XIt-Sl-K8W" firstAttribute="bottom" secondItem="qd7-6W-pN2" secondAttribute="top" id="QEZ-e4-4uG"/>
+                            <constraint firstItem="mhn-Db-d6U" firstAttribute="centerY" secondItem="zAU-xP-gfB" secondAttribute="centerY" id="ShC-2o-M8u"/>
+                            <constraint firstItem="qd7-6W-pN2" firstAttribute="bottom" secondItem="zAU-xP-gfB" secondAttribute="bottomMargin" id="WHh-0S-sjC"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="mhn-Db-d6U" secondAttribute="trailing" constant="45" id="agx-9H-ASg"/>
+                            <constraint firstItem="XIt-Sl-K8W" firstAttribute="centerX" secondItem="zAU-xP-gfB" secondAttribute="centerX" id="bdK-pm-Cck"/>
+                            <constraint firstItem="mhn-Db-d6U" firstAttribute="leading" secondItem="zAU-xP-gfB" secondAttribute="leadingMargin" constant="45" id="dyK-bR-drv"/>
+                            <constraint firstItem="qd7-6W-pN2" firstAttribute="height" secondItem="zAU-xP-gfB" secondAttribute="height" multiplier="0.3" id="gcn-Bg-Nbh"/>
+                            <constraint firstItem="9dF-Qh-Ree" firstAttribute="width" secondItem="zAU-xP-gfB" secondAttribute="width" id="nay-99-Cak"/>
+                            <constraint firstItem="9dF-Qh-Ree" firstAttribute="centerX" secondItem="zAU-xP-gfB" secondAttribute="centerX" id="yfV-hh-ixM"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="tempSegments" destination="mhn-Db-d6U" id="Cw5-wr-9nw"/>

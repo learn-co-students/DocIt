@@ -50,7 +50,12 @@ class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     // Have to wait to update Post Types before sending data to Firebase and generating eventID.
   
     @IBAction func saveTemperature(_ sender: Any) {
-        
+        let databasePostRef = database.child("posts").child(Logics.sharedInstance.eventID).childByAutoId()
+        let uniqueID = databasePostRef.key
+        let post = Post(note: selectedTemp)
+        databasePostRef.setValue(post.serialize(), withCompletionBlock: {error, FIRDatabaseReference in
+            self.dismiss(animated: true, completion: nil)
+        })
         
         
     }
@@ -60,7 +65,7 @@ class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         switch tempSegments.selectedSegmentIndex {
             case 0:
                 temperatureImageVIew.image = UIImage(named: "oralTemp")
-                //temperatureImageView.image = UIImage(named: "oralTemp")
+                
             case 1:
                 temperatureImageVIew.image = UIImage(named: "earTemp")
             case 2:
@@ -87,10 +92,13 @@ class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        selectedTemp = availableTemps[row] as! String
+        //save the value for the pickerview temperature selected.
+        selectedTemp = availableTemps[row]
     }
     
 
     
 
 }
+
+
