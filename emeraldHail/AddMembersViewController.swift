@@ -49,7 +49,7 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
         if let uploadData = UIImagePNGRepresentation(self.profileImageView.image!) {
             storageImageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
                 if error != nil {
-                    print ("ERROR!")
+                    print (error?.localizedDescription)
                     return
                 }
                 if let profileImageUrl = metadata?.downloadURL()?.absoluteString {

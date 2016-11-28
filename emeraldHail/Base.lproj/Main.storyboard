@@ -385,7 +385,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TgT-Sn-ZkG">
-                                <rect key="frame" x="41.333333333333343" y="343" width="331.33333333333337" height="50"/>
+                                <rect key="frame" x="41" y="343" width="332" height="50"/>
                                 <color key="backgroundColor" red="0.12549019610000001" green="0.75294117650000003" blue="0.8862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Ydw-Va-UEi"/>
@@ -399,7 +399,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tkA-Uo-Tn7">
-                                <rect key="frame" x="41" y="281" width="331" height="50"/>
+                                <rect key="frame" x="41" y="281" width="332" height="50"/>
                                 <color key="backgroundColor" red="0.12549019610000001" green="0.75294117650000003" blue="0.8862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="WEf-LJ-n6S"/>
@@ -412,11 +412,28 @@
                                     <action selector="changeFamilyNamePressed:" destination="bHr-j8-e7W" eventType="touchUpInside" id="K3T-7l-F8o"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W30-XH-IpY">
+                                <rect key="frame" x="41.666666666666657" y="219" width="332" height="50"/>
+                                <color key="backgroundColor" red="0.12549019610000001" green="0.75294117650000003" blue="0.8862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="HY8-Wd-sZB"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                                <state key="normal" title="Change family cover picture">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="changeFamilyPic:" destination="bHr-j8-e7W" eventType="touchUpInside" id="FRK-uM-4bY"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.97647058823529409" green="0.97254901960784312" blue="0.97254901960784312" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="tkA-Uo-Tn7" firstAttribute="top" secondItem="W30-XH-IpY" secondAttribute="bottom" constant="12" id="7QD-Fg-vf3"/>
                             <constraint firstItem="TgT-Sn-ZkG" firstAttribute="centerY" secondItem="HND-Eo-G97" secondAttribute="centerY" id="Tkh-UN-TIO"/>
                             <constraint firstItem="tkA-Uo-Tn7" firstAttribute="width" secondItem="TgT-Sn-ZkG" secondAttribute="width" id="X0T-kf-auj"/>
+                            <constraint firstItem="W30-XH-IpY" firstAttribute="centerX" secondItem="TgT-Sn-ZkG" secondAttribute="centerX" id="X8G-DP-dd5"/>
+                            <constraint firstItem="W30-XH-IpY" firstAttribute="width" secondItem="TgT-Sn-ZkG" secondAttribute="width" id="iQb-cz-JJ8"/>
                             <constraint firstItem="TgT-Sn-ZkG" firstAttribute="top" secondItem="tkA-Uo-Tn7" secondAttribute="bottom" constant="12" id="iqL-a4-xER"/>
                             <constraint firstItem="TgT-Sn-ZkG" firstAttribute="centerX" secondItem="HND-Eo-G97" secondAttribute="centerX" id="soP-ZY-JIr"/>
                             <constraint firstItem="TgT-Sn-ZkG" firstAttribute="width" secondItem="HND-Eo-G97" secondAttribute="width" multiplier="0.8" id="srA-rT-v4F"/>
