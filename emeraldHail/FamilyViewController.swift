@@ -18,7 +18,6 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     let imageSelected = UIImagePickerController()
     var membersInFamily = [Member]()
     var family = [Family]()
-    
     var refresher = UIRefreshControl()
     
     // MARK: Outlets
@@ -228,7 +227,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
 }
-
+  
 class MemberCollectionViewCell: UICollectionViewCell {
     
     // OUTLETS
