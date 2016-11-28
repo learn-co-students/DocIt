@@ -139,7 +139,7 @@
         <!--Your Family-->
         <scene sceneID="Vaw-QG-Cac">
             <objects>
-                <viewController id="0wC-jh-3aM" customClass="FamilyViewController" customModule="emeraldHail" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loggedInVC" id="0wC-jh-3aM" customClass="FamilyViewController" customModule="emeraldHail" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aoX-6A-UzR"/>
                         <viewControllerLayoutGuide type="bottom" id="xUF-wS-Qp3"/>
@@ -644,7 +644,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="SS9-7J-sXg">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
+                                    <rect key="frame" x="0.0" y="64" width="414" height="150"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kid_silhouette" translatesAutoresizingMaskIntoConstraints="NO" id="NAm-Dd-L9Z">
@@ -773,7 +773,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="rsP-1R-pvH">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
+                                    <rect key="frame" x="0.0" y="64" width="414" height="150"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kid_silhouette" translatesAutoresizingMaskIntoConstraints="NO" id="igx-VA-ans">
@@ -951,7 +951,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="uH2-9c-3vs">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="132"/>
+                                    <rect key="frame" x="0.0" y="64" width="414" height="132"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hA2-MZ-clj">
@@ -1275,6 +1275,14 @@
                                     <segue destination="BYZ-38-t0r" kind="presentation" id="8IQ-kN-dMw"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wqf-sG-KUf">
+                                <rect key="frame" x="170" y="280" width="76" height="86"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Touch ID"/>
+                                <connections>
+                                    <action selector="touchId:" destination="Lab-UU-Fjj" eventType="touchUpInside" id="JwW-sE-uiU"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.97647058823529409" green="0.97254901960784312" blue="0.97254901960784312" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -1294,7 +1302,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RuX-TL-eqM" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2102" y="-347"/>
+            <point key="canvasLocation" x="-2102.898550724638" y="-347.28260869565219"/>
         </scene>
         <!--Storyboard Reference-->
         <scene sceneID="dDG-Tx-wr3">
@@ -1311,7 +1319,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="vNq-cI-Dwc"/>
-        <segue reference="VAJ-Ob-VfQ"/>
-        <segue reference="ZvI-c8-0Bp"/>
+        <segue reference="Ywg-j3-Iij"/>
+        <segue reference="8IQ-kN-dMw"/>
     </inferredMetricsTieBreakers>
 </document>
