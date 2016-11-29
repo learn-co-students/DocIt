@@ -13,6 +13,9 @@
 		AA6E4D231DE74B1400C8FEE3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6E4D221DE74B1400C8FEE3 /* Constants.swift */; };
 		AA7ED5921DDF4C6F005F9AB2 /* Family.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7ED5911DDF4C6F005F9AB2 /* Family.swift */; };
 		AA7ED5941DDF4D16005F9AB2 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7ED5931DDF4D16005F9AB2 /* Member.swift */; };
+		AA9892AE1DEA1C290092F3A8 /* NoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA9892AD1DEA1C290092F3A8 /* NoteView.xib */; };
+		AA9892B01DEA1EA60092F3A8 /* NoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9892AF1DEA1EA60092F3A8 /* NoteView.swift */; };
+		AA9892B21DEA2B760092F3A8 /* NoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9892B11DEA2B760092F3A8 /* NoteCell.swift */; };
 		AA9FFBB81DDA667500847FCF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9FFBB71DDA667500847FCF /* AppDelegate.swift */; };
 		AA9FFBBA1DDA667500847FCF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9FFBB91DDA667500847FCF /* ViewController.swift */; };
 		AA9FFBBD1DDA667500847FCF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA9FFBBB1DDA667500847FCF /* Main.storyboard */; };
@@ -54,6 +57,9 @@
 		AA6E4D221DE74B1400C8FEE3 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		AA7ED5911DDF4C6F005F9AB2 /* Family.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Family.swift; sourceTree = "<group>"; };
 		AA7ED5931DDF4D16005F9AB2 /* Member.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
+		AA9892AD1DEA1C290092F3A8 /* NoteView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoteView.xib; sourceTree = "<group>"; };
+		AA9892AF1DEA1EA60092F3A8 /* NoteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteView.swift; sourceTree = "<group>"; };
+		AA9892B11DEA2B760092F3A8 /* NoteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteCell.swift; sourceTree = "<group>"; };
 		AA9FFBB41DDA667500847FCF /* emeraldHail.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = emeraldHail.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA9FFBB71DDA667500847FCF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA9FFBB91DDA667500847FCF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -104,6 +110,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AA9892B31DEA31D60092F3A8 /* Note */ = {
+			isa = PBXGroup;
+			children = (
+				AA9892AD1DEA1C290092F3A8 /* NoteView.xib */,
+				AA9892AF1DEA1EA60092F3A8 /* NoteView.swift */,
+				AA9892B11DEA2B760092F3A8 /* NoteCell.swift */,
+			);
+			name = Note;
+			sourceTree = "<group>";
+		};
 		AA9FFBAB1DDA667500847FCF = {
 			isa = PBXGroup;
 			children = (
@@ -183,6 +199,7 @@
 				AAFE44671DDF68BE00922FB0 /* SymptomView.xib */,
 				B69638C51DE4E84900FE7023 /* Temperature.swift */,
 				AAFE44691DDF68E600922FB0 /* SymptomView.swift */,
+				AA9892B31DEA31D60092F3A8 /* Note */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -252,7 +269,7 @@
 				TargetAttributes = {
 					AA9FFBB31DDA667500847FCF = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = 3SZW3Z4QTH;
+						DevelopmentTeam = N2MERYPM36;
 						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -286,6 +303,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA9892AE1DEA1C290092F3A8 /* NoteView.xib in Resources */,
 				AA9FFBC21DDA667500847FCF /* LaunchScreen.storyboard in Resources */,
 				BBF453BD1DE34B5100E054E9 /* GoogleService-Info.plist in Resources */,
 				B69638C41DE4E83A00FE7023 /* TemperatureView.xib in Resources */,
@@ -365,6 +383,7 @@
 				AAFE446A1DDF68E600922FB0 /* SymptomView.swift in Sources */,
 				BB9286851DDE3D2100D3D9A6 /* DataStore.swift in Sources */,
 				AA6E4D211DE7419B00C8FEE3 /* WelcomeViewController.swift in Sources */,
+				AA9892B01DEA1EA60092F3A8 /* NoteView.swift in Sources */,
 				BBF453BB1DE34AF900E054E9 /* Person.swift in Sources */,
 				BBF4EEB71DDF59FF00EBD3FE /* EventViewController.swift in Sources */,
 				DDA93D201DDE412000F0A4D4 /* Secrets.swift in Sources */,
@@ -380,6 +399,7 @@
 				AA7ED5941DDF4D16005F9AB2 /* Member.swift in Sources */,
 				AA0C2FE51DE8837700445229 /* HeaderCollectionReusableView.swift in Sources */,
 				BBF453B91DE34ACD00E054E9 /* Symptom.swift in Sources */,
+				AA9892B21DEA2B760092F3A8 /* NoteCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -503,7 +523,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = emeraldHail/emeraldHail.entitlements;
-				DEVELOPMENT_TEAM = 3SZW3Z4QTH;
+				DEVELOPMENT_TEAM = N2MERYPM36;
 				INFOPLIST_FILE = emeraldHail/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -522,7 +542,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = emeraldHail/emeraldHail.entitlements;
-				DEVELOPMENT_TEAM = 3SZW3Z4QTH;
+				DEVELOPMENT_TEAM = N2MERYPM36;
 				INFOPLIST_FILE = emeraldHail/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
