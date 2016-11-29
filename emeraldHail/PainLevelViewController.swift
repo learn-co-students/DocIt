@@ -16,8 +16,10 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
         addPainLevel()
         
     }
+    @IBAction func cancelButtonTapped(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
 
-//    let store = DataStore.sharedInstance
     
     let storage = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
     
