@@ -76,7 +76,7 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
     }
     
     @IBAction func activateTouchID(_ sender: UIButton) {
-        SaveData()
+        saveData()
     }
     
     func changeFamilyCoverPic(photo: UIImage, handler: @escaping (Bool) -> Void) {
@@ -90,7 +90,7 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
             
             storeImageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
                 if error != nil {
-                    print(error?.localizedDescription)
+                    print(error?.localizedDescription ?? "Error in changeFamilyCoverPic")
                     
                     return
                 }
@@ -146,7 +146,7 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
         dismiss(animated: true, completion: nil)
     }
     
-    func SaveData() {
+    func saveData() {
         
         let managedContext = dataStore.persistentContainer.viewContext
         

@@ -49,7 +49,6 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         
         memberProfilesView.reloadData()
         
-        
         // TODO: Pull to refresh tests
         self.memberProfilesView.alwaysBounceVertical = true
         refresher.tintColor = Constants.Colors.scooter
@@ -66,7 +65,6 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     func configureLayout() {
         let screenWidth = UIScreen.main.bounds.width
-//        let screenHeight = UIScreen.main.bounds.height
         let numberOfColumns: CGFloat = 2
         
         spacing = 12
@@ -74,8 +72,6 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         
         let widthDeductionPerItem: CGFloat = (spacing*(numberOfColumns-1) + insets.left + insets.right)/numberOfColumns
         let heightDeductionPerItem: CGFloat = (spacing*(numberOfColumns-1) + insets.top + insets.bottom)/numberOfColumns
-        
-//        itemSize = CGSize(width: screenWidth/numberOfColumns - widthDeductionPerItem, height: screenHeight/numberOfColumns - heightDeductionPerItem)
         
         itemSize = CGSize(width: screenWidth/numberOfColumns - widthDeductionPerItem, height: screenWidth/numberOfColumns - heightDeductionPerItem)
     }
@@ -91,15 +87,6 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         backButton.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Arial", size: 15)!], for: UIControlState.normal)
         navigationItem.backBarButtonItem = backButton
     }
-    
-//    override var prefersStatusBarHidden : Bool {
-//        return true
-//    }
-    
-    // MARK: Actions
-//    @IBAction func changeFamilyName(_ sender: UIButton) {
-//        changeFamilyName()
-//    }
     
     // MARK: Collection view methods
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -118,12 +105,8 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         cell.profileImageView.contentMode = .scaleAspectFill
         cell.profileImageView.setRounded()
         
-//        if let profileImg = member.profileImage {
-        
-            let profileImgUrl = URL(string: member.profileImage)
-            cell.profileImageView.sd_setImage(with: profileImgUrl)
-            
-//        }
+        let profileImgUrl = URL(string: member.profileImage)
+        cell.profileImageView.sd_setImage(with: profileImgUrl)
         
         return cell
     }
@@ -142,10 +125,10 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
             
             headerView.profileImage.setRounded()
 
-            var familyPictureUrl = URL(string: store.familyPicture)
+            let familyPictureUrl = URL(string: store.familyPicture)
             
             headerView.profileImage.sd_setImage(with: familyPictureUrl)
-            //            headerView.profileImage.image
+        
             return headerView
         default:
             assert(false, "Unexpected element kind")

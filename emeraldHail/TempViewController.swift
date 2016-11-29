@@ -27,7 +27,7 @@ class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     @IBOutlet weak var temperatureSegment: UISegmentedControl!
     @IBOutlet weak var temperatureImageVIew: UIImageView!
     
-    // LOADS 
+    // LOADS
     //Reference to database
     var database: FIRDatabaseReference = FIRDatabase.database().reference()
     // Referenc to Post
@@ -48,17 +48,15 @@ class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     
     // Save button temperature for the event based on these three options to member profile.
     // Have to wait to update Post Types before sending data to Firebase and generating eventID.
-  
+    
     @IBAction func saveTemperature(_ sender: Any) {
         let databasePostRef = database.child("posts").child(Logics.sharedInstance.eventID).childByAutoId()
-        let uniqueID = databasePostRef.key
         let post = Post(note: selectedTemp)
         databasePostRef.setValue(post.serialize(), withCompletionBlock: {error, FIRDatabaseReference in
             self.dismiss(animated: true, completion: nil)
         })
-        
-        
     }
+    
     @IBAction func dismissModallView(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
@@ -66,16 +64,16 @@ class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     
     @IBAction func segmentTemperatures(_ sender: UISegmentedControl) {
         switch tempSegments.selectedSegmentIndex {
-            case 0:
-                temperatureImageVIew.image = UIImage(named: "oralTemp")
-                
-            case 1:
-                temperatureImageVIew.image = UIImage(named: "earTemp")
-            case 2:
-                temperatureImageVIew.image = UIImage(named: "armpitTemp")
+        case 0:
+            temperatureImageVIew.image = UIImage(named: "oralTemp")
             
-            default: print("Images have failed and something is wrong")
-            }
+        case 1:
+            temperatureImageVIew.image = UIImage(named: "earTemp")
+        case 2:
+            temperatureImageVIew.image = UIImage(named: "armpitTemp")
+            
+        default: print("Images have failed and something is wrong")
+        }
     }
     
     
@@ -99,9 +97,9 @@ class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         selectedTemp = availableTemps[row]
     }
     
-
     
-
+    
+    
 }
 
 
