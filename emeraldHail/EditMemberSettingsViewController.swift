@@ -13,6 +13,8 @@ import Firebase
 
 class EditMemberSettingsViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
 
+    var sharedInstance = Logics.sharedInstance
+    
     @IBOutlet weak var firstNameTextField: UITextField!
     
     @IBOutlet weak var lastNameTextField: UITextField!
@@ -72,9 +74,26 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDataSource
     }
     
     @IBAction func genderSegmentButton(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            selectedGender = Gender.female.rawValue
+            Logics.sharedInstance.genderType = selectedGender
+        case 1:
+            selectedGender = Gender.male.rawValue
+            Logics.sharedInstance.genderType = selectedGender
+        default:
+            break
+        }
         
         
     }
+    
+    
+    
+    
+    
+    
+    
  
     //MARK: DatePicker -> DOB Text Field
     
