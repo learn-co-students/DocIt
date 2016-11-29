@@ -13,14 +13,6 @@ import SDWebImage
 
 class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    // MARK: Properties
-    let store = Logics.sharedInstance
-    let imageSelected = UIImagePickerController()
-    var membersInFamily = [Member]()
-    var family = [Family]()
-    
-    var refresher = UIRefreshControl()
-    
     // MARK: Outlets
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     
@@ -29,6 +21,16 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     var itemSize: CGSize!
     
     @IBOutlet weak var memberProfilesView: UICollectionView!
+
+    // MARK: Properties
+    let store = Logics.sharedInstance
+    let imageSelected = UIImagePickerController()
+    var membersInFamily = [Member]()
+    var family = [Family]()
+    var refresher = UIRefreshControl()
+    var profileImage: UIImageView!
+    var imageString = ""
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -137,7 +139,13 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         case UICollectionElementKindSectionHeader:
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) as! HeaderCollectionReusableView
             headerView.familyNameLabel.text = store.familyName
+            
             headerView.profileImage.setRounded()
+
+            var familyPictureUrl = URL(string: store.familyPicture)
+            
+            headerView.profileImage.sd_setImage(with: familyPictureUrl)
+            //            headerView.profileImage.image
             return headerView
         default:
             assert(false, "Unexpected element kind")
@@ -183,13 +191,13 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         let familyRef = membersRef.child(store.familyID)
         
         familyRef.observe(.value, with: { snapshot in
-            var name = snapshot.value as! [String : Any]
+            var dic = snapshot.value as! [String : Any]
             
-            guard let familyName = name["name"] else { return }
-            
-//            self.familyNameLabel.text = name["name"] as? String
-            
+            guard let familyName = dic["name"] else { return }
             self.store.familyName = familyName as! String
+            
+            guard let coverImgStr = dic["coverImageStr"] else { return }
+            self.store.familyPicture = coverImgStr as! String
         })
     }
     
@@ -228,7 +236,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
 }
-
+  
 class MemberCollectionViewCell: UICollectionViewCell {
     
     // OUTLETS

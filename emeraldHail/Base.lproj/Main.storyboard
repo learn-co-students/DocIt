@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Lab-UU-Fjj">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Lab-UU-Fjj">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -385,7 +385,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TgT-Sn-ZkG">
-                                <rect key="frame" x="41.333333333333343" y="343" width="331.33333333333337" height="50"/>
+                                <rect key="frame" x="41" y="343" width="332" height="50"/>
                                 <color key="backgroundColor" red="0.12549019610000001" green="0.75294117650000003" blue="0.8862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Ydw-Va-UEi"/>
@@ -399,7 +399,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tkA-Uo-Tn7">
-                                <rect key="frame" x="41" y="281" width="331" height="50"/>
+                                <rect key="frame" x="41" y="281" width="332" height="50"/>
                                 <color key="backgroundColor" red="0.12549019610000001" green="0.75294117650000003" blue="0.8862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="WEf-LJ-n6S"/>
@@ -412,11 +412,28 @@
                                     <action selector="changeFamilyNamePressed:" destination="bHr-j8-e7W" eventType="touchUpInside" id="K3T-7l-F8o"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W30-XH-IpY">
+                                <rect key="frame" x="41.666666666666657" y="219" width="332" height="50"/>
+                                <color key="backgroundColor" red="0.12549019610000001" green="0.75294117650000003" blue="0.8862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="HY8-Wd-sZB"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                                <state key="normal" title="Change family cover picture">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="changeFamilyPic:" destination="bHr-j8-e7W" eventType="touchUpInside" id="FRK-uM-4bY"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.97647058823529409" green="0.97254901960784312" blue="0.97254901960784312" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="tkA-Uo-Tn7" firstAttribute="top" secondItem="W30-XH-IpY" secondAttribute="bottom" constant="12" id="7QD-Fg-vf3"/>
                             <constraint firstItem="TgT-Sn-ZkG" firstAttribute="centerY" secondItem="HND-Eo-G97" secondAttribute="centerY" id="Tkh-UN-TIO"/>
                             <constraint firstItem="tkA-Uo-Tn7" firstAttribute="width" secondItem="TgT-Sn-ZkG" secondAttribute="width" id="X0T-kf-auj"/>
+                            <constraint firstItem="W30-XH-IpY" firstAttribute="centerX" secondItem="TgT-Sn-ZkG" secondAttribute="centerX" id="X8G-DP-dd5"/>
+                            <constraint firstItem="W30-XH-IpY" firstAttribute="width" secondItem="TgT-Sn-ZkG" secondAttribute="width" id="iQb-cz-JJ8"/>
                             <constraint firstItem="TgT-Sn-ZkG" firstAttribute="top" secondItem="tkA-Uo-Tn7" secondAttribute="bottom" constant="12" id="iqL-a4-xER"/>
                             <constraint firstItem="TgT-Sn-ZkG" firstAttribute="centerX" secondItem="HND-Eo-G97" secondAttribute="centerX" id="soP-ZY-JIr"/>
                             <constraint firstItem="TgT-Sn-ZkG" firstAttribute="width" secondItem="HND-Eo-G97" secondAttribute="width" multiplier="0.8" id="srA-rT-v4F"/>
@@ -844,6 +861,9 @@
                                 <state key="normal" title="Temperature">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
+                                <connections>
+                                    <segue destination="bPG-yb-BOM" kind="presentation" identifier="tempSegue" id="dY3-h7-Km6"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2mw-Nh-Xz1">
                                 <rect key="frame" x="41.666666666666657" y="556" width="331" height="50"/>
@@ -1077,7 +1097,83 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5tf-uz-2dn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3106" y="940"/>
+            <point key="canvasLocation" x="2197" y="1541"/>
+        </scene>
+        <!--Temp View Controller-->
+        <scene sceneID="mPV-Hu-Nz6">
+            <objects>
+                <viewController id="bPG-yb-BOM" customClass="TempViewController" customModule="emeraldHail" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6y3-0a-err"/>
+                        <viewControllerLayoutGuide type="bottom" id="K0E-6C-j2h"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zAU-xP-gfB">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qd7-6W-pN2">
+                                <rect key="frame" x="0.0" y="515" width="414" height="221"/>
+                            </pickerView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="mhn-Db-d6U">
+                                <rect key="frame" x="65" y="349.66666666666669" width="284" height="38.666666666666629"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="38" id="c2l-MG-Gxs"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Oral"/>
+                                    <segment title="Ear"/>
+                                    <segment title="Armpit"/>
+                                </segments>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="segmentTemperatures:" destination="bPG-yb-BOM" eventType="valueChanged" id="Vhc-As-eU5"/>
+                                </connections>
+                            </segmentedControl>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9dF-Qh-Ree">
+                                <rect key="frame" x="0.0" y="19.999999999999986" width="414" height="220.66666666666663"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XIt-Sl-K8W">
+                                <rect key="frame" x="155.33333333333331" y="465" width="103.33333333333331" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="0M7-0g-v4v"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                <state key="normal" title="Save">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="saveTemperature:" destination="bPG-yb-BOM" eventType="touchUpInside" id="qDN-lG-KnX"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="0.77152478448275863" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="XIt-Sl-K8W" firstAttribute="width" secondItem="qd7-6W-pN2" secondAttribute="width" multiplier="0.25" id="12Q-fw-osU"/>
+                            <constraint firstItem="9dF-Qh-Ree" firstAttribute="height" secondItem="zAU-xP-gfB" secondAttribute="height" multiplier="0.3" id="5U5-Va-3w3"/>
+                            <constraint firstItem="9dF-Qh-Ree" firstAttribute="top" secondItem="6y3-0a-err" secondAttribute="bottom" id="Bvl-eA-IZH"/>
+                            <constraint firstItem="qd7-6W-pN2" firstAttribute="centerX" secondItem="zAU-xP-gfB" secondAttribute="centerX" id="DmB-tV-6gu"/>
+                            <constraint firstItem="qd7-6W-pN2" firstAttribute="width" secondItem="zAU-xP-gfB" secondAttribute="width" id="G1a-fB-aO0"/>
+                            <constraint firstItem="XIt-Sl-K8W" firstAttribute="bottom" secondItem="qd7-6W-pN2" secondAttribute="top" id="QEZ-e4-4uG"/>
+                            <constraint firstItem="mhn-Db-d6U" firstAttribute="centerY" secondItem="zAU-xP-gfB" secondAttribute="centerY" id="ShC-2o-M8u"/>
+                            <constraint firstItem="qd7-6W-pN2" firstAttribute="bottom" secondItem="zAU-xP-gfB" secondAttribute="bottomMargin" id="WHh-0S-sjC"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="mhn-Db-d6U" secondAttribute="trailing" constant="45" id="agx-9H-ASg"/>
+                            <constraint firstItem="XIt-Sl-K8W" firstAttribute="centerX" secondItem="zAU-xP-gfB" secondAttribute="centerX" id="bdK-pm-Cck"/>
+                            <constraint firstItem="mhn-Db-d6U" firstAttribute="leading" secondItem="zAU-xP-gfB" secondAttribute="leadingMargin" constant="45" id="dyK-bR-drv"/>
+                            <constraint firstItem="qd7-6W-pN2" firstAttribute="height" secondItem="zAU-xP-gfB" secondAttribute="height" multiplier="0.3" id="gcn-Bg-Nbh"/>
+                            <constraint firstItem="9dF-Qh-Ree" firstAttribute="width" secondItem="zAU-xP-gfB" secondAttribute="width" id="nay-99-Cak"/>
+                            <constraint firstItem="9dF-Qh-Ree" firstAttribute="centerX" secondItem="zAU-xP-gfB" secondAttribute="centerX" id="yfV-hh-ixM"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tempSegments" destination="mhn-Db-d6U" id="Cw5-wr-9nw"/>
+                        <outlet property="temperatureImageVIew" destination="9dF-Qh-Ree" id="iOm-B0-Biq"/>
+                        <outlet property="temperaturePickerView" destination="qd7-6W-pN2" id="TEY-Vh-mUS"/>
+                        <outlet property="temperatureSegment" destination="mhn-Db-d6U" id="UU7-s9-GGD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hAy-Ib-wLq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3104.347826086957" y="958.69565217391312"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="C6O-hX-yer">
