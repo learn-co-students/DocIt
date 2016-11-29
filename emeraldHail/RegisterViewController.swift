@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 class RegisterViewController: UIViewController {
-
+    
     let store = Logics.sharedInstance
     let family = FIRDatabase.database().reference().child("family")
     
@@ -32,9 +32,9 @@ class RegisterViewController: UIViewController {
         setupViews()
     }
     
-//    override var prefersStatusBarHidden : Bool {
-//        return true
-//    }
+    //    override var prefersStatusBarHidden : Bool {
+    //        return true
+    //    }
     
     // MARK: Actions
     @IBAction func createAccountPressed(_ sender: Any) {
@@ -43,6 +43,7 @@ class RegisterViewController: UIViewController {
     
     @IBAction func signInPressed(_ sender: Any) {
         // If on the create account screen, if they already have an account...take them to the sign in screen
+        //        self.performSegue(withIdentifier: "showLogin", sender: nil)
         self.performSegue(withIdentifier: "showLogin", sender: nil)
     }
     
@@ -57,7 +58,7 @@ class RegisterViewController: UIViewController {
         }
     }
     
-
+    
     // MARK: Functions
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(RegisterViewController.dismissKeyboardView))
@@ -89,7 +90,7 @@ class RegisterViewController: UIViewController {
         createAccount.backgroundColor = UIColor.lightGray
         createAccount.layer.cornerRadius = 2
     }
-
+    
     func register() {
         guard let email = emailField.text, let password = passwordField.text else { return }
         
@@ -108,7 +109,7 @@ class RegisterViewController: UIViewController {
                 
                 // Set the sharedInstance familyID to the current user.uid
                 self.store.familyID = (user?.uid)!
-
+                
                 self.family.child((user?.uid)!).child("email").setValue(email)
                 
                 // TODO: Set the initial family name to something more descriptive (perhaps using their last name or something?)

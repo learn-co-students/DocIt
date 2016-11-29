@@ -31,9 +31,11 @@
 		B69638C61DE4E84900FE7023 /* Temperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69638C51DE4E84900FE7023 /* Temperature.swift */; };
 		B69638D21DE602FD00FE7023 /* AddNotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69638D11DE602FD00FE7023 /* AddNotesViewController.swift */; };
 		B6ED5B361DDE4CDB00B56DFD /* TempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6ED5B351DDE4CDB00B56DFD /* TempViewController.swift */; };
+		BB14EBD71DED43A0004F6D56 /* HealthCore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BB14EBD51DED43A0004F6D56 /* HealthCore.xcdatamodeld */; };
 		BB5CD3321DE6B41800D82BB3 /* SymptomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5CD3311DE6B41800D82BB3 /* SymptomsViewController.swift */; };
 		BB6DEDB51DE61C7D00D8B93A /* FamilySettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6DEDB41DE61C7D00D8B93A /* FamilySettingViewController.swift */; };
 		BB6DEDB71DE61D9400D8B93A /* MemberSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6DEDB61DE61D9400D8B93A /* MemberSettingViewController.swift */; };
+		BB7BF58B1DECD13C00F290FB /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB7BF58A1DECD13C00F290FB /* LocalAuthentication.framework */; };
 		BB9286851DDE3D2100D3D9A6 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9286841DDE3D2100D3D9A6 /* DataStore.swift */; };
 		BBAD950B1DE5182500C385BC /* Logics.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAD950A1DE5182500C385BC /* Logics.swift */; };
 		BBF453B91DE34ACD00E054E9 /* Symptom.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF453B81DE34ACD00E054E9 /* Symptom.swift */; };
@@ -78,9 +80,11 @@
 		B69638C51DE4E84900FE7023 /* Temperature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Temperature.swift; sourceTree = "<group>"; };
 		B69638D11DE602FD00FE7023 /* AddNotesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNotesViewController.swift; sourceTree = "<group>"; };
 		B6ED5B351DDE4CDB00B56DFD /* TempViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempViewController.swift; sourceTree = "<group>"; };
+		BB14EBD61DED43A0004F6D56 /* HealthCore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HealthCore.xcdatamodel; sourceTree = "<group>"; };
 		BB5CD3311DE6B41800D82BB3 /* SymptomsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SymptomsViewController.swift; sourceTree = "<group>"; };
 		BB6DEDB41DE61C7D00D8B93A /* FamilySettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilySettingViewController.swift; sourceTree = "<group>"; };
 		BB6DEDB61DE61D9400D8B93A /* MemberSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberSettingViewController.swift; sourceTree = "<group>"; };
+		BB7BF58A1DECD13C00F290FB /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		BB9286841DDE3D2100D3D9A6 /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		BBAD950A1DE5182500C385BC /* Logics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logics.swift; sourceTree = "<group>"; };
 		BBF453B81DE34ACD00E054E9 /* Symptom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Symptom.swift; sourceTree = "<group>"; };
@@ -105,6 +109,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB7BF58B1DECD13C00F290FB /* LocalAuthentication.framework in Frameworks */,
 				209EA011342482AB2477F986 /* Pods_emeraldHail.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -201,11 +206,8 @@
 				AAFE44671DDF68BE00922FB0 /* SymptomView.xib */,
 				B69638C51DE4E84900FE7023 /* Temperature.swift */,
 				AAFE44691DDF68E600922FB0 /* SymptomView.swift */,
-
 				DD3BD9821DEB7C2800311BE9 /* PainLevelCollectionViewCell.swift */,
-
 				AA9892B31DEA31D60092F3A8 /* Note */,
-
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -225,6 +227,7 @@
 				BB6DEDB61DE61D9400D8B93A /* MemberSettingViewController.swift */,
 				BBF4EEB41DDF59F900EBD3FE /* FamilyViewController.swift */,
 				DD755E191DE3A99F002478D0 /* AddMembersViewController.swift */,
+				BB14EBD51DED43A0004F6D56 /* HealthCore.xcdatamodeld */,
 				B69638D11DE602FD00FE7023 /* AddNotesViewController.swift */,
 				AA6E4D201DE7419B00C8FEE3 /* WelcomeViewController.swift */,
 				AA0C2FE31DE8837700445229 /* HeaderCollectionReusableView.swift */,
@@ -235,6 +238,7 @@
 		E2732CC3AAAB9CB28A1A3DE8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BB7BF58A1DECD13C00F290FB /* LocalAuthentication.framework */,
 				D4BA12601A0F16DED58FEC5E /* Pods_emeraldHail.framework */,
 			);
 			name = Frameworks;
@@ -275,7 +279,7 @@
 				TargetAttributes = {
 					AA9FFBB31DDA667500847FCF = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = N2MERYPM36;
+						DevelopmentTeam = B5EG3G83GE;
 						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -380,6 +384,7 @@
 				BB6DEDB71DE61D9400D8B93A /* MemberSettingViewController.swift in Sources */,
 				AAFE445E1DDF5AE900922FB0 /* Event.swift in Sources */,
 				DD3BD9831DEB7C2800311BE9 /* PainLevelCollectionViewCell.swift in Sources */,
+				BB14EBD71DED43A0004F6D56 /* HealthCore.xcdatamodeld in Sources */,
 				AA6E4D231DE74B1400C8FEE3 /* Constants.swift in Sources */,
 				AAFE446C1DDF6B6C00922FB0 /* PostType.swift in Sources */,
 				AAFE44641DDF60BB00922FB0 /* Post.swift in Sources */,
@@ -530,7 +535,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = emeraldHail/emeraldHail.entitlements;
-				DEVELOPMENT_TEAM = N2MERYPM36;
+				DEVELOPMENT_TEAM = B5EG3G83GE;
 				INFOPLIST_FILE = emeraldHail/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -549,7 +554,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = emeraldHail/emeraldHail.entitlements;
-				DEVELOPMENT_TEAM = N2MERYPM36;
+				DEVELOPMENT_TEAM = B5EG3G83GE;
 				INFOPLIST_FILE = emeraldHail/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -582,6 +587,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		BB14EBD51DED43A0004F6D56 /* HealthCore.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				BB14EBD61DED43A0004F6D56 /* HealthCore.xcdatamodel */,
+			);
+			currentVersion = BB14EBD61DED43A0004F6D56 /* HealthCore.xcdatamodel */;
+			path = HealthCore.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = AA9FFBAC1DDA667500847FCF /* Project object */;
 }

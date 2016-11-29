@@ -12,12 +12,14 @@ import Firebase
 import FirebaseAuth
 import FirebaseDatabase
 import SDWebImage
+import CoreData
 
 class FamilySettingViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     // PROPERTIES
     
     let store = Logics.sharedInstance
+    let dataStore = DataStore.sharedInstance
     
     // LOADS
     
@@ -27,10 +29,10 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
     
     // ACTIONS
     
-    // TODO: When the logout button is pressed, it takes you back to the sign in screen, but the text fiels still have user information there. We should clear that out or figure out how to proceed in that situation.
     @IBAction func logoutPressed(_ sender: Any) {
         do {
             try FIRAuth.auth()?.signOut()
+            store.clearDataStore()
             dismiss(animated: true, completion: nil)
         } catch let signOutError as NSError {
             print ("Error signing out: \(signOutError.localizedDescription)")
@@ -42,10 +44,7 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
     }
     
     @IBAction func changeFamilyPic(_ sender: UIButton) {
-        
         handleSelectProfileImageView()
-        
-        
     }
     
     // METHODS
@@ -76,14 +75,15 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
         present(alert, animated: true, completion: nil)
     }
     
+    @IBAction func activateTouchID(_ sender: UIButton) {
+        SaveData()
+    }
+    
     func changeFamilyCoverPic(photo: UIImage, handler: @escaping (Bool) -> Void) {
-        
+
         let database = FIRDatabase.database().reference()
-        
         let familyDatabase = database.child("family").child(store.familyID)
-        
         let storageRef = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
-        
         let storeImageRef = storageRef.child("familyImages").child(store.familyID)
         
         if let uploadData = UIImagePNGRepresentation(photo) {
@@ -145,4 +145,24 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
         print("picked canceled")
         dismiss(animated: true, completion: nil)
     }
+    
+    func SaveData() {
+        
+        let managedContext = dataStore.persistentContainer.viewContext
+        
+        let family = CurrentUser(context: managedContext)
+        
+        family.familyID = Logics.sharedInstance.familyID
+        
+        do {
+            
+            try managedContext.save()
+            print("I just save the family ID in Core Data")
+            
+        } catch {
+            
+            print("error")
+        }
+    }
+
 }
