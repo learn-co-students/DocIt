@@ -65,16 +65,15 @@ class NewPostTableViewController: UITableViewController {
     
     func fetchPosts() {
         
-        postsRef.child(eventID).observe(.value, with: { snapshot in
-            var newPosts = [Post]()
-            
-            for item in snapshot.children {
-                
-                
-                
-            }
-            
-        })
- 
+//        postsRef.child(eventID).observe(.value, with: { snapshot in
+//            var newPosts = [Post]()
+//            
+//            for item in snapshot.children {
+//
+//                
+//            }
+//            
+//        })
+    }
 
 }

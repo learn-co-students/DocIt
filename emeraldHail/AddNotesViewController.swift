@@ -45,13 +45,6 @@ class AddNotesViewController: UIViewController {
         postsRef.setValue(newNote.serialize(), withCompletionBlock: { error, ref in
             self.dismiss(animated: true, completion: nil)
         })
-        
-        
-        
-        //        let post = Post(eventID: store.eventID, timestamp: timestamp, postType: .note, postContent: note)
-        //        databasePostRef.setValue(post.serialize(), withCompletionBlock: {error, FIRDatabaseReference in
-        //            self.dismiss(animated: true, completion: nil)
-        //        })
     }
     
     @IBAction func cancel(_ sender: UIButton) {
