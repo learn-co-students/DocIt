@@ -118,33 +118,6 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         view.endEditing(true)
     }
 
-    func createPost() {
-        var noteTextField: UITextField?
-        let alertController = UIAlertController(title: "Create post", message: "what's cracking?", preferredStyle: .alert)
-        let save = UIAlertAction(title: "Save", style: .default, handler: { (action) -> Void in
-            let note = noteTextField?.text
-            let databaseEventsRef = self.database.child("posts").child(Logics.sharedInstance.eventID).childByAutoId()
-            let post = Post(note: note!)
-            
-            databaseEventsRef.setValue(post.serialize(), withCompletionBlock: { error, dataRef in
-            })
-            
-            self.postTableView.reloadData()
-            print("Save Button Pressed")
-        })
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
-            print("Cancel Button Pressed")
-        }
-        alertController.addAction(save)
-        alertController.addAction(cancel)
-        alertController.addTextField { (textField) -> Void in
-            // Enter the textfiled customization code here.
-            noteTextField = textField
-            noteTextField?.placeholder = "What just happened?"
-        }
-        present(alertController, animated: true, completion: nil)
-    }
-    
     func configDatabase() {
         let eventID: String = store.eventID
         let postsRef = FIRDatabase.database().reference().child("posts").child(eventID)
@@ -154,7 +127,8 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             for post in snapshot.children {
                 let newPost = Post(snapshot: post as! FIRDataSnapshot)
-                newPosts.append(newPost)
+                //newPosts.append(newPost)
+                newPosts.insert(newPost, at: 0)
             }
             
             self.posts = newPosts
