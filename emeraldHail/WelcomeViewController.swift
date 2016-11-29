@@ -7,17 +7,23 @@
 //
 
 import UIKit
+import CoreData
+import CoreFoundation
 import LocalAuthentication
 
 class WelcomeViewController: UIViewController {
     
     @IBOutlet weak var createAccount: UIButton!
     @IBOutlet weak var signIn: UIButton!
-    @IBOutlet weak var touchId: UIImageView!
+    @IBOutlet weak var touchID: UIButton!
+    
+    var userInfo = [CurrentUser]()
+    var storeData = DataStore.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        fetchData()
+        updateFamilyId()
         setupViews()
     }
     
@@ -35,13 +41,22 @@ class WelcomeViewController: UIViewController {
     
     
     func setupViews() {
-        view.backgroundColor = Constants.Colors.desertStorm
-        
+        view.backgroundColor = Constants.Colors.desertStorm 
         createAccount.layer.cornerRadius = 2
-        
         signIn.layer.borderWidth = 1
         signIn.layer.borderColor = UIColor.lightGray.cgColor
         signIn.layer.cornerRadius = 2
+    }
+    
+    func updateFamilyId() {
+        
+        if !userInfo.isEmpty {
+        Logics.sharedInstance.familyID = userInfo[0].familyID!
+            touchID.isHidden = false
+        print("========= we are in the welcome view and the family id is \(Logics.sharedInstance.familyID)")
+        } else {
+            touchID.isHidden = true
+        }
     }
     
     func authenticateUser() {
@@ -71,10 +86,10 @@ class WelcomeViewController: UIViewController {
     }
     
     func navigateToAuthenticatedVC() {
-//            self.performSegue(withIdentifier: "showFamily", sender: self)
-                if let loggedInVC = storyboard?.instantiateViewController(withIdentifier: "loggedInVC") {
-                self.navigationController?.pushViewController(loggedInVC, animated: true)
-        }
+            self.performSegue(withIdentifier: "showFamily", sender: self)
+//                if let loggedInVC = storyboard?.instantiateViewController(withIdentifier: "loggedInVC") {
+//                self.navigationController?.pushViewController(loggedInVC, animated: true)
+//        }
         
         
     }
@@ -133,5 +148,21 @@ class WelcomeViewController: UIViewController {
             message = "Did not find any error in LAError."
         }
         return message
+    }
+    
+    func fetchData() {
+        
+        let managedContext = storeData.persistentContainer.viewContext
+        
+        let fetchRequest: NSFetchRequest<CurrentUser> = CurrentUser.fetchRequest()
+        
+        do {
+            
+            self.userInfo = try managedContext.fetch(fetchRequest)
+            
+        } catch {
+            
+            print("error")
+        }
     }
 }

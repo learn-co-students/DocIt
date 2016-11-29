@@ -4,6 +4,6 @@
         <attribute name="familyID" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="CurrentUser" positionX="-54" positionY="-9" width="128" height="60"/>
+        <element name="CurrentUser" positionX="-63" positionY="-18" width="128" height="60"/>
     </elements>
 </model>

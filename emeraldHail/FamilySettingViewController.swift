@@ -12,12 +12,14 @@ import Firebase
 import FirebaseAuth
 import FirebaseDatabase
 import SDWebImage
+import CoreData
 
 class FamilySettingViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     // PROPERTIES
     
     let store = Logics.sharedInstance
+    let dataStore = DataStore.sharedInstance
     
     // LOADS
     
@@ -71,6 +73,10 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
         alert.addAction(okAction)
         alert.addAction(cancelAction)
         present(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction func activateTouchID(_ sender: UIButton) {
+        SaveData()
     }
     
     func changeFamilyCoverPic(photo: UIImage, handler: @escaping (Bool) -> Void) {
@@ -139,4 +145,24 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
         print("picked canceled")
         dismiss(animated: true, completion: nil)
     }
+    
+    func SaveData() {
+        
+        let managedContext = dataStore.persistentContainer.viewContext
+        
+        let family = CurrentUser(context: managedContext)
+        
+        family.familyID = Logics.sharedInstance.familyID
+        
+        do {
+            
+            try managedContext.save()
+            print("I just save the family ID in Core Data")
+            
+        } catch {
+            
+            print("error")
+        }
+    }
+
 }
