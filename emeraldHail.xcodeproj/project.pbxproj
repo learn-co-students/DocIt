@@ -13,10 +13,12 @@
 		AA6E4D231DE74B1400C8FEE3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6E4D221DE74B1400C8FEE3 /* Constants.swift */; };
 		AA7ED5921DDF4C6F005F9AB2 /* Family.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7ED5911DDF4C6F005F9AB2 /* Family.swift */; };
 		AA7ED5941DDF4D16005F9AB2 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7ED5931DDF4D16005F9AB2 /* Member.swift */; };
+		AA9892AE1DEA1C290092F3A8 /* NoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA9892AD1DEA1C290092F3A8 /* NoteView.xib */; };
+		AA9892B01DEA1EA60092F3A8 /* NoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9892AF1DEA1EA60092F3A8 /* NoteView.swift */; };
+		AA9892B21DEA2B760092F3A8 /* NoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9892B11DEA2B760092F3A8 /* NoteCell.swift */; };
 		AA9FFBB81DDA667500847FCF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9FFBB71DDA667500847FCF /* AppDelegate.swift */; };
 		AA9FFBBA1DDA667500847FCF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9FFBB91DDA667500847FCF /* ViewController.swift */; };
 		AA9FFBBD1DDA667500847FCF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA9FFBBB1DDA667500847FCF /* Main.storyboard */; };
-		AA9FFBBF1DDA667500847FCF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA9FFBBE1DDA667500847FCF /* Assets.xcassets */; };
 		AA9FFBC21DDA667500847FCF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA9FFBC01DDA667500847FCF /* LaunchScreen.storyboard */; };
 		AAFE445E1DDF5AE900922FB0 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFE445D1DDF5AE900922FB0 /* Event.swift */; };
 		AAFE44641DDF60BB00922FB0 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFE44631DDF60BB00922FB0 /* Post.swift */; };
@@ -24,6 +26,7 @@
 		AAFE44681DDF68BE00922FB0 /* SymptomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAFE44671DDF68BE00922FB0 /* SymptomView.xib */; };
 		AAFE446A1DDF68E600922FB0 /* SymptomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFE44691DDF68E600922FB0 /* SymptomView.swift */; };
 		AAFE446C1DDF6B6C00922FB0 /* PostType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFE446B1DDF6B6C00922FB0 /* PostType.swift */; };
+		B69466641DECCE3000F2E30C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B69466631DECCE3000F2E30C /* Assets.xcassets */; };
 		B69638C41DE4E83A00FE7023 /* TemperatureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B69638C31DE4E83A00FE7023 /* TemperatureView.xib */; };
 		B69638C61DE4E84900FE7023 /* Temperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69638C51DE4E84900FE7023 /* Temperature.swift */; };
 		B69638D21DE602FD00FE7023 /* AddNotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69638D11DE602FD00FE7023 /* AddNotesViewController.swift */; };
@@ -55,11 +58,13 @@
 		AA6E4D221DE74B1400C8FEE3 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		AA7ED5911DDF4C6F005F9AB2 /* Family.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Family.swift; sourceTree = "<group>"; };
 		AA7ED5931DDF4D16005F9AB2 /* Member.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
+		AA9892AD1DEA1C290092F3A8 /* NoteView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoteView.xib; sourceTree = "<group>"; };
+		AA9892AF1DEA1EA60092F3A8 /* NoteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteView.swift; sourceTree = "<group>"; };
+		AA9892B11DEA2B760092F3A8 /* NoteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteCell.swift; sourceTree = "<group>"; };
 		AA9FFBB41DDA667500847FCF /* emeraldHail.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = emeraldHail.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA9FFBB71DDA667500847FCF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA9FFBB91DDA667500847FCF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		AA9FFBBC1DDA667500847FCF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		AA9FFBBE1DDA667500847FCF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA9FFBC11DDA667500847FCF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AA9FFBC31DDA667500847FCF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AAFE445D1DDF5AE900922FB0 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
@@ -68,6 +73,7 @@
 		AAFE44671DDF68BE00922FB0 /* SymptomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SymptomView.xib; sourceTree = "<group>"; };
 		AAFE44691DDF68E600922FB0 /* SymptomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SymptomView.swift; sourceTree = "<group>"; };
 		AAFE446B1DDF6B6C00922FB0 /* PostType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostType.swift; sourceTree = "<group>"; };
+		B69466631DECCE3000F2E30C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B69638C31DE4E83A00FE7023 /* TemperatureView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TemperatureView.xib; sourceTree = "<group>"; };
 		B69638C51DE4E84900FE7023 /* Temperature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Temperature.swift; sourceTree = "<group>"; };
 		B69638D11DE602FD00FE7023 /* AddNotesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNotesViewController.swift; sourceTree = "<group>"; };
@@ -106,6 +112,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AA9892B31DEA31D60092F3A8 /* Note */ = {
+			isa = PBXGroup;
+			children = (
+				AA9892AD1DEA1C290092F3A8 /* NoteView.xib */,
+				AA9892AF1DEA1EA60092F3A8 /* NoteView.swift */,
+				AA9892B11DEA2B760092F3A8 /* NoteCell.swift */,
+			);
+			name = Note;
+			sourceTree = "<group>";
+		};
 		AA9FFBAB1DDA667500847FCF = {
 			isa = PBXGroup;
 			children = (
@@ -166,9 +182,9 @@
 		DD58FAE31DDBBB05004A7A22 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B69466631DECCE3000F2E30C /* Assets.xcassets */,
 				AA9FFBB71DDA667500847FCF /* AppDelegate.swift */,
 				BBAD950A1DE5182500C385BC /* Logics.swift */,
-				AA9FFBBE1DDA667500847FCF /* Assets.xcassets */,
 				AA9FFBC01DDA667500847FCF /* LaunchScreen.storyboard */,
 				AA9FFBC31DDA667500847FCF /* Info.plist */,
 				AA6E4D221DE74B1400C8FEE3 /* Constants.swift */,
@@ -185,7 +201,11 @@
 				AAFE44671DDF68BE00922FB0 /* SymptomView.xib */,
 				B69638C51DE4E84900FE7023 /* Temperature.swift */,
 				AAFE44691DDF68E600922FB0 /* SymptomView.swift */,
+
 				DD3BD9821DEB7C2800311BE9 /* PainLevelCollectionViewCell.swift */,
+
+				AA9892B31DEA31D60092F3A8 /* Note */,
+
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -289,11 +309,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA9892AE1DEA1C290092F3A8 /* NoteView.xib in Resources */,
 				AA9FFBC21DDA667500847FCF /* LaunchScreen.storyboard in Resources */,
-				AA9FFBBF1DDA667500847FCF /* Assets.xcassets in Resources */,
 				BBF453BD1DE34B5100E054E9 /* GoogleService-Info.plist in Resources */,
 				B69638C41DE4E83A00FE7023 /* TemperatureView.xib in Resources */,
 				AAFE44681DDF68BE00922FB0 /* SymptomView.xib in Resources */,
+				B69466641DECCE3000F2E30C /* Assets.xcassets in Resources */,
 				AA9FFBBD1DDA667500847FCF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -369,6 +390,7 @@
 				AAFE446A1DDF68E600922FB0 /* SymptomView.swift in Sources */,
 				BB9286851DDE3D2100D3D9A6 /* DataStore.swift in Sources */,
 				AA6E4D211DE7419B00C8FEE3 /* WelcomeViewController.swift in Sources */,
+				AA9892B01DEA1EA60092F3A8 /* NoteView.swift in Sources */,
 				BBF453BB1DE34AF900E054E9 /* Person.swift in Sources */,
 				BBF4EEB71DDF59FF00EBD3FE /* EventViewController.swift in Sources */,
 				DDA93D201DDE412000F0A4D4 /* Secrets.swift in Sources */,
@@ -384,6 +406,7 @@
 				AA7ED5941DDF4D16005F9AB2 /* Member.swift in Sources */,
 				AA0C2FE51DE8837700445229 /* HeaderCollectionReusableView.swift in Sources */,
 				BBF453B91DE34ACD00E054E9 /* Symptom.swift in Sources */,
+				AA9892B21DEA2B760092F3A8 /* NoteCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

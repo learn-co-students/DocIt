@@ -36,6 +36,11 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         postTableView.dataSource = self
         postTableView.separatorStyle = .none
         
+        // Self-sizing Table View Cells
+        // TODO: Maybe limit the size of the cell or number of characters. Then implement 
+        postTableView.rowHeight = UITableViewAutomaticDimension
+        postTableView.estimatedRowHeight = 140
+        
         configDatabase()
         postTableView.reloadData()
         hideKeyboardWhenTappedAround()
@@ -44,12 +49,11 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        configDatabase()
+//        configDatabase()
         
         postButtons.forEach {
             $0.isHidden = true
         }
-        
         postTableView.reloadData()
     }
     
@@ -74,12 +78,22 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         return posts.count
     }
     
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "postCell", for: indexPath) as! PostTableViewCell
+//        let post = posts[indexPath.row]
+//        
+//        cell.noteLabel.text = post.note
+//        cell.backgroundColor = UIColor.getRandomColor()
+//        
+//        return cell
+//    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "postCell", for: indexPath) as! PostTableViewCell
-        let post = posts[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "NoteCell", for: indexPath) as! NoteCell
         
-        cell.noteLabel.text = post.note
-        cell.backgroundColor = UIColor.getRandomColor()
+        let eachPost = posts[indexPath.row]
+        
+        cell.noteView.post = eachPost
         
         return cell
     }
@@ -132,7 +146,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func configDatabase() {
-        let eventID: String = Logics.sharedInstance.eventID
+        let eventID: String = store.eventID
         let postsRef = FIRDatabase.database().reference().child("posts").child(eventID)
         
         postsRef.observe(.value, with: { snapshot in
