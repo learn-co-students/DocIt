@@ -12,52 +12,67 @@ import FirebaseDatabase
 
 typealias TimeStamp = [AnyHashable : Any]
 
-struct Post {
-
-    var eventID: String
-    var timestamp: TimeStamp
-    var postType: PostType
+enum Post {
     
-    var postContent: String
-    
-//    init(eventID: String, timestamp: TimeStamp, postType: PostType) {
-//        self.eventID = eventID
-//        self.timestamp = timestamp
-//        self.postType = postType
-//    }
-
-    init(snapshot: FIRDataSnapshot) {
-        let snapshotValue = snapshot.value as! [String:AnyObject]
-        
-        eventID = snapshot.key
-        timestamp = snapshotValue["timestamp"]
-        postType = snapshotValue["postType"] as! String
-        postContent = snapshotValue["note"] as! String
-        
-        
-    }
-    
-    // MARK: - Firebase
-    func serialize() -> [String : Any] {
-        
-        // Serialize the data to push to Firebase
-        
-        var dict: [String : Any] = [:]
-        
-        // use FIRServerValue.timestamp() when creating an instance of Post
-        
-        dict["timestamp"] = timestamp
-        dict["postType"] = postType
-        
-        return dict
-        
-    }
-    
-    
-
+    case note(Note)
+    case temp(Temp)
     
     
 }
+
+
+
+
+//struct Post {
+//
+//    var eventID: String
+//    var timestamp: TimeStamp
+//    var postType: PostType
+//    
+//    var postContent: String
+//    
+////    init(eventID: String, timestamp: TimeStamp, postType: PostType) {
+////        self.eventID = eventID
+////        self.timestamp = timestamp
+////        self.postType = postType
+////    }
+//
+//    init(snapshot: FIRDataSnapshot) {
+//        let snapshotValue = snapshot.value as! [String:AnyObject]
+//        
+//        eventID = snapshot.key
+//        timestamp = snapshotValue["timestamp"]
+//        postType = snapshotValue["postType"] as! String
+//        postContent = snapshotValue["note"] as! String
+//        
+//        
+//    }
+//    
+//    // MARK: - Firebase
+//    func serialize() -> [String : Any] {
+//        
+//        // Serialize the data to push to Firebase
+//        
+//        var dict: [String : Any] = [:]
+//        
+//        // use FIRServerValue.timestamp() when creating an instance of Post
+//        
+//        dict["timestamp"] = timestamp
+//        dict["postType"] = postType
+//        
+//        return dict
+//        
+//    }
+//    
+//    func sendToFirebase() {
+//        // TODO:
+//    }
+//    
+//    
+//
+//    
+//    
+//}
 
 
 

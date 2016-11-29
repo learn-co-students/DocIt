@@ -13,9 +13,23 @@ class NoteView: UIView {
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var noteLabel: UILabel!
     
-    var post: Post! {
+    var note: Note! {
         didSet {
-            noteLabel.text = post.postContent
+            
+            switch note! {
+                
+            case .note(let currentNote):
+                print("We have a note: \(currentNote)")
+                
+                noteLabel.text = currentNote.content
+                
+                
+            default:
+                fatalError("Incorrectly assigning a post not of type Note to a NoteView")
+                
+            }
+            
+            
         }
     }
     

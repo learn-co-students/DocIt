@@ -39,15 +39,29 @@ class AddNotesViewController: UIViewController {
     // ACTIONS
     
     @IBAction func addNotes(_ sender: UIButton) {
-        guard let note = addNotesTextField.text, note != "" else { return }
+        guard let noteText = addNotesTextField.text, noteText != "" else { return }
+        
         let databasePostRef = database.child("posts").child(store.eventID).childByAutoId()
+        
+        let autoIDValue = databasePostRef.key
         
         let timestamp = FIRServerValue.timestamp()
         
-        let post = Post(eventID: store.eventID, timestamp: timestamp, postType: .note, postContent: note)
-        databasePostRef.setValue(post.serialize(), withCompletionBlock: {error, FIRDatabaseReference in
-            self.dismiss(animated: true, completion: nil)
+        let currentNote = Note(content: noteText)
+        
+        let post: Post = .note(currentNote)
+        
+        databasePostRef.setValue(currentNote.serialize(), withCompletionBlock: { error, ref in
+            
+            
         })
+        
+        
+        
+        //        let post = Post(eventID: store.eventID, timestamp: timestamp, postType: .note, postContent: note)
+        //        databasePostRef.setValue(post.serialize(), withCompletionBlock: {error, FIRDatabaseReference in
+        //            self.dismiss(animated: true, completion: nil)
+        //        })
     }
     
     @IBAction func cancel(_ sender: UIButton) {

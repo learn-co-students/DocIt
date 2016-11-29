@@ -10,6 +10,16 @@ import Foundation
 
 struct Note {
     
+    var content: String
     
+    func serialize() -> [String : Any] {
+        
+        return [
+            "name" : content
+        ]
+        
+    }
     
 }
+
+

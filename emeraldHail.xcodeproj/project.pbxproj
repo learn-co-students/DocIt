@@ -11,6 +11,8 @@
 		AA0C2FE51DE8837700445229 /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0C2FE31DE8837700445229 /* HeaderCollectionReusableView.swift */; };
 		AA2970FC1DEDDEE70062631D /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2970FB1DEDDEE70062631D /* Note.swift */; };
 		AA2970FE1DEDDF5C0062631D /* Temp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2970FD1DEDDF5C0062631D /* Temp.swift */; };
+		AA2971011DEE05FA0062631D /* FamilyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2971001DEE05FA0062631D /* FamilyManager.swift */; };
+		AA2971071DEE0FCC0062631D /* NewPostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2971061DEE0FCC0062631D /* NewPostTableViewController.swift */; };
 		AA6E4D211DE7419B00C8FEE3 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6E4D201DE7419B00C8FEE3 /* WelcomeViewController.swift */; };
 		AA6E4D231DE74B1400C8FEE3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6E4D221DE74B1400C8FEE3 /* Constants.swift */; };
 		AA7ED5921DDF4C6F005F9AB2 /* Family.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7ED5911DDF4C6F005F9AB2 /* Family.swift */; };
@@ -59,6 +61,8 @@
 		AA0C2FE31DE8837700445229 /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		AA2970FB1DEDDEE70062631D /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		AA2970FD1DEDDF5C0062631D /* Temp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Temp.swift; sourceTree = "<group>"; };
+		AA2971001DEE05FA0062631D /* FamilyManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilyManager.swift; sourceTree = "<group>"; };
+		AA2971061DEE0FCC0062631D /* NewPostTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPostTableViewController.swift; sourceTree = "<group>"; };
 		AA6E4D201DE7419B00C8FEE3 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		AA6E4D221DE74B1400C8FEE3 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		AA7ED5911DDF4C6F005F9AB2 /* Family.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Family.swift; sourceTree = "<group>"; };
@@ -183,6 +187,7 @@
 				AA7ED5931DDF4D16005F9AB2 /* Member.swift */,
 				AAFE445D1DDF5AE900922FB0 /* Event.swift */,
 				AAFE44651DDF634800922FB0 /* PainLevel.swift */,
+				AA2971001DEE05FA0062631D /* FamilyManager.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -242,6 +247,7 @@
 				B69638D11DE602FD00FE7023 /* AddNotesViewController.swift */,
 				AA6E4D201DE7419B00C8FEE3 /* WelcomeViewController.swift */,
 				AA0C2FE31DE8837700445229 /* HeaderCollectionReusableView.swift */,
+				AA2971061DEE0FCC0062631D /* NewPostTableViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -397,6 +403,7 @@
 				DD3BD9831DEB7C2800311BE9 /* PainLevelCollectionViewCell.swift in Sources */,
 				BB14EBD71DED43A0004F6D56 /* HealthCore.xcdatamodeld in Sources */,
 				AA6E4D231DE74B1400C8FEE3 /* Constants.swift in Sources */,
+				AA2971071DEE0FCC0062631D /* NewPostTableViewController.swift in Sources */,
 				AAFE44641DDF60BB00922FB0 /* Post.swift in Sources */,
 				BBF4EEB31DDF59DC00EBD3FE /* RegisterViewController.swift in Sources */,
 				AA2970FE1DEDDF5C0062631D /* Temp.swift in Sources */,
@@ -408,6 +415,7 @@
 				AA6E4D211DE7419B00C8FEE3 /* WelcomeViewController.swift in Sources */,
 				AA9892B01DEA1EA60092F3A8 /* NoteView.swift in Sources */,
 				BBF453BB1DE34AF900E054E9 /* Person.swift in Sources */,
+				AA2971011DEE05FA0062631D /* FamilyManager.swift in Sources */,
 				BBF4EEB71DDF59FF00EBD3FE /* EventViewController.swift in Sources */,
 				DDA93D201DDE412000F0A4D4 /* Secrets.swift in Sources */,
 				AA7ED5921DDF4C6F005F9AB2 /* Family.swift in Sources */,
