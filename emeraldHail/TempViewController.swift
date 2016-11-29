@@ -35,7 +35,7 @@ class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     // Reference to storage
     let storage : FIRStorage = FIRStorage.storage()
     
-    var selectedTemp = " "
+    var selectedTemp = "96.6"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,6 +58,9 @@ class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         })
         
         
+    }
+    @IBAction func dismissModallView(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
     }
     
     

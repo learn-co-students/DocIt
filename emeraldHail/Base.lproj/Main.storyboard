@@ -1148,6 +1148,17 @@
                                     <action selector="saveTemperature:" destination="bPG-yb-BOM" eventType="touchUpInside" id="qDN-lG-KnX"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wd7-ho-HeE">
+                                <rect key="frame" x="20" y="249" width="98" height="51"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <state key="normal" title="&lt; Back">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="dismissModallView:" destination="bPG-yb-BOM" eventType="touchUpInside" id="cOF-z2-9j7"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="0.77152478448275863" colorSpace="calibratedRGB"/>
                         <constraints>
