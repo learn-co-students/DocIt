@@ -12,19 +12,12 @@ import Firebase
 
 class AddNotesViewController: UIViewController {
     
-    // OUTLET
-    
     @IBOutlet weak var addNotesTextField: UITextField!
     
-    // PROPERTIES
-    
     let store = Logics.sharedInstance
+    
     var database: FIRDatabaseReference = FIRDatabase.database().reference()
     var postRef : FIRDatabaseReference = FIRDatabase.database().reference().child("posts")
-    let storage : FIRStorage = FIRStorage.storage()
-    var notes: String?
-    
-    // LOADS
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,24 +29,21 @@ class AddNotesViewController: UIViewController {
         super.viewDidAppear(true)
     }
     
-    // ACTIONS
-    
     @IBAction func addNotes(_ sender: UIButton) {
+        
         guard let noteText = addNotesTextField.text, noteText != "" else { return }
         
-        let databasePostRef = database.child("posts").child(store.eventID).childByAutoId()
+        let postsRef = database.child("posts").child(store.eventID).childByAutoId()
         
-        let autoIDValue = databasePostRef.key
+        let currentDate = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM d, yyyy"
+        let timestamp = dateFormatter.string(from: currentDate)
         
-        let timestamp = FIRServerValue.timestamp()
+        let newNote = Note(content: noteText, timestamp: timestamp)
         
-        let currentNote = Note(content: noteText)
-        
-        let post: Post = .note(currentNote)
-        
-        databasePostRef.setValue(currentNote.serialize(), withCompletionBlock: { error, ref in
-            
-            
+        postsRef.setValue(newNote.serialize(), withCompletionBlock: { error, ref in
+            self.dismiss(animated: true, completion: nil)
         })
         
         
@@ -68,12 +58,7 @@ class AddNotesViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    // METHODS
-    
-    override var prefersStatusBarHidden : Bool {
-        return true
-    }
-    
+    // MARK: - Functions
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboardView))
         tap.cancelsTouchesInView = false

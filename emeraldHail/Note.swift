@@ -11,14 +11,16 @@ import Foundation
 struct Note {
     
     var content: String
+    var timestamp: String
     
     func serialize() -> [String : Any] {
         
-        return [
-            "name" : content
-        ]
-        
+        return ["content" : content,
+                "timestamp" : timestamp,
+                "postType" : "note"]
     }
+    
+    
     
 }
 

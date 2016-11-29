@@ -17,10 +17,17 @@ enum Post {
     case note(Note)
     case temp(Temp)
     
+    func checkPostType(snapshot: FIRDataSnapshot) -> String {
+        
+        let snapshotValue = snapshot.value as! [String : Any]
+        
+        let postType = snapshotValue["postType"] as! String
+        
+        return postType
+    
+    }
     
 }
-
-
 
 
 //struct Post {

@@ -7,23 +7,30 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseDatabase
 
 class NewPostTableViewController: UITableViewController {
 
     var posts = [Post]()
+    var store = Logics.sharedInstance
+    let postsRef = FIRDatabase.database().reference().child("posts")
+    var eventID = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        eventID = store.eventID
     }
 
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return posts.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -32,35 +39,42 @@ class NewPostTableViewController: UITableViewController {
         
         switch eachPost {
             
-        case .note(let notePost):
+        case .note(_):
             
-            let cell = tableView.dequeueReusableCell(withIdentifier: "noteCell", for: indexPath) as! NoteCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "NoteCell", for: indexPath) as! NoteCell
             
             print("We have a note.")
-            
-            let temporary = Post(
             
             cell.noteView.post = eachPost
         
             return cell
 
-//        case .temp(let tempPost):
-//            
-//            
-//            // TODO: Change this to temp cell after creating it
-//            
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath) as! NoteCell
-//            
-//            print("We have a temp.")
-//            
-//            cell.noteView.post = tempPost
-//            
-//            return cell
+        case .temp(_):
             
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TempCell", for: indexPath) as! NoteCell
             
+            print("We have a note.")
             
+            cell.noteView.post = eachPost
+            
+            return cell
         }
         
     }
+    
+    
+    func fetchPosts() {
+        
+        postsRef.child(eventID).observe(.value, with: { snapshot in
+            var newPosts = [Post]()
+            
+            for item in snapshot.children {
+                
+                
+                
+            }
+            
+        })
+ 
 
 }

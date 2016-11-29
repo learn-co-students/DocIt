@@ -13,10 +13,10 @@ class NoteView: UIView {
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var noteLabel: UILabel!
     
-    var note: Note! {
+    var post: Post! {
         didSet {
             
-            switch note! {
+            switch post! {
                 
             case .note(let currentNote):
                 print("We have a note: \(currentNote)")

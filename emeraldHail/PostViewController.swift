@@ -41,7 +41,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         postTableView.rowHeight = UITableViewAutomaticDimension
         postTableView.estimatedRowHeight = 140
         
-        configDatabase()
+//        configDatabase()
         postTableView.reloadData()
         hideKeyboardWhenTappedAround()
         showPictureAndName()
@@ -78,16 +78,6 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         return posts.count
     }
     
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "postCell", for: indexPath) as! PostTableViewCell
-//        let post = posts[indexPath.row]
-//        
-//        cell.noteLabel.text = post.note
-//        cell.backgroundColor = UIColor.getRandomColor()
-//        
-//        return cell
-//    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NoteCell", for: indexPath) as! NoteCell
         
@@ -117,50 +107,35 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     func dismissKeyboardView() {
         view.endEditing(true)
     }
-
-//    func createPost() {
-//        var noteTextField: UITextField?
-//        let alertController = UIAlertController(title: "Create post", message: "what's cracking?", preferredStyle: .alert)
-//        let save = UIAlertAction(title: "Save", style: .default, handler: { (action) -> Void in
-//            let note = noteTextField?.text
-//            let databaseEventsRef = self.database.child("posts").child(Logics.sharedInstance.eventID).childByAutoId()
-//            let post = Post(note: note!)
-//            
-//            databaseEventsRef.setValue(post.serialize(), withCompletionBlock: { error, dataRef in
-//            })
-//            
-//            self.postTableView.reloadData()
-//            print("Save Button Pressed")
-//        })
-//        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
-//            print("Cancel Button Pressed")
-//        }
-//        alertController.addAction(save)
-//        alertController.addAction(cancel)
-//        alertController.addTextField { (textField) -> Void in
-//            // Enter the textfiled customization code here.
-//            noteTextField = textField
-//            noteTextField?.placeholder = "What just happened?"
-//        }
-//        present(alertController, animated: true, completion: nil)
-//    }
     
-    func configDatabase() {
-        let eventID: String = store.eventID
-        let postsRef = FIRDatabase.database().reference().child("posts").child(eventID)
-        
-        postsRef.observe(.value, with: { snapshot in
-            var newPosts = [Post]()
-            
-            for post in snapshot.children {
-                let newPost = Post(snapshot: post as! FIRDataSnapshot)
-                newPosts.append(newPost)
-            }
-            
-            self.posts = newPosts
-            self.postTableView.reloadData()
-        })
-    }
+//    func configDatabase() {
+//        let eventID: String = store.eventID
+//        let postsRef = FIRDatabase.database().reference().child("posts").child(eventID)
+//        
+//        postsRef.observe(.value, with: { snapshot in
+//            var newPosts = [Post]()
+//            
+//            for post in snapshot.children {
+//                
+//                if post["postType"] == "note" {
+//                    
+//                    let content = post["content"]
+//                    let timestamp = post["timestamp"]
+//                    
+//                    let newNote = Note(content: content, timestamp: timestamp)
+//                    let newPost: Post = .note(newNote)
+//                    
+//                    posts.append(newPost)
+//                }
+//                
+//                let newPost = Post(snapshot: post as! FIRDataSnapshot)
+//                newPosts.append(newPost)
+//            }
+//            
+//            self.posts = newPosts
+//            self.postTableView.reloadData()
+//        })
+//    }
     
     func showPictureAndName() {
         let member = FIRDatabase.database().reference().child("members").child(store.familyID).child(store.memberID)
@@ -179,15 +154,5 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.nameLabel.text = name
         })
     }
-    
-}
-
-
-
-class PostTableViewCell: UITableViewCell {
-    
-    // OUTLETS
-    
-    @IBOutlet weak var noteLabel: UILabel!
     
 }
