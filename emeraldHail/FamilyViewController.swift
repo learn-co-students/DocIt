@@ -194,16 +194,10 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
             var dic = snapshot.value as! [String : Any]
             
             guard let familyName = dic["name"] else { return }
-            
-//            self.familyNameLabel.text = name["name"] as? String
-            
             self.store.familyName = familyName as! String
             
-            self.imageString = dic["coverImageStr"] as! String
-            
-            self.store.familyPicture = self.imageString
-            
-            
+            guard let coverImgStr = dic["coverImageStr"] else { return }
+            self.store.familyPicture = coverImgStr as! String
         })
     }
     

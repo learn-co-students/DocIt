@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NoteView" customModule="emeraldHail" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="iN0-l3-epB" id="wT0-Lj-hiH"/>
+                <outlet property="noteLabel" destination="Lsi-SA-pBH" id="HYk-Uq-Qwl"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lsi-SA-pBH">
+                    <rect key="frame" x="80" y="27" width="283" height="96"/>
+                    <string key="text">Climb leg rub face on everything give attitude nap all day for under the bed. Chase mice attack feet but rub face on everything hopped up on goofballs.</string>
+                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="POST TITLE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IWj-8E-h15">
+                    <rect key="frame" x="80" y="12" width="69" height="15"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                    <color key="textColor" red="0.12549019610000001" green="0.75294117650000003" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FEBRUARY 21, 2016" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Byj-5p-vaE">
+                    <rect key="frame" x="247" y="123" width="116" height="15"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                    <color key="textColor" red="0.12549019610000001" green="0.75294117650000003" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="Byj-5p-vaE" secondAttribute="bottom" constant="12" id="D4G-4I-eqQ"/>
+                <constraint firstAttribute="trailing" secondItem="Lsi-SA-pBH" secondAttribute="trailing" constant="12" id="Dgw-tV-q3J"/>
+                <constraint firstAttribute="trailing" secondItem="Byj-5p-vaE" secondAttribute="trailing" constant="12" id="Jdo-SY-iWc"/>
+                <constraint firstItem="Lsi-SA-pBH" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="80" id="Mvr-mT-KZF"/>
+                <constraint firstItem="IWj-8E-h15" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="80" id="QOk-zo-k3A"/>
+                <constraint firstItem="IWj-8E-h15" firstAttribute="bottom" secondItem="Lsi-SA-pBH" secondAttribute="top" id="YYf-sM-EJb"/>
+                <constraint firstItem="IWj-8E-h15" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="12" id="gAs-HH-7B7"/>
+                <constraint firstItem="Byj-5p-vaE" firstAttribute="top" secondItem="Lsi-SA-pBH" secondAttribute="bottom" id="olD-vX-cGp"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
+    </objects>
+</document>
