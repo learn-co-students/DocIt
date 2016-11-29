@@ -71,7 +71,7 @@ class WelcomeViewController: UIViewController {
     }
     
     func navigateToAuthenticatedVC() {
-        
+//            self.performSegue(withIdentifier: "showFamily", sender: self)
                 if let loggedInVC = storyboard?.instantiateViewController(withIdentifier: "loggedInVC") {
                 self.navigationController?.pushViewController(loggedInVC, animated: true)
         }
