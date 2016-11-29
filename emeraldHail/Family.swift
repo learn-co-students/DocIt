@@ -63,6 +63,8 @@ class Family {
     //        name = snapshotValue["name"] as! String
     //
     //    }
+    
+    
     // TODO: Why are we forcing this? Enrique
     func serialize() -> [String:Any] {
         return ["email":email!, "name":name!, "coverImageStr": coverImageStr!]

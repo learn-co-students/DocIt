@@ -18,6 +18,7 @@ class AddNotesViewController: UIViewController {
     
     // PROPERTIES
     
+    let store = Logics.sharedInstance
     var database: FIRDatabaseReference = FIRDatabase.database().reference()
     var postRef : FIRDatabaseReference = FIRDatabase.database().reference().child("posts")
     let storage : FIRStorage = FIRStorage.storage()
@@ -39,9 +40,11 @@ class AddNotesViewController: UIViewController {
     
     @IBAction func addNotes(_ sender: UIButton) {
         guard let note = addNotesTextField.text, note != "" else { return }
-        let databasePostRef = database.child("posts").child(Logics.sharedInstance.eventID).childByAutoId()
-        //let uniqueID = databasePostRef.key
-        let post = Post(note: note)
+        let databasePostRef = database.child("posts").child(store.eventID).childByAutoId()
+        
+        let timestamp = FIRServerValue.timestamp()
+        
+        let post = Post(eventID: store.eventID, timestamp: timestamp, postType: .note, postContent: note)
         databasePostRef.setValue(post.serialize(), withCompletionBlock: {error, FIRDatabaseReference in
             self.dismiss(animated: true, completion: nil)
         })

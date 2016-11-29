@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		209EA011342482AB2477F986 /* Pods_emeraldHail.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4BA12601A0F16DED58FEC5E /* Pods_emeraldHail.framework */; };
 		AA0C2FE51DE8837700445229 /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0C2FE31DE8837700445229 /* HeaderCollectionReusableView.swift */; };
+		AA2970FC1DEDDEE70062631D /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2970FB1DEDDEE70062631D /* Note.swift */; };
+		AA2970FE1DEDDF5C0062631D /* Temp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2970FD1DEDDF5C0062631D /* Temp.swift */; };
 		AA6E4D211DE7419B00C8FEE3 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6E4D201DE7419B00C8FEE3 /* WelcomeViewController.swift */; };
 		AA6E4D231DE74B1400C8FEE3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6E4D221DE74B1400C8FEE3 /* Constants.swift */; };
 		AA7ED5921DDF4C6F005F9AB2 /* Family.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7ED5911DDF4C6F005F9AB2 /* Family.swift */; };
@@ -25,7 +27,6 @@
 		AAFE44661DDF634800922FB0 /* PainLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFE44651DDF634800922FB0 /* PainLevel.swift */; };
 		AAFE44681DDF68BE00922FB0 /* SymptomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAFE44671DDF68BE00922FB0 /* SymptomView.xib */; };
 		AAFE446A1DDF68E600922FB0 /* SymptomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFE44691DDF68E600922FB0 /* SymptomView.swift */; };
-		AAFE446C1DDF6B6C00922FB0 /* PostType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFE446B1DDF6B6C00922FB0 /* PostType.swift */; };
 		B69466641DECCE3000F2E30C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B69466631DECCE3000F2E30C /* Assets.xcassets */; };
 		B69638C41DE4E83A00FE7023 /* TemperatureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B69638C31DE4E83A00FE7023 /* TemperatureView.xib */; };
 		B69638C61DE4E84900FE7023 /* Temperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69638C51DE4E84900FE7023 /* Temperature.swift */; };
@@ -56,6 +57,8 @@
 		83A9624BD961F0F9D407BD5A /* Pods-emeraldHail.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-emeraldHail.release.xcconfig"; path = "Pods/Target Support Files/Pods-emeraldHail/Pods-emeraldHail.release.xcconfig"; sourceTree = "<group>"; };
 		A3EAC51EA2232492128E484E /* Pods-emeraldHail.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-emeraldHail.debug.xcconfig"; path = "Pods/Target Support Files/Pods-emeraldHail/Pods-emeraldHail.debug.xcconfig"; sourceTree = "<group>"; };
 		AA0C2FE31DE8837700445229 /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderCollectionReusableView.swift; sourceTree = "<group>"; };
+		AA2970FB1DEDDEE70062631D /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		AA2970FD1DEDDF5C0062631D /* Temp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Temp.swift; sourceTree = "<group>"; };
 		AA6E4D201DE7419B00C8FEE3 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		AA6E4D221DE74B1400C8FEE3 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		AA7ED5911DDF4C6F005F9AB2 /* Family.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Family.swift; sourceTree = "<group>"; };
@@ -74,7 +77,6 @@
 		AAFE44651DDF634800922FB0 /* PainLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PainLevel.swift; sourceTree = "<group>"; };
 		AAFE44671DDF68BE00922FB0 /* SymptomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SymptomView.xib; sourceTree = "<group>"; };
 		AAFE44691DDF68E600922FB0 /* SymptomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SymptomView.swift; sourceTree = "<group>"; };
-		AAFE446B1DDF6B6C00922FB0 /* PostType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostType.swift; sourceTree = "<group>"; };
 		B69466631DECCE3000F2E30C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B69638C31DE4E83A00FE7023 /* TemperatureView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TemperatureView.xib; sourceTree = "<group>"; };
 		B69638C51DE4E84900FE7023 /* Temperature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Temperature.swift; sourceTree = "<group>"; };
@@ -117,6 +119,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AA2970FF1DEDDFC30062631D /* Post */ = {
+			isa = PBXGroup;
+			children = (
+				AAFE44631DDF60BB00922FB0 /* Post.swift */,
+				AA2970FB1DEDDEE70062631D /* Note.swift */,
+				AA2970FD1DEDDF5C0062631D /* Temp.swift */,
+			);
+			name = Post;
+			sourceTree = "<group>";
+		};
 		AA9892B31DEA31D60092F3A8 /* Note */ = {
 			isa = PBXGroup;
 			children = (
@@ -161,16 +173,16 @@
 		AA9FFBC91DDA6A8E00847FCF /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				BBF453B81DE34ACD00E054E9 /* Symptom.swift */,
+				BB14EBD51DED43A0004F6D56 /* HealthCore.xcdatamodeld */,
 				BB9286841DDE3D2100D3D9A6 /* DataStore.swift */,
+				AA2970FF1DEDDFC30062631D /* Post */,
+				BBF453B81DE34ACD00E054E9 /* Symptom.swift */,
 				BBF453BA1DE34AF900E054E9 /* Person.swift */,
 				DDA93D1F1DDE412000F0A4D4 /* Secrets.swift */,
 				AA7ED5911DDF4C6F005F9AB2 /* Family.swift */,
 				AA7ED5931DDF4D16005F9AB2 /* Member.swift */,
 				AAFE445D1DDF5AE900922FB0 /* Event.swift */,
-				AAFE44631DDF60BB00922FB0 /* Post.swift */,
 				AAFE44651DDF634800922FB0 /* PainLevel.swift */,
-				AAFE446B1DDF6B6C00922FB0 /* PostType.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -203,8 +215,8 @@
 			children = (
 				AA9FFBBB1DDA667500847FCF /* Main.storyboard */,
 				B69638C31DE4E83A00FE7023 /* TemperatureView.xib */,
-				AAFE44671DDF68BE00922FB0 /* SymptomView.xib */,
 				B69638C51DE4E84900FE7023 /* Temperature.swift */,
+				AAFE44671DDF68BE00922FB0 /* SymptomView.xib */,
 				AAFE44691DDF68E600922FB0 /* SymptomView.swift */,
 				DD3BD9821DEB7C2800311BE9 /* PainLevelCollectionViewCell.swift */,
 				AA9892B31DEA31D60092F3A8 /* Note */,
@@ -227,7 +239,6 @@
 				BB6DEDB61DE61D9400D8B93A /* MemberSettingViewController.swift */,
 				BBF4EEB41DDF59F900EBD3FE /* FamilyViewController.swift */,
 				DD755E191DE3A99F002478D0 /* AddMembersViewController.swift */,
-				BB14EBD51DED43A0004F6D56 /* HealthCore.xcdatamodeld */,
 				B69638D11DE602FD00FE7023 /* AddNotesViewController.swift */,
 				AA6E4D201DE7419B00C8FEE3 /* WelcomeViewController.swift */,
 				AA0C2FE31DE8837700445229 /* HeaderCollectionReusableView.swift */,
@@ -279,7 +290,7 @@
 				TargetAttributes = {
 					AA9FFBB31DDA667500847FCF = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = B5EG3G83GE;
+						DevelopmentTeam = N2MERYPM36;
 						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -386,9 +397,9 @@
 				DD3BD9831DEB7C2800311BE9 /* PainLevelCollectionViewCell.swift in Sources */,
 				BB14EBD71DED43A0004F6D56 /* HealthCore.xcdatamodeld in Sources */,
 				AA6E4D231DE74B1400C8FEE3 /* Constants.swift in Sources */,
-				AAFE446C1DDF6B6C00922FB0 /* PostType.swift in Sources */,
 				AAFE44641DDF60BB00922FB0 /* Post.swift in Sources */,
 				BBF4EEB31DDF59DC00EBD3FE /* RegisterViewController.swift in Sources */,
+				AA2970FE1DEDDF5C0062631D /* Temp.swift in Sources */,
 				DD755E1A1DE3A99F002478D0 /* AddMembersViewController.swift in Sources */,
 				BBF4EEB91DDF5A0600EBD3FE /* PostViewController.swift in Sources */,
 				DDA93D221DDE508A00F0A4D4 /* PainLevelViewController.swift in Sources */,
@@ -408,6 +419,7 @@
 				B69638D21DE602FD00FE7023 /* AddNotesViewController.swift in Sources */,
 				BB5CD3321DE6B41800D82BB3 /* SymptomsViewController.swift in Sources */,
 				AA9FFBB81DDA667500847FCF /* AppDelegate.swift in Sources */,
+				AA2970FC1DEDDEE70062631D /* Note.swift in Sources */,
 				AA7ED5941DDF4D16005F9AB2 /* Member.swift in Sources */,
 				AA0C2FE51DE8837700445229 /* HeaderCollectionReusableView.swift in Sources */,
 				BBF453B91DE34ACD00E054E9 /* Symptom.swift in Sources */,
@@ -535,7 +547,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = emeraldHail/emeraldHail.entitlements;
-				DEVELOPMENT_TEAM = B5EG3G83GE;
+				DEVELOPMENT_TEAM = N2MERYPM36;
 				INFOPLIST_FILE = emeraldHail/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -554,7 +566,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = emeraldHail/emeraldHail.entitlements;
-				DEVELOPMENT_TEAM = B5EG3G83GE;
+				DEVELOPMENT_TEAM = N2MERYPM36;
 				INFOPLIST_FILE = emeraldHail/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

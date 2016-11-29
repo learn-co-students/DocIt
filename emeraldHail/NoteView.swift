@@ -15,7 +15,7 @@ class NoteView: UIView {
     
     var post: Post! {
         didSet {
-            noteLabel.text = post.note
+            noteLabel.text = post.postContent
         }
     }
     
