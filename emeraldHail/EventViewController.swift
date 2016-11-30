@@ -79,6 +79,8 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         if editingStyle == .delete {
             
+            // Deleting selected events from Firebase
+            
             let uniqueEventID = events[indexPath.row].uniqueID
             databaseEvents.child(uniqueEventID).removeValue()
             
