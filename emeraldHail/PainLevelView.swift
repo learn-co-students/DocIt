@@ -61,8 +61,8 @@ class PainLevelView: UIView {
         let circlePath = UIBezierPath(arcCenter: CGPoint(x: offSet, y: contentView.bounds.height/2), radius: CGFloat(circleRadius), startAngle: CGFloat(0), endAngle:CGFloat(M_PI * 2), clockwise: true)
         
         shapeLayer.path = circlePath.cgPath
-        shapeLayer.fillColor = UIColor.black.cgColor
-        shapeLayer.strokeColor = UIColor.black.cgColor
+        shapeLayer.fillColor = UIColor.cyan.cgColor
+        shapeLayer.strokeColor = UIColor.cyan.cgColor
         shapeLayer.lineWidth = 1.0
         circlePath.stroke()
         

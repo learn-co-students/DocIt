@@ -13,6 +13,8 @@ import SDWebImage
 
 class EventViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    var deletedRowRef: FIRDatabaseReference?
+    
     // MARK: Outlets
     @IBOutlet weak var eventsTable: UITableView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -77,9 +79,16 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+        let databaseEvents = self.database.child("events").child(self.store.memberID)
+        
         if editingStyle == .delete {
+            
             events.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
+            databaseEvents.removeValue()
+    
+            
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
@@ -147,7 +156,9 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             guard let name = nameTextField?.text, name != "", let date = dateTextField?.text, date != "" else { return }
             
             let databaseEventsRef = self.database.child("events").child(self.store.memberID).childByAutoId()
+            self.deletedRowRef = databaseEventsRef
             let uniqueID = databaseEventsRef.key
+          
             let event = Event(name: name, startDate: date, uniqueID: uniqueID)
             
             databaseEventsRef.setValue(event.serialize(), withCompletionBlock: { error, dataRef in

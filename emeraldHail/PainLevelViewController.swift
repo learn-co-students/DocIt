@@ -11,6 +11,16 @@ import Firebase
 
 class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
+    var noPain: PainLevel = .noPain
+    var mild:PainLevel = .mild
+    var moderate:PainLevel = .moderate
+    var severe: PainLevel = .severe
+    var verySevere: PainLevel = .verySevere
+    var excruciating: PainLevel = .excruciating
+    
+    var painLevels = [PainLevel]()
+    
+    
     let storage = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
     
     var selectedPainLevel: PainLevel?
@@ -34,6 +44,8 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
         super.viewDidLoad()
         self.navigationItem.title = "Pain Level"
         painLevelCollectionView.allowsMultipleSelection = false
+        
+        painLevels = [noPain, mild, moderate, severe, verySevere, excruciating]
         
     }
     
