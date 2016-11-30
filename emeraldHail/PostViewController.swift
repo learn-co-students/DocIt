@@ -121,7 +121,10 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     // MARK: - Firebase
     func fetchPosts() {
         
-        postsRef.child(store.eventID).observe(.value, with: { [unowned self] snapshot in
+        postsRef.child(store.eventID).queryOrdered(byChild: "timestamp").observe(.value, with: { [unowned self] snapshot in
+            
+            print("⚡️⚡️⚡️⚡️⚡️⚡️⚡️⚡️⚡️⚡️")
+            dump(snapshot)
             
             DispatchQueue.main.async {
                 // Guard to protect an empty dictionary (no posts yet)

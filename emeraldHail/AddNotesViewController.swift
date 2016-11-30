@@ -37,7 +37,7 @@ class AddNotesViewController: UIViewController {
         
         let currentDate = Date()
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM d, yyyy"
+        dateFormatter.dateFormat = "MMM d, yyyy HH:mm:ss a"
         let timestamp = dateFormatter.string(from: currentDate)
         
         let newNote = Note(content: noteText, timestamp: timestamp)

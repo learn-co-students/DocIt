@@ -18,7 +18,6 @@ struct Temp {
         content = dictionary["content"] as? String ?? "No Content"
         timestamp = dictionary["timestamp"] as? String ?? "No Time"
         
-        
     }
     
     init(content: String, timestamp: String) {
