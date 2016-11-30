@@ -22,6 +22,7 @@ struct Temp {
     }
     
     init(content: String, timestamp: String) {
+        print("Creating an instance of Temp")
         
         self.content = content
         self.timestamp = timestamp
@@ -29,6 +30,7 @@ struct Temp {
     }
     
     func serialize() -> [String : Any] {
+        print("Serializing a Temp")
         
         return ["content" : content,
                 "timestamp" : timestamp,

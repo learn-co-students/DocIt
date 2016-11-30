@@ -22,6 +22,7 @@ struct Note {
     }
     
     init(content: String, timestamp: String) {
+        print("Creating an instance of Note")
         
         self.content = content
         self.timestamp = timestamp
@@ -29,6 +30,7 @@ struct Note {
     }
     
     func serialize() -> [String : Any] {
+        print("Serializing a Note")
         
         return ["content" : content,
                 "timestamp" : timestamp,

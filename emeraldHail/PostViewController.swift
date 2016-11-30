@@ -35,7 +35,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽POSTVC...memberID: \(store.memberID), eventID: \(store.eventID), familyID: \(store.familyID)")
+        print("👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽\nInside the PostVC\nfamilyID: \(store.familyID)\nmemberID: \(store.memberID)\neventID: \(store.eventID)\n👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽")
         
         
         postTableView.delegate = self
@@ -48,11 +48,10 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         postTableView.estimatedRowHeight = 140
         
         
-        
         fetchPosts()
         postTableView.reloadData()
-        hideKeyboardWhenTappedAround()
-        showPictureAndName()
+//        hideKeyboardWhenTappedAround()
+//        showPictureAndName()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -89,28 +88,30 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         let eachPost = posts[indexPath.row]
         
+        print("Switching on eachPost at \(indexPath.row)")
+        
         switch eachPost {
             
         case .note(let note):
             
-            let cell = tableView.dequeueReusableCell(withIdentifier: "NoteCell", for: indexPath) as! NoteCell
+            print("We have a note post.")
             
-            print("We have a note.")
+            let cell = tableView.dequeueReusableCell(withIdentifier: "NoteCell", for: indexPath) as! NoteCell
             
             cell.noteView.note = note
             
             return cell
 
             
-//        case .temp(let temp):
-//            
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "TempCell", for: indexPath) as! TempCell
-//            
-//            print("We have a temp.")
-//            
-//            cell.tempView.temp = temp
-//            
-//            return cell
+        case .temp(let temp):
+            
+            print("We have a temp post.")
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TempCell", for: indexPath) as! TempCell
+            
+            cell.tempView.temp = temp
+            
+            return cell
             
         default:
             fatalError("Can't create cell.")
