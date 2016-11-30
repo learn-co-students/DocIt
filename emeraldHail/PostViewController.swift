@@ -12,6 +12,8 @@ import FirebaseDatabase
 
 class PostViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    var deletedPostRef: FIRDatabaseReference?
+    
     // MARK: Outlets
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
@@ -98,9 +100,14 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+        let databasePost = database.child("posts").child(eventID)
+       
         if editingStyle == .delete {
             posts.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
+            databasePost.removeValue()
+            
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
