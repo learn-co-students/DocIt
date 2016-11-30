@@ -8,5 +8,4 @@
 
 import Foundation
 
-
-// Secret info goes here. 
+// Secret info goes here.

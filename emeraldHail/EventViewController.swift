@@ -42,10 +42,6 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.eventsTable.reloadData()
     }
     
-    //    override var prefersStatusBarHidden : Bool {
-    //        return true
-    //    }
-    
     // MARK: Actions
     @IBAction func addEvent(_ sender: Any) {
         createEvent()
@@ -80,11 +76,11 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         if editingStyle == .delete {
             events.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
+            // TODO: Actually remove the item on Firebase, not just in the table view
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
     }
-    
     
     // MARK: Functions
     func hideKeyboardWhenTappedAround() {
@@ -161,10 +157,12 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         alertController.addAction(cancel)
         alertController.addTextField { (textField) -> Void in
             nameTextField = textField
+            nameTextField?.autocapitalizationType = .words
             nameTextField?.placeholder = "Event name"
         }
         alertController.addTextField { (textField) -> Void in
             dateTextField = textField
+            dateTextField?.autocapitalizationType = .words
             dateTextField?.placeholder = "Date"
         }
         present(alertController, animated: true, completion: nil)

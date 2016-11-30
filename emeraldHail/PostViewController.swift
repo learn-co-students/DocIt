@@ -12,7 +12,6 @@ import FirebaseDatabase
 
 class PostViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    // MARK: Outlets
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var postTableView: UITableView!
@@ -23,8 +22,6 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         }
     }
-    
-    // MARK: Properties
     
     var posts = [Post]()
     var store = Logics.sharedInstance
@@ -63,7 +60,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     
-    // MARK: Actions
+    // MARK: - Actions
     @IBAction func addPost(_ sender: UIButton) {
         
         UIView.animate(withDuration: 0.3) {
@@ -73,7 +70,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    // MARK: TableView Methods
+    // MARK: - TableView Methods
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -121,7 +118,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         return 125
     }
     
-    // MARK: Functions
+    // MARK: - Firebase
     func fetchPosts() {
         
         postsRef.child(store.eventID).observe(.value, with: { [unowned self] snapshot in

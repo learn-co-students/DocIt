@@ -33,8 +33,6 @@
 		AAFE44681DDF68BE00922FB0 /* SymptomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAFE44671DDF68BE00922FB0 /* SymptomView.xib */; };
 		AAFE446A1DDF68E600922FB0 /* SymptomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFE44691DDF68E600922FB0 /* SymptomView.swift */; };
 		B69466641DECCE3000F2E30C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B69466631DECCE3000F2E30C /* Assets.xcassets */; };
-		B69638C41DE4E83A00FE7023 /* TemperatureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B69638C31DE4E83A00FE7023 /* TemperatureView.xib */; };
-		B69638C61DE4E84900FE7023 /* Temperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69638C51DE4E84900FE7023 /* Temperature.swift */; };
 		B69638D21DE602FD00FE7023 /* AddNotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69638D11DE602FD00FE7023 /* AddNotesViewController.swift */; };
 		B6ED5B361DDE4CDB00B56DFD /* TempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6ED5B351DDE4CDB00B56DFD /* TempViewController.swift */; };
 		BB14EBD71DED43A0004F6D56 /* HealthCore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BB14EBD51DED43A0004F6D56 /* HealthCore.xcdatamodeld */; };
@@ -88,8 +86,6 @@
 		AAFE44671DDF68BE00922FB0 /* SymptomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SymptomView.xib; sourceTree = "<group>"; };
 		AAFE44691DDF68E600922FB0 /* SymptomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SymptomView.swift; sourceTree = "<group>"; };
 		B69466631DECCE3000F2E30C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		B69638C31DE4E83A00FE7023 /* TemperatureView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TemperatureView.xib; sourceTree = "<group>"; };
-		B69638C51DE4E84900FE7023 /* Temperature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Temperature.swift; sourceTree = "<group>"; };
 		B69638D11DE602FD00FE7023 /* AddNotesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNotesViewController.swift; sourceTree = "<group>"; };
 		B6ED5B351DDE4CDB00B56DFD /* TempViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempViewController.swift; sourceTree = "<group>"; };
 		BB14EBD61DED43A0004F6D56 /* HealthCore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HealthCore.xcdatamodel; sourceTree = "<group>"; };
@@ -235,8 +231,6 @@
 			isa = PBXGroup;
 			children = (
 				AA9FFBBB1DDA667500847FCF /* Main.storyboard */,
-				B69638C31DE4E83A00FE7023 /* TemperatureView.xib */,
-				B69638C51DE4E84900FE7023 /* Temperature.swift */,
 				AAFE44671DDF68BE00922FB0 /* SymptomView.xib */,
 				AAFE44691DDF68E600922FB0 /* SymptomView.swift */,
 				DD3BD9821DEB7C2800311BE9 /* PainLevelCollectionViewCell.swift */,
@@ -350,7 +344,6 @@
 				AA9892AE1DEA1C290092F3A8 /* NoteView.xib in Resources */,
 				AA9FFBC21DDA667500847FCF /* LaunchScreen.storyboard in Resources */,
 				BBF453BD1DE34B5100E054E9 /* GoogleService-Info.plist in Resources */,
-				B69638C41DE4E83A00FE7023 /* TemperatureView.xib in Resources */,
 				AAFE44681DDF68BE00922FB0 /* SymptomView.xib in Resources */,
 				B69466641DECCE3000F2E30C /* Assets.xcassets in Resources */,
 				AAF109341DEE4BA700E6DE26 /* TempView.xib in Resources */,
@@ -415,7 +408,6 @@
 			files = (
 				B6ED5B361DDE4CDB00B56DFD /* TempViewController.swift in Sources */,
 				AAFE44661DDF634800922FB0 /* PainLevel.swift in Sources */,
-				B69638C61DE4E84900FE7023 /* Temperature.swift in Sources */,
 				BB6DEDB71DE61D9400D8B93A /* MemberSettingViewController.swift in Sources */,
 				AAFE445E1DDF5AE900922FB0 /* Event.swift in Sources */,
 				DD3BD9831DEB7C2800311BE9 /* PainLevelCollectionViewCell.swift in Sources */,

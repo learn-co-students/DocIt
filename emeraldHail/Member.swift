@@ -31,7 +31,6 @@ struct Member {
         self.gender = gender
         self.birthday = birthday
         self.uniqueID = uniqueID
-        
     }
     
     init(dictionary: [String : Any], uniqueID: String) {
@@ -46,7 +45,7 @@ struct Member {
     }
     
     init(snapshot: FIRDataSnapshot) {
-        
+    
         let snapshotValue = snapshot.value as! [String : AnyObject]
         
         profileImage = snapshotValue["profileImage"] as! String

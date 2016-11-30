@@ -41,11 +41,9 @@ struct Event {
         
         let snapshotValue = snapshot.value as! [String : AnyObject]
         
-        //        id = snapshotValue["id"] as! String
         name = snapshotValue["name"] as! String
         startDate = snapshotValue["startDate"] as! String
         uniqueID = snapshotValue["uniqueID"] as! String
-        //        posts = snapshotValue["posts"] as! [Post]
         
     }
     
@@ -58,15 +56,11 @@ struct Event {
 extension Event: Hashable {
     
     var hashValue: Int {
-        
         return uniqueID.hash
-        
     }
-    
-    
+
     static func ==(lhs: Event, rhs: Event) -> Bool {
-        
         return lhs.uniqueID == rhs.uniqueID
-    
     }
+    
 }

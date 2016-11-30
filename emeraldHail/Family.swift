@@ -12,7 +12,6 @@ import Firebase
 
 class Family {
     
-    //family properties
     var id: String
     var name: String?
     var email: String?
@@ -21,21 +20,17 @@ class Family {
     var members: [Member]?
     
     init(id: String) {
-        
         self.id = id
-        
     }
     
-    // initializers
+    // MARK: - Initializers
     init(id: String, name: String, email: String, coverImage: UIImage?, coverImageStr: String?, members: [Member]?) {
-        
         self.id = id
         self.name = name
         self.email = email
         self.coverImage = coverImage
         self.coverImageStr = coverImageStr
         self.members = []
-        
     }
     
     init(name: String, id: String = "") {
@@ -64,7 +59,6 @@ class Family {
     //
     //    }
     
-    
     // TODO: Why are we forcing this? Enrique
     func serialize() -> [String:Any] {
         return ["email":email!, "name":name!, "coverImageStr": coverImageStr!]
@@ -76,15 +70,11 @@ class Family {
 extension Family {
     
     func updateName(to name: String) {
-        
         self.name = name
-        
     }
     
     func updateCoverPhotoStr(to imageStr: String) {
-        
         self.coverImageStr = imageStr
-        
     }
     
 }
