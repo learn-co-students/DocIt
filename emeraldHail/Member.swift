@@ -66,7 +66,7 @@ struct Member {
     
     
     func serialize() -> [String : Any] {
-        return  ["firstName" : firstName, "lastName": lastName, "gender" : gender, "birthday" : birthday, "uniqueID" : uniqueID, "profileImage" : profileImage]
+        return  ["firstName" : firstName, "lastName": lastName, "gender" : gender, "birthday" : birthday, "uniqueID" : uniqueID, "profileImage" : profileImage, "bloodType": bloodType ?? ""]
     }
     
     func saveToFireBase(handler: (Bool) -> Void) {
