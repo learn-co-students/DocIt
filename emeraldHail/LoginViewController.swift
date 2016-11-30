@@ -39,7 +39,6 @@ class LoginViewController: UIViewController {
     
     // MARK: Actions
     @IBAction func signIn(_ sender: UIButton) {
-        
         login()
     }
     

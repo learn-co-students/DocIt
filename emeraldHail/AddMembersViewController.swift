@@ -50,7 +50,7 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
         if let uploadData = UIImagePNGRepresentation(self.profileImageView.image!) {
             storageImageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
                 if error != nil {
-                    print (error?.localizedDescription)
+                    print (error?.localizedDescription ?? "Error in saveButtonTapped in AddMembersViewController.swift" )
                     return
                 }
                 if let profileImageUrl = metadata?.downloadURL()?.absoluteString {
@@ -156,6 +156,8 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
     }
 
 }
+
+// MARK: - Make circle profile pictures
 
 extension UIImageView {
     

@@ -927,6 +927,28 @@
                                             <outlet property="noteView" destination="th2-zl-Cpp" id="kDN-mr-PbL"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PainLevelCell" rowHeight="175" id="3yI-Q8-cgB" customClass="PainLevelCell" customModule="emeraldHail" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="353" width="375" height="175"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3yI-Q8-cgB" id="Bwk-LP-bFZ">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="174"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T1l-F9-rNg" customClass="PainLevelView" customModule="emeraldHail" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="174.5"/>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="T1l-F9-rNg" secondAttribute="bottom" id="IzZ-7X-66A"/>
+                                                <constraint firstItem="T1l-F9-rNg" firstAttribute="leading" secondItem="Bwk-LP-bFZ" secondAttribute="leading" id="Q2K-hX-ehA"/>
+                                                <constraint firstAttribute="trailing" secondItem="T1l-F9-rNg" secondAttribute="trailing" id="bt0-BO-AIk"/>
+                                                <constraint firstItem="T1l-F9-rNg" firstAttribute="top" secondItem="Bwk-LP-bFZ" secondAttribute="top" id="ciW-dS-32q"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="painLevelView" destination="T1l-F9-rNg" id="VJI-AI-kvb"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xkz-te-VXE">

@@ -17,7 +17,6 @@
 		AA9892B01DEA1EA60092F3A8 /* NoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9892AF1DEA1EA60092F3A8 /* NoteView.swift */; };
 		AA9892B21DEA2B760092F3A8 /* NoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9892B11DEA2B760092F3A8 /* NoteCell.swift */; };
 		AA9FFBB81DDA667500847FCF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9FFBB71DDA667500847FCF /* AppDelegate.swift */; };
-		AA9FFBBA1DDA667500847FCF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9FFBB91DDA667500847FCF /* ViewController.swift */; };
 		AA9FFBBD1DDA667500847FCF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA9FFBBB1DDA667500847FCF /* Main.storyboard */; };
 		AA9FFBC21DDA667500847FCF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA9FFBC01DDA667500847FCF /* LaunchScreen.storyboard */; };
 		AAFE445E1DDF5AE900922FB0 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFE445D1DDF5AE900922FB0 /* Event.swift */; };
@@ -27,8 +26,6 @@
 		AAFE446A1DDF68E600922FB0 /* SymptomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFE44691DDF68E600922FB0 /* SymptomView.swift */; };
 		AAFE446C1DDF6B6C00922FB0 /* PostType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFE446B1DDF6B6C00922FB0 /* PostType.swift */; };
 		B69466641DECCE3000F2E30C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B69466631DECCE3000F2E30C /* Assets.xcassets */; };
-		B69638C41DE4E83A00FE7023 /* TemperatureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B69638C31DE4E83A00FE7023 /* TemperatureView.xib */; };
-		B69638C61DE4E84900FE7023 /* Temperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69638C51DE4E84900FE7023 /* Temperature.swift */; };
 		B69638D21DE602FD00FE7023 /* AddNotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69638D11DE602FD00FE7023 /* AddNotesViewController.swift */; };
 		B6ED5B361DDE4CDB00B56DFD /* TempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6ED5B351DDE4CDB00B56DFD /* TempViewController.swift */; };
 		B6F44C081DEE080000995237 /* EditMemberSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F44C071DEE080000995237 /* EditMemberSettingsViewController.swift */; };
@@ -51,6 +48,9 @@
 		DD755E1A1DE3A99F002478D0 /* AddMembersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD755E191DE3A99F002478D0 /* AddMembersViewController.swift */; };
 		DDA93D201DDE412000F0A4D4 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA93D1F1DDE412000F0A4D4 /* Secrets.swift */; };
 		DDA93D221DDE508A00F0A4D4 /* PainLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA93D211DDE508A00F0A4D4 /* PainLevelViewController.swift */; };
+		DDB88F871DEE1CD5002E9668 /* PainLevelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDB88F861DEE1CD5002E9668 /* PainLevelView.xib */; };
+		DDB88F891DEE1CEC002E9668 /* PainLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB88F881DEE1CEC002E9668 /* PainLevelView.swift */; };
+		DDB88F8B1DEE1E03002E9668 /* PainLevelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB88F8A1DEE1E03002E9668 /* PainLevelCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,7 +66,6 @@
 		AA9892B11DEA2B760092F3A8 /* NoteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteCell.swift; sourceTree = "<group>"; };
 		AA9FFBB41DDA667500847FCF /* emeraldHail.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = emeraldHail.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA9FFBB71DDA667500847FCF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AA9FFBB91DDA667500847FCF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		AA9FFBBC1DDA667500847FCF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AA9FFBC11DDA667500847FCF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AA9FFBC31DDA667500847FCF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -77,8 +76,6 @@
 		AAFE44691DDF68E600922FB0 /* SymptomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SymptomView.swift; sourceTree = "<group>"; };
 		AAFE446B1DDF6B6C00922FB0 /* PostType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostType.swift; sourceTree = "<group>"; };
 		B69466631DECCE3000F2E30C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		B69638C31DE4E83A00FE7023 /* TemperatureView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TemperatureView.xib; sourceTree = "<group>"; };
-		B69638C51DE4E84900FE7023 /* Temperature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Temperature.swift; sourceTree = "<group>"; };
 		B69638D11DE602FD00FE7023 /* AddNotesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNotesViewController.swift; sourceTree = "<group>"; };
 		B6ED5B351DDE4CDB00B56DFD /* TempViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempViewController.swift; sourceTree = "<group>"; };
 		B6F44C071DEE080000995237 /* EditMemberSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditMemberSettingsViewController.swift; sourceTree = "<group>"; };
@@ -104,6 +101,9 @@
 		DD755E1B1DE3ACB2002478D0 /* emeraldHail.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = emeraldHail.entitlements; sourceTree = "<group>"; };
 		DDA93D1F1DDE412000F0A4D4 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		DDA93D211DDE508A00F0A4D4 /* PainLevelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PainLevelViewController.swift; sourceTree = "<group>"; };
+		DDB88F861DEE1CD5002E9668 /* PainLevelView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PainLevelView.xib; sourceTree = "<group>"; };
+		DDB88F881DEE1CEC002E9668 /* PainLevelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PainLevelView.swift; sourceTree = "<group>"; };
+		DDB88F8A1DEE1E03002E9668 /* PainLevelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PainLevelCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +163,7 @@
 		AA9FFBC91DDA6A8E00847FCF /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BB14EBD51DED43A0004F6D56 /* HealthCore.xcdatamodeld */,
 				BBF453B81DE34ACD00E054E9 /* Symptom.swift */,
 				BB9286841DDE3D2100D3D9A6 /* DataStore.swift */,
 				BBF453BA1DE34AF900E054E9 /* Person.swift */,
@@ -175,6 +176,15 @@
 				AAFE446B1DDF6B6C00922FB0 /* PostType.swift */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		AAF109321DEE285200E6DE26 /* Symptom */ = {
+			isa = PBXGroup;
+			children = (
+				AAFE44671DDF68BE00922FB0 /* SymptomView.xib */,
+				AAFE44691DDF68E600922FB0 /* SymptomView.swift */,
+			);
+			name = Symptom;
 			sourceTree = "<group>";
 		};
 		CCB9A50487D0810C41F555DF /* Pods */ = {
@@ -203,12 +213,10 @@
 		DD58FAE41DDBBB1D004A7A22 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				DDB88F851DEE1CC0002E9668 /* PainLevel */,
 				AA9FFBBB1DDA667500847FCF /* Main.storyboard */,
-				B69638C31DE4E83A00FE7023 /* TemperatureView.xib */,
-				AAFE44671DDF68BE00922FB0 /* SymptomView.xib */,
-				B69638C51DE4E84900FE7023 /* Temperature.swift */,
-				AAFE44691DDF68E600922FB0 /* SymptomView.swift */,
 				DD3BD9821DEB7C2800311BE9 /* PainLevelCollectionViewCell.swift */,
+				AAF109321DEE285200E6DE26 /* Symptom */,
 				AA9892B31DEA31D60092F3A8 /* Note */,
 			);
 			name = View;
@@ -217,7 +225,6 @@
 		DD58FAE51DDBBB40004A7A22 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				AA9FFBB91DDA667500847FCF /* ViewController.swift */,
 				DDA93D211DDE508A00F0A4D4 /* PainLevelViewController.swift */,
 				BBF4EEB01DDF59D400EBD3FE /* LoginViewController.swift */,
 				BBF4EEB21DDF59DC00EBD3FE /* RegisterViewController.swift */,
@@ -230,12 +237,21 @@
 				BB6DEDB61DE61D9400D8B93A /* MemberSettingViewController.swift */,
 				BBF4EEB41DDF59F900EBD3FE /* FamilyViewController.swift */,
 				DD755E191DE3A99F002478D0 /* AddMembersViewController.swift */,
-				BB14EBD51DED43A0004F6D56 /* HealthCore.xcdatamodeld */,
 				B69638D11DE602FD00FE7023 /* AddNotesViewController.swift */,
 				AA6E4D201DE7419B00C8FEE3 /* WelcomeViewController.swift */,
 				AA0C2FE31DE8837700445229 /* HeaderCollectionReusableView.swift */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		DDB88F851DEE1CC0002E9668 /* PainLevel */ = {
+			isa = PBXGroup;
+			children = (
+				DDB88F861DEE1CD5002E9668 /* PainLevelView.xib */,
+				DDB88F881DEE1CEC002E9668 /* PainLevelView.swift */,
+				DDB88F8A1DEE1E03002E9668 /* PainLevelCell.swift */,
+			);
+			name = PainLevel;
 			sourceTree = "<group>";
 		};
 		E2732CC3AAAB9CB28A1A3DE8 /* Frameworks */ = {
@@ -319,8 +335,8 @@
 				AA9892AE1DEA1C290092F3A8 /* NoteView.xib in Resources */,
 				AA9FFBC21DDA667500847FCF /* LaunchScreen.storyboard in Resources */,
 				BBF453BD1DE34B5100E054E9 /* GoogleService-Info.plist in Resources */,
-				B69638C41DE4E83A00FE7023 /* TemperatureView.xib in Resources */,
 				AAFE44681DDF68BE00922FB0 /* SymptomView.xib in Resources */,
+				DDB88F871DEE1CD5002E9668 /* PainLevelView.xib in Resources */,
 				B69466641DECCE3000F2E30C /* Assets.xcassets in Resources */,
 				AA9FFBBD1DDA667500847FCF /* Main.storyboard in Resources */,
 			);
@@ -383,9 +399,11 @@
 			files = (
 				B6ED5B361DDE4CDB00B56DFD /* TempViewController.swift in Sources */,
 				AAFE44661DDF634800922FB0 /* PainLevel.swift in Sources */,
+				DDB88F8B1DEE1E03002E9668 /* PainLevelCell.swift in Sources */,
 				B69638C61DE4E84900FE7023 /* Temperature.swift in Sources */,
 				B6F44C081DEE080000995237 /* EditMemberSettingsViewController.swift in Sources */,
 				BB6DEDB71DE61D9400D8B93A /* MemberSettingViewController.swift in Sources */,
+				DDB88F891DEE1CEC002E9668 /* PainLevelView.swift in Sources */,
 				AAFE445E1DDF5AE900922FB0 /* Event.swift in Sources */,
 				DD3BD9831DEB7C2800311BE9 /* PainLevelCollectionViewCell.swift in Sources */,
 				BB14EBD71DED43A0004F6D56 /* HealthCore.xcdatamodeld in Sources */,
@@ -404,7 +422,6 @@
 				BBF4EEB71DDF59FF00EBD3FE /* EventViewController.swift in Sources */,
 				DDA93D201DDE412000F0A4D4 /* Secrets.swift in Sources */,
 				AA7ED5921DDF4C6F005F9AB2 /* Family.swift in Sources */,
-				AA9FFBBA1DDA667500847FCF /* ViewController.swift in Sources */,
 				BB6DEDB51DE61C7D00D8B93A /* FamilySettingViewController.swift in Sources */,
 				BBAD950B1DE5182500C385BC /* Logics.swift in Sources */,
 				BBF4EEB11DDF59D400EBD3FE /* LoginViewController.swift in Sources */,
