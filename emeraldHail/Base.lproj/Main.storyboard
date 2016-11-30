@@ -852,6 +852,29 @@
                                             <outlet property="tempView" destination="gV2-le-btI" id="h12-WF-YJ0"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SymptomCell" rowHeight="175" id="nay-CP-1xK" customClass="SymptomCell" customModule="emeraldHail" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="528" width="375" height="175"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nay-CP-1xK" id="W8D-tW-ZXs">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="174"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dV9-nc-MYs" customClass="SymptomView" customModule="emeraldHail" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="174.5"/>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="dV9-nc-MYs" firstAttribute="top" secondItem="W8D-tW-ZXs" secondAttribute="top" id="UTc-B9-LXg"/>
+                                                <constraint firstItem="dV9-nc-MYs" firstAttribute="leading" secondItem="W8D-tW-ZXs" secondAttribute="leading" id="eod-FV-mh8"/>
+                                                <constraint firstAttribute="bottom" secondItem="dV9-nc-MYs" secondAttribute="bottom" id="lnk-ts-Bcd"/>
+                                                <constraint firstAttribute="trailing" secondItem="dV9-nc-MYs" secondAttribute="trailing" id="tuO-JO-qFY"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="symptomView" destination="dV9-nc-MYs" id="E7L-dS-jp3"/>
+                                            <outlet property="tempView" destination="dV9-nc-MYs" id="izn-3m-guj"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xkz-te-VXE">
