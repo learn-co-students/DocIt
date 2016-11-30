@@ -84,31 +84,53 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDataSource
         
         
     }
-    
+    //             let bloodType = bloodType.text, bloodType != "" --> add value for new property 
+    //
+
     
     @IBAction func saveButton(_ sender: Any) {
         // Send to Firebase
+        updateFirebaseValues()
+      
         
-        guard let name = firstNameTextField.text, name != "",
-            let firstName = firstNameTextField.text, firstName != "",
-            let lastName = lastNameTextField.text, lastName != "",
-            let dob = dobTextField.text, dob != "",
-            let bloodType = bloodType.text, bloodType != ""
-            else { return }
         
-        let gender = selectedGender
-        var database : FIRDatabaseReference = FIRDatabase.database().reference()
-        let databaseMembersRef: FIRDatabaseReference = FIRDatabase.database().reference().child("members").child(Logics.sharedInstance.memberID).childByAutoId()
-       // let uniqueID = databaseMembersRef.key
-    
-        let member = EditMembers(firstNameEdit: firstName, lastNameEdit: lastName, genderEdit: gender, dobEdit: dob, bloodTypeEdit: bloodType)
         
     }
+    
+
     
     @IBAction func cancelButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
+    
+    //MARK: Firebase Update Value
+    
+    func updateFirebaseValues(){
+        guard let name = firstNameTextField.text, name != "",
+            let firstName = firstNameTextField.text, firstName != "",
+            let lastName = lastNameTextField.text, lastName != "",
+            let dob = dobTextField.text, dob != ""
+            else { return }
+        
+        let updatedInfo: [String:Any] = ["firstName":firstName,
+                                         "lastName": lastName,
+                                         "birthday": dob,
+                                         "gender": selectedGender]
+        
+        
+        let gender = selectedGender
+        var memberReference : FIRDatabaseReference = FIRDatabase.database().reference().child("members").child(Logics.sharedInstance.familyID).child(Logics.sharedInstance.memberID)
+        memberReference.updateChildValues(updatedInfo)
+        
+        var databaseReference: FIRDatabaseReference = FIRDatabase.database().reference().child("members").child(Logics.sharedInstance.familyID).child(Logics.sharedInstance.memberID)
+        
+     //   let member = Member(profileImage: <#T##String#>, firstName: <#T##String#>, lastName: <#T##String#>, gender: <#T##String#>, birthday: <#T##String#>, uniqueID: <#T##String#>)
+        
+       // databaseReference.setValue(member.serialize(), withCompletionBlock: {error, FIRDatabaseReference in
+            self.dismiss(animated: true, completion: nil)
+        
+    }
     
     
     

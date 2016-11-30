@@ -22,9 +22,10 @@ struct Member {
     var gender: String
     var birthday: String
     var uniqueID: String
+    var bloodType: String?
     
     
-    init(profileImage: String, firstName: String, lastName: String, gender: String , birthday: String, uniqueID: String = "") {
+    init(profileImage: String, firstName: String, lastName: String, gender: String , birthday: String, uniqueID: String = "", bloodType: String = "") {
         self.profileImage = profileImage
         self.firstName = firstName
         self.lastName = lastName
@@ -38,8 +39,9 @@ struct Member {
         profileImage = dictionary["profileImage"] as? String ?? "No Image URL"
         firstName = dictionary["firstName"] as? String ?? "No Name"
         lastName = dictionary["lastName"] as? String ?? "No Last Name"
-        birthday = dictionary["dob"] as? String ?? "No Birthday"
+        birthday = dictionary["birthday"] as? String ?? "No Birthday"
         gender = dictionary["gender"] as? String ?? "No Gender"
+        bloodType = dictionary["bloodType"] as? String ?? "No Blood Type"
         //userImage = dictionary["UserImage"] as? String ?? "No URL"
         
         self.uniqueID = uniqueID
@@ -52,9 +54,10 @@ struct Member {
         profileImage = snapshotValue["profileImage"] as! String
         firstName = snapshotValue["firstName"] as! String
         lastName = snapshotValue["lastName"] as! String
-        birthday = snapshotValue["dob"] as! String
+        birthday = snapshotValue["birthday"] as! String
         gender = snapshotValue["gender"] as! String
         uniqueID = snapshotValue["uniqueID"] as! String
+        bloodType = snapshotValue["bloodType"] as? String
         
     }
     
@@ -63,34 +66,17 @@ struct Member {
     
     
     func serialize() -> [String : Any] {
-        return  ["firstName" : firstName, "lastName": lastName, "gender" : gender, "dob" : birthday, "uniqueID" : uniqueID, "profileImage" : profileImage]
+        return  ["firstName" : firstName, "lastName": lastName, "gender" : gender, "birthday" : birthday, "uniqueID" : uniqueID, "profileImage" : profileImage]
+    }
+    
+    func saveToFireBase(handler: (Bool) -> Void) {
+        
+        // get the firebase ref through the shared manager
+        // updateValue should be called but on the right ref. child("VALUE") replacing value with the correct location
+        // call update value on that ref then in that completion handler of that, if successfull, call handler here and pass in true.
+        
+        
+        
     }
 }
 
-//struct EditMembers {
-//    
-//    var firstNameEdit = String()
-//    var lastNameEdit = String()
-//    var genderEdit = String()
-//    var dobEdit = String()
-//    var bloodTypeEdit = String()
-//    
-//
-//    
-//    
-//    // Edit Member Profile
-//    init(firstNameEdit: String, lastNameEdit: String, genderEdit: String, dobEdit: String, bloodTypeEdit: String) {
-//        self.firstNameEdit = firstNameEdit
-//       self.lastNameEdit = lastNameEdit
-//       self.genderEdit = genderEdit
-//       self.dobEdit = dobEdit
-//        self.bloodTypeEdit = bloodTypeEdit
-//    }
-//    
-//    func serialize() -> [String: Any] {
-//        return ["firstName" : firstNameEdit, "lastName": lastNameEdit, "gender" : genderEdit, "dob" : dobEdit, "bloodType" : bloodTypeEdit]
-//    }
-//    
-//    
-//    
-//}
