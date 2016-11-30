@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="contentView" destination="iN0-l3-epB" id="wT0-Lj-hiH"/>
                 <outlet property="noteLabel" destination="Lsi-SA-pBH" id="HYk-Uq-Qwl"/>
+                <outlet property="timestampLabel" destination="Byj-5p-vaE" id="Q9E-Tt-RjQ"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

@@ -830,10 +830,33 @@
                                             <outlet property="noteView" destination="th2-zl-Cpp" id="kDN-mr-PbL"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TempCell" rowHeight="175" id="peP-XC-WVV" customClass="TempCell" customModule="emeraldHail" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="353" width="375" height="175"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="peP-XC-WVV" id="RcP-so-JzR">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="174"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gV2-le-btI" customClass="TempView" customModule="emeraldHail" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="174.5"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="gV2-le-btI" secondAttribute="bottom" id="MOl-gn-Z58"/>
+                                                <constraint firstAttribute="trailing" secondItem="gV2-le-btI" secondAttribute="trailing" id="Si2-uq-YLh"/>
+                                                <constraint firstItem="gV2-le-btI" firstAttribute="top" secondItem="RcP-so-JzR" secondAttribute="top" id="YvI-sO-w9d"/>
+                                                <constraint firstItem="gV2-le-btI" firstAttribute="leading" secondItem="RcP-so-JzR" secondAttribute="leading" id="pXD-cy-fwg"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="tempView" destination="gV2-le-btI" id="h12-WF-YJ0"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xkz-te-VXE">
-                                <rect key="frame" x="37.5" y="587" width="300" height="50"/>
+                                <rect key="frame" x="38" y="587" width="300" height="50"/>
                                 <color key="backgroundColor" red="0.12549019610000001" green="0.75294117650000003" blue="0.8862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="DKK-lW-zok"/>
@@ -847,7 +870,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="400-cH-6lH">
-                                <rect key="frame" x="37.5" y="337" width="300" height="50"/>
+                                <rect key="frame" x="38" y="337" width="300" height="50"/>
                                 <color key="backgroundColor" red="0.98039132356643677" green="0.97655218839645386" blue="0.97635632753372192" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="Photo">
@@ -855,7 +878,7 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BSC-26-26h">
-                                <rect key="frame" x="37.5" y="387" width="300" height="50"/>
+                                <rect key="frame" x="38" y="387" width="300" height="50"/>
                                 <color key="backgroundColor" red="0.98039132360000003" green="0.97655218840000002" blue="0.97635632750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="Pain level">
@@ -866,7 +889,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lqt-RP-eNc">
-                                <rect key="frame" x="37.5" y="437" width="300" height="50"/>
+                                <rect key="frame" x="38" y="437" width="300" height="50"/>
                                 <color key="backgroundColor" red="0.98039132360000003" green="0.97655218840000002" blue="0.97635632750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="Temperature">
@@ -877,7 +900,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2mw-Nh-Xz1">
-                                <rect key="frame" x="37.5" y="487" width="300" height="50"/>
+                                <rect key="frame" x="38" y="487" width="300" height="50"/>
                                 <color key="backgroundColor" red="0.98039132360000003" green="0.97655218840000002" blue="0.97635632750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="Symptoms">
@@ -888,7 +911,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ttc-3X-xZr">
-                                <rect key="frame" x="37.5" y="537" width="300" height="50"/>
+                                <rect key="frame" x="38" y="537" width="300" height="50"/>
                                 <color key="backgroundColor" red="0.98039132360000003" green="0.97655218840000002" blue="0.97635632750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="Note">

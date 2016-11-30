@@ -13,6 +13,21 @@ struct Note {
     var content: String
     var timestamp: String
     
+    init(dictionary: [String : Any]) {
+        
+        content = dictionary["content"] as? String ?? "No Content"
+        timestamp = dictionary["timestamp"] as? String ?? "No Time"
+        
+        
+    }
+    
+    init(content: String, timestamp: String) {
+        
+        self.content = content
+        self.timestamp = timestamp
+        
+    }
+    
     func serialize() -> [String : Any] {
         
         return ["content" : content,
@@ -20,8 +35,4 @@ struct Note {
                 "postType" : "note"]
     }
     
-    
-    
 }
-
-

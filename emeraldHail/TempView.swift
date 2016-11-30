@@ -1,31 +1,27 @@
 //
-//  NoteView.swift
+//  TempView.swift
 //  emeraldHail
 //
-//  Created by Henry Ly on 11/26/16.
+//  Created by Henry Ly on 11/29/16.
 //  Copyright © 2016 Flatiron School. All rights reserved.
 //
 
 import UIKit
 
-class NoteView: UIView {
+class TempView: UIView {
 
     @IBOutlet var contentView: UIView!
-    @IBOutlet weak var noteLabel: UILabel!
-    @IBOutlet weak var timestampLabel: UILabel!
+    @IBOutlet weak var tempLabel: UILabel!
     
-    var note: Note! {
+    var temp: Temp! {
         didSet {
-            
-            noteLabel.text = note.content
-            timestampLabel.text = note.timestamp
-            
+            tempLabel.text = temp.content
         }
     }
     
     let offSet: CGFloat = 40.0
     let circleRadius: CGFloat = 10.0
-
+    
     let shapeLayer = CAShapeLayer()
     let lineLayer = CAShapeLayer()
     
@@ -61,8 +57,8 @@ class NoteView: UIView {
         let circlePath = UIBezierPath(arcCenter: CGPoint(x: offSet, y: contentView.bounds.height/2), radius: CGFloat(circleRadius), startAngle: CGFloat(0), endAngle:CGFloat(M_PI * 2), clockwise: true)
         
         shapeLayer.path = circlePath.cgPath
-        shapeLayer.fillColor = Constants.Colors.scooter.cgColor
-        shapeLayer.strokeColor = Constants.Colors.scooter.cgColor
+        shapeLayer.fillColor = UIColor.black.cgColor
+        shapeLayer.strokeColor = UIColor.black.cgColor
         shapeLayer.lineWidth = 1.0
         circlePath.stroke()
         
@@ -75,11 +71,10 @@ class NoteView: UIView {
         linePath.addLine(to: endPoint)
         
         lineLayer.path = linePath.cgPath
-        lineLayer.fillColor = Constants.Colors.scooter.cgColor
-        lineLayer.strokeColor = Constants.Colors.scooter.cgColor
+        lineLayer.fillColor = UIColor.black.cgColor
+        lineLayer.strokeColor = UIColor.black.cgColor
         lineLayer.lineWidth = 1.0
         linePath.stroke()
     }
-
 
 }

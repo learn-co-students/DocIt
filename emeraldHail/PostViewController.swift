@@ -25,23 +25,31 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     // MARK: Properties
+    
     var posts = [Post]()
-    var database: FIRDatabaseReference = FIRDatabase.database().reference()
-    var eventID = ""
     var store = Logics.sharedInstance
-
+    let postsRef = FIRDatabase.database().reference().child("posts")
+    var eventID = ""
+    var database: FIRDatabaseReference = FIRDatabase.database().reference()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽POSTVC...memberID: \(store.memberID), eventID: \(store.eventID), familyID: \(store.familyID)")
+        
+        
         postTableView.delegate = self
         postTableView.dataSource = self
         postTableView.separatorStyle = .none
         
         // Self-sizing Table View Cells
-        // TODO: Maybe limit the size of the cell or number of characters. Then implement 
+        // TODO: Maybe limit the size of the cell or number of characters. Then implement
         postTableView.rowHeight = UITableViewAutomaticDimension
         postTableView.estimatedRowHeight = 140
         
-//        configDatabase()
+        
+        
+        fetchPosts()
         postTableView.reloadData()
         hideKeyboardWhenTappedAround()
         showPictureAndName()
@@ -49,24 +57,23 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-//        configDatabase()
         
         postButtons.forEach {
             $0.isHidden = true
         }
+        
         postTableView.reloadData()
     }
     
     
     // MARK: Actions
     @IBAction func addPost(_ sender: UIButton) {
-
+        
         UIView.animate(withDuration: 0.3) {
             self.postButtons.forEach {
                 $0.isHidden = !$0.isHidden
             }
         }
-    
     }
     
     // MARK: TableView Methods
@@ -79,25 +86,71 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "NoteCell", for: indexPath) as! NoteCell
         
         let eachPost = posts[indexPath.row]
         
-        cell.noteView.post = eachPost
-        
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            posts.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+        switch eachPost {
+            
+        case .note(let note):
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "NoteCell", for: indexPath) as! NoteCell
+            
+            print("We have a note.")
+            
+            cell.noteView.note = note
+            
+            return cell
+
+            
+//        case .temp(let temp):
+//            
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "TempCell", for: indexPath) as! TempCell
+//            
+//            print("We have a temp.")
+//            
+//            cell.tempView.temp = temp
+//            
+//            return cell
+            
+        default:
+            fatalError("Can't create cell.")
         }
+        
     }
     
     // MARK: Functions
+    func fetchPosts() {
+        
+        postsRef.child(store.eventID).observe(.value, with: { [unowned self] snapshot in
+            
+            DispatchQueue.main.async {
+                
+                // Guard to protect and empty dictionary (no posts yet)
+                
+                guard let value = snapshot.value as? [String : Any] else { return }
+                
+                
+                let allKeys = value.keys
+                
+                // Clear posts
+                self.posts = []
+                
+                for key in allKeys {
+                    
+                    let dictionary = value[key] as! [String : Any]
+                    
+                    let post = Post(dictionary: dictionary)
+                    
+                    self.posts.append(post)
+                }
+                self.postTableView.reloadData()
+                
+            }
+        })
+        
+        
+    }
+    
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(PostViewController.dismissKeyboardView))
         tap.cancelsTouchesInView = false
@@ -107,35 +160,6 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     func dismissKeyboardView() {
         view.endEditing(true)
     }
-    
-//    func configDatabase() {
-//        let eventID: String = store.eventID
-//        let postsRef = FIRDatabase.database().reference().child("posts").child(eventID)
-//        
-//        postsRef.observe(.value, with: { snapshot in
-//            var newPosts = [Post]()
-//            
-//            for post in snapshot.children {
-//                
-//                if post["postType"] == "note" {
-//                    
-//                    let content = post["content"]
-//                    let timestamp = post["timestamp"]
-//                    
-//                    let newNote = Note(content: content, timestamp: timestamp)
-//                    let newPost: Post = .note(newNote)
-//                    
-//                    posts.append(newPost)
-//                }
-//                
-//                let newPost = Post(snapshot: post as! FIRDataSnapshot)
-//                newPosts.append(newPost)
-//            }
-//            
-//            self.posts = newPosts
-//            self.postTableView.reloadData()
-//        })
-//    }
     
     func showPictureAndName() {
         let member = FIRDatabase.database().reference().child("members").child(store.familyID).child(store.memberID)
