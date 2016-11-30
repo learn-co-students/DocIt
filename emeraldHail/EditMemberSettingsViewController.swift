@@ -110,20 +110,20 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDataSource
         guard let name = firstNameTextField.text, name != "",
             let firstName = firstNameTextField.text, firstName != "",
             let lastName = lastNameTextField.text, lastName != "",
-            let dob = dobTextField.text, dob != ""
+            let dob = dobTextField.text, dob != "",
+            let bloodType = bloodType.text
             else { return }
         
         let updatedInfo: [String:Any] = ["firstName":firstName,
                                          "lastName": lastName,
                                          "birthday": dob,
-                                         "gender": selectedGender]
+                                         "gender": selectedGender,
+                                         "bloodType": bloodType]
         
         
         let gender = selectedGender
         var memberReference : FIRDatabaseReference = FIRDatabase.database().reference().child("members").child(Logics.sharedInstance.familyID).child(Logics.sharedInstance.memberID)
         memberReference.updateChildValues(updatedInfo)
-        
-        var databaseReference: FIRDatabaseReference = FIRDatabase.database().reference().child("members").child(Logics.sharedInstance.familyID).child(Logics.sharedInstance.memberID)
         
      
             self.dismiss(animated: true, completion: nil)
@@ -190,7 +190,7 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDataSource
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
    
-        selectedBloodType = bloodTypeSelections[row]
+        bloodType.text = bloodTypeSelections[row]
         self.view.endEditing(true)
 
     }
