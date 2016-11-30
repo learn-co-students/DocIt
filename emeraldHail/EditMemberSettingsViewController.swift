@@ -102,10 +102,7 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDataSource
        // let uniqueID = databaseMembersRef.key
     
         let member = EditMembers(firstNameEdit: firstName, lastNameEdit: lastName, genderEdit: gender, dobEdit: dob, bloodTypeEdit: bloodType)
-        databaseMembersRef.setValue(member.serialize(), withCompletionBlock: { error, dataRef in
-            self.dismiss(animated: true, completion: nil)
-            
-        })
+        
     }
     
     @IBAction func cancelButton(_ sender: Any) {
@@ -171,6 +168,8 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDataSource
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         bloodType.text = bloodTypeSelections[row]
+        self.view.endEditing(true)
+
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
