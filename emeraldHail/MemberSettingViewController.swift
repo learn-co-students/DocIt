@@ -13,6 +13,9 @@ import SDWebImage
 
 class MemberSettingViewController: UIViewController {
 
+    let store = Logics.sharedInstance
+    
+    
     // OUTLETS
     
     @IBOutlet weak var profileImageView: UIImageView!
@@ -50,6 +53,16 @@ class MemberSettingViewController: UIViewController {
     override var prefersStatusBarHidden : Bool {
         return true
     }
+    
+    
+    
+    func displayMemberProfileEdits() {
+        let member = FIRDatabase.database().reference().child("members").child(store.familyID).child(store.memberID)
+        
+        member
+    }
+    
+    
     
     func showPicture() {
         

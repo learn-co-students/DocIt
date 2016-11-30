@@ -30,10 +30,10 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDataSource
     // bloodType pickerView
     @IBOutlet weak var bloodType: UITextField!
     
-    var bloodTypeSelections : [String] = ["A", "B", "AB", "O"]
+    var bloodTypeSelections : [String] = [BloodType.ABNeg.rawValue, BloodType.ABPos.rawValue, BloodType.ANeg.rawValue, BloodType.APos.rawValue, BloodType.BNeg.rawValue, BloodType.BPos.rawValue, BloodType.ONeg.rawValue, BloodType.OPos.rawValue]
     
     
-
+    var selectedBloodType = BloodType.ABNeg.rawValue
     
     // Member Profile Properties
 //    var firstName: String?
@@ -105,7 +105,7 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDataSource
     
     
     //MARK: Firebase Update Value
-    
+    // this function needs to dismiss the datePicker as well as handling one property member profile change doesn't reset everything. 
     func updateFirebaseValues(){
         guard let name = firstNameTextField.text, name != "",
             let firstName = firstNameTextField.text, firstName != "",
@@ -125,9 +125,7 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDataSource
         
         var databaseReference: FIRDatabaseReference = FIRDatabase.database().reference().child("members").child(Logics.sharedInstance.familyID).child(Logics.sharedInstance.memberID)
         
-     //   let member = Member(profileImage: <#T##String#>, firstName: <#T##String#>, lastName: <#T##String#>, gender: <#T##String#>, birthday: <#T##String#>, uniqueID: <#T##String#>)
-        
-       // databaseReference.setValue(member.serialize(), withCompletionBlock: {error, FIRDatabaseReference in
+     
             self.dismiss(animated: true, completion: nil)
         
     }
@@ -161,7 +159,9 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDataSource
     
     // return YES to allow editing to stop and to resign first responder status. NO to disallow the editing session to end
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        return true
+        
+       return self.view.endEditing(true)
+    
     }
     
     
@@ -189,7 +189,8 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDataSource
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        bloodType.text = bloodTypeSelections[row]
+   
+        selectedBloodType = bloodTypeSelections[row]
         self.view.endEditing(true)
 
     }
