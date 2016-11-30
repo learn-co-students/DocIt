@@ -13,13 +13,15 @@ import Firebase
 
 class EditMemberSettingsViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
 
-    var sharedInstance = Logics.sharedInstance
+    let store = Logics.sharedInstance
     
     @IBOutlet weak var firstNameTextField: UITextField!
     
     @IBOutlet weak var lastNameTextField: UITextField!
     
-    // gender selection
+    var selectedGender = "Female"
+    
+    // gender selection 
     @IBOutlet weak var genderSegmentControl: UISegmentedControl!
     
     //datePickerView
@@ -31,20 +33,15 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDataSource
     var bloodTypeSelections : [String] = ["A", "B", "AB", "O"]
     
     
-    // Send to Firebase
-    
-    var database : FIRDatabaseReference = FIRDatabase.database().reference()
-    var postRef: FIRDatabaseReference = FIRDatabase.database().reference().child("members")
-    let storage: FIRStorage = FIRStorage.storage()
-   
+
     
     // Member Profile Properties
-    var firstName: String?
-    var lastName: String?
-    var gender: String?
-    var DOB: String?
-    var bloodTypeSelected: String?
-    
+//    var firstName: String?
+//    var lastName: String?
+//    var gender: String?
+//    var DOB: String?
+//    var bloodTypeSelected: String?
+//    
     
 
     
@@ -89,6 +86,31 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDataSource
     }
     
     
+    @IBAction func saveButton(_ sender: Any) {
+        // Send to Firebase
+        
+        guard let name = firstNameTextField.text, name != "",
+            let firstName = firstNameTextField.text, firstName != "",
+            let lastName = lastNameTextField.text, lastName != "",
+            let dob = dobTextField.text, dob != "",
+            let bloodType = bloodType.text, bloodType != ""
+            else { return }
+        
+        let gender = selectedGender
+        var database : FIRDatabaseReference = FIRDatabase.database().reference()
+        let databaseMembersRef: FIRDatabaseReference = FIRDatabase.database().reference().child("members").child(Logics.sharedInstance.memberID).childByAutoId()
+       // let uniqueID = databaseMembersRef.key
+    
+        let member = EditMembers(firstNameEdit: firstName, lastNameEdit: lastName, genderEdit: gender, dobEdit: dob, bloodTypeEdit: bloodType)
+        databaseMembersRef.setValue(member.serialize(), withCompletionBlock: { error, dataRef in
+            self.dismiss(animated: true, completion: nil)
+            
+        })
+    }
+    
+    @IBAction func cancelButton(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
     
     
     

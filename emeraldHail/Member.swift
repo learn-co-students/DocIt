@@ -58,7 +58,39 @@ struct Member {
         
     }
     
+    
+ 
+    
+    
     func serialize() -> [String : Any] {
         return  ["firstName" : firstName, "lastName": lastName, "gender" : gender, "dob" : birthday, "uniqueID" : uniqueID, "profileImage" : profileImage]
     }
+}
+
+struct EditMembers {
+    
+    var firstNameEdit = String()
+    var lastNameEdit = String()
+    var genderEdit = String()
+    var dobEdit = String()
+    var bloodTypeEdit = String()
+    
+
+    
+    
+    // Edit Member Profile
+    init(firstNameEdit: String, lastNameEdit: String, genderEdit: String, dobEdit: String, bloodTypeEdit: String) {
+        self.firstNameEdit = firstNameEdit
+       self.lastNameEdit = lastNameEdit
+       self.genderEdit = genderEdit
+       self.dobEdit = dobEdit
+        self.bloodTypeEdit = bloodTypeEdit
+    }
+    
+    func serialize() -> [String: Any] {
+        return ["firstName" : firstNameEdit, "lastName": lastNameEdit, "gender" : genderEdit, "dob" : dobEdit, "bloodType" : bloodTypeEdit]
+    }
+    
+    
+    
 }
