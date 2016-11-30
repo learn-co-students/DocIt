@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -22,19 +23,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lsi-SA-pBH">
-                    <rect key="frame" x="80" y="27" width="283" height="96"/>
+                    <rect key="frame" x="80" y="0.0" width="283" height="123"/>
                     <string key="text">Climb leg rub face on everything give attitude nap all day for under the bed. Chase mice attack feet but rub face on everything hopped up on goofballs.</string>
                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="POST TITLE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IWj-8E-h15">
-                    <rect key="frame" x="80" y="12" width="69" height="15"/>
-                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
-                    <color key="textColor" red="0.12549019610000001" green="0.75294117650000003" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FEBRUARY 21, 2016" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Byj-5p-vaE">
-                    <rect key="frame" x="247" y="123" width="116" height="15"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FEB 21, 2016" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Byj-5p-vaE">
+                    <rect key="frame" x="175.5" y="123" width="187.5" height="15"/>
                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                     <color key="textColor" red="0.12549019610000001" green="0.75294117650000003" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -46,13 +41,13 @@
                 <constraint firstAttribute="trailing" secondItem="Lsi-SA-pBH" secondAttribute="trailing" constant="12" id="Dgw-tV-q3J"/>
                 <constraint firstAttribute="trailing" secondItem="Byj-5p-vaE" secondAttribute="trailing" constant="12" id="Jdo-SY-iWc"/>
                 <constraint firstItem="Lsi-SA-pBH" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="80" id="Mvr-mT-KZF"/>
-                <constraint firstItem="IWj-8E-h15" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="80" id="QOk-zo-k3A"/>
-                <constraint firstItem="IWj-8E-h15" firstAttribute="bottom" secondItem="Lsi-SA-pBH" secondAttribute="top" id="YYf-sM-EJb"/>
-                <constraint firstItem="IWj-8E-h15" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="12" id="gAs-HH-7B7"/>
+                <constraint firstItem="Byj-5p-vaE" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.5" id="dZe-zU-9ds"/>
                 <constraint firstItem="Byj-5p-vaE" firstAttribute="top" secondItem="Lsi-SA-pBH" secondAttribute="bottom" id="olD-vX-cGp"/>
+                <constraint firstItem="Lsi-SA-pBH" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="zjR-AN-XTh"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="35.5" y="54"/>
         </view>
     </objects>
 </document>

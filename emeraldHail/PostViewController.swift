@@ -37,7 +37,6 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         print("👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽\nInside the PostVC\nfamilyID: \(store.familyID)\nmemberID: \(store.memberID)\neventID: \(store.eventID)\n👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽")
         
-        
         postTableView.delegate = self
         postTableView.dataSource = self
         postTableView.separatorStyle = .none
@@ -47,11 +46,10 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         postTableView.rowHeight = UITableViewAutomaticDimension
         postTableView.estimatedRowHeight = 140
         
-        
         fetchPosts()
+        print(posts.count)
         postTableView.reloadData()
-//        hideKeyboardWhenTappedAround()
-//        showPictureAndName()
+        fetchMemberDetails()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -96,27 +94,31 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             print("We have a note post.")
             
-            let cell = tableView.dequeueReusableCell(withIdentifier: "NoteCell", for: indexPath) as! NoteCell
+            let noteCell = tableView.dequeueReusableCell(withIdentifier: "NoteCell", for: indexPath) as! NoteCell
             
-            cell.noteView.note = note
+            noteCell.noteView.note = note
             
-            return cell
-
+            return noteCell
+            
             
         case .temp(let temp):
             
             print("We have a temp post.")
             
-            let cell = tableView.dequeueReusableCell(withIdentifier: "TempCell", for: indexPath) as! TempCell
+            let tempCell = tableView.dequeueReusableCell(withIdentifier: "TempCell", for: indexPath) as! TempCell
             
-            cell.tempView.temp = temp
+            tempCell.tempView.temp = temp
             
-            return cell
+            return tempCell
             
         default:
             fatalError("Can't create cell.")
         }
         
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 125
     }
     
     // MARK: Functions
@@ -125,44 +127,39 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         postsRef.child(store.eventID).observe(.value, with: { [unowned self] snapshot in
             
             DispatchQueue.main.async {
-                
-                // Guard to protect and empty dictionary (no posts yet)
-                
+                // Guard to protect an empty dictionary (no posts yet)
                 guard let value = snapshot.value as? [String : Any] else { return }
                 
-                
-                let allKeys = value.keys
-                
-                // Clear posts
+                // Clear the posts array so we do not append duplicates to the array. This is inefficient, so we should probably think about a better way to do this. Sets instead of Array?
                 self.posts = []
                 
+                // allKeys is all of the keys returned from the snapshot
+                let allKeys = value.keys
+                
+                // We look through all the keys
                 for key in allKeys {
                     
+                    // Inside each key os another dictionary from Firebase
                     let dictionary = value[key] as! [String : Any]
                     
+                    // Create an instance of a Post with the dictionary
                     let post = Post(dictionary: dictionary)
                     
+                    // Append to the posts array
                     self.posts.append(post)
                 }
-                self.postTableView.reloadData()
                 
+                // Debugging stuff
+                print(self.posts.count)
+                dump(self.posts)
+                
+                self.postTableView.reloadData()
             }
         })
         
-        
     }
     
-    func hideKeyboardWhenTappedAround() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(PostViewController.dismissKeyboardView))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-    
-    func dismissKeyboardView() {
-        view.endEditing(true)
-    }
-    
-    func showPictureAndName() {
+    func fetchMemberDetails() {
         let member = FIRDatabase.database().reference().child("members").child(store.familyID).child(store.memberID)
         
         member.observe(.value, with: { snapshot in
@@ -174,8 +171,6 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.profileImageView.sd_setImage(with: profileImgUrl)
             self.profileImageView.setRounded()
             self.profileImageView.contentMode = .scaleAspectFill
-            self.profileImageView.layer.borderColor = UIColor.gray.cgColor
-            self.profileImageView.layer.borderWidth = 0.5
             self.nameLabel.text = name
         })
     }

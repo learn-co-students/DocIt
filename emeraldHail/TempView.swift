@@ -12,10 +12,12 @@ class TempView: UIView {
 
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var tempLabel: UILabel!
+    @IBOutlet weak var timestampLabel: UILabel!
     
     var temp: Temp! {
         didSet {
-            tempLabel.text = temp.content
+            tempLabel.text = temp.content + "º"
+            timestampLabel.text = temp.timestamp
         }
     }
     
@@ -36,7 +38,7 @@ class TempView: UIView {
     }
     
     func commonInit() {
-        Bundle.main.loadNibNamed("NoteView", owner: self, options: nil)
+        Bundle.main.loadNibNamed("TempView", owner: self, options: nil)
         
         contentView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -57,8 +59,8 @@ class TempView: UIView {
         let circlePath = UIBezierPath(arcCenter: CGPoint(x: offSet, y: contentView.bounds.height/2), radius: CGFloat(circleRadius), startAngle: CGFloat(0), endAngle:CGFloat(M_PI * 2), clockwise: true)
         
         shapeLayer.path = circlePath.cgPath
-        shapeLayer.fillColor = UIColor.black.cgColor
-        shapeLayer.strokeColor = UIColor.black.cgColor
+        shapeLayer.fillColor = Constants.Colors.cinnabar.cgColor
+        shapeLayer.strokeColor = Constants.Colors.cinnabar.cgColor
         shapeLayer.lineWidth = 1.0
         circlePath.stroke()
         
@@ -71,8 +73,8 @@ class TempView: UIView {
         linePath.addLine(to: endPoint)
         
         lineLayer.path = linePath.cgPath
-        lineLayer.fillColor = UIColor.black.cgColor
-        lineLayer.strokeColor = UIColor.black.cgColor
+        lineLayer.fillColor = Constants.Colors.cinnabar.cgColor
+        lineLayer.strokeColor = Constants.Colors.cinnabar.cgColor
         lineLayer.lineWidth = 1.0
         linePath.stroke()
     }

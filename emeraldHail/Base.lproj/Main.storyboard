@@ -839,7 +839,6 @@
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gV2-le-btI" customClass="TempView" customModule="emeraldHail" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="174.5"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </view>
                                             </subviews>
                                             <constraints>
@@ -856,13 +855,14 @@
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xkz-te-VXE">
-                                <rect key="frame" x="38" y="587" width="300" height="50"/>
+                                <rect key="frame" x="285" y="602" width="75" height="50"/>
                                 <color key="backgroundColor" red="0.12549019610000001" green="0.75294117650000003" blue="0.8862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="DKK-lW-zok"/>
+                                    <constraint firstAttribute="width" constant="75" id="amD-ca-rVx"/>
+                                    <constraint firstAttribute="height" constant="50" id="xIf-cL-RFh"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
-                                <state key="normal" title="Add Post">
+                                <state key="normal" title="Add">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -870,7 +870,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="400-cH-6lH">
-                                <rect key="frame" x="38" y="337" width="300" height="50"/>
+                                <rect key="frame" x="285" y="352" width="75" height="50"/>
                                 <color key="backgroundColor" red="0.98039132356643677" green="0.97655218839645386" blue="0.97635632753372192" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="Photo">
@@ -878,10 +878,10 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BSC-26-26h">
-                                <rect key="frame" x="38" y="387" width="300" height="50"/>
+                                <rect key="frame" x="285" y="402" width="75" height="50"/>
                                 <color key="backgroundColor" red="0.98039132360000003" green="0.97655218840000002" blue="0.97635632750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="Pain level">
+                                <state key="normal" title="Pain">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
                                 <connections>
@@ -889,10 +889,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lqt-RP-eNc">
-                                <rect key="frame" x="38" y="437" width="300" height="50"/>
+                                <rect key="frame" x="285" y="452" width="75" height="50"/>
                                 <color key="backgroundColor" red="0.98039132360000003" green="0.97655218840000002" blue="0.97635632750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="Temperature">
+                                <state key="normal" title="Temp">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
                                 <connections>
@@ -900,10 +900,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2mw-Nh-Xz1">
-                                <rect key="frame" x="38" y="487" width="300" height="50"/>
+                                <rect key="frame" x="285" y="502" width="75" height="50"/>
                                 <color key="backgroundColor" red="0.98039132360000003" green="0.97655218840000002" blue="0.97635632750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="Symptoms">
+                                <state key="normal" title="Symp">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
                                 <connections>
@@ -911,7 +911,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ttc-3X-xZr">
-                                <rect key="frame" x="38" y="537" width="300" height="50"/>
+                                <rect key="frame" x="285" y="552" width="75" height="50"/>
                                 <color key="backgroundColor" red="0.98039132360000003" green="0.97655218840000002" blue="0.97635632750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="Note">
@@ -924,33 +924,32 @@
                         </subviews>
                         <color key="backgroundColor" red="0.97647058819999999" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="ttc-3X-xZr" firstAttribute="centerX" secondItem="xkz-te-VXE" secondAttribute="centerX" id="1nk-d8-SkR"/>
                             <constraint firstItem="Lqt-RP-eNc" firstAttribute="centerX" secondItem="2mw-Nh-Xz1" secondAttribute="centerX" id="8r8-o6-3TL"/>
                             <constraint firstItem="Lqt-RP-eNc" firstAttribute="width" secondItem="2mw-Nh-Xz1" secondAttribute="width" id="8sI-7z-ecM"/>
                             <constraint firstItem="2mw-Nh-Xz1" firstAttribute="height" secondItem="ttc-3X-xZr" secondAttribute="height" id="9SQ-ts-UxZ"/>
                             <constraint firstItem="Lqt-RP-eNc" firstAttribute="height" secondItem="2mw-Nh-Xz1" secondAttribute="height" id="9bh-cb-4wE"/>
                             <constraint firstItem="BSC-26-26h" firstAttribute="height" secondItem="Lqt-RP-eNc" secondAttribute="height" id="AT9-HA-3Ua"/>
                             <constraint firstItem="QY9-3s-j0B" firstAttribute="centerY" secondItem="0PA-xm-J8G" secondAttribute="centerY" id="BHo-MT-PIy"/>
-                            <constraint firstItem="ttc-3X-xZr" firstAttribute="height" secondItem="xkz-te-VXE" secondAttribute="height" id="CN4-F6-LHt"/>
-                            <constraint firstItem="xkz-te-VXE" firstAttribute="centerX" secondItem="QY9-3s-j0B" secondAttribute="centerX" id="GZZ-1N-UPU"/>
+                            <constraint firstItem="ttc-3X-xZr" firstAttribute="height" secondItem="xkz-te-VXE" secondAttribute="height" id="Eki-9L-j3I"/>
                             <constraint firstItem="BSC-26-26h" firstAttribute="centerX" secondItem="Lqt-RP-eNc" secondAttribute="centerX" id="Hve-n7-Tao"/>
-                            <constraint firstItem="xkz-te-VXE" firstAttribute="top" secondItem="ttc-3X-xZr" secondAttribute="bottom" id="Mnv-oW-7Ie"/>
+                            <constraint firstItem="xkz-te-VXE" firstAttribute="trailing" secondItem="QY9-3s-j0B" secondAttribute="trailing" constant="-15" id="Jhp-8R-rvW"/>
                             <constraint firstItem="2mw-Nh-Xz1" firstAttribute="top" secondItem="Lqt-RP-eNc" secondAttribute="bottom" id="OAx-D9-rVK"/>
-                            <constraint firstItem="ttc-3X-xZr" firstAttribute="width" secondItem="xkz-te-VXE" secondAttribute="width" id="Qqs-gQ-UEA"/>
                             <constraint firstItem="400-cH-6lH" firstAttribute="height" secondItem="BSC-26-26h" secondAttribute="height" id="RQ3-pl-zmX"/>
                             <constraint firstItem="BSC-26-26h" firstAttribute="width" secondItem="Lqt-RP-eNc" secondAttribute="width" id="RSM-Ik-M8m"/>
                             <constraint firstItem="Lqt-RP-eNc" firstAttribute="top" secondItem="BSC-26-26h" secondAttribute="bottom" id="S4v-Qb-C6s"/>
                             <constraint firstItem="QY9-3s-j0B" firstAttribute="width" secondItem="0PA-xm-J8G" secondAttribute="width" id="Tmc-HV-HTU"/>
                             <constraint firstItem="ttc-3X-xZr" firstAttribute="top" secondItem="2mw-Nh-Xz1" secondAttribute="bottom" id="TwV-wH-zpa"/>
+                            <constraint firstItem="ttc-3X-xZr" firstAttribute="width" secondItem="xkz-te-VXE" secondAttribute="width" id="aaS-Yx-7rD"/>
                             <constraint firstItem="2mw-Nh-Xz1" firstAttribute="centerX" secondItem="ttc-3X-xZr" secondAttribute="centerX" id="amy-9c-DCS"/>
                             <constraint firstItem="400-cH-6lH" firstAttribute="centerX" secondItem="BSC-26-26h" secondAttribute="centerX" id="dJo-Cp-LXG"/>
                             <constraint firstItem="QY9-3s-j0B" firstAttribute="centerX" secondItem="0PA-xm-J8G" secondAttribute="centerX" id="fGI-Kx-167"/>
                             <constraint firstItem="BSC-26-26h" firstAttribute="top" secondItem="400-cH-6lH" secondAttribute="bottom" id="fMr-ge-dFF"/>
-                            <constraint firstItem="xkz-te-VXE" firstAttribute="width" secondItem="QY9-3s-j0B" secondAttribute="width" multiplier="0.8" id="hRW-wP-dAe"/>
-                            <constraint firstItem="xkz-te-VXE" firstAttribute="bottom" secondItem="QY9-3s-j0B" secondAttribute="bottom" constant="-30" id="moQ-Nn-qlU"/>
+                            <constraint firstItem="ttc-3X-xZr" firstAttribute="trailing" secondItem="xkz-te-VXE" secondAttribute="trailing" id="g7F-2z-XWN"/>
                             <constraint firstItem="400-cH-6lH" firstAttribute="width" secondItem="BSC-26-26h" secondAttribute="width" id="s9V-Xe-0uk"/>
+                            <constraint firstItem="xkz-te-VXE" firstAttribute="top" secondItem="ttc-3X-xZr" secondAttribute="bottom" id="su6-n3-JQJ"/>
                             <constraint firstItem="2mw-Nh-Xz1" firstAttribute="width" secondItem="ttc-3X-xZr" secondAttribute="width" id="tli-RT-Pui"/>
                             <constraint firstItem="QY9-3s-j0B" firstAttribute="height" secondItem="0PA-xm-J8G" secondAttribute="height" id="w7y-Tv-QM7"/>
+                            <constraint firstItem="xkz-te-VXE" firstAttribute="bottom" secondItem="QY9-3s-j0B" secondAttribute="bottom" constant="-15" id="wRc-g5-IMv"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Timeline" id="16Y-b3-0Lu"/>
