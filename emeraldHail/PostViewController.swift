@@ -79,21 +79,20 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
 //    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "postCell", for: indexPath) as! PostTableViewCell
-//        let post = posts[indexPath.row]
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "NoteCell", for: indexPath) as! NoteCell
 //        
-//        cell.noteLabel.text = post.note
-//        cell.backgroundColor = UIColor.getRandomColor()
+//        let eachPost = posts[indexPath.row]
+//        
+//        cell.noteView.post = eachPost
 //        
 //        return cell
 //    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "NoteCell", for: indexPath) as! NoteCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PainLevelCell", for: indexPath) as! PainLevelCell
         
         let eachPost = posts[indexPath.row]
         
-        cell.noteView.post = eachPost
+        cell.painLevelView.post = eachPost
         
         return cell
     }
@@ -105,6 +104,11 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
+    }
+    
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 150
     }
     
     // MARK: Functions
@@ -157,11 +161,3 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
 }
 
 
-
-class PostTableViewCell: UITableViewCell {
-    
-    // OUTLETS
-    
-    @IBOutlet weak var noteLabel: UILabel!
-    
-}

@@ -11,24 +11,26 @@ import Firebase
 
 class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
+    let storage = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
+    
+    var selectedPainLevel: PainLevel?
+    
+    
     @IBAction func saveButtonTapped(_ sender: Any) {
         
         addPainLevel()
         
     }
+    
     @IBAction func cancelButtonTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
-
     
-    let storage = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
-    
-    var selectedPainLevel: PainLevel?
- 
     
     @IBOutlet weak var painLevelCollectionView: UICollectionView!
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         self.navigationItem.title = "Pain Level"
         painLevelCollectionView.allowsMultipleSelection = false
@@ -38,7 +40,9 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
     
     // MARK: CollectionView Funcs
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
         return painLevels.count
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -62,34 +66,39 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        
         let cell = collectionView.cellForItem(at: indexPath) as! PainLevelCollectionViewCell
-    
+        
         cell.wasDeselected()
-    
+        
     }
     
     
     func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
+        
         return true
+        
     }
     
     func addPainLevel(){
+        
         let postRef : FIRDatabaseReference = FIRDatabase.database().reference().child("posts")
         
         guard let painLevelDescription = selectedPainLevel?.description else {return}
+        
         let databasePostContentRef = postRef.child(Logics.sharedInstance.eventID).childByAutoId()
-   
+        
         let post = Post(note: painLevelDescription)
+        
         databasePostContentRef.setValue(post.serialize(), withCompletionBlock: {error, FIRDatabaseReference in
             self.dismiss(animated: true, completion: nil)
-        
-        }
-)
+            
+        })
         
     }
     
     func addPainLevelImageToStorage(){
         
     }
-
+    
 }
