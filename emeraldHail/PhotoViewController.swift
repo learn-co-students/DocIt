@@ -2,12 +2,13 @@
 //  PhotoViewController.swift
 //  emeraldHail
 //
-//  Created by Mirim An on 12/1/16.
+//  Created by Luna An on 12/1/16.
 //  Copyright © 2016 Flatiron School. All rights reserved.
 //
 
 import UIKit
 import Firebase
+
 
 class PhotoViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
@@ -15,17 +16,14 @@ class PhotoViewController: UIViewController, UINavigationControllerDelegate, UII
     var selectedImage: UIImage?
     
     @IBOutlet weak var imageView: UIImageView!
-    
     @IBOutlet weak var uploadImageButton: UIButton!
+    
     @IBAction func uploadImageButtonTapped(_ sender: Any) {
         uploadImageURLtoFirebaseDatabaseAndStorage()
     }
  
-    @IBOutlet weak var uploadFromLibraryButton: UIButton!
-    @IBAction func uploadFromLibraryButtonTapped(_ sender: Any) {
-        
-        
-    }
+    @IBOutlet weak var selectFromLibraryButton: UIButton!
+   
     @IBAction func cancelButtonTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
@@ -33,32 +31,16 @@ class PhotoViewController: UIViewController, UINavigationControllerDelegate, UII
     override func viewDidLoad() {
         super.viewDidLoad()
         imageView.isUserInteractionEnabled = true
-        addGestureRecognizer(imageview: imageView)
+        selectFromLibraryButton.isUserInteractionEnabled = true
+        addGestureRecognizer(imageview: imageView, button: selectFromLibraryButton)
         
     }
     
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        
-         var selectedImageFromPicker: UIImage?
-         
-         if let editedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
-         selectedImageFromPicker = editedImage
-         } else if let originalImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-         selectedImageFromPicker = originalImage
-         }
-         if let selectedImage = selectedImageFromPicker {
-         imageView.image = selectedImage
-         }
-         
-         dismiss(animated: true, completion: nil)
-    }
-
-    
-    
-    func addGestureRecognizer(imageview: UIImageView){
+    func addGestureRecognizer(imageview: UIImageView, button: UIButton){
         
         imageview.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleCameraImage)))
+        button.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleLibraryImage)))
     }
     
     func handleCameraImage(){
@@ -73,9 +55,44 @@ class PhotoViewController: UIViewController, UINavigationControllerDelegate, UII
             print("The device has no camera")
         }
         
-        picker.allowsEditing = false
+        picker.allowsEditing = true
         
     }
+    
+    func handleLibraryImage(){
+        
+        let picker = UIImagePickerController()
+        
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            picker.delegate = self
+            picker.sourceType = .photoLibrary
+            present(picker, animated: true, completion: nil)
+            
+        } else {
+            print("No photo library")
+        }
+        
+        picker.allowsEditing = true
+        
+    }
+
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        var selectedImageFromPicker: UIImage?
+        
+        if let editedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
+            selectedImageFromPicker = editedImage
+        } else if let originalImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            selectedImageFromPicker = originalImage
+        }
+        if let selectedImage = selectedImageFromPicker {
+            imageView.image = selectedImage
+        }
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
     
     func uploadImageURLtoFirebaseDatabaseAndStorage(){
         
