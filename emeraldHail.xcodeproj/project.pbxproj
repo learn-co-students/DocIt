@@ -260,9 +260,8 @@
 		DD58FAE41DDBBB1D004A7A22 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				DDDE22401DF0A776006B234C /* Photo */,
 				AA9FFBBB1DDA667500847FCF /* Main.storyboard */,
-				DD3BD9821DEB7C2800311BE9 /* PainLevelCollectionViewCell.swift */,
+				DDDE22401DF0A776006B234C /* Photo */,
 				DDB88F851DEE1CC0002E9668 /* PainLevel */,
 				AAE7D3EB1DEF6CBE00C59107 /* Symptom */,
 				AA9892B31DEA31D60092F3A8 /* Note */,
@@ -297,6 +296,7 @@
 		DDB88F851DEE1CC0002E9668 /* PainLevel */ = {
 			isa = PBXGroup;
 			children = (
+				DD3BD9821DEB7C2800311BE9 /* PainLevelCollectionViewCell.swift */,
 				DDB88F861DEE1CD5002E9668 /* PainLevelView.xib */,
 				DDB88F881DEE1CEC002E9668 /* PainLevelView.swift */,
 				DDB88F8A1DEE1E03002E9668 /* PainLevelCell.swift */,
