@@ -65,8 +65,8 @@ class PhotoView: UIView {
         let circlePath = UIBezierPath(arcCenter: CGPoint(x: offSet, y: contentView.bounds.height/2), radius: CGFloat(circleRadius), startAngle: CGFloat(0), endAngle:CGFloat(M_PI * 2), clockwise: true)
         
         shapeLayer.path = circlePath.cgPath
-        shapeLayer.fillColor = Constants.Colors.pinkLove.cgColor
-        shapeLayer.strokeColor = Constants.Colors.pinkLove.cgColor
+        shapeLayer.fillColor = Constants.Colors.purpleCake.cgColor
+        shapeLayer.strokeColor = Constants.Colors.purpleCake.cgColor
         shapeLayer.lineWidth = 1.0
         circlePath.stroke()
         
@@ -79,8 +79,8 @@ class PhotoView: UIView {
         linePath.addLine(to: endPoint)
         
         lineLayer.path = linePath.cgPath
-        lineLayer.fillColor = Constants.Colors.pinkLove.cgColor
-        lineLayer.strokeColor = Constants.Colors.pinkLove.cgColor
+        lineLayer.fillColor = Constants.Colors.purpleCake.cgColor
+        lineLayer.strokeColor = Constants.Colors.purpleCake.cgColor
         lineLayer.lineWidth = 1.0
         linePath.stroke()
     }
