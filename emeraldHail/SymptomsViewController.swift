@@ -17,8 +17,7 @@ class SymptomsViewController: UIViewController, UITableViewDelegate, UITableView
     let store = Logics.sharedInstance
     var database: FIRDatabaseReference = FIRDatabase.database().reference()
     
-    
-    var symptoms: [Symptom] = [.cough, .fever, .headache, .runnyNose]
+    var symptoms: [Symptom] = [.bloodInStool, .chestPain, .constipation, .cough, .diarrhea, .dizziness, .earache, .eyeDiscomfort, .fever, .footPain, .footSwelling, .headache, .heartpalpitations, .itchiness, .kneePain, .legSwelling, .musclePain, .nasalcongestion, .nausea, .neckPain, .runnyNose, .shortBreath, .shoulderPain, .skinRashes, .soreThroat, .urinaryProblems, .vision, .vomiting, .wheezing]
     
     var selectedSymtoms: [String : String] = [:]
     
@@ -78,7 +77,8 @@ extension UIViewController {
     func getTimestamp() -> String {
         let currentDate = Date()
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM d, yyyy"
+//        dateFormatter.dateFormat = "MMM d, yyyy"
+        dateFormatter.dateFormat = "yyyyMMddHHmmss"
         return dateFormatter.string(from: currentDate).uppercased()
     }
     

@@ -427,8 +427,8 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ELe-kx-gNA">
-                                <rect key="frame" x="127" y="142.5" width="121" height="30"/>
-                                <state key="normal" title="Activate Touch ID"/>
+                                <rect key="frame" x="129" y="142.5" width="117" height="30"/>
+                                <state key="normal" title="Activate TouchID"/>
                                 <connections>
                                     <action selector="activateTouchID:" destination="bHr-j8-e7W" eventType="touchUpInside" id="UCx-XG-fcl"/>
                                 </connections>
@@ -1646,8 +1646,8 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wqf-sG-KUf">
-                                <rect key="frame" x="157" y="434.5" width="61" height="30"/>
-                                <state key="normal" title="Touch ID"/>
+                                <rect key="frame" x="159" y="434.5" width="57" height="30"/>
+                                <state key="normal" title="TouchID"/>
                                 <connections>
                                     <action selector="touchId:" destination="Lab-UU-Fjj" eventType="touchUpInside" id="JwW-sE-uiU"/>
                                 </connections>

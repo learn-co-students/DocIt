@@ -32,11 +32,11 @@ class AddNotesViewController: UIViewController {
     @IBAction func addNotes(_ sender: UIButton) {
         
         guard let noteText = addNotesTextField.text, noteText != "" else { return }
-        
+    
         let postsRef = database.child("posts").child(store.eventID).childByAutoId()
         
         let newNote = Note(content: noteText, timestamp: getTimestamp())
-        
+ 
         postsRef.setValue(newNote.serialize(), withCompletionBlock: { error, ref in
             self.dismiss(animated: true, completion: nil)
         })

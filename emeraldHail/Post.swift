@@ -14,13 +14,15 @@ typealias TimeStamp = [AnyHashable : Any]
 
 enum Post {
     
+    // switch on instance of post to make computed property time
+    // reach into the post type and set the time to the timestamp
+    
     case note(Note)
     case temp(Temp)
     case pain(Pain)
     case symp(Symp)
     case noValue
     
-
     init(dictionary: [String : Any]) {
         
         let type = dictionary["postType"] as! String
@@ -51,23 +53,3 @@ enum Post {
     }
 
 }
-//
-//enum PostType: String {
-//    
-//    case note, temp
-//
-//    init(note: String) {
-//        self.note = note
-//    }
-//    
-//    init(snapshot: FIRDataSnapshot) {
-//        let snapshotValue = snapshot.value as! [String : Any]
-//        note = snapshotValue["note"] as! String
-//    }
-//    
-//    func serialize() -> [String: Any] {
-//        return ["note" : note]
-//    }
-//    
-//
-//}

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Firebase
 
 struct Note {
     
@@ -18,10 +19,17 @@ struct Note {
         content = dictionary["content"] as? String ?? "No Content"
         timestamp = dictionary["timestamp"] as? String ?? "No Time"
         
-        
     }
     
     init(content: String, timestamp: String) {
+        print("Creating an instance of Note")
+        
+        self.content = content
+        self.timestamp = timestamp
+        
+    }
+    
+    init(content: String, timestamp: String, firTimestamp: String) {
         print("Creating an instance of Note")
         
         self.content = content
@@ -35,6 +43,7 @@ struct Note {
         return ["content" : content,
                 "timestamp" : timestamp,
                 "postType" : "note"]
+        
     }
     
 }

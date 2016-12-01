@@ -143,14 +143,16 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     // MARK: - Firebase
     func fetchPosts() {
         
-        postsRef.child(store.eventID).queryOrdered(byChild: "timestamp").observe(.value, with: { [unowned self] snapshot in
-    
+//        postsRef.child(store.eventID).queryOrdered(byChild: "timestamp").observe(.value, with: { [unowned self] snapshot in
+        postsRef.child(store.eventID).observe(.value, with: { [unowned self] snapshot in
             print("⚡️⚡️⚡️⚡️⚡️⚡️⚡️⚡️⚡️⚡️")
             dump(snapshot)
             
             DispatchQueue.main.async {
                 // Guard to protect an empty dictionary (no posts yet)
                 guard let value = snapshot.value as? [String : Any] else { return }
+                
+                print("🏀🏀🏀🏀🏀🏀🏀🏀🏀🏀")
                 
                 // Clear the posts array so we do not append duplicates to the array. This is inefficient, so we should probably think about a better way to do this. Sets instead of Array?
                 self.posts = []
@@ -171,9 +173,52 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
                     self.posts.append(post)
                 }
                 
+                
+                
                 // Debugging stuff
-                print(self.posts.count)
+                print("💩💩💩💩💩💩💩💩💩💩")
                 dump(self.posts)
+                
+                
+                let sortedPosts = self.posts.sorted(by: { (postOne, postTwo) -> Bool in
+                    
+                    var postOneTime = ""
+                    var postTwoTime = ""
+                    
+                    switch postOne {
+                    case .note(let note):
+                        postOneTime = note.timestamp
+                    case .pain(let pain):
+                        postOneTime = pain.timestamp
+                    case .symp(let symp):
+                        postOneTime = symp.timestamp
+                    case .temp(let temp):
+                        postOneTime = temp.timestamp
+                    default:
+                        break
+                    }
+                    
+                    switch postTwo {
+                    case .note(let note):
+                        postTwoTime = note.timestamp
+                    case .pain(let pain):
+                        postTwoTime = pain.timestamp
+                    case .symp(let symp):
+                        postTwoTime = symp.timestamp
+                    case .temp(let temp):
+                        postTwoTime = temp.timestamp
+                    default:
+                        break
+                    }
+                    
+                    return postOneTime < postTwoTime
+                    
+                })
+                
+                print("🏀🏀🏀🏀🏀🏀🏀🏀🏀🏀")
+                dump(sortedPosts)
+                
+                self.posts = sortedPosts.reversed()
                 
                 self.postTableView.reloadData()
             }
