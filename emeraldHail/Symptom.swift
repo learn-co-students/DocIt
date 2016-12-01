@@ -11,33 +11,49 @@ import UIKit
 
 enum Symptom: String {
     
-    case bloodInStool = "Blood in stool",
-    chestPain = "Chest pain",
-    constipation = "Constipation",
-    cough = "Cough",
-    diarrhea = "Diarrhea",
-    dizziness = "Dizziness",
-    earache = "Earache",
-    eyeDiscomfort = "Eye discomfort and redness",
-    fever = "Fever",
-    footPain = "Foot pain",
-    footSwelling = "Foot swelling",
+    case cough = "Cough",
     headache = "Headache",
-    heartpalpitations = "Heart palpitations",
-    itchiness = "Itchiness",
-    kneePain = "Knee pain",
-    legSwelling = "Leg swelling",
-    musclePain = "Joint pain or muscle pain",
-    nasalcongestion = "Nasal congestion",
-    nausea = "Nausea",
-    neckPain = "Neck pain",
-    shortBreath = "Shortness of breath",
-    shoulderPain = "Shoulder pain",
-    skinRashes = "Skin rashes",
-    soreThroat = "Sore throat",
-    urinaryProblems = "Urinary problems",
-    vision = "Vision Problems",
-    vomiting = "Vomiting",
-    wheezing = "Wheezing"
-
+    runnyNose = "Runny nose",
+    fever = "Fever"
+    
 }
+
+
+
+
+
+
+
+
+//enum Symptom: String {
+//    
+//    case bloodInStool = "Blood in stool",
+//    chestPain = "Chest pain",
+//    constipation = "Constipation",
+//    cough = "Cough",
+//    diarrhea = "Diarrhea",
+//    dizziness = "Dizziness",
+//    earache = "Earache",
+//    eyeDiscomfort = "Eye discomfort and redness",
+//    fever = "Fever",
+//    footPain = "Foot pain",
+//    footSwelling = "Foot swelling",
+//    headache = "Headache",
+//    heartpalpitations = "Heart palpitations",
+//    itchiness = "Itchiness",
+//    kneePain = "Knee pain",
+//    legSwelling = "Leg swelling",
+//    musclePain = "Joint pain or muscle pain",
+//    nasalcongestion = "Nasal congestion",
+//    nausea = "Nausea",
+//    neckPain = "Neck pain",
+//    shortBreath = "Shortness of breath",
+//    shoulderPain = "Shoulder pain",
+//    skinRashes = "Skin rashes",
+//    soreThroat = "Sore throat",
+//    urinaryProblems = "Urinary problems",
+//    vision = "Vision Problems",
+//    vomiting = "Vomiting",
+//    wheezing = "Wheezing"
+//
+//}

@@ -120,6 +120,16 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             return painCell
             
+        case .symp(let symp):
+            
+            print("We have a symp post.")
+            
+            let sympCell = tableView.dequeueReusableCell(withIdentifier: "SympCell", for: indexPath) as! SymptomCell
+            
+            sympCell.symptomView.symp = symp
+            
+            return sympCell
+            
         default:
             fatalError("Can't create cell.")
         }

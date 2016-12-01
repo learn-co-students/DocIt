@@ -92,17 +92,10 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
         let postRef : FIRDatabaseReference = FIRDatabase.database().reference().child("posts")
         
         guard let painLevelDescription = selectedPainLevel?.description else {return}
-        
-        let currentDate = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM d, yyyy HH:mm:ss a"
-        let timestamp = dateFormatter.string(from: currentDate)
-        
+            
         let databasePostContentRef = postRef.child(store.eventID).childByAutoId()
         
-        // TODO:
-        
-        let newPain = Pain(content: painLevelDescription, timestamp: timestamp)
+        let newPain = Pain(content: painLevelDescription, timestamp: getTimestamp())
         
         databasePostContentRef.setValue(newPain.serialize(), withCompletionBlock: {error, ref in
             self.dismiss(animated: true, completion: nil)

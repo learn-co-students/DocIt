@@ -954,7 +954,7 @@
                                         <rect key="frame" x="0.0" y="528" width="375" height="175"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IDA-b7-ivE" id="HtV-7Y-KVc">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="174"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="175"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zBC-MT-qb4" customClass="PainLevelView" customModule="emeraldHail" customModuleProvider="target">
@@ -970,6 +970,28 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="painLevelView" destination="zBC-MT-qb4" id="uDV-im-VlR"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SympCell" rowHeight="175" id="JR1-fC-61N" customClass="SymptomCell" customModule="emeraldHail" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="703" width="375" height="175"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JR1-fC-61N" id="rmf-8K-2Mf">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="174"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KFJ-CN-C1F" customClass="SymptomView" customModule="emeraldHail" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="175"/>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="KFJ-CN-C1F" secondAttribute="bottom" id="0ed-cd-lPX"/>
+                                                <constraint firstItem="KFJ-CN-C1F" firstAttribute="top" secondItem="rmf-8K-2Mf" secondAttribute="top" id="8iW-95-dny"/>
+                                                <constraint firstItem="KFJ-CN-C1F" firstAttribute="leading" secondItem="rmf-8K-2Mf" secondAttribute="leading" id="FC9-ju-2LW"/>
+                                                <constraint firstAttribute="trailing" secondItem="KFJ-CN-C1F" secondAttribute="trailing" id="fSH-ld-FcX"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="symptomView" destination="KFJ-CN-C1F" id="f6G-2p-cda"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1027,7 +1049,7 @@
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
                                 <connections>
-                                    <segue destination="z5g-W1-3kv" kind="show" id="oOk-0S-tl0"/>
+                                    <segue destination="z5g-W1-3kv" kind="presentation" identifier="showAddSymptoms" id="oOk-0S-tl0"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ttc-3X-xZr">
@@ -1088,10 +1110,10 @@
             </objects>
             <point key="canvasLocation" x="1385" y="771"/>
         </scene>
-        <!--Symptoms-->
+        <!--Add Symptoms-->
         <scene sceneID="nkE-3G-xCR">
             <objects>
-                <viewController title="Symptoms" id="z5g-W1-3kv" customClass="SymptomsViewController" customModule="emeraldHail" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Add Symptoms" id="z5g-W1-3kv" customClass="SymptomsViewController" customModule="emeraldHail" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IZf-Df-DrL"/>
                         <viewControllerLayoutGuide type="bottom" id="vMf-1H-ht2"/>
@@ -1104,7 +1126,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="uH2-9c-3vs">
-                                    <rect key="frame" x="0.0" y="64" width="375" height="132"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="132"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hA2-MZ-clj">
@@ -1624,22 +1646,39 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wqf-sG-KUf">
-                                <rect key="frame" x="157" y="318.5" width="61" height="30"/>
+                                <rect key="frame" x="157" y="434.5" width="61" height="30"/>
                                 <state key="normal" title="Touch ID"/>
                                 <connections>
                                     <action selector="touchId:" destination="Lab-UU-Fjj" eventType="touchUpInside" id="JwW-sE-uiU"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="docit-logo-draft" translatesAutoresizingMaskIntoConstraints="NO" id="bhi-6r-FRg">
+                                <rect key="frame" x="112.5" y="133.5" width="150" height="67"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="NHu-6j-Rj3"/>
+                                    <constraint firstAttribute="height" constant="67" id="WdJ-m5-TS8"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get a pulse on your family's health" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ACu-eV-wVK">
+                                <rect key="frame" x="72" y="212.5" width="231.5" height="18"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.97647058823529409" green="0.97254901960784312" blue="0.97254901960784312" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="EuP-19-Fn3" firstAttribute="top" secondItem="Ikh-9y-kt3" secondAttribute="bottom" multiplier="1.1" id="8Rh-KU-OMJ"/>
                             <constraint firstItem="Ikh-9y-kt3" firstAttribute="centerX" secondItem="hJO-YG-Sjr" secondAttribute="centerX" id="B2q-PJ-Nag"/>
+                            <constraint firstItem="bhi-6r-FRg" firstAttribute="centerY" secondItem="hJO-YG-Sjr" secondAttribute="centerY" multiplier="0.5" id="Cug-UN-lfO"/>
                             <constraint firstItem="wqf-sG-KUf" firstAttribute="centerX" secondItem="hJO-YG-Sjr" secondAttribute="centerX" id="EaO-qc-ONh"/>
+                            <constraint firstItem="8tT-vY-P3V" firstAttribute="top" secondItem="wqf-sG-KUf" secondAttribute="bottom" constant="30" id="KAd-wK-Cfw"/>
                             <constraint firstItem="Ikh-9y-kt3" firstAttribute="top" secondItem="8tT-vY-P3V" secondAttribute="bottom" constant="12" id="Lfi-a8-lRb"/>
-                            <constraint firstItem="wqf-sG-KUf" firstAttribute="centerY" secondItem="hJO-YG-Sjr" secondAttribute="centerY" id="Nl7-mm-5a0"/>
+                            <constraint firstItem="bhi-6r-FRg" firstAttribute="centerX" secondItem="hJO-YG-Sjr" secondAttribute="centerX" id="Qc7-oo-RzV"/>
+                            <constraint firstItem="ACu-eV-wVK" firstAttribute="centerX" secondItem="bhi-6r-FRg" secondAttribute="centerX" id="RTs-gC-W0c"/>
                             <constraint firstItem="8tT-vY-P3V" firstAttribute="centerX" secondItem="Ikh-9y-kt3" secondAttribute="centerX" id="SCb-8y-wny"/>
                             <constraint firstItem="Ikh-9y-kt3" firstAttribute="width" secondItem="hJO-YG-Sjr" secondAttribute="width" multiplier="0.8" id="ced-kt-Apn"/>
+                            <constraint firstItem="ACu-eV-wVK" firstAttribute="top" secondItem="bhi-6r-FRg" secondAttribute="bottom" constant="12" id="dgV-Wa-LAw"/>
                             <constraint firstItem="8tT-vY-P3V" firstAttribute="width" secondItem="Ikh-9y-kt3" secondAttribute="width" id="lOH-nd-bFo"/>
                             <constraint firstItem="8tT-vY-P3V" firstAttribute="height" secondItem="Ikh-9y-kt3" secondAttribute="height" id="sPr-J7-fkK"/>
                         </constraints>
@@ -1653,17 +1692,18 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RuX-TL-eqM" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2097" y="-350"/>
+            <point key="canvasLocation" x="-2098.4000000000001" y="-350.37481259370315"/>
         </scene>
     </scenes>
     <resources>
         <image name="adorablebaby" width="395" height="502"/>
         <image name="blackfam" width="2290" height="1526"/>
+        <image name="docit-logo-draft" width="859" height="387"/>
         <image name="kid_silhouette" width="347" height="347"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="D6a-tn-o54"/>
+        <segue reference="8IQ-kN-dMw"/>
         <segue reference="Ywg-j3-Iij"/>
-        <segue reference="vNq-cI-Dwc"/>
-        <segue reference="ZvI-c8-0Bp"/>
     </inferredMetricsTieBreakers>
 </document>
