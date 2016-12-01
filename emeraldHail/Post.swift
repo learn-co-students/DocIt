@@ -16,8 +16,10 @@ enum Post {
     
     case note(Note)
     case temp(Temp)
+    case pain(Pain)
     case noValue
     
+
     init(dictionary: [String : Any]) {
         
         let type = dictionary["postType"] as! String
@@ -32,6 +34,10 @@ enum Post {
             let temp = Temp(dictionary: dictionary)
             self = .temp(temp)
             
+        case "pain":
+            let pain = Pain(dictionary: dictionary)
+            self = .pain(pain)
+            
         default:
             self = .noValue
             
@@ -40,7 +46,23 @@ enum Post {
     }
 
 }
-
-enum PostType: String {
-    case note, temp
-}
+//
+//enum PostType: String {
+//    
+//    case note, temp
+//
+//    init(note: String) {
+//        self.note = note
+//    }
+//    
+//    init(snapshot: FIRDataSnapshot) {
+//        let snapshotValue = snapshot.value as! [String : Any]
+//        note = snapshotValue["note"] as! String
+//    }
+//    
+//    func serialize() -> [String: Any] {
+//        return ["note" : note]
+//    }
+//    
+//
+//}

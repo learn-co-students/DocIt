@@ -53,7 +53,7 @@ class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         
         let currentDate = Date()
         let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "MMM d, yyyy HH:mm:ss a"
+        dateFormatter.dateFormat = "MMM d, yyyy HH:mm:ss a"
         let timestamp = dateFormatter.string(from: currentDate)
         
         let newTemp = Temp(content: selectedTemp, timestamp: timestamp)
@@ -61,7 +61,6 @@ class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         postsRef.setValue(newTemp.serialize(), withCompletionBlock: { error, ref in
             self.dismiss(animated: true, completion: nil)
         })
-    
         
     }
     
@@ -77,6 +76,7 @@ class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
             temperatureImageVIew.image = UIImage(named: "earTemp")
         case 2:
             temperatureImageVIew.image = UIImage(named: "armpitTemp")
+            
         default: print("Images have failed and something is wrong")
         }
     }
@@ -102,5 +102,3 @@ class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     }
     
 }
-
-

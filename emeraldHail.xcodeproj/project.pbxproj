@@ -12,7 +12,7 @@
 		AA2970FC1DEDDEE70062631D /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2970FB1DEDDEE70062631D /* Note.swift */; };
 		AA2970FE1DEDDF5C0062631D /* Temp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2970FD1DEDDF5C0062631D /* Temp.swift */; };
 		AA2971011DEE05FA0062631D /* FamilyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2971001DEE05FA0062631D /* FamilyManager.swift */; };
-		AA2971071DEE0FCC0062631D /* NewPostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2971061DEE0FCC0062631D /* NewPostTableViewController.swift */; };
+		AA3985131DEFAAF90087F1BA /* Pain.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3985121DEFAAF90087F1BA /* Pain.swift */; };
 		AA57AC531DEE4CDB00DCA9BF /* TempView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA57AC521DEE4CDB00DCA9BF /* TempView.swift */; };
 		AA57AC551DEE4E9A00DCA9BF /* TempCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA57AC541DEE4E9A00DCA9BF /* TempCell.swift */; };
 		AA6E4D211DE7419B00C8FEE3 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6E4D201DE7419B00C8FEE3 /* WelcomeViewController.swift */; };
@@ -23,7 +23,6 @@
 		AA9892B01DEA1EA60092F3A8 /* NoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9892AF1DEA1EA60092F3A8 /* NoteView.swift */; };
 		AA9892B21DEA2B760092F3A8 /* NoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9892B11DEA2B760092F3A8 /* NoteCell.swift */; };
 		AA9FFBB81DDA667500847FCF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9FFBB71DDA667500847FCF /* AppDelegate.swift */; };
-		AA9FFBBA1DDA667500847FCF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9FFBB91DDA667500847FCF /* ViewController.swift */; };
 		AA9FFBBD1DDA667500847FCF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA9FFBBB1DDA667500847FCF /* Main.storyboard */; };
 		AA9FFBC21DDA667500847FCF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA9FFBC01DDA667500847FCF /* LaunchScreen.storyboard */; };
 		AAE7D3ED1DEF6DB300C59107 /* SymptomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE7D3EC1DEF6DB300C59107 /* SymptomCell.swift */; };
@@ -36,6 +35,7 @@
 		B69466641DECCE3000F2E30C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B69466631DECCE3000F2E30C /* Assets.xcassets */; };
 		B69638D21DE602FD00FE7023 /* AddNotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69638D11DE602FD00FE7023 /* AddNotesViewController.swift */; };
 		B6ED5B361DDE4CDB00B56DFD /* TempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6ED5B351DDE4CDB00B56DFD /* TempViewController.swift */; };
+		B6F44C081DEE080000995237 /* EditMemberSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F44C071DEE080000995237 /* EditMemberSettingsViewController.swift */; };
 		BB14EBD71DED43A0004F6D56 /* HealthCore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BB14EBD51DED43A0004F6D56 /* HealthCore.xcdatamodeld */; };
 		BB5CD3321DE6B41800D82BB3 /* SymptomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5CD3311DE6B41800D82BB3 /* SymptomsViewController.swift */; };
 		BB6DEDB51DE61C7D00D8B93A /* FamilySettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6DEDB41DE61C7D00D8B93A /* FamilySettingViewController.swift */; };
@@ -55,6 +55,9 @@
 		DD755E1A1DE3A99F002478D0 /* AddMembersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD755E191DE3A99F002478D0 /* AddMembersViewController.swift */; };
 		DDA93D201DDE412000F0A4D4 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA93D1F1DDE412000F0A4D4 /* Secrets.swift */; };
 		DDA93D221DDE508A00F0A4D4 /* PainLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA93D211DDE508A00F0A4D4 /* PainLevelViewController.swift */; };
+		DDB88F871DEE1CD5002E9668 /* PainLevelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDB88F861DEE1CD5002E9668 /* PainLevelView.xib */; };
+		DDB88F891DEE1CEC002E9668 /* PainLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB88F881DEE1CEC002E9668 /* PainLevelView.swift */; };
+		DDB88F8B1DEE1E03002E9668 /* PainLevelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB88F8A1DEE1E03002E9668 /* PainLevelCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,7 +67,7 @@
 		AA2970FB1DEDDEE70062631D /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		AA2970FD1DEDDF5C0062631D /* Temp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Temp.swift; sourceTree = "<group>"; };
 		AA2971001DEE05FA0062631D /* FamilyManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilyManager.swift; sourceTree = "<group>"; };
-		AA2971061DEE0FCC0062631D /* NewPostTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPostTableViewController.swift; sourceTree = "<group>"; };
+		AA3985121DEFAAF90087F1BA /* Pain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pain.swift; sourceTree = "<group>"; };
 		AA57AC521DEE4CDB00DCA9BF /* TempView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempView.swift; sourceTree = "<group>"; };
 		AA57AC541DEE4E9A00DCA9BF /* TempCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempCell.swift; sourceTree = "<group>"; };
 		AA6E4D201DE7419B00C8FEE3 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
@@ -76,7 +79,6 @@
 		AA9892B11DEA2B760092F3A8 /* NoteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteCell.swift; sourceTree = "<group>"; };
 		AA9FFBB41DDA667500847FCF /* emeraldHail.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = emeraldHail.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA9FFBB71DDA667500847FCF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AA9FFBB91DDA667500847FCF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		AA9FFBBC1DDA667500847FCF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AA9FFBC11DDA667500847FCF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AA9FFBC31DDA667500847FCF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 		B69466631DECCE3000F2E30C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B69638D11DE602FD00FE7023 /* AddNotesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNotesViewController.swift; sourceTree = "<group>"; };
 		B6ED5B351DDE4CDB00B56DFD /* TempViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempViewController.swift; sourceTree = "<group>"; };
+		B6F44C071DEE080000995237 /* EditMemberSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditMemberSettingsViewController.swift; sourceTree = "<group>"; };
 		BB14EBD61DED43A0004F6D56 /* HealthCore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HealthCore.xcdatamodel; sourceTree = "<group>"; };
 		BB5CD3311DE6B41800D82BB3 /* SymptomsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SymptomsViewController.swift; sourceTree = "<group>"; };
 		BB6DEDB41DE61C7D00D8B93A /* FamilySettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilySettingViewController.swift; sourceTree = "<group>"; };
@@ -112,6 +115,9 @@
 		DD755E1B1DE3ACB2002478D0 /* emeraldHail.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = emeraldHail.entitlements; sourceTree = "<group>"; };
 		DDA93D1F1DDE412000F0A4D4 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		DDA93D211DDE508A00F0A4D4 /* PainLevelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PainLevelViewController.swift; sourceTree = "<group>"; };
+		DDB88F861DEE1CD5002E9668 /* PainLevelView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PainLevelView.xib; sourceTree = "<group>"; };
+		DDB88F881DEE1CEC002E9668 /* PainLevelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PainLevelView.swift; sourceTree = "<group>"; };
+		DDB88F8A1DEE1E03002E9668 /* PainLevelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PainLevelCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +139,7 @@
 				AAFE44631DDF60BB00922FB0 /* Post.swift */,
 				AA2970FB1DEDDEE70062631D /* Note.swift */,
 				AA2970FD1DEDDF5C0062631D /* Temp.swift */,
+				AA3985121DEFAAF90087F1BA /* Pain.swift */,
 			);
 			name = Post;
 			sourceTree = "<group>";
@@ -195,12 +202,12 @@
 				BB9286841DDE3D2100D3D9A6 /* DataStore.swift */,
 				AA2970FF1DEDDFC30062631D /* Post */,
 				BBF453B81DE34ACD00E054E9 /* Symptom.swift */,
+				AAFE44651DDF634800922FB0 /* PainLevel.swift */,
 				BBF453BA1DE34AF900E054E9 /* Person.swift */,
 				DDA93D1F1DDE412000F0A4D4 /* Secrets.swift */,
 				AA7ED5911DDF4C6F005F9AB2 /* Family.swift */,
 				AA7ED5931DDF4D16005F9AB2 /* Member.swift */,
 				AAFE445D1DDF5AE900922FB0 /* Event.swift */,
-				AAFE44651DDF634800922FB0 /* PainLevel.swift */,
 				AA2971001DEE05FA0062631D /* FamilyManager.swift */,
 			);
 			name = Model;
@@ -244,6 +251,7 @@
 			children = (
 				AA9FFBBB1DDA667500847FCF /* Main.storyboard */,
 				DD3BD9821DEB7C2800311BE9 /* PainLevelCollectionViewCell.swift */,
+				DDB88F851DEE1CC0002E9668 /* PainLevel */,
 				AAE7D3EB1DEF6CBE00C59107 /* Symptom */,
 				AA9892B31DEA31D60092F3A8 /* Note */,
 				AA57AC561DEE5A4B00DCA9BF /* Temp */,
@@ -254,24 +262,33 @@
 		DD58FAE51DDBBB40004A7A22 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				AA9FFBB91DDA667500847FCF /* ViewController.swift */,
-				DDA93D211DDE508A00F0A4D4 /* PainLevelViewController.swift */,
+				AA6E4D201DE7419B00C8FEE3 /* WelcomeViewController.swift */,
 				BBF4EEB01DDF59D400EBD3FE /* LoginViewController.swift */,
 				BBF4EEB21DDF59DC00EBD3FE /* RegisterViewController.swift */,
-				BBF4EEB61DDF59FF00EBD3FE /* EventViewController.swift */,
-				BBF4EEB81DDF5A0600EBD3FE /* PostViewController.swift */,
-				B6ED5B351DDE4CDB00B56DFD /* TempViewController.swift */,
-				BB6DEDB41DE61C7D00D8B93A /* FamilySettingViewController.swift */,
-				BB5CD3311DE6B41800D82BB3 /* SymptomsViewController.swift */,
-				BB6DEDB61DE61D9400D8B93A /* MemberSettingViewController.swift */,
 				BBF4EEB41DDF59F900EBD3FE /* FamilyViewController.swift */,
+				BB6DEDB41DE61C7D00D8B93A /* FamilySettingViewController.swift */,
+				BBF4EEB61DDF59FF00EBD3FE /* EventViewController.swift */,
+				BB6DEDB61DE61D9400D8B93A /* MemberSettingViewController.swift */,
 				DD755E191DE3A99F002478D0 /* AddMembersViewController.swift */,
+				B6F44C071DEE080000995237 /* EditMemberSettingsViewController.swift */,
+				BBF4EEB81DDF5A0600EBD3FE /* PostViewController.swift */,
 				B69638D11DE602FD00FE7023 /* AddNotesViewController.swift */,
-				AA6E4D201DE7419B00C8FEE3 /* WelcomeViewController.swift */,
+				B6ED5B351DDE4CDB00B56DFD /* TempViewController.swift */,
+				DDA93D211DDE508A00F0A4D4 /* PainLevelViewController.swift */,
+				BB5CD3311DE6B41800D82BB3 /* SymptomsViewController.swift */,
 				AA0C2FE31DE8837700445229 /* HeaderCollectionReusableView.swift */,
-				AA2971061DEE0FCC0062631D /* NewPostTableViewController.swift */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		DDB88F851DEE1CC0002E9668 /* PainLevel */ = {
+			isa = PBXGroup;
+			children = (
+				DDB88F861DEE1CD5002E9668 /* PainLevelView.xib */,
+				DDB88F881DEE1CEC002E9668 /* PainLevelView.swift */,
+				DDB88F8A1DEE1E03002E9668 /* PainLevelCell.swift */,
+			);
+			name = PainLevel;
 			sourceTree = "<group>";
 		};
 		E2732CC3AAAB9CB28A1A3DE8 /* Frameworks */ = {
@@ -356,6 +373,7 @@
 				AA9FFBC21DDA667500847FCF /* LaunchScreen.storyboard in Resources */,
 				BBF453BD1DE34B5100E054E9 /* GoogleService-Info.plist in Resources */,
 				AAFE44681DDF68BE00922FB0 /* SymptomView.xib in Resources */,
+				DDB88F871DEE1CD5002E9668 /* PainLevelView.xib in Resources */,
 				B69466641DECCE3000F2E30C /* Assets.xcassets in Resources */,
 				AAF109341DEE4BA700E6DE26 /* TempView.xib in Resources */,
 				AA9FFBBD1DDA667500847FCF /* Main.storyboard in Resources */,
@@ -420,17 +438,20 @@
 				B6ED5B361DDE4CDB00B56DFD /* TempViewController.swift in Sources */,
 				AAFE44661DDF634800922FB0 /* PainLevel.swift in Sources */,
 				AAE7D3ED1DEF6DB300C59107 /* SymptomCell.swift in Sources */,
+				DDB88F8B1DEE1E03002E9668 /* PainLevelCell.swift in Sources */,
+				B6F44C081DEE080000995237 /* EditMemberSettingsViewController.swift in Sources */,
 				BB6DEDB71DE61D9400D8B93A /* MemberSettingViewController.swift in Sources */,
+				DDB88F891DEE1CEC002E9668 /* PainLevelView.swift in Sources */,
 				AAFE445E1DDF5AE900922FB0 /* Event.swift in Sources */,
 				DD3BD9831DEB7C2800311BE9 /* PainLevelCollectionViewCell.swift in Sources */,
 				BB14EBD71DED43A0004F6D56 /* HealthCore.xcdatamodeld in Sources */,
 				AA6E4D231DE74B1400C8FEE3 /* Constants.swift in Sources */,
-				AA2971071DEE0FCC0062631D /* NewPostTableViewController.swift in Sources */,
 				AAFE44641DDF60BB00922FB0 /* Post.swift in Sources */,
 				AA57AC551DEE4E9A00DCA9BF /* TempCell.swift in Sources */,
 				BBF4EEB31DDF59DC00EBD3FE /* RegisterViewController.swift in Sources */,
 				AA2970FE1DEDDF5C0062631D /* Temp.swift in Sources */,
 				DD755E1A1DE3A99F002478D0 /* AddMembersViewController.swift in Sources */,
+				AA3985131DEFAAF90087F1BA /* Pain.swift in Sources */,
 				BBF4EEB91DDF5A0600EBD3FE /* PostViewController.swift in Sources */,
 				DDA93D221DDE508A00F0A4D4 /* PainLevelViewController.swift in Sources */,
 				AAFE446A1DDF68E600922FB0 /* SymptomView.swift in Sources */,
@@ -442,7 +463,6 @@
 				BBF4EEB71DDF59FF00EBD3FE /* EventViewController.swift in Sources */,
 				DDA93D201DDE412000F0A4D4 /* Secrets.swift in Sources */,
 				AA7ED5921DDF4C6F005F9AB2 /* Family.swift in Sources */,
-				AA9FFBBA1DDA667500847FCF /* ViewController.swift in Sources */,
 				BB6DEDB51DE61C7D00D8B93A /* FamilySettingViewController.swift in Sources */,
 				BBAD950B1DE5182500C385BC /* Logics.swift in Sources */,
 				BBF4EEB11DDF59D400EBD3FE /* LoginViewController.swift in Sources */,

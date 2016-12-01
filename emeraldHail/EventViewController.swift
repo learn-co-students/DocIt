@@ -13,6 +13,8 @@ import SDWebImage
 
 class EventViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    var selectedEvent: String?
+    
     // MARK: Outlets
     @IBOutlet weak var eventsTable: UITableView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -48,9 +50,6 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     // MARK: TableView Methods
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return events.count
@@ -58,6 +57,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath) as! EventTableViewCell
+        
         let event = events[indexPath.row]
         cell.eventName.text = event.name
         cell.eventDate.text = event.startDate.uppercased()
@@ -73,12 +73,18 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+        let databaseEvents = self.database.child("events").child(store.memberID)
+        
         if editingStyle == .delete {
+            
+            // Deleting selected events from Firebase
+            
+            let uniqueEventID = events[indexPath.row].uniqueID
+            databaseEvents.child(uniqueEventID).removeValue()
+            
             events.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
-            // TODO: Actually remove the item on Firebase, not just in the table view
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
     }
     
@@ -143,11 +149,20 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             guard let name = nameTextField?.text, name != "", let date = dateTextField?.text, date != "" else { return }
             
             let databaseEventsRef = self.database.child("events").child(self.store.memberID).childByAutoId()
+            
             let uniqueID = databaseEventsRef.key
+            
+            self.selectedEvent = uniqueID
+            
             let event = Event(name: name, startDate: date, uniqueID: uniqueID)
             
             databaseEventsRef.setValue(event.serialize(), withCompletionBlock: { error, dataRef in
+                
+                
+                
+                
             })
+            
             print("Save Button Pressed")
         })
         let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
@@ -167,6 +182,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         present(alertController, animated: true, completion: nil)
     }
+    
 }
 
 extension UIColor {

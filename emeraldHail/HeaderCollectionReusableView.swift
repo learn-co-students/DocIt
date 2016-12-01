@@ -17,10 +17,7 @@ class HeaderCollectionReusableView: UICollectionReusableView {
     @IBOutlet weak var profileImage: UIImageView!
     
     let store = Logics.sharedInstance
-    
-    
-    
-    
+
     func configDatabaseFamily() {
         let membersRef = FIRDatabase.database().reference().child("family")
         let familyRef = membersRef.child(store.familyID)
@@ -32,14 +29,7 @@ class HeaderCollectionReusableView: UICollectionReusableView {
             
             let profileImgUrl = URL(string: imageString)
             self.profileImage.sd_setImage(with: profileImgUrl)
-            
-            //            self.familyNameLabel.text = name["name"] as? String
-        
         })
     }
 
-    
-    
-    
-    
 }

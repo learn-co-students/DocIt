@@ -12,15 +12,15 @@ import SDWebImage
 
 class AddMembersViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
+    var selectedGender = "Female"
+    
     // OUTLETS
     
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var firstNameField: UITextField!
     @IBOutlet weak var lastNameField: UITextField!
     @IBOutlet weak var birthdayField: UITextField!
-    @IBOutlet weak var genderField: UITextField!
-
-
+   
     // LOADS
     
     override func viewDidLoad() {
@@ -36,8 +36,9 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
             let lastName = lastNameField.text, lastName != "",
             let dob = birthdayField.text, dob != ""
             else { return }
-        let gender = Logics.sharedInstance.genderType
         
+        let gender = selectedGender
+        print("GENDERRRRRRRR is \(gender)")
         let database: FIRDatabaseReference = FIRDatabase.database().reference()
         let databaseMembersRef = database.child("members").child((FIRAuth.auth()?.currentUser?.uid)!).childByAutoId()
         let uniqueID = databaseMembersRef.key
@@ -49,12 +50,12 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
         if let uploadData = UIImagePNGRepresentation(self.profileImageView.image!) {
             storageImageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
                 if error != nil {
-                    print (error?.localizedDescription)
+                    print (error?.localizedDescription ?? "Error in saveButtonTapped in AddMembersViewController.swift" )
                     return
                 }
                 if let profileImageUrl = metadata?.downloadURL()?.absoluteString {
                     let member = Member(profileImage: profileImageUrl, firstName: name, lastName: lastName, gender: gender, birthday: dob, uniqueID: uniqueID)
-        
+                
                     
                     databaseMembersRef.setValue(member.serialize(), withCompletionBlock: { error, dataRef in
                         self.dismiss(animated: true, completion: nil)
@@ -71,9 +72,11 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
         
         switch sender.selectedSegmentIndex {
         case 0:
-            Logics.sharedInstance.genderType = Gender.female.rawValue
+            selectedGender = Gender.female.rawValue
+            Logics.sharedInstance.genderType = selectedGender
         case 1:
-            Logics.sharedInstance.genderType = Gender.male.rawValue
+            selectedGender = Gender.male.rawValue
+            Logics.sharedInstance.genderType = selectedGender
         default:
             break
         }
@@ -153,6 +156,8 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
     }
 
 }
+
+// MARK: - Make circle profile pictures
 
 extension UIImageView {
     

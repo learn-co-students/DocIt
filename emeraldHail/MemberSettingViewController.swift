@@ -13,6 +13,8 @@ import SDWebImage
 
 class MemberSettingViewController: UIViewController {
 
+    
+    
     // OUTLETS
     
     @IBOutlet weak var profileImageView: UIImageView!
@@ -33,8 +35,13 @@ class MemberSettingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         showPicture()
+        displayMemberProfileEdits()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        displayMemberProfileEdits()
+    }
+    
    // ACTIONS 
     
     @IBAction func cancel(_ sender: UIButton) {
@@ -50,6 +57,36 @@ class MemberSettingViewController: UIViewController {
     override var prefersStatusBarHidden : Bool {
         return true
     }
+    
+    
+    // Mark: blood type is not recorded
+    func displayMemberProfileEdits() {
+        let member = FIRDatabase.database().reference().child("members").child(store.familyID).child(store.memberID)
+        
+        member.observe(.value, with: { (snapshot) in
+          //  print(snapshot.value)
+            
+            let value = snapshot.value as! [String : Any]
+            let firstName = value["firstName"] as! String
+            let lastName = value["lastName"] as! String
+            let gender = value["gender"] as! String
+            let bloodType = value["bloodType"] as! String
+            let birthday = value["birthday"] as! String
+            
+            
+            self.nameLabel.text = firstName
+            self.firstName.text = firstName
+            self.lastName.text = lastName
+            self.gender.text = gender
+            self.dob.text = birthday
+            self.bloodType.text = bloodType
+            
+            
+            
+        })
+    }
+    
+    
     
     func showPicture() {
         

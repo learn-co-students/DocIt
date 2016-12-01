@@ -12,6 +12,9 @@ import FirebaseDatabase
 
 class PostViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    var deletedPostRef: FIRDatabaseReference?
+    
+    // MARK: Outlets
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var postTableView: UITableView!
@@ -96,8 +99,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
             noteCell.noteView.note = note
             
             return noteCell
-            
-            
+        
         case .temp(let temp):
             
             print("We have a temp post.")
@@ -107,6 +109,16 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
             tempCell.tempView.temp = temp
             
             return tempCell
+            
+        case .pain(let pain):
+            
+            print("We have a pain post.")
+            
+            let painCell = tableView.dequeueReusableCell(withIdentifier: "PainCell", for: indexPath) as! PainLevelCell
+            
+            painCell.painLevelView.pain = pain
+            
+            return painCell
             
         default:
             fatalError("Can't create cell.")
@@ -122,7 +134,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     func fetchPosts() {
         
         postsRef.child(store.eventID).queryOrdered(byChild: "timestamp").observe(.value, with: { [unowned self] snapshot in
-            
+    
             print("⚡️⚡️⚡️⚡️⚡️⚡️⚡️⚡️⚡️⚡️")
             dump(snapshot)
             

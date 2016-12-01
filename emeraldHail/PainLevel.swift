@@ -8,17 +8,6 @@
 
 import Foundation
 
-var noPain: PainLevel = .noPain
-var mild:PainLevel = .mild
-var moderate:PainLevel = .moderate
-var severe: PainLevel = .severe
-var verySevere: PainLevel = .verySevere
-var excruciating: PainLevel = .excruciating
-
-var painLevels: [PainLevel] = [
-    noPain, mild, moderate, severe, verySevere, excruciating
-    ]
-
 enum PainLevel: Int {
     
     case noPain = 0
