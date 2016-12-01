@@ -8,9 +8,12 @@
 
 import UIKit
 import Firebase
+import GoogleSignIn
 
-class LoginViewController: UIViewController {
-    
+
+
+class LoginViewController: UIViewController, GIDSignInUIDelegate {
+  
     let store = Logics.sharedInstance
     
     // MARK: Outlets
@@ -25,10 +28,14 @@ class LoginViewController: UIViewController {
         
         setupViews()
         hideKeyboardWhenTappedAround()
+        
+        GIDSignIn.sharedInstance().uiDelegate = self
+      
     }
     
     override func viewWillAppear(_ animated: Bool) {
         setupViews()
+         // GIDSignIn.sharedInstance().signIn()
     }
     
     // TODO: Discuss if we should we be hiding the status bar in the entire app?
@@ -75,6 +82,16 @@ class LoginViewController: UIViewController {
         }
     }
     
+    
+    @IBAction func pressedGoogleSignIn(_ sender: Any) {
+            GIDSignIn.sharedInstance().signIn()
+    
+    }
+    
+
+    
+    
+    
     // MARK: Functions
     func setupViews() {
         // Make the email field become the first repsonder and show keyboard when this vc loads
@@ -106,6 +123,24 @@ class LoginViewController: UIViewController {
     func dismissKeyboardView() {
         view.endEditing(true)
     }
+    
+    
+// Mark: Google Login Delegate Function needed to work. 
+    func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!,
+                withError error: NSError!) {
+        if (error == nil) {
+            // Perform any operations on signed in user here.
+            // ...
+        } else {
+            print("\(error.localizedDescription)")
+        }
+    }
+    
+    
+
+ 
+    
+    
 
     // TODO: Need to prevent users from being able to press the login button multiple times
     func login() {
@@ -124,5 +159,9 @@ class LoginViewController: UIViewController {
             self.performSegue(withIdentifier: "showFamily", sender: nil)
         }
     }
+    
+    
+    
+    
     
 }

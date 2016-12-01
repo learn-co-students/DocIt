@@ -174,6 +174,8 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         let familyRef = membersRef.child(store.familyID)
         
         familyRef.observe(.value, with: { snapshot in
+            
+            
             var dic = snapshot.value as! [String : Any]
             
             guard let familyName = dic["name"] else { return }
