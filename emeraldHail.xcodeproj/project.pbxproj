@@ -58,6 +58,11 @@
 		DDB88F871DEE1CD5002E9668 /* PainLevelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDB88F861DEE1CD5002E9668 /* PainLevelView.xib */; };
 		DDB88F891DEE1CEC002E9668 /* PainLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB88F881DEE1CEC002E9668 /* PainLevelView.swift */; };
 		DDB88F8B1DEE1E03002E9668 /* PainLevelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB88F8A1DEE1E03002E9668 /* PainLevelCell.swift */; };
+		DDDE22421DF0A85D006B234C /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDE22411DF0A85D006B234C /* PhotoViewController.swift */; };
+		DDDE22441DF0B811006B234C /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDE22431DF0B811006B234C /* Photo.swift */; };
+		DDDE22461DF0C479006B234C /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDE22451DF0C479006B234C /* PhotoView.swift */; };
+		DDDE22481DF0C486006B234C /* PhotoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDDE22471DF0C486006B234C /* PhotoView.xib */; };
+		DDDE224A1DF0C4A5006B234C /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDE22491DF0C4A5006B234C /* PhotoCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -118,6 +123,11 @@
 		DDB88F861DEE1CD5002E9668 /* PainLevelView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PainLevelView.xib; sourceTree = "<group>"; };
 		DDB88F881DEE1CEC002E9668 /* PainLevelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PainLevelView.swift; sourceTree = "<group>"; };
 		DDB88F8A1DEE1E03002E9668 /* PainLevelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PainLevelCell.swift; sourceTree = "<group>"; };
+		DDDE22411DF0A85D006B234C /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
+		DDDE22431DF0B811006B234C /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		DDDE22451DF0C479006B234C /* PhotoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
+		DDDE22471DF0C486006B234C /* PhotoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoView.xib; sourceTree = "<group>"; };
+		DDDE22491DF0C4A5006B234C /* PhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +150,7 @@
 				AA2970FB1DEDDEE70062631D /* Note.swift */,
 				AA2970FD1DEDDF5C0062631D /* Temp.swift */,
 				AA3985121DEFAAF90087F1BA /* Pain.swift */,
+				DDDE22431DF0B811006B234C /* Photo.swift */,
 			);
 			name = Post;
 			sourceTree = "<group>";
@@ -249,6 +260,7 @@
 		DD58FAE41DDBBB1D004A7A22 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				DDDE22401DF0A776006B234C /* Photo */,
 				AA9FFBBB1DDA667500847FCF /* Main.storyboard */,
 				DD3BD9821DEB7C2800311BE9 /* PainLevelCollectionViewCell.swift */,
 				DDB88F851DEE1CC0002E9668 /* PainLevel */,
@@ -277,6 +289,7 @@
 				DDA93D211DDE508A00F0A4D4 /* PainLevelViewController.swift */,
 				BB5CD3311DE6B41800D82BB3 /* SymptomsViewController.swift */,
 				AA0C2FE31DE8837700445229 /* HeaderCollectionReusableView.swift */,
+				DDDE22411DF0A85D006B234C /* PhotoViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -289,6 +302,16 @@
 				DDB88F8A1DEE1E03002E9668 /* PainLevelCell.swift */,
 			);
 			name = PainLevel;
+			sourceTree = "<group>";
+		};
+		DDDE22401DF0A776006B234C /* Photo */ = {
+			isa = PBXGroup;
+			children = (
+				DDDE22471DF0C486006B234C /* PhotoView.xib */,
+				DDDE22451DF0C479006B234C /* PhotoView.swift */,
+				DDDE22491DF0C4A5006B234C /* PhotoCell.swift */,
+			);
+			name = Photo;
 			sourceTree = "<group>";
 		};
 		E2732CC3AAAB9CB28A1A3DE8 /* Frameworks */ = {
@@ -335,7 +358,7 @@
 				TargetAttributes = {
 					AA9FFBB31DDA667500847FCF = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = N2MERYPM36;
+						DevelopmentTeam = B5EG3G83GE;
 						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -374,6 +397,7 @@
 				BBF453BD1DE34B5100E054E9 /* GoogleService-Info.plist in Resources */,
 				AAFE44681DDF68BE00922FB0 /* SymptomView.xib in Resources */,
 				DDB88F871DEE1CD5002E9668 /* PainLevelView.xib in Resources */,
+				DDDE22481DF0C486006B234C /* PhotoView.xib in Resources */,
 				B69466641DECCE3000F2E30C /* Assets.xcassets in Resources */,
 				AAF109341DEE4BA700E6DE26 /* TempView.xib in Resources */,
 				AA9FFBBD1DDA667500847FCF /* Main.storyboard in Resources */,
@@ -436,6 +460,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6ED5B361DDE4CDB00B56DFD /* TempViewController.swift in Sources */,
+				DDDE224A1DF0C4A5006B234C /* PhotoCell.swift in Sources */,
 				AAFE44661DDF634800922FB0 /* PainLevel.swift in Sources */,
 				AAE7D3ED1DEF6DB300C59107 /* SymptomCell.swift in Sources */,
 				DDB88F8B1DEE1E03002E9668 /* PainLevelCell.swift in Sources */,
@@ -446,6 +471,7 @@
 				DD3BD9831DEB7C2800311BE9 /* PainLevelCollectionViewCell.swift in Sources */,
 				BB14EBD71DED43A0004F6D56 /* HealthCore.xcdatamodeld in Sources */,
 				AA6E4D231DE74B1400C8FEE3 /* Constants.swift in Sources */,
+				DDDE22421DF0A85D006B234C /* PhotoViewController.swift in Sources */,
 				AAFE44641DDF60BB00922FB0 /* Post.swift in Sources */,
 				AA57AC551DEE4E9A00DCA9BF /* TempCell.swift in Sources */,
 				BBF4EEB31DDF59DC00EBD3FE /* RegisterViewController.swift in Sources */,
@@ -459,7 +485,9 @@
 				AA6E4D211DE7419B00C8FEE3 /* WelcomeViewController.swift in Sources */,
 				AA9892B01DEA1EA60092F3A8 /* NoteView.swift in Sources */,
 				BBF453BB1DE34AF900E054E9 /* Person.swift in Sources */,
+				DDDE22441DF0B811006B234C /* Photo.swift in Sources */,
 				AA2971011DEE05FA0062631D /* FamilyManager.swift in Sources */,
+				DDDE22461DF0C479006B234C /* PhotoView.swift in Sources */,
 				BBF4EEB71DDF59FF00EBD3FE /* EventViewController.swift in Sources */,
 				DDA93D201DDE412000F0A4D4 /* Secrets.swift in Sources */,
 				AA7ED5921DDF4C6F005F9AB2 /* Family.swift in Sources */,
@@ -599,7 +627,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = emeraldHail/emeraldHail.entitlements;
-				DEVELOPMENT_TEAM = N2MERYPM36;
+				DEVELOPMENT_TEAM = B5EG3G83GE;
 				INFOPLIST_FILE = emeraldHail/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -618,7 +646,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = emeraldHail/emeraldHail.entitlements;
-				DEVELOPMENT_TEAM = N2MERYPM36;
+				DEVELOPMENT_TEAM = B5EG3G83GE;
 				INFOPLIST_FILE = emeraldHail/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

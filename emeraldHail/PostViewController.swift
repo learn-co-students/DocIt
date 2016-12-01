@@ -120,6 +120,16 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             return painCell
             
+        case .photo(let photo):
+            
+            print("We have a photo post")
+            
+            let photoCell = tableView.dequeueReusableCell(withIdentifier: "PhotoCell", for: indexPath) as! PhotoCell
+            
+            photoCell.PhotoView.photo = photo
+            
+            return photoCell
+            
         default:
             fatalError("Can't create cell.")
         }

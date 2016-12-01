@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Lab-UU-Fjj">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Lab-UU-Fjj">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -366,6 +366,7 @@
                         <outlet property="firstNameField" destination="H7m-8o-HX2" id="i43-CY-rfs"/>
                         <outlet property="lastNameField" destination="oEA-Hz-mSg" id="sg1-QN-CzN"/>
                         <outlet property="profileImageView" destination="lYU-hc-HMC" id="DcY-Mu-grA"/>
+                        <outlet property="saveButton" destination="7Io-NH-AVo" id="wWs-we-RLn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ic4-r6-4ur" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -954,7 +955,7 @@
                                         <rect key="frame" x="0.0" y="528" width="375" height="175"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IDA-b7-ivE" id="HtV-7Y-KVc">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="174"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="175"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zBC-MT-qb4" customClass="PainLevelView" customModule="emeraldHail" customModuleProvider="target">
@@ -970,6 +971,28 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="painLevelView" destination="zBC-MT-qb4" id="uDV-im-VlR"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PhotoCell" rowHeight="175" id="8lS-zT-w3D" customClass="PhotoCell" customModule="emeraldHail" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="703" width="375" height="175"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8lS-zT-w3D" id="U6o-8X-N5u">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="174"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MIA-er-Vrf" customClass="PhotoView" customModule="emeraldHail" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="175"/>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="MIA-er-Vrf" secondAttribute="trailing" id="Wg8-wP-lao"/>
+                                                <constraint firstAttribute="bottom" secondItem="MIA-er-Vrf" secondAttribute="bottom" id="ntN-O0-0Vk"/>
+                                                <constraint firstItem="MIA-er-Vrf" firstAttribute="leading" secondItem="U6o-8X-N5u" secondAttribute="leading" id="oTm-uK-rAE"/>
+                                                <constraint firstItem="MIA-er-Vrf" firstAttribute="top" secondItem="U6o-8X-N5u" secondAttribute="top" id="yhL-gN-9p4"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="PhotoView" destination="MIA-er-Vrf" id="CqW-4C-hne"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -996,6 +1019,9 @@
                                 <state key="normal" title="Photo">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
+                                <connections>
+                                    <segue destination="mBc-90-eAt" kind="presentation" id="xFA-6J-YAN"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BSC-26-26h">
                                 <rect key="frame" x="285" y="402" width="75" height="50"/>
@@ -1175,7 +1201,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yiu-ZG-DWm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1782" y="1603"/>
+            <point key="canvasLocation" x="1500" y="1603"/>
         </scene>
         <!--Pain Level View Controller-->
         <scene sceneID="gnp-st-bTw">
@@ -1283,7 +1309,93 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VVS-7b-fRD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2486" y="1603"/>
+            <point key="canvasLocation" x="2335" y="1603"/>
+        </scene>
+        <!--Photo View Controller-->
+        <scene sceneID="dqB-Mx-NQU">
+            <objects>
+                <viewController id="mBc-90-eAt" customClass="PhotoViewController" customModule="emeraldHail" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Pow-9f-jDj"/>
+                        <viewControllerLayoutGuide type="bottom" id="O8k-np-zDf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="QhE-aG-iWg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="addImageIcon" translatesAutoresizingMaskIntoConstraints="NO" id="td5-m5-oig">
+                                <rect key="frame" x="62" y="80" width="245" height="245"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="761-I5-Gss">
+                                <rect key="frame" x="16" y="396" width="343" height="30"/>
+                                <color key="backgroundColor" red="0.28237730700000002" green="0.68787196510000004" blue="0.8862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="g01-V2-R5m"/>
+                                </constraints>
+                                <state key="normal" title="Upload Image">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="uploadImageButtonTapped:" destination="mBc-90-eAt" eventType="touchUpInside" id="BQi-ug-oDC"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gci-xt-8cv">
+                                <rect key="frame" x="16" y="572" width="343" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="2OO-6J-qlz"/>
+                                </constraints>
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="cancelButtonTapped:" destination="mBc-90-eAt" eventType="touchUpInside" id="sEV-bp-u72"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dYN-5x-9nj">
+                                <rect key="frame" x="16" y="516" width="343" height="30"/>
+                                <color key="backgroundColor" red="0.12549019610000001" green="0.75294117650000003" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="EXo-7u-q7x"/>
+                                </constraints>
+                                <state key="normal" title="Upload from Photo Library ">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="uploadFromLibraryButtonTapped:" destination="mBc-90-eAt" eventType="touchUpInside" id="NAY-6s-Ndo"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Or" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bze-vN-WFx">
+                                <rect key="frame" x="16" y="462" width="343" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="761-I5-Gss" firstAttribute="leading" secondItem="dYN-5x-9nj" secondAttribute="leading" id="3J4-k7-rRB"/>
+                            <constraint firstItem="td5-m5-oig" firstAttribute="leading" secondItem="QhE-aG-iWg" secondAttribute="leadingMargin" constant="46" id="6dk-pL-cUT"/>
+                            <constraint firstItem="td5-m5-oig" firstAttribute="top" secondItem="Pow-9f-jDj" secondAttribute="bottom" constant="60" id="CqQ-Nq-fq8"/>
+                            <constraint firstItem="dYN-5x-9nj" firstAttribute="leading" secondItem="gci-xt-8cv" secondAttribute="leading" id="FhZ-fT-5yt"/>
+                            <constraint firstItem="761-I5-Gss" firstAttribute="top" secondItem="td5-m5-oig" secondAttribute="bottom" constant="71" id="Hpy-Ge-ZOG"/>
+                            <constraint firstItem="761-I5-Gss" firstAttribute="leading" secondItem="QhE-aG-iWg" secondAttribute="leadingMargin" id="Msx-MT-bNc"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="td5-m5-oig" secondAttribute="trailing" constant="52" id="QPQ-8k-hcB"/>
+                            <constraint firstItem="gci-xt-8cv" firstAttribute="top" secondItem="dYN-5x-9nj" secondAttribute="bottom" constant="17" id="TUk-jj-vaW"/>
+                            <constraint firstItem="761-I5-Gss" firstAttribute="trailing" secondItem="dYN-5x-9nj" secondAttribute="trailing" id="aZt-Ra-Azd"/>
+                            <constraint firstItem="761-I5-Gss" firstAttribute="trailing" secondItem="QhE-aG-iWg" secondAttribute="trailingMargin" id="cnt-le-WWq"/>
+                            <constraint firstItem="dYN-5x-9nj" firstAttribute="top" secondItem="761-I5-Gss" secondAttribute="bottom" constant="18" id="eKy-Bd-kTs"/>
+                            <constraint firstItem="O8k-np-zDf" firstAttribute="top" secondItem="gci-xt-8cv" secondAttribute="bottom" constant="146" id="ilr-qo-Svu"/>
+                            <constraint firstItem="dYN-5x-9nj" firstAttribute="trailing" secondItem="gci-xt-8cv" secondAttribute="trailing" id="jTT-ga-gW2"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="td5-m5-oig" id="U4o-a2-sxE"/>
+                        <outlet property="uploadFromLibraryButton" destination="dYN-5x-9nj" id="Vk9-A6-DGy"/>
+                        <outlet property="uploadImageButton" destination="761-I5-Gss" id="PsV-4o-9C8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="An1-rY-LvZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3157.5999999999999" y="1602.5487256371816"/>
         </scene>
         <!--Note-->
         <scene sceneID="VHJ-My-v70">
@@ -1358,7 +1470,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5tf-uz-2dn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="271" y="1603"/>
+            <point key="canvasLocation" x="-156" y="1603"/>
         </scene>
         <!--Temp View Controller-->
         <scene sceneID="mPV-Hu-Nz6">
@@ -1445,7 +1557,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hAy-Ib-wLq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1039" y="1603"/>
+            <point key="canvasLocation" x="676" y="1603"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="C6O-hX-yer">
@@ -1657,6 +1769,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="addImageIcon" width="256" height="256"/>
         <image name="adorablebaby" width="395" height="502"/>
         <image name="blackfam" width="2290" height="1526"/>
         <image name="kid_silhouette" width="347" height="347"/>

@@ -17,6 +17,7 @@ enum Post {
     case note(Note)
     case temp(Temp)
     case pain(Pain)
+    case photo(Photo)
     case noValue
     
 
@@ -37,6 +38,10 @@ enum Post {
         case "pain":
             let pain = Pain(dictionary: dictionary)
             self = .pain(pain)
+            
+        case "photo":
+            let photo = Photo(dictionary: dictionary)
+            self = .photo(photo)
             
         default:
             self = .noValue
