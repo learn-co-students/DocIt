@@ -30,7 +30,8 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         hideKeyboardWhenTappedAround()
         
         GIDSignIn.sharedInstance().uiDelegate = self
-      
+      //  GIDSignIn.sharedInstance().delegate = self
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

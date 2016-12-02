@@ -32,6 +32,7 @@
 		AAFE44661DDF634800922FB0 /* PainLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFE44651DDF634800922FB0 /* PainLevel.swift */; };
 		AAFE44681DDF68BE00922FB0 /* SymptomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAFE44671DDF68BE00922FB0 /* SymptomView.xib */; };
 		AAFE446A1DDF68E600922FB0 /* SymptomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFE44691DDF68E600922FB0 /* SymptomView.swift */; };
+		B674039C1DF1CC2E00172ACD /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B674039B1DF1CC2E00172ACD /* AppController.swift */; };
 		B69466641DECCE3000F2E30C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B69466631DECCE3000F2E30C /* Assets.xcassets */; };
 		B69638D21DE602FD00FE7023 /* AddNotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69638D11DE602FD00FE7023 /* AddNotesViewController.swift */; };
 		B6ED5B361DDE4CDB00B56DFD /* TempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6ED5B351DDE4CDB00B56DFD /* TempViewController.swift */; };
@@ -89,6 +90,7 @@
 		AAFE44651DDF634800922FB0 /* PainLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PainLevel.swift; sourceTree = "<group>"; };
 		AAFE44671DDF68BE00922FB0 /* SymptomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SymptomView.xib; sourceTree = "<group>"; };
 		AAFE44691DDF68E600922FB0 /* SymptomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SymptomView.swift; sourceTree = "<group>"; };
+		B674039B1DF1CC2E00172ACD /* AppController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppController.swift; sourceTree = "<group>"; };
 		B69466631DECCE3000F2E30C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B69638D11DE602FD00FE7023 /* AddNotesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNotesViewController.swift; sourceTree = "<group>"; };
 		B6ED5B351DDE4CDB00B56DFD /* TempViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempViewController.swift; sourceTree = "<group>"; };
@@ -262,6 +264,7 @@
 		DD58FAE51DDBBB40004A7A22 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B674039B1DF1CC2E00172ACD /* AppController.swift */,
 				AA6E4D201DE7419B00C8FEE3 /* WelcomeViewController.swift */,
 				BBF4EEB01DDF59D400EBD3FE /* LoginViewController.swift */,
 				BBF4EEB21DDF59DC00EBD3FE /* RegisterViewController.swift */,
@@ -476,6 +479,7 @@
 				BBF453B91DE34ACD00E054E9 /* Symptom.swift in Sources */,
 				AA57AC531DEE4CDB00DCA9BF /* TempView.swift in Sources */,
 				AA9892B21DEA2B760092F3A8 /* NoteCell.swift in Sources */,
+				B674039C1DF1CC2E00172ACD /* AppController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
