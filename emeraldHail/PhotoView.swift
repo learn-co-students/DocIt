@@ -16,7 +16,7 @@ class PhotoView: UIView {
     
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var timestampLabel: UILabel!
-
+    
     var photo: Photo! {
         didSet {
             

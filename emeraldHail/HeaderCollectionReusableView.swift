@@ -12,12 +12,12 @@ import FirebaseDatabase
 import SDWebImage
 
 class HeaderCollectionReusableView: UICollectionReusableView {
-
+    
     @IBOutlet weak var familyNameLabel: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
     
     let store = Logics.sharedInstance
-
+    
     func configDatabaseFamily() {
         let membersRef = FIRDatabase.database().reference().child("family")
         let familyRef = membersRef.child(store.familyID)
@@ -31,5 +31,5 @@ class HeaderCollectionReusableView: UICollectionReusableView {
             self.profileImage.sd_setImage(with: profileImgUrl)
         })
     }
-
+    
 }

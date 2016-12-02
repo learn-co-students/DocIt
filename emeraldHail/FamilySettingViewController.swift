@@ -80,7 +80,7 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
     }
     
     func changeFamilyCoverPic(photo: UIImage, handler: @escaping (Bool) -> Void) {
-
+        
         let database = FIRDatabase.database().reference()
         let familyDatabase = database.child("family").child(store.familyID)
         let storageRef = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
@@ -164,5 +164,5 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
             print("error")
         }
     }
-
+    
 }

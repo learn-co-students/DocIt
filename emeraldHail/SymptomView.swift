@@ -28,14 +28,11 @@ class SymptomView: UIView {
                 print(value)
                 
                 symptoms.append(value)
-            
+                
             }
             
             symptomLabel.text = symptoms.joined(separator: ", ")
             symptoms.removeAll()
-            
-            print("🏓🏓🏓🏓🏓🏓🏓🏓🏓🏓")
-            print(symp.naturalTime)
             
             timestampLabel.text = symp.naturalTime
             
@@ -99,5 +96,5 @@ class SymptomView: UIView {
         lineLayer.lineWidth = 1.0
         linePath.stroke()
     }
-
+    
 }

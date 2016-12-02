@@ -22,7 +22,7 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var firstNameField: UITextField!
     @IBOutlet weak var lastNameField: UITextField!
     @IBOutlet weak var birthdayField: UITextField!
-   
+    
     // LOADS
     
     override func viewDidLoad() {
@@ -65,14 +65,14 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
                 }
                 if let profileImageUrl = metadata?.downloadURL()?.absoluteString {
                     let member = Member(profileImage: profileImageUrl, firstName: name, lastName: lastName, gender: gender, birthday: dob, uniqueID: uniqueID)
-                
+                    
                     
                     databaseMembersRef.setValue(member.serialize(), withCompletionBlock: { error, dataRef in
                         self.dismiss(animated: true, completion: nil)
-                    
+                        
                     })
                 }
-            
+                
             })
         }
         
@@ -112,8 +112,8 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
     func dismissKeyboardView() {
         view.endEditing(true)
     }
-
-
+    
+    
     func addProfileSettings() {
         addGestureRecognizer(imageView: profileImageView)
         profileImageView.isUserInteractionEnabled = true
@@ -141,7 +141,7 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
         picker.sourceType = .photoLibrary
         picker.allowsEditing = true
         
-        self.present(picker, animated: true, completion: nil) 
+        self.present(picker, animated: true, completion: nil)
         
     }
     
@@ -165,7 +165,7 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
         print("picked canceled")
         dismiss(animated: true, completion: nil)
     }
-
+    
 }
 
 // MARK: - Make circle profile pictures

@@ -13,11 +13,11 @@ class PainLevelView: UIView {
     @IBOutlet var contentView: UIView!
     
     @IBOutlet weak var painLevelLabel: UILabel!
-
+    
     @IBOutlet weak var timestampLabel: UILabel!
     
-//    @IBOutlet var contentView: UIView!
-//    @IBOutlet weak var noteLabel: UILabel!
+    //    @IBOutlet var contentView: UIView!
+    //    @IBOutlet weak var noteLabel: UILabel!
     
     var pain: Pain! {
         didSet {

@@ -58,7 +58,7 @@ extension Event: Hashable {
     var hashValue: Int {
         return uniqueID.hash
     }
-
+    
     static func ==(lhs: Event, rhs: Event) -> Bool {
         return lhs.uniqueID == rhs.uniqueID
     }

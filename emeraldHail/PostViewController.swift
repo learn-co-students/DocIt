@@ -92,56 +92,42 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         switch eachPost {
             
         case .note(let note):
-            
             print("We have a note post.")
             
             let noteCell = tableView.dequeueReusableCell(withIdentifier: "NoteCell", for: indexPath) as! NoteCell
-            
             noteCell.noteView.note = note
-            
             return noteCell
-        
-        case .temp(let temp):
             
+        case .temp(let temp):
             print("We have a temp post.")
             
             let tempCell = tableView.dequeueReusableCell(withIdentifier: "TempCell", for: indexPath) as! TempCell
-            
             tempCell.tempView.temp = temp
-            
             return tempCell
             
         case .pain(let pain):
-            
             print("We have a pain post.")
             
             let painCell = tableView.dequeueReusableCell(withIdentifier: "PainCell", for: indexPath) as! PainLevelCell
-            
             painCell.painLevelView.pain = pain
-            
             return painCell
             
         case .symp(let symp):
-            
             print("We have a symp post.")
             
             let sympCell = tableView.dequeueReusableCell(withIdentifier: "SympCell", for: indexPath) as! SymptomCell
-            
             sympCell.symptomView.symp = symp
-            
             return sympCell
-        case .photo(let photo):
             
+        case .photo(let photo):
             print("We have a photo post")
             
             let photoCell = tableView.dequeueReusableCell(withIdentifier: "PhotoCell", for: indexPath) as! PhotoCell
-            
             photoCell.PhotoView.photo = photo
-            
             return photoCell
             
         default:
-            fatalError("Can't create cell.")
+            fatalError("Can't create cell. Invalid post type found from the snapshot.")
         }
         
     }
@@ -153,8 +139,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         
         let databasePosts = self.database.child("posts").child(store.eventID)
-    
-       
+        
         if editingStyle == .delete {
             
             // Deleting post data from Firebase using UniquePostID
@@ -163,22 +148,19 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
             dump("DISCRIPTION ISSSSSS \(uniquePostID)")
             databasePosts.child(uniquePostID).removeValue()
             
-            // Deleting posts from tableviews 
+            // Deleting posts from tableviews
             
             posts.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
-        }
-    
-    
+    }
     
     // MARK: - Firebase
     func fetchPosts() {
         
-//        postsRef.child(store.eventID).queryOrdered(byChild: "timestamp").observe(.value, with: { [unowned self] snapshot in
         postsRef.child(store.eventID).observe(.value, with: { [unowned self] snapshot in
-//            print("⚡️⚡️⚡️⚡️⚡️⚡️⚡️⚡️⚡️⚡️")
-//            dump(snapshot)
+            //            print("⚡️⚡️⚡️⚡️⚡️⚡️⚡️⚡️⚡️⚡️")
+            //            dump(snapshot)
             
             DispatchQueue.main.async {
                 // Guard to protect an empty dictionary (no posts yet)
@@ -186,8 +168,8 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
                 
                 print("🏀🏀🏀🏀🏀🏀🏀🏀🏀🏀")
                 
-                // Clear the posts array so we do not append duplicates to the array. This is inefficient, so we should probably think about a better way to do this. Sets instead of Array?
-                self.posts = []
+                // TODO: Clear the posts array so we do not append duplicates to the array. This is inefficient, so we should probably think about a better way to do this. Sets instead of Array?
+                self.posts.removeAll()
                 
                 // allKeys is all of the keys returned from the snapshot
                 let allKeys = value.keys
@@ -208,8 +190,8 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
                 
                 
                 // Debugging stuff
-//                print("💩💩💩💩💩💩💩💩💩💩")
-//                dump(self.posts)
+                //                print("💩💩💩💩💩💩💩💩💩💩")
+                //                dump(self.posts)
                 
                 
                 let sortedPosts = self.posts.sorted(by: { (postOne, postTwo) -> Bool in
@@ -250,9 +232,6 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
                     return postOneTime < postTwoTime
                     
                 })
-                
-//                print("🏀🏀🏀🏀🏀🏀🏀🏀🏀🏀")
-//                dump(sortedPosts)
                 
                 self.posts = sortedPosts.reversed()
                 

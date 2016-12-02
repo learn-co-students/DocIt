@@ -12,7 +12,7 @@ import FirebaseDatabase
 import SDWebImage
 
 class MemberSettingViewController: UIViewController {
-
+    
     
     
     // OUTLETS
@@ -26,23 +26,23 @@ class MemberSettingViewController: UIViewController {
     @IBOutlet weak var bloodType: UILabel!
     @IBOutlet weak var totalPost: UILabel!
     
-    // PROPERTIES 
+    // PROPERTIES
     
     let store = Logics.sharedInstance
     
-    // LOADS 
+    // LOADS
     
     override func viewDidLoad() {
         super.viewDidLoad()
         showPicture()
         displayMemberProfileEdits()
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         displayMemberProfileEdits()
     }
     
-   // ACTIONS 
+    // ACTIONS
     
     @IBAction func cancel(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
@@ -64,7 +64,7 @@ class MemberSettingViewController: UIViewController {
         let member = FIRDatabase.database().reference().child("members").child(store.familyID).child(store.memberID)
         
         member.observe(.value, with: { (snapshot) in
-          //  print(snapshot.value)
+            //  print(snapshot.value)
             
             let value = snapshot.value as! [String : Any]
             let firstName = value["firstName"] as! String

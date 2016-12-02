@@ -32,9 +32,9 @@ class LoginViewController: UIViewController {
     }
     
     // TODO: Discuss if we should we be hiding the status bar in the entire app?
-//    override var prefersStatusBarHidden : Bool {
-//        return true
-//    }
+    //    override var prefersStatusBarHidden : Bool {
+    //        return true
+    //    }
     
     // MARK: Actions
     @IBAction func signIn(_ sender: UIButton) {
@@ -106,7 +106,7 @@ class LoginViewController: UIViewController {
     func dismissKeyboardView() {
         view.endEditing(true)
     }
-
+    
     // TODO: Need to prevent users from being able to press the login button multiple times
     func login() {
         guard let email = emailField.text, let password = passwordField.text else { return }

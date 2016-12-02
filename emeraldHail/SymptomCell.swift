@@ -9,15 +9,15 @@
 import UIKit
 
 class SymptomCell: UITableViewCell {
-
+    
     @IBOutlet weak var symptomView: SymptomView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-
+    
 }

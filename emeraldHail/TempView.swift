@@ -9,7 +9,7 @@
 import UIKit
 
 class TempView: UIView {
-
+    
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var tempLabel: UILabel!
     @IBOutlet weak var timestampLabel: UILabel!
@@ -78,5 +78,5 @@ class TempView: UIView {
         lineLayer.lineWidth = 1.0
         linePath.stroke()
     }
-
+    
 }

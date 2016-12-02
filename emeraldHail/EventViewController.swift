@@ -113,7 +113,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             self.nameLabel.text = name
         })
     }
-
+    
     
     func configDatabase() {
         
