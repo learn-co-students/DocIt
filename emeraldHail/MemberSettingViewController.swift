@@ -54,10 +54,6 @@ class MemberSettingViewController: UIViewController {
     
     // METHODS
     
-    override var prefersStatusBarHidden : Bool {
-        return true
-    }
-    
     
     // Mark: blood type is not recorded
     func displayMemberProfileEdits() {
