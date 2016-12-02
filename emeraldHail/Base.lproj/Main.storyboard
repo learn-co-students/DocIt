@@ -456,10 +456,10 @@
             </objects>
             <point key="canvasLocation" x="1386" y="-651"/>
         </scene>
-        <!--Member Setting View Controller-->
+        <!--Member Settings-->
         <scene sceneID="sWg-fs-NVV">
             <objects>
-                <viewController id="lwm-I4-ndx" customClass="MemberSettingViewController" customModule="emeraldHail" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Member Settings" id="lwm-I4-ndx" customClass="MemberSettingViewController" customModule="emeraldHail" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="I8F-HU-XIU"/>
                         <viewControllerLayoutGuide type="bottom" id="2fv-pX-PvJ"/>
@@ -574,14 +574,8 @@
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JM0-Qu-cEV">
-                                <rect key="frame" x="0.0" y="20" width="375" height="175"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="175"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MEMBER SETTINGS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XzS-TD-Msm">
-                                        <rect key="frame" x="130" y="23" width="115" height="14.5"/>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kid_silhouette" translatesAutoresizingMaskIntoConstraints="NO" id="gad-FM-YUK">
                                         <rect key="frame" x="137.5" y="37.5" width="100" height="100"/>
                                         <constraints>
@@ -601,9 +595,7 @@
                                     <constraint firstItem="gad-FM-YUK" firstAttribute="centerX" secondItem="JM0-Qu-cEV" secondAttribute="centerX" id="FtT-zA-65g"/>
                                     <constraint firstItem="BMb-Td-KYq" firstAttribute="top" secondItem="gad-FM-YUK" secondAttribute="bottom" id="Nrb-9P-voB"/>
                                     <constraint firstItem="gad-FM-YUK" firstAttribute="centerY" secondItem="JM0-Qu-cEV" secondAttribute="centerY" id="TDw-3w-VQI"/>
-                                    <constraint firstItem="XzS-TD-Msm" firstAttribute="centerX" secondItem="JM0-Qu-cEV" secondAttribute="centerX" id="UfG-J2-cU3"/>
                                     <constraint firstItem="BMb-Td-KYq" firstAttribute="width" secondItem="JM0-Qu-cEV" secondAttribute="width" id="V3D-YE-RO8"/>
-                                    <constraint firstItem="gad-FM-YUK" firstAttribute="top" secondItem="XzS-TD-Msm" secondAttribute="bottom" id="g6u-Qr-03w"/>
                                     <constraint firstItem="BMb-Td-KYq" firstAttribute="centerX" secondItem="gad-FM-YUK" secondAttribute="centerX" id="kKU-kg-2q4"/>
                                     <constraint firstAttribute="height" constant="175" id="nFt-1s-RMf"/>
                                 </constraints>
@@ -847,7 +839,7 @@
                             <barButtonItem title="⋯" id="72m-3y-Lja">
                                 <color key="tintColor" red="0.12549019610000001" green="0.75294117650000003" blue="0.8862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
-                                    <segue destination="lwm-I4-ndx" kind="presentation" id="GpI-7E-LVR"/>
+                                    <segue destination="lwm-I4-ndx" kind="show" id="GpI-7E-LVR"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>

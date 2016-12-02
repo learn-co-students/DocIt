@@ -49,10 +49,6 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
     
     // METHODS
     
-    override var prefersStatusBarHidden : Bool {
-        return true
-    }
-    
     func changeFamilyName() {
         let alert = UIAlertController(title: nil, message: "Change your family name", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default, handler: { (action) in
