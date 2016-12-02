@@ -17,7 +17,6 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
     // OUTLETS
     
     @IBOutlet weak var saveButton: UIButton!
-    
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var firstNameField: UITextField!
     @IBOutlet weak var lastNameField: UITextField!
@@ -30,9 +29,6 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
         addProfileSettings()
         hideKeyboardWhenTappedAround()
     }
-    
-    
-    
     
     // ACTIONS
     

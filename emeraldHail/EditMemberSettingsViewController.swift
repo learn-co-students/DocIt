@@ -100,7 +100,7 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDataSource
     
     
     @IBAction func cancelButton(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        
     }
     
     
