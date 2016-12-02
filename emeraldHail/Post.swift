@@ -86,25 +86,3 @@ enum Post {
     
 }
 
-
-
-//
-//enum PostType: String {
-//
-//    case note, temp
-//
-//    init(note: String) {
-//        self.note = note
-//    }
-//
-//    init(snapshot: FIRDataSnapshot) {
-//        let snapshotValue = snapshot.value as! [String : Any]
-//        note = snapshotValue["note"] as! String
-//    }
-//
-//    func serialize() -> [String: Any] {
-//        return ["note" : note]
-//    }
-//
-//
-//}
