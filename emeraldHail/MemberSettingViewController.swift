@@ -13,8 +13,6 @@ import SDWebImage
 
 class MemberSettingViewController: UIViewController {
     
-    
-    
     // OUTLETS
     
     @IBOutlet weak var profileImageView: UIImageView!
