@@ -187,53 +187,11 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
                     self.posts.insert(post, at: 0)
                 }
                 
-                
-                
-                // Debugging stuff
-                //                print("💩💩💩💩💩💩💩💩💩💩")
-                //                dump(self.posts)
-                
-                
                 let sortedPosts = self.posts.sorted(by: { (postOne, postTwo) -> Bool in
-                    
-                    var postOneTime = ""
-                    var postTwoTime = ""
-                    
-                    switch postOne {
-                    case .note(let note):
-                        postOneTime = note.timestamp
-                    case .pain(let pain):
-                        postOneTime = pain.timestamp
-                    case .symp(let symp):
-                        postOneTime = symp.timestamp
-                    case .temp(let temp):
-                        postOneTime = temp.timestamp
-                    case .photo(let photo):
-                        postOneTime = photo.timestamp
-                    default:
-                        break
-                    }
-                    
-                    switch postTwo {
-                    case .note(let note):
-                        postTwoTime = note.timestamp
-                    case .pain(let pain):
-                        postTwoTime = pain.timestamp
-                    case .symp(let symp):
-                        postTwoTime = symp.timestamp
-                    case .temp(let temp):
-                        postTwoTime = temp.timestamp
-                    case .photo(let photo):
-                        postTwoTime = photo.timestamp
-                    default:
-                        break
-                    }
-                    
-                    return postOneTime < postTwoTime
-                    
+                    return postOne.timestamp > postTwo.timestamp
                 })
                 
-                self.posts = sortedPosts.reversed()
+                self.posts = sortedPosts
                 
                 self.postTableView.reloadData()
             }
