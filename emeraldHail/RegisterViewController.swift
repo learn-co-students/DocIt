@@ -14,6 +14,8 @@ class RegisterViewController: UIViewController {
     let store = Logics.sharedInstance
     let family = FIRDatabase.database().reference().child("family")
     
+    @IBOutlet weak var googleContainerView: UIView!
+    
     // MARK: Outlets
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!

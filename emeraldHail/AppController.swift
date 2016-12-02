@@ -9,6 +9,8 @@
 import UIKit
 import Firebase
 
+// N -> L -> S -> A || Notify -> Load -> Switch -> Add 
+
 extension Notification.Name {
     
     static let closeLoginVC = Notification.Name("close-login-view-controller")
@@ -52,6 +54,8 @@ extension AppController {
         NotificationCenter.default.addObserver(self, selector: #selector(switchViewController(withNotification:)), name: .closefamilyVC, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(switchViewController(withNotification:)), name: .closeWelcomeVC, object: nil)
 
+        
+       // NotificationCenter.default.post(name: .closeLoginVC, object: nil)  -> notification of a post.
     }
     
 }
