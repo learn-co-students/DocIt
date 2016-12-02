@@ -21,6 +21,7 @@ enum Post {
     case temp(Temp)
     case pain(Pain)
     case symp(Symp)
+    case photo(Photo)
     case noValue
     
     init(dictionary: [String : Any]) {
@@ -40,11 +41,12 @@ enum Post {
         case "pain":
             let pain = Pain(dictionary: dictionary)
             self = .pain(pain)
-            
         case "symp":
             let symp = Symp(dictionary: dictionary)
             self = .symp(symp)
-            
+        case "photo":
+            let photo = Photo(dictionary: dictionary)
+            self = .photo(photo)
         default:
             self = .noValue
             

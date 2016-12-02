@@ -122,7 +122,7 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDataSource
         
         
         let gender = selectedGender
-        var memberReference : FIRDatabaseReference = FIRDatabase.database().reference().child("members").child(Logics.sharedInstance.familyID).child(Logics.sharedInstance.memberID)
+        let memberReference : FIRDatabaseReference = FIRDatabase.database().reference().child("members").child(Logics.sharedInstance.familyID).child(Logics.sharedInstance.memberID)
         memberReference.updateChildValues(updatedInfo)
         
      

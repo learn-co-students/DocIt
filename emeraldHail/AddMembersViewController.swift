@@ -16,6 +16,8 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
     
     // OUTLETS
     
+    @IBOutlet weak var saveButton: UIButton!
+    
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var firstNameField: UITextField!
     @IBOutlet weak var lastNameField: UITextField!
@@ -29,6 +31,9 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
         hideKeyboardWhenTappedAround()
     }
     
+    
+    
+    
     // ACTIONS
     
     @IBAction func saveButtonTapped(_ sender: Any) {
@@ -36,6 +41,10 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
             let lastName = lastNameField.text, lastName != "",
             let dob = birthdayField.text, dob != ""
             else { return }
+        
+        // Disable the save button after it's pressed once
+        let disableSaveButton = sender as? UIButton
+        disableSaveButton?.isEnabled = false
         
         let gender = selectedGender
         print("GENDERRRRRRRR is \(gender)")
@@ -48,6 +57,7 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
         let storageImageRef = storageRef.child("profileImages").child(imageId)
         
         if let uploadData = UIImagePNGRepresentation(self.profileImageView.image!) {
+            
             storageImageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
                 if error != nil {
                     print (error?.localizedDescription ?? "Error in saveButtonTapped in AddMembersViewController.swift" )
@@ -65,6 +75,7 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
             
             })
         }
+        
         
     }
     
@@ -168,4 +179,5 @@ extension UIImageView {
         self.layer.cornerRadius = radius
         self.layer.masksToBounds = true
     }
+    
 }

@@ -17,6 +17,7 @@ struct Member {
     var firstName: String
     var lastName: String
     var fullName: String {
+        
         return firstName + " " + lastName
     }
     var gender: String

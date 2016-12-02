@@ -129,6 +129,15 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
             sympCell.symptomView.symp = symp
             
             return sympCell
+        case .photo(let photo):
+            
+            print("We have a photo post")
+            
+            let photoCell = tableView.dequeueReusableCell(withIdentifier: "PhotoCell", for: indexPath) as! PhotoCell
+            
+            photoCell.PhotoView.photo = photo
+            
+            return photoCell
             
         default:
             fatalError("Can't create cell.")
@@ -194,6 +203,8 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
                         postOneTime = symp.timestamp
                     case .temp(let temp):
                         postOneTime = temp.timestamp
+                    case .photo(let photo):
+                        postOneTime = photo.timestamp
                     default:
                         break
                     }
@@ -207,6 +218,8 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
                         postTwoTime = symp.timestamp
                     case .temp(let temp):
                         postTwoTime = temp.timestamp
+                    case .photo(let photo):
+                        postTwoTime = photo.timestamp
                     default:
                         break
                     }
