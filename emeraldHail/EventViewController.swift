@@ -128,8 +128,8 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 
                 let newEvent = Event(snapshot: event as! FIRDataSnapshot)
                 
-                newEvents.append(newEvent)
-                
+                newEvents.insert(newEvent, at: 0)
+        
             }
             
             self.events = newEvents
