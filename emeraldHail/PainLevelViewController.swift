@@ -93,10 +93,10 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
 
         guard let painLevelDescription = selectedPainLevel?.description else { return }
 
-        let currentDate = Date()
+        //let currentDate = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM d, yyyy HH:mm:ss a"
-        let timestamp = dateFormatter.string(from: currentDate)
+        //let timestamp = dateFormatter.string(from: currentDate)
 
         // uniqueID added
 

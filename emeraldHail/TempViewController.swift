@@ -51,10 +51,10 @@ class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
 
         let postsRef = database.child("posts").child(store.eventID).childByAutoId()
         let uniqueID = postsRef.key
-        let currentDate = Date()
+        //let currentDate = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM d, yyyy HH:mm:ss a"
-        let timestamp = dateFormatter.string(from: currentDate)
+        //let timestamp = dateFormatter.string(from: currentDate)
 
         let newTemp = Temp(content: selectedTemp, timestamp: getTimestamp(), uniqueID: uniqueID)
 

@@ -35,8 +35,9 @@ class SymptomsViewController: UIViewController, UITableViewDelegate, UITableView
         }
         
         let postsRef = database.child("posts").child(store.eventID).childByAutoId()
+        let uniqueID = postsRef.key
         
-        let newSymp = Symp(content: selectedSymtoms, timestamp: getTimestamp())
+        let newSymp = Symp(content: selectedSymtoms, uniqueID: uniqueID, timestamp: getTimestamp())
         
         postsRef.setValue(newSymp.serialize(), withCompletionBlock: { error, ref in
             self.dismiss(animated: true, completion: nil)
@@ -55,7 +56,7 @@ class SymptomsViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "symptomCell", for: indexPath) as! SymptomViewCell
         
-        cell.symptomLabel.text = symptoms[indexPath.row].rawValue
+        cell.symptomLabel.text = symptoms[indexPath.row].description
         
         return cell
     }
@@ -69,6 +70,7 @@ class SymptomsViewController: UIViewController, UITableViewDelegate, UITableView
         selectedSymtoms.removeValue(forKey: "s\(indexPath.row)")
         print(selectedSymtoms)
     }
+    
     
 }
 

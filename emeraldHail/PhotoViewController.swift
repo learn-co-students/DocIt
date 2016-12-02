@@ -126,10 +126,10 @@ class PhotoViewController: UIViewController, UINavigationControllerDelegate, UII
 
                 if let postImageUrl = metadata?.downloadURL()?.absoluteString {
 
-                    let currentDate = Date()
+                    //let currentDate = Date()
                     let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = "MMM d, yyyy HH:mm:ss a"
-                    let timestamp = dateFormatter.string(from: currentDate)
+                    //let timestamp = dateFormatter.string(from: currentDate)
 
                     let photo = Photo(content: postImageUrl, timestamp: self.getTimestamp(), uniqueID: uniqueID)
 

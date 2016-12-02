@@ -33,9 +33,8 @@ enum Post {
         case .temp(let temp): return temp.uniqueID
         case .pain(let pain): return pain.uniqueID
         case .photo(let photo): return photo.uniqueID
-        //case .symp(let symp): return symp.uniqueID
+        case .symp(let symp): return symp.uniqueID
         case .noValue: return "NO UNIQUE ID"
-        default: return "NO UNIQUE ID"
 
         }
 

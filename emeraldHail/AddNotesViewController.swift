@@ -35,10 +35,10 @@ class AddNotesViewController: UIViewController {
 
         let postsRef = database.child("posts").child(store.eventID).childByAutoId()
         let uniqueID = postsRef.key
-        let currentDate = Date()
+        //let currentDate = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM d, yyyy HH:mm:ss a"
-        let timestamp = dateFormatter.string(from: currentDate)
+        //let timestamp = dateFormatter.string(from: currentDate)
 
         let newNote = Note(content: noteText, timestamp: getTimestamp(), uniqueID: uniqueID)
 

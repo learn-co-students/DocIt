@@ -42,5 +42,42 @@ enum Symptom: String {
     wheezing = "Wheezing"
     
 
+    var description: String {
+        switch self {
+        case .bloodInStool: return "Blood in stool"
+        case .chestPain: return  "Chest pain"
+        case .constipation: return "Constipation"
+        case .cough: return "Cough"
+        case .diarrhea: return "Diarrhea"
+        case .dizziness: return "Dizziness"
+        case .earache: return "Earache"
+        case .eyeDiscomfort: return "Eye discomfort and redness"
+        case .fever : return "Fever"
+        case .footPain : return "Foot pain"
+        case .footSwelling : return "Foot swelling"
+        case .headache : return "Headache"
+        case .heartpalpitations : return "Heart palpitations"
+        case .itchiness : return "Itchiness"
+        case .kneePain : return "Knee pain"
+        case .legSwelling : return "Leg swelling"
+        case .musclePain : return "Joint pain or muscle pain"
+        case .nasalcongestion : return "Nasal congestion"
+        case .nausea : return "Nausea"
+        case .neckPain : return "Neck pain"
+        case .shortBreath : return "Shortness of breath"
+        case .shoulderPain : return "Shoulder pain"
+        case .skinRashes : return "Skin rashes"
+        case .soreThroat : return "Sore throat"
+        case .urinaryProblems : return "Urinary problems"
+        case .runnyNose : return "Runny nose"
+        case .vision : return "Vision Problems"
+        case .vomiting : return "Vomiting"
+        case .wheezing : return "Wheezing"
+
+    
+        }
+        
+    }
+
     
 }
