@@ -22,6 +22,8 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
     let storage = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
     var selectedPainLevel: PainLevel?
     
+    let postRef : FIRDatabaseReference = FIRDatabase.database().reference().child("posts")
+    
     let store = Logics.sharedInstance
     
     @IBAction func saveButtonTapped(_ sender: Any) {
@@ -89,31 +91,25 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
     
     func addPainLevel(){
         
-        let postRef : FIRDatabaseReference = FIRDatabase.database().reference().child("posts")
+        guard let painLevelDescription = selectedPainLevel?.description else { return }
         
-        guard let painLevelDescription = selectedPainLevel?.description else {return}
-        
-        let currentDate = Date()
+        //let currentDate = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM d, yyyy HH:mm:ss a"
-        let timestamp = dateFormatter.string(from: currentDate)
+        //let timestamp = dateFormatter.string(from: currentDate)
+        
+        // uniqueID added
         
         let databasePostContentRef = postRef.child(store.eventID).childByAutoId()
+        let uniqueID = databasePostContentRef.key
         
-        // TODO:
-        
-        let newPain = Pain(content: painLevelDescription, timestamp: timestamp)
+        let newPain = Pain(content: painLevelDescription, timestamp: getTimestamp(), uniqueID: uniqueID)
         
         databasePostContentRef.setValue(newPain.serialize(), withCompletionBlock: {error, ref in
             self.dismiss(animated: true, completion: nil)
             
         })
         
-    }
-    
-    
-    func addPainLevelImageToStorage(){
-        // TODO:
     }
     
 }

@@ -13,7 +13,6 @@ import SDWebImage
 
 class EventViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var selectedEvent: String?
     
     // MARK: Outlets
     @IBOutlet weak var eventsTable: UITableView!
@@ -114,7 +113,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             self.nameLabel.text = name
         })
     }
-
+    
     
     func configDatabase() {
         
@@ -129,8 +128,8 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 
                 let newEvent = Event(snapshot: event as! FIRDataSnapshot)
                 
-                newEvents.append(newEvent)
-                
+                newEvents.insert(newEvent, at: 0)
+        
             }
             
             self.events = newEvents
@@ -151,8 +150,6 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             let databaseEventsRef = self.database.child("events").child(self.store.memberID).childByAutoId()
             
             let uniqueID = databaseEventsRef.key
-            
-            self.selectedEvent = uniqueID
             
             let event = Event(name: name, startDate: date, uniqueID: uniqueID)
             

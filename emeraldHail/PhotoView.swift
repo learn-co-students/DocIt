@@ -1,30 +1,30 @@
 //
-//  PainLevelView.swift
+//  PhotoView.swift
 //  emeraldHail
 //
-//  Created by Mirim An on 11/29/16.
+//  Created by Mirim An on 12/1/16.
 //  Copyright © 2016 Flatiron School. All rights reserved.
 //
 
 import UIKit
+import Firebase
+import SDWebImage
 
-class PainLevelView: UIView {
+class PhotoView: UIView {
     
     @IBOutlet var contentView: UIView!
     
-    @IBOutlet weak var painLevelLabel: UILabel!
-    
+    @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var timestampLabel: UILabel!
     
-    //    @IBOutlet var contentView: UIView!
-    //    @IBOutlet weak var noteLabel: UILabel!
-    
-    var pain: Pain! {
+    var photo: Photo! {
         didSet {
             
-            // TODO:
-            painLevelLabel.text = pain.content
-            timestampLabel.text = pain.naturalTime
+            let photoUrl = URL(string: photo.content)
+            photoImageView.sd_setImage(with: photoUrl)
+            photoImageView.setRounded()
+            timestampLabel.text = photo.naturalTime
+            
         }
     }
     
@@ -45,7 +45,7 @@ class PainLevelView: UIView {
     }
     
     func commonInit() {
-        Bundle.main.loadNibNamed("PainLevelView", owner: self, options: nil)
+        Bundle.main.loadNibNamed("PhotoView", owner: self, options: nil)
         
         contentView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -66,8 +66,8 @@ class PainLevelView: UIView {
         let circlePath = UIBezierPath(arcCenter: CGPoint(x: offSet, y: contentView.bounds.height/2), radius: CGFloat(circleRadius), startAngle: CGFloat(0), endAngle:CGFloat(M_PI * 2), clockwise: true)
         
         shapeLayer.path = circlePath.cgPath
-        shapeLayer.fillColor = Constants.Colors.neonCarrot.cgColor
-        shapeLayer.strokeColor = Constants.Colors.neonCarrot.cgColor
+        shapeLayer.fillColor = Constants.Colors.purpleCake.cgColor
+        shapeLayer.strokeColor = Constants.Colors.purpleCake.cgColor
         shapeLayer.lineWidth = 1.0
         circlePath.stroke()
         
@@ -80,8 +80,8 @@ class PainLevelView: UIView {
         linePath.addLine(to: endPoint)
         
         lineLayer.path = linePath.cgPath
-        lineLayer.fillColor = Constants.Colors.neonCarrot.cgColor
-        lineLayer.strokeColor = Constants.Colors.neonCarrot.cgColor
+        lineLayer.fillColor = Constants.Colors.purpleCake.cgColor
+        lineLayer.strokeColor = Constants.Colors.purpleCake.cgColor
         lineLayer.lineWidth = 1.0
         linePath.stroke()
     }

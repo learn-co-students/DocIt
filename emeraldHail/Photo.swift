@@ -1,15 +1,17 @@
 //
-//  Note.swift
+//  Photo.swift
 //  emeraldHail
 //
-//  Created by Henry Ly on 11/29/16.
+//  Created by Mirim An on 12/1/16.
 //  Copyright © 2016 Flatiron School. All rights reserved.
 //
 
+
 import Foundation
 
-struct Note {
+struct Photo {
 
+    // content is image URL
     var content: String
     var timestamp: String
     var uniqueID: String
@@ -17,15 +19,16 @@ struct Note {
 
     init(dictionary: [String : Any]) {
 
-        content = dictionary["content"] as? String ?? "No Content"
+        content = dictionary["content"] as? String ?? "No Photo URL"
         timestamp = dictionary["timestamp"] as? String ?? "No Time"
-        uniqueID = dictionary["uniqueID"] as? String ?? "No ID"
+        uniqueID = dictionary["uniqueID"] as? String ?? "No UniqueID"
         naturalTime = dictionary["naturalTime"] as? String ?? "No Natural Time"
 
     }
 
     init(content: String, timestamp: String, uniqueID: String) {
-        print("Creating an instance of Note")
+
+        print("Creating an instance of Photo")
 
         self.content = content
         self.timestamp = timestamp
@@ -34,12 +37,12 @@ struct Note {
     }
 
     func serialize() -> [String : Any] {
-        print("Serializing a Note")
+        print("Serializing a Photo")
 
         return ["content" : content,
                 "timestamp" : timestamp,
                 "uniqueID" : uniqueID,
-                "postType" : "note",
+                "postType" : "photo",
                 "naturalTime" : getNaturalTime()]
 
     }
@@ -52,6 +55,5 @@ struct Note {
         return dateFormatter.string(from: currentDate).uppercased()
 
     }
-
 
 }

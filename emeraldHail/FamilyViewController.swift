@@ -21,7 +21,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     var itemSize: CGSize!
     
     @IBOutlet weak var memberProfilesView: UICollectionView!
-
+    
     // MARK: Properties
     let store = Logics.sharedInstance
     let imageSelected = UIImagePickerController()
@@ -124,11 +124,11 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
             headerView.familyNameLabel.text = store.familyName
             
             headerView.profileImage.setRounded()
-
+            
             let familyPictureUrl = URL(string: store.familyPicture)
             
             headerView.profileImage.sd_setImage(with: familyPictureUrl)
-        
+            
             return headerView
         default:
             assert(false, "Unexpected element kind")
@@ -221,7 +221,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
 }
-  
+
 class MemberCollectionViewCell: UICollectionViewCell {
     
     // OUTLETS

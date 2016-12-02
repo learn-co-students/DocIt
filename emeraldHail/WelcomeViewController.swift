@@ -41,7 +41,7 @@ class WelcomeViewController: UIViewController {
     
     
     func setupViews() {
-        view.backgroundColor = Constants.Colors.desertStorm 
+        view.backgroundColor = Constants.Colors.desertStorm
         createAccount.layer.cornerRadius = 2
         signIn.layer.borderWidth = 1
         signIn.layer.borderColor = UIColor.lightGray.cgColor
@@ -51,9 +51,9 @@ class WelcomeViewController: UIViewController {
     func updateFamilyId() {
         
         if !userInfo.isEmpty {
-        Logics.sharedInstance.familyID = userInfo[0].familyID!
+            Logics.sharedInstance.familyID = userInfo[0].familyID!
             touchID.isHidden = false
-        print("========= we are in the welcome view and the family id is \(Logics.sharedInstance.familyID)")
+            print("========= we are in the welcome view and the family id is \(Logics.sharedInstance.familyID)")
         } else {
             touchID.isHidden = true
         }
@@ -86,10 +86,10 @@ class WelcomeViewController: UIViewController {
     }
     
     func navigateToAuthenticatedVC() {
-            self.performSegue(withIdentifier: "showFamily", sender: self)
-//                if let loggedInVC = storyboard?.instantiateViewController(withIdentifier: "loggedInVC") {
-//                self.navigationController?.pushViewController(loggedInVC, animated: true)
-//        }
+        self.performSegue(withIdentifier: "showFamily", sender: self)
+        //                if let loggedInVC = storyboard?.instantiateViewController(withIdentifier: "loggedInVC") {
+        //                self.navigationController?.pushViewController(loggedInVC, animated: true)
+        //        }
         
         
     }
@@ -120,15 +120,15 @@ class WelcomeViewController: UIViewController {
         switch errorCode {
             
         case LAError.appCancel.rawValue:
-        message = "Authentication was canceled by application."
+            message = "Authentication was canceled by application."
             
-        
+            
         case LAError.authenticationFailed.rawValue:
-        message = "Authentication was not successful, because user failed to provide valid credentials."
-        
+            message = "Authentication was not successful, because user failed to provide valid credentials."
+            
         case LAError.userCancel.rawValue:
             message = "Authentication was canceled by user"
-        
+            
         case LAError.userFallback.rawValue:
             message = "Authentication was canceled, because the user tapped the fallback button (Enter Password)."
             
@@ -143,7 +143,7 @@ class WelcomeViewController: UIViewController {
             
         case LAError.touchIDNotEnrolled.rawValue:
             message = "Authentication could not start, because Touch ID has no enrolled fingers."
-        
+            
         default:
             message = "Did not find any error in LAError."
         }

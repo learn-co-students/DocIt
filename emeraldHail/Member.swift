@@ -12,11 +12,12 @@ import Firebase
 import FirebaseDatabase
 
 struct Member {
-
+    
     var profileImage: String
     var firstName: String
     var lastName: String
     var fullName: String {
+        
         return firstName + " " + lastName
     }
     var gender: String
@@ -47,7 +48,7 @@ struct Member {
     }
     
     init(snapshot: FIRDataSnapshot) {
-    
+        
         let snapshotValue = snapshot.value as! [String : AnyObject]
         
         profileImage = snapshotValue["profileImage"] as! String
@@ -61,7 +62,7 @@ struct Member {
     }
     
     
- 
+    
     
     
     func serialize() -> [String : Any] {

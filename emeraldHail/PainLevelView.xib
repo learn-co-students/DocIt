@@ -29,19 +29,21 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="# - Pain Level" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WbS-M1-nDZ">
-                    <rect key="frame" x="86.5" y="63" width="222" height="48"/>
-                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="40"/>
+                    <rect key="frame" x="80" y="0.0" width="283" height="175"/>
+                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="15"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="WbS-M1-nDZ" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="56g-q4-7Cr"/>
                 <constraint firstAttribute="bottom" secondItem="4oB-rV-YH8" secondAttribute="bottom" constant="12" id="GYY-8S-FnO"/>
                 <constraint firstItem="4oB-rV-YH8" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.5" id="OHM-dc-QDr"/>
+                <constraint firstAttribute="trailing" secondItem="WbS-M1-nDZ" secondAttribute="trailing" constant="12" id="RoB-k8-pgA"/>
                 <constraint firstItem="WbS-M1-nDZ" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="VIt-3F-5e7"/>
-                <constraint firstItem="WbS-M1-nDZ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="10" id="chk-zX-93W"/>
                 <constraint firstAttribute="trailing" secondItem="4oB-rV-YH8" secondAttribute="trailing" constant="12" id="p5K-dW-nsn"/>
+                <constraint firstItem="WbS-M1-nDZ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="80" id="wnT-DV-NEp"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

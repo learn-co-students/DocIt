@@ -9,7 +9,7 @@
 import UIKit
 
 class NoteView: UIView {
-
+    
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var noteLabel: UILabel!
     @IBOutlet weak var timestampLabel: UILabel!
@@ -18,14 +18,14 @@ class NoteView: UIView {
         didSet {
             
             noteLabel.text = note.content
-            timestampLabel.text = note.timestamp
+            timestampLabel.text = note.naturalTime
             
         }
     }
     
     let offSet: CGFloat = 40.0
     let circleRadius: CGFloat = 10.0
-
+    
     let shapeLayer = CAShapeLayer()
     let lineLayer = CAShapeLayer()
     
@@ -80,6 +80,6 @@ class NoteView: UIView {
         lineLayer.lineWidth = 1.0
         linePath.stroke()
     }
-
-
+    
+    
 }

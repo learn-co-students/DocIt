@@ -40,9 +40,9 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     }
     
     // TODO: Discuss if we should we be hiding the status bar in the entire app?
-//    override var prefersStatusBarHidden : Bool {
-//        return true
-//    }
+    //    override var prefersStatusBarHidden : Bool {
+    //        return true
+    //    }
     
     // MARK: Actions
     @IBAction func signIn(_ sender: UIButton) {

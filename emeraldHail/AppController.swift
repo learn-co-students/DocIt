@@ -143,7 +143,7 @@ extension AppController {
         
         guard animated else { containerView.alpha = 1.0; return }
         
-        UIView.transition(with: containerView, duration: 0.6, options: .transitionCrossDissolve, animations: {
+        UIView.transition(with: containerView, duration: 0.9, options: .transitionCrossDissolve, animations: {
             
             self.containerView.alpha = 1.0
             

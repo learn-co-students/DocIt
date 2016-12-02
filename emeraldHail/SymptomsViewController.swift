@@ -7,38 +7,43 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseDatabase
 
 class SymptomsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
-    // OUTLETS 
     
     @IBOutlet weak var symptomTableView: UITableView!
     
-    // PROPERTIES
+    let store = Logics.sharedInstance
+    var database: FIRDatabaseReference = FIRDatabase.database().reference()
     
-    var symptoms:[Symptom] = [.bloodInStool, .chestPain, .constipation, .cough, .diarrhea, .dizziness, .earache, .eyeDiscomfort, .fever, .footPain, .footSwelling, .headache, .heartpalpitations, .itchiness, .kneePain, .legSwelling, .musclePain, .nasalcongestion, .nausea, .neckPain, .shortBreath, .shoulderPain, .skinRashes, .soreThroat, .urinaryProblems, .vision, .vomiting, .wheezing]
+    var symptoms: [Symptom] = [.bloodInStool, .chestPain, .constipation, .cough, .diarrhea, .dizziness, .earache, .eyeDiscomfort, .fever, .footPain, .footSwelling, .headache, .heartpalpitations, .itchiness, .kneePain, .legSwelling, .musclePain, .nasalcongestion, .nausea, .neckPain, .runnyNose, .shortBreath, .shoulderPain, .skinRashes, .soreThroat, .urinaryProblems, .vision, .vomiting, .wheezing]
     
-    var symptomsSelected:[String] = []
-    
-    // LOADS
+    var selectedSymtoms: [String : String] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         symptomTableView.allowsMultipleSelection = true
-        
         symptomTableView.reloadData()
     }
     
-    // ACTIONS
-    
     @IBAction func save(_ sender: UIButton) {
         
-        // TODO:
+        // Prevent adding an empty ditionary to firebase
+        if selectedSymtoms.isEmpty {
+            return
+        }
+        
+        let postsRef = database.child("posts").child(store.eventID).childByAutoId()
+        let uniqueID = postsRef.key
+        
+        let newSymp = Symp(content: selectedSymtoms, uniqueID: uniqueID, timestamp: getTimestamp())
+        
+        postsRef.setValue(newSymp.serialize(), withCompletionBlock: { error, ref in
+            self.dismiss(animated: true, completion: nil)
+        })
         
     }
-    
-    
-    // TABLEVIEW METHODS
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -51,35 +56,41 @@ class SymptomsViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "symptomCell", for: indexPath) as! SymptomViewCell
         
-        cell.symptomLabel.text = symptoms[indexPath.row].rawValue
+        cell.symptomLabel.text = symptoms[indexPath.row].description
         
         return cell
     }
     
-     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        symptomsSelected.append(symptoms[indexPath.row].rawValue)
-        print(symptomsSelected)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedSymtoms["s\(indexPath.row)"] = symptoms[indexPath.row].rawValue
+        print(selectedSymtoms)
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        let position = symptomsSelected.index(of: symptoms[indexPath.row].rawValue)
-        symptomsSelected.remove(at: position!)
-        print(symptomsSelected)
+        selectedSymtoms.removeValue(forKey: "s\(indexPath.row)")
+        print(selectedSymtoms)
     }
     
-    // METHODS
     
-    override var prefersStatusBarHidden : Bool {
-        return true
-    }
+}
 
+extension UIViewController {
+    
+    func getTimestamp() -> String {
+        let currentDate = Date()
+        let dateFormatter = DateFormatter()
+        //        dateFormatter.dateFormat = "MMM d, yyyy"
+        dateFormatter.dateFormat = "yyyyMMddHHmmss"
+        return dateFormatter.string(from: currentDate).uppercased()
+    }
+    
 }
 
 class SymptomViewCell: UITableViewCell {
-
-    // OUTLETS 
+    
+    // OUTLETS
     
     @IBOutlet weak var symptomLabel: UILabel!
     
-
+    
 }

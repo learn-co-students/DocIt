@@ -16,11 +16,13 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
     
     // OUTLETS
     
+    @IBOutlet weak var saveButton: UIButton!
+    
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var firstNameField: UITextField!
     @IBOutlet weak var lastNameField: UITextField!
     @IBOutlet weak var birthdayField: UITextField!
-   
+    
     // LOADS
     
     override func viewDidLoad() {
@@ -29,6 +31,9 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
         hideKeyboardWhenTappedAround()
     }
     
+    
+    
+    
     // ACTIONS
     
     @IBAction func saveButtonTapped(_ sender: Any) {
@@ -36,6 +41,10 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
             let lastName = lastNameField.text, lastName != "",
             let dob = birthdayField.text, dob != ""
             else { return }
+        
+        // Disable the save button after it's pressed once
+        let disableSaveButton = sender as? UIButton
+        disableSaveButton?.isEnabled = false
         
         let gender = selectedGender
         print("GENDERRRRRRRR is \(gender)")
@@ -48,6 +57,7 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
         let storageImageRef = storageRef.child("profileImages").child(imageId)
         
         if let uploadData = UIImagePNGRepresentation(self.profileImageView.image!) {
+            
             storageImageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
                 if error != nil {
                     print (error?.localizedDescription ?? "Error in saveButtonTapped in AddMembersViewController.swift" )
@@ -55,16 +65,17 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
                 }
                 if let profileImageUrl = metadata?.downloadURL()?.absoluteString {
                     let member = Member(profileImage: profileImageUrl, firstName: name, lastName: lastName, gender: gender, birthday: dob, uniqueID: uniqueID)
-                
+                    
                     
                     databaseMembersRef.setValue(member.serialize(), withCompletionBlock: { error, dataRef in
                         self.dismiss(animated: true, completion: nil)
-                    
+                        
                     })
                 }
-            
+                
             })
         }
+        
         
     }
     
@@ -101,8 +112,8 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
     func dismissKeyboardView() {
         view.endEditing(true)
     }
-
-
+    
+    
     func addProfileSettings() {
         addGestureRecognizer(imageView: profileImageView)
         profileImageView.isUserInteractionEnabled = true
@@ -130,7 +141,7 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
         picker.sourceType = .photoLibrary
         picker.allowsEditing = true
         
-        self.present(picker, animated: true, completion: nil) 
+        self.present(picker, animated: true, completion: nil)
         
     }
     
@@ -154,7 +165,7 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
         print("picked canceled")
         dismiss(animated: true, completion: nil)
     }
-
+    
 }
 
 // MARK: - Make circle profile pictures
@@ -168,4 +179,5 @@ extension UIImageView {
         self.layer.cornerRadius = radius
         self.layer.masksToBounds = true
     }
+    
 }

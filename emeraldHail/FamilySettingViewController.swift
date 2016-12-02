@@ -49,10 +49,6 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
     
     // METHODS
     
-    override var prefersStatusBarHidden : Bool {
-        return true
-    }
-    
     func changeFamilyName() {
         let alert = UIAlertController(title: nil, message: "Change your family name", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default, handler: { (action) in
@@ -80,7 +76,7 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
     }
     
     func changeFamilyCoverPic(photo: UIImage, handler: @escaping (Bool) -> Void) {
-
+        
         let database = FIRDatabase.database().reference()
         let familyDatabase = database.child("family").child(store.familyID)
         let storageRef = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
@@ -164,5 +160,5 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
             print("error")
         }
     }
-
+    
 }

@@ -37,6 +37,7 @@ enum PainLevel: Int {
         case .severe: return "6 - Severe"
         case .verySevere: return "8 - Very Severe"
         case .excruciating: return "10 - Excruciating"
+            
         }
         
     }
