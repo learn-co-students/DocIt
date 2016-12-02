@@ -22,8 +22,8 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="symptom one, symptom two, symptom three, symptom four, symptom five, symptom six" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MwV-4s-l6P">
-                    <rect key="frame" x="80" y="0.0" width="283" height="150"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="symptom one, symptom two, symptom three, symptom four, symptom five, symptom six" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MwV-4s-l6P">
+                    <rect key="frame" x="80" y="0.0" width="283" height="123"/>
                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -37,14 +37,13 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
+                <constraint firstItem="MwV-4s-l6P" firstAttribute="bottom" secondItem="UCt-9W-iRE" secondAttribute="top" id="3fi-m0-IBb"/>
                 <constraint firstItem="UCt-9W-iRE" firstAttribute="width" secondItem="MwV-4s-l6P" secondAttribute="width" multiplier="0.5" id="5j1-MU-Spv"/>
                 <constraint firstItem="MwV-4s-l6P" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="80" id="L9n-Zg-Cgt"/>
                 <constraint firstAttribute="bottom" secondItem="UCt-9W-iRE" secondAttribute="bottom" constant="12" id="M0f-n2-w9W"/>
-                <constraint firstItem="MwV-4s-l6P" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="M9g-j8-ZZ4"/>
                 <constraint firstItem="MwV-4s-l6P" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="QAp-b7-uEd"/>
                 <constraint firstAttribute="trailing" secondItem="UCt-9W-iRE" secondAttribute="trailing" constant="12" id="cHa-xE-cUY"/>
                 <constraint firstAttribute="trailing" secondItem="MwV-4s-l6P" secondAttribute="trailing" constant="12" id="eFH-qo-cgF"/>
-                <constraint firstAttribute="bottom" secondItem="MwV-4s-l6P" secondAttribute="bottom" id="ndJ-x7-mjL"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="41" y="8"/>

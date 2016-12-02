@@ -12,11 +12,13 @@ struct Symp {
     
     var content: [String : String]
     var timestamp: String
+    var naturalTime: String?
     
     init(dictionary: [String : Any], symptomsToAdd: [String : Any]) {
         
         content = symptomsToAdd as? [String : String] ?? ["No symptom" : "No symptom"]
         timestamp = dictionary["timestamp"] as? String ?? "No Time"
+        naturalTime = dictionary["naturalTime"] as? String ?? "No Natural Time"
         
     }
     
@@ -24,6 +26,7 @@ struct Symp {
         
         content = dictionary["content"] as? [String : String] ?? ["No symptom" : "No symptom"]
         timestamp = dictionary["timestamp"] as? String ?? "No Time"
+        naturalTime = dictionary["naturalTime"] as? String ?? "No Natural Time"
         
     }
     
@@ -40,7 +43,17 @@ struct Symp {
         
         return ["content" : content,
                 "timestamp" : timestamp,
-                "postType" : "symp"]
+                "postType" : "symp",
+                "naturalTime" : getNaturalTime()]
+        
+    }
+    
+    func getNaturalTime() -> String {
+        let currentDate = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM d, yyyy @ hh:mma"
+        
+        return dateFormatter.string(from: currentDate).uppercased()
     }
     
 }

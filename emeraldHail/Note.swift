@@ -7,29 +7,22 @@
 //
 
 import Foundation
-import Firebase
 
 struct Note {
     
     var content: String
     var timestamp: String
+    var naturalTime: String?
     
     init(dictionary: [String : Any]) {
         
         content = dictionary["content"] as? String ?? "No Content"
         timestamp = dictionary["timestamp"] as? String ?? "No Time"
+        naturalTime = dictionary["naturalTime"] as? String ?? "No Natural Time"
         
     }
     
     init(content: String, timestamp: String) {
-        print("Creating an instance of Note")
-        
-        self.content = content
-        self.timestamp = timestamp
-        
-    }
-    
-    init(content: String, timestamp: String, firTimestamp: String) {
         print("Creating an instance of Note")
         
         self.content = content
@@ -42,8 +35,17 @@ struct Note {
         
         return ["content" : content,
                 "timestamp" : timestamp,
-                "postType" : "note"]
+                "postType" : "note",
+                "naturalTime" : getNaturalTime()]
         
+    }
+    
+    func getNaturalTime() -> String {
+        let currentDate = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM d, yyyy @ hh:mma"
+        
+        return dateFormatter.string(from: currentDate).uppercased()
     }
     
 }

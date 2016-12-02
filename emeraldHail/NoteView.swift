@@ -18,7 +18,7 @@ class NoteView: UIView {
         didSet {
             
             noteLabel.text = note.content
-            timestampLabel.text = note.timestamp
+            timestampLabel.text = note.naturalTime
             
         }
     }

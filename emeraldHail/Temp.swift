@@ -12,11 +12,13 @@ struct Temp {
     
     var content: String
     var timestamp: String
+    var naturalTime: String?
     
     init(dictionary: [String : Any]) {
         
         content = dictionary["content"] as? String ?? "No Content"
         timestamp = dictionary["timestamp"] as? String ?? "No Time"
+        naturalTime = dictionary["naturalTime"] as? String ?? "No Natural Time"
         
     }
     
@@ -33,7 +35,17 @@ struct Temp {
         
         return ["content" : content,
                 "timestamp" : timestamp,
-                "postType" : "temp"]
+                "postType" : "temp",
+                "naturalTime" : getNaturalTime()]
+
+    }
+    
+    func getNaturalTime() -> String {
+        let currentDate = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM d, yyyy @ hh:mma"
+        
+        return dateFormatter.string(from: currentDate).uppercased()
     }
     
 }

@@ -145,8 +145,8 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         
 //        postsRef.child(store.eventID).queryOrdered(byChild: "timestamp").observe(.value, with: { [unowned self] snapshot in
         postsRef.child(store.eventID).observe(.value, with: { [unowned self] snapshot in
-            print("⚡️⚡️⚡️⚡️⚡️⚡️⚡️⚡️⚡️⚡️")
-            dump(snapshot)
+//            print("⚡️⚡️⚡️⚡️⚡️⚡️⚡️⚡️⚡️⚡️")
+//            dump(snapshot)
             
             DispatchQueue.main.async {
                 // Guard to protect an empty dictionary (no posts yet)
@@ -176,8 +176,8 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
                 
                 
                 // Debugging stuff
-                print("💩💩💩💩💩💩💩💩💩💩")
-                dump(self.posts)
+//                print("💩💩💩💩💩💩💩💩💩💩")
+//                dump(self.posts)
                 
                 
                 let sortedPosts = self.posts.sorted(by: { (postOne, postTwo) -> Bool in
@@ -215,8 +215,8 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
                     
                 })
                 
-                print("🏀🏀🏀🏀🏀🏀🏀🏀🏀🏀")
-                dump(sortedPosts)
+//                print("🏀🏀🏀🏀🏀🏀🏀🏀🏀🏀")
+//                dump(sortedPosts)
                 
                 self.posts = sortedPosts.reversed()
                 

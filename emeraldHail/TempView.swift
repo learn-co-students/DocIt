@@ -17,7 +17,7 @@ class TempView: UIView {
     var temp: Temp! {
         didSet {
             tempLabel.text = temp.content + "º"
-            timestampLabel.text = temp.timestamp
+            timestampLabel.text = temp.naturalTime
         }
     }
     

@@ -24,7 +24,7 @@ class PainLevelView: UIView {
             
             // TODO:
             painLevelLabel.text = pain.content
-            timestampLabel.text = pain.timestamp
+            timestampLabel.text = pain.naturalTime
         }
     }
     

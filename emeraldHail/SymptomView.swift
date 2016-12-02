@@ -34,7 +34,10 @@ class SymptomView: UIView {
             symptomLabel.text = symptoms.joined(separator: ", ")
             symptoms.removeAll()
             
-            timestampLabel.text = symp.timestamp
+            print("🏓🏓🏓🏓🏓🏓🏓🏓🏓🏓")
+            print(symp.naturalTime)
+            
+            timestampLabel.text = symp.naturalTime
             
         }
     }
