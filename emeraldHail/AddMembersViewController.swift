@@ -12,7 +12,7 @@ import SDWebImage
 
 class AddMembersViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
-    var selectedGender = "Female"
+    var selectedGender = Gender.female.rawValue
     
     // OUTLETS
     
@@ -89,7 +89,7 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
             selectedGender = Gender.male.rawValue
             Logics.sharedInstance.genderType = selectedGender
         default:
-            break
+            selectedGender = Gender.female.rawValue
         }
     }
     
@@ -99,9 +99,9 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
     
     // METHODS
     
-    override var prefersStatusBarHidden : Bool {
-        return true
-    }
+//    override var prefersStatusBarHidden : Bool {
+//        return true
+//    }
     
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboardView))
