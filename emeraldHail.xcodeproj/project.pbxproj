@@ -25,6 +25,7 @@
 		AA9FFBB81DDA667500847FCF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9FFBB71DDA667500847FCF /* AppDelegate.swift */; };
 		AA9FFBBD1DDA667500847FCF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA9FFBBB1DDA667500847FCF /* Main.storyboard */; };
 		AA9FFBC21DDA667500847FCF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA9FFBC01DDA667500847FCF /* LaunchScreen.storyboard */; };
+		AAC106061DF08CF4007E5116 /* Symp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC106051DF08CF4007E5116 /* Symp.swift */; };
 		AAE7D3ED1DEF6DB300C59107 /* SymptomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE7D3EC1DEF6DB300C59107 /* SymptomCell.swift */; };
 		AAF109341DEE4BA700E6DE26 /* TempView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAF109331DEE4BA700E6DE26 /* TempView.xib */; };
 		AAFE445E1DDF5AE900922FB0 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFE445D1DDF5AE900922FB0 /* Event.swift */; };
@@ -87,6 +88,7 @@
 		AA9FFBBC1DDA667500847FCF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AA9FFBC11DDA667500847FCF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AA9FFBC31DDA667500847FCF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AAC106051DF08CF4007E5116 /* Symp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Symp.swift; sourceTree = "<group>"; };
 		AAE7D3EC1DEF6DB300C59107 /* SymptomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SymptomCell.swift; sourceTree = "<group>"; };
 		AAF109331DEE4BA700E6DE26 /* TempView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TempView.xib; sourceTree = "<group>"; };
 		AAFE445D1DDF5AE900922FB0 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				AA2970FB1DEDDEE70062631D /* Note.swift */,
 				AA2970FD1DEDDF5C0062631D /* Temp.swift */,
 				AA3985121DEFAAF90087F1BA /* Pain.swift */,
+				AAC106051DF08CF4007E5116 /* Symp.swift */,
 				DDDE22431DF0B811006B234C /* Photo.swift */,
 			);
 			name = Post;
@@ -477,6 +480,7 @@
 				BBF4EEB31DDF59DC00EBD3FE /* RegisterViewController.swift in Sources */,
 				AA2970FE1DEDDF5C0062631D /* Temp.swift in Sources */,
 				DD755E1A1DE3A99F002478D0 /* AddMembersViewController.swift in Sources */,
+				AAC106061DF08CF4007E5116 /* Symp.swift in Sources */,
 				AA3985131DEFAAF90087F1BA /* Pain.swift in Sources */,
 				BBF4EEB91DDF5A0600EBD3FE /* PostViewController.swift in Sources */,
 				DDA93D221DDE508A00F0A4D4 /* PainLevelViewController.swift in Sources */,

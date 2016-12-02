@@ -36,8 +36,11 @@ enum Symptom: String {
     skinRashes = "Skin rashes",
     soreThroat = "Sore throat",
     urinaryProblems = "Urinary problems",
+    runnyNose = "Runny nose",
     vision = "Vision Problems",
     vomiting = "Vomiting",
     wheezing = "Wheezing"
+    
 
+    
 }

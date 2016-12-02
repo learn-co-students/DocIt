@@ -12,11 +12,32 @@ import UIKit
 class SymptomView: UIView {
     
     @IBOutlet var contentView: UIView!
+    @IBOutlet weak var symptomLabel: UILabel!
+    @IBOutlet weak var timestampLabel: UILabel!
     
-    var note: Note! {
+    var symptoms = [String]()
+    
+    var symp: Symp! {
         didSet {
             
-            // TODO: Set the view's outlet's to content
+            dump(symp.content)
+            
+            for key in symp.content.keys {
+                guard let value = symp.content[key] else { return }
+                
+                print(value)
+                
+                symptoms.append(value)
+            
+            }
+            
+            symptomLabel.text = symptoms.joined(separator: ", ")
+            symptoms.removeAll()
+            
+            print("🏓🏓🏓🏓🏓🏓🏓🏓🏓🏓")
+            print(symp.naturalTime)
+            
+            timestampLabel.text = symp.naturalTime
             
         }
     }
@@ -59,8 +80,8 @@ class SymptomView: UIView {
         let circlePath = UIBezierPath(arcCenter: CGPoint(x: offSet, y: contentView.bounds.height/2), radius: CGFloat(circleRadius), startAngle: CGFloat(0), endAngle:CGFloat(M_PI * 2), clockwise: true)
         
         shapeLayer.path = circlePath.cgPath
-        shapeLayer.fillColor = Constants.Colors.neonCarrot.cgColor
-        shapeLayer.strokeColor = Constants.Colors.neonCarrot.cgColor
+        shapeLayer.fillColor = Constants.Colors.ufoGreen.cgColor
+        shapeLayer.strokeColor = Constants.Colors.ufoGreen.cgColor
         shapeLayer.lineWidth = 1.0
         circlePath.stroke()
         
@@ -73,8 +94,8 @@ class SymptomView: UIView {
         linePath.addLine(to: endPoint)
         
         lineLayer.path = linePath.cgPath
-        lineLayer.fillColor = Constants.Colors.neonCarrot.cgColor
-        lineLayer.strokeColor = Constants.Colors.neonCarrot.cgColor
+        lineLayer.fillColor = Constants.Colors.ufoGreen.cgColor
+        lineLayer.strokeColor = Constants.Colors.ufoGreen.cgColor
         lineLayer.lineWidth = 1.0
         linePath.stroke()
     }
