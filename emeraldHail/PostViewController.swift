@@ -13,6 +13,7 @@ import FirebaseDatabase
 class PostViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var deletedPostRef: FIRDatabaseReference?
+    var uniqueID: String?
     
     // MARK: Outlets
     @IBOutlet weak var nameLabel: UILabel!
@@ -140,6 +141,24 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         return 125
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+        let databasePosts = self.database.child("posts").child(store.eventID)
+    
+       
+        if editingStyle == .delete {
+            
+            let uniquePostID = posts[indexPath.row].description
+            dump("DISCRIPTION ISSSSSS \(uniquePostID)")
+            databasePosts.child(uniquePostID).removeValue()
+            
+            posts.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+        }
+    
+    
+    
     // MARK: - Firebase
     func fetchPosts() {
         
@@ -168,7 +187,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
                     let post = Post(dictionary: dictionary)
                     
                     // Append to the posts array
-                    self.posts.append(post)
+                    self.posts.insert(post, at: 0)
                 }
                 
                 // Debugging stuff

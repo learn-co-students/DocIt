@@ -14,19 +14,23 @@ struct Photo {
     var content: String
     // content is image URL
     var timestamp: String
+    var uniqueID: String
     
     init(dictionary: [String : Any]) {
         
         content = dictionary["content"] as? String ?? "No Photo URL"
         timestamp = dictionary["timestamp"] as? String ?? "No Time"
+        uniqueID = dictionary["uniqueID"] as? String ?? "No UniqueID"
         
     }
     
-    init(content: String, timestamp: String) {
+    init(content: String, timestamp: String, uniqueID: String) {
+        
         print("Creating an instance of Photo")
         
         self.content = content
         self.timestamp = timestamp
+        self.uniqueID = uniqueID
         
     }
     
@@ -35,6 +39,7 @@ struct Photo {
         
         return ["content" : content,
                 "timestamp" : timestamp,
+                "uniqueID" : uniqueID,
                 "postType" : "photo"]
     }
     

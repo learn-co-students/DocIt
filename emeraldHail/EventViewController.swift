@@ -13,7 +13,6 @@ import SDWebImage
 
 class EventViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var selectedEvent: String?
     
     // MARK: Outlets
     @IBOutlet weak var eventsTable: UITableView!
@@ -151,8 +150,6 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             let databaseEventsRef = self.database.child("events").child(self.store.memberID).childByAutoId()
             
             let uniqueID = databaseEventsRef.key
-            
-            self.selectedEvent = uniqueID
             
             let event = Event(name: name, startDate: date, uniqueID: uniqueID)
             

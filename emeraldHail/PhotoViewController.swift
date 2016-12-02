@@ -131,7 +131,7 @@ class PhotoViewController: UIViewController, UINavigationControllerDelegate, UII
                     dateFormatter.dateFormat = "MMM d, yyyy HH:mm:ss a"
                     let timestamp = dateFormatter.string(from: currentDate)
                     
-                    let photo = Photo(content: postImageUrl, timestamp: timestamp)
+                    let photo = Photo(content: postImageUrl, timestamp: timestamp, uniqueID: uniqueID)
                     
                     databasePostsRef.setValue(photo.serialize(), withCompletionBlock: { error, dataRef in
                         // Disable the save button after it's pressed once

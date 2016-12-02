@@ -38,6 +38,9 @@ class Logics {
     // EVENT
     var eventID = ""
     
+    // POST
+    
+    var postID = ""
     // METHODS
     func clearDataStore() {
         
@@ -47,6 +50,7 @@ class Logics {
         
         memberID = ""
         eventID = ""
+        postID = ""
         genderType = ""
         
     }

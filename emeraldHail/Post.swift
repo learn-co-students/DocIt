@@ -20,6 +20,18 @@ enum Post {
     case photo(Photo)
     case noValue
     
+    var description: String {
+    
+        switch self {
+        case .note(let note): return note.uniqueID
+        case .temp(let temp): return temp.uniqueID
+        case .pain(let pain): return pain.uniqueID
+        case .photo(let photo): return photo.uniqueID
+        case .noValue: return "NO UNIQUE ID"
+       
+        }
+        
+    }
 
     init(dictionary: [String : Any]) {
         
@@ -49,8 +61,10 @@ enum Post {
         }
         
     }
-
+    
 }
+
+
 //
 //enum PostType: String {
 //    

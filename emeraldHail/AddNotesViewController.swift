@@ -34,13 +34,15 @@ class AddNotesViewController: UIViewController {
         guard let noteText = addNotesTextField.text, noteText != "" else { return }
         
         let postsRef = database.child("posts").child(store.eventID).childByAutoId()
+        let uniqueID = postsRef.key
         
         let currentDate = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM d, yyyy HH:mm:ss a"
         let timestamp = dateFormatter.string(from: currentDate)
         
-        let newNote = Note(content: noteText, timestamp: timestamp)
+        let newNote = Note(content: noteText, timestamp: timestamp, uniqueID: uniqueID)
+    
         
         postsRef.setValue(newNote.serialize(), withCompletionBlock: { error, ref in
             self.dismiss(animated: true, completion: nil)

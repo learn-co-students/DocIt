@@ -12,19 +12,22 @@ struct Pain {
     
     var content: String
     var timestamp: String
+    var uniqueID: String
     
     init(dictionary: [String : Any]) {
         
         content = dictionary["content"] as? String ?? "No Content"
         timestamp = dictionary["timestamp"] as? String ?? "No Time"
+        uniqueID = dictionary["uniqueID"] as? String ?? "No UniqueID"
         
     }
     
-    init(content: String, timestamp: String) {
+    init(content: String, timestamp: String, uniqueID: String) {
         print("Creating an instance of Temp")
         
         self.content = content
         self.timestamp = timestamp
+        self.uniqueID = uniqueID
         
     }
     
@@ -33,6 +36,7 @@ struct Pain {
         
         return ["content" : content,
                 "timestamp" : timestamp,
+                "uniqueID" : uniqueID,
                 "postType" : "pain"]
     }
     
