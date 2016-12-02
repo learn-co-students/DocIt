@@ -98,10 +98,10 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
         dateFormatter.dateFormat = "MMM d, yyyy HH:mm:ss a"
         let timestamp = dateFormatter.string(from: currentDate)
         
+        // uniqueID added 
+        
         let databasePostContentRef = postRef.child(store.eventID).childByAutoId()
         let uniqueID = databasePostContentRef.key
-        
-        // TODO:
         
         let newPain = Pain(content: painLevelDescription, timestamp: timestamp, uniqueID: uniqueID)
         

@@ -148,9 +148,13 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
        
         if editingStyle == .delete {
             
+            // Deleting post data from Firebase using UniquePostID
+            
             let uniquePostID = posts[indexPath.row].description
             dump("DISCRIPTION ISSSSSS \(uniquePostID)")
             databasePosts.child(uniquePostID).removeValue()
+            
+            // Deleting posts from tableviews 
             
             posts.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)

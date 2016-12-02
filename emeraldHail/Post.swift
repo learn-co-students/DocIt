@@ -20,6 +20,8 @@ enum Post {
     case photo(Photo)
     case noValue
     
+    // Post now has uniqueID
+    
     var description: String {
     
         switch self {
