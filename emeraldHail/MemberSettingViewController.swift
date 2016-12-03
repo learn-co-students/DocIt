@@ -55,7 +55,7 @@ class MemberSettingViewController: UIViewController {
     
     // Mark: blood type is not recorded
     func displayMemberProfileEdits() {
-        let member = FIRDatabase.database().reference().child("members").child(store.familyID).child(store.memberID)
+        let member = FIRDatabase.database().reference().child("members").child(store.family.id).child(store.memberID)
         
         member.observe(.value, with: { (snapshot) in
             //  print(snapshot.value)
@@ -84,7 +84,7 @@ class MemberSettingViewController: UIViewController {
     
     func showPicture() {
         
-        let member = FIRDatabase.database().reference().child("members").child(store.familyID).child(store.memberID)
+        let member = FIRDatabase.database().reference().child("members").child(store.family.id).child(store.memberID)
         
         member.observe(.value, with: { snapshot in
             

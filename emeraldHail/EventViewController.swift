@@ -99,7 +99,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func showPictureAndName() {
-        let member = FIRDatabase.database().reference().child("members").child(store.familyID).child(store.memberID)
+        let member = FIRDatabase.database().reference().child("members").child(store.family.id).child(store.memberID)
         
         member.observe(.value, with: { snapshot in
             var member = snapshot.value as! [String : Any]

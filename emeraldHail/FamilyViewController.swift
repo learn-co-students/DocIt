@@ -35,7 +35,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("Inside Family VC, the familyID is: \(store.familyID)")
+        print("Inside Family VC, the familyID is: \(store.family.id)")
         
         hideKeyboardWhenTappedAround()
         getFamilyID()
@@ -147,13 +147,13 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     func getFamilyID() {
-        store.familyID = (FIRAuth.auth()?.currentUser?.uid)!
+        store.family.id = (FIRAuth.auth()?.currentUser?.uid)!
     }
     
     // TODO: Rethink some of the variable names here and in configDatabaseFamily for clarity
     func configDatabaseMember() {
         let membersRef = FIRDatabase.database().reference().child("members")
-        let familyRef = membersRef.child(store.familyID)
+        let familyRef = membersRef.child(store.family.id)
         
         familyRef.observe(.value, with: { snapshot in
             var newItem = [Member]()
@@ -171,7 +171,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     // TODO: Rethink some of the variable names here for clarity
     func configDatabaseFamily() {
         let membersRef = FIRDatabase.database().reference().child("family")
-        let familyRef = membersRef.child(store.familyID)
+        let familyRef = membersRef.child(store.family.id)
         
         familyRef.observe(.value, with: { snapshot in
             
@@ -192,7 +192,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         let alertController = UIAlertController(title: nil, message: "Change your family name", preferredStyle: .alert)
         let save = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
             guard let name = nameTextField?.text, name != "" else { return }
-            let databaseEventsRef = FIRDatabase.database().reference().child("family").child(self.store.familyID)
+            let databaseEventsRef = FIRDatabase.database().reference().child("family").child(self.store.family.id)
             
             // TODO: We shoul be handling all the errors properly
             databaseEventsRef.updateChildValues(["name": name], withCompletionBlock: { (error, dataRef) in

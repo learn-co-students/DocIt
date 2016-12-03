@@ -51,9 +51,9 @@ class WelcomeViewController: UIViewController {
     func updateFamilyId() {
         
         if !userInfo.isEmpty {
-            store.familyID = userInfo[0].familyID!
+            store.family.id = userInfo[0].familyID!
             touchID.isHidden = false
-            print("========= we are in the welcome view and the family id is \(store.familyID)")
+            print("========= we are in the welcome view and the family id is \(store.family.id)")
         } else {
             touchID.isHidden = true
         }

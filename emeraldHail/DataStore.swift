@@ -40,7 +40,9 @@ class DataStore{
     
     // FAMILY
     
-    var familyID = ""
+    var family = Family(id: "", name: "", email: "", coverImage: nil, coverImageStr: "", members: [])
+    
+//    var familyID = ""
     var familyName = ""
     var familyPicture = ""
     
@@ -66,7 +68,7 @@ class DataStore{
     
     func clearDataStore() {
         
-        familyID = ""
+//        familyID = ""
         familyName = ""
         familyPicture = ""
         

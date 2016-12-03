@@ -11,21 +11,23 @@ import Firebase
 
 class RegisterViewController: UIViewController {
     
-    let store = DataStore.sharedInstance
-    let family = FIRDatabase.database().reference().child("family")
+    // MARK: Outlets
     
     @IBOutlet weak var googleContainerView: UIView!
-    
-    // MARK: Outlets
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
-    
     @IBOutlet weak var createAccount: UIButton!
+    
+    // MARK: Properties
+    
+    let store = DataStore.sharedInstance
+    let family = FIRDatabase.database().reference().child("family")
+    
+    // MARK: Loads
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupViews()
         hideKeyboardWhenTappedAround()
     }
@@ -34,11 +36,8 @@ class RegisterViewController: UIViewController {
         setupViews()
     }
     
-    //    override var prefersStatusBarHidden : Bool {
-    //        return true
-    //    }
-    
     // MARK: Actions
+    
     @IBAction func createAccountPressed(_ sender: Any) {
         register()
     }
@@ -60,8 +59,8 @@ class RegisterViewController: UIViewController {
         }
     }
     
-    
     // MARK: Functions
+    
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(RegisterViewController.dismissKeyboardView))
         tap.cancelsTouchesInView = false
@@ -110,12 +109,12 @@ class RegisterViewController: UIViewController {
                 }
                 
                 // Set the sharedInstance familyID to the current user.uid
-                self.store.familyID = (user?.uid)!
+                self.store.family.id = (user?.uid)!
                 
-                self.family.child((user?.uid)!).child("email").setValue(email)
+                self.family.child((self.store.family.id)).child("email").setValue(email)
                 
                 // TODO: Set the initial family name to something more descriptive (perhaps using their last name or something?)
-                self.family.child((user?.uid)!).child("name").setValue("New Family")
+                self.family.child(self.store.family.id).child("name").setValue("New Family")
                 
                 self.performSegue(withIdentifier: "showFamily", sender: nil)
             }

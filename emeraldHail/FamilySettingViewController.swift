@@ -53,7 +53,7 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
         let alert = UIAlertController(title: nil, message: "Change your family name", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default, handler: { (action) in
             let userInput = alert.textFields![0].text
-            let ref = FIRDatabase.database().reference().child("family").child(self.store.familyID)
+            let ref = FIRDatabase.database().reference().child("family").child(self.store.family.id)
             
             guard let name = userInput, name != "" else { return }
             
@@ -78,9 +78,9 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
     func changeFamilyCoverPic(photo: UIImage, handler: @escaping (Bool) -> Void) {
         
         let database = FIRDatabase.database().reference()
-        let familyDatabase = database.child("family").child(store.familyID)
+        let familyDatabase = database.child("family").child(store.family.id)
         let storageRef = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
-        let storeImageRef = storageRef.child("familyImages").child(store.familyID)
+        let storeImageRef = storageRef.child("familyImages").child(store.family.id)
         
         if let uploadData = UIImagePNGRepresentation(photo) {
             
@@ -148,7 +148,7 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
         
         let family = CurrentUser(context: managedContext)
         
-        family.familyID = DataStore.sharedInstance.familyID
+        family.familyID = DataStore.sharedInstance.family.id
         
         do {
             

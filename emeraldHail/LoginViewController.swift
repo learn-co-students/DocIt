@@ -20,7 +20,6 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
-    
     @IBOutlet weak var signIn: UIButton!
     
     override func viewDidLoad() {
@@ -156,7 +155,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                 return
             }
             // Set the sharedInstance familyID to the current user.uid
-            self.store.familyID = (user?.uid)!
+            self.store.family.id = (user?.uid)!
             self.performSegue(withIdentifier: "showFamily", sender: nil)
         }
     }
