@@ -35,8 +35,8 @@
                     <color key="textColor" red="0.12549019610000001" green="0.75294117650000003" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SRY-a4-jNr">
-                    <rect key="frame" x="12" y="12" width="187.5" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SRY-a4-jNr">
+                    <rect key="frame" x="16" y="12" width="187.5" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                     <color key="textColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -45,7 +45,7 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="bME-mJ-bhB" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="4pR-Za-1Q1"/>
-                <constraint firstItem="SRY-a4-jNr" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="12" id="GKz-ZU-Rh4"/>
+                <constraint firstItem="SRY-a4-jNr" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="GKz-ZU-Rh4"/>
                 <constraint firstItem="bME-mJ-bhB" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="20" id="GsR-lI-8uF"/>
                 <constraint firstItem="UcL-tS-7aa" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.5" id="Z4g-G5-dGq"/>
                 <constraint firstAttribute="trailing" secondItem="UcL-tS-7aa" secondAttribute="trailing" constant="12" id="Zxq-OP-fRi"/>
