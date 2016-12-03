@@ -14,7 +14,7 @@ import GoogleSignIn
 
 class LoginViewController: UIViewController, GIDSignInUIDelegate {
   
-    let store = Logics.sharedInstance
+    let store = DataStore.sharedInstance
     
     // MARK: Outlets
     @IBOutlet weak var emailField: UITextField!

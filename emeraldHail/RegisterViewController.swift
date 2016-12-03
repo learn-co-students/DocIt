@@ -11,7 +11,7 @@ import Firebase
 
 class RegisterViewController: UIViewController {
     
-    let store = Logics.sharedInstance
+    let store = DataStore.sharedInstance
     let family = FIRDatabase.database().reference().child("family")
     
     @IBOutlet weak var googleContainerView: UIView!

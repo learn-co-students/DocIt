@@ -13,7 +13,7 @@ import Firebase
 
 class EditMemberSettingsViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
     
-    let store = Logics.sharedInstance
+    let store = DataStore.sharedInstance
     
     @IBOutlet weak var firstNameTextField: UITextField!
     
@@ -74,10 +74,10 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDataSource
         switch sender.selectedSegmentIndex {
         case 0:
             selectedGender = Gender.female.rawValue
-            Logics.sharedInstance.genderType = selectedGender
+            store.genderType = selectedGender
         case 1:
             selectedGender = Gender.male.rawValue
-            Logics.sharedInstance.genderType = selectedGender
+            store.genderType = selectedGender
         default:
             break
         }
@@ -122,7 +122,7 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDataSource
         
         
         //        let gender = selectedGender
-        let memberReference : FIRDatabaseReference = FIRDatabase.database().reference().child("members").child(Logics.sharedInstance.familyID).child(Logics.sharedInstance.memberID)
+        let memberReference : FIRDatabaseReference = FIRDatabase.database().reference().child("members").child(store.familyID).child(store.memberID)
         memberReference.updateChildValues(updatedInfo)
         
         

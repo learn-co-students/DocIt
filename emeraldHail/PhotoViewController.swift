@@ -12,7 +12,7 @@ import Firebase
 
 class PhotoViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
-    var store = Logics.sharedInstance
+    var store = DataStore.sharedInstance
     var selectedImage: UIImage?
     
     @IBOutlet weak var imageView: UIImageView!

@@ -14,7 +14,7 @@ class AddNotesViewController: UIViewController {
     
     @IBOutlet weak var addNotesTextField: UITextField!
     
-    let store = Logics.sharedInstance
+    let store = DataStore.sharedInstance
     
     var database: FIRDatabaseReference = FIRDatabase.database().reference()
     var postRef : FIRDatabaseReference = FIRDatabase.database().reference().child("posts")

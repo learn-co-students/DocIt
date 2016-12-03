@@ -24,7 +24,7 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
     
     let postRef : FIRDatabaseReference = FIRDatabase.database().reference().child("posts")
     
-    let store = Logics.sharedInstance
+    let store = DataStore.sharedInstance
     
     @IBAction func saveButtonTapped(_ sender: Any) {
         addPainLevel()
