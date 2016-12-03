@@ -14,6 +14,7 @@ struct Temp {
     var timestamp: String
     var uniqueID: String
     var naturalTime: String?
+    var tempType : String
 
     init(dictionary: [String : Any]) {
 
@@ -21,16 +22,17 @@ struct Temp {
         timestamp = dictionary["timestamp"] as? String ?? "No Time"
         uniqueID = dictionary["uniqueID"] as? String ?? "No UniqueID"
         naturalTime = dictionary["naturalTime"] as? String ?? "No Natural Time"
+        tempType = dictionary["tempType"] as? String ?? "Not Temperature Type"
 
     }
 
-    init(content: String, timestamp: String, uniqueID: String) {
+    init(content: String, timestamp: String, uniqueID: String, tempType: String) {
         print("Creating an instance of Temp")
 
         self.content = content
         self.timestamp = timestamp
         self.uniqueID = uniqueID
-
+        self.tempType = tempType
     }
 
     func serialize() -> [String : Any] {
@@ -40,7 +42,8 @@ struct Temp {
                 "timestamp" : timestamp,
                 "uniqueID" : uniqueID,
                 "postType" : "temp",
-                "naturalTime" : getNaturalTime()]
+                "naturalTime" : getNaturalTime(),
+                "tempType": tempType]
 
     }
 
