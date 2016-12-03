@@ -13,11 +13,11 @@ import SDWebImage
 class AddMembersViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
     var selectedGender = Gender.female.rawValue
+    let store = DataStore.sharedInstance
     
     // OUTLETS
     
     @IBOutlet weak var saveButton: UIButton!
-    
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var firstNameField: UITextField!
     @IBOutlet weak var lastNameField: UITextField!
@@ -30,9 +30,6 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
         addProfileSettings()
         hideKeyboardWhenTappedAround()
     }
-    
-    
-    
     
     // ACTIONS
     
@@ -84,10 +81,10 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
         switch sender.selectedSegmentIndex {
         case 0:
             selectedGender = Gender.female.rawValue
-            Logics.sharedInstance.genderType = selectedGender
+            store.genderType = selectedGender
         case 1:
             selectedGender = Gender.male.rawValue
-            Logics.sharedInstance.genderType = selectedGender
+            store.genderType = selectedGender
         default:
             selectedGender = Gender.female.rawValue
         }

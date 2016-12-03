@@ -13,8 +13,6 @@ import SDWebImage
 
 class MemberSettingViewController: UIViewController {
     
-    
-    
     // OUTLETS
     
     @IBOutlet weak var profileImageView: UIImageView!
@@ -28,7 +26,7 @@ class MemberSettingViewController: UIViewController {
     
     // PROPERTIES
     
-    let store = Logics.sharedInstance
+    let store = DataStore.sharedInstance
     
     // LOADS
     

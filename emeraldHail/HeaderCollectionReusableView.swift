@@ -16,7 +16,7 @@ class HeaderCollectionReusableView: UICollectionReusableView {
     @IBOutlet weak var familyNameLabel: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
     
-    let store = Logics.sharedInstance
+    let store = DataStore.sharedInstance
     
     func configDatabaseFamily() {
         let membersRef = FIRDatabase.database().reference().child("family")

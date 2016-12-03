@@ -18,7 +18,7 @@ class WelcomeViewController: UIViewController {
     @IBOutlet weak var touchID: UIButton!
     
     var userInfo = [CurrentUser]()
-    var storeData = DataStore.sharedInstance
+    var store = DataStore.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,9 +51,9 @@ class WelcomeViewController: UIViewController {
     func updateFamilyId() {
         
         if !userInfo.isEmpty {
-            Logics.sharedInstance.familyID = userInfo[0].familyID!
+            store.familyID = userInfo[0].familyID!
             touchID.isHidden = false
-            print("========= we are in the welcome view and the family id is \(Logics.sharedInstance.familyID)")
+            print("========= we are in the welcome view and the family id is \(store.familyID)")
         } else {
             touchID.isHidden = true
         }
@@ -152,7 +152,7 @@ class WelcomeViewController: UIViewController {
     
     func fetchData() {
         
-        let managedContext = storeData.persistentContainer.viewContext
+        let managedContext = store.persistentContainer.viewContext
         
         let fetchRequest: NSFetchRequest<CurrentUser> = CurrentUser.fetchRequest()
         

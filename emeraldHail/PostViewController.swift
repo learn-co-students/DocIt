@@ -28,7 +28,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     var posts = [Post]()
-    var store = Logics.sharedInstance
+    var store = DataStore.sharedInstance
     let postsRef = FIRDatabase.database().reference().child("posts")
     var eventID = ""
     var database: FIRDatabaseReference = FIRDatabase.database().reference()

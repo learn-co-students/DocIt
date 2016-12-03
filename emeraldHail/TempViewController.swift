@@ -27,7 +27,7 @@ class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     @IBOutlet weak var temperatureSegment: UISegmentedControl!
     @IBOutlet weak var temperatureImageVIew: UIImageView!
     
-    let store = Logics.sharedInstance
+    let store = DataStore.sharedInstance
     
     var database: FIRDatabaseReference = FIRDatabase.database().reference()
     var postRef : FIRDatabaseReference = FIRDatabase.database().reference().child("posts")

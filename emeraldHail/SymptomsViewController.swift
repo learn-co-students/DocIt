@@ -14,7 +14,7 @@ class SymptomsViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBOutlet weak var symptomTableView: UITableView!
     
-    let store = Logics.sharedInstance
+    let store = DataStore.sharedInstance
     var database: FIRDatabaseReference = FIRDatabase.database().reference()
     
     var symptoms: [Symptom] = [.bloodInStool, .chestPain, .constipation, .cough, .diarrhea, .dizziness, .earache, .eyeDiscomfort, .fever, .footPain, .footSwelling, .headache, .heartpalpitations, .itchiness, .kneePain, .legSwelling, .musclePain, .nasalcongestion, .nausea, .neckPain, .runnyNose, .shortBreath, .shoulderPain, .skinRashes, .soreThroat, .urinaryProblems, .vision, .vomiting, .wheezing]

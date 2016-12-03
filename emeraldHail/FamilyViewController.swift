@@ -23,7 +23,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var memberProfilesView: UICollectionView!
     
     // MARK: Properties
-    let store = Logics.sharedInstance
+    let store = DataStore.sharedInstance
     let imageSelected = UIImagePickerController()
     var membersInFamily = [Member]()
     var family = [Family]()

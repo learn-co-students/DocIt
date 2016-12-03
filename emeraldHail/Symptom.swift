@@ -11,35 +11,35 @@ import UIKit
 
 enum Symptom: String {
     
-    case bloodInStool = "Blood in stool",
-    chestPain = "Chest pain",
-    constipation = "Constipation",
-    cough = "Cough",
-    diarrhea = "Diarrhea",
-    dizziness = "Dizziness",
-    earache = "Earache",
-    eyeDiscomfort = "Eye discomfort and redness",
-    fever = "Fever",
-    footPain = "Foot pain",
-    footSwelling = "Foot swelling",
-    headache = "Headache",
-    heartpalpitations = "Heart palpitations",
-    itchiness = "Itchiness",
-    kneePain = "Knee pain",
-    legSwelling = "Leg swelling",
-    musclePain = "Joint pain or muscle pain",
-    nasalcongestion = "Nasal congestion",
-    nausea = "Nausea",
-    neckPain = "Neck pain",
-    shortBreath = "Shortness of breath",
-    shoulderPain = "Shoulder pain",
-    skinRashes = "Skin rashes",
-    soreThroat = "Sore throat",
-    urinaryProblems = "Urinary problems",
-    runnyNose = "Runny nose",
-    vision = "Vision Problems",
-    vomiting = "Vomiting",
-    wheezing = "Wheezing"
+    case bloodInStool = "Blood in stool"
+    case chestPain = "Chest pain"
+    case constipation = "Constipation"
+    case cough = "Cough"
+    case diarrhea = "Diarrhea"
+    case dizziness = "Dizziness"
+    case earache = "Earache"
+    case eyeDiscomfort = "Eye discomfort and redness"
+    case fever = "Fever"
+    case footPain = "Foot pain"
+    case footSwelling = "Foot swelling"
+    case headache = "Headache"
+    case heartpalpitations = "Heart palpitations"
+    case itchiness = "Itchiness"
+    case kneePain = "Knee pain"
+    case legSwelling = "Leg swelling"
+    case musclePain = "Joint pain or muscle pain"
+    case nasalcongestion = "Nasal congestion"
+    case nausea = "Nausea"
+    case neckPain = "Neck pain"
+    case shortBreath = "Shortness of breath"
+    case shoulderPain = "Shoulder pain"
+    case skinRashes = "Skin rashes"
+    case soreThroat = "Sore throat"
+    case urinaryProblems = "Urinary problems"
+    case runnyNose = "Runny nose"
+    case vision = "Vision Problems"
+    case vomiting = "Vomiting"
+    case wheezing = "Wheezing"
     
     
     var description: String {
