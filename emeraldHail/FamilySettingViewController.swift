@@ -65,7 +65,7 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
         })
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alert.addTextField(configurationHandler: nil)
-        alert.textFields![0].placeholder = store.familyName
+        alert.textFields![0].placeholder = store.family.name
         alert.addAction(okAction)
         alert.addAction(cancelAction)
         present(alert, animated: true, completion: nil)

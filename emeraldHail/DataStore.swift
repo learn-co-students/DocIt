@@ -41,10 +41,7 @@ class DataStore{
     // FAMILY
 
     var family = Family(id: "", name: "", email: "", coverImage: nil, coverImageStr: "", members: [])
-
-//    var familyID = ""
-
-    var familyName = ""
+    
     var familyPicture = ""
 
     // MEMBER
@@ -74,7 +71,7 @@ class DataStore{
 
 //        familyID = ""
 
-        familyName = ""
+        
         familyPicture = ""
 
         memberID = ""

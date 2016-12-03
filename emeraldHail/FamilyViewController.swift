@@ -121,7 +121,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         switch kind {
         case UICollectionElementKindSectionHeader:
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) as! HeaderCollectionReusableView
-            headerView.familyNameLabel.text = store.familyName
+            headerView.familyNameLabel.text = store.family.name
             
             headerView.profileImage.setRounded()
             
@@ -179,7 +179,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
             var dic = snapshot.value as! [String : Any]
             
             guard let familyName = dic["name"] else { return }
-            self.store.familyName = familyName as! String
+            self.store.family.name = familyName as! String
             
             guard let coverImgStr = dic["coverImageStr"] else { return }
             self.store.familyPicture = coverImgStr as! String
