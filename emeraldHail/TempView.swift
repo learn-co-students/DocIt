@@ -13,11 +13,14 @@ class TempView: UIView {
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var tempLabel: UILabel!
     @IBOutlet weak var timestampLabel: UILabel!
+    @IBOutlet weak var tempTypeLabel: UILabel!
+    
     
     var temp: Temp! {
         didSet {
             tempLabel.text = temp.content + "º"
             timestampLabel.text = temp.naturalTime
+            tempTypeLabel.text = temp.tempType
         }
     }
     

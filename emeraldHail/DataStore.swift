@@ -12,12 +12,12 @@ import CoreData
 class DataStore{
     private init(){}
     static let sharedInstance = DataStore()
-    
-    
+
+
     lazy var persistentContainer: NSPersistentContainer = {
-        
+
         let container = NSPersistentContainer(name: "HealthCore")
-        
+
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
@@ -25,7 +25,7 @@ class DataStore{
         })
         return container
     }()
-    
+
     func saveContext () {
         let context = persistentContainer.viewContext
         if context.hasChanges {
@@ -37,48 +37,53 @@ class DataStore{
             }
         }
     }
-    
+
     // FAMILY
-    
+
     var family = Family(id: "", name: "", email: "", coverImage: nil, coverImageStr: "", members: [])
-    
+
 //    var familyID = ""
+
     var familyName = ""
     var familyPicture = ""
-    
+
     // MEMBER
-    
+
     var memberID = ""
+
     var memberFirstName = ""
     var memberLastName = ""
     var memberGenderType = ""
     var memberDOB = ""
     var memberBloodType = ""
     var memberAllergies = ""
-    
+
+
     // EVENT
-    
+
     var eventID = ""
-    
+
     // POST
-    
+
     var postID = ""
-    
+
     // METHODS
-    
+
     func clearDataStore() {
-        
+
+
 //        familyID = ""
+
         familyName = ""
         familyPicture = ""
-        
+
         memberID = ""
         eventID = ""
         postID = ""
+
         memberGenderType = ""
-        
+
+
     }
 
 }
-
-

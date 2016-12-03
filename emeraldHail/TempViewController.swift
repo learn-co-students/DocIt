@@ -20,7 +20,7 @@ class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     // 3-10 years oral thermometer normal is 95.9-99.5 -> Rectal 97.9-100.4-> Armpit 96.6-98.0 -> Ear 97.0-100.0
     // Over age 11 oral thermometer normal is 97.6-99.6 -> rectal 98.6-100.6 -> Armpit 95.3-98.4 -> Ear 96.6-99.7
     
-    var availableTemps: [String] = ["96.6", "96.8", "97.0", "97.2", "97.4", "97.6", "97.8", "98.0", "98.2", "98.4", "98.6", "98.8", "99.0", "99.2", "99.4", "99.6", "99.8", "100.0", "100.2", "100.4", "100.6", "100.8", "101.0", "101.2", "101.4", "101.6", "101.8", "102.0", "102.2", "102.4", "102.6", "102.8", "103.0"]
+    var availableTemps: [String] = ["96.6", "96.8", "97.0", "97.2", "97.4", "97.6", "97.8", "98.0", "98.2", "98.4", "98.6", "98.8", "99.0", "99.2", "99.4", "99.6", "99.8", "100.0", "100.2", "100.4", "100.6", "100.8", "101.0", "101.2", "101.4", "101.6", "101.8", "102.0", "102.2", "102.4", "102.6", "102.8", "103.0", "103.2", "103.4", "103.6", "103.8", "104.0", "104.2", "104.6", "104.8", "105.0"]
     
     @IBOutlet weak var temperaturePickerView: UIPickerView!
     @IBOutlet weak var tempSegments: UISegmentedControl!
@@ -56,7 +56,22 @@ class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         dateFormatter.dateFormat = "MMM d, yyyy HH:mm:ss a"
         //let timestamp = dateFormatter.string(from: currentDate)
         
-        let newTemp = Temp(content: selectedTemp, timestamp: getTimestamp(), uniqueID: uniqueID)
+        
+        var tempType: String
+        // created Temp Type and switch instance based on selection.
+        switch tempSegments.selectedSegmentIndex {
+        case 0:
+          tempType = "Oral Temperature"
+        case 1:
+          tempType = "Ear Temperature"
+        case 2:
+          tempType = "Armpit Temperature"
+            
+            
+        default: tempType = "Ear Temperature"
+        }
+        
+        let newTemp = Temp(content: selectedTemp, timestamp: getTimestamp(), uniqueID: uniqueID, tempType: tempType)
         
         postsRef.setValue(newTemp.serialize(), withCompletionBlock: { error, ref in
             self.dismiss(animated: true, completion: nil)
