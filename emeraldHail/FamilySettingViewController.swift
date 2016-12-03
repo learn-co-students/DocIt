@@ -18,7 +18,7 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
     
     // PROPERTIES
     
-    let store = Logics.sharedInstance
+    let store = DataStore.sharedInstance
     let dataStore = DataStore.sharedInstance
     
     // LOADS
@@ -148,7 +148,7 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
         
         let family = CurrentUser(context: managedContext)
         
-        family.familyID = Logics.sharedInstance.familyID
+        family.familyID = DataStore.sharedInstance.familyID
         
         do {
             

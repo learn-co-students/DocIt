@@ -13,6 +13,7 @@ import SDWebImage
 class AddMembersViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
     var selectedGender = Gender.female.rawValue
+    let store = DataStore.sharedInstance
     
     // OUTLETS
     
@@ -80,10 +81,10 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
         switch sender.selectedSegmentIndex {
         case 0:
             selectedGender = Gender.female.rawValue
-            Logics.sharedInstance.genderType = selectedGender
+            store.memberGenderType = selectedGender
         case 1:
             selectedGender = Gender.male.rawValue
-            Logics.sharedInstance.genderType = selectedGender
+            store.memberGenderType = selectedGender
         default:
             selectedGender = Gender.female.rawValue
         }

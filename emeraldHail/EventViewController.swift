@@ -20,7 +20,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var profileImageView: UIImageView!
     
     // MARK: Properties
-    var store = Logics.sharedInstance
+    var store = DataStore.sharedInstance
     var events = [Event]()
     var database: FIRDatabaseReference = FIRDatabase.database().reference()
     var memberID = ""
@@ -117,7 +117,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func configDatabase() {
         
-        let memberID: String = Logics.sharedInstance.memberID
+        let memberID: String = DataStore.sharedInstance.memberID
         let eventsRef = FIRDatabase.database().reference().child("events").child(memberID)
         
         eventsRef.observe(.value, with: { snapshot in

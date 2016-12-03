@@ -37,6 +37,46 @@ class DataStore{
             }
         }
     }
+    
+    // FAMILY
+    
+    var familyID = ""
+    var familyName = ""
+    var familyPicture = ""
+    
+    // MEMBER
+    
+    var memberID = ""
+    var memberFirstName = ""
+    var memberLastName = ""
+    var memberGenderType = ""
+    var memberDOB = ""
+    var memberBloodType = ""
+    var memberAllergies = ""
+    
+    // EVENT
+    
+    var eventID = ""
+    
+    // POST
+    
+    var postID = ""
+    
+    // METHODS
+    
+    func clearDataStore() {
+        
+        familyID = ""
+        familyName = ""
+        familyPicture = ""
+        
+        memberID = ""
+        eventID = ""
+        postID = ""
+        memberGenderType = ""
+        
+    }
+
 }
 
 
