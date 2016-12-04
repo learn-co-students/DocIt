@@ -435,16 +435,14 @@
                                     <action selector="changeFamilyPic:" destination="bHr-j8-e7W" eventType="touchUpInside" id="FRK-uM-4bY"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Touch ID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jTf-v1-YLa">
-                                <rect key="frame" x="109" y="521" width="68" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Touch ID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jTf-v1-YLa">
+                                <rect key="frame" x="109" y="409" width="68" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="UYV-Us-6hb">
-                                <rect key="frame" x="198" y="517" width="69" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="UYV-Us-6hb">
+                                <rect key="frame" x="198" y="405.5" width="69" height="29"/>
                                 <segments>
                                     <segment title="Off"/>
                                     <segment title="On"/>
@@ -455,13 +453,18 @@
                         <color key="tintColor" red="0.12560352683067322" green="0.75167614221572876" blue="0.88603806495666504" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="tkA-Uo-Tn7" firstAttribute="top" secondItem="W30-XH-IpY" secondAttribute="bottom" constant="12" id="7QD-Fg-vf3"/>
+                            <constraint firstItem="UYV-Us-6hb" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="jTf-v1-YLa" secondAttribute="trailing" constant="12" id="8yk-oz-gdI"/>
                             <constraint firstItem="TgT-Sn-ZkG" firstAttribute="centerY" secondItem="HND-Eo-G97" secondAttribute="centerY" id="Tkh-UN-TIO"/>
                             <constraint firstItem="tkA-Uo-Tn7" firstAttribute="width" secondItem="TgT-Sn-ZkG" secondAttribute="width" id="X0T-kf-auj"/>
                             <constraint firstItem="W30-XH-IpY" firstAttribute="centerX" secondItem="TgT-Sn-ZkG" secondAttribute="centerX" id="X8G-DP-dd5"/>
+                            <constraint firstItem="UYV-Us-6hb" firstAttribute="centerY" secondItem="jTf-v1-YLa" secondAttribute="centerY" id="YrA-Ah-Acg"/>
+                            <constraint firstItem="jTf-v1-YLa" firstAttribute="top" secondItem="TgT-Sn-ZkG" secondAttribute="bottom" constant="50" id="bSC-Kx-RGz"/>
+                            <constraint firstItem="jTf-v1-YLa" firstAttribute="leading" secondItem="HND-Eo-G97" secondAttribute="leadingMargin" constant="93" id="dvs-RB-zCx"/>
                             <constraint firstItem="W30-XH-IpY" firstAttribute="width" secondItem="TgT-Sn-ZkG" secondAttribute="width" id="iQb-cz-JJ8"/>
                             <constraint firstItem="TgT-Sn-ZkG" firstAttribute="top" secondItem="tkA-Uo-Tn7" secondAttribute="bottom" constant="12" id="iqL-a4-xER"/>
                             <constraint firstItem="TgT-Sn-ZkG" firstAttribute="centerX" secondItem="HND-Eo-G97" secondAttribute="centerX" id="soP-ZY-JIr"/>
                             <constraint firstItem="TgT-Sn-ZkG" firstAttribute="width" secondItem="HND-Eo-G97" secondAttribute="width" multiplier="0.8" id="srA-rT-v4F"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="UYV-Us-6hb" secondAttribute="trailing" constant="92" id="tM7-Vj-I0n"/>
                             <constraint firstItem="tkA-Uo-Tn7" firstAttribute="centerX" secondItem="TgT-Sn-ZkG" secondAttribute="centerX" id="zyj-03-X1B"/>
                         </constraints>
                     </view>
@@ -1902,8 +1905,8 @@
         <image name="kid_silhouette" width="347" height="347"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="D6a-tn-o54"/>
         <segue reference="Ywg-j3-Iij"/>
-        <segue reference="vNq-cI-Dwc"/>
-        <segue reference="ZvI-c8-0Bp"/>
+        <segue reference="8IQ-kN-dMw"/>
     </inferredMetricsTieBreakers>
 </document>
