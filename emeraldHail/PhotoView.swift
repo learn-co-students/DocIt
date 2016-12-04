@@ -21,6 +21,7 @@ class PhotoView: UIView {
             
             let photoUrl = URL(string: photo.content)
             photoImageView.sd_setImage(with: photoUrl)
+            photoImageView.setCornerRounded()
             timestampLabel.text = photo.naturalTime
             
         }

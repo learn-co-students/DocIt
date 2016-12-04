@@ -20,6 +20,15 @@ extension UIImageView {
     
 }
 
+extension UIImageView {
+    
+    func setCornerRounded() {
+        self.layer.cornerRadius = 10
+        self.layer.masksToBounds = true
+    }
+    
+}
+
 // MARK: - Get random color
 
 extension UIColor {
