@@ -78,6 +78,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let uniqueEventID = events[indexPath.row].uniqueID
         let uniquePostID = postss[indexPath.row].description
         
+        // We need to include an array of posts that can be accessed globally - maybe in a singleton - otherwise it won't work - I temporarily created an array called postss as seen above - will replaced as the datastructure improves
 
         if editingStyle == .delete {
 
@@ -90,6 +91,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         
         // Deleting images related to events from Storge
+        
         
         let storageRef = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
         let storageImageRef = storageRef.child("postsImages").child(uniquePostID)
