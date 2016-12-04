@@ -164,17 +164,3 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
     }
 
 }
-
-// MARK: - Make circle profile pictures
-
-extension UIImageView {
-
-    // METHODS
-
-    func setRounded() {
-        let radius = self.frame.width / 2
-        self.layer.cornerRadius = radius
-        self.layer.masksToBounds = true
-    }
-
-}

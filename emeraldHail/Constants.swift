@@ -20,4 +20,13 @@ struct Constants {
         static let purpleCake = UIColor(red:0.61, green:0.35, blue:0.71, alpha:1.00)
     }
     
+    struct CustomCell {
+        
+        static let offset: CGFloat = 40.0
+        static let bulletRadius: CGFloat = 15.0
+        static let lineWidth: CGFloat = 1.0
+        static let lineColor: CGColor = UIColor.lightGray.cgColor
+        
+    }
+    
 }

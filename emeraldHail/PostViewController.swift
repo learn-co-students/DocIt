@@ -45,10 +45,9 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Self-sizing Table View Cells
         // TODO: Maybe limit the size of the cell or number of characters. Then implement
         postTableView.rowHeight = UITableViewAutomaticDimension
-        postTableView.estimatedRowHeight = 140
+        postTableView.estimatedRowHeight = 150
         
         fetchPosts()
-        print(posts.count)
         postTableView.reloadData()
         fetchMemberDetails()
     }
@@ -87,45 +86,28 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         let eachPost = posts[indexPath.row]
         
-        print("Switching on eachPost at \(indexPath.row)")
-        
         switch eachPost {
             
         case .note(let note):
-            print("We have a note post.")
-            
             let noteCell = tableView.dequeueReusableCell(withIdentifier: "NoteCell", for: indexPath) as! NoteCell
             noteCell.noteView.note = note
             return noteCell
-            
         case .temp(let temp):
-            print("We have a temp post.")
-            
             let tempCell = tableView.dequeueReusableCell(withIdentifier: "TempCell", for: indexPath) as! TempCell
             tempCell.tempView.temp = temp
             return tempCell
-            
         case .pain(let pain):
-            print("We have a pain post.")
-            
             let painCell = tableView.dequeueReusableCell(withIdentifier: "PainCell", for: indexPath) as! PainLevelCell
             painCell.painLevelView.pain = pain
             return painCell
-            
         case .symp(let symp):
-            print("We have a symp post.")
-            
             let sympCell = tableView.dequeueReusableCell(withIdentifier: "SympCell", for: indexPath) as! SymptomCell
             sympCell.symptomView.symp = symp
             return sympCell
-            
         case .photo(let photo):
-            print("We have a photo post")
-            
             let photoCell = tableView.dequeueReusableCell(withIdentifier: "PhotoCell", for: indexPath) as! PhotoCell
             photoCell.PhotoView.photo = photo
             return photoCell
-            
         default:
             fatalError("Can't create cell. Invalid post type found from the snapshot.")
         }
@@ -133,7 +115,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 125
+        return 150
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
@@ -145,7 +127,6 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
             // Deleting post data from Firebase using UniquePostID
             
             let uniquePostID = posts[indexPath.row].description
-            dump("DISCRIPTION ISSSSSS \(uniquePostID)")
             databasePosts.child(uniquePostID).removeValue()
             
             // Deleting posts from tableviews
@@ -159,14 +140,10 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     func fetchPosts() {
         
         postsRef.child(store.eventID).observe(.value, with: { [unowned self] snapshot in
-            //            print("⚡️⚡️⚡️⚡️⚡️⚡️⚡️⚡️⚡️⚡️")
-            //            dump(snapshot)
             
             DispatchQueue.main.async {
                 // Guard to protect an empty dictionary (no posts yet)
                 guard let value = snapshot.value as? [String : Any] else { return }
-                
-                print("🏀🏀🏀🏀🏀🏀🏀🏀🏀🏀")
                 
                 // TODO: Clear the posts array so we do not append duplicates to the array. This is inefficient, so we should probably think about a better way to do this. Sets instead of Array?
                 self.posts.removeAll()
@@ -187,6 +164,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
                     self.posts.insert(post, at: 0)
                 }
                 
+                // Sorting the posts in reverse chronological order
                 let sortedPosts = self.posts.sorted(by: { (postOne, postTwo) -> Bool in
                     return postOne.timestamp > postTwo.timestamp
                 })
