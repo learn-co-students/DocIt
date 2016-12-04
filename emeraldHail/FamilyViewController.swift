@@ -94,25 +94,39 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return membersInFamily.count
+        return membersInFamily.count + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = memberProfilesView.dequeueReusableCell(withReuseIdentifier: "memberCell", for: indexPath) as! MemberCollectionViewCell
-        let member = membersInFamily[indexPath.row]
-        cell.memberNameLabel?.text = member.firstName
-        cell.profileImageView.image = UIImage(named: "kid_silhouette")
-        cell.profileImageView.contentMode = .scaleAspectFill
-        cell.profileImageView.setRounded()
+        if indexPath.row < membersInFamily.count {
+            let cell = memberProfilesView.dequeueReusableCell(withReuseIdentifier: "memberCell", for: indexPath) as! MemberCollectionViewCell
+            let member = membersInFamily[indexPath.row]
+            cell.memberNameLabel?.text = member.firstName
+//            cell.profileImageView.image = UIImage(named: "kid_silhouette")
+//            cell.profileImageView.contentMode = .scaleAspectFill
+//            cell.profileImageView.setRounded()
+            
+            let profileImgUrl = URL(string: member.profileImage)
+            cell.profileImageView.sd_setImage(with: profileImgUrl)
+            
+            return cell
+        } else {
+            let addMemberCell = memberProfilesView.dequeueReusableCell(withReuseIdentifier: "memberCell", for: indexPath) as! MemberCollectionViewCell
+            addMemberCell.memberNameLabel.text = "Add Member"
+            addMemberCell.profileImageView.image = UIImage(named: "kid_silhouette")
+            addMemberCell.profileImageView.contentMode = .scaleAspectFill
+            addMemberCell.profileImageView.setRounded()
+            return addMemberCell
+        }
         
-        let profileImgUrl = URL(string: member.profileImage)
-        cell.profileImageView.sd_setImage(with: profileImgUrl)
-        
-        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        store.memberID = membersInFamily[indexPath.row].uniqueID
+        if indexPath.row < membersInFamily.count {
+            store.memberID = membersInFamily[indexPath.row].uniqueID
+        } else {
+            // TODO: Do something here? This is selecting the add member cell. Do we want the cell to do something? Or are we going to create a custom cell which contains a button that does something? Shows the add member page?
+        }
     }
     
     // MARK: Header resuable view
@@ -123,17 +137,9 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) as! HeaderCollectionReusableView
             headerView.familyNameLabel.text = store.family.name
             
-//            headerView.profileImage.setRounded()
-            
-//            headerView.profileImage.tintImageColor(color: UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5))
-            
             let familyPictureUrl = URL(string: store.familyPicture)
             
             headerView.profileImage.sd_setImage(with: familyPictureUrl)
-//            headerView.profileImage.tintImageColor(color: UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5))
-            
-            headerView.profileImage.image?.withRenderingMode(.alwaysTemplate)
-            headerView.profileImage.tintColor = Constants.Colors.scooter
             
             return headerView
         default:
