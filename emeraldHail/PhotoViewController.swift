@@ -8,7 +8,7 @@
 
 import UIKit
 import Firebase
-
+import ALCameraViewController
 
 class PhotoViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     

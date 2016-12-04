@@ -12,5 +12,14 @@ target 'emeraldHail' do
   pod 'Firebase/Storage'
   pod 'SDWebImage', '~>3.8'
   pod 'GoogleSignIn'
+  pod 'ALCameraViewController'
 
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings['SWIFT_VERSION'] = '3.0'
+    end
+  end
 end
