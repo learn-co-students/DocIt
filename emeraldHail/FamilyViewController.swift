@@ -123,11 +123,17 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) as! HeaderCollectionReusableView
             headerView.familyNameLabel.text = store.family.name
             
-            headerView.profileImage.setRounded()
+//            headerView.profileImage.setRounded()
+            
+//            headerView.profileImage.tintImageColor(color: UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5))
             
             let familyPictureUrl = URL(string: store.familyPicture)
             
             headerView.profileImage.sd_setImage(with: familyPictureUrl)
+//            headerView.profileImage.tintImageColor(color: UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5))
+            
+            headerView.profileImage.image?.withRenderingMode(.alwaysTemplate)
+            headerView.profileImage.tintColor = Constants.Colors.scooter
             
             return headerView
         default:
