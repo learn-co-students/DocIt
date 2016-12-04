@@ -50,6 +50,8 @@ class SymptomView: UIView {
         
         addSubview(contentView)
         
+        timestampLabel.textColor = Constants.Colors.submarine
+        
 //        contentView.backgroundColor = UIColor.getRandomColor()
         
         contentView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true

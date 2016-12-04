@@ -20,7 +20,7 @@ class TempView: UIView {
         didSet {
             tempLabel.text = temp.content + "º"
             timestampLabel.text = temp.naturalTime
-            tempTypeLabel.text = temp.tempType
+            tempTypeLabel.text = temp.tempType.uppercased()
         }
     }
     
@@ -40,6 +40,8 @@ class TempView: UIView {
         contentView.translatesAutoresizingMaskIntoConstraints = false
         
         addSubview(contentView)
+        
+        timestampLabel.textColor = Constants.Colors.submarine
         
 //        contentView.backgroundColor = UIColor.getRandomColor()
         

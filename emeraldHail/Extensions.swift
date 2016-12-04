@@ -37,7 +37,7 @@ extension UIColor {
 extension UIView {
     
     func drawTimeline(circleColor: CGColor, lineColor: CGColor) {
-    
+
         let shapeLayer = CAShapeLayer()
         let lineLayer = CAShapeLayer()
         

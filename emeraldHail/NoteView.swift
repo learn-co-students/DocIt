@@ -40,6 +40,8 @@ class NoteView: UIView {
         
         addSubview(contentView)
         
+        timestampLabel.textColor = Constants.Colors.submarine
+        
 //        contentView.backgroundColor = UIColor.getRandomColor()
         
         contentView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
@@ -49,7 +51,7 @@ class NoteView: UIView {
     }
     
     override func draw(_ rect: CGRect) {
-        drawTimeline(circleColor: Constants.Colors.scooter.cgColor, lineColor: UIColor.lightGray.cgColor)
+        drawTimeline(circleColor: Constants.Colors.scooter.cgColor, lineColor: Constants.CustomCell.lineColor)
     }
     
     

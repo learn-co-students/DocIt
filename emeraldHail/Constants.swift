@@ -17,15 +17,17 @@ struct Constants {
         static let cinnabar = UIColor(red: 0.89, green: 0.26, blue: 0.21, alpha: 1.00)
         static let neonCarrot = UIColor(red: 0.99, green: 0.61, blue: 0.22, alpha: 1.00)
         static let ufoGreen = UIColor(red: 0.16, green: 0.77, blue: 0.40, alpha: 1.00)
-        static let purpleCake = UIColor(red:0.61, green:0.35, blue:0.71, alpha:1.00)
+        static let purpleCake = UIColor(red: 0.61, green: 0.35, blue: 0.71, alpha: 1.00)
+        static let submarine = UIColor(red: 0.74, green: 0.76, blue: 0.78, alpha: 1.00)
+        static let athensGray = UIColor(red: 0.93, green: 0.94, blue: 0.95, alpha: 1.00)
     }
     
     struct CustomCell {
         
         static let offset: CGFloat = 40.0
-        static let bulletRadius: CGFloat = 15.0
+        static let bulletRadius: CGFloat = 10.0
         static let lineWidth: CGFloat = 1.0
-        static let lineColor: CGColor = UIColor.lightGray.cgColor
+        static let lineColor: CGColor = Constants.Colors.athensGray.cgColor
         
     }
     
