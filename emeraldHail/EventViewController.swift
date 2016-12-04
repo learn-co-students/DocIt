@@ -71,7 +71,42 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         store.eventID = events[indexPath.row].uniqueID
     }
 
-    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+        let databasePosts = self.database.child("posts").child(store.eventID)
+        let databaseEvents = self.database.child("events").child(store.memberID)
+        let uniqueEventID = events[indexPath.row].uniqueID
+        let uniquePostID = postss[indexPath.row].description
+        
+
+        if editingStyle == .delete {
+
+            // Deleting selected events from Firebase
+            databasePosts.child(uniquePostID).removeValue()
+            databaseEvents.child(uniqueEventID).removeValue()
+            
+            events.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+        
+        // Deleting images related to events from Storge
+        
+        let storageRef = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
+        let storageImageRef = storageRef.child("postsImages").child(uniquePostID)
+        print("++++++++++++++++++++++++++++++++++++++\(uniquePostID)")
+        
+        storageImageRef.delete(completion: { error -> Void in
+            
+            if error != nil {
+                print("Error occured while deleting imgs from Firebase storage")
+            } else {
+                print("Image removed from Firebase successfully!")
+            }
+            
+        })
+
+    }
+
     // MARK: Functions
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(EventViewController.dismissKeyboardView))

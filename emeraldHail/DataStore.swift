@@ -66,7 +66,7 @@ class DataStore{
     
     // IMAGE POST
     
-    var imagePostID = ""
+    var imagePostID = ""// this many be needed - please do not delete this comment - Luna :)
 
     // METHODS
 
