@@ -936,7 +936,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="th2-zl-Cpp" customClass="NoteView" customModule="emeraldHail" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="174"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="174.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="niw-NT-kb0"/>
+                                                    </constraints>
                                                 </view>
                                             </subviews>
                                             <constraints>
@@ -958,13 +961,17 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gV2-le-btI" customClass="TempView" customModule="emeraldHail" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="174"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="85"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="85" id="jna-3b-RfT"/>
+                                                    </constraints>
                                                 </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="gV2-le-btI" secondAttribute="bottom" id="MOl-gn-Z58"/>
                                                 <constraint firstAttribute="trailing" secondItem="gV2-le-btI" secondAttribute="trailing" id="Si2-uq-YLh"/>
                                                 <constraint firstItem="gV2-le-btI" firstAttribute="top" secondItem="RcP-so-JzR" secondAttribute="top" id="YvI-sO-w9d"/>
+                                                <constraint firstItem="gV2-le-btI" firstAttribute="centerY" secondItem="RcP-so-JzR" secondAttribute="centerY" id="gW0-Bt-yYN"/>
                                                 <constraint firstItem="gV2-le-btI" firstAttribute="leading" secondItem="RcP-so-JzR" secondAttribute="leading" id="pXD-cy-fwg"/>
                                             </constraints>
                                         </tableViewCellContentView>

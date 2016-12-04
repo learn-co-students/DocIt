@@ -21,7 +21,7 @@ class PhotoView: UIView {
             
             let photoUrl = URL(string: photo.content)
             photoImageView.sd_setImage(with: photoUrl)
-            photoImageView.setRounded()
+//            photoImageView.setRounded()
             timestampLabel.text = photo.naturalTime
             
         }
@@ -43,6 +43,8 @@ class PhotoView: UIView {
         contentView.translatesAutoresizingMaskIntoConstraints = false
         
         addSubview(contentView)
+        
+//        contentView.backgroundColor = UIColor.getRandomColor()
         
         contentView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         contentView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true

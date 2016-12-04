@@ -51,21 +51,16 @@ class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         
         let postsRef = database.child("posts").child(store.eventID).childByAutoId()
         let uniqueID = postsRef.key
-        //let currentDate = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM d, yyyy HH:mm:ss a"
-        //let timestamp = dateFormatter.string(from: currentDate)
-        
         
         var tempType: String
         // created Temp Type and switch instance based on selection.
         switch tempSegments.selectedSegmentIndex {
         case 0:
-          tempType = "Oral Temperature"
+          tempType = "Oral"
         case 1:
-          tempType = "Ear Temperature"
+          tempType = "Ear"
         case 2:
-          tempType = "Armpit Temperature"
+          tempType = "Armpit"
             
             
         default: tempType = "Ear Temperature"

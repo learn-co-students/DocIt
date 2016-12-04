@@ -48,8 +48,8 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         postTableView.estimatedRowHeight = 150
         
         fetchPosts()
-        postTableView.reloadData()
         fetchMemberDetails()
+        postTableView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -91,32 +91,36 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         case .note(let note):
             let noteCell = tableView.dequeueReusableCell(withIdentifier: "NoteCell", for: indexPath) as! NoteCell
             noteCell.noteView.note = note
+            noteCell.backgroundColor = UIColor.getRandomColor()
             return noteCell
         case .temp(let temp):
             let tempCell = tableView.dequeueReusableCell(withIdentifier: "TempCell", for: indexPath) as! TempCell
             tempCell.tempView.temp = temp
+            tempCell.backgroundColor = UIColor.getRandomColor()
             return tempCell
         case .pain(let pain):
             let painCell = tableView.dequeueReusableCell(withIdentifier: "PainCell", for: indexPath) as! PainLevelCell
             painCell.painLevelView.pain = pain
+            painCell.backgroundColor = UIColor.getRandomColor()
             return painCell
         case .symp(let symp):
             let sympCell = tableView.dequeueReusableCell(withIdentifier: "SympCell", for: indexPath) as! SymptomCell
             sympCell.symptomView.symp = symp
+            sympCell.backgroundColor = UIColor.getRandomColor()
             return sympCell
         case .photo(let photo):
             let photoCell = tableView.dequeueReusableCell(withIdentifier: "PhotoCell", for: indexPath) as! PhotoCell
             photoCell.PhotoView.photo = photo
+            photoCell.backgroundColor = UIColor.getRandomColor()
             return photoCell
         default:
             fatalError("Can't create cell. Invalid post type found from the snapshot.")
         }
-        
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
-    }
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 150
+//    }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         

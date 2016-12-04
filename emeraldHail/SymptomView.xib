@@ -22,13 +22,13 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="symptom one, symptom two, symptom three, symptom four, symptom five, symptom six" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MwV-4s-l6P">
-                    <rect key="frame" x="80" y="0.0" width="283" height="123"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="symptom one, symptom two, symptom three, symptom four, symptom five, symptom six" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MwV-4s-l6P">
+                    <rect key="frame" x="80" y="12" width="283" height="111"/>
                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FEB 21, 2016" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UCt-9W-iRE">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FEB 21, 2016" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UCt-9W-iRE">
                     <rect key="frame" x="221.5" y="123" width="141.5" height="15"/>
                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                     <color key="textColor" red="0.12549019610000001" green="0.75294117650000003" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
@@ -41,7 +41,7 @@
                 <constraint firstItem="UCt-9W-iRE" firstAttribute="width" secondItem="MwV-4s-l6P" secondAttribute="width" multiplier="0.5" id="5j1-MU-Spv"/>
                 <constraint firstItem="MwV-4s-l6P" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="80" id="L9n-Zg-Cgt"/>
                 <constraint firstAttribute="bottom" secondItem="UCt-9W-iRE" secondAttribute="bottom" constant="12" id="M0f-n2-w9W"/>
-                <constraint firstItem="MwV-4s-l6P" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="QAp-b7-uEd"/>
+                <constraint firstItem="MwV-4s-l6P" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="12" id="QAp-b7-uEd"/>
                 <constraint firstAttribute="trailing" secondItem="UCt-9W-iRE" secondAttribute="trailing" constant="12" id="cHa-xE-cUY"/>
                 <constraint firstAttribute="trailing" secondItem="MwV-4s-l6P" secondAttribute="trailing" constant="12" id="eFH-qo-cgF"/>
             </constraints>

@@ -20,19 +20,29 @@ extension UIImageView {
     
 }
 
+// MARK: - Get random color
+
+extension UIColor {
+    class func getRandomColor() -> UIColor {
+        let red: CGFloat = CGFloat(drand48())
+        let green: CGFloat = CGFloat(drand48())
+        let blue: CGFloat = CGFloat(drand48())
+        
+        return UIColor(red: red, green: green, blue: blue, alpha: 0.7)
+    }
+}
+
 // MARK: - Drawing the timeline
 
 extension UIView {
     
     func drawTimeline(circleColor: CGColor, lineColor: CGColor) {
-        
-        
+    
         let shapeLayer = CAShapeLayer()
         let lineLayer = CAShapeLayer()
         
         self.layer.addSublayer(lineLayer)
         self.layer.addSublayer(shapeLayer)
-        
         
         // Draw a circle
         let circlePath = UIBezierPath(arcCenter: CGPoint(x: Constants.CustomCell.offset, y: self.bounds.height/2), radius: CGFloat(Constants.CustomCell.bulletRadius), startAngle: CGFloat(0), endAngle:CGFloat(M_PI * 2), clockwise: true)

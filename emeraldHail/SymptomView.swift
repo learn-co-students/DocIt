@@ -50,6 +50,8 @@ class SymptomView: UIView {
         
         addSubview(contentView)
         
+//        contentView.backgroundColor = UIColor.getRandomColor()
+        
         contentView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         contentView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         contentView.topAnchor.constraint(equalTo: topAnchor).isActive = true
