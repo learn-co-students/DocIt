@@ -71,22 +71,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         store.eventID = events[indexPath.row].uniqueID
     }
 
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-
-        let databaseEvents = self.database.child("events").child(store.memberID)
-
-        if editingStyle == .delete {
-
-            // Deleting selected events from Firebase
-
-            let uniqueEventID = events[indexPath.row].uniqueID
-            databaseEvents.child(uniqueEventID).removeValue()
-
-            events.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        }
-    }
-
+    
     // MARK: Functions
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(EventViewController.dismissKeyboardView))

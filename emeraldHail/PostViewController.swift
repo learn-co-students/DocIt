@@ -10,10 +10,18 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 
+
+var postss = [Post]()
+
 class PostViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var deletedPostRef: FIRDatabaseReference?
     var uniqueID: String?
+    
+    var posts = [Post]()
+    var store = DataStore.sharedInstance
+    let postsRef = FIRDatabase.database().reference().child("posts")
+    
     
     // MARK: Outlets
     @IBOutlet weak var nameLabel: UILabel!
@@ -26,12 +34,6 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         }
     }
-    
-    var posts = [Post]()
-    var store = DataStore.sharedInstance
-    let postsRef = FIRDatabase.database().reference().child("posts")
-    var eventID = ""
-    var database: FIRDatabaseReference = FIRDatabase.database().reference()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -138,15 +140,32 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         
-        let databasePosts = self.database.child("posts").child(store.eventID)
+        let databasePosts = postsRef.child(store.eventID)
         
         if editingStyle == .delete {
             
             // Deleting post data from Firebase using UniquePostID
             
             let uniquePostID = posts[indexPath.row].description
-            dump("DISCRIPTION ISSSSSS \(uniquePostID)")
-            databasePosts.child(uniquePostID).removeValue()
+            store.postID = uniquePostID
+            databasePosts.child(store.postID).removeValue()
+//            databasePosts.child(store.imagePostID).removeValue()
+            
+            // Deleting images from storge
+            
+            let storageRef = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
+//            let storageImgRef = storageRef.child("postsImages").child(store.imagePostID)
+            let storageImgRef = storageRef.child("postsImages").child(store.postID)
+            
+            storageImgRef.delete(completion: { error -> Void in
+                
+                if error != nil {
+                    print("Error occured while deleting imgs from Firebase storage")
+                } else {
+                    print("Image removed from Firebase successfully!")
+                }
+                
+            })
             
             // Deleting posts from tableviews
             
@@ -192,6 +211,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
                 })
                 
                 self.posts = sortedPosts
+                postss = self.posts
                 
                 self.postTableView.reloadData()
             }
