@@ -9,6 +9,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
+        <capability name="Segues with Peek and Pop" minToolsVersion="7.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -191,7 +192,37 @@
                                         <connections>
                                             <outlet property="memberNameLabel" destination="GSq-JP-80B" id="DXX-Gf-p1K"/>
                                             <outlet property="profileImageView" destination="nGD-pi-dzc" id="eIc-bh-YLd"/>
-                                            <segue destination="ZlU-EQ-FGQ" kind="show" id="AyQ-2m-HY5"/>
+                                            <segue destination="ZlU-EQ-FGQ" kind="show" id="AyQ-2m-HY5">
+                                                <segue key="commit" inheritsFrom="parent" id="5l8-8k-nDo"/>
+                                                <segue key="preview" inheritsFrom="commit" id="aoO-4j-k8X"/>
+                                            </segue>
+                                        </connections>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="addMemberCell" id="0I2-a7-Bdh" customClass="AddMemberCollectionViewCell" customModule="emeraldHail" customModuleProvider="target">
+                                        <rect key="frame" x="225" y="150" width="150" height="150"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uQX-zQ-drx" customClass="AddMemberView" customModule="emeraldHail" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                                </view>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="uQX-zQ-drx" secondAttribute="bottom" id="3uY-Oo-nSV"/>
+                                            <constraint firstAttribute="trailing" secondItem="uQX-zQ-drx" secondAttribute="trailing" id="ivc-Er-nxm"/>
+                                            <constraint firstItem="uQX-zQ-drx" firstAttribute="leading" secondItem="0I2-a7-Bdh" secondAttribute="leading" id="k4b-fg-wJl"/>
+                                            <constraint firstItem="uQX-zQ-drx" firstAttribute="top" secondItem="0I2-a7-Bdh" secondAttribute="top" id="kcM-Ro-U7r"/>
+                                        </constraints>
+                                        <size key="customSize" width="150" height="150"/>
+                                        <connections>
+                                            <outlet property="addMemberView" destination="uQX-zQ-drx" id="R2b-Dg-WS3"/>
+                                            <segue destination="y9d-zF-vg4" kind="presentation" id="8mZ-ms-lDd">
+                                                <segue key="commit" inheritsFrom="parent" id="als-la-CXo"/>
+                                                <segue key="preview" inheritsFrom="commit" id="Sxe-pX-Pjr"/>
+                                            </segue>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -200,10 +231,10 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blackfam" translatesAutoresizingMaskIntoConstraints="NO" id="hNa-6z-wVq">
-                                            <rect key="frame" x="0.5" y="0.0" width="375" height="150"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
                                         </imageView>
                                         <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HKx-6P-0wu">
-                                            <rect key="frame" x="0.5" y="0.0" width="375" height="150"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
                                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Family Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cLw-J8-NoL">
@@ -442,7 +473,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="UYV-Us-6hb">
-                                <rect key="frame" x="198" y="405.5" width="69" height="29"/>
+                                <rect key="frame" x="198" y="406" width="69" height="29"/>
                                 <segments>
                                     <segment title="Off"/>
                                     <segment title="On"/>
@@ -947,7 +978,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="th2-zl-Cpp" customClass="NoteView" customModule="emeraldHail" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="174.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="175"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="niw-NT-kb0"/>
                                                     </constraints>
@@ -972,7 +1003,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gV2-le-btI" customClass="TempView" customModule="emeraldHail" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="174.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="175"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="jna-3b-RfT"/>
                                                     </constraints>
@@ -1906,7 +1937,9 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="D6a-tn-o54"/>
-        <segue reference="Ywg-j3-Iij"/>
         <segue reference="8IQ-kN-dMw"/>
+        <segue reference="Ywg-j3-Iij"/>
+        <segue reference="AyQ-2m-HY5"/>
+        <segue reference="8mZ-ms-lDd"/>
     </inferredMetricsTieBreakers>
 </document>
