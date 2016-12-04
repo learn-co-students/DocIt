@@ -63,13 +63,17 @@ class DataStore{
     // POST
 
     var postID = ""
+    
+    // IMAGE POST
+    
+    var imagePostID = ""// this many be needed - please do not delete this comment - Luna :)
 
     // METHODS
 
     func clearDataStore() {
 
 
-//        familyID = ""
+    //familyID = ""
 
         
         familyPicture = ""
@@ -77,6 +81,7 @@ class DataStore{
         memberID = ""
         eventID = ""
         postID = ""
+        imagePostID = ""
 
         memberGenderType = ""
 

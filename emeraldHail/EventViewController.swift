@@ -72,19 +72,41 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-
+        
+        let databasePosts = self.database.child("posts").child(store.eventID)
         let databaseEvents = self.database.child("events").child(store.memberID)
+        let uniqueEventID = events[indexPath.row].uniqueID
+        let uniquePostID = postss[indexPath.row].description
+        
+        // We need to include an array of posts that can be accessed globally - maybe in a singleton - otherwise it won't work - I temporarily created an array called postss as seen above - will replaced as the datastructure improves
 
         if editingStyle == .delete {
 
             // Deleting selected events from Firebase
-
-            let uniqueEventID = events[indexPath.row].uniqueID
+            databasePosts.child(uniquePostID).removeValue()
             databaseEvents.child(uniqueEventID).removeValue()
-
+            
             events.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
+        
+        // Deleting images related to events from Storge
+        
+        
+        let storageRef = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
+        let storageImageRef = storageRef.child("postsImages").child(uniquePostID)
+        print("++++++++++++++++++++++++++++++++++++++\(uniquePostID)")
+        
+        storageImageRef.delete(completion: { error -> Void in
+            
+            if error != nil {
+                print("Error occured while deleting imgs from Firebase storage")
+            } else {
+                print("Image removed from Firebase successfully!")
+            }
+            
+        })
+
     }
 
     // MARK: Functions

@@ -112,9 +112,9 @@ class PhotoViewController: UIViewController, UINavigationControllerDelegate, UII
         
         let storageRef = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
         
-        let imageId = uniqueID
+        store.imagePostID = uniqueID
         
-        let storageImageRef = storageRef.child("postsImages").child(imageId)
+        let storageImageRef = storageRef.child("postsImages").child(store.imagePostID)
         
         if let uploadData = UIImageJPEGRepresentation(self.imageView.image!, 1.0){
             
