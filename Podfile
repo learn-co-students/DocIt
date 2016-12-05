@@ -12,14 +12,7 @@ target 'emeraldHail' do
   pod 'Firebase/Storage'
   pod 'SDWebImage', '~>3.8'
   pod 'GoogleSignIn'
-  pod 'ALCameraViewController'
+  pod 'Fusuma', :git => 'https://github.com/pruthvikar/Fusuma.git', :commit => '503865a'
 
 end
 
-post_install do |installer|
-  installer.pods_project.targets.each do |target|
-    target.build_configurations.each do |config|
-      config.build_settings['SWIFT_VERSION'] = '3.0'
-    end
-  end
-end

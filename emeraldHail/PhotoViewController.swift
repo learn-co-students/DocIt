@@ -8,12 +8,11 @@
 
 import UIKit
 import Firebase
-import ALCameraViewController
+import Fusuma
 
-class PhotoViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class PhotoViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, FusumaDelegate {
     
     var store = DataStore.sharedInstance
-    var selectedImage: UIImage?
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var uploadImageButton: UIButton!
@@ -22,8 +21,6 @@ class PhotoViewController: UIViewController, UINavigationControllerDelegate, UII
         uploadImageURLtoFirebaseDatabaseAndStorage()
     }
     
-    @IBOutlet weak var selectFromLibraryButton: UIButton!
-    
     @IBAction func cancelButtonTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
@@ -31,66 +28,50 @@ class PhotoViewController: UIViewController, UINavigationControllerDelegate, UII
     override func viewDidLoad() {
         super.viewDidLoad()
         imageView.isUserInteractionEnabled = true
-        selectFromLibraryButton.isUserInteractionEnabled = true
-        addGestureRecognizer(imageview: imageView, button: selectFromLibraryButton)
+        addGestureRecognizer(imageview: imageView)
         
     }
     
-    
-    func addGestureRecognizer(imageview: UIImageView, button: UIButton){
+    func addGestureRecognizer(imageview: UIImageView){
         
         imageview.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleCameraImage)))
-        button.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleLibraryImage)))
+        
     }
+    
+    // Fusuma
     
     func handleCameraImage(){
         
-        let picker = UIImagePickerController()
-        
-        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            picker.delegate = self
-            picker.sourceType = .camera
-            present(picker, animated: true, completion: nil)
-        } else {
-            print("The device has no camera")
-        }
-        
-        picker.allowsEditing = true
-        
+        let fusuma = FusumaViewController()
+        fusuma.delegate = self
+        self.present(fusuma, animated: true, completion: nil)
+        fusumaCropImage = true
+
     }
     
-    func handleLibraryImage(){
+
+    // Return the image which is selected from camera roll or is taken via the camera.
+    func fusumaImageSelected(_ image: UIImage) {
         
-        let picker = UIImagePickerController()
-        
-        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-            picker.delegate = self
-            picker.sourceType = .photoLibrary
-            present(picker, animated: true, completion: nil)
-            
-        } else {
-            print("No photo library")
-        }
-        
-        picker.allowsEditing = true
-        
+        imageView.image = image
+        print("Image selected")
     }
     
+    // Return the image but called after is dismissed.
+    func fusumaDismissedWithImage(_ image: UIImage) {
+        
+        print("Called just after FusumaViewController is dismissed.")
+    }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    func fusumaVideoCompleted(withFileURL fileURL: URL) {
         
-        var selectedImageFromPicker: UIImage?
+        print("Called just after a video has been selected.")
+    }
+    
+    // When camera roll is not authorized, this method is called.
+    func fusumaCameraRollUnauthorized() {
         
-        if let editedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
-            selectedImageFromPicker = editedImage
-        } else if let originalImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            selectedImageFromPicker = originalImage
-        }
-        if let selectedImage = selectedImageFromPicker {
-            imageView.image = selectedImage
-        }
-        
-        dismiss(animated: true, completion: nil)
+       print("Camera access denied")
     }
     
     

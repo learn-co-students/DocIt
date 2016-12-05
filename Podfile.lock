@@ -1,5 +1,4 @@
 PODS:
-  - ALCameraViewController (1.2.7)
   - Firebase/Auth (3.9.0):
     - Firebase/Core
     - FirebaseAuth (= 3.0.6)
@@ -31,6 +30,7 @@ PODS:
   - FirebaseStorage (1.0.4):
     - FirebaseAnalytics (~> 3.4)
     - GTMSessionFetcher/Core (~> 1.1)
+  - Fusuma (0.5.3)
   - GoogleAppUtilities (1.1.2):
     - GoogleSymbolUtilities (~> 1.1)
   - GoogleInterchangeUtilities (1.2.2):
@@ -63,16 +63,25 @@ PODS:
   - SDWebImage/Core (3.8.2)
 
 DEPENDENCIES:
-  - ALCameraViewController
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
   - Firebase/Storage
+  - Fusuma (from `https://github.com/pruthvikar/Fusuma.git`, commit `503865a`)
   - GoogleSignIn
   - SDWebImage (~> 3.8)
 
+EXTERNAL SOURCES:
+  Fusuma:
+    :commit: 503865a
+    :git: https://github.com/pruthvikar/Fusuma.git
+
+CHECKOUT OPTIONS:
+  Fusuma:
+    :commit: 503865a
+    :git: https://github.com/pruthvikar/Fusuma.git
+
 SPEC CHECKSUMS:
-  ALCameraViewController: 4a513b8d5ecfdb3f34c50b1d469c373aae1ec7b4
   Firebase: ff77ffb77b317c3720fef57a60e9335cebf962e6
   FirebaseAnalytics: 6e58fc9b397664369ac7617fb0ba93fab6ba7b5b
   FirebaseAuth: 96e9674ff31d6e1f826d53e26aa003a57cab0295
@@ -80,6 +89,7 @@ SPEC CHECKSUMS:
   FirebaseDatabase: 3ebb2edb6007c3f0f87b248f3fa212bde56a1468
   FirebaseInstanceID: ba1e640935235e5fac39dfa816fe7660e72e1a8a
   FirebaseStorage: c50aa353bf484072704e73b4aff1bd47adb735c4
+  Fusuma: 02ffb3a9943792519f2c0972263b750acb550a49
   GoogleAppUtilities: a8a552aa74f6597f805e45b5a3962766c3134973
   GoogleInterchangeUtilities: d5bc4d88d5b661ab72f9d70c58d02ca8c27ad1f7
   GoogleSignIn: a8694c0a8e6d1b0ec77c58014de5bfd4ba2fa766
@@ -89,6 +99,6 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: a1f8ed39e4fe21c68957daed472c7afbcdf29166
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
 
-PODFILE CHECKSUM: 7ca4a2828004cd00fbb76d6a70431fbd80f1cf86
+PODFILE CHECKSUM: 099d9060792565261d7d2c8eea781ba1ebbbe56f
 
 COCOAPODS: 1.0.1
