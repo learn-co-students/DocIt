@@ -216,30 +216,6 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDataSource
             self.profilePicture.setRounded()
             self.profilePicture.contentMode = .scaleAspectFill
             
-            
         })
     }
-    
-    
-    
-    //    func showPicture() {
-    //
-    //        let member = FIRDatabase.database().reference().child("members").child(store.family.id).child(store.memberID)
-    //
-    //        member.observe(.value, with: { snapshot in
-    //
-    //            var image = snapshot.value as! [String:Any]
-    //            let imageString = image["profileImage"] as! String
-    //
-    //            let profileImgUrl = URL(string: imageString)
-    //            self.profileImageView.sd_setImage(with: profileImgUrl)
-    //
-    //            self.profileImageView.setRounded()
-    //            self.profileImageView.contentMode = .scaleAspectFill
-    //            self.profileImageView.layer.borderColor = UIColor.gray.cgColor
-    //            self.profileImageView.layer.borderWidth = 0.5
-    //
-    //        })
-    //    }
-    
 }

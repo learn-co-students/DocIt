@@ -12,6 +12,8 @@ import Fusuma
 
 class PhotoViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, FusumaDelegate {
     
+    
+    
     var store = DataStore.sharedInstance
     
     @IBOutlet weak var imageView: UIImageView!
@@ -40,7 +42,7 @@ class PhotoViewController: UIViewController, UINavigationControllerDelegate, UII
     
     // Fusuma
     
-    func handleCameraImage(){
+    func handleCameraImage() {
         
         let fusuma = FusumaViewController()
         fusuma.delegate = self
@@ -61,6 +63,8 @@ class PhotoViewController: UIViewController, UINavigationControllerDelegate, UII
     func fusumaDismissedWithImage(_ image: UIImage) {
         
         print("Called just after FusumaViewController is dismissed.")
+        
+        uploadImageURLtoFirebaseDatabaseAndStorage()
     }
     
     func fusumaVideoCompleted(withFileURL fileURL: URL) {
