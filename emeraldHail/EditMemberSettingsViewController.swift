@@ -110,7 +110,7 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
         memberReference.updateChildValues(updatedInfo)
         
         
-        
+        self.navigationController?.popViewController(animated: true)
             
         }
     
