@@ -349,7 +349,7 @@ extension FusumaViewController: FSAlbumViewDelegate, FSCameraViewDelegate, FSVid
         
         delegate?.fusumaImageSelected(image)
         self.dismiss(animated: true, completion: {
-            
+
             self.delegate?.fusumaDismissedWithImage?(image)
         })
     }

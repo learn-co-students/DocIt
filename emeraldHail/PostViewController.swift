@@ -247,17 +247,17 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     // Return the image which is selected from camera roll or is taken via the camera.
     func fusumaImageSelected(_ image: UIImage) {
         
-        
-        
         print("Image selected")
     }
     
     // Return the image but called after is dismissed.
     func fusumaDismissedWithImage(_ image: UIImage) {
         
+        uploadImageURLtoFirebaseDatabaseAndStorage(image)
+        
         print("Called just after FusumaViewController is dismissed.")
         
-        uploadImageURLtoFirebaseDatabaseAndStorage(image)
+
     }
     
     func fusumaVideoCompleted(withFileURL fileURL: URL) {
@@ -293,7 +293,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         let storageImageRef = storageRef.child("postsImages").child(store.imagePostID)
         
-        if let uploadData = UIImageJPEGRepresentation(image, 1.0){
+        if let uploadData = UIImageJPEGRepresentation(image, 0.25){
             
             storageImageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in 
                 if error != nil {

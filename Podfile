@@ -13,6 +13,7 @@ target 'emeraldHail' do
   pod 'SDWebImage', '~>3.8'
   pod 'GoogleSignIn'
   pod 'Fusuma', :git => 'https://github.com/pruthvikar/Fusuma.git', :commit => '503865a'
+  pod 'RappleProgressHUD'
+
 
 end
-
