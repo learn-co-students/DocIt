@@ -2,7 +2,7 @@
 //  PainLevelView.swift
 //  emeraldHail
 //
-//  Created by Mirim An on 11/29/16.
+//  Created by Luna An on 11/29/16.
 //  Copyright © 2016 Flatiron School. All rights reserved.
 //
 
@@ -13,19 +13,39 @@ class PainLevelView: UIView {
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var painLevelLabel: UILabel!
     @IBOutlet weak var timestampLabel: UILabel!
+    @IBOutlet weak var faceImageView: UIImageView!
     
     
     var pain: Pain! {
         didSet {
-        
+            
             painLevelLabel.text = pain.content
             timestampLabel.text = pain.naturalTime
+      
+            switch pain.content {
+            case "No Pain" :
+                faceImageView.image = UIImage(named: "noPain")
+            case "Mild":
+                faceImageView.image = UIImage(named: "mild")
+            case "Moderate":
+                faceImageView.image = UIImage(named: "moderate")
+            case "Severe":
+                faceImageView.image = UIImage(named: "severe")
+            case "Very Severe":
+                faceImageView.image = UIImage(named: "verySevere")
+            case "Excruciating":
+                faceImageView.image = UIImage(named: "excruciating")
+            default:
+                break
+            }
+            
         }
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
+
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -41,8 +61,6 @@ class PainLevelView: UIView {
         addSubview(contentView)
         
         timestampLabel.textColor = Constants.Colors.submarine
-        
-//        contentView.backgroundColor = UIColor.getRandomColor()
         
         contentView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         contentView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
