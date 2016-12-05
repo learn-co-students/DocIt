@@ -74,7 +74,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         
         let databasePosts = self.database.child("posts").child(store.eventID)
-        let databaseEvents = self.database.child("events").child(store.memberID)
+        let databaseEvents = self.database.child("events").child(store.member.id)
         let uniqueEventID = events[indexPath.row].uniqueID
         let uniquePostID = postss[indexPath.row].description
         
@@ -121,7 +121,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
 
     func showPictureAndName() {
-        let member = FIRDatabase.database().reference().child("members").child(store.family.id).child(store.memberID)
+        let member = FIRDatabase.database().reference().child("members").child(store.family.id).child(store.member.id)
 
         member.observe(.value, with: { snapshot in
             var member = snapshot.value as! [String : Any]
@@ -139,7 +139,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     func configDatabase() {
 
-        let memberID: String = store.memberID
+        let memberID: String = store.member.id
 
         let eventsRef = FIRDatabase.database().reference().child("events").child(memberID)
 
@@ -170,7 +170,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
             guard let name = nameTextField?.text, name != "", let date = dateTextField?.text, date != "" else { return }
 
-            let databaseEventsRef = self.database.child("events").child(self.store.memberID).childByAutoId()
+            let databaseEventsRef = self.database.child("events").child(self.store.member.id).childByAutoId()
 
             let uniqueID = databaseEventsRef.key
 

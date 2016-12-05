@@ -20,23 +20,23 @@ enum PainLevel: Int {
     var image: UIImage {
         
         switch self {
-        case .noPain: return UIImage(named: "Good")!
-        case .mild: return UIImage(named: "notHappy")!
-        case .moderate: return UIImage(named: "veryUnhappy")!
-        case .severe: return UIImage(named: "Good")!
-        case .verySevere: return UIImage(named: "notHappy")!
-        case .excruciating: return UIImage(named: "veryUnhappy")!
+        case .noPain: return UIImage(named: "noPain")!
+        case .mild: return UIImage(named: "mild")!
+        case .moderate: return UIImage(named: "moderate")!
+        case .severe: return UIImage(named: "severe")!
+        case .verySevere: return UIImage(named: "verySevere")!
+        case .excruciating: return UIImage(named: "excruciating")!
         }
     }
     
     var description: String {
         switch self {
-        case .noPain: return "0 - No Pain"
-        case .mild: return "2 - Mild"
-        case .moderate: return "4 - Moderate"
-        case .severe: return "6 - Severe"
-        case .verySevere: return "8 - Very Severe"
-        case .excruciating: return "10 - Excruciating"
+        case .noPain: return "No Pain"
+        case .mild: return "Mild"
+        case .moderate: return "Moderate"
+        case .severe: return "Severe"
+        case .verySevere: return "Very Severe"
+        case .excruciating: return "Excruciating"
             
         }
         

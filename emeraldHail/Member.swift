@@ -16,35 +16,43 @@ struct Member {
     var profileImage: String
     var firstName: String
     var lastName: String
-    var fullName: String {
-        
-        return firstName + " " + lastName
-    }
+//    var fullName: String {
+//        
+//        return firstName + " " + lastName
+//    }
     var gender: String
     var birthday: String
-    var uniqueID: String
-    var bloodType: String?
+    var bloodType: String
+    var height: String
+    var weight: String
+    var allergies: String
+    var id: String
     
-    
-    init(profileImage: String, firstName: String, lastName: String, gender: String , birthday: String, uniqueID: String = "", bloodType: String = "") {
+    init(profileImage: String, firstName: String, lastName: String, gender: String , birthday: String,  bloodType: String, height: String, weight: String, allergies: String, id: String) {
         self.profileImage = profileImage
         self.firstName = firstName
         self.lastName = lastName
         self.gender = gender
         self.birthday = birthday
-        self.uniqueID = uniqueID
+        self.bloodType = bloodType
+        self.height = height
+        self.weight = weight
+        self.allergies = allergies
+        self.id = id
     }
     
-    init(dictionary: [String : Any], uniqueID: String) {
+    init(dictionary: [String : Any], id: String) {
         profileImage = dictionary["profileImage"] as? String ?? "No Image URL"
         firstName = dictionary["firstName"] as? String ?? "No Name"
         lastName = dictionary["lastName"] as? String ?? "No Last Name"
-        birthday = dictionary["birthday"] as? String ?? "No Birthday"
         gender = dictionary["gender"] as? String ?? "No Gender"
+        birthday = dictionary["birthday"] as? String ?? "No Birthday"
         bloodType = dictionary["bloodType"] as? String ?? "No Blood Type"
-        //userImage = dictionary["UserImage"] as? String ?? "No URL"
+        height = dictionary["height"] as? String ?? "No Height"
+        weight = dictionary["weight"] as? String ?? "No Weight"
+        allergies = dictionary["allergies"] as? String ?? "No Allergies"
         
-        self.uniqueID = uniqueID
+        self.id = id
     }
     
     init(snapshot: FIRDataSnapshot) {
@@ -54,10 +62,13 @@ struct Member {
         profileImage = snapshotValue["profileImage"] as! String
         firstName = snapshotValue["firstName"] as! String
         lastName = snapshotValue["lastName"] as! String
-        birthday = snapshotValue["birthday"] as! String
         gender = snapshotValue["gender"] as! String
-        uniqueID = snapshotValue["uniqueID"] as! String
-        bloodType = snapshotValue["bloodType"] as? String
+        birthday = snapshotValue["birthday"] as! String
+        bloodType = snapshotValue["bloodType"] as! String
+        height = snapshotValue["height"] as! String
+        weight = snapshotValue["weight"] as! String
+        allergies = snapshotValue["allergies"] as! String
+        id = snapshotValue["uniqueID"] as! String
         
     }
     
@@ -66,7 +77,7 @@ struct Member {
     
     
     func serialize() -> [String : Any] {
-        return  ["firstName" : firstName, "lastName": lastName, "gender" : gender, "birthday" : birthday, "uniqueID" : uniqueID, "profileImage" : profileImage, "bloodType": bloodType ?? ""]
+        return  ["profileImage" : profileImage, "firstName" : firstName, "lastName": lastName, "gender" : gender, "birthday" : birthday,  "bloodType": bloodType, "height": height, "weight": weight, "allergies": allergies,  "uniqueID" : id]
     }
     
     func saveToFireBase(handler: (Bool) -> Void) {

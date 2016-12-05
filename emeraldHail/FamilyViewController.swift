@@ -120,6 +120,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
             return
         }
         
+        store.member.id = membersInFamily[indexPath.row].id
     }
     
     // MARK: Header resuable view

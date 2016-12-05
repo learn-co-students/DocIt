@@ -9,21 +9,22 @@
 import UIKit
 import Firebase
 import FirebaseDatabase
+import Fusuma
 
 
 var postss = [Post]()
 
-class PostViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class PostViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, FusumaDelegate {
     
     var deletedPostRef: FIRDatabaseReference?
     var uniqueID: String?
-    
     var posts = [Post]()
     var store = DataStore.sharedInstance
     let postsRef = FIRDatabase.database().reference().child("posts")
     
     
     // MARK: Outlets
+    
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var postTableView: UITableView!
@@ -35,10 +36,12 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
+    // MARK: Loads 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽\nInside the PostVC\nfamilyID: \(store.family.id)\nmemberID: \(store.memberID)\neventID: \(store.eventID)\n👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽")
+        print("👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽\nInside the PostVC\nfamilyID: \(store.family.id)\nmemberID: \(store.member.id)\neventID: \(store.eventID)\n👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽")
         
         postTableView.delegate = self
         postTableView.dataSource = self
@@ -66,6 +69,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     // MARK: - Actions
+    
     @IBAction func addPost(_ sender: UIButton) {
         
         UIView.animate(withDuration: 0.3) {
@@ -75,7 +79,14 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
+    @IBAction func addPhoto(_ sender: UIButton) {
+        handleCameraImage()
+    }
+    
+    
+    
     // MARK: - TableView Methods
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -162,6 +173,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     // MARK: - Firebase
+    
     func fetchPosts() {
         
         postsRef.child(store.eventID).observe(.value, with: { [unowned self] snapshot in
@@ -204,7 +216,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func fetchMemberDetails() {
-        let member = FIRDatabase.database().reference().child("members").child(store.family.id).child(store.memberID)
+        let member = FIRDatabase.database().reference().child("members").child(store.family.id).child(store.member.id)
         
         member.observe(.value, with: { snapshot in
             var member = snapshot.value as! [String:Any]
@@ -218,5 +230,100 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.nameLabel.text = name
         })
     }
+    
+    
+    // MARK: Fusuma - Photo feature
+    
+    func handleCameraImage() {
+        
+        let fusuma = FusumaViewController()
+        fusuma.delegate = self
+        self.present(fusuma, animated: true, completion: nil)
+        fusumaCropImage = true
+        
+    }
+    
+    
+    // Return the image which is selected from camera roll or is taken via the camera.
+    func fusumaImageSelected(_ image: UIImage) {
+        
+        print("Image selected")
+    }
+    
+    // Return the image but called after is dismissed.
+    func fusumaDismissedWithImage(_ image: UIImage) {
+        
+        uploadImageURLtoFirebaseDatabaseAndStorage(image)
+        
+        print("Called just after FusumaViewController is dismissed.")
+        
+
+    }
+    
+    func fusumaVideoCompleted(withFileURL fileURL: URL) {
+        
+        print("Called just after a video has been selected.")
+    }
+    
+    // When camera roll is not authorized, this method is called.
+    func fusumaCameraRollUnauthorized() {
+        
+        print("Camera access denied")
+    }
+    
+    
+    func uploadImageURLtoFirebaseDatabaseAndStorage(_ image: UIImage) {
+        
+        
+//        guard let image = imageView.image, image != UIImage(named: "addImageIcon") else { return }
+        
+        // database
+        
+        let database: FIRDatabaseReference = FIRDatabase.database().reference()
+        
+        let databasePostsRef = database.child("posts").child(store.eventID).childByAutoId()
+        
+        let uniqueID = databasePostsRef.key
+        
+        // storage
+        
+        let storageRef = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
+        
+        store.imagePostID = uniqueID
+        
+        let storageImageRef = storageRef.child("postsImages").child(store.imagePostID)
+        
+        if let uploadData = UIImageJPEGRepresentation(image, 0.25){
+            
+            storageImageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in 
+                if error != nil {
+                    print (error?.localizedDescription ?? "Error in PhotoVC" )
+                    return
+                }
+                
+                if let postImageUrl = metadata?.downloadURL()?.absoluteString {
+                    
+                    //let currentDate = Date()
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "MMM d, yyyy HH:mm:ss a"
+                    //let timestamp = dateFormatter.string(from: currentDate)
+                    
+                    let photo = Photo(content: postImageUrl, timestamp: self.getTimestamp(), uniqueID: uniqueID)
+                    
+                    databasePostsRef.setValue(photo.serialize(), withCompletionBlock: { error, dataRef in
+                        // Disable the save button after it's pressed once
+                        
+                    })
+                }
+                
+            })
+        }
+        
+        
+    }
+    
+
+
+    
     
 }

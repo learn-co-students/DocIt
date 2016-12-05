@@ -15,17 +15,19 @@ struct Pain {
     var uniqueID: String
     var naturalTime: String?
 
+
     init(dictionary: [String : Any]) {
 
         content = dictionary["content"] as? String ?? "No Content"
         timestamp = dictionary["timestamp"] as? String ?? "No Time"
         uniqueID = dictionary["uniqueID"] as? String ?? "No UniqueID"
         naturalTime = dictionary["naturalTime"] as? String ?? "No Natural Time"
+        
 
     }
 
     init(content: String, timestamp: String, uniqueID: String) {
-        print("Creating an instance of Temp")
+        print("Creating an instance of pain")
 
         self.content = content
         self.timestamp = timestamp
@@ -34,7 +36,7 @@ struct Pain {
     }
 
     func serialize() -> [String : Any] {
-        print("Serializing a Temp")
+        print("Serializing a pain")
 
         return ["content" : content,
                 "timestamp" : timestamp,
