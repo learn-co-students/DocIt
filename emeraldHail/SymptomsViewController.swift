@@ -45,6 +45,10 @@ class SymptomsViewController: UIViewController, UITableViewDelegate, UITableView
         
     }
     
+    @IBAction func cancelButtonTapped(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }

@@ -1264,7 +1264,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hA2-MZ-clj">
-                                            <rect key="frame" x="38" y="41" width="300" height="50"/>
+                                            <rect key="frame" x="38" y="28" width="300" height="50"/>
                                             <color key="backgroundColor" red="0.12549019610000001" green="0.75294117650000003" blue="0.8862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="50" id="PsA-NX-77G"/>
@@ -1278,12 +1278,25 @@
                                                 <action selector="saveSetting:" destination="lwm-I4-ndx" eventType="touchUpInside" id="Xzx-uZ-aN8"/>
                                             </connections>
                                         </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pi8-dE-5P3">
+                                            <rect key="frame" x="37.5" y="87" width="300" height="35"/>
+                                            <state key="normal" title="Cancel">
+                                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="cancelButtonTapped:" destination="z5g-W1-3kv" eventType="touchUpInside" id="UMb-yg-Il3"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" red="0.98039132360000003" green="0.97655218840000002" blue="0.97635632750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
-                                        <constraint firstItem="hA2-MZ-clj" firstAttribute="centerY" secondItem="uH2-9c-3vs" secondAttribute="centerY" id="ANC-tI-Wm8"/>
+                                        <constraint firstItem="pi8-dE-5P3" firstAttribute="centerX" secondItem="uH2-9c-3vs" secondAttribute="centerX" id="20M-4c-gy3"/>
+                                        <constraint firstItem="pi8-dE-5P3" firstAttribute="width" secondItem="hA2-MZ-clj" secondAttribute="width" id="7VU-Hz-0Qw"/>
+                                        <constraint firstItem="hA2-MZ-clj" firstAttribute="centerY" secondItem="uH2-9c-3vs" secondAttribute="centerY" multiplier="0.8" id="ANC-tI-Wm8"/>
                                         <constraint firstItem="hA2-MZ-clj" firstAttribute="centerX" secondItem="uH2-9c-3vs" secondAttribute="centerX" id="ImJ-g4-h6Q"/>
+                                        <constraint firstItem="pi8-dE-5P3" firstAttribute="height" secondItem="hA2-MZ-clj" secondAttribute="height" multiplier="0.7" id="JJV-nr-buX"/>
                                         <constraint firstItem="hA2-MZ-clj" firstAttribute="width" secondItem="uH2-9c-3vs" secondAttribute="width" multiplier="0.8" id="bqc-Mr-VSx"/>
+                                        <constraint firstAttribute="bottom" secondItem="pi8-dE-5P3" secondAttribute="bottom" constant="10" id="eRt-fz-yax"/>
                                     </constraints>
                                 </view>
                                 <prototypes>
@@ -1331,7 +1344,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yiu-ZG-DWm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1500" y="1603"/>
+            <point key="canvasLocation" x="1500" y="1602.5487256371816"/>
         </scene>
         <!--Pain Level View Controller-->
         <scene sceneID="gnp-st-bTw">
