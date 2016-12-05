@@ -32,7 +32,7 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
     let bloodSelection = UIPickerView()
     let dobSelection = UIDatePicker()
     let genderSelection = UIPickerView()
-
+    let weightSelection = UIPickerView()
     
     // MARK: Loads
 
@@ -47,11 +47,13 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
         // Blood Type selection
 //        bloodTextField.delegate = self
         bloodSelection.delegate = self
-//        bloodSelection.dataSource = self
         bloodTextField.inputView = bloodSelection
         
         genderSelection.delegate = self
         genderTextField.inputView = genderSelection
+        
+        weightSelection.delegate = self
+        weightTextField.inputView = weightSelection
         
         
     }
@@ -182,6 +184,8 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
             return store.bloodTypeSelections.count
         case genderSelection:
             return store.genderSelections.count
+        case weightSelection:
+            return store.weightSelections.count
         default:
             break
         }
@@ -196,6 +200,8 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
             bloodTextField.text = store.bloodTypeSelections[row]
         case genderSelection:
             genderTextField.text = store.genderSelections[row]
+        case weightSelection:
+            weightTextField.text = store.weightSelections[row]
         default:
             break
         }
@@ -211,6 +217,8 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
             return store.bloodTypeSelections[row]
         case genderSelection:
             return store.genderSelections[row]
+        case weightSelection:
+            return store.weightSelections[row]
         default:
             break
         }
@@ -230,6 +238,7 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
         birthdayField.inputView = dobSelection
         genderTextField.inputView = genderSelection
         bloodTextField.inputView = bloodSelection
+        weightTextField.inputView = weightSelection
         
         dobSelection.datePickerMode = UIDatePickerMode.date
         dobSelection.addTarget(self, action: #selector(self.datePickerChanged(sender:)) , for: .valueChanged)

@@ -52,7 +52,17 @@ class DataStore{
     var bloodTypeSelections : [String] = [BloodType.ABNeg.rawValue, BloodType.ABPos.rawValue, BloodType.ANeg.rawValue, BloodType.APos.rawValue, BloodType.BNeg.rawValue, BloodType.BPos.rawValue, BloodType.ONeg.rawValue, BloodType.OPos.rawValue]
     
     var genderSelections: [String] = [Gender.female.rawValue, Gender.male.rawValue]
+    
+    var weightSelections: [String] = []
 
+    func fillWeightData() {
+        
+        for i in 1...300 {
+            
+            weightSelections.append("\(i) LB")
+        }
+        
+    }
     // EVENT
 
     var eventID = ""
