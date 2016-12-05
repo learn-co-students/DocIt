@@ -656,10 +656,10 @@
             </objects>
             <point key="canvasLocation" x="2197.5999999999999" y="-208.24587706146929"/>
         </scene>
-        <!--Edit Member Settings View Controller-->
+        <!--Member-->
         <scene sceneID="QZZ-e1-4pU">
             <objects>
-                <viewController id="5vi-Bs-QCZ" customClass="EditMemberSettingsViewController" customModule="emeraldHail" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Member" id="5vi-Bs-QCZ" customClass="EditMemberSettingsViewController" customModule="emeraldHail" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dWi-yH-rpk"/>
                         <viewControllerLayoutGuide type="bottom" id="N5d-f6-Gbu"/>
@@ -669,17 +669,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rb0-En-eJN">
-                                <rect key="frame" x="0.0" y="64" width="375" height="175"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="150"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kid_silhouette" translatesAutoresizingMaskIntoConstraints="NO" id="iew-44-IJM">
-                                        <rect key="frame" x="138" y="38" width="100" height="100"/>
+                                        <rect key="frame" x="138" y="25.5" width="100" height="100"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="HkT-Ou-8RA"/>
                                             <constraint firstAttribute="height" constant="100" id="jyc-v9-3Gj"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sNL-fr-yLK">
-                                        <rect key="frame" x="0.0" y="138" width="375" height="30"/>
+                                        <rect key="frame" x="0.0" y="125.5" width="375" height="30"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="25"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -690,7 +690,7 @@
                                     <constraint firstItem="iew-44-IJM" firstAttribute="centerX" secondItem="rb0-En-eJN" secondAttribute="centerX" id="8Ax-75-7e5"/>
                                     <constraint firstItem="sNL-fr-yLK" firstAttribute="width" secondItem="rb0-En-eJN" secondAttribute="width" id="9fI-90-gtd"/>
                                     <constraint firstItem="sNL-fr-yLK" firstAttribute="centerX" secondItem="iew-44-IJM" secondAttribute="centerX" id="F4T-3g-BGK"/>
-                                    <constraint firstAttribute="height" constant="175" id="rPA-Nn-EX1"/>
+                                    <constraint firstAttribute="height" constant="150" id="rPA-Nn-EX1"/>
                                     <constraint firstItem="sNL-fr-yLK" firstAttribute="top" secondItem="iew-44-IJM" secondAttribute="bottom" id="tja-qF-S7r"/>
                                     <constraint firstItem="iew-44-IJM" firstAttribute="centerY" secondItem="rb0-En-eJN" secondAttribute="centerY" id="yBd-kL-saj"/>
                                 </constraints>

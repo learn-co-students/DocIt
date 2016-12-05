@@ -67,7 +67,6 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
         let disableSaveButton = sender as? UIButton
         disableSaveButton?.isEnabled = false
 
-        print("GENDERRRRRRRR is \(gender)")
         let database: FIRDatabaseReference = FIRDatabase.database().reference()
         let databaseMembersRef = database.child("members").child((FIRAuth.auth()?.currentUser?.uid)!).childByAutoId()
         let uniqueID = databaseMembersRef.key

@@ -378,20 +378,19 @@ private extension FSAlbumView {
             options.isNetworkAccessAllowed = true
             
             self.imageManager?.requestImage(for: asset,
-                                            targetSize: CGSize(width: asset.pixelWidth, height: asset.pixelHeight),
-                                            contentMode: .aspectFill,
-                                            options: options) {
-                                                result, info in
-                                                
-                                                DispatchQueue.main.async(execute: {
-                                                    
-                                                    self.imageCropView.imageSize = CGSize(width: asset.pixelWidth, height: asset.pixelHeight)
-                                                    self.imageCropView.image = result
-                                                })
+                targetSize: CGSize(width: asset.pixelWidth, height: asset.pixelHeight),
+                contentMode: .aspectFill,
+                options: options) {
+                    result, info in
+                    
+                    DispatchQueue.main.async(execute: {
+                        
+                        self.imageCropView.imageSize = CGSize(width: asset.pixelWidth, height: asset.pixelHeight)
+                        self.imageCropView.image = result
+                    })
             }
         })
-        
-}
+    }
     
     // Check the status of authorization for PHPhotoLibrary
     func checkPhotoAuth() {

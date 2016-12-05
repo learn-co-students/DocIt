@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 import GoogleSignIn
+import IQKeyboardManagerSwift
 
 
 
@@ -28,6 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         //  GIDSignIn.sharedInstance().uiDelegate = self
         
         GIDSignIn.sharedInstance().delegate = self
+        IQKeyboardManager.sharedManager().enable = true
         
 //        if FIRAuth.auth()?.currentUser != nil{
 //            let storyboard = UIStoryboard(name: "Main", bundle: nil)
