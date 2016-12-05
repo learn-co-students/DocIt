@@ -1,17 +1,17 @@
 PODS:
-  - Firebase/Auth (3.9.0):
+  - Firebase/Auth (3.10.0):
     - Firebase/Core
     - FirebaseAuth (= 3.0.6)
-  - Firebase/Core (3.9.0):
-    - FirebaseAnalytics (= 3.5.1)
-    - FirebaseCore (= 3.4.4)
-  - Firebase/Database (3.9.0):
+  - Firebase/Core (3.10.0):
+    - FirebaseAnalytics (= 3.6.0)
+    - FirebaseCore (= 3.4.5)
+  - Firebase/Database (3.10.0):
     - Firebase/Core
-    - FirebaseDatabase (= 3.1.0)
-  - Firebase/Storage (3.9.0):
+    - FirebaseDatabase (= 3.1.1)
+  - Firebase/Storage (3.10.0):
     - Firebase/Core
-    - FirebaseStorage (= 1.0.4)
-  - FirebaseAnalytics (3.5.1):
+    - FirebaseStorage (= 1.0.5)
+  - FirebaseAnalytics (3.6.0):
     - FirebaseCore (~> 3.4)
     - FirebaseInstanceID (~> 1.0)
     - GoogleInterchangeUtilities (~> 1.2)
@@ -21,14 +21,14 @@ PODS:
     - FirebaseAnalytics (~> 3.4)
     - GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)
     - GTMSessionFetcher/Core (~> 1.1)
-  - FirebaseCore (3.4.4):
+  - FirebaseCore (3.4.5):
     - GoogleInterchangeUtilities (~> 1.2)
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
-  - FirebaseDatabase (3.1.0):
-    - FirebaseAnalytics (~> 3.4)
+  - FirebaseDatabase (3.1.1):
+    - FirebaseAnalytics (~> 3.5)
   - FirebaseInstanceID (1.0.8)
-  - FirebaseStorage (1.0.4):
-    - FirebaseAnalytics (~> 3.4)
+  - FirebaseStorage (1.0.5):
+    - FirebaseAnalytics (~> 3.5)
     - GTMSessionFetcher/Core (~> 1.1)
   - Fusuma (0.5.3)
   - GoogleAppUtilities (1.1.2):
@@ -58,6 +58,7 @@ PODS:
   - GTMSessionFetcher/Core (1.1.7)
   - GTMSessionFetcher/Full (1.1.7):
     - GTMSessionFetcher/Core (= 1.1.7)
+  - IQKeyboardManagerSwift (4.0.7)
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
@@ -69,6 +70,7 @@ DEPENDENCIES:
   - Firebase/Storage
   - Fusuma (from `https://github.com/pruthvikar/Fusuma.git`, commit `503865a`)
   - GoogleSignIn
+  - IQKeyboardManagerSwift
   - SDWebImage (~> 3.8)
 
 EXTERNAL SOURCES:
@@ -82,13 +84,13 @@ CHECKOUT OPTIONS:
     :git: https://github.com/pruthvikar/Fusuma.git
 
 SPEC CHECKSUMS:
-  Firebase: ff77ffb77b317c3720fef57a60e9335cebf962e6
-  FirebaseAnalytics: 6e58fc9b397664369ac7617fb0ba93fab6ba7b5b
+  Firebase: 387f37c7dca894a02708da9ff35ba147040eae9e
+  FirebaseAnalytics: 9c67af0ebeb8d2146c9b4ea2616439affa947b58
   FirebaseAuth: 96e9674ff31d6e1f826d53e26aa003a57cab0295
-  FirebaseCore: d0ed25f27b6f9158eccc439f1be6f92e81207e28
-  FirebaseDatabase: 3ebb2edb6007c3f0f87b248f3fa212bde56a1468
+  FirebaseCore: 1e383fdfe37b6b5d6ff88e84204bdee30276af0f
+  FirebaseDatabase: 6de92187481ff0e8e124064f21742e95ee883b02
   FirebaseInstanceID: ba1e640935235e5fac39dfa816fe7660e72e1a8a
-  FirebaseStorage: c50aa353bf484072704e73b4aff1bd47adb735c4
+  FirebaseStorage: 5738284835edb57f0e81d4ae5832bb17c1e4b5fa
   Fusuma: 02ffb3a9943792519f2c0972263b750acb550a49
   GoogleAppUtilities: a8a552aa74f6597f805e45b5a3962766c3134973
   GoogleInterchangeUtilities: d5bc4d88d5b661ab72f9d70c58d02ca8c27ad1f7
@@ -97,8 +99,9 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 2b2596cbb7186865e98cadf2b1e262d851c2b168
   GTMOAuth2: 7fc9c10f5c745f4d9850419ea88889fe3baa6b7d
   GTMSessionFetcher: a1f8ed39e4fe21c68957daed472c7afbcdf29166
-  SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
+  IQKeyboardManagerSwift: 58bbcf46b5cf9fd4ed625d28a60cb2fbae4ab0f4
+  SDWebImage: '098e97e6176540799c27e804c96653ee0833d13c'
 
-PODFILE CHECKSUM: 099d9060792565261d7d2c8eea781ba1ebbbe56f
+PODFILE CHECKSUM: 35e6c1be9ecefac7076d4dcd2eafc2f52273e7eb
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.1.1
