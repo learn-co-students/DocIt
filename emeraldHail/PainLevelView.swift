@@ -19,15 +19,6 @@ class PainLevelView: UIView {
     var pain: Pain! {
         didSet {
             
-            /*
-             case .noPain: return "No Pain"
-             case .mild: return "Mild"
-             case .moderate: return "Moderate"
-             case .severe: return "Severe"
-             case .verySevere: return "Very Severe"
-             case .excruciating: return "Excruciating"
- */
-        
             painLevelLabel.text = pain.content
             timestampLabel.text = pain.naturalTime
       
@@ -70,8 +61,6 @@ class PainLevelView: UIView {
         addSubview(contentView)
         
         timestampLabel.textColor = Constants.Colors.submarine
-        
-//        contentView.backgroundColor = UIColor.getRandomColor()
         
         contentView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         contentView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
