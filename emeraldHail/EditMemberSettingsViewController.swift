@@ -11,7 +11,7 @@ import FirebaseDatabase
 import FirebaseStorage
 import Firebase
 
-class EditMemberSettingsViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
+class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, UITextFieldDelegate {
     
     
     
@@ -111,8 +111,8 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDataSource
         
         
         
-        
-    }
+            
+        }
     
     
     
