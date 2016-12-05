@@ -75,7 +75,7 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
         let imageId = uniqueID
         let storageImageRef = storageRef.child("profileImages").child(imageId)
 
-        if let uploadData = UIImagePNGRepresentation(self.profileImageView.image!) {
+        if let uploadData = UIImageJPEGRepresentation(self.profileImageView.image!, 0.25) {
 
             storageImageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
                 if error != nil {

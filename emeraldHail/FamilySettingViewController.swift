@@ -82,7 +82,7 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
         let storageRef = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
         let storeImageRef = storageRef.child("familyImages").child(store.family.id)
 
-        if let uploadData = UIImagePNGRepresentation(photo) {
+        if let uploadData = UIImageJPEGRepresentation(photo, 0.25) {
 
             storeImageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
                 if error != nil {
