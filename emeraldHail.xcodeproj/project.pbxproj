@@ -60,7 +60,6 @@
 		DDB88F871DEE1CD5002E9668 /* PainLevelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDB88F861DEE1CD5002E9668 /* PainLevelView.xib */; };
 		DDB88F891DEE1CEC002E9668 /* PainLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB88F881DEE1CEC002E9668 /* PainLevelView.swift */; };
 		DDB88F8B1DEE1E03002E9668 /* PainLevelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB88F8A1DEE1E03002E9668 /* PainLevelCell.swift */; };
-		DDDE22421DF0A85D006B234C /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDE22411DF0A85D006B234C /* PhotoViewController.swift */; };
 		DDDE22441DF0B811006B234C /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDE22431DF0B811006B234C /* Photo.swift */; };
 		DDDE22461DF0C479006B234C /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDE22451DF0C479006B234C /* PhotoView.swift */; };
 		DDDE22481DF0C486006B234C /* PhotoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDDE22471DF0C486006B234C /* PhotoView.xib */; };
@@ -127,7 +126,6 @@
 		DDB88F861DEE1CD5002E9668 /* PainLevelView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PainLevelView.xib; sourceTree = "<group>"; };
 		DDB88F881DEE1CEC002E9668 /* PainLevelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PainLevelView.swift; sourceTree = "<group>"; };
 		DDB88F8A1DEE1E03002E9668 /* PainLevelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PainLevelCell.swift; sourceTree = "<group>"; };
-		DDDE22411DF0A85D006B234C /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		DDDE22431DF0B811006B234C /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		DDDE22451DF0C479006B234C /* PhotoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
 		DDDE22471DF0C486006B234C /* PhotoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoView.xib; sourceTree = "<group>"; };
@@ -294,7 +292,6 @@
 				DDA93D211DDE508A00F0A4D4 /* PainLevelViewController.swift */,
 				BB5CD3311DE6B41800D82BB3 /* SymptomsViewController.swift */,
 				AA0C2FE31DE8837700445229 /* HeaderCollectionReusableView.swift */,
-				DDDE22411DF0A85D006B234C /* PhotoViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -477,7 +474,6 @@
 				DD3BD9831DEB7C2800311BE9 /* PainLevelCollectionViewCell.swift in Sources */,
 				BB14EBD71DED43A0004F6D56 /* HealthCore.xcdatamodeld in Sources */,
 				AA6E4D231DE74B1400C8FEE3 /* Constants.swift in Sources */,
-				DDDE22421DF0A85D006B234C /* PhotoViewController.swift in Sources */,
 				AAFE44641DDF60BB00922FB0 /* Post.swift in Sources */,
 				AA57AC551DEE4E9A00DCA9BF /* TempCell.swift in Sources */,
 				BBF4EEB31DDF59DC00EBD3FE /* RegisterViewController.swift in Sources */,
