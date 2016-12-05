@@ -232,7 +232,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     
-    // Fusuma
+    // MARK: Fusuma - Photo feature
     
     func handleCameraImage() {
         
@@ -312,8 +312,6 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
                     
                     databasePostsRef.setValue(photo.serialize(), withCompletionBlock: { error, dataRef in
                         // Disable the save button after it's pressed once
-                        
-                        self.dismiss(animated: true, completion: nil)
                         
                     })
                 }
