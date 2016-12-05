@@ -46,15 +46,12 @@ class DataStore{
 
     // MEMBER
 
-    var memberID = ""
+    var member = Member(profileImage: "", firstName: "", lastName: "", gender: "", birthday: "", bloodType: "", height: "", weight: "", allergies: "", id: "")
+    
 
-    var memberFirstName = ""
-    var memberLastName = ""
-    var memberGenderType = ""
-    var memberDOB = ""
-    var memberBloodType = ""
-    var memberAllergies = ""
-
+    var bloodTypeSelections : [String] = [BloodType.ABNeg.rawValue, BloodType.ABPos.rawValue, BloodType.ANeg.rawValue, BloodType.APos.rawValue, BloodType.BNeg.rawValue, BloodType.BPos.rawValue, BloodType.ONeg.rawValue, BloodType.OPos.rawValue]
+    
+    var genderSelections: [String] = [Gender.female.rawValue, Gender.male.rawValue]
 
     // EVENT
 
@@ -78,12 +75,11 @@ class DataStore{
         
         familyPicture = ""
 
-        memberID = ""
         eventID = ""
         postID = ""
         imagePostID = ""
 
-        memberGenderType = ""
+        
 
 
     }

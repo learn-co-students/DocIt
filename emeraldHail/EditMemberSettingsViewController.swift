@@ -117,7 +117,7 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDataSource
         
         
         //        let gender = selectedGender
-        let memberReference : FIRDatabaseReference = FIRDatabase.database().reference().child("members").child(store.family.id).child(store.memberID)
+        let memberReference : FIRDatabaseReference = FIRDatabase.database().reference().child("members").child(store.family.id).child(store.member.id)
         memberReference.updateChildValues(updatedInfo)
         
         
@@ -193,7 +193,7 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDataSource
     }
     
     func displayMemberProfileEdits() {
-        let member = FIRDatabase.database().reference().child("members").child(store.family.id).child(store.memberID)
+        let member = FIRDatabase.database().reference().child("members").child(store.family.id).child(store.member.id)
         
         member.observe(.value, with: { (snapshot) in
             //  print(snapshot.value)
