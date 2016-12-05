@@ -15,11 +15,6 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     // MARK: Outlets
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
-    
-    var spacing: CGFloat!
-    var insets: UIEdgeInsets!
-    var itemSize: CGSize!
-    
     @IBOutlet weak var memberProfilesView: UICollectionView!
     
     // MARK: Properties
@@ -31,11 +26,10 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     var profileImage: UIImageView!
     var imageString = ""
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("Inside Family VC, the familyID is: \(store.family.id)")
+        print("Inside FamilyVC, the familyID is: \(store.family.id)")
         
         hideKeyboardWhenTappedAround()
         getFamilyID()
@@ -55,25 +49,22 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         refresher.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
         memberProfilesView.addSubview(refresher)
         
-        // MARK: Flow Layout
         configureLayout()
-        self.flowLayout.itemSize = itemSize
-        self.flowLayout.minimumInteritemSpacing = spacing
-        self.flowLayout.minimumLineSpacing = spacing
-        self.flowLayout.sectionInset = insets
     }
     
     func configureLayout() {
         let screenWidth = UIScreen.main.bounds.width
         let numberOfColumns: CGFloat = 2
-        
-        spacing = 12
-        insets = UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing)
-        
+        let spacing: CGFloat = 12
+        let insets = UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing)
         let widthDeductionPerItem: CGFloat = (spacing*(numberOfColumns-1) + insets.left + insets.right)/numberOfColumns
         let heightDeductionPerItem: CGFloat = (spacing*(numberOfColumns-1) + insets.top + insets.bottom)/numberOfColumns
+        let itemSize = CGSize(width: screenWidth/numberOfColumns - widthDeductionPerItem, height: screenWidth/numberOfColumns - heightDeductionPerItem)
         
-        itemSize = CGSize(width: screenWidth/numberOfColumns - widthDeductionPerItem, height: screenWidth/numberOfColumns - heightDeductionPerItem)
+        self.flowLayout.itemSize = itemSize
+        self.flowLayout.minimumInteritemSpacing = spacing
+        self.flowLayout.minimumLineSpacing = spacing
+        self.flowLayout.sectionInset = insets
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -81,13 +72,14 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         self.memberProfilesView.reloadData()
     }
     
-    // TODO: Can anyone tell me what this is doing? -Henry Is giving format to the text next to the < sign
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let backButton = UIBarButtonItem()
         backButton.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Arial", size: 15)!], for: UIControlState.normal)
         navigationItem.backBarButtonItem = backButton
-    }
+        print("prepare for segue")
     
+    }
+ 
     // MARK: Collection view methods
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -102,7 +94,6 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
             let cell = memberProfilesView.dequeueReusableCell(withReuseIdentifier: "memberCell", for: indexPath) as! MemberCollectionViewCell
             let member = membersInFamily[indexPath.row]
             cell.memberNameLabel?.text = member.firstName
-//            cell.profileImageView.image = UIImage(named: "kid_silhouette")
             cell.profileImageView.contentMode = .scaleAspectFill
             cell.profileImageView.setRounded()
             
@@ -119,23 +110,24 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("selected a cell")
+        print("Selecting a cell...")
+        print("Cell at \(indexPath.row) selected!")
+        
         if indexPath.row < membersInFamily.count {
-            print("Cell at \(indexPath.row) selected!")
             store.memberID = membersInFamily[indexPath.row].uniqueID
         } else {
-            // TODO: Do something here? This is selecting the add member cell. Do we want the cell to do something? Or are we going to create a custom cell which contains a button that does something? Shows the add member page?
-            print("Add member selected")
+            print("The selected cell is not valid in membersInFamily. You are probably selecting the addMemberCell.")
             return
         }
+        
     }
     
     // MARK: Header resuable view
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        
         switch kind {
         case UICollectionElementKindSectionHeader:
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) as! HeaderCollectionReusableView
+            
             headerView.familyNameLabel.text = store.family.name
             
             let familyPictureUrl = URL(string: store.familyPicture)
@@ -188,7 +180,6 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         
         familyRef.observe(.value, with: { snapshot in
             
-            
             var dic = snapshot.value as! [String : Any]
             
             guard let familyName = dic["name"] else { return }
@@ -227,7 +218,6 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         present(alertController, animated: true, completion: nil)
     }
     
-    // Pull to refresh!
     func handleRefresh() {
         memberProfilesView.reloadData()
         refresher.endRefreshing()

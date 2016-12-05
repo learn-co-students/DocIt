@@ -52,7 +52,7 @@ class TempView: UIView {
     }
     
     override func draw(_ rect: CGRect) {
-        drawTimeline(circleColor: Constants.Colors.cinnabar.cgColor, lineColor: Constants.CustomCell.lineColor)
+        drawTimeline(circleColor: Constants.Colors.cinnabar.cgColor, lineColor: Constants.Colors.cinnabar.cgColor)
     }
     
 }
