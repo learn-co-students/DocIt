@@ -1454,70 +1454,6 @@
             </objects>
             <point key="canvasLocation" x="2335" y="1603"/>
         </scene>
-        <!--Photo View Controller-->
-        <scene sceneID="dqB-Mx-NQU">
-            <objects>
-                <viewController id="mBc-90-eAt" customClass="PhotoViewController" customModule="emeraldHail" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Pow-9f-jDj"/>
-                        <viewControllerLayoutGuide type="bottom" id="O8k-np-zDf"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="QhE-aG-iWg">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="761-I5-Gss">
-                                <rect key="frame" x="38" y="453" width="300" height="50"/>
-                                <color key="backgroundColor" red="0.28237730700000002" green="0.68787196510000004" blue="0.8862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="bnL-Ua-yZ8"/>
-                                </constraints>
-                                <state key="normal" title="Upload Image">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="uploadImageButtonTapped:" destination="mBc-90-eAt" eventType="touchUpInside" id="BQi-ug-oDC"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gci-xt-8cv">
-                                <rect key="frame" x="38" y="523" width="300" height="50"/>
-                                <state key="normal" title="Cancel">
-                                    <color key="titleColor" red="0.21995161069999999" green="0.62731420739999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="cancelButtonTapped:" destination="mBc-90-eAt" eventType="touchUpInside" id="sEV-bp-u72"/>
-                                </connections>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="addImageIcon" translatesAutoresizingMaskIntoConstraints="NO" id="td5-m5-oig">
-                                <rect key="frame" x="59" y="122" width="256" height="256"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="256" id="mZ9-oG-ASS"/>
-                                    <constraint firstAttribute="width" constant="256" id="tm0-2o-9rX"/>
-                                </constraints>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="gci-xt-8cv" firstAttribute="centerX" secondItem="QhE-aG-iWg" secondAttribute="centerX" id="9q1-6J-CnE"/>
-                            <constraint firstItem="761-I5-Gss" firstAttribute="width" secondItem="QhE-aG-iWg" secondAttribute="width" multiplier="0.8" id="Bv3-f8-Nl6"/>
-                            <constraint firstItem="761-I5-Gss" firstAttribute="centerX" secondItem="QhE-aG-iWg" secondAttribute="centerX" id="MCx-F9-q6g"/>
-                            <constraint firstItem="gci-xt-8cv" firstAttribute="width" secondItem="761-I5-Gss" secondAttribute="width" id="OuS-eU-Kf8"/>
-                            <constraint firstItem="761-I5-Gss" firstAttribute="top" secondItem="td5-m5-oig" secondAttribute="bottom" constant="75" id="VjE-Lw-nk0"/>
-                            <constraint firstItem="td5-m5-oig" firstAttribute="centerX" secondItem="QhE-aG-iWg" secondAttribute="centerX" id="g3r-VS-7nY"/>
-                            <constraint firstItem="gci-xt-8cv" firstAttribute="top" secondItem="761-I5-Gss" secondAttribute="bottom" constant="20" id="kdt-bh-Ukp"/>
-                            <constraint firstItem="td5-m5-oig" firstAttribute="centerY" secondItem="QhE-aG-iWg" secondAttribute="centerY" multiplier="0.75" id="oOL-RB-fse"/>
-                            <constraint firstItem="gci-xt-8cv" firstAttribute="height" secondItem="761-I5-Gss" secondAttribute="height" id="uvH-EJ-WtN"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="imageView" destination="td5-m5-oig" id="U4o-a2-sxE"/>
-                        <outlet property="uploadImageButton" destination="761-I5-Gss" id="jfa-Gm-Vrl"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="An1-rY-LvZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3157.5999999999999" y="1602.5487256371816"/>
-        </scene>
         <!--Note-->
         <scene sceneID="VHJ-My-v70">
             <objects>
@@ -1948,7 +1884,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="addImageIcon" width="256" height="256"/>
         <image name="adorablebaby" width="395" height="502"/>
         <image name="blackfam" width="2290" height="1526"/>
         <image name="docit-logo-draft" width="859" height="387"/>
