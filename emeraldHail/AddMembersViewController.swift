@@ -84,7 +84,7 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
                     return
                 }
                 if let profileImageUrl = metadata?.downloadURL()?.absoluteString {
-                    let member = Member(profileImage: profileImageUrl, firstName: name, lastName: lastName, gender: gender, birthday: dob, bloodType: blood, height: height, weight: weight, allergies: "", id: uniqueID)
+                    let member = Member(profileImage: profileImageUrl, firstName: name, lastName: lastName, gender: gender, birthday: dob, bloodType: blood, height: height, weight: weight, allergies: allergies, id: uniqueID)
                         
 
                     databaseMembersRef.setValue(member.serialize(), withCompletionBlock: { error, dataRef in
