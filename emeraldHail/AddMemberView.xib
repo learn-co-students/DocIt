@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -19,30 +20,32 @@
             <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="addFamilyMember" translatesAutoresizingMaskIntoConstraints="NO" id="9vh-t8-Olh">
+                    <rect key="frame" x="25" y="12" width="100" height="100"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="9vh-t8-Olh" secondAttribute="height" multiplier="1:1" id="UHg-ei-WdE"/>
+                    </constraints>
+                </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Member" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OzT-A5-8yM">
-                    <rect key="frame" x="31.5" y="132" width="88" height="18"/>
+                    <rect key="frame" x="31" y="124" width="88" height="14"/>
                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kid_silhouette" translatesAutoresizingMaskIntoConstraints="NO" id="9vh-t8-Olh">
-                    <rect key="frame" x="25" y="20" width="100" height="100"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="100" id="G9A-aj-Pvy"/>
-                        <constraint firstAttribute="width" constant="100" id="ORS-vs-OB8"/>
-                    </constraints>
-                </imageView>
             </subviews>
             <constraints>
                 <constraint firstItem="OzT-A5-8yM" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="2qR-Wb-6c3"/>
-                <constraint firstItem="9vh-t8-Olh" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="HU8-bg-S0D"/>
-                <constraint firstAttribute="bottom" secondItem="OzT-A5-8yM" secondAttribute="bottom" id="NqS-41-RTq"/>
-                <constraint firstItem="OzT-A5-8yM" firstAttribute="top" secondItem="9vh-t8-Olh" secondAttribute="bottom" constant="12" id="Yt4-Ep-rzo"/>
+                <constraint firstItem="9vh-t8-Olh" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="12" id="59I-ku-G67"/>
+                <constraint firstAttribute="bottom" secondItem="OzT-A5-8yM" secondAttribute="bottom" constant="12" id="NqS-41-RTq"/>
+                <constraint firstAttribute="trailing" secondItem="9vh-t8-Olh" secondAttribute="trailing" constant="25" id="bdf-mG-lEr"/>
+                <constraint firstItem="OzT-A5-8yM" firstAttribute="top" secondItem="9vh-t8-Olh" secondAttribute="bottom" constant="12" id="qiL-S9-wch"/>
+                <constraint firstItem="9vh-t8-Olh" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="25" id="v74-kS-YD5"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="55.5" y="97.5"/>
         </view>
     </objects>
     <resources>
-        <image name="kid_silhouette" width="347" height="347"/>
+        <image name="addFamilyMember" width="625" height="625"/>
     </resources>
 </document>

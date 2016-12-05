@@ -114,13 +114,11 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         print("Cell at \(indexPath.row) selected!")
         
         if indexPath.row < membersInFamily.count {
-            store.memberID = membersInFamily[indexPath.row].uniqueID
+            store.member.id = membersInFamily[indexPath.row].id
         } else {
             print("The selected cell is not valid in membersInFamily. You are probably selecting the addMemberCell.")
             return
         }
-        
-        store.member.id = membersInFamily[indexPath.row].id
     }
     
     // MARK: Header resuable view
