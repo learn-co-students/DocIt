@@ -112,7 +112,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        store.memberID = membersInFamily[indexPath.row].uniqueID
+        store.member.id = membersInFamily[indexPath.row].id
     }
     
     // MARK: Header resuable view
