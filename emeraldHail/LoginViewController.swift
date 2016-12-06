@@ -12,7 +12,7 @@ import GoogleSignIn
 
 
 
-class LoginViewController: UIViewController, GIDSignInUIDelegate {
+class LoginViewController: UIViewController {
   
     let store = DataStore.sharedInstance
     
@@ -27,9 +27,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         
         setupViews()
         hideKeyboardWhenTappedAround()
-        
-        GIDSignIn.sharedInstance().uiDelegate = self
-      //  GIDSignIn.sharedInstance().delegate = self
+
         
     }
     

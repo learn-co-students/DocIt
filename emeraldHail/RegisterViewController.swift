@@ -8,11 +8,13 @@
 
 import UIKit
 import Firebase
+import GoogleSignIn
 
 class RegisterViewController: UIViewController {
+ // TO DO : Create a function that would prevent users from registering with google twice. if they registered they shouldn't be allowed to create an account
+    
     
     // MARK: Outlets
-
     @IBOutlet weak var googleContainerView: UIView!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
@@ -30,6 +32,10 @@ class RegisterViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         hideKeyboardWhenTappedAround()
+        
+        GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance().delegate = self
+
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -91,7 +97,7 @@ class RegisterViewController: UIViewController {
         createAccount.backgroundColor = UIColor.lightGray
         createAccount.layer.cornerRadius = 2
     }
-
+    
     func register() {
         guard let email = emailField.text, let password = passwordField.text else { return }
 
@@ -122,3 +128,80 @@ class RegisterViewController: UIViewController {
     }
 
 }
+// MARK: - Google UI Delegate
+extension RegisterViewController: GIDSignInUIDelegate, GIDSignInDelegate {
+
+    func configureGoogleButton() {
+        
+        
+        
+        let googleSignInButton = GIDSignInButton()
+        googleSignInButton.colorScheme = .light
+        googleSignInButton.style = .standard
+//      googleSignInButton.addTarget(self, action: #selector(signIn), for: .touchUpInside)
+        self.view.addSubview(googleContainerView)
+        
+        googleSignInButton.translatesAutoresizingMaskIntoConstraints = false
+        googleSignInButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        googleSignInButton.topAnchor.constraint(equalTo: createAccount.bottomAnchor, constant: 10).isActive = true
+        googleSignInButton.heightAnchor.constraint(equalTo: createAccount.heightAnchor).isActive = true
+        googleSignInButton.widthAnchor.constraint(equalTo: createAccount.widthAnchor).isActive = true
+        
+        view.layoutIfNeeded()
+    }
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        print(123123123123)
+        
+        if let err = error {
+            print("Failed to log into Google: ", err)
+            return
+        }
+        print("Successfully logged into Google", user)
+
+        guard let idToken = user.authentication.idToken else { return }
+        guard let accessToken = user.authentication.accessToken else { return }
+    
+        let credential = FIRGoogleAuthProvider.credential(withIDToken: idToken, accessToken: accessToken)
+        
+        FIRAuth.auth()?.signIn(with: credential, completion: { user, error in
+            
+            print("\n|------------------|\n\nuser:\n\n\(user)\n\nerror:\n\n\(error)\n\n|------------------|\n")
+            
+            
+        })
+        
+//        guard let idToken = user.authentication.idToken else { return }
+//        guard let accessToken = user.authentication.accessToken else { return }
+//        let credentials = FIRGoogleAuthProvider.credential(withIDToken: idToken, accessToken: accessToken)
+//        FIRAuth.auth()?.signIn(with: credentials, completion: { (user, error) in
+//            if let err = error {
+//                print("Failed to create a Firebase User with google account: ", err)
+//                return
+//            }
+//            guard let uid = user?.uid else { return }
+//            self.store.family.id = (user?.uid)!
+//            
+//            
+//            
+//            print("Successfully logged into Firebase with Google", uid)
+//        })
+        
+    }
+    
+    
+    func sign(_ signIn: GIDSignIn!, dismiss viewController: UIViewController!) {
+        viewController.dismiss(animated: false, completion: { _ in
+        })
+    }
+    
+    func sign(_ signIn: GIDSignIn!, present viewController: UIViewController!) {
+        present(viewController, animated: true, completion: nil)
+    }
+    
+//    func signIn() {
+//        GIDSignIn.sharedInstance().signIn()
+//    }
+    
+}
+
