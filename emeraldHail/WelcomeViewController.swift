@@ -30,7 +30,7 @@ class WelcomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         touchID.isHidden = true
-        fetchData()
+        fetchData() 
         updateFamilyId()
         setupViews()
         checkTouchID()
@@ -70,8 +70,25 @@ class WelcomeViewController: UIViewController {
             
             print("========= we are in the welcome view and the family id is \(store.family.id)")
         }
-        
     }
+    
+    func fetchData() {
+        
+        let managedContext = store.persistentContainer.viewContext
+        
+        let fetchRequest: NSFetchRequest<CurrentUser> = CurrentUser.fetchRequest()
+        
+        do {
+            
+            self.userInfo = try managedContext.fetch(fetchRequest)
+            
+        } catch {
+            
+            print("error")
+        }
+    }
+
+    // MARK: Methods Touch ID
     
     func authenticateUser() {
         let context = LAContext()
@@ -101,10 +118,6 @@ class WelcomeViewController: UIViewController {
     
     func navigateToAuthenticatedVC() {
         self.performSegue(withIdentifier: "showFamily", sender: self)
-        //                if let loggedInVC = storyboard?.instantiateViewController(withIdentifier: "loggedInVC") {
-        //                self.navigationController?.pushViewController(loggedInVC, animated: true)
-        //        }
-        
         
     }
     
@@ -164,21 +177,6 @@ class WelcomeViewController: UIViewController {
         return message
     }
     
-    func fetchData() {
-        
-        let managedContext = store.persistentContainer.viewContext
-        
-        let fetchRequest: NSFetchRequest<CurrentUser> = CurrentUser.fetchRequest()
-        
-        do {
-            
-            self.userInfo = try managedContext.fetch(fetchRequest)
-            
-        } catch {
-            
-            print("error")
-        }
-    }
     
     func checkTouchID() {
         
