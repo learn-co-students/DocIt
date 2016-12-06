@@ -14,18 +14,18 @@ import Firebase
 
 class WelcomeViewController: UIViewController {
     
-    // MARK: Outlets
+    // MARK: - Outlets
     
     @IBOutlet weak var createAccount: UIButton!
     @IBOutlet weak var signIn: UIButton!
     @IBOutlet weak var touchID: UIButton!
     
-    // MARK: Properties
+    // MARK: - Properties
     
     var userInfo = [CurrentUser]()
     var store = DataStore.sharedInstance
     
-    // MARK: Loads
+    // MARK: - Loads
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +39,7 @@ class WelcomeViewController: UIViewController {
         print("=========> my family is \(userInfo)")
     }
     
-    // MARK: Actions
+    // MARK: - Actions
     
     @IBAction func createAccountPressed(_ sender: Any) {
         print("createAccountPressed")
@@ -53,7 +53,7 @@ class WelcomeViewController: UIViewController {
         authenticateUser()
     }
     
-    // MARK: Methods
+    // MARK: - Methods
     
     func setupViews() {
         view.backgroundColor = Constants.Colors.desertStorm

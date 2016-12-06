@@ -12,7 +12,7 @@ import CoreData
 
 class RegisterViewController: UIViewController {
     
-    // MARK: Outlets
+    // MARK: - Outlets
 
     @IBOutlet weak var googleContainerView: UIView!
     @IBOutlet weak var emailField: UITextField!
@@ -20,12 +20,12 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var createAccount: UIButton!
 
-    // MARK: Properties
+    // MARK: - Properties
 
     let store = DataStore.sharedInstance
     let family = FIRDatabase.database().reference().child("family")
 
-    // MARK: Loads
+    // MARK: - Loads
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +37,7 @@ class RegisterViewController: UIViewController {
         setupViews()
     }
 
-    // MARK: Actions
+    // MARK: - Actions
 
     @IBAction func createAccountPressed(_ sender: Any) {
         register()
@@ -60,7 +60,7 @@ class RegisterViewController: UIViewController {
         }
     }
 
-    // MARK: Functions
+    // MARK: - Methods
 
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(RegisterViewController.dismissKeyboardView))

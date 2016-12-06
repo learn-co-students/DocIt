@@ -13,18 +13,18 @@ import CoreData
 
 class LoginViewController: UIViewController, GIDSignInUIDelegate {
     
-    // MARK: Outlets
+    // MARK: - Outlets
     
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var signIn: UIButton!
     
-    // MARK: Properties 
+    // MARK: - Properties
     
     let store = DataStore.sharedInstance
     
-    // MARK: Loads 
+    // MARK: - Loads
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +41,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
       
     }
     
-    // MARK: Actions
+    // MARK: - Actions
     
     @IBAction func signIn(_ sender: UIButton) {
         login()
@@ -88,7 +88,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     
     }
     
-    // MARK: Methods
+    // MARK: - Methods
     
     func setupViews() {
         // Make the email field become the first repsonder and show keyboard when this vc loads

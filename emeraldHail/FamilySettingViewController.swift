@@ -16,15 +16,15 @@ import CoreData
 
 class FamilySettingViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-    // MARK: Outlets
+    // MARK: - Outlets
     
     @IBOutlet weak var touchID: UISegmentedControl!
     
-    // MARK: Properties
+    // MARK: - Properties
 
     let store = DataStore.sharedInstance
 
-    // MARK: Loads
+    // MARK: - Loads
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +32,7 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
         checkTouchID()
     }
 
-    // MARK: Actions
+    // MARK: - Actions
 
     @IBAction func changeFamilyPic(_ sender: UIButton) {
         handleSelectProfileImageView()
@@ -67,7 +67,8 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
         }
         
     }
-    // MARK: Methods
+    
+    // MARK: - Methods
 
     func changeFamilyName() {
         let alert = UIAlertController(title: nil, message: "Change your family name", preferredStyle: .alert)

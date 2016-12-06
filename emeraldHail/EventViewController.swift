@@ -14,18 +14,22 @@ import SDWebImage
 class EventViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
 
-    // MARK: Outlets
+    // MARK: - Outlets
+    
     @IBOutlet weak var eventsTable: UITableView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
 
-    // MARK: Properties
+    // MARK: - Properties
+    
     var store = DataStore.sharedInstance
     var events = [Event]()
     var database: FIRDatabaseReference = FIRDatabase.database().reference()
     var memberID = ""
     var member = [Member]()
 
+    // MARK: - Loads
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         eventsTable.delegate = self
@@ -43,12 +47,109 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.eventsTable.reloadData()
     }
 
-    // MARK: Actions
+    // MARK: - Actions
+    
     @IBAction func addEvent(_ sender: Any) {
         createEvent()
     }
+    
+    // MARK: - Methods
+    
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(EventViewController.dismissKeyboardView))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboardView() {
+        view.endEditing(true)
+    }
+    
+    func showPictureAndName() {
+        let member = FIRDatabase.database().reference().child("members").child(store.family.id).child(store.member.id)
+        
+        member.observe(.value, with: { snapshot in
+            var member = snapshot.value as! [String : Any]
+            let imageString = member["profileImage"] as! String
+            let name = member["firstName"] as! String
+            
+            let profileImgUrl = URL(string: imageString)
+            self.profileImageView.sd_setImage(with: profileImgUrl)
+            self.profileImageView.setRounded()
+            self.profileImageView.contentMode = .scaleAspectFill
+            self.nameLabel.text = name
+        })
+    }
+    
+    
+    func configDatabase() {
+        
+        let memberID: String = store.member.id
+        
+        let eventsRef = FIRDatabase.database().reference().child("events").child(memberID)
+        
+        eventsRef.observe(.value, with: { snapshot in
+            
+            var newEvents = [Event]()
+            
+            for event in snapshot.children {
+                
+                let newEvent = Event(snapshot: event as! FIRDataSnapshot)
+                
+                newEvents.insert(newEvent, at: 0)
+                
+            }
+            
+            self.events = newEvents
+            
+            self.eventsTable.reloadData()
+        })
+        
+    }
+    
+    func createEvent() {
+        var nameTextField: UITextField?
+        var dateTextField: UITextField?
+        let alertController = UIAlertController(title: "Create event", message: "Put a name that describe the event and the date when started", preferredStyle: .alert)
+        let save = UIAlertAction(title: "Save", style: .default, handler: { (action) -> Void in
+            
+            guard let name = nameTextField?.text, name != "", let date = dateTextField?.text, date != "" else { return }
+            
+            let databaseEventsRef = self.database.child("events").child(self.store.member.id).childByAutoId()
+            
+            let uniqueID = databaseEventsRef.key
+            
+            let event = Event(name: name, startDate: date, uniqueID: uniqueID)
+            
+            databaseEventsRef.setValue(event.serialize(), withCompletionBlock: { error, dataRef in
+                
+                
+                
+                
+            })
+            
+            print("Save Button Pressed")
+        })
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+            print("Cancel Button Pressed")
+        }
+        alertController.addAction(save)
+        alertController.addAction(cancel)
+        alertController.addTextField { (textField) -> Void in
+            nameTextField = textField
+            nameTextField?.autocapitalizationType = .words
+            nameTextField?.placeholder = "Event name"
+        }
+        alertController.addTextField { (textField) -> Void in
+            dateTextField = textField
+            dateTextField?.autocapitalizationType = .words
+            dateTextField?.placeholder = "Date"
+        }
+        present(alertController, animated: true, completion: nil)
+    }
 
-    // MARK: TableView Methods
+
+    // MARK: Methods Table View
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return events.count
@@ -109,105 +210,12 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     }
 
-    // MARK: Functions
-    func hideKeyboardWhenTappedAround() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(EventViewController.dismissKeyboardView))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-
-    func dismissKeyboardView() {
-        view.endEditing(true)
-    }
-
-    func showPictureAndName() {
-        let member = FIRDatabase.database().reference().child("members").child(store.family.id).child(store.member.id)
-
-        member.observe(.value, with: { snapshot in
-            var member = snapshot.value as! [String : Any]
-            let imageString = member["profileImage"] as! String
-            let name = member["firstName"] as! String
-
-            let profileImgUrl = URL(string: imageString)
-            self.profileImageView.sd_setImage(with: profileImgUrl)
-            self.profileImageView.setRounded()
-            self.profileImageView.contentMode = .scaleAspectFill
-            self.nameLabel.text = name
-        })
-    }
-
-
-    func configDatabase() {
-
-        let memberID: String = store.member.id
-
-        let eventsRef = FIRDatabase.database().reference().child("events").child(memberID)
-
-        eventsRef.observe(.value, with: { snapshot in
-
-            var newEvents = [Event]()
-
-            for event in snapshot.children {
-
-                let newEvent = Event(snapshot: event as! FIRDataSnapshot)
-
-                newEvents.insert(newEvent, at: 0)
-
-            }
-
-            self.events = newEvents
-
-            self.eventsTable.reloadData()
-        })
-
-    }
-
-    func createEvent() {
-        var nameTextField: UITextField?
-        var dateTextField: UITextField?
-        let alertController = UIAlertController(title: "Create event", message: "Put a name that describe the event and the date when started", preferredStyle: .alert)
-        let save = UIAlertAction(title: "Save", style: .default, handler: { (action) -> Void in
-
-            guard let name = nameTextField?.text, name != "", let date = dateTextField?.text, date != "" else { return }
-
-            let databaseEventsRef = self.database.child("events").child(self.store.member.id).childByAutoId()
-
-            let uniqueID = databaseEventsRef.key
-
-            let event = Event(name: name, startDate: date, uniqueID: uniqueID)
-
-            databaseEventsRef.setValue(event.serialize(), withCompletionBlock: { error, dataRef in
-
-
-
-
-            })
-
-            print("Save Button Pressed")
-        })
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
-            print("Cancel Button Pressed")
-        }
-        alertController.addAction(save)
-        alertController.addAction(cancel)
-        alertController.addTextField { (textField) -> Void in
-            nameTextField = textField
-            nameTextField?.autocapitalizationType = .words
-            nameTextField?.placeholder = "Event name"
-        }
-        alertController.addTextField { (textField) -> Void in
-            dateTextField = textField
-            dateTextField?.autocapitalizationType = .words
-            dateTextField?.placeholder = "Date"
-        }
-        present(alertController, animated: true, completion: nil)
-    }
-
+    
 }
 
 class EventTableViewCell: UITableViewCell {
 
-    // OUTLETS
+    // MARK: Outlets
 
     @IBOutlet weak var eventName: UILabel!
     @IBOutlet weak var eventDate: UILabel!
