@@ -206,6 +206,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         present(alertController, animated: true, completion: nil)
     }
 
+    
 }
 
 class EventTableViewCell: UITableViewCell {
