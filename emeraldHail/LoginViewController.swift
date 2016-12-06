@@ -8,46 +8,48 @@
 
 import UIKit
 import Firebase
-import GoogleSignIn
 import CoreData
+import GoogleSignIn
 
-class LoginViewController: UIViewController, GIDSignInUIDelegate {
-    
+
+class LoginViewController: UIViewController {
+
+    let store = DataStore.sharedInstance
+
+
     // MARK: - Outlets
-    
+
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var signIn: UIButton!
-    
+
     // MARK: - Properties
-    
-    let store = DataStore.sharedInstance
-    
+
+    //let store = DataStore.sharedInstance
+
     // MARK: - Loads
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setupViews()
         hideKeyboardWhenTappedAround()
-        
-        GIDSignIn.sharedInstance().uiDelegate = self
-        
+
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         setupViews()
-      
+
     }
-    
+
     // MARK: - Actions
-    
+
     @IBAction func signIn(_ sender: UIButton) {
         login()
         signIn.isEnabled = false
     }
-    
+
     @IBAction func forgotPressed(_ sender: Any) {
         let alert = UIAlertController(title: "Forgot?", message: "Please enter your login email address.\n\nWe'll send you an email with instructions on how to reset your password.", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default, handler: { (action) in
@@ -66,11 +68,11 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         alert.addAction(cancelAction)
         present(alert, animated: true, completion: nil)
     }
-    
+
     @IBAction func createAccountPressed(_ sender: Any) {
         self.performSegue(withIdentifier: "showCreateAccount", sender: nil)
     }
-    
+
     // This function enables/disables the signIn button when the fields are empty/not empty.
     @IBAction func textDidChange(_ sender: UITextField) {
         if !(emailField.text?.characters.isEmpty)! && !(passwordField.text?.characters.isEmpty)! {
@@ -81,62 +83,50 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
             signIn.backgroundColor = UIColor.lightGray
         }
     }
-    
-    
+
+
     @IBAction func pressedGoogleSignIn(_ sender: Any) {
             GIDSignIn.sharedInstance().signIn()
-    
+
     }
-    
+
     // MARK: - Methods
-    
+
     func setupViews() {
         // Make the email field become the first repsonder and show keyboard when this vc loads
         emailField.becomeFirstResponder()
-        
+
         // Set error label to "" on viewDidLoad
         // Clear the text fields when logging out and returning to the login screen
         errorLabel.text = nil
         emailField.text = nil
         passwordField.text = nil
-        
+
         emailField.layer.cornerRadius = 2
         emailField.layer.borderColor = UIColor.lightGray.cgColor
-        
+
         passwordField.layer.cornerRadius = 2
         passwordField.layer.borderColor = UIColor.lightGray.cgColor
-        
+
         signIn.isEnabled = false
         signIn.backgroundColor = UIColor.lightGray
         signIn.layer.cornerRadius = 2
     }
-    
+
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboardView))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
     }
-    
+
     func dismissKeyboardView() {
         view.endEditing(true)
     }
-    
-    // MARK: Methods Google
-    
-// Google Login Delegate Function needed to work.
-    func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!,
-                withError error: NSError!) {
-        if (error == nil) {
-            // Perform any operations on signed in user here.
-            // ...
-        } else {
-            print("\(error.localizedDescription)")
-        }
-    }
-    
+
+
     func login() {
         guard let email = emailField.text, let password = passwordField.text else { return }
-        
+
         FIRAuth.auth()?.signIn(withEmail: email, password: password) { (user, error) in
             if let error = error {
                 // TODO: Format the error.localizedDescription for natural language, ex. "Invalid email", "Password must be 6 characters or more", etc.
@@ -147,9 +137,10 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
             }
             // Set the sharedInstance familyID to the current user.uid
             self.store.family.id = (user?.uid)!
-            self.performSegue(withIdentifier: "showFamily", sender: nil)
+            //TO DO: Notification instead of Segue via App Controller
+
         }
     }
-    
-    
+
+
 }

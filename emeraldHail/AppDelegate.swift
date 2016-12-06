@@ -17,61 +17,52 @@ import IQKeyboardManagerSwift
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     
-    
+    let store = DataStore.sharedInstance
     var window: UIWindow?
     
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
         FIRApp.configure()
         FIRDatabase.database().persistenceEnabled = true
-        GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
-        //  GIDSignIn.sharedInstance().uiDelegate = self
-        
-        GIDSignIn.sharedInstance().delegate = self
         IQKeyboardManager.sharedManager().enable = true
         
-//        if FIRAuth.auth()?.currentUser != nil{
-//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//            let controller = storyboard.instantiateViewController(withIdentifier: "FamilyViewController")
-//            window?.rootViewController = controller
-//            window?.makeKeyAndVisible()
-//            //self.presentViewController(controller, animated: true , completion: nil)
-//            
-//            //            print("\n\n\nUSER LOGGED IN\n\n\n\n")
-//        }
-        
+        GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
+        GIDSignIn.sharedInstance().delegate = self
         
         return true
     }
     
+    //MARK: Returns the user back to the application after validating gmail. 
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        return GIDSignIn.sharedInstance().handle(url, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String, annotation: options[UIApplicationOpenURLOptionsKey.annotation])
+
+        guard let sourceApplication = options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String else {return false}
+        
+        print("\n\nsource app: \(sourceApplication)\n\n")
+        
+        if GIDSignIn.sharedInstance().handle(url, sourceApplication: sourceApplication, annotation: options[UIApplicationOpenURLOptionsKey.annotation]) {
+            
+            return true
+            
+        }
+        
+        return false
+
     }
     
-    
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        print(123123123123)
         
-        if let err = error {
-            print("Failed to log into Google: ", err)
-            return
+        print("\n\nhit didSignInFor in the app delegate\n\n")
+        
+        if let error = error {
+            print("\(error.localizedDescription)")
         }
-        print("Successfully logged into Google", user)
-        
-        guard let idToken = user.authentication.idToken else { return }
-        guard let accessToken = user.authentication.accessToken else { return }
-        let credentials = FIRGoogleAuthProvider.credential(withIDToken: idToken, accessToken: accessToken)
-        FIRAuth.auth()?.signIn(with: credentials, completion: { (user, error) in
-            if let err = error {
-                print("Failed to create a Firebase User with google account: ", err)
-                return
-            }
-            guard let uid = user?.uid else { return }
-            print("Successfully logged into Firebase with Google", uid)
-        })
-        
+    }
+    
+    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
+        // Perform any operations when the user disconnects from app here.
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
@@ -95,6 +86,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
+    
+    
     
     
 }
