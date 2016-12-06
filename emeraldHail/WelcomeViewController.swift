@@ -25,6 +25,7 @@ class WelcomeViewController: UIViewController {
         fetchData()
         updateFamilyId()
         setupViews()
+        store.fillWeightData()
     }
 
     @IBAction func createAccountPressed(_ sender: Any) {
