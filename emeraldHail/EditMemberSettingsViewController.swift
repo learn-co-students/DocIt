@@ -16,7 +16,6 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
     // MARK: - Outlets
     
     @IBOutlet weak var profilePicture: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var dobTextField: UITextField!
@@ -29,11 +28,9 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
     // MARK: - Properties
     
     let store = DataStore.sharedInstance
-    
     let bloodSelection = UIPickerView()
     let dobSelection = UIDatePicker()
     let genderSelection = UIPickerView()
-    
     
     // MARK: - Loads
     
@@ -52,8 +49,12 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
     
     // MARK: - Actions
     
-    @IBAction func saveMember(_ sender: UIButton) {
+    @IBAction func saveMemberSettings(_ sender: Any) {
         updateFirebaseValues()
+    }
+    
+    @IBAction func didPressCancel(_ sender: Any) {
+        let _ = navigationController?.popViewController(animated: true)
     }
     
     // MARK: - Methods
@@ -71,7 +72,14 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
     func updateFirebaseValues(){
         guard let name = firstNameTextField.text, name != "",
             let lastName = lastNameTextField.text, lastName != "",
-            let dob = dobTextField.text, dob != "", let blood = bloodTextField.text, blood != "", let gender = genderTextField.text, gender != "", let weight = weightTextField.text, weight != "", let height = heightTextField.text, height != "", let allergies = allergiesTextField.text, allergies != "" else { return }
+            let dob = dobTextField.text, dob != "",
+            let blood = bloodTextField.text, blood != "",
+            let gender = genderTextField.text, gender != "",
+            let weight = weightTextField.text, weight != "",
+            let height = heightTextField.text, height != "",
+            let allergies = allergiesTextField.text, allergies != "" else { return }
+        
+        // TODO: - Do something here to indicate that you can't proceed if a field is empty.
         
         let updatedInfo: [String:Any] = ["firstName":name,
                                          "lastName": lastName,
@@ -82,12 +90,10 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
                                          "weight": weight,
                                          "allergies": allergies]
         
-        
-        //        let gender = selectedGender
         let memberReference : FIRDatabaseReference = FIRDatabase.database().reference().child("members").child(store.family.id).child(store.member.id)
         memberReference.updateChildValues(updatedInfo)
         
-        self.navigationController?.popViewController(animated: true)
+        let _ = navigationController?.popViewController(animated: true)
         
     }
     
@@ -109,7 +115,6 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
             let weight = value["weight"] as! String
             let allergies = value["allergies"] as! String
             
-            self.nameLabel.text = firstName
             self.firstNameTextField.text = firstName
             self.lastNameTextField.text = lastName
             self.genderTextField.text = gender
@@ -128,7 +133,6 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
     // MARK: Methods Picker View
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool{
-        
         return true
     }
     
@@ -171,7 +175,6 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
         
         switch pickerView {
-            
         case bloodSelection:
             return store.bloodTypeSelections.count
         case genderSelection:
@@ -186,7 +189,6 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
         switch pickerView {
-            
         case bloodSelection:
             bloodTextField.text = store.bloodTypeSelections[row]
         case genderSelection:
@@ -194,8 +196,6 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
         default:
             break
         }
-        
-        self.view.endEditing(true)
         
     }
     
