@@ -12,7 +12,7 @@ import FirebaseDatabase
 import SDWebImage
 
 class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
-    
+
     // MARK: Outlets
     
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
@@ -53,9 +53,18 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         memberProfilesView.addSubview(refresher)
         
         configureLayout()
+
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.memberProfilesView.reloadData()
+    }
+    
+    // MARK: - Methods
+    
     func configureLayout() {
+        
         let screenWidth = UIScreen.main.bounds.width
         let numberOfColumns: CGFloat = 2
         let spacing: CGFloat = 12
@@ -68,23 +77,30 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         self.flowLayout.minimumInteritemSpacing = spacing
         self.flowLayout.minimumLineSpacing = spacing
         self.flowLayout.sectionInset = insets
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        self.memberProfilesView.reloadData()
+
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("prepare for segue")
+        print("Prepare for segue...")
         
-        guard let indexPath = memberProfilesView.indexPath(for: sender as! UICollectionViewCell) else { return }
-        
-        if indexPath.row < membersInFamily.count {
-            store.member.id = membersInFamily[indexPath.row].id
-        } else {
-            print("The selected cell is not valid in membersInFamily. You are probably selecting the addMemberCell.")
+        switch sender {
+        case is UICollectionViewCell:
+            guard let indexPath = memberProfilesView.indexPath(for: sender as! UICollectionViewCell) else { return }
+            
+            if indexPath.row < membersInFamily.count {
+                store.member.id = membersInFamily[indexPath.row].id
+            }
+        default:
+            break
         }
+        
+//        guard let indexPath = memberProfilesView.indexPath(for: sender as! UICollectionViewCell) else { return }
+//        
+//        if indexPath.row < membersInFamily.count {
+//            store.member.id = membersInFamily[indexPath.row].id
+//        } else {
+//            print("The selected cell is not valid in membersInFamily. You are probably selecting the addMemberCell.")
+//        }
     }
     
     // MARK: Collection view methods
@@ -232,9 +248,13 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         refresher.endRefreshing()
     }
     
+    
 }
 
 class MemberCollectionViewCell: UICollectionViewCell {
+    
+    // MARK: - Outlets
+
     @IBOutlet weak var memberNameLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
 }

@@ -8,10 +8,11 @@
 
 import UIKit
 import Firebase
+import CoreData
 
 class RegisterViewController: UIViewController {
     
-    // MARK: Outlets
+    // MARK: - Outlets
 
     @IBOutlet weak var googleContainerView: UIView!
     @IBOutlet weak var emailField: UITextField!
@@ -19,12 +20,12 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var createAccount: UIButton!
 
-    // MARK: Properties
+    // MARK: - Properties
 
     let store = DataStore.sharedInstance
     let family = FIRDatabase.database().reference().child("family")
 
-    // MARK: Loads
+    // MARK: - Loads
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +37,7 @@ class RegisterViewController: UIViewController {
         setupViews()
     }
 
-    // MARK: Actions
+    // MARK: - Actions
 
     @IBAction func createAccountPressed(_ sender: Any) {
         register()
@@ -59,7 +60,7 @@ class RegisterViewController: UIViewController {
         }
     }
 
-    // MARK: Functions
+    // MARK: - Methods
 
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(RegisterViewController.dismissKeyboardView))
@@ -115,10 +116,61 @@ class RegisterViewController: UIViewController {
 
                 // TODO: Set the initial family name to something more descriptive (perhaps using their last name or something?)
                 self.family.child(self.store.family.id).child("name").setValue("New Family")
+                
+                self.touchID(activate: false)
+                
+                self.saveDataToCoreData()
 
                 self.performSegue(withIdentifier: "showFamily", sender: nil)
             }
         }
     }
+    
+    func touchID(activate: Bool) {
+        
+        FIRDatabase.database().reference().child("settings").child(store.family.id).child("touchID").setValue(activate)
+        
+    }
+    
+    func saveDataToCoreData() {
+        
+        deleteAllData(entity: "CurrentUser")
+        
+        let managedContext = store.persistentContainer.viewContext
+        
+        let familyCoreData = CurrentUser(context: managedContext)
+        
+        familyCoreData.familyID = DataStore.sharedInstance.family.id
+        
+        do {
+            
+            try managedContext.save()
+            print("I just save the family ID in Core Data")
+            
+        } catch {
+            
+            print("error")
+        }
+    }
+    
+    func deleteAllData(entity: String)
+    {
+        let managedContext = store.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
+        fetchRequest.returnsObjectsAsFaults = false
+        
+        do
+        {
+            let results = try managedContext.fetch(fetchRequest)
+            for managedObject in results
+            {
+                let managedObjectData:NSManagedObject = managedObject as! NSManagedObject
+                managedContext.delete(managedObjectData)
+            }
+        } catch let error as NSError {
+            print("Detele all data in \(entity) error : \(error) \(error.userInfo)")
+        }
+    }
+
 
 }

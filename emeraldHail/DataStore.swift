@@ -38,6 +38,10 @@ class DataStore{
         }
     }
 
+    // Mark: Register
+    
+    
+    
     // FAMILY
 
     var family = Family(id: "", name: "", email: "", coverImage: nil, coverImageStr: "", members: [])
@@ -49,6 +53,8 @@ class DataStore{
     var member = Member(profileImage: "", firstName: "", lastName: "", gender: "", birthday: "", bloodType: "", height: "", weight: "", allergies: "", id: "")
     
 
+    // Picker values
+    
     var bloodTypeSelections : [String] = [BloodType.ABNeg.rawValue, BloodType.ABPos.rawValue, BloodType.ANeg.rawValue, BloodType.APos.rawValue, BloodType.BNeg.rawValue, BloodType.BPos.rawValue, BloodType.ONeg.rawValue, BloodType.OPos.rawValue]
     
     var genderSelections: [String] = [Gender.female.rawValue, Gender.male.rawValue]
@@ -63,6 +69,7 @@ class DataStore{
         }
         
     }
+    
     // EVENT
 
     var eventID = ""

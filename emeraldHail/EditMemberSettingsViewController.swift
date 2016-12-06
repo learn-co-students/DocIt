@@ -13,9 +13,7 @@ import Firebase
 
 class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, UITextFieldDelegate {
     
-    
-    
-    // MARK: Outlets
+    // MARK: - Outlets
     
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -28,26 +26,16 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
     @IBOutlet weak var weightTextField: UITextField!
     @IBOutlet weak var allergiesTextField: UITextField!
     
-    // MARK: Properties
+    // MARK: - Properties
     
     let store = DataStore.sharedInstance
-    
-    // Member Profile Properties
-    //    var firstName: String?
-    //    var lastName: String?
-    //    var gender: String?
-    //    var DOB: String?
-    //    var bloodTypeSelected: String?
-    //
-    
-    
     
     let bloodSelection = UIPickerView()
     let dobSelection = UIDatePicker()
     let genderSelection = UIPickerView()
     
     
-    // MARK: Loads
+    // MARK: - Loads
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,25 +44,19 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
         
         bloodSelection.delegate = self
         genderSelection.delegate = self
-
+        
         bloodTextField.inputView = bloodSelection
         genderTextField.inputView = genderSelection
         
-        
-        
-        // Do any additional setup after loading the view.
     }
     
-    // MARK: Actions
-    
-
+    // MARK: - Actions
     
     @IBAction func saveMember(_ sender: UIButton) {
         updateFirebaseValues()
     }
-  
     
-    // MARK: Methods
+    // MARK: - Methods
     
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboardView))
@@ -86,10 +68,6 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
         view.endEditing(true)
     }
     
-    
-    
-    //Firebase Update Value
-    // this function needs to dismiss the datePicker as well as handling one property member profile change doesn't reset everything.
     func updateFirebaseValues(){
         guard let name = firstNameTextField.text, name != "",
             let lastName = lastNameTextField.text, lastName != "",
@@ -109,30 +87,57 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
         let memberReference : FIRDatabaseReference = FIRDatabase.database().reference().child("members").child(store.family.id).child(store.member.id)
         memberReference.updateChildValues(updatedInfo)
         
-        
         self.navigationController?.popViewController(animated: true)
+        
+    }
+    
+    func displayMemberProfileEdits() {
+        let member = FIRDatabase.database().reference().child("members").child(store.family.id).child(store.member.id)
+        
+        member.observe(.value, with: { (snapshot) in
+            //  print(snapshot.value)
             
-        }
+            let value = snapshot.value as! [String : Any]
+            let imageString = value["profileImage"] as! String
+            let profileImgUrl = URL(string: imageString)
+            let firstName = value["firstName"] as! String
+            let lastName = value["lastName"] as! String
+            let gender = value["gender"] as! String
+            let bloodType = value["bloodType"] as! String
+            let birthday = value["birthday"] as! String
+            let height = value["height"] as! String
+            let weight = value["weight"] as! String
+            let allergies = value["allergies"] as! String
+            
+            self.nameLabel.text = firstName
+            self.firstNameTextField.text = firstName
+            self.lastNameTextField.text = lastName
+            self.genderTextField.text = gender
+            self.dobTextField.text = birthday
+            self.bloodTextField.text = bloodType
+            self.allergiesTextField.text = allergies
+            self.heightTextField.text = height
+            self.weightTextField.text = weight
+            self.profilePicture.sd_setImage(with: profileImgUrl)
+            self.profilePicture.setRounded()
+            self.profilePicture.contentMode = .scaleAspectFill
+            
+        })
+    }
     
+    // MARK: Methods Picker View
     
-    
-    //DatePicker -> DOB Text Field
-    
-    
-    // return NO to disallow editing.
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool{
         
         return true
     }
     
-    // became first responder
     func textFieldDidBeginEditing(_ textField: UITextField){
         let dobSelection = UIDatePicker()
         dobTextField.inputView = dobSelection
         dobSelection.datePickerMode = UIDatePickerMode.date
         dobSelection.addTarget(self, action: #selector(self.datePickerChanged(sender:)) , for: .valueChanged)
     }
-    
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         dobTextField.resignFirstResponder()
@@ -158,9 +163,6 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
         
         
     }
-    
-    // PickerView methods for Blood Type
-    
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int{
         return 1
@@ -211,37 +213,4 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
         return ""
     }
     
-    func displayMemberProfileEdits() {
-        let member = FIRDatabase.database().reference().child("members").child(store.family.id).child(store.member.id)
-        
-        member.observe(.value, with: { (snapshot) in
-            //  print(snapshot.value)
-            
-            let value = snapshot.value as! [String : Any]
-            let imageString = value["profileImage"] as! String
-            let profileImgUrl = URL(string: imageString)
-            let firstName = value["firstName"] as! String
-            let lastName = value["lastName"] as! String
-            let gender = value["gender"] as! String
-            let bloodType = value["bloodType"] as! String
-            let birthday = value["birthday"] as! String
-            let height = value["height"] as! String
-            let weight = value["weight"] as! String
-            let allergies = value["allergies"] as! String
-            
-            self.nameLabel.text = firstName
-            self.firstNameTextField.text = firstName
-            self.lastNameTextField.text = lastName
-            self.genderTextField.text = gender
-            self.dobTextField.text = birthday
-            self.bloodTextField.text = bloodType
-            self.allergiesTextField.text = allergies
-            self.heightTextField.text = height
-            self.weightTextField.text = weight
-            self.profilePicture.sd_setImage(with: profileImgUrl)
-            self.profilePicture.setRounded()
-            self.profilePicture.contentMode = .scaleAspectFill
-            
-        })
-    }
 }

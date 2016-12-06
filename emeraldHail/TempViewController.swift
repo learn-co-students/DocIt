@@ -20,20 +20,25 @@ class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     // 3-10 years oral thermometer normal is 95.9-99.5 -> Rectal 97.9-100.4-> Armpit 96.6-98.0 -> Ear 97.0-100.0
     // Over age 11 oral thermometer normal is 97.6-99.6 -> rectal 98.6-100.6 -> Armpit 95.3-98.4 -> Ear 96.6-99.7
     
-    var availableTemps: [String] = ["96.6", "96.8", "97.0", "97.2", "97.4", "97.6", "97.8", "98.0", "98.2", "98.4", "98.6", "98.8", "99.0", "99.2", "99.4", "99.6", "99.8", "100.0", "100.2", "100.4", "100.6", "100.8", "101.0", "101.2", "101.4", "101.6", "101.8", "102.0", "102.2", "102.4", "102.6", "102.8", "103.0", "103.2", "103.4", "103.6", "103.8", "104.0", "104.2", "104.6", "104.8", "105.0"]
+    // MARK: - Outlets
     
     @IBOutlet weak var temperaturePickerView: UIPickerView!
     @IBOutlet weak var tempSegments: UISegmentedControl!
     @IBOutlet weak var temperatureSegment: UISegmentedControl!
     @IBOutlet weak var temperatureImageVIew: UIImageView!
     
+    // MARK: - Methods 
+    
     let store = DataStore.sharedInstance
+    var availableTemps: [String] = ["96.6", "96.8", "97.0", "97.2", "97.4", "97.6", "97.8", "98.0", "98.2", "98.4", "98.6", "98.8", "99.0", "99.2", "99.4", "99.6", "99.8", "100.0", "100.2", "100.4", "100.6", "100.8", "101.0", "101.2", "101.4", "101.6", "101.8", "102.0", "102.2", "102.4", "102.6", "102.8", "103.0", "103.2", "103.4", "103.6", "103.8", "104.0", "104.2", "104.6", "104.8", "105.0"]
     
     var database: FIRDatabaseReference = FIRDatabase.database().reference()
     var postRef : FIRDatabaseReference = FIRDatabase.database().reference().child("posts")
     
     // Set default temp
     var selectedTemp = "96.6"
+    
+    // MARK: - Loads
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +51,8 @@ class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     
     // Save button temperature for the event based on these three options to member profile.
     // Have to wait to update Post Types before sending data to Firebase and generating eventID.
+    
+    // MARK: - Actions
     
     @IBAction func saveTemperature(_ sender: Any) {
         
@@ -91,7 +98,7 @@ class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         }
     }
     
-    // MARK: - PickerView
+    // MARK: - Methods 
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return availableTemps.count

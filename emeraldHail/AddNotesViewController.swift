@@ -13,10 +13,13 @@ import Firebase
 class AddNotesViewController: UIViewController, UITextViewDelegate {
 
     @IBOutlet weak var addNotesTextView: UITextView!
+
+    // MARK: - Properties
     
     let store = DataStore.sharedInstance
-    
     var database: FIRDatabaseReference = FIRDatabase.database().reference()
+    
+    // MARK: - Loads
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +36,7 @@ class AddNotesViewController: UIViewController, UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         addNotesTextView.text = nil
     }
-    
+
     @IBAction func addNotes(_ sender: UIButton) {
         
         guard let noteText = addNotesTextView.text, noteText != "" else { return }
@@ -53,7 +56,8 @@ class AddNotesViewController: UIViewController, UITextViewDelegate {
         dismiss(animated: true, completion: nil)
     }
     
-    // MARK: - Functions
+    // MARK: - Methods
+    
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboardView))
         tap.cancelsTouchesInView = false

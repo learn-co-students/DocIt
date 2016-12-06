@@ -16,18 +16,31 @@ import CoreData
 
 class FamilySettingViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-    // PROPERTIES
+    // MARK: - Outlets
+    
+    @IBOutlet weak var touchID: UISegmentedControl!
+    
+    // MARK: - Properties
 
     let store = DataStore.sharedInstance
-    let dataStore = DataStore.sharedInstance
 
-    // LOADS
+    // MARK: - Loads
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        checkTouchID()
     }
 
-    // ACTIONS
+    // MARK: - Actions
+
+    @IBAction func changeFamilyPic(_ sender: UIButton) {
+        handleSelectProfileImageView()
+    }
+    
+    @IBAction func changeFamilyNamePressed(_ sender: Any) {
+        changeFamilyName()
+    }
 
     @IBAction func logoutPressed(_ sender: Any) {
         do {
@@ -39,15 +52,23 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
         }
     }
 
-    @IBAction func changeFamilyNamePressed(_ sender: Any) {
-        changeFamilyName()
+    @IBAction func touchIDOnOff(_ sender: UISegmentedControl) {
+        
+        if touchID.selectedSegmentIndex == 0 {
+            
+            touchID(activate: false)
+            
+        }
+        
+        else if touchID.selectedSegmentIndex == 1 {
+            
+            touchID(activate: true)
+            
+        }
+        
     }
-
-    @IBAction func changeFamilyPic(_ sender: UIButton) {
-        handleSelectProfileImageView()
-    }
-
-    // METHODS
+    
+    // MARK: - Methods
 
     func changeFamilyName() {
         let alert = UIAlertController(title: nil, message: "Change your family name", preferredStyle: .alert)
@@ -69,10 +90,6 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
         alert.addAction(okAction)
         alert.addAction(cancelAction)
         present(alert, animated: true, completion: nil)
-    }
-
-    @IBAction func activateTouchID(_ sender: UIButton) {
-        saveData()
     }
 
     func changeFamilyCoverPic(photo: UIImage, handler: @escaping (Bool) -> Void) {
@@ -141,24 +158,35 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
         print("picked canceled")
         dismiss(animated: true, completion: nil)
     }
-
-    func saveData() {
-
-        let managedContext = dataStore.persistentContainer.viewContext
-
-        let family = CurrentUser(context: managedContext)
-
-        family.familyID = DataStore.sharedInstance.family.id
+    
+    
+    func checkTouchID() {
         
-        do {
-
-            try managedContext.save()
-            print("I just save the family ID in Core Data")
-
-        } catch {
-
-            print("error")
-        }
+        let database = FIRDatabase.database().reference().child("settings").child(store.family.id).child("touchID")
+        
+        database.observe(.value, with: { (snapshot) in
+            
+          let value = snapshot.value as? Bool
+            
+            if value == true {
+                
+                self.touchID.selectedSegmentIndex = 1
+                
+            }
+            
+            else if value == false {
+                
+                self.touchID.selectedSegmentIndex = 0
+            }
+            
+            
+        })
+        
     }
-
+    
+    func touchID(activate: Bool) {
+        
+        FIRDatabase.database().reference().child("settings").child(store.family.id).child("touchID").setValue(activate)
+        
+    }
 }

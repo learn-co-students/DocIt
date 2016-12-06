@@ -16,14 +16,7 @@ var postss = [Post]()
 
 class PostViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, FusumaDelegate {
     
-    var deletedPostRef: FIRDatabaseReference?
-    var uniqueID: String?
-    var posts = [Post]()
-    var store = DataStore.sharedInstance
-    let postsRef = FIRDatabase.database().reference().child("posts")
-    
-    
-    // MARK: Outlets
+    // MARK: - Outlets
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
@@ -36,7 +29,16 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    // MARK: Loads
+    
+    // MARK: - Properties
+    
+    var deletedPostRef: FIRDatabaseReference?
+    var uniqueID: String?
+    var posts = [Post]()
+    var store = DataStore.sharedInstance
+    let postsRef = FIRDatabase.database().reference().child("posts")
+    
+    // MARK: - Loads
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,7 +87,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     
-    // MARK: - TableView Methods
+    // MARK: - Methods
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -168,7 +170,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    // MARK: - Firebase
+    // MARK: Firebase
     
     func reloadTable() {
         postTableView.reloadData()
@@ -232,7 +234,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     
-    // MARK: Fusuma - Photo feature
+    // MARK: Fusuma
     
     func handleCameraImage() {
         
@@ -243,32 +245,36 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         
     }
     
-    
     // Return the image which is selected from camera roll or is taken via the camera.
+    
     func fusumaImageSelected(_ image: UIImage) {
         
         print("Image selected")
+        
     }
     
     // Return the image but called after is dismissed.
+    
     func fusumaDismissedWithImage(_ image: UIImage) {
         
         uploadImageURLtoFirebaseDatabaseAndStorage(image)
         
         print("Called just after FusumaViewController is dismissed.")
         
-        
     }
     
     func fusumaVideoCompleted(withFileURL fileURL: URL) {
         
         print("Called just after a video has been selected.")
+        
     }
     
     // When camera roll is not authorized, this method is called.
+    
     func fusumaCameraRollUnauthorized() {
         
         print("Camera access denied")
+        
     }
     
     
@@ -302,11 +308,6 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
                 }
                 
                 if let postImageUrl = metadata?.downloadURL()?.absoluteString {
-                    
-                    //let currentDate = Date()
-                    let dateFormatter = DateFormatter()
-                    dateFormatter.dateFormat = "MMM d, yyyy HH:mm:ss a"
-                    //let timestamp = dateFormatter.string(from: currentDate)
                     
                     let photo = Photo(content: postImageUrl, timestamp: self.getTimestamp(), uniqueID: uniqueID)
                     

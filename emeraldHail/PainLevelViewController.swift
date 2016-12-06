@@ -11,6 +11,12 @@ import Firebase
 
 class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
+    // MARK: - Outlets 
+    
+    @IBOutlet weak var painLevelCollectionView: UICollectionView!
+    
+    // MARK: - Properties 
+    
     var noPain: PainLevel = .noPain
     var mild:PainLevel = .mild
     var moderate:PainLevel = .moderate
@@ -26,15 +32,7 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
     
     let store = DataStore.sharedInstance
     
-    @IBAction func saveButtonTapped(_ sender: Any) {
-        addPainLevel()
-    }
-    
-    @IBAction func cancelButtonTapped(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    @IBOutlet weak var painLevelCollectionView: UICollectionView!
+       // MARK: - Loads
     
     override func viewDidLoad() {
         
@@ -46,8 +44,18 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
         
     }
     
+    // MARK: - Actions
     
-    // MARK: CollectionView Funcs
+    @IBAction func saveButtonTapped(_ sender: Any) {
+        addPainLevel()
+    }
+    
+    @IBAction func cancelButtonTapped(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    // MARK: - Methods
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return painLevels.count
