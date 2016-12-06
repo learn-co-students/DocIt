@@ -11,6 +11,7 @@ import CoreData
 import CoreFoundation
 import LocalAuthentication
 import GoogleSignIn
+import Firebase
 
 class WelcomeViewController: UIViewController {
 

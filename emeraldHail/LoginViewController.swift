@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import CoreData
+import GoogleSignIn
 
 
 class LoginViewController: UIViewController {
@@ -25,7 +26,7 @@ class LoginViewController: UIViewController {
 
     // MARK: - Properties
 
-    let store = DataStore.sharedInstance
+    //let store = DataStore.sharedInstance
 
     // MARK: - Loads
 
