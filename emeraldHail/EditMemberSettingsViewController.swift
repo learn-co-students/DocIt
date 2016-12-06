@@ -50,7 +50,9 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
 
     }
     
-    // MARK: Actions
+    // MARK: - Methods
+    
+    // Storage
     
     @IBAction func deleteMebmerButtonTapped(_ sender: Any) {
         
@@ -58,23 +60,87 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
          let alertController = UIAlertController(title: "Are you sure you want to delete a member?",  message: "This action cannot be undone.", preferredStyle: .alert)
         
         // Action
+
         let deleteAction = UIAlertAction(title: "Delete", style: .default, handler: { action -> Void in
             
+            // Database
             let database = FIRDatabase.database().reference()
             let memberRef = database.child("members").child(self.store.family.id)
             let eventsRef = database.child("events").child(self.store.member.id)
-            //let postsRef = database.child("posts")
+            let postsRef = database.child("posts")
             
-            // Remove related events, members and posts from database
+            var posts = [Post]()
+            
+            // Remove members and related events
 
-            eventsRef.removeValue()
-            memberRef.child(self.store.member.id).removeValue()
+            var eventIDs = [String]()
             
-            self.performSegue(withIdentifier: "backToFamilyVCSegue", sender: self)
+            eventsRef.observe(.value, with: { snapshot in
+                
+                for child in snapshot.children {
+                    
+                    let event = Event(snapshot: child as! FIRDataSnapshot)
+                    
+                    let eventID = event.uniqueID
+
+                    eventIDs.append(eventID)
+                }
+                
+                for eventID in eventIDs {
+                    
+                    print("Event ID is: \(eventID)")
+                    
+                    self.deleteImagesFromStorage(uniqueID: eventID)
+                    
+                    postsRef.child(eventID).observeSingleEvent(of: .value, with: { snapshot in
+                        
+                        let oldPosts = snapshot.value as? [String : Any]
+                        
+                        if let allKeys = oldPosts?.keys {
+                        
+                            for key in allKeys {
+                                
+                                let dictionary = oldPosts?[key] as! [String : Any]
+                                
+                                let post = Post(dictionary: dictionary)
+                                
+                                posts.append(post)
+                                print("0--------------------\(posts)")
+                                
+                                print(post.description)
+                            }
+                        }
+                    })
+
+                    for post in posts {
+                        
+                        switch post {
+                        case .photo(_):
+                            self.deleteImagesFromStorage(uniqueID: post.description)
+                        default:
+                            break
+                        }
+                        
+                    }
+                    
+                    postsRef.child(eventID).removeValue() // All posts under event erased
+        
+                }
+                
+                // Delete events associated with the member
+                
+                eventsRef.removeValue()
+                
+                // Delete the member 
+                
+                memberRef.child(self.store.member.id).removeValue()
+                
+                self.performSegue(withIdentifier: "backToFamilyVCSegue", sender: self)
+                
+            })
             
         })
-
-        
+    
          let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) {
             UIAlertAction in
             print("Cancel Pressed")
@@ -87,23 +153,37 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
          // Present the controller
          self.present(alertController, animated: true, completion: nil)
         
-
-        // Remove images associated with the member from stroage
+    }
+    
+    func deleteImagesFromStorage(uniqueID: String){
         
+        let storageRef = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
+        let storageImageRef = storageRef.child("postsImages").child(uniqueID)
         
+        storageImageRef.delete(completion: { error -> Void in
+            
+            if error != nil {
+                print("******* Error occured while deleting imgs from Firebase storage ******** \(uniqueID)")
+            } else {
+                print("Image removed from Firebase successfully! \(uniqueID)")
+            }
+            
+        })
         
     }
-
     
+
     // MARK: - Actions
 
     @IBAction func saveMember(_ sender: UIButton) {
         updateFirebaseValues()
     }
-    
+
+
+
     // MARK: - Methods
 
-    
+
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboardView))
         tap.cancelsTouchesInView = false

@@ -116,6 +116,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
             self.membersInFamily = newItem
             self.memberProfilesView.reloadData()
         })
+        
     }
     
     // TODO: Rethink some of the variable names here for clarity
