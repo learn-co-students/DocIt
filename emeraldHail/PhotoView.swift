@@ -55,7 +55,7 @@ class PhotoView: UIView {
     }
     
     override func draw(_ rect: CGRect) {
-        drawTimeline(circleColor: Constants.Colors.purpleCake.cgColor, lineColor: Constants.Colors.purpleCake.cgColor)
+        drawTimeline(circleColor: Constants.Colors.purpleCake.cgColor, lineColor: Constants.Colors.submarine.cgColor)
     }
     
     

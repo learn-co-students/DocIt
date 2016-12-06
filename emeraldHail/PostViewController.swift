@@ -36,7 +36,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    // MARK: Loads 
+    // MARK: Loads
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -131,10 +131,6 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 150
-//    }
-    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         
         let databasePosts = postsRef.child(store.eventID)
@@ -144,15 +140,15 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
             // Deleting post data from Firebase using UniquePostID
             
             let uniquePostID = posts[indexPath.row].description
-
+            
             store.postID = uniquePostID
             databasePosts.child(store.postID).removeValue()
-//            databasePosts.child(store.imagePostID).removeValue()
+            //            databasePosts.child(store.imagePostID).removeValue()
             
             // Deleting images from storge
             
             let storageRef = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
-//            let storageImgRef = storageRef.child("postsImages").child(store.imagePostID)
+            //            let storageImgRef = storageRef.child("postsImages").child(store.imagePostID)
             let storageImgRef = storageRef.child("postsImages").child(store.postID)
             
             storageImgRef.delete(completion: { error -> Void in
@@ -173,6 +169,10 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     // MARK: - Firebase
+    
+    func reloadTable() {
+        postTableView.reloadData()
+    }
     
     func fetchPosts() {
         
@@ -257,7 +257,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         print("Called just after FusumaViewController is dismissed.")
         
-
+        
     }
     
     func fusumaVideoCompleted(withFileURL fileURL: URL) {
@@ -275,7 +275,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     func uploadImageURLtoFirebaseDatabaseAndStorage(_ image: UIImage) {
         
         
-//        guard let image = imageView.image, image != UIImage(named: "addImageIcon") else { return }
+        //        guard let image = imageView.image, image != UIImage(named: "addImageIcon") else { return }
         
         // database
         
@@ -295,7 +295,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         if let uploadData = UIImageJPEGRepresentation(image, 0.25){
             
-            storageImageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in 
+            storageImageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
                 if error != nil {
                     print (error?.localizedDescription ?? "Error in PhotoVC" )
                     return
@@ -322,8 +322,8 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         
     }
     
-
-
+    
+    
     
     
 }

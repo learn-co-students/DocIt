@@ -14,10 +14,12 @@ import SDWebImage
 class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
     
     // MARK: Outlets
+    
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     @IBOutlet weak var memberProfilesView: UICollectionView!
     
     // MARK: Properties
+    
     let store = DataStore.sharedInstance
     let imageSelected = UIImagePickerController()
     var membersInFamily = [Member]()
@@ -44,6 +46,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         memberProfilesView.reloadData()
         
         // TODO: Pull to refresh tests
+        
         self.memberProfilesView.alwaysBounceVertical = true
         refresher.tintColor = Constants.Colors.scooter
         refresher.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
@@ -73,14 +76,19 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let backButton = UIBarButtonItem()
-        backButton.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Arial", size: 15)!], for: UIControlState.normal)
-        navigationItem.backBarButtonItem = backButton
         print("prepare for segue")
-    
+        
+        guard let indexPath = memberProfilesView.indexPath(for: sender as! UICollectionViewCell) else { return }
+        
+        if indexPath.row < membersInFamily.count {
+            store.member.id = membersInFamily[indexPath.row].id
+        } else {
+            print("The selected cell is not valid in membersInFamily. You are probably selecting the addMemberCell.")
+        }
     }
- 
+    
     // MARK: Collection view methods
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -93,17 +101,17 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         if indexPath.row < membersInFamily.count {
             let cell = memberProfilesView.dequeueReusableCell(withReuseIdentifier: "memberCell", for: indexPath) as! MemberCollectionViewCell
             let member = membersInFamily[indexPath.row]
-            cell.memberNameLabel?.text = member.firstName
-            cell.profileImageView.contentMode = .scaleAspectFill
-            cell.profileImageView.setRounded()
-            
             let profileImgUrl = URL(string: member.profileImage)
+            
+            cell.profileImageView.setRounded()
+            cell.profileImageView.contentMode = .scaleAspectFill
             cell.profileImageView.sd_setImage(with: profileImgUrl)
+            cell.memberNameLabel?.text = member.firstName
             
             return cell
         } else {
             let addMemberCell = memberProfilesView.dequeueReusableCell(withReuseIdentifier: "addMemberCell", for: indexPath) as! AddMemberCollectionViewCell
-
+            
             return addMemberCell
         }
         
@@ -122,15 +130,14 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     // MARK: Header resuable view
+    
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
         case UICollectionElementKindSectionHeader:
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) as! HeaderCollectionReusableView
-            
-            headerView.familyNameLabel.text = store.family.name
-            
             let familyPictureUrl = URL(string: store.familyPicture)
             
+            headerView.familyNameLabel.text = store.family.name
             headerView.profileImage.sd_setImage(with: familyPictureUrl)
             
             return headerView
@@ -140,6 +147,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     // MARK: Functions
+    
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(FamilyViewController.dismissKeyboardView))
         tap.cancelsTouchesInView = false
@@ -155,6 +163,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     // TODO: Rethink some of the variable names here and in configDatabaseFamily for clarity
+    
     func configDatabaseMember() {
         let membersRef = FIRDatabase.database().reference().child("members")
         let familyRef = membersRef.child(store.family.id)
@@ -173,6 +182,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     // TODO: Rethink some of the variable names here for clarity
+    
     func configDatabaseFamily() {
         let membersRef = FIRDatabase.database().reference().child("family")
         let familyRef = membersRef.child(store.family.id)
@@ -225,8 +235,6 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
 }
 
 class MemberCollectionViewCell: UICollectionViewCell {
-    
-    // OUTLETS
     @IBOutlet weak var memberNameLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
 }

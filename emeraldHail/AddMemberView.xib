@@ -21,24 +21,17 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="addFamilyMember" translatesAutoresizingMaskIntoConstraints="NO" id="9vh-t8-Olh">
-                    <rect key="frame" x="25" y="12" width="100" height="100"/>
+                    <rect key="frame" x="50" y="50" width="50" height="50"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="9vh-t8-Olh" secondAttribute="height" multiplier="1:1" id="UHg-ei-WdE"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Member" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OzT-A5-8yM">
-                    <rect key="frame" x="31" y="124" width="88" height="14"/>
-                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
             <constraints>
-                <constraint firstItem="OzT-A5-8yM" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="2qR-Wb-6c3"/>
-                <constraint firstItem="9vh-t8-Olh" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="12" id="59I-ku-G67"/>
-                <constraint firstAttribute="bottom" secondItem="OzT-A5-8yM" secondAttribute="bottom" constant="12" id="NqS-41-RTq"/>
-                <constraint firstAttribute="trailing" secondItem="9vh-t8-Olh" secondAttribute="trailing" constant="25" id="bdf-mG-lEr"/>
-                <constraint firstItem="OzT-A5-8yM" firstAttribute="top" secondItem="9vh-t8-Olh" secondAttribute="bottom" constant="12" id="qiL-S9-wch"/>
-                <constraint firstItem="9vh-t8-Olh" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="25" id="v74-kS-YD5"/>
+                <constraint firstItem="9vh-t8-Olh" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="50" id="59I-ku-G67"/>
+                <constraint firstAttribute="trailing" secondItem="9vh-t8-Olh" secondAttribute="trailing" constant="50" id="bdf-mG-lEr"/>
+                <constraint firstAttribute="bottom" secondItem="9vh-t8-Olh" secondAttribute="bottom" constant="50" id="hzd-kd-DJD"/>
+                <constraint firstItem="9vh-t8-Olh" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="50" id="v74-kS-YD5"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

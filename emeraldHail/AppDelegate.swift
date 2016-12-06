@@ -31,15 +31,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         GIDSignIn.sharedInstance().delegate = self
         IQKeyboardManager.sharedManager().enable = true
         
-//        if FIRAuth.auth()?.currentUser != nil{
-//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//            let controller = storyboard.instantiateViewController(withIdentifier: "FamilyViewController")
-//            window?.rootViewController = controller
-//            window?.makeKeyAndVisible()
-//            //self.presentViewController(controller, animated: true , completion: nil)
-//            
-//            //            print("\n\n\nUSER LOGGED IN\n\n\n\n")
-//        }
+        //        if FIRAuth.auth()?.currentUser != nil{
+        //            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        //            let controller = storyboard.instantiateViewController(withIdentifier: "FamilyViewController")
+        //            window?.rootViewController = controller
+        //            window?.makeKeyAndVisible()
+        //            //self.presentViewController(controller, animated: true , completion: nil)
+        //
+        //            //            print("\n\n\nUSER LOGGED IN\n\n\n\n")
+        //        }
         
         
         return true

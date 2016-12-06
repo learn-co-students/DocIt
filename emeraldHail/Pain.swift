@@ -49,7 +49,7 @@ struct Pain {
     func getNaturalTime() -> String {
         let currentDate = Date()
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM d, yyyy @ hh:mma"
+        dateFormatter.dateFormat = "MMM d, yyyy @ h:mma"
 
         return dateFormatter.string(from: currentDate).uppercased()
 
