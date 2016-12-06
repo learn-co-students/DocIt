@@ -14,6 +14,5 @@ target 'emeraldHail' do
   pod 'GoogleSignIn'
   pod 'IQKeyboardManagerSwift'
   pod 'Fusuma', :git => 'https://github.com/pruthvikar/Fusuma.git', :commit => '503865a'
-  pod 'RappleProgressHUD'
 
 end
