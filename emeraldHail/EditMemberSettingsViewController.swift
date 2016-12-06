@@ -13,8 +13,6 @@ import Firebase
 
 class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, UITextFieldDelegate {
     
-    
-    
     // MARK: Outlets
     
     @IBOutlet weak var profilePicture: UIImageView!
@@ -31,16 +29,6 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
     // MARK: Properties
     
     let store = DataStore.sharedInstance
-    
-    // Member Profile Properties
-    //    var firstName: String?
-    //    var lastName: String?
-    //    var gender: String?
-    //    var DOB: String?
-    //    var bloodTypeSelected: String?
-    //
-    
-    
     
     let bloodSelection = UIPickerView()
     let dobSelection = UIDatePicker()

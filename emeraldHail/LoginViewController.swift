@@ -9,18 +9,22 @@
 import UIKit
 import Firebase
 import GoogleSignIn
-
-
+import CoreData
 
 class LoginViewController: UIViewController, GIDSignInUIDelegate {
-  
-    let store = DataStore.sharedInstance
     
     // MARK: Outlets
+    
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var signIn: UIButton!
+    
+    // MARK: Properties 
+    
+    let store = DataStore.sharedInstance
+    
+    // MARK: Loads 
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,13 +33,12 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         hideKeyboardWhenTappedAround()
         
         GIDSignIn.sharedInstance().uiDelegate = self
-      //  GIDSignIn.sharedInstance().delegate = self
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         setupViews()
-         // GIDSignIn.sharedInstance().signIn()
+      
     }
     
     // TODO: Discuss if we should we be hiding the status bar in the entire app?
@@ -44,6 +47,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     //    }
     
     // MARK: Actions
+    
     @IBAction func signIn(_ sender: UIButton) {
         login()
     }
@@ -88,11 +92,8 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     
     }
     
-
+    // MARK: Methods
     
-    
-    
-    // MARK: Functions
     func setupViews() {
         // Make the email field become the first repsonder and show keyboard when this vc loads
         emailField.becomeFirstResponder()
@@ -124,8 +125,9 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         view.endEditing(true)
     }
     
+    // MARK: Methods Google
     
-// Mark: Google Login Delegate Function needed to work. 
+// Google Login Delegate Function needed to work.
     func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!,
                 withError error: NSError!) {
         if (error == nil) {
@@ -136,12 +138,6 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         }
     }
     
-    
-
- 
-    
-    
-
     // TODO: Need to prevent users from being able to press the login button multiple times
     func login() {
         guard let email = emailField.text, let password = passwordField.text else { return }
@@ -159,9 +155,6 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
             self.performSegue(withIdentifier: "showFamily", sender: nil)
         }
     }
-    
-    
-    
     
     
 }
