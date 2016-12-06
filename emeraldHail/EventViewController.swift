@@ -12,14 +12,14 @@ import FirebaseDatabase
 import SDWebImage
 
 class EventViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
-
+    
+    
     // MARK: - Outlets
     
     @IBOutlet weak var eventsTable: UITableView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
-
+    
     // MARK: - Properties
     
     var store = DataStore.sharedInstance
@@ -27,7 +27,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var database: FIRDatabaseReference = FIRDatabase.database().reference()
     var memberID = ""
     var member = [Member]()
-
+    
     // MARK: - Loads
     
     override func viewDidLoad() {
@@ -40,66 +40,96 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         eventsTable.reloadData()
         showPictureAndName()
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         configDatabase()
         self.eventsTable.reloadData()
     }
-
+    
     // MARK: - Actions
     
     @IBAction func addEvent(_ sender: Any) {
         createEvent()
     }
-
+    
     // MARK: TableView Methods
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return events.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath) as! EventTableViewCell
-
+        
         let event = events[indexPath.row]
         cell.eventName.text = event.name
         cell.eventDate.text = event.startDate.uppercased()
         cell.backgroundColor = UIColor.getRandomColor()
-
+        
         store.eventID =  event.uniqueID
-
+        
         return cell
     }
-
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         store.eventID = events[indexPath.row].uniqueID
     }
-
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        
         
         let databaseEvents = self.database.child("events").child(store.member.id)
         let uniqueEventID = events[indexPath.row].uniqueID
         
         let databasePosts = self.database.child("posts").child(uniqueEventID)
-
+        
+        var posts = [Post]()
+        
         if editingStyle == .delete {
-
+            
             // Deleting selected events and related posts from Firebase
             databaseEvents.child(uniqueEventID).removeValue()
-            databasePosts.removeValue()
             
+            databasePosts.observeSingleEvent(of: .value, with: { snapshot in
+                
+                let oldPosts = snapshot.value as! [String : Any]
+                let allKeys = oldPosts.keys
+                
+                for key in allKeys {
+                    
+                    let dictionary = oldPosts[key] as! [String : Any]
+                    
+                    let post = Post(dictionary: dictionary)
+                    
+                    posts.append(post)
+                    
+                    print(post.description)
+                    
+                }
+                
+                for post in posts {
+                    
+                    self.deleteImagesFromStorage(uniqueID: post.description)
+                }
+                
+                databasePosts.removeValue()
+                
+            })
+
             events.remove(at: indexPath.row)
+            
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
         
-        // Deleting images related to events from Storge
-        
+    }
+    
+    
+    // MARK: - Methods
+    
+    func deleteImagesFromStorage(uniqueID: String){
         
         let storageRef = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
-        let storageImageRef = storageRef.child("postsImages").child(uniqueEventID)
-        print("++++++++++++++++++++++++++++++++++++++\(uniqueEventID)")
+        let storageImageRef = storageRef.child("postsImages").child(uniqueID)
         
         storageImageRef.delete(completion: { error -> Void in
             
@@ -110,11 +140,8 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
             
         })
-
+        
     }
-
-    
-    // MARK: - Methods
     
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(EventViewController.dismissKeyboardView))
@@ -183,7 +210,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             let event = Event(name: name, startDate: date, uniqueID: uniqueID)
             
             databaseEventsRef.setValue(event.serialize(), withCompletionBlock: { error, dataRef in
-
+                
             })
             
             print("Save Button Pressed")
@@ -205,14 +232,14 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         present(alertController, animated: true, completion: nil)
     }
-
+    
 }
 
 class EventTableViewCell: UITableViewCell {
-
+    
     // MARK: Outlets
-
+    
     @IBOutlet weak var eventName: UILabel!
     @IBOutlet weak var eventDate: UILabel!
-
+    
 }

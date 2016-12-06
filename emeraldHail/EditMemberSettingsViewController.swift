@@ -52,6 +52,8 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
     
     // MARK: - Methods
     
+    // Storage
+    
     @IBAction func deleteMebmerButtonTapped(_ sender: Any) {
         
         // Alert Controller
@@ -60,10 +62,12 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
         // Action
         let deleteAction = UIAlertAction(title: "Delete", style: .default, handler: { action -> Void in
             
+            // Database
             let database = FIRDatabase.database().reference()
             let memberRef = database.child("members").child(self.store.family.id)
             let eventsRef = database.child("events").child(self.store.member.id)
             let postsRef = database.child("posts")
+            
             
             // Remove members and related events
 
@@ -76,25 +80,27 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
                     let event = Event(snapshot: child as! FIRDataSnapshot)
                     
                     let eventID = event.uniqueID
-                    postsRef.child(eventID).removeValue()
 
                     eventIDs.append(eventID)
-                    print("^^^^^^^^^^^^^^^\(eventIDs)")
+
                 }
+                
                 for eventID in eventIDs {
                     print("Event ID is: \(eventID)")
-                    postsRef.child(eventID).removeValue()
+                    self.removeImagePostFromStorage(eventID: eventID)
+                    postsRef.child(eventID).removeValue() // All posts under event erased
+                    
                 }
                 
                 eventsRef.removeValue()
                 memberRef.child(self.store.member.id).removeValue()
                 
                 self.performSegue(withIdentifier: "backToFamilyVCSegue", sender: self)
-
-            
+                
             })
             
         })
+        
 
     
          let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) {
@@ -109,25 +115,33 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
          // Present the controller
          self.present(alertController, animated: true, completion: nil)
         
-
-        // Remove images associated with the member from stroage
-        
-        
-        
     }
-
     
+    func removeImagePostFromStorage(eventID: String){
+        let storageImgRef = FIRStorage.storage().reference().child("postsImages")
+        storageImgRef.delete(completion: { error -> Void in
+            
+            if error != nil {
+                print("Error occured while deleting imgs from Firebase storage")
+            } else {
+                print("Image removed from Firebase successfully!")
+            }
+            
+        })
+    }
+    
+
     // MARK: - Actions
 
     @IBAction func saveMember(_ sender: UIButton) {
         updateFirebaseValues()
     }
-    
-    
-    
+
+
+
     // MARK: - Methods
 
-    
+
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboardView))
         tap.cancelsTouchesInView = false
