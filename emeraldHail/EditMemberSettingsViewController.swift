@@ -63,7 +63,7 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDataSource
             let database = FIRDatabase.database().reference()
             let memberRef = database.child("members").child(self.store.family.id)
             let eventsRef = database.child("events").child(self.store.member.id)
-            let postsRef = database.child("posts")
+            //let postsRef = database.child("posts")
             
             // Remove related events, members and posts from database
 
@@ -100,7 +100,7 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDataSource
         updateFirebaseValues()
     }
   
-    
+
     // MARK: Methods
     
     func hideKeyboardWhenTappedAround() {
