@@ -13,14 +13,7 @@ import Fusuma
 
 class PostViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, FusumaDelegate {
     
-    var deletedPostRef: FIRDatabaseReference?
-    var uniqueID: String?
-    var posts = [Post]()
-    var store = DataStore.sharedInstance
-    let postsRef = FIRDatabase.database().reference().child("posts")
-    
-    
-    // MARK: Outlets
+    // MARK: - Outlets
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
@@ -33,7 +26,15 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    // MARK: Loads 
+    // MARK: - Properties
+    
+    var deletedPostRef: FIRDatabaseReference?
+    var uniqueID: String?
+    var posts = [Post]()
+    var store = DataStore.sharedInstance
+    let postsRef = FIRDatabase.database().reference().child("posts")
+    
+    // MARK: - Loads
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,7 +83,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     
-    // MARK: - TableView Methods
+    // MARK: - Methods
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -163,7 +164,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    // MARK: - Firebase
+    // MARK: Firebase
     
     func fetchPosts() {
         
@@ -222,7 +223,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     
-    // MARK: Fusuma - Photo feature
+    // MARK: Fusuma
     
     func handleCameraImage() {
         

@@ -12,7 +12,11 @@ import FirebaseDatabase
 
 class SymptomsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    // MARK: - Outlets 
+    
     @IBOutlet weak var symptomTableView: UITableView!
+    
+    // MARK: Properties
     
     let store = DataStore.sharedInstance
     var database: FIRDatabaseReference = FIRDatabase.database().reference()
@@ -21,11 +25,15 @@ class SymptomsViewController: UIViewController, UITableViewDelegate, UITableView
     
     var selectedSymtoms: [String : String] = [:]
     
+    // MARK: - Loads 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         symptomTableView.allowsMultipleSelection = true
         symptomTableView.reloadData()
     }
+    
+    // MARK: - Actions 
     
     @IBAction func save(_ sender: UIButton) {
         
@@ -48,6 +56,8 @@ class SymptomsViewController: UIViewController, UITableViewDelegate, UITableView
     @IBAction func cancelButtonTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
+    
+    // MARK: Methods 
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -80,6 +90,8 @@ class SymptomsViewController: UIViewController, UITableViewDelegate, UITableView
 
 extension UIViewController {
     
+    // MARK: - Methods
+    
     func getTimestamp() -> String {
         let currentDate = Date()
         let dateFormatter = DateFormatter()
@@ -92,7 +104,7 @@ extension UIViewController {
 
 class SymptomViewCell: UITableViewCell {
     
-    // OUTLETS
+    // MARK: - Outlets
     
     @IBOutlet weak var symptomLabel: UILabel!
     

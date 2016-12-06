@@ -12,7 +12,7 @@ import SDWebImage
 
 class AddMembersViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
 
-    // MARK: Outlets
+    // MARK: - Outlets
 
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var profileImageView: UIImageView!
@@ -25,45 +25,43 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var genderTextField: UITextField!
     @IBOutlet weak var allergiesTextField: UITextField!
 
-    // MARK: Properties
+    // MARK: - Properties
     
     let store = DataStore.sharedInstance
     
     let bloodSelection = UIPickerView()
     let dobSelection = UIDatePicker()
     let genderSelection = UIPickerView()
-
+    let weightSelection = UIPickerView()
     
-    // MARK: Loads
+    // MARK: - Loads
 
     override func viewDidLoad() {
         super.viewDidLoad()
         addProfileSettings()
         hideKeyboardWhenTappedAround()
         
-        // Birthday selection
         birthdayField.delegate = self
         
-        // Blood Type selection
-//        bloodTextField.delegate = self
         bloodSelection.delegate = self
-//        bloodSelection.dataSource = self
         bloodTextField.inputView = bloodSelection
         
         genderSelection.delegate = self
         genderTextField.inputView = genderSelection
         
+        weightSelection.delegate = self
+        weightTextField.inputView = weightSelection
+        
         
     }
 
-    // MARK: Actions
+    // MARK: - Actions
 
     @IBAction func saveButtonTapped(_ sender: Any) {
         guard let name = firstNameField.text, name != "",
             let lastName = lastNameField.text, lastName != "",
             let dob = birthdayField.text, dob != "", let blood = bloodTextField.text, blood != "", let gender = genderTextField.text, gender != "", let weight = weightTextField.text, weight != "", let height = heightTextField.text, height != "", let allergies = allergiesTextField.text, allergies != "" else { return }
 
-        // Disable the save button after it's pressed once
         let disableSaveButton = sender as? UIButton
         disableSaveButton?.isEnabled = false
 
@@ -103,7 +101,7 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
         dismiss(animated: true, completion: nil)
     }
 
-    // MARK: Methods
+    // MARK: - Methods
 
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboardView))
@@ -168,7 +166,7 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
         dismiss(animated: true, completion: nil)
     }
 
-    // Blood Type: Methods
+    // MARK: Methods Picker View
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int{
         return 1
@@ -182,6 +180,8 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
             return store.bloodTypeSelections.count
         case genderSelection:
             return store.genderSelections.count
+        case weightSelection:
+            return store.weightSelections.count
         default:
             break
         }
@@ -196,6 +196,8 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
             bloodTextField.text = store.bloodTypeSelections[row]
         case genderSelection:
             genderTextField.text = store.genderSelections[row]
+        case weightSelection:
+            weightTextField.text = store.weightSelections[row]
         default:
             break
         }
@@ -211,14 +213,14 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
             return store.bloodTypeSelections[row]
         case genderSelection:
             return store.genderSelections[row]
+        case weightSelection:
+            return store.weightSelections[row]
         default:
             break
         }
 
         return ""
     }
-    
-    // Date of Birth: Methods
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool{
         
@@ -230,12 +232,10 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
         birthdayField.inputView = dobSelection
         genderTextField.inputView = genderSelection
         bloodTextField.inputView = bloodSelection
+        weightTextField.inputView = weightSelection
         
         dobSelection.datePickerMode = UIDatePickerMode.date
         dobSelection.addTarget(self, action: #selector(self.datePickerChanged(sender:)) , for: .valueChanged)
-        
-       
-        
         
     }
 
@@ -260,10 +260,5 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
         birthdayField.text = formatter.string(from: sender.date)
     
     }
-    
-    // Gender: Methods
-    
-   
-
     
 }
