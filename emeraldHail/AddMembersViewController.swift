@@ -146,6 +146,8 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
         self.present(picker, animated: true, completion: nil)
 
     }
+    
+    
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]){
 

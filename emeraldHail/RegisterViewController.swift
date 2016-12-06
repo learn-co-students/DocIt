@@ -8,19 +8,16 @@
 
 import UIKit
 import Firebase
-import GoogleSignIn
 
 class RegisterViewController: UIViewController {
  // TO DO : Create a function that would prevent users from registering with google twice. if they registered they shouldn't be allowed to create an account
     
     
     // MARK: Outlets
-    @IBOutlet weak var googleContainerView: UIView!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var createAccount: UIButton!
-    let loginManager = LoginManager()
 
     // MARK: Properties
 
@@ -34,9 +31,7 @@ class RegisterViewController: UIViewController {
         setupViews()
         hideKeyboardWhenTappedAround()
         
-        GIDSignIn.sharedInstance().uiDelegate = self
-        GIDSignIn.sharedInstance().delegate = loginManager
-
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -123,49 +118,11 @@ class RegisterViewController: UIViewController {
 
                 // TODO: Set the initial family name to something more descriptive (perhaps using their last name or something?)
                 self.family.child(self.store.family.id).child("name").setValue("New Family")
-
+                // TO DO: Change segue to notification center post
                 self.performSegue(withIdentifier: "showFamily", sender: nil)
             }
         }
     }
 
-}
-// MARK: - Google UI Delegate
-extension RegisterViewController: GIDSignInUIDelegate {
-
-    func configureGoogleButton() {
-        let googleSignInButton = GIDSignInButton()
-    
-        googleSignInButton.colorScheme = .light
-        googleSignInButton.style = .standard
-        
-        self.view.addSubview(googleContainerView)
-        
-        googleSignInButton.translatesAutoresizingMaskIntoConstraints = false
-        googleSignInButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        googleSignInButton.topAnchor.constraint(equalTo: createAccount.bottomAnchor, constant: 10).isActive = true
-        googleSignInButton.heightAnchor.constraint(equalTo: createAccount.heightAnchor).isActive = true
-        googleSignInButton.widthAnchor.constraint(equalTo: createAccount.widthAnchor).isActive = true
-        
-        
-        
-        
-        view.layoutIfNeeded()
-    }
-    
-    func sign(_ signIn: GIDSignIn!, dismiss viewController: UIViewController!) {
-        viewController.dismiss(animated: false, completion: { _ in
-        })
-
-    }
-    
-    func sign(_ signIn: GIDSignIn!, present viewController: UIViewController!) {
-        present(viewController, animated: true, completion: nil)
-    }
-    
-//    func signIn() {
-//        GIDSignIn.sharedInstance().signIn()
-//    }
-    
 }
 

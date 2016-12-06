@@ -122,21 +122,7 @@ class LoginViewController: UIViewController {
         view.endEditing(true)
     }
     
-    
-// Mark: Google Login Delegate Function needed to work. 
-    func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!,
-                withError error: NSError!) {
-        if (error == nil) {
-            // Perform any operations on signed in user here.
-            // ...
-        } else {
-            print("\(error.localizedDescription)")
-        }
-    }
-    
-    
 
- 
     
     
 
@@ -154,7 +140,7 @@ class LoginViewController: UIViewController {
             }
             // Set the sharedInstance familyID to the current user.uid
             self.store.family.id = (user?.uid)!
-            // Notification instead of Segue via App Controller
+            //TO DO: Notification instead of Segue via App Controller
             
         }
     }
