@@ -13,8 +13,9 @@ import FirebaseAuth
 import FirebaseDatabase
 import SDWebImage
 import CoreData
+import MessageUI
 
-class FamilySettingViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class FamilySettingViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MFMailComposeViewControllerDelegate {
 
     // MARK: - Outlets
     
@@ -66,6 +67,9 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
             
         }
         
+    }
+    @IBAction func sendEmail(_ sender: UIButton) {
+        sendEmail()
     }
     
     // MARK: - Methods
@@ -189,4 +193,23 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
         FIRDatabase.database().reference().child("settings").child(store.family.id).child("touchID").setValue(activate)
         
     }
+    
+    func sendEmail() {
+        if MFMailComposeViewController.canSendMail() {
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients(["etorrendell@gmail.com"])
+            mail.setSubject("Feedback")
+            mail.setMessageBody("", isHTML: true)
+            
+            present(mail, animated: true)
+        } else {
+            // show failure alert
+        }
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
+    }
+    
 }
