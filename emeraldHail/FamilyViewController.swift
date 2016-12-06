@@ -125,12 +125,12 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         familyRef.observe(.value, with: { snapshot in
             
             
-            var dic = snapshot.value as! [String : Any]
+            var dic = snapshot.value as? [String : Any]
             
-            guard let familyName = dic["name"] else { return }
+            guard let familyName = dic?["name"] else { return }
             self.store.family.name = familyName as? String
             
-            guard let coverImgStr = dic["coverImageStr"] else { return }
+            guard let coverImgStr = dic?["coverImageStr"] else { return }
             self.store.familyPicture = coverImgStr as! String
         })
     }

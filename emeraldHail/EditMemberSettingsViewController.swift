@@ -50,7 +50,7 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
 
     }
     
-    // MARK: Actions
+    // MARK: - Methods
     
     @IBAction func deleteMebmerButtonTapped(_ sender: Any) {
         
@@ -63,18 +63,40 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
             let database = FIRDatabase.database().reference()
             let memberRef = database.child("members").child(self.store.family.id)
             let eventsRef = database.child("events").child(self.store.member.id)
-            //let postsRef = database.child("posts")
+            let postsRef = database.child("posts")
             
-            // Remove related events, members and posts from database
+            // Remove members and related events
 
-            eventsRef.removeValue()
-            memberRef.child(self.store.member.id).removeValue()
+            var eventIDs = [String]()
             
-            self.performSegue(withIdentifier: "backToFamilyVCSegue", sender: self)
+            eventsRef.observe(.value, with: { snapshot in
+                
+                for child in snapshot.children {
+                    
+                    let event = Event(snapshot: child as! FIRDataSnapshot)
+                    
+                    let eventID = event.uniqueID
+                    postsRef.child(eventID).removeValue()
+
+                    eventIDs.append(eventID)
+                    print("^^^^^^^^^^^^^^^\(eventIDs)")
+                }
+                for eventID in eventIDs {
+                    print("Event ID is: \(eventID)")
+                    postsRef.child(eventID).removeValue()
+                }
+                
+                eventsRef.removeValue()
+                memberRef.child(self.store.member.id).removeValue()
+                
+                self.performSegue(withIdentifier: "backToFamilyVCSegue", sender: self)
+
+            
+            })
             
         })
 
-        
+    
          let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) {
             UIAlertAction in
             print("Cancel Pressed")
@@ -100,6 +122,8 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
     @IBAction func saveMember(_ sender: UIButton) {
         updateFirebaseValues()
     }
+    
+    
     
     // MARK: - Methods
 
