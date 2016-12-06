@@ -13,10 +13,15 @@ import SDWebImage
 
 class HeaderCollectionReusableView: UICollectionReusableView {
     
+    // MARK: - Outlets
     @IBOutlet weak var familyNameLabel: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
     
+    // MARK: - Properties
+    
     let store = DataStore.sharedInstance
+    
+    // MARK: - Methods 
     
     func configDatabaseFamily() {
         let membersRef = FIRDatabase.database().reference().child("family")

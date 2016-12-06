@@ -19,20 +19,35 @@ class WelcomeViewController: UIViewController {
     @IBOutlet weak var signIn: UIButton!
     @IBOutlet weak var touchID: UIButton!
 
+    // MARK: - Properties
+
     var userInfo = [CurrentUser]()
     var store = DataStore.sharedInstance
+
     let loginManager = LoginManager()
+
+
+    // MARK: - Loads
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        touchID.isHidden = true
         fetchData()
         updateFamilyId()
         setupViews()
+
         configureGoogleButton()
-        
+
         GIDSignIn.sharedInstance().uiDelegate = self
         GIDSignIn.sharedInstance().delegate = loginManager
+
+        checkTouchID()
+        store.fillWeightData()
+        print("=========> my family is \(store.family.id)")
+        print("=========> my family is \(userInfo)")
     }
+
+    // MARK: - Actions
 
     @IBAction func createAccountPressed(_ sender: Any) {
         NotificationCenter.default.post(name: Notification.Name.closeRegisterVC, object: nil)
@@ -47,6 +62,7 @@ class WelcomeViewController: UIViewController {
         authenticateUser()
     }
 
+    // MARK: - Methods
 
     func setupViews() {
         view.backgroundColor = Constants.Colors.desertStorm
@@ -60,12 +76,28 @@ class WelcomeViewController: UIViewController {
 
         if !userInfo.isEmpty {
             store.family.id = userInfo[0].familyID!
-            touchID.isHidden = false
+
             print("========= we are in the welcome view and the family id is \(store.family.id)")
-        } else {
-            touchID.isHidden = true
         }
     }
+
+    func fetchData() {
+
+        let managedContext = store.persistentContainer.viewContext
+
+        let fetchRequest: NSFetchRequest<CurrentUser> = CurrentUser.fetchRequest()
+
+        do {
+
+            self.userInfo = try managedContext.fetch(fetchRequest)
+
+        } catch {
+
+            print("error")
+        }
+    }
+
+    // MARK: Methods Touch ID
 
     func authenticateUser() {
         let context = LAContext()
@@ -94,13 +126,9 @@ class WelcomeViewController: UIViewController {
     }
 
     func navigateToAuthenticatedVC() {
-        
+
         // TO DO: Delete segue and add notification post
         self.performSegue(withIdentifier: "showFamily", sender: self)
-        //                if let loggedInVC = storyboard?.instantiateViewController(withIdentifier: "loggedInVC") {
-        //                self.navigationController?.pushViewController(loggedInVC, animated: true)
-        //        }
-
 
     }
 
@@ -160,32 +188,49 @@ class WelcomeViewController: UIViewController {
         return message
     }
 
-    func fetchData() {
 
-        let managedContext = store.persistentContainer.viewContext
+    func checkTouchID() {
 
-        let fetchRequest: NSFetchRequest<CurrentUser> = CurrentUser.fetchRequest()
+        if store.family.id != "" {
 
-        do {
+        let database = FIRDatabase.database().reference().child("settings").child(store.family.id).child("touchID")
 
-            self.userInfo = try managedContext.fetch(fetchRequest)
+        database.observe(.value, with: { (snapshot) in
 
-        } catch {
+            let value = snapshot.value as? Bool
 
-            print("error")
+            if value == true {
+
+                self.touchID.isHidden = false
+
+            }
+
+            else if value == false {
+
+                self.touchID.isHidden = true
+            }
+
+
+        })
+
+        } else {
+            print("no family id")
         }
     }
+
+
+
 }
 
 // MARK: - Google UI Delegate
 extension WelcomeViewController: GIDSignInUIDelegate {
-    
+
     func configureGoogleButton() {
         let googleSignInButton = GIDSignInButton()
-        
+
         googleSignInButton.colorScheme = .light
         googleSignInButton.style = .standard
-        
+
         self.view.addSubview(googleSignInButton)
         googleSignInButton.translatesAutoresizingMaskIntoConstraints = false
         googleSignInButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
@@ -194,19 +239,19 @@ extension WelcomeViewController: GIDSignInUIDelegate {
         googleSignInButton.widthAnchor.constraint(equalTo: createAccount.widthAnchor).isActive = true
         view.layoutIfNeeded()
     }
-    
+
     func sign(_ signIn: GIDSignIn!, dismiss viewController: UIViewController!) {
         viewController.dismiss(animated: false, completion: { _ in
         })
-        
+
     }
-    
+
     func sign(_ signIn: GIDSignIn!, present viewController: UIViewController!) {
         present(viewController, animated: true, completion: nil)
     }
-    
+
     //    func signIn() {
     //        GIDSignIn.sharedInstance().signIn()
     //    }
-    
+
 }

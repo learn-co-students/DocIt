@@ -8,37 +8,40 @@
 
 import UIKit
 import Firebase
+import CoreData
 
 class RegisterViewController: UIViewController {
  // TO DO : Create a function that would prevent users from registering with google twice. if they registered they shouldn't be allowed to create an account
-    
-    
-    // MARK: Outlets
+
+
+
+    // MARK: - Outlets
+
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var createAccount: UIButton!
 
-    // MARK: Properties
+    // MARK: - Properties
 
     let store = DataStore.sharedInstance
     let family = FIRDatabase.database().reference().child("family")
 
-    // MARK: Loads
+    // MARK: - Loads
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         hideKeyboardWhenTappedAround()
-        
-        
+
+
     }
 
     override func viewWillAppear(_ animated: Bool) {
         setupViews()
     }
 
-    // MARK: Actions
+    // MARK: - Actions
 
     @IBAction func createAccountPressed(_ sender: Any) {
         register()
@@ -47,8 +50,8 @@ class RegisterViewController: UIViewController {
     @IBAction func signInPressed(_ sender: Any) {
         // If on the create account screen, if they already have an account...take them to the sign in screen
         //        self.performSegue(withIdentifier: "showLogin", sender: nil)
-        
-        
+
+
     }
 
     // This function enables/disables the createAccount button when the fields are empty/not empty.
@@ -62,7 +65,7 @@ class RegisterViewController: UIViewController {
         }
     }
 
-    // MARK: Functions
+    // MARK: - Methods
 
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(RegisterViewController.dismissKeyboardView))
@@ -94,7 +97,7 @@ class RegisterViewController: UIViewController {
         createAccount.backgroundColor = UIColor.lightGray
         createAccount.layer.cornerRadius = 2
     }
-    
+
     func register() {
         guard let email = emailField.text, let password = passwordField.text else { return }
 
@@ -119,10 +122,63 @@ class RegisterViewController: UIViewController {
                 // TODO: Set the initial family name to something more descriptive (perhaps using their last name or something?)
                 self.family.child(self.store.family.id).child("name").setValue("New Family")
                 // TO DO: Change segue to notification center post
+
+
+                self.touchID(activate: false)
+
+                self.saveDataToCoreData()
+
+
                 self.performSegue(withIdentifier: "showFamily", sender: nil)
             }
         }
     }
 
-}
+    func touchID(activate: Bool) {
 
+        FIRDatabase.database().reference().child("settings").child(store.family.id).child("touchID").setValue(activate)
+
+    }
+
+    func saveDataToCoreData() {
+
+        deleteAllData(entity: "CurrentUser")
+
+        let managedContext = store.persistentContainer.viewContext
+
+        let familyCoreData = CurrentUser(context: managedContext)
+
+        familyCoreData.familyID = DataStore.sharedInstance.family.id
+
+        do {
+
+            try managedContext.save()
+            print("I just save the family ID in Core Data")
+
+        } catch {
+
+            print("error")
+        }
+    }
+
+    func deleteAllData(entity: String)
+    {
+        let managedContext = store.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
+        fetchRequest.returnsObjectsAsFaults = false
+
+        do
+        {
+            let results = try managedContext.fetch(fetchRequest)
+            for managedObject in results
+            {
+                let managedObjectData:NSManagedObject = managedObject as! NSManagedObject
+                managedContext.delete(managedObjectData)
+            }
+        } catch let error as NSError {
+            print("Detele all data in \(entity) error : \(error) \(error.userInfo)")
+        }
+    }
+
+
+}

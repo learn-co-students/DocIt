@@ -13,16 +13,16 @@ import SDWebImage
 
 class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    // MARK: Outlets
+    // MARK: - Outlets
+    
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
+    @IBOutlet weak var memberProfilesView: UICollectionView!
+    
+    // MARK: - Properties
     
     var spacing: CGFloat!
     var insets: UIEdgeInsets!
     var itemSize: CGSize!
-    
-    @IBOutlet weak var memberProfilesView: UICollectionView!
-    
-    // MARK: Properties
     let store = DataStore.sharedInstance
     let imageSelected = UIImagePickerController()
     var membersInFamily = [Member]()
@@ -31,6 +31,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     var profileImage: UIImageView!
     var imageString = ""
     
+    // MARK: - Loads
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,13 +56,16 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         refresher.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
         memberProfilesView.addSubview(refresher)
         
-        // MARK: Flow Layout
         configureLayout()
-        self.flowLayout.itemSize = itemSize
-        self.flowLayout.minimumInteritemSpacing = spacing
-        self.flowLayout.minimumLineSpacing = spacing
-        self.flowLayout.sectionInset = insets
+        
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.memberProfilesView.reloadData()
+    }
+    
+    // MARK: - Methods
     
     func configureLayout() {
         let screenWidth = UIScreen.main.bounds.width
@@ -74,74 +78,13 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         let heightDeductionPerItem: CGFloat = (spacing*(numberOfColumns-1) + insets.top + insets.bottom)/numberOfColumns
         
         itemSize = CGSize(width: screenWidth/numberOfColumns - widthDeductionPerItem, height: screenWidth/numberOfColumns - heightDeductionPerItem)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        self.memberProfilesView.reloadData()
-    }
-    
-    // TODO: Can anyone tell me what this is doing? -Henry Is giving format to the text next to the < sign
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let backButton = UIBarButtonItem()
-        backButton.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Arial", size: 15)!], for: UIControlState.normal)
-        navigationItem.backBarButtonItem = backButton
-    }
-    
-    // MARK: Collection view methods
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return membersInFamily.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = memberProfilesView.dequeueReusableCell(withReuseIdentifier: "memberCell", for: indexPath) as! MemberCollectionViewCell
-        let member = membersInFamily[indexPath.row]
-        cell.memberNameLabel?.text = member.firstName
-        cell.profileImageView.image = UIImage(named: "kid_silhouette")
-        cell.profileImageView.contentMode = .scaleAspectFill
-        cell.profileImageView.setRounded()
         
-        let profileImgUrl = URL(string: member.profileImage)
-        cell.profileImageView.sd_setImage(with: profileImgUrl)
-        
-        return cell
+        self.flowLayout.itemSize = itemSize
+        self.flowLayout.minimumInteritemSpacing = spacing
+        self.flowLayout.minimumLineSpacing = spacing
+        self.flowLayout.sectionInset = insets
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        store.member.id = membersInFamily[indexPath.row].id
-    }
-    
-    // MARK: Header resuable view
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        
-        switch kind {
-        case UICollectionElementKindSectionHeader:
-            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) as! HeaderCollectionReusableView
-            headerView.familyNameLabel.text = store.family.name
-            
-//            headerView.profileImage.setRounded()
-            
-//            headerView.profileImage.tintImageColor(color: UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5))
-            
-            let familyPictureUrl = URL(string: store.familyPicture)
-            
-            headerView.profileImage.sd_setImage(with: familyPictureUrl)
-//            headerView.profileImage.tintImageColor(color: UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5))
-            
-            headerView.profileImage.image?.withRenderingMode(.alwaysTemplate)
-            headerView.profileImage.tintColor = Constants.Colors.scooter
-            
-            return headerView
-        default:
-            assert(false, "Unexpected element kind")
-        }
-    }
-    
-    // MARK: Functions
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(FamilyViewController.dismissKeyboardView))
         tap.cancelsTouchesInView = false
@@ -227,11 +170,73 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         refresher.endRefreshing()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let backButton = UIBarButtonItem()
+        backButton.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Arial", size: 15)!], for: UIControlState.normal)
+        navigationItem.backBarButtonItem = backButton
+    }
+    
+    // MARK: Methods Collection View
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return membersInFamily.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = memberProfilesView.dequeueReusableCell(withReuseIdentifier: "memberCell", for: indexPath) as! MemberCollectionViewCell
+        let member = membersInFamily[indexPath.row]
+        cell.memberNameLabel?.text = member.firstName
+        cell.profileImageView.image = UIImage(named: "kid_silhouette")
+        cell.profileImageView.contentMode = .scaleAspectFill
+        cell.profileImageView.setRounded()
+        
+        let profileImgUrl = URL(string: member.profileImage)
+        cell.profileImageView.sd_setImage(with: profileImgUrl)
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        store.member.id = membersInFamily[indexPath.row].id
+    }
+    
+    // MARK: Methods Header Resuable View
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        switch kind {
+        case UICollectionElementKindSectionHeader:
+            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) as! HeaderCollectionReusableView
+            headerView.familyNameLabel.text = store.family.name
+            
+//            headerView.profileImage.setRounded()
+            
+//            headerView.profileImage.tintImageColor(color: UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5))
+            
+            let familyPictureUrl = URL(string: store.familyPicture)
+            
+            headerView.profileImage.sd_setImage(with: familyPictureUrl)
+//            headerView.profileImage.tintImageColor(color: UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5))
+            
+            headerView.profileImage.image?.withRenderingMode(.alwaysTemplate)
+            headerView.profileImage.tintColor = Constants.Colors.scooter
+            
+            return headerView
+        default:
+            assert(false, "Unexpected element kind")
+        }
+    }
+    
 }
 
 class MemberCollectionViewCell: UICollectionViewCell {
     
-    // OUTLETS
+    // MARK: - Outlets
+    
     @IBOutlet weak var memberNameLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
 }

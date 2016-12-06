@@ -13,21 +13,35 @@ import FirebaseAuth
 import FirebaseDatabase
 import SDWebImage
 import CoreData
+import MessageUI
 
-class FamilySettingViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class FamilySettingViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MFMailComposeViewControllerDelegate {
 
-    // PROPERTIES
+    // MARK: - Outlets
+    
+    @IBOutlet weak var touchID: UISegmentedControl!
+    
+    // MARK: - Properties
 
     let store = DataStore.sharedInstance
-    let dataStore = DataStore.sharedInstance
 
-    // LOADS
+    // MARK: - Loads
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        checkTouchID()
     }
 
-    // ACTIONS
+    // MARK: - Actions
+
+    @IBAction func changeFamilyPic(_ sender: UIButton) {
+        handleSelectProfileImageView()
+    }
+    
+    @IBAction func changeFamilyNamePressed(_ sender: Any) {
+        changeFamilyName()
+    }
 
     @IBAction func logoutPressed(_ sender: Any) {
         do {
@@ -39,15 +53,28 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
         }
     }
 
-    @IBAction func changeFamilyNamePressed(_ sender: Any) {
-        changeFamilyName()
+    @IBAction func touchIDOnOff(_ sender: UISegmentedControl) {
+        
+        if touchID.selectedSegmentIndex == 0 {
+            
+            touchID(activate: false)
+            deleteAllData(entity: "CurrentUser")
+            
+        }
+        
+        else if touchID.selectedSegmentIndex == 1 {
+            
+            touchID(activate: true)
+            saveDataToCoreData()
+            
+        }
+        
     }
-
-    @IBAction func changeFamilyPic(_ sender: UIButton) {
-        handleSelectProfileImageView()
+    @IBAction func sendEmail(_ sender: UIButton) {
+        sendEmail()
     }
-
-    // METHODS
+    
+    // MARK: - Methods
 
     func changeFamilyName() {
         let alert = UIAlertController(title: nil, message: "Change your family name", preferredStyle: .alert)
@@ -69,10 +96,6 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
         alert.addAction(okAction)
         alert.addAction(cancelAction)
         present(alert, animated: true, completion: nil)
-    }
-
-    @IBAction func activateTouchID(_ sender: UIButton) {
-        saveData()
     }
 
     func changeFamilyCoverPic(photo: UIImage, handler: @escaping (Bool) -> Void) {
@@ -141,24 +164,97 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
         print("picked canceled")
         dismiss(animated: true, completion: nil)
     }
+    
+    
+    
+    func sendEmail() {
+        if MFMailComposeViewController.canSendMail() {
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients(["etorrendell@gmail.com"])
+            mail.setSubject("Feedback")
+            mail.setMessageBody("", isHTML: true)
+            
+            present(mail, animated: true)
+        } else {
+            // show failure alert
+        }
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
+    }
 
-    func saveData() {
-
-        let managedContext = dataStore.persistentContainer.viewContext
-
-        let family = CurrentUser(context: managedContext)
-
-        family.familyID = DataStore.sharedInstance.family.id
+    // Mark: Methods Touch ID
+    
+    func checkTouchID() {
+        
+        let database = FIRDatabase.database().reference().child("settings").child(store.family.id).child("touchID")
+        
+        database.observe(.value, with: { (snapshot) in
+            
+          let value = snapshot.value as? Bool
+            
+            if value == true {
+                
+                self.touchID.selectedSegmentIndex = 1
+                
+            }
+            
+            else if value == false {
+                
+                self.touchID.selectedSegmentIndex = 0
+            }
+            
+            
+        })
+        
+    }
+    
+    func touchID(activate: Bool) {
+        
+        FIRDatabase.database().reference().child("settings").child(store.family.id).child("touchID").setValue(activate)
+        
+    }
+    
+    func saveDataToCoreData() {
+        
+        deleteAllData(entity: "CurrentUser")
+        
+        let managedContext = store.persistentContainer.viewContext
+        
+        let familyCoreData = CurrentUser(context: managedContext)
+        
+        familyCoreData.familyID = DataStore.sharedInstance.family.id
         
         do {
-
+            
             try managedContext.save()
             print("I just save the family ID in Core Data")
-
+            
         } catch {
-
+            
             print("error")
         }
     }
-
+    
+    func deleteAllData(entity: String)
+    {
+        let managedContext = store.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
+        fetchRequest.returnsObjectsAsFaults = false
+        
+        do
+        {
+            let results = try managedContext.fetch(fetchRequest)
+            for managedObject in results
+            {
+                let managedObjectData:NSManagedObject = managedObject as! NSManagedObject
+                managedContext.delete(managedObjectData)
+            }
+        } catch let error as NSError {
+            print("Detele all data in \(entity) error : \(error) \(error.userInfo)")
+        }
+    }
+    
 }

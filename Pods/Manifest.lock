@@ -59,6 +59,7 @@ PODS:
   - GTMSessionFetcher/Full (1.1.7):
     - GTMSessionFetcher/Core (= 1.1.7)
   - IQKeyboardManagerSwift (4.0.7)
+  - RappleProgressHUD (2.1.2)
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
@@ -71,6 +72,7 @@ DEPENDENCIES:
   - Fusuma (from `https://github.com/pruthvikar/Fusuma.git`, commit `503865a`)
   - GoogleSignIn
   - IQKeyboardManagerSwift
+  - RappleProgressHUD
   - SDWebImage (~> 3.8)
 
 EXTERNAL SOURCES:
@@ -100,8 +102,9 @@ SPEC CHECKSUMS:
   GTMOAuth2: 7fc9c10f5c745f4d9850419ea88889fe3baa6b7d
   GTMSessionFetcher: a1f8ed39e4fe21c68957daed472c7afbcdf29166
   IQKeyboardManagerSwift: 58bbcf46b5cf9fd4ed625d28a60cb2fbae4ab0f4
-  SDWebImage: '098e97e6176540799c27e804c96653ee0833d13c'
+  RappleProgressHUD: ec6c9d990661c7299ca30eb034e77b2d1c5e90c3
+  SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
 
-PODFILE CHECKSUM: 35e6c1be9ecefac7076d4dcd2eafc2f52273e7eb
+PODFILE CHECKSUM: 318eb9dd9085ca35bc4cfc3920856ebb8af7849d
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.0.1
