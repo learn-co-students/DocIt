@@ -13,8 +13,6 @@ import Firebase
 
 class EditMemberSettingsViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
     
-    
-    
     // MARK: Outlets
     
     @IBOutlet weak var profilePicture: UIImageView!
@@ -31,16 +29,6 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDataSource
     // MARK: Properties
     
     let store = DataStore.sharedInstance
-    
-    // Member Profile Properties
-    //    var firstName: String?
-    //    var lastName: String?
-    //    var gender: String?
-    //    var DOB: String?
-    //    var bloodTypeSelected: String?
-    //
-    
-    
     
     let bloodSelection = UIPickerView()
     let dobSelection = UIDatePicker()
@@ -59,15 +47,54 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDataSource
 
         bloodTextField.inputView = bloodSelection
         genderTextField.inputView = genderSelection
-        
-        
-        
-        // Do any additional setup after loading the view.
+
     }
     
     // MARK: Actions
     
+    @IBAction func deleteMebmerButtonTapped(_ sender: Any) {
+        
+        // Alert Controller
+         let alertController = UIAlertController(title: "Are you sure you want to delete a member?",  message: "This action cannot be undone.", preferredStyle: .alert)
+        
+        // Action
+        let deleteAction = UIAlertAction(title: "Delete", style: .default, handler: { action -> Void in
+            
+            let database = FIRDatabase.database().reference()
+            let memberRef = database.child("members").child(self.store.family.id)
+            let eventsRef = database.child("events").child(self.store.member.id)
+            let postsRef = database.child("posts")
+            
+            // Remove related events, members and posts from database
 
+            eventsRef.removeValue()
+            memberRef.child(self.store.member.id).removeValue()
+            
+            self.performSegue(withIdentifier: "backToFamilyVCSegue", sender: self)
+            
+        })
+
+        
+         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) {
+            UIAlertAction in
+            print("Cancel Pressed")
+         }
+         
+         // Add the actions
+         alertController.addAction(deleteAction)
+         alertController.addAction(cancelAction)
+         
+         // Present the controller
+         self.present(alertController, animated: true, completion: nil)
+        
+
+        // Remove images associated with the member from stroage
+        
+        
+        
+    }
+
+    
     
     @IBAction func saveMember(_ sender: UIButton) {
         updateFirebaseValues()
@@ -110,10 +137,7 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDataSource
         memberReference.updateChildValues(updatedInfo)
         
         
-        
-        
     }
-    
     
     
     //DatePicker -> DOB Text Field
@@ -217,17 +241,20 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDataSource
         member.observe(.value, with: { (snapshot) in
             //  print(snapshot.value)
             
-            let value = snapshot.value as! [String : Any]
-            let imageString = value["profileImage"] as! String
-            let profileImgUrl = URL(string: imageString)
-            let firstName = value["firstName"] as! String
-            let lastName = value["lastName"] as! String
-            let gender = value["gender"] as! String
-            let bloodType = value["bloodType"] as! String
-            let birthday = value["birthday"] as! String
-            let height = value["height"] as! String
-            let weight = value["weight"] as! String
-            let allergies = value["allergies"] as! String
+            let value = snapshot.value as? [String : Any]
+            let imageString = value?["profileImage"] as? String
+            
+            guard let imgUrl = imageString else{ return }
+            let profileImgUrl = URL(string: imgUrl)
+            
+            let firstName = value?["firstName"] as! String
+            let lastName = value?["lastName"] as! String
+            let gender = value?["gender"] as! String
+            let bloodType = value?["bloodType"] as! String
+            let birthday = value?["birthday"] as! String
+            let height = value?["height"] as! String
+            let weight = value?["weight"] as! String
+            let allergies = value?["allergies"] as! String
             
             self.nameLabel.text = firstName
             self.firstNameTextField.text = firstName

@@ -128,7 +128,7 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
         self.view.endEditing(true)
     }
 
-    func textFieldShouldReturn(textField: UITextField) -> Bool     {
+    func textFieldShouldClear(_ textField: UITextField) -> Bool     {
         textField.resignFirstResponder()
         return false
     }

@@ -73,18 +73,17 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         
-        let databasePosts = self.database.child("posts").child(store.eventID)
+        
         let databaseEvents = self.database.child("events").child(store.member.id)
         let uniqueEventID = events[indexPath.row].uniqueID
-        let uniquePostID = postss[indexPath.row].description
         
-        // We need to include an array of posts that can be accessed globally - maybe in a singleton - otherwise it won't work - I temporarily created an array called postss as seen above - will replaced as the datastructure improves
+        let databasePosts = self.database.child("posts").child(uniqueEventID)
 
         if editingStyle == .delete {
 
-            // Deleting selected events from Firebase
-            databasePosts.child(uniquePostID).removeValue()
+            // Deleting selected events and related posts from Firebase
             databaseEvents.child(uniqueEventID).removeValue()
+            databasePosts.removeValue()
             
             events.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
@@ -94,8 +93,8 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         
         let storageRef = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
-        let storageImageRef = storageRef.child("postsImages").child(uniquePostID)
-        print("++++++++++++++++++++++++++++++++++++++\(uniquePostID)")
+        let storageImageRef = storageRef.child("postsImages").child(uniqueEventID)
+        print("++++++++++++++++++++++++++++++++++++++\(uniqueEventID)")
         
         storageImageRef.delete(completion: { error -> Void in
             
@@ -124,11 +123,12 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let member = FIRDatabase.database().reference().child("members").child(store.family.id).child(store.member.id)
 
         member.observe(.value, with: { snapshot in
-            var member = snapshot.value as! [String : Any]
-            let imageString = member["profileImage"] as! String
-            let name = member["firstName"] as! String
-
-            let profileImgUrl = URL(string: imageString)
+            var member = snapshot.value as? [String : Any]
+            let name = member?["firstName"] as? String
+            let imageString = member?["profileImage"] as? String
+            guard let imgUrl = imageString else {return}
+            let profileImgUrl = URL(string: imgUrl)
+            
             self.profileImageView.sd_setImage(with: profileImgUrl)
             self.profileImageView.setRounded()
             self.profileImageView.contentMode = .scaleAspectFill
