@@ -48,7 +48,9 @@ extension LoginManager: GIDSignInDelegate {
             
             membersRef.observeSingleEvent(of: .value, with: { snapshot in
                 
-                if let snapshot = snapshot.value {
+                if let snapshot = snapshot.value as? [String:Any] {
+                    
+                
                     DispatchQueue.main.async {
                         NotificationCenter.default.post(name: Notification.Name.closeWelcomeVC, object: nil)
                         print("A family id has been created.")
