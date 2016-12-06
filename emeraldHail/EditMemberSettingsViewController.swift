@@ -60,6 +60,7 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
          let alertController = UIAlertController(title: "Are you sure you want to delete a member?",  message: "This action cannot be undone.", preferredStyle: .alert)
         
         // Action
+
         let deleteAction = UIAlertAction(title: "Delete", style: .default, handler: { action -> Void in
             
             // Database
@@ -68,6 +69,7 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
             let eventsRef = database.child("events").child(self.store.member.id)
             let postsRef = database.child("posts")
             
+            var posts = [Post]()
             
             // Remove members and related events
 
@@ -82,17 +84,55 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
                     let eventID = event.uniqueID
 
                     eventIDs.append(eventID)
-
                 }
                 
                 for eventID in eventIDs {
-                    print("Event ID is: \(eventID)")
-                    self.removeImagePostFromStorage(eventID: eventID)
-                    postsRef.child(eventID).removeValue() // All posts under event erased
                     
+                    print("Event ID is: \(eventID)")
+                    
+                    self.deleteImagesFromStorage(uniqueID: eventID)
+                    
+                    postsRef.child(eventID).observeSingleEvent(of: .value, with: { snapshot in
+                        
+                        let oldPosts = snapshot.value as? [String : Any]
+                        
+                        if let allKeys = oldPosts?.keys {
+                        
+                            for key in allKeys {
+                                
+                                let dictionary = oldPosts?[key] as! [String : Any]
+                                
+                                let post = Post(dictionary: dictionary)
+                                
+                                posts.append(post)
+                                print("0--------------------\(posts)")
+                                
+                                print(post.description)
+                            }
+                        }
+                    })
+
+                    for post in posts {
+                        
+                        switch post {
+                        case .photo(_):
+                            self.deleteImagesFromStorage(uniqueID: post.description)
+                        default:
+                            break
+                        }
+                        
+                    }
+                    
+                    postsRef.child(eventID).removeValue() // All posts under event erased
+        
                 }
                 
+                // Delete events associated with the member
+                
                 eventsRef.removeValue()
+                
+                // Delete the member 
+                
                 memberRef.child(self.store.member.id).removeValue()
                 
                 self.performSegue(withIdentifier: "backToFamilyVCSegue", sender: self)
@@ -100,8 +140,6 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
             })
             
         })
-        
-
     
          let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) {
             UIAlertAction in
@@ -117,17 +155,21 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
         
     }
     
-    func removeImagePostFromStorage(eventID: String){
-        let storageImgRef = FIRStorage.storage().reference().child("postsImages")
-        storageImgRef.delete(completion: { error -> Void in
+    func deleteImagesFromStorage(uniqueID: String){
+        
+        let storageRef = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
+        let storageImageRef = storageRef.child("postsImages").child(uniqueID)
+        
+        storageImageRef.delete(completion: { error -> Void in
             
             if error != nil {
-                print("Error occured while deleting imgs from Firebase storage")
+                print("******* Error occured while deleting imgs from Firebase storage ******** \(uniqueID)")
             } else {
-                print("Image removed from Firebase successfully!")
+                print("Image removed from Firebase successfully! \(uniqueID)")
             }
             
         })
+        
     }
     
 

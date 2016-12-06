@@ -109,7 +109,13 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 
                 for post in posts {
                     
-                    self.deleteImagesFromStorage(uniqueID: post.description)
+                    switch post {
+                    case .photo(_):
+                        self.deleteImagesFromStorage(uniqueID: post.description)
+                    default:
+                        break
+                    }
+                    
                 }
                 
                 databasePosts.removeValue()
