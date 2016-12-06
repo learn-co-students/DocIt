@@ -28,6 +28,7 @@ class WelcomeViewController: UIViewController {
     }
 
     @IBAction func createAccountPressed(_ sender: Any) {
+        NotificationCenter.default.post(name: Notification.Name.closeRegisterVC, object: nil)
         print("createAccountPressed")
     }
 

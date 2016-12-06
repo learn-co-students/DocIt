@@ -20,6 +20,7 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var createAccount: UIButton!
+    let loginManager = LoginManager()
 
     // MARK: Properties
 
@@ -34,7 +35,7 @@ class RegisterViewController: UIViewController {
         hideKeyboardWhenTappedAround()
         
         GIDSignIn.sharedInstance().uiDelegate = self
-        GIDSignIn.sharedInstance().delegate = self
+        GIDSignIn.sharedInstance().delegate = loginManager
 
     }
 
@@ -51,7 +52,8 @@ class RegisterViewController: UIViewController {
     @IBAction func signInPressed(_ sender: Any) {
         // If on the create account screen, if they already have an account...take them to the sign in screen
         //        self.performSegue(withIdentifier: "showLogin", sender: nil)
-        self.performSegue(withIdentifier: "showLogin", sender: nil)
+        
+        
     }
 
     // This function enables/disables the createAccount button when the fields are empty/not empty.
@@ -129,16 +131,14 @@ class RegisterViewController: UIViewController {
 
 }
 // MARK: - Google UI Delegate
-extension RegisterViewController: GIDSignInUIDelegate, GIDSignInDelegate {
+extension RegisterViewController: GIDSignInUIDelegate {
 
     func configureGoogleButton() {
-        
-        
-        
         let googleSignInButton = GIDSignInButton()
+    
         googleSignInButton.colorScheme = .light
         googleSignInButton.style = .standard
-//      googleSignInButton.addTarget(self, action: #selector(signIn), for: .touchUpInside)
+        
         self.view.addSubview(googleContainerView)
         
         googleSignInButton.translatesAutoresizingMaskIntoConstraints = false
@@ -147,52 +147,16 @@ extension RegisterViewController: GIDSignInUIDelegate, GIDSignInDelegate {
         googleSignInButton.heightAnchor.constraint(equalTo: createAccount.heightAnchor).isActive = true
         googleSignInButton.widthAnchor.constraint(equalTo: createAccount.widthAnchor).isActive = true
         
+        
+        
+        
         view.layoutIfNeeded()
     }
-    
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        print(123123123123)
-        
-        if let err = error {
-            print("Failed to log into Google: ", err)
-            return
-        }
-        print("Successfully logged into Google", user)
-
-        guard let idToken = user.authentication.idToken else { return }
-        guard let accessToken = user.authentication.accessToken else { return }
-    
-        let credential = FIRGoogleAuthProvider.credential(withIDToken: idToken, accessToken: accessToken)
-        
-        FIRAuth.auth()?.signIn(with: credential, completion: { user, error in
-            
-            print("\n|------------------|\n\nuser:\n\n\(user)\n\nerror:\n\n\(error)\n\n|------------------|\n")
-            
-            
-        })
-        
-//        guard let idToken = user.authentication.idToken else { return }
-//        guard let accessToken = user.authentication.accessToken else { return }
-//        let credentials = FIRGoogleAuthProvider.credential(withIDToken: idToken, accessToken: accessToken)
-//        FIRAuth.auth()?.signIn(with: credentials, completion: { (user, error) in
-//            if let err = error {
-//                print("Failed to create a Firebase User with google account: ", err)
-//                return
-//            }
-//            guard let uid = user?.uid else { return }
-//            self.store.family.id = (user?.uid)!
-//            
-//            
-//            
-//            print("Successfully logged into Firebase with Google", uid)
-//        })
-        
-    }
-    
     
     func sign(_ signIn: GIDSignIn!, dismiss viewController: UIViewController!) {
         viewController.dismiss(animated: false, completion: { _ in
         })
+
     }
     
     func sign(_ signIn: GIDSignIn!, present viewController: UIViewController!) {

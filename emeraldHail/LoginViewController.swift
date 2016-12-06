@@ -154,7 +154,8 @@ class LoginViewController: UIViewController {
             }
             // Set the sharedInstance familyID to the current user.uid
             self.store.family.id = (user?.uid)!
-            self.performSegue(withIdentifier: "showFamily", sender: nil)
+            // Notification instead of Segue via App Controller
+            
         }
     }
     

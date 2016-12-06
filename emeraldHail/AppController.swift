@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-// N -> L -> S -> A || Notify -> Load -> Switch -> Add 
+// N -> L -> S -> A || Notify -> Load -> Switch -> Add
 
 extension Notification.Name {
     
@@ -28,7 +28,7 @@ enum StoryboardID: String {
 }
 
 class AppController: UIViewController {
-
+    
     @IBOutlet var containerView: UIView!
     
     var activeVC: UIViewController!
@@ -38,10 +38,10 @@ class AppController: UIViewController {
         addNotificationObservers()
         loadInitialViewController()
     }
-
-  
-
-
+    
+    
+    
+    
 }
 
 
@@ -54,7 +54,7 @@ extension AppController {
         NotificationCenter.default.addObserver(self, selector: #selector(switchViewController(withNotification:)), name: .closeWelcomeVC, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(switchViewController(withNotification:)), name: .closeRegisterVC, object: nil)
         
-       // NotificationCenter.default.post(name: .closeLoginVC, object: nil)  -> notification of a post.
+        // NotificationCenter.default.post(name: .closeLoginVC, object: nil)  -> notification of a post.
     }
     
 }
@@ -98,7 +98,8 @@ extension AppController {
             switchToViewController(withStoryboardID: .familyViewController)
             
         case Notification.Name.closeRegisterVC:
-            switchToViewController(withStoryboardID: .familyViewController)
+            print("I don't seem to be working.")
+            switchToViewController(withStoryboardID: .registerViewController)
             
         default:
             fatalError("No notifcation exists.")
@@ -111,7 +112,7 @@ extension AppController {
         existingVC?.willMove(toParentViewController: nil)
         
         activeVC = loadViewController(withStoryboardID: id)
-        
+        addChildViewController(activeVC)
         add(viewController: activeVC)
         
         activeVC.view.alpha = 0.0
@@ -123,10 +124,13 @@ extension AppController {
             
         }, completion: { _ in
             
+            print("Am I even being called")
+            
             existingVC?.view.removeFromSuperview()
             existingVC?.removeFromParentViewController()
             self.activeVC.didMove(toParentViewController: self)
-        
+            
+            
         })
     }
     
@@ -149,11 +153,12 @@ extension AppController {
         
         guard animated else { containerView.alpha = 1.0; return }
         
-        UIView.transition(with: containerView, duration: 0.9, options: .transitionCrossDissolve, animations: {
+        UIView.animate(withDuration: 0.9, animations: {
             
             self.containerView.alpha = 1.0
-            
-        }) { _ in }
+        })
+        
+    
     }
     
 }
