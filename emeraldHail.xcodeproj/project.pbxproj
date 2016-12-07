@@ -322,6 +322,7 @@
 		DD58FAE41DDBBB1D004A7A22 /* View */ = {
 			isa = PBXGroup;
 			children = (
+
 				BB2A52E61DF88A45007760A5 /* Member */,
 				BB2A52E11DF873D1007760A5 /* Events */,
 				AA9FFBBB1DDA667500847FCF /* Main.storyboard */,
