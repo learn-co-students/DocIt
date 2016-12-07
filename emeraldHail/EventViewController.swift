@@ -93,14 +93,15 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
             databasePosts.observeSingleEvent(of: .value, with: { snapshot in
 
-                let oldPosts = snapshot.value as! [String : Any]
-                let allKeys = oldPosts.keys
+                let oldPosts = snapshot.value as? [String : Any]
+                
+                let allKeys = oldPosts?.keys
 
-                for key in allKeys {
+                for key in allKeys! {
 
-                    let dictionary = oldPosts[key] as! [String : Any]
+                    let dictionary = oldPosts?[key] as? [String : Any]
 
-                    let post = Post(dictionary: dictionary)
+                    let post = Post(dictionary: dictionary!)
 
                     posts.append(post)
 
@@ -204,7 +205,14 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     func createEvent() {
         
-        self.addEvent.isHidden = false
+        if self.addEvent.isHidden == true {
+            self.addEvent.isHidden = false
+        }
+        else {
+            self.addEvent.isHidden = true
+        }
+        
+        
         
     }
 

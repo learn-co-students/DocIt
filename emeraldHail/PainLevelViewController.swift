@@ -38,7 +38,9 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
         
         // Save button works only if selectedPainLevel is not nil
     
-        if selectedPainLevel != nil {
+        if let painLevel = selectedPainLevel  {
+            
+            print("selectdPainLevel is ------- \(painLevel)")
             
         addPainLevel()
             

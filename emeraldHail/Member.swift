@@ -57,18 +57,18 @@ struct Member {
     
     init(snapshot: FIRDataSnapshot) {
         
-        let snapshotValue = snapshot.value as! [String : AnyObject]
+        let snapshotValue = snapshot.value as? [String : AnyObject]
         
-        profileImage = snapshotValue["profileImage"] as! String
-        firstName = snapshotValue["firstName"] as! String
-        lastName = snapshotValue["lastName"] as! String
-        gender = snapshotValue["gender"] as! String
-        birthday = snapshotValue["birthday"] as! String
-        bloodType = snapshotValue["bloodType"] as! String
-        height = snapshotValue["height"] as! String
-        weight = snapshotValue["weight"] as! String
-        allergies = snapshotValue["allergies"] as! String
-        id = snapshotValue["uniqueID"] as! String
+        profileImage = snapshotValue?["profileImage"] as? String ?? "No Image URL"
+        firstName = snapshotValue?["firstName"] as? String ?? "No First Name"
+        lastName = snapshotValue?["lastName"] as? String ?? "No Last Name"
+        gender = snapshotValue?["gender"] as? String ?? "No Gender"
+        birthday = snapshotValue?["birthday"] as? String ?? "No Birthday"
+        bloodType = snapshotValue?["bloodType"] as? String ?? "No Bloodtype"
+        height = snapshotValue?["height"] as? String ?? "No Height"
+        weight = snapshotValue?["weight"] as? String ?? "No Weight"
+        allergies = snapshotValue?["allergies"] as? String ?? "No Allergies"
+        id = snapshotValue?["uniqueID"] as? String ?? "No ID"
         
     }
     
