@@ -49,7 +49,7 @@ class RegisterViewController: UIViewController {
 
     @IBAction func signInPressed(_ sender: Any) {
         // If on the create account screen, if they already have an account...take them to the sign in screen
-        //        self.performSegue(withIdentifier: "showLogin", sender: nil)
+                self.performSegue(withIdentifier: "showLogin", sender: nil)
 
 
     }
