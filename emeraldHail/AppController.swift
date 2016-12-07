@@ -16,7 +16,7 @@ extension Notification.Name {
     static let closeLoginVC = Notification.Name("close-login-view-controller")
     static let closefamilyVC = Notification.Name("close-family-view-controller")
     static let closeWelcomeVC = Notification.Name("close-welcome-view-controller")
-    
+    static let closeRegisterVC = Notification.Name("close-register-view-controller")
 }
 
 enum StoryboardID: String {
@@ -24,8 +24,7 @@ enum StoryboardID: String {
     case loginViewController = "login-view-controller"
     case welcomeViewController = "welcome-view-controller"
     case familyViewController = "family-nav-controller"
-    
-    
+    case registerViewController = "register-view-controller"
 }
 
 class AppController: UIViewController {
@@ -53,7 +52,8 @@ extension AppController {
         NotificationCenter.default.addObserver(self, selector: #selector(switchViewController(withNotification:)), name: .closeLoginVC, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(switchViewController(withNotification:)), name: .closefamilyVC, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(switchViewController(withNotification:)), name: .closeWelcomeVC, object: nil)
-        
+
+        NotificationCenter.default.addObserver(self, selector: #selector(switchViewController(withNotification:)), name: .closeRegisterVC, object: nil)
         
         // NotificationCenter.default.post(name: .closeLoginVC, object: nil)  -> notification of a post.
     }
@@ -98,6 +98,10 @@ extension AppController {
         case Notification.Name.closeWelcomeVC:
             switchToViewController(withStoryboardID: .familyViewController)
             
+        case Notification.Name.closeRegisterVC:
+            print("I don't seem to be working.")
+            switchToViewController(withStoryboardID: .registerViewController)
+            
         default:
             fatalError("No notifcation exists.")
             
@@ -109,7 +113,7 @@ extension AppController {
         existingVC?.willMove(toParentViewController: nil)
         
         activeVC = loadViewController(withStoryboardID: id)
-        
+        addChildViewController(activeVC)
         add(viewController: activeVC)
         
         activeVC.view.alpha = 0.0
@@ -120,6 +124,8 @@ extension AppController {
             existingVC?.view.alpha = 0.0
             
         }, completion: { _ in
+            
+            print("Am I even being called")
             
             existingVC?.view.removeFromSuperview()
             existingVC?.removeFromParentViewController()
@@ -147,11 +153,12 @@ extension AppController {
         
         guard animated else { containerView.alpha = 1.0; return }
         
-        UIView.transition(with: containerView, duration: 0.9, options: .transitionCrossDissolve, animations: {
+        UIView.animate(withDuration: 0.9, animations: {
             
             self.containerView.alpha = 1.0
-            
-        }) { _ in }
+        })
+        
+    
     }
     
 }

@@ -15,13 +15,14 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
 
     // MARK: - Outlets
-    
+
     @IBOutlet weak var eventsTable: UITableView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
-
-    // MARK: - Properties
+    @IBOutlet weak var addEvent: UIView!
     
+    // MARK: - Properties
+
     var store = DataStore.sharedInstance
     var events = [Event]()
     var database: FIRDatabaseReference = FIRDatabase.database().reference()
@@ -29,7 +30,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var member = [Member]()
 
     // MARK: - Loads
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         eventsTable.delegate = self
@@ -48,108 +49,12 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
 
     // MARK: - Actions
-    
+
     @IBAction func addEvent(_ sender: Any) {
         createEvent()
     }
-    
-    // MARK: - Methods
-    
-    func hideKeyboardWhenTappedAround() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(EventViewController.dismissKeyboardView))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-    
-    func dismissKeyboardView() {
-        view.endEditing(true)
-    }
-    
-    func showPictureAndName() {
-        let member = FIRDatabase.database().reference().child("members").child(store.family.id).child(store.member.id)
-        
-        member.observe(.value, with: { snapshot in
-            var member = snapshot.value as! [String : Any]
-            let imageString = member["profileImage"] as! String
-            let name = member["firstName"] as! String
-            
-            let profileImgUrl = URL(string: imageString)
-            self.profileImageView.sd_setImage(with: profileImgUrl)
-            self.profileImageView.setRounded()
-            self.profileImageView.contentMode = .scaleAspectFill
-            self.nameLabel.text = name
-        })
-    }
-    
-    
-    func configDatabase() {
-        
-        let memberID: String = store.member.id
-        
-        let eventsRef = FIRDatabase.database().reference().child("events").child(memberID)
-        
-        eventsRef.observe(.value, with: { snapshot in
-            
-            var newEvents = [Event]()
-            
-            for event in snapshot.children {
-                
-                let newEvent = Event(snapshot: event as! FIRDataSnapshot)
-                
-                newEvents.insert(newEvent, at: 0)
-                
-            }
-            
-            self.events = newEvents
-            
-            self.eventsTable.reloadData()
-        })
-        
-    }
-    
-    func createEvent() {
-        var nameTextField: UITextField?
-        var dateTextField: UITextField?
-        let alertController = UIAlertController(title: "Create event", message: "Put a name that describe the event and the date when started", preferredStyle: .alert)
-        let save = UIAlertAction(title: "Save", style: .default, handler: { (action) -> Void in
-            
-            guard let name = nameTextField?.text, name != "", let date = dateTextField?.text, date != "" else { return }
-            
-            let databaseEventsRef = self.database.child("events").child(self.store.member.id).childByAutoId()
-            
-            let uniqueID = databaseEventsRef.key
-            
-            let event = Event(name: name, startDate: date, uniqueID: uniqueID)
-            
-            databaseEventsRef.setValue(event.serialize(), withCompletionBlock: { error, dataRef in
-                
-                
-                
-                
-            })
-            
-            print("Save Button Pressed")
-        })
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
-            print("Cancel Button Pressed")
-        }
-        alertController.addAction(save)
-        alertController.addAction(cancel)
-        alertController.addTextField { (textField) -> Void in
-            nameTextField = textField
-            nameTextField?.autocapitalizationType = .words
-            nameTextField?.placeholder = "Event name"
-        }
-        alertController.addTextField { (textField) -> Void in
-            dateTextField = textField
-            dateTextField?.autocapitalizationType = .words
-            dateTextField?.placeholder = "Date"
-        }
-        present(alertController, animated: true, completion: nil)
-    }
 
-
-    // MARK: Methods Table View
+    // MARK: TableView Methods
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return events.count
@@ -173,44 +78,136 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        
-        let databasePosts = self.database.child("posts").child(store.eventID)
+
         let databaseEvents = self.database.child("events").child(store.member.id)
         let uniqueEventID = events[indexPath.row].uniqueID
-        let uniquePostID = postss[indexPath.row].description
-        
-        // We need to include an array of posts that can be accessed globally - maybe in a singleton - otherwise it won't work - I temporarily created an array called postss as seen above - will replaced as the datastructure improves
+
+        let databasePosts = self.database.child("posts").child(uniqueEventID)
+
+        var posts = [Post]()
 
         if editingStyle == .delete {
 
-            // Deleting selected events from Firebase
-            databasePosts.child(uniquePostID).removeValue()
+            // Deleting selected events and related posts from Firebase
             databaseEvents.child(uniqueEventID).removeValue()
-            
+
+            databasePosts.observeSingleEvent(of: .value, with: { snapshot in
+
+                let oldPosts = snapshot.value as! [String : Any]
+                let allKeys = oldPosts.keys
+
+                for key in allKeys {
+
+                    let dictionary = oldPosts[key] as! [String : Any]
+
+                    let post = Post(dictionary: dictionary)
+
+                    posts.append(post)
+
+                    print(post.description)
+
+                }
+
+                for post in posts {
+
+                    switch post {
+                    case .photo(_):
+                        self.deleteImagesFromStorage(uniqueID: post.description)
+                    default:
+                        break
+                    }
+
+                }
+
+                databasePosts.removeValue()
+
+            })
+
             events.remove(at: indexPath.row)
+
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
-        
-        // Deleting images related to events from Storge
-        
-        
+
+    }
+
+
+    // MARK: - Methods
+
+    func deleteImagesFromStorage(uniqueID: String){
+
         let storageRef = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
-        let storageImageRef = storageRef.child("postsImages").child(uniquePostID)
-        print("++++++++++++++++++++++++++++++++++++++\(uniquePostID)")
-        
+        let storageImageRef = storageRef.child("postsImages").child(uniqueID)
+
         storageImageRef.delete(completion: { error -> Void in
-            
+
             if error != nil {
                 print("Error occured while deleting imgs from Firebase storage")
             } else {
                 print("Image removed from Firebase successfully!")
             }
-            
+
         })
 
     }
 
-    
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(EventViewController.dismissKeyboardView))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+
+    func dismissKeyboardView() {
+        view.endEditing(true)
+    }
+
+    func showPictureAndName() {
+        let member = FIRDatabase.database().reference().child("members").child(store.family.id).child(store.member.id)
+
+        member.observe(.value, with: { snapshot in
+            var member = snapshot.value as? [String : Any]
+            let name = member?["firstName"] as? String
+            let imageString = member?["profileImage"] as? String
+            guard let imgUrl = imageString else {return}
+            let profileImgUrl = URL(string: imgUrl)
+            self.profileImageView.sd_setImage(with: profileImgUrl)
+            self.profileImageView.setRounded()
+            self.profileImageView.contentMode = .scaleAspectFill
+            self.nameLabel.text = name
+        })
+    }
+
+
+    func configDatabase() {
+
+        let memberID: String = store.member.id
+
+        let eventsRef = FIRDatabase.database().reference().child("events").child(memberID)
+
+        eventsRef.observe(.value, with: { snapshot in
+
+            var newEvents = [Event]()
+
+            for event in snapshot.children {
+
+                let newEvent = Event(snapshot: event as! FIRDataSnapshot)
+
+                newEvents.insert(newEvent, at: 0)
+
+            }
+
+            self.events = newEvents
+
+            self.eventsTable.reloadData()
+        })
+
+    }
+
+    func createEvent() {
+        
+        self.addEvent.isHidden = false
+        
+    }
+
 }
 
 class EventTableViewCell: UITableViewCell {

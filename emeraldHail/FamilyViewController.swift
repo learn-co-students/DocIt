@@ -93,14 +93,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         default:
             break
         }
-        
-//        guard let indexPath = memberProfilesView.indexPath(for: sender as! UICollectionViewCell) else { return }
-//        
-//        if indexPath.row < membersInFamily.count {
-//            store.member.id = membersInFamily[indexPath.row].id
-//        } else {
-//            print("The selected cell is not valid in membersInFamily. You are probably selecting the addMemberCell.")
-//        }
+    
     }
     
     // MARK: Collection view methods
@@ -185,6 +178,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         let familyRef = membersRef.child(store.family.id)
         
         familyRef.observe(.value, with: { snapshot in
+            
             var newItem = [Member]()
             
             for item in snapshot.children {
@@ -195,6 +189,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
             self.membersInFamily = newItem
             self.memberProfilesView.reloadData()
         })
+        
     }
     
     // TODO: Rethink some of the variable names here for clarity

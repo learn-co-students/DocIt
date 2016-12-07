@@ -778,7 +778,7 @@
                                         <rect key="frame" x="0.0" y="178" width="375" height="125"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QKB-QM-ocB" id="fxY-VR-Bs9">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="124.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="124"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QZp-V6-e4Z">
@@ -824,6 +824,11 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kW8-dY-7yT" customClass="AddEvent" customModule="emeraldHail" customModuleProvider="target">
+                                <rect key="frame" x="67" y="355" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.98039132356643677" green="0.97655218839645386" blue="0.97635632753372192" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -910,7 +915,7 @@
                                         <rect key="frame" x="0.0" y="178" width="375" height="175"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UUt-sg-gbE" id="h81-2d-teZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="174.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="174"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="th2-zl-Cpp" customClass="NoteView" customModule="emeraldHail" customModuleProvider="target">
@@ -935,7 +940,7 @@
                                         <rect key="frame" x="0.0" y="353" width="375" height="175"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="peP-XC-WVV" id="RcP-so-JzR">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="174.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="174"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gV2-le-btI" customClass="TempView" customModule="emeraldHail" customModuleProvider="target">
@@ -960,7 +965,7 @@
                                         <rect key="frame" x="0.0" y="528" width="375" height="175"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IDA-b7-ivE" id="HtV-7Y-KVc">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="174.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="174"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zBC-MT-qb4" customClass="PainLevelView" customModule="emeraldHail" customModuleProvider="target">
@@ -985,7 +990,7 @@
                                         <rect key="frame" x="0.0" y="703" width="375" height="175"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ohs-z1-J7Z" id="LZo-vS-hDY">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="174.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="174"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZHG-bj-TMs" customClass="SymptomView" customModule="emeraldHail" customModuleProvider="target">
@@ -1010,7 +1015,7 @@
                                         <rect key="frame" x="0.0" y="878" width="375" height="175"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RKd-F6-2Wm" id="N4Z-Yb-Ngb">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="174.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="174"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DVu-eA-2WR" customClass="PhotoView" customModule="emeraldHail" customModuleProvider="target">
@@ -1206,7 +1211,7 @@
                                         <rect key="frame" x="0.0" y="160" width="375" height="34"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SDQ-ud-T3F" id="SCt-Q1-PQQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="33.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="33"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zwl-Ic-cdE">
@@ -1561,7 +1566,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Rj-Nb-Uxg">
-                                <rect key="frame" x="74" y="429" width="227" height="30"/>
+                                <rect key="frame" x="74" y="371" width="227" height="30"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                                 <state key="normal" title="Already have an account? Sign in.">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -1588,10 +1593,6 @@
                                 <color key="textColor" red="0.12549019610000001" green="0.75294117650000003" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Ja-6Q-GbD" userLabel="GoogleButtonContainerView">
-                                <rect key="frame" x="37" y="369" width="300" height="50"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.97647058819999999" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -1599,14 +1600,12 @@
                             <constraint firstItem="Q7Q-5l-M3F" firstAttribute="top" secondItem="TK7-1i-ANf" secondAttribute="bottom" constant="50" id="2LT-W1-Egx"/>
                             <constraint firstItem="ZiQ-TF-WQe" firstAttribute="top" secondItem="wHI-sV-xOK" secondAttribute="bottom" constant="12" id="3KG-C4-k1t"/>
                             <constraint firstItem="uA9-Ji-9SJ" firstAttribute="leading" secondItem="wHI-sV-xOK" secondAttribute="leading" id="3zM-I5-q65"/>
-                            <constraint firstItem="0Rj-Nb-Uxg" firstAttribute="top" secondItem="5Ja-6Q-GbD" secondAttribute="bottom" constant="10" id="4R5-hx-VFJ"/>
                             <constraint firstItem="ZiQ-TF-WQe" firstAttribute="leading" secondItem="TK7-1i-ANf" secondAttribute="leading" id="6JD-0f-dyg"/>
                             <constraint firstItem="wHI-sV-xOK" firstAttribute="height" secondItem="TK7-1i-ANf" secondAttribute="height" id="C1a-EX-S9f"/>
                             <constraint firstItem="wHI-sV-xOK" firstAttribute="centerX" secondItem="TK7-1i-ANf" secondAttribute="centerX" id="I5z-t1-Tmc"/>
                             <constraint firstItem="Q7Q-5l-M3F" firstAttribute="top" secondItem="BP8-Ra-mX3" secondAttribute="bottom" constant="5" id="IAg-lM-L9z"/>
                             <constraint firstItem="ZiQ-TF-WQe" firstAttribute="width" secondItem="TK7-1i-ANf" secondAttribute="width" id="IHB-dt-bcb"/>
                             <constraint firstItem="BP8-Ra-mX3" firstAttribute="centerX" secondItem="Q7Q-5l-M3F" secondAttribute="centerX" id="MKy-Jx-c9M"/>
-                            <constraint firstItem="5Ja-6Q-GbD" firstAttribute="centerX" secondItem="zoe-Bv-mTL" secondAttribute="centerX" id="Nnl-3W-tV1"/>
                             <constraint firstItem="wHI-sV-xOK" firstAttribute="top" secondItem="uA9-Ji-9SJ" secondAttribute="bottom" constant="5" id="P1a-gN-2b2"/>
                             <constraint firstItem="wHI-sV-xOK" firstAttribute="width" secondItem="TK7-1i-ANf" secondAttribute="width" id="Tbq-87-9sN"/>
                             <constraint firstItem="uA9-Ji-9SJ" firstAttribute="width" secondItem="wHI-sV-xOK" secondAttribute="width" id="VS5-vx-Mcn"/>
@@ -1614,20 +1613,17 @@
                             <constraint firstItem="TK7-1i-ANf" firstAttribute="height" secondItem="Q7Q-5l-M3F" secondAttribute="height" id="b6y-vl-BU8"/>
                             <constraint firstItem="Q7Q-5l-M3F" firstAttribute="width" secondItem="zoe-Bv-mTL" secondAttribute="width" multiplier="0.8" id="ccB-64-UyP"/>
                             <constraint firstItem="Q7Q-5l-M3F" firstAttribute="centerX" secondItem="zoe-Bv-mTL" secondAttribute="centerX" id="dMP-bP-iHn"/>
-                            <constraint firstItem="5Ja-6Q-GbD" firstAttribute="height" secondItem="Q7Q-5l-M3F" secondAttribute="height" id="dk1-NK-4xQ"/>
-                            <constraint firstItem="5Ja-6Q-GbD" firstAttribute="width" secondItem="Q7Q-5l-M3F" secondAttribute="width" id="hUY-pd-Pj4"/>
                             <constraint firstItem="TK7-1i-ANf" firstAttribute="centerX" secondItem="Q7Q-5l-M3F" secondAttribute="centerX" id="heA-Hd-Xif"/>
                             <constraint firstItem="BP8-Ra-mX3" firstAttribute="width" secondItem="Q7Q-5l-M3F" secondAttribute="width" id="jhJ-B4-AkC"/>
+                            <constraint firstItem="0Rj-Nb-Uxg" firstAttribute="top" secondItem="Q7Q-5l-M3F" secondAttribute="bottom" constant="12" id="nmh-I5-Qcb"/>
                             <constraint firstItem="0Rj-Nb-Uxg" firstAttribute="centerX" secondItem="Q7Q-5l-M3F" secondAttribute="centerX" id="qPp-ru-4di"/>
                             <constraint firstItem="TK7-1i-ANf" firstAttribute="width" secondItem="Q7Q-5l-M3F" secondAttribute="width" id="uCA-Kc-7kl"/>
-                            <constraint firstItem="5Ja-6Q-GbD" firstAttribute="top" secondItem="Q7Q-5l-M3F" secondAttribute="bottom" constant="10" id="wKf-FE-YHh"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="createAccount" destination="Q7Q-5l-M3F" id="6Gm-Wo-UjC"/>
                         <outlet property="emailField" destination="wHI-sV-xOK" id="VQ3-Ra-Xq7"/>
                         <outlet property="errorLabel" destination="BP8-Ra-mX3" id="ll5-Qe-YAO"/>
-                        <outlet property="googleContainerView" destination="5Ja-6Q-GbD" id="b52-b4-h9s"/>
                         <outlet property="passwordField" destination="TK7-1i-ANf" id="OeL-lb-s1J"/>
                         <segue destination="XIF-ae-qWP" kind="show" identifier="showFamily" id="vNq-cI-Dwc"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="showLogin" id="ZvI-c8-0Bp"/>
@@ -1790,9 +1786,9 @@
     <inferredMetricsTieBreakers>
         <segue reference="rMT-vw-w4o"/>
         <segue reference="AyQ-2m-HY5"/>
-        <segue reference="D6a-tn-o54"/>
-        <segue reference="8IQ-kN-dMw"/>
+        <segue reference="vNq-cI-Dwc"/>
         <segue reference="Ywg-j3-Iij"/>
+        <segue reference="ZvI-c8-0Bp"/>
         <segue reference="8mZ-ms-lDd"/>
     </inferredMetricsTieBreakers>
 </document>

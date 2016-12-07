@@ -11,9 +11,6 @@ import Firebase
 import FirebaseDatabase
 import Fusuma
 
-
-var postss = [Post]()
-
 class PostViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, FusumaDelegate {
     
     // MARK: - Outlets
@@ -145,12 +142,14 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             store.postID = uniquePostID
             databasePosts.child(store.postID).removeValue()
+            
             //            databasePosts.child(store.imagePostID).removeValue()
             
             // Deleting images from storge
             
             let storageRef = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
             //            let storageImgRef = storageRef.child("postsImages").child(store.imagePostID)
+            
             let storageImgRef = storageRef.child("postsImages").child(store.postID)
             
             storageImgRef.delete(completion: { error -> Void in
@@ -209,7 +208,6 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
                 })
                 
                 self.posts = sortedPosts
-                postss = self.posts
                 
                 self.postTableView.reloadData()
             }
@@ -221,11 +219,11 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         let member = FIRDatabase.database().reference().child("members").child(store.family.id).child(store.member.id)
         
         member.observe(.value, with: { snapshot in
-            var member = snapshot.value as! [String:Any]
-            let imageString = member["profileImage"] as! String
-            let name = member["firstName"] as! String
-            let profileImgUrl = URL(string: imageString)
-            
+            var member = snapshot.value as? [String:Any]
+            let imageString = member?["profileImage"] as? String
+            let name = member?["firstName"] as? String
+            guard let imgString = imageString else{ return }
+            let profileImgUrl = URL(string: imgString)
             self.profileImageView.sd_setImage(with: profileImgUrl)
             self.profileImageView.setRounded()
             self.profileImageView.contentMode = .scaleAspectFill
@@ -248,6 +246,11 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     // Return the image which is selected from camera roll or is taken via the camera.
     
     func fusumaImageSelected(_ image: UIImage) {
+        uploadImageURLtoFirebaseDatabaseAndStorage(image)
+        
+        // present some alert with the image
+        // add button to alert to send
+        // upload from button
         
         print("Image selected")
         
@@ -257,7 +260,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func fusumaDismissedWithImage(_ image: UIImage) {
         
-        uploadImageURLtoFirebaseDatabaseAndStorage(image)
+        //        uploadImageURLtoFirebaseDatabaseAndStorage(image)
         
         print("Called just after FusumaViewController is dismissed.")
         
@@ -280,7 +283,6 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func uploadImageURLtoFirebaseDatabaseAndStorage(_ image: UIImage) {
         
-        
         //        guard let image = imageView.image, image != UIImage(named: "addImageIcon") else { return }
         
         // database
@@ -302,8 +304,9 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         if let uploadData = UIImageJPEGRepresentation(image, 0.25){
             
             storageImageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
+                
                 if error != nil {
-                    print (error?.localizedDescription ?? "Error in PhotoVC" )
+                    print (error?.localizedDescription ?? "Error occured while uploading img to Firebase" )
                     return
                 }
                 
@@ -326,5 +329,9 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     
+    
+}
+
+extension FusumaViewController{
     
 }

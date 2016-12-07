@@ -32,7 +32,29 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
     
     let store = DataStore.sharedInstance
     
+
+    @IBOutlet weak var saveButton: UIButton!
+    @IBAction func saveButtonTapped(_ sender: Any) {
+        
+        // Save button works only if selectedPainLevel is not nil
+    
+        if selectedPainLevel != nil {
+            
+        addPainLevel()
+            
+        // Disable the button after it's tapped with selectedPainLevel
+        saveButton.isEnabled = false
+            
+        }
+        
+    }
+    
+    @IBAction func cancelButtonTapped(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
        // MARK: - Loads
+
     
     override func viewDidLoad() {
         
@@ -42,16 +64,6 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
         
         painLevels = [noPain, mild, moderate, severe, verySevere, excruciating]
         
-    }
-    
-    // MARK: - Actions
-    
-    @IBAction func saveButtonTapped(_ sender: Any) {
-        addPainLevel()
-    }
-    
-    @IBAction func cancelButtonTapped(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
     }
     
     // MARK: - Methods

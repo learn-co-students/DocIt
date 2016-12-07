@@ -44,10 +44,130 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
         
         bloodTextField.inputView = bloodSelection
         genderTextField.inputView = genderSelection
+
+    }
+    
+    // MARK: - Methods
+    
+    // Storage
+    
+    @IBAction func deleteMebmerButtonTapped(_ sender: Any) {
+        
+        // Alert Controller
+         let alertController = UIAlertController(title: "Are you sure you want to delete a member?",  message: "This action cannot be undone.", preferredStyle: .alert)
+        
+        // Action
+
+        let deleteAction = UIAlertAction(title: "Delete", style: .default, handler: { action -> Void in
+            
+            // Database
+            let database = FIRDatabase.database().reference()
+            let memberRef = database.child("members").child(self.store.family.id)
+            let eventsRef = database.child("events").child(self.store.member.id)
+            let postsRef = database.child("posts")
+            
+            var posts = [Post]()
+            
+            // Remove members and related events
+
+            var eventIDs = [String]()
+            
+            eventsRef.observe(.value, with: { snapshot in
+                
+                for child in snapshot.children {
+                    
+                    let event = Event(snapshot: child as! FIRDataSnapshot)
+                    
+                    let eventID = event.uniqueID
+
+                    eventIDs.append(eventID)
+                }
+                
+                for eventID in eventIDs {
+                    
+                    print("Event ID is: \(eventID)")
+                    
+                    self.deleteImagesFromStorage(uniqueID: eventID)
+                    
+                    postsRef.child(eventID).observeSingleEvent(of: .value, with: { snapshot in
+                        
+                        let oldPosts = snapshot.value as? [String : Any]
+                        
+                        if let allKeys = oldPosts?.keys {
+                        
+                            for key in allKeys {
+                                
+                                let dictionary = oldPosts?[key] as! [String : Any]
+                                
+                                let post = Post(dictionary: dictionary)
+                                
+                                posts.append(post)
+                                print("0--------------------\(posts)")
+                                
+                                print(post.description)
+                            }
+                        }
+                    })
+
+                    for post in posts {
+                        
+                        switch post {
+                        case .photo(_):
+                            self.deleteImagesFromStorage(uniqueID: post.description)
+                        default:
+                            break
+                        }
+                        
+                    }
+                    
+                    postsRef.child(eventID).removeValue() // All posts under event erased
+        
+                }
+                
+                // Delete events associated with the member
+                
+                eventsRef.removeValue()
+                
+                // Delete the member 
+                
+                memberRef.child(self.store.member.id).removeValue()
+                
+                self.performSegue(withIdentifier: "backToFamilyVCSegue", sender: self)
+                
+            })
+            
+        })
+    
+         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) {
+            UIAlertAction in
+            print("Cancel Pressed")
+         }
+         
+         // Add the actions
+         alertController.addAction(deleteAction)
+         alertController.addAction(cancelAction)
+         
+         // Present the controller
+         self.present(alertController, animated: true, completion: nil)
         
     }
     
-    // MARK: - Actions
+    func deleteImagesFromStorage(uniqueID: String){
+        
+        let storageRef = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
+        let storageImageRef = storageRef.child("postsImages").child(uniqueID)
+        
+        storageImageRef.delete(completion: { error -> Void in
+            
+            if error != nil {
+                print("******* Error occured while deleting imgs from Firebase storage ******** \(uniqueID)")
+            } else {
+                print("Image removed from Firebase successfully! \(uniqueID)")
+            }
+            
+        })
+        
+    }
     
     @IBAction func saveMemberSettings(_ sender: Any) {
         updateFirebaseValues()
@@ -56,9 +176,10 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
     @IBAction func didPressCancel(_ sender: Any) {
         let _ = navigationController?.popViewController(animated: true)
     }
-    
+
     // MARK: - Methods
-    
+
+
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboardView))
         tap.cancelsTouchesInView = false
@@ -103,17 +224,18 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
         member.observe(.value, with: { (snapshot) in
             //  print(snapshot.value)
             
-            let value = snapshot.value as! [String : Any]
-            let imageString = value["profileImage"] as! String
-            let profileImgUrl = URL(string: imageString)
-            let firstName = value["firstName"] as! String
-            let lastName = value["lastName"] as! String
-            let gender = value["gender"] as! String
-            let bloodType = value["bloodType"] as! String
-            let birthday = value["birthday"] as! String
-            let height = value["height"] as! String
-            let weight = value["weight"] as! String
-            let allergies = value["allergies"] as! String
+            let value = snapshot.value as? [String : Any]
+            let imageString = value?["profileImage"] as? String
+            guard let imgUrl = imageString else {return}
+            let profileImgUrl = URL(string: imgUrl)
+            let firstName = value?["firstName"] as? String
+            let lastName = value?["lastName"] as? String
+            let gender = value?["gender"] as? String
+            let bloodType = value?["bloodType"] as? String
+            let birthday = value?["birthday"] as? String
+            let height = value?["height"] as? String
+            let weight = value?["weight"] as? String
+            let allergies = value?["allergies"] as? String
             
             self.firstNameTextField.text = firstName
             self.lastNameTextField.text = lastName
@@ -130,6 +252,12 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
         })
     }
     
+
+    //DatePicker -> DOB Text Field
+    
+    
+    // return NO to disallow editing.
+
     // MARK: Methods Picker View
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool{
@@ -213,4 +341,5 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
         return ""
     }
     
+
 }
