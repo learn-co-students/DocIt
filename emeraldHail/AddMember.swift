@@ -83,10 +83,11 @@ class AddMember: UIView, UIImagePickerControllerDelegate, UINavigationController
                     databaseMembersRef.setValue(member.serialize(), withCompletionBlock: { error, dataRef in
                        
                         self.isHidden = true
-                        firstNameField.text = ""
-                        lastNameField.text = ""
-                        dateTextField.text = ""
-                        genderTextField.text = ""
+                        self.firstNameField.text = ""
+                        self.lastNameField.text = ""
+                        self.dateTextField.text = ""
+                        self.genderTextField.text = ""
+                        self.profileImageView.image = UIImage(named: "adorablebaby")
                         
                     })
                 }
@@ -101,10 +102,11 @@ class AddMember: UIView, UIImagePickerControllerDelegate, UINavigationController
     
     @IBAction func cancel(_ sender: UIButton) {
         self.isHidden = true
-        firstNameField.text = ""
-        lastNameField.text = ""
-        dateTextField.text = ""
-        genderTextField.text = ""
+        self.firstNameField.text = ""
+        self.lastNameField.text = ""
+        self.dateTextField.text = ""
+        self.genderTextField.text = ""
+        self.profileImageView.image = UIImage(named: "adorablebaby")
         
     }
     
@@ -122,6 +124,7 @@ class AddMember: UIView, UIImagePickerControllerDelegate, UINavigationController
         
         contentView.layer.cornerRadius = 10
         contentView.layer.borderColor = UIColor.darkGray.cgColor
+        
         addProfileSettings()
         
         genderSelection.delegate = self
@@ -139,7 +142,6 @@ class AddMember: UIView, UIImagePickerControllerDelegate, UINavigationController
         picker.delegate = self
         picker.sourceType = .photoLibrary
         picker.allowsEditing = true
-        print("THIS IS BULLSHIT!!!!!!")
 
         self.contentView.viewController()?.present(picker
             , animated: true, completion: nil)
