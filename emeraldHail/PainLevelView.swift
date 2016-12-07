@@ -69,7 +69,7 @@ class PainLevelView: UIView {
     }
     
     override func draw(_ rect: CGRect) {
-        drawTimeline(circleColor: Constants.Colors.neonCarrot.cgColor, lineColor: Constants.CustomCell.lineColor)
+        drawTimeline(circleColor: Constants.Colors.neonCarrot.cgColor, lineColor: Constants.Colors.submarine.cgColor)
     }
     
     

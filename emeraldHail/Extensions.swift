@@ -80,3 +80,14 @@ extension UIView {
     
 }
 
+extension UIViewController {
+    
+    func getTimestamp() -> String {
+        let currentDate = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyyMMddHHmmss"
+        return dateFormatter.string(from: currentDate).uppercased()
+    }
+    
+}
+

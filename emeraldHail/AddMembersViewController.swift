@@ -14,7 +14,6 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
 
     // MARK: - Outlets
 
-    @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var firstNameField: UITextField!
     @IBOutlet weak var lastNameField: UITextField!
@@ -26,41 +25,46 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var allergiesTextField: UITextField!
 
     // MARK: - Properties
-    
+
     let store = DataStore.sharedInstance
-    
+
     let bloodSelection = UIPickerView()
     let dobSelection = UIDatePicker()
     let genderSelection = UIPickerView()
     let weightSelection = UIPickerView()
-    
+
     // MARK: - Loads
 
     override func viewDidLoad() {
         super.viewDidLoad()
         addProfileSettings()
         hideKeyboardWhenTappedAround()
-        
+
         birthdayField.delegate = self
-        
+
         bloodSelection.delegate = self
         bloodTextField.inputView = bloodSelection
-        
+
         genderSelection.delegate = self
         genderTextField.inputView = genderSelection
-        
+
         weightSelection.delegate = self
         weightTextField.inputView = weightSelection
-        
-        
+
     }
 
     // MARK: - Actions
 
-    @IBAction func saveButtonTapped(_ sender: Any) {
+    @IBAction func didPressSave(_ sender: Any) {
+
         guard let name = firstNameField.text, name != "",
             let lastName = lastNameField.text, lastName != "",
-            let dob = birthdayField.text, dob != "", let blood = bloodTextField.text, let gender = genderTextField.text, let weight = weightTextField.text, let height = heightTextField.text, let allergies = allergiesTextField.text else { return }
+            let dob = birthdayField.text, dob != "",
+            let gender = genderTextField.text, gender != "",
+            let height = heightTextField.text,
+            let weight = weightTextField.text,
+            let blood = bloodTextField.text,
+            let allergies = allergiesTextField.text else { return }
 
         let disableSaveButton = sender as? UIButton
         disableSaveButton?.isEnabled = false
@@ -82,10 +86,10 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
                 }
                 if let profileImageUrl = metadata?.downloadURL()?.absoluteString {
                     let member = Member(profileImage: profileImageUrl, firstName: name, lastName: lastName, gender: gender, birthday: dob, bloodType: blood, height: height, weight: weight, allergies: allergies, id: uniqueID)
-                        
+
 
                     databaseMembersRef.setValue(member.serialize(), withCompletionBlock: { error, dataRef in
-                        self.dismiss(animated: true, completion: nil)
+                        let _ = self.navigationController?.popViewController(animated: true)
 
                     })
                 }
@@ -96,10 +100,12 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
 
     }
 
-    
-    @IBAction func cancelButtonTapped(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+    @IBAction func didPressCancel(_ sender: Any) {
+
+        let _ = navigationController?.popViewController(animated: true)
+
     }
+
 
     // MARK: - Methods
 
@@ -144,8 +150,6 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
         self.present(picker, animated: true, completion: nil)
 
     }
-    
-    
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]){
 
@@ -169,15 +173,15 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
     }
 
     // MARK: Methods Picker View
-    
+
     func numberOfComponents(in pickerView: UIPickerView) -> Int{
         return 1
     }
-    
+
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
-        
+
         switch pickerView {
-        
+
         case bloodSelection:
             return store.bloodTypeSelections.count
         case genderSelection:
@@ -188,11 +192,11 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
             break
         }
         return 0
-        
+
     }
-    
+
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
+
         switch pickerView {
         case bloodSelection:
             bloodTextField.text = store.bloodTypeSelections[row]
@@ -204,12 +208,10 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
             break
         }
 
-        self.view.endEditing(true)
-        
     }
-    
+
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        
+
         switch pickerView {
         case bloodSelection:
             return store.bloodTypeSelections[row]
@@ -223,33 +225,33 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
 
         return ""
     }
-    
+
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool{
-        
+
         return true
     }
-    
+
     func textFieldDidBeginEditing(_ textField: UITextField){
-        
+
         birthdayField.inputView = dobSelection
         genderTextField.inputView = genderSelection
         bloodTextField.inputView = bloodSelection
         weightTextField.inputView = weightSelection
-        
+
         dobSelection.datePickerMode = UIDatePickerMode.date
         dobSelection.addTarget(self, action: #selector(self.datePickerChanged(sender:)) , for: .valueChanged)
-        
+
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         birthdayField.resignFirstResponder()
         return true
     }
-    
+
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        
+
         return self.view.endEditing(true)
-        
+
     }
 
     func datePickerChanged(sender: UIDatePicker) {
@@ -260,7 +262,7 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
         formatter.dateFormat = "MM-dd-yyyy"
         //        var calendar = Calendar(identifier: .gregorian)
         birthdayField.text = formatter.string(from: sender.date)
-    
+
     }
-    
+
 }

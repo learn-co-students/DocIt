@@ -11,12 +11,11 @@ import FirebaseDatabase
 import FirebaseStorage
 import Firebase
 
-class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, UITextFieldDelegate {
+class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDataSource {
     
     // MARK: - Outlets
     
     @IBOutlet weak var profilePicture: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var dobTextField: UITextField!
@@ -29,17 +28,15 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
     // MARK: - Properties
     
     let store = DataStore.sharedInstance
-    
     let bloodSelection = UIPickerView()
     let dobSelection = UIDatePicker()
     let genderSelection = UIPickerView()
-    
     
     // MARK: - Loads
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         displayMemberProfileEdits()
         
         bloodSelection.delegate = self
@@ -47,20 +44,22 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
         
         bloodTextField.inputView = bloodSelection
         genderTextField.inputView = genderSelection
-
+        
     }
     
     // MARK: - Methods
     
     // Storage
     
-    @IBAction func deleteMebmerButtonTapped(_ sender: Any) {
+    
+    
+    @IBAction func deleteMemberButtonTapped(_ sender: Any) {
         
         // Alert Controller
-         let alertController = UIAlertController(title: "Are you sure you want to delete a member?",  message: "This action cannot be undone.", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Are you sure you want to delete a member?",  message: "This action cannot be undone.", preferredStyle: .alert)
         
         // Action
-
+        
         let deleteAction = UIAlertAction(title: "Delete", style: .default, handler: { action -> Void in
             
             // Database
@@ -72,7 +71,7 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
             var posts = [Post]()
             
             // Remove members and related events
-
+            
             var eventIDs = [String]()
             
             eventsRef.observe(.value, with: { snapshot in
@@ -82,7 +81,7 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
                     let event = Event(snapshot: child as! FIRDataSnapshot)
                     
                     let eventID = event.uniqueID
-
+                    
                     eventIDs.append(eventID)
                 }
                 
@@ -97,7 +96,7 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
                         let oldPosts = snapshot.value as? [String : Any]
                         
                         if let allKeys = oldPosts?.keys {
-                        
+                            
                             for key in allKeys {
                                 
                                 let dictionary = oldPosts?[key] as! [String : Any]
@@ -111,7 +110,7 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
                             }
                         }
                     })
-
+                    
                     for post in posts {
                         
                         switch post {
@@ -124,34 +123,35 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
                     }
                     
                     postsRef.child(eventID).removeValue() // All posts under event erased
-        
+                    
                 }
                 
                 // Delete events associated with the member
                 
                 eventsRef.removeValue()
                 
-                // Delete the member 
+                // Delete the member
                 
                 memberRef.child(self.store.member.id).removeValue()
-                
-                self.performSegue(withIdentifier: "backToFamilyVCSegue", sender: self)
-                
+             
+                let _ = self.navigationController?.popToRootViewController(animated: true)
+
             })
             
         })
-    
-         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) {
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) {
             UIAlertAction in
             print("Cancel Pressed")
-         }
-         
-         // Add the actions
-         alertController.addAction(deleteAction)
-         alertController.addAction(cancelAction)
-         
-         // Present the controller
-         self.present(alertController, animated: true, completion: nil)
+        }
+        
+        // Add the actions
+        alertController.addAction(deleteAction)
+        alertController.addAction(cancelAction)
+        
+        // Present the controller
+        self.present(alertController, animated: true, completion: nil)
+        
         
     }
     
@@ -172,18 +172,18 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
         
     }
     
-
-    // MARK: - Actions
-
-    @IBAction func saveMember(_ sender: UIButton) {
+    @IBAction func saveMemberSettings(_ sender: Any) {
         updateFirebaseValues()
     }
-
-
-
+    
+    @IBAction func didPressCancel(_ sender: Any) {
+        let _ = navigationController?.popViewController(animated: true)
+    }
+    
     // MARK: - Methods
-
-
+    
+    
+    
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboardView))
         tap.cancelsTouchesInView = false
@@ -197,7 +197,14 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
     func updateFirebaseValues(){
         guard let name = firstNameTextField.text, name != "",
             let lastName = lastNameTextField.text, lastName != "",
-            let dob = dobTextField.text, dob != "", let blood = bloodTextField.text, blood != "", let gender = genderTextField.text, gender != "", let weight = weightTextField.text, weight != "", let height = heightTextField.text, height != "", let allergies = allergiesTextField.text, allergies != "" else { return }
+            let dob = dobTextField.text, dob != "",
+            let gender = genderTextField.text, gender != "",
+            let height = heightTextField.text,
+            let weight = weightTextField.text,
+            let blood = bloodTextField.text,
+            let allergies = allergiesTextField.text else { return }
+        
+        // TODO: - Do something here to indicate that you can't proceed if a field is empty.
         
         let updatedInfo: [String:Any] = ["firstName":name,
                                          "lastName": lastName,
@@ -208,14 +215,10 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
                                          "weight": weight,
                                          "allergies": allergies]
         
-        
-        //        let gender = selectedGender
         let memberReference : FIRDatabaseReference = FIRDatabase.database().reference().child("members").child(store.family.id).child(store.member.id)
         memberReference.updateChildValues(updatedInfo)
         
-
-        self.navigationController?.popViewController(animated: true)
-
+        let _ = navigationController?.popViewController(animated: true)
         
     }
     
@@ -238,7 +241,6 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
             let weight = value?["weight"] as? String
             let allergies = value?["allergies"] as? String
             
-            self.nameLabel.text = firstName
             self.firstNameTextField.text = firstName
             self.lastNameTextField.text = lastName
             self.genderTextField.text = gender
@@ -254,16 +256,15 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
         })
     }
     
-
+    
     //DatePicker -> DOB Text Field
     
     
     // return NO to disallow editing.
-
+    
     // MARK: Methods Picker View
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool{
-        
         return true
     }
     
@@ -306,7 +307,6 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
         
         switch pickerView {
-            
         case bloodSelection:
             return store.bloodTypeSelections.count
         case genderSelection:
@@ -321,7 +321,6 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
         switch pickerView {
-            
         case bloodSelection:
             bloodTextField.text = store.bloodTypeSelections[row]
         case genderSelection:
@@ -329,8 +328,6 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
         default:
             break
         }
-        
-        self.view.endEditing(true)
         
     }
     
@@ -348,5 +345,5 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
         return ""
     }
     
-
+    
 }

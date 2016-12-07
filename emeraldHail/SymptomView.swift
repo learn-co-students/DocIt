@@ -61,7 +61,7 @@ class SymptomView: UIView {
     }
     
     override func draw(_ rect: CGRect) {
-        drawTimeline(circleColor: Constants.Colors.ufoGreen.cgColor, lineColor: Constants.CustomCell.lineColor)
+        drawTimeline(circleColor: Constants.Colors.ufoGreen.cgColor, lineColor: Constants.Colors.submarine.cgColor)
     }
     
 }

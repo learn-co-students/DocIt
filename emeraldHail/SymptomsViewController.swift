@@ -88,20 +88,6 @@ class SymptomsViewController: UIViewController, UITableViewDelegate, UITableView
     
 }
 
-extension UIViewController {
-    
-    // MARK: - Methods
-    
-    func getTimestamp() -> String {
-        let currentDate = Date()
-        let dateFormatter = DateFormatter()
-        //        dateFormatter.dateFormat = "MMM d, yyyy"
-        dateFormatter.dateFormat = "yyyyMMddHHmmss"
-        return dateFormatter.string(from: currentDate).uppercased()
-    }
-    
-}
-
 class SymptomViewCell: UITableViewCell {
     
     // MARK: - Outlets

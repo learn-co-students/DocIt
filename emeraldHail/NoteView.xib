@@ -29,7 +29,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FEB 21, 2016" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Byj-5p-vaE">
-                    <rect key="frame" x="176" y="98" width="187" height="15"/>
+                    <rect key="frame" x="82" y="98" width="281" height="15"/>
                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                     <color key="textColor" red="0.12549019610000001" green="0.75294117650000003" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -41,7 +41,7 @@
                 <constraint firstAttribute="trailing" secondItem="Lsi-SA-pBH" secondAttribute="trailing" constant="12" id="Dgw-tV-q3J"/>
                 <constraint firstAttribute="trailing" secondItem="Byj-5p-vaE" secondAttribute="trailing" constant="12" id="Jdo-SY-iWc"/>
                 <constraint firstItem="Lsi-SA-pBH" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="80" id="Mvr-mT-KZF"/>
-                <constraint firstItem="Byj-5p-vaE" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.5" id="dZe-zU-9ds"/>
+                <constraint firstItem="Byj-5p-vaE" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.75" id="dZe-zU-9ds"/>
                 <constraint firstItem="Byj-5p-vaE" firstAttribute="top" secondItem="Lsi-SA-pBH" secondAttribute="bottom" id="olD-vX-cGp"/>
                 <constraint firstItem="Lsi-SA-pBH" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="12" id="zjR-AN-XTh"/>
             </constraints>

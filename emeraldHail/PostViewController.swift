@@ -26,6 +26,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
+    
     // MARK: - Properties
     
     var deletedPostRef: FIRDatabaseReference?
@@ -138,13 +139,17 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
             // Deleting post data from Firebase using UniquePostID
             
             let uniquePostID = posts[indexPath.row].description
-
+            
             store.postID = uniquePostID
             databasePosts.child(store.postID).removeValue()
-
+            
+            //            databasePosts.child(store.imagePostID).removeValue()
+            
             // Deleting images from storge
             
             let storageRef = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
+            //            let storageImgRef = storageRef.child("postsImages").child(store.imagePostID)
+            
             let storageImgRef = storageRef.child("postsImages").child(store.postID)
             
             storageImgRef.delete(completion: { error -> Void in
@@ -165,6 +170,10 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     // MARK: Firebase
+    
+    func reloadTable() {
+        postTableView.reloadData()
+    }
     
     func fetchPosts() {
         
@@ -234,44 +243,47 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         
     }
     
-    
     // Return the image which is selected from camera roll or is taken via the camera.
+    
     func fusumaImageSelected(_ image: UIImage) {
-         uploadImageURLtoFirebaseDatabaseAndStorage(image)
+        uploadImageURLtoFirebaseDatabaseAndStorage(image)
         
         // present some alert with the image
         // add button to alert to send
         // upload from button
         
         print("Image selected")
+        
     }
     
     // Return the image but called after is dismissed.
+    
     func fusumaDismissedWithImage(_ image: UIImage) {
         
-//        uploadImageURLtoFirebaseDatabaseAndStorage(image)
+        //        uploadImageURLtoFirebaseDatabaseAndStorage(image)
         
         print("Called just after FusumaViewController is dismissed.")
         
-
     }
     
     func fusumaVideoCompleted(withFileURL fileURL: URL) {
         
         print("Called just after a video has been selected.")
+        
     }
     
     // When camera roll is not authorized, this method is called.
+    
     func fusumaCameraRollUnauthorized() {
         
         print("Camera access denied")
+        
     }
     
     
     func uploadImageURLtoFirebaseDatabaseAndStorage(_ image: UIImage) {
         
-        
-        //guard let image = imageView.image, image != UIImage(named: "addImageIcon") else { return }
+        //        guard let image = imageView.image, image != UIImage(named: "addImageIcon") else { return }
         
         // database
         
@@ -291,7 +303,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         if let uploadData = UIImageJPEGRepresentation(image, 0.25){
             
-            storageImageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in 
+            storageImageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
                 
                 if error != nil {
                     print (error?.localizedDescription ?? "Error occured while uploading img to Firebase" )
@@ -299,11 +311,6 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
                 }
                 
                 if let postImageUrl = metadata?.downloadURL()?.absoluteString {
-                    
-                    //let currentDate = Date()
-                    let dateFormatter = DateFormatter()
-                    dateFormatter.dateFormat = "MMM d, yyyy HH:mm:ss a"
-                    //let timestamp = dateFormatter.string(from: currentDate)
                     
                     let photo = Photo(content: postImageUrl, timestamp: self.getTimestamp(), uniqueID: uniqueID)
                     
@@ -319,8 +326,8 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         
     }
     
-
-
+    
+    
     
     
 }

@@ -29,7 +29,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FEB 21, 2016" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UCt-9W-iRE">
-                    <rect key="frame" x="221.5" y="123" width="141.5" height="15"/>
+                    <rect key="frame" x="151" y="123" width="212" height="15"/>
                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                     <color key="textColor" red="0.12549019610000001" green="0.75294117650000003" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -38,7 +38,7 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="MwV-4s-l6P" firstAttribute="bottom" secondItem="UCt-9W-iRE" secondAttribute="top" id="3fi-m0-IBb"/>
-                <constraint firstItem="UCt-9W-iRE" firstAttribute="width" secondItem="MwV-4s-l6P" secondAttribute="width" multiplier="0.5" id="5j1-MU-Spv"/>
+                <constraint firstItem="UCt-9W-iRE" firstAttribute="width" secondItem="MwV-4s-l6P" secondAttribute="width" multiplier="0.75" id="5j1-MU-Spv"/>
                 <constraint firstItem="MwV-4s-l6P" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="80" id="L9n-Zg-Cgt"/>
                 <constraint firstAttribute="bottom" secondItem="UCt-9W-iRE" secondAttribute="bottom" constant="12" id="M0f-n2-w9W"/>
                 <constraint firstItem="MwV-4s-l6P" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="12" id="QAp-b7-uEd"/>

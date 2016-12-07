@@ -52,6 +52,7 @@ extension AppController {
         NotificationCenter.default.addObserver(self, selector: #selector(switchViewController(withNotification:)), name: .closeLoginVC, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(switchViewController(withNotification:)), name: .closefamilyVC, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(switchViewController(withNotification:)), name: .closeWelcomeVC, object: nil)
+
         NotificationCenter.default.addObserver(self, selector: #selector(switchViewController(withNotification:)), name: .closeRegisterVC, object: nil)
         
         // NotificationCenter.default.post(name: .closeLoginVC, object: nil)  -> notification of a post.
@@ -129,7 +130,6 @@ extension AppController {
             existingVC?.view.removeFromSuperview()
             existingVC?.removeFromParentViewController()
             self.activeVC.didMove(toParentViewController: self)
-            
             
         })
     }

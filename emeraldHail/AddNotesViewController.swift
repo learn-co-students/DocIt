@@ -10,45 +10,42 @@ import UIKit
 import FirebaseDatabase
 import Firebase
 
-class AddNotesViewController: UIViewController {
-    
-    // MARK: - Outlets 
-    
-    @IBOutlet weak var addNotesTextField: UITextField!
-    
+class AddNotesViewController: UIViewController, UITextViewDelegate {
+
+    @IBOutlet weak var addNotesTextView: UITextView!
+
     // MARK: - Properties
     
     let store = DataStore.sharedInstance
     var database: FIRDatabaseReference = FIRDatabase.database().reference()
-    var postRef : FIRDatabaseReference = FIRDatabase.database().reference().child("posts")
     
     // MARK: - Loads
     
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
-        addNotesTextField.becomeFirstResponder()
+        
+        addNotesTextView.delegate = self
+        addNotesTextView.becomeFirstResponder()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
     }
     
-    // MARK: - Actions
-    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        addNotesTextView.text = nil
+    }
+
     @IBAction func addNotes(_ sender: UIButton) {
         
-        guard let noteText = addNotesTextField.text, noteText != "" else { return }
+        guard let noteText = addNotesTextView.text, noteText != "" else { return }
         
         let postsRef = database.child("posts").child(store.eventID).childByAutoId()
         let uniqueID = postsRef.key
-        //let currentDate = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM d, yyyy HH:mm:ss a"
-        //let timestamp = dateFormatter.string(from: currentDate)
         
         let newNote = Note(content: noteText, timestamp: getTimestamp(), uniqueID: uniqueID)
-        
+    
         
         postsRef.setValue(newNote.serialize(), withCompletionBlock: { error, ref in
             self.dismiss(animated: true, completion: nil)
