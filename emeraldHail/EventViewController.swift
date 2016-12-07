@@ -204,7 +204,14 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     func createEvent() {
         
-        self.addEvent.isHidden = false
+        if self.addEvent.isHidden == true {
+            self.addEvent.isHidden = false
+        }
+        else {
+            self.addEvent.isHidden = true
+        }
+        
+        
         
     }
 
