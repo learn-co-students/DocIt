@@ -13,10 +13,10 @@ import Firebase
 
 extension Notification.Name {
     
-    static let closeLoginVC = Notification.Name("close-login-view-controller")
-    static let closefamilyVC = Notification.Name("close-family-view-controller")
-    static let closeWelcomeVC = Notification.Name("close-welcome-view-controller")
-    static let closeRegisterVC = Notification.Name("close-register-view-controller")
+    static let openLoginVC = Notification.Name("close-login-view-controller")
+    static let openfamilyVC = Notification.Name("close-family-view-controller")
+    static let openWelcomeVC = Notification.Name("close-welcome-view-controller")
+    static let openRegisterVC = Notification.Name("close-register-view-controller")
 }
 
 enum StoryboardID: String {
@@ -49,11 +49,11 @@ class AppController: UIViewController {
 extension AppController {
     
     func addNotificationObservers() {
-        NotificationCenter.default.addObserver(self, selector: #selector(switchViewController(withNotification:)), name: .closeLoginVC, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(switchViewController(withNotification:)), name: .closefamilyVC, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(switchViewController(withNotification:)), name: .closeWelcomeVC, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(switchViewController(withNotification:)), name: .openLoginVC, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(switchViewController(withNotification:)), name: .openfamilyVC, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(switchViewController(withNotification:)), name: .openWelcomeVC, object: nil)
 
-        NotificationCenter.default.addObserver(self, selector: #selector(switchViewController(withNotification:)), name: .closeRegisterVC, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(switchViewController(withNotification:)), name: .openRegisterVC, object: nil)
         
         // NotificationCenter.default.post(name: .closeLoginVC, object: nil)  -> notification of a post.
     }
@@ -89,16 +89,16 @@ extension AppController {
         
         switch notification.name {
             
-        case Notification.Name.closeLoginVC:
+        case Notification.Name.openLoginVC:
+            switchToViewController(withStoryboardID: .loginViewController)
+            
+        case Notification.Name.openfamilyVC:
             switchToViewController(withStoryboardID: .familyViewController)
             
-        case Notification.Name.closefamilyVC:
+        case Notification.Name.openWelcomeVC:
             switchToViewController(withStoryboardID: .welcomeViewController)
             
-        case Notification.Name.closeWelcomeVC:
-            switchToViewController(withStoryboardID: .familyViewController)
-            
-        case Notification.Name.closeRegisterVC:
+        case Notification.Name.openRegisterVC:
             print("I don't seem to be working.")
             switchToViewController(withStoryboardID: .registerViewController)
             
@@ -153,7 +153,7 @@ extension AppController {
         
         guard animated else { containerView.alpha = 1.0; return }
         
-        UIView.animate(withDuration: 0.9, animations: {
+        UIView.animate(withDuration: 0.7, animations: {
             
             self.containerView.alpha = 1.0
         })
