@@ -92,7 +92,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             
             // delete item at indexPath
             
-                
+    
                 // Deleting selected events and related posts from Firebase
                 databaseEvents.child(uniqueEventID).removeValue()
                 
