@@ -130,7 +130,9 @@ class WelcomeViewController: UIViewController {
     func navigateToAuthenticatedVC() {
 
         // TO DO: Delete segue and add notification post
-        self.performSegue(withIdentifier: "showFamily", sender: self)
+        NotificationCenter.default.post(name: .openLoginVC, object: nil)
+        
+       // self.performSegue(withIdentifier: "showFamily", sender: self)
 
     }
 

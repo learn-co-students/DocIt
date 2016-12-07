@@ -49,7 +49,9 @@ class RegisterViewController: UIViewController {
 
     @IBAction func signInPressed(_ sender: Any) {
         // If on the create account screen, if they already have an account...take them to the sign in screen
-                self.performSegue(withIdentifier: "showLogin", sender: nil)
+        
+        NotificationCenter.default.post(name: .openLoginVC, object: nil)
+              //  self.performSegue(withIdentifier: "showLogin", sender: nil)
 
 
     }
@@ -128,8 +130,8 @@ class RegisterViewController: UIViewController {
 
                 self.saveDataToCoreData()
 
-
-                self.performSegue(withIdentifier: "showFamily", sender: nil)
+                NotificationCenter.default.post(name: .openfamilyVC, object: nil)
+              //  self.performSegue(withIdentifier: "showFamily", sender: nil)
             }
         }
     }

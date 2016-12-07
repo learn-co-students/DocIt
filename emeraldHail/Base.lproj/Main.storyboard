@@ -130,8 +130,6 @@
                         <outlet property="errorLabel" destination="G0E-hT-X9b" id="CTg-Nm-k8T"/>
                         <outlet property="passwordField" destination="HKX-dZ-sjJ" id="gLZ-Le-4Jb"/>
                         <outlet property="signIn" destination="Gi7-d8-LyO" id="m0Y-YR-SCz"/>
-                        <segue destination="XIF-ae-qWP" kind="show" identifier="showFamily" id="C4Q-6Y-LBY"/>
-                        <segue destination="asG-Gp-r91" kind="show" identifier="showCreateAccount" id="VAJ-Ob-VfQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -614,7 +612,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="SS9-7J-sXg">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
+                                    <rect key="frame" x="0.0" y="64" width="375" height="150"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kid_silhouette" translatesAutoresizingMaskIntoConstraints="NO" id="NAm-Dd-L9Z">
@@ -757,7 +755,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="rsP-1R-pvH">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
+                                    <rect key="frame" x="0.0" y="64" width="375" height="150"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kid_silhouette" translatesAutoresizingMaskIntoConstraints="NO" id="igx-VA-ans">
@@ -1501,8 +1499,6 @@
                         <outlet property="emailField" destination="wHI-sV-xOK" id="VQ3-Ra-Xq7"/>
                         <outlet property="errorLabel" destination="BP8-Ra-mX3" id="ll5-Qe-YAO"/>
                         <outlet property="passwordField" destination="TK7-1i-ANf" id="OeL-lb-s1J"/>
-                        <segue destination="XIF-ae-qWP" kind="show" identifier="showFamily" id="vNq-cI-Dwc"/>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="showLogin" id="ZvI-c8-0Bp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wF1-Py-2gR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1659,8 +1655,7 @@
         <image name="kid_silhouette" width="347" height="347"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="rMT-vw-w4o"/>
         <segue reference="AyQ-2m-HY5"/>
-        <segue reference="vNq-cI-Dwc"/>
+        <segue reference="rMT-vw-w4o"/>
     </inferredMetricsTieBreakers>
 </document>
