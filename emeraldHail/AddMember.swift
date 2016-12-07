@@ -58,15 +58,8 @@ class AddMember: UIView, UIImagePickerControllerDelegate, UINavigationController
             let lastName = lastNameField.text, lastName != "",
             let dob = dateTextField.text, dob != "",
           let gender = genderTextField.text, gender != ""
-//            let blood = bloodTextField.text, blood != ""
-            
-//            let weight = weightTextField.text, weight != "",
-//            let height = heightTextField.text, height != "",
-//            let allergies = allergiesTextField.text, allergies != ""
+
             else { return }
-        
-//        let disableSaveButton = sender as? UIButton
-//        disableSaveButton?.isEnabled = false
         
         let database: FIRDatabaseReference = FIRDatabase.database().reference()
         let databaseMembersRef = database.child("members").child((FIRAuth.auth()?.currentUser?.uid)!).childByAutoId()
@@ -90,6 +83,10 @@ class AddMember: UIView, UIImagePickerControllerDelegate, UINavigationController
                     databaseMembersRef.setValue(member.serialize(), withCompletionBlock: { error, dataRef in
                        
                         self.isHidden = true
+                        firstNameField.text = ""
+                        lastNameField.text = ""
+                        dateTextField.text = ""
+                        genderTextField.text = ""
                         
                     })
                 }
@@ -104,6 +101,11 @@ class AddMember: UIView, UIImagePickerControllerDelegate, UINavigationController
     
     @IBAction func cancel(_ sender: UIButton) {
         self.isHidden = true
+        firstNameField.text = ""
+        lastNameField.text = ""
+        dateTextField.text = ""
+        genderTextField.text = ""
+        
     }
     
     // MARK: - Methods
