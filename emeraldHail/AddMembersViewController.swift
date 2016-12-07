@@ -32,7 +32,9 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
     let dobSelection = UIDatePicker()
     let genderSelection = UIPickerView()
     let weightSelection = UIPickerView()
-    
+    let heightSelection = UIPickerView()
+    var feet = String()
+    var inches = String()
     // MARK: - Loads
     
     override func viewDidLoad() {
@@ -50,6 +52,9 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
         
         weightSelection.delegate = self
         weightTextField.inputView = weightSelection
+        
+        heightSelection.delegate = self
+        heightTextField.inputView = heightSelection
         
     }
     
@@ -175,9 +180,19 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
     // MARK: Methods Picker View
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int{
-        return 1
+        switch pickerView {
+        case bloodSelection:
+            return 1
+        case genderSelection:
+            return 1
+        case weightSelection:
+            return 1
+        case heightSelection:
+            return 2
+        default:
+            return 1
+        }
     }
-    
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
         
         switch pickerView {
@@ -188,6 +203,12 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
             return store.genderSelections.count
         case weightSelection:
             return store.weightSelections.count
+        case heightSelection:
+            if component == 0 {
+                return store.heightSelectionsFeet.count
+            } else {
+                return store.heightSelections.count
+            }
         default:
             break
         }
@@ -195,16 +216,35 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
         
     }
     
+    
+    
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
         switch pickerView {
+            
+            
         case bloodSelection:
             bloodTextField.text = store.bloodTypeSelections[row]
         case genderSelection:
             genderTextField.text = store.genderSelections[row]
         case weightSelection:
             weightTextField.text = store.weightSelections[row]
-        default:
+        case heightSelection:
+     
+            
+            if component == 0 {
+                 feet = store.heightSelectionsFeet[row]
+                print("DID I GET SOME \(feet)")
+                
+
+            } else if component == 1 {
+                 inches = store.heightSelections[row]
+                print("DID I GET ALOT OF \(inches)")
+                
+            }
+            
+            heightTextField.text = "\(feet)\(inches)"
+            default:
             break
         }
         
@@ -219,6 +259,13 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
             return store.genderSelections[row]
         case weightSelection:
             return store.weightSelections[row]
+        case heightSelection:
+            if component == 0{
+                return store.heightSelectionsFeet[row]
+            } else {
+                return store.heightSelections[row]
+            }
+            
         default:
             break
         }
@@ -236,8 +283,8 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
         birthdayField.inputView = dobSelection
         genderTextField.inputView = genderSelection
         bloodTextField.inputView = bloodSelection
+        heightTextField.inputView = heightSelection
         weightTextField.inputView = weightSelection
-        
         dobSelection.datePickerMode = UIDatePickerMode.date
         dobSelection.addTarget(self, action: #selector(self.datePickerChanged(sender:)) , for: .valueChanged)
         
@@ -245,6 +292,7 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         birthdayField.resignFirstResponder()
+        heightTextField.resignFirstResponder()
         return true
     }
     

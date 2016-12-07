@@ -59,6 +59,10 @@ class DataStore{
     
     var genderSelections: [String] = [Gender.female.rawValue, Gender.male.rawValue]
     
+    var heightSelections : [String] = ["0\"","1\"","2\"","3\"","4\"","5\"","6\"", "7\"","8\"","9\"","11\""]
+    
+    var heightSelectionsFeet : [String] = ["0'","1'","2'","3'","4'","5'","6'", "7'","8'","9'"]
+    
     var weightSelections: [String] = []
 
     func fillWeightData() {
