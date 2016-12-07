@@ -84,15 +84,7 @@ class AddMember: UIView, UIImagePickerControllerDelegate, UINavigationController
 
                     databaseMembersRef.setValue(member.serialize(), withCompletionBlock: { error, dataRef in
 
-                        self.isHidden = true
-                        self.firstNameField.text = ""
-                        self.lastNameField.text = ""
-                        self.dateTextField.text = ""
-                        self.genderTextField.text = ""
-                        
-                        self.profileImageView.image = UIImage(named: "adorablebaby")
-                        self.genderSelection.selectRow(0, inComponent: 0, animated: true)
-                        self.dobSelection.setDate(NSDate() as Date, animated: true)
+                        self.clear()
 
                     })
                 }
@@ -103,14 +95,7 @@ class AddMember: UIView, UIImagePickerControllerDelegate, UINavigationController
     }
 
     @IBAction func cancel(_ sender: UIButton) {
-        self.isHidden = true
-        self.firstNameField.text = ""
-        self.lastNameField.text = ""
-        self.dateTextField.text = ""
-        self.genderTextField.text = ""
-        self.profileImageView.image = UIImage(named: "adorablebaby")
-        self.genderSelection.selectRow(0, inComponent: 0, animated: true)
-        self.dobSelection.setDate(NSDate() as Date, animated: true)
+        clear()
     }
 
     // MARK: - Methods
@@ -138,7 +123,20 @@ class AddMember: UIView, UIImagePickerControllerDelegate, UINavigationController
         
     }
 
+    func clear() {
+    
+        self.isHidden = true
+        self.firstNameField.text = ""
+        self.lastNameField.text = ""
+        self.dateTextField.text = ""
+        self.genderTextField.text = ""
+        self.profileImageView.image = UIImage(named: "adorablebaby")
+        self.genderSelection.selectRow(0, inComponent: 0, animated: true)
+        self.dobSelection.setDate(NSDate() as Date, animated: true)
 
+        
+    }
+    
     func addGestureRecognizer(imageView: UIImageView){
         imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectProfileImageView)))
     }
