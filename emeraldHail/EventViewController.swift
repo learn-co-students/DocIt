@@ -90,59 +90,73 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         var posts = [Post]()
         let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
             
-            // delete item at indexPath
+            print("******************************** The delete button is tapped ***************************** ")
             
-    
+            // Alert Controller
+            
+             let alertController = UIAlertController(title: "Are you sure you want to delete this event?",  message: "All associated posts will be deleted.", preferredStyle: .alert)
+            
+            // Action
+            
+            let deleteAction = UIAlertAction(title: "Delete", style: .default, handler: { action -> Void in
+                
+                print("********************************* User confimed to delete the event **************************** ")
+                
+                // delete item at indexPath
+                
                 // Deleting selected events and related posts from Firebase
                 databaseEvents.child(uniqueEventID).removeValue()
                 
                 databasePosts.observeSingleEvent(of: .value, with: { snapshot in
-                    
-                    let oldPosts = snapshot.value as? [String : Any]
-                    
+                    let oldPosts = snapshot.value as? [String: Any]
                     let allKeys = oldPosts?.keys
                     
                     if let keys = allKeys {
-                        
                         for key in keys {
-                            
-                            let dictionary = oldPosts?[key] as? [String : Any]
+                            let dictionary = oldPosts?[key] as? [String: Any]
                             
                             let post = Post(dictionary: dictionary!)
                             
                             posts.append(post)
                             
-                            print(post.description)
-                            
                         }
-                        
                     }
                     
                     for post in posts {
-                        
-                        switch post {
-                        case .photo(_):
-                            self.deleteImagesFromStorage(uniqueID: post.description)
-                        default:
-                            break
-                        }
-                        
+                        self.deleteImagesFromStorage(uniqueID: post.description)
                     }
                     
                     databasePosts.removeValue()
-                    
+                
+        
                 })
-                
-                self.events.remove(at: indexPath.row)
-                
-                tableView.deleteRows(at: [indexPath], with: .fade)
-            
 
+                self.events.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+ 
+            })
+
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
+            
+                print("Cancel Pressed")
+                
+            })
+            
+            // Add the actions
+            alertController.addAction(deleteAction)
+            alertController.addAction(cancelAction)
+            
+            // Present the controller
+            self.present(alertController, animated: true, completion: nil)
+
+            
         }
+        
+        
         
         let edit = UITableViewRowAction(style: .normal, title: "Edit") { (action, indexPath) in
             // share item at indexPath
-            print("It's the edit button ************************************************************* ")
+            print("******************************** It's the edit button ***************************** ")
         }
         
         edit.backgroundColor = UIColor.orange
@@ -151,8 +165,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     
-    
-    
+ 
     func deleteImagesFromStorage(uniqueID: String){
         
         let storageRef = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
