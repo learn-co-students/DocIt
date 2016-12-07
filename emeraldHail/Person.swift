@@ -14,6 +14,6 @@ enum BloodType: String {
 }
 
 enum Gender: String {
-    case female = "Female", male = "Male"
+    case female = "Female", male = "Male", other = "Not specified"
 }
 
