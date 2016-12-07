@@ -97,18 +97,23 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 
                 let allKeys = oldPosts?.keys
 
-                for key in allKeys! {
-
-                    let dictionary = oldPosts?[key] as? [String : Any]
-
-                    let post = Post(dictionary: dictionary!)
-
-                    posts.append(post)
-
-                    print(post.description)
+                if let keys = allKeys {
+                    
+                    for key in keys {
+                        
+                        let dictionary = oldPosts?[key] as? [String : Any]
+                        
+                        let post = Post(dictionary: dictionary!)
+                        
+                        posts.append(post)
+                        
+                        print(post.description)
+                        
+                    }
 
                 }
-
+                
+                
                 for post in posts {
 
                     switch post {
