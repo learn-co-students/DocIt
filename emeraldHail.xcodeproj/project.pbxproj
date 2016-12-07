@@ -46,6 +46,8 @@
 		B6ED5B361DDE4CDB00B56DFD /* TempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6ED5B351DDE4CDB00B56DFD /* TempViewController.swift */; };
 		B6F44C081DEE080000995237 /* EditMemberSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F44C071DEE080000995237 /* EditMemberSettingsViewController.swift */; };
 		BB14EBD71DED43A0004F6D56 /* HealthCore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BB14EBD51DED43A0004F6D56 /* HealthCore.xcdatamodeld */; };
+		BB230F131DF8C04800887E20 /* modifyEvent.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB230F121DF8C04800887E20 /* modifyEvent.xib */; };
+		BB230F151DF8C05900887E20 /* modifyEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB230F141DF8C05900887E20 /* modifyEvent.swift */; };
 		BB2A52E31DF888E2007760A5 /* AddMember.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB2A52E21DF888E2007760A5 /* AddMember.xib */; };
 		BB2A52E51DF88A28007760A5 /* AddMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2A52E41DF88A28007760A5 /* AddMember.swift */; };
 		BB5CD3321DE6B41800D82BB3 /* SymptomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5CD3311DE6B41800D82BB3 /* SymptomsViewController.swift */; };
@@ -117,6 +119,8 @@
 		B6ED5B351DDE4CDB00B56DFD /* TempViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempViewController.swift; sourceTree = "<group>"; };
 		B6F44C071DEE080000995237 /* EditMemberSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditMemberSettingsViewController.swift; sourceTree = "<group>"; };
 		BB14EBD61DED43A0004F6D56 /* HealthCore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HealthCore.xcdatamodel; sourceTree = "<group>"; };
+		BB230F121DF8C04800887E20 /* modifyEvent.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = modifyEvent.xib; sourceTree = "<group>"; };
+		BB230F141DF8C05900887E20 /* modifyEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = modifyEvent.swift; sourceTree = "<group>"; };
 		BB2A52E21DF888E2007760A5 /* AddMember.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddMember.xib; sourceTree = "<group>"; };
 		BB2A52E41DF88A28007760A5 /* AddMember.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMember.swift; sourceTree = "<group>"; };
 		BB5CD3311DE6B41800D82BB3 /* SymptomsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SymptomsViewController.swift; sourceTree = "<group>"; };
@@ -272,22 +276,24 @@
 			name = Symptom;
 			sourceTree = "<group>";
 		};
-		BB2A52E11DF873D1007760A5 /* AddEvent */ = {
+		BB2A52E11DF873D1007760A5 /* Events */ = {
 			isa = PBXGroup;
 			children = (
+				BB230F121DF8C04800887E20 /* modifyEvent.xib */,
+				BB230F141DF8C05900887E20 /* modifyEvent.swift */,
 				BBAE14001DF79025001F6CB1 /* AddEvent.swift */,
 				BBAE14011DF79025001F6CB1 /* AddEvent.xib */,
 			);
-			name = AddEvent;
+			name = Events;
 			sourceTree = "<group>";
 		};
-		BB2A52E61DF88A45007760A5 /* AddMember */ = {
+		BB2A52E61DF88A45007760A5 /* Member */ = {
 			isa = PBXGroup;
 			children = (
 				BB2A52E21DF888E2007760A5 /* AddMember.xib */,
 				BB2A52E41DF88A28007760A5 /* AddMember.swift */,
 			);
-			name = AddMember;
+			name = Member;
 			sourceTree = "<group>";
 		};
 		CCB9A50487D0810C41F555DF /* Pods */ = {
@@ -316,8 +322,8 @@
 		DD58FAE41DDBBB1D004A7A22 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				BB2A52E61DF88A45007760A5 /* AddMember */,
-				BB2A52E11DF873D1007760A5 /* AddEvent */,
+				BB2A52E61DF88A45007760A5 /* Member */,
+				BB2A52E11DF873D1007760A5 /* Events */,
 				AA9FFBBB1DDA667500847FCF /* Main.storyboard */,
 				AA0BF2C31DF5C1200062FA36 /* FamilyMemberCollectionCell */,
 				AA0BF2BC1DF4A8F00062FA36 /* AddMemberCollectionCell */,
@@ -457,6 +463,7 @@
 				BB2A52E31DF888E2007760A5 /* AddMember.xib in Resources */,
 				AAFE44681DDF68BE00922FB0 /* SymptomView.xib in Resources */,
 				AA0BF2BE1DF4A9190062FA36 /* AddMemberView.xib in Resources */,
+				BB230F131DF8C04800887E20 /* modifyEvent.xib in Resources */,
 				DDB88F871DEE1CD5002E9668 /* PainLevelView.xib in Resources */,
 				DDDE22481DF0C486006B234C /* PhotoView.xib in Resources */,
 				AA0BF2C51DF5C1540062FA36 /* FamilyMemberView.xib in Resources */,
@@ -537,6 +544,7 @@
 				AAFE44641DDF60BB00922FB0 /* Post.swift in Sources */,
 				AA57AC551DEE4E9A00DCA9BF /* TempCell.swift in Sources */,
 				BBF4EEB31DDF59DC00EBD3FE /* RegisterViewController.swift in Sources */,
+				BB230F151DF8C05900887E20 /* modifyEvent.swift in Sources */,
 				AA0BF2C21DF4AB160062FA36 /* AddMemberCollectionViewCell.swift in Sources */,
 				AA2970FE1DEDDF5C0062631D /* Temp.swift in Sources */,
 				AAC106061DF08CF4007E5116 /* Symp.swift in Sources */,
