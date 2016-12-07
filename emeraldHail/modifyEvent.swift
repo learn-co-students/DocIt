@@ -62,6 +62,13 @@ class modifyEvent: UIView, UIPickerViewDelegate, UITextFieldDelegate {
         contentView.layer.cornerRadius = 10
     }
     
+    
+}
+
+extension modifyEvent {
+    
+    // MARK: Methods Firebase
+        
     func readFromFirebase() {
         
         database.child("events").observe(.value, with: { (snapshot) in
@@ -99,6 +106,14 @@ class modifyEvent: UIView, UIPickerViewDelegate, UITextFieldDelegate {
         self.dobSelection.setDate(NSDate() as Date, animated: true)
         
     }
+    
+}
+
+
+
+extension modifyEvent {
+    
+    // MARK: Methods Date Picker
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool{
         
@@ -139,8 +154,5 @@ class modifyEvent: UIView, UIPickerViewDelegate, UITextFieldDelegate {
         dateTextField.text = formatter.string(from: sender.date)
         
     }
-    
-    
-    
     
 }
