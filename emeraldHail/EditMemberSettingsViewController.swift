@@ -36,7 +36,7 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        addProfileSettings()
         displayMemberProfileEdits()
         
         bloodSelection.delegate = self
@@ -182,6 +182,48 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
     
     // MARK: - Methods
     
+    func addProfileSettings() {
+        addGestureRecognizer(imageView: profilePicture)
+        profilePicture.isUserInteractionEnabled = true
+        profilePicture.setRounded()
+        profilePicture.layer.borderColor = UIColor.gray.cgColor
+        profilePicture.layer.borderWidth = 0.5
+    }
+    
+    func addGestureRecognizer(imageView: UIImageView){
+        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectProfileImageView)))
+    }
+    
+    func handleSelectProfileImageView(){
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.sourceType = .photoLibrary
+        picker.allowsEditing = true
+        
+        self.present(picker, animated: true, completion: nil)
+        
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]){
+        
+        var selectedImageFromPicker: UIImage?
+        
+        if let editedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
+            selectedImageFromPicker = editedImage
+        } else if let originalImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            selectedImageFromPicker = originalImage
+        }
+        if let selectedImage = selectedImageFromPicker {
+            profilePicture.image = selectedImage
+        }
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        print("picked canceled")
+        dismiss(animated: true, completion: nil)
+    }
     
     
     func hideKeyboardWhenTappedAround() {
