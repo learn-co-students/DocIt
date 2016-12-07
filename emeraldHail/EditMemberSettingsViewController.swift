@@ -345,7 +345,7 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
         formatter.dateStyle = .medium
         formatter.timeStyle = .none
         formatter.dateFormat = "MM-dd-yyyy"
-        //        var calendar = Calendar(identifier: .gregorian)
+        //        var calendar = Calendar(identifier: .gregopen orian)
         dobTextField.text = formatter.string(from: sender.date)
         
         
@@ -388,6 +388,7 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
         
         switch pickerView {
         case bloodSelection:
