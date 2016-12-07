@@ -614,7 +614,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="SS9-7J-sXg">
-                                    <rect key="frame" x="0.0" y="64" width="375" height="150"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kid_silhouette" translatesAutoresizingMaskIntoConstraints="NO" id="NAm-Dd-L9Z">
@@ -757,7 +757,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="rsP-1R-pvH">
-                                    <rect key="frame" x="0.0" y="64" width="375" height="150"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kid_silhouette" translatesAutoresizingMaskIntoConstraints="NO" id="igx-VA-ans">
@@ -1397,7 +1397,7 @@
         <!--Register View Controller-->
         <scene sceneID="C6O-hX-yer">
             <objects>
-                <viewController storyboardIdentifier="&quot;register-view-controller&quot;" useStoryboardIdentifierAsRestorationIdentifier="YES" id="asG-Gp-r91" customClass="RegisterViewController" customModule="emeraldHail" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="register-view-controller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="asG-Gp-r91" customClass="RegisterViewController" customModule="emeraldHail" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kZv-sW-ICz"/>
                         <viewControllerLayoutGuide type="bottom" id="gV8-Us-OUV"/>
@@ -1585,7 +1585,6 @@
                                 </state>
                                 <connections>
                                     <action selector="createAccountPressed:" destination="Lab-UU-Fjj" eventType="touchUpInside" id="T1M-8l-fSJ"/>
-                                    <segue destination="asG-Gp-r91" kind="presentation" id="Ywg-j3-Iij"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ikh-9y-kt3">
@@ -1599,7 +1598,6 @@
                                 </state>
                                 <connections>
                                     <action selector="signInPressed:" destination="Lab-UU-Fjj" eventType="touchUpInside" id="sfM-HL-Pi9"/>
-                                    <segue destination="BYZ-38-t0r" kind="presentation" id="8IQ-kN-dMw"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wqf-sG-KUf">
@@ -1663,8 +1661,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="rMT-vw-w4o"/>
         <segue reference="AyQ-2m-HY5"/>
-        <segue reference="D6a-tn-o54"/>
-        <segue reference="Ywg-j3-Iij"/>
-        <segue reference="8IQ-kN-dMw"/>
+        <segue reference="vNq-cI-Dwc"/>
     </inferredMetricsTieBreakers>
 </document>

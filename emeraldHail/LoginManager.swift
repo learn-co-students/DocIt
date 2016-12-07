@@ -52,7 +52,7 @@ extension LoginManager: GIDSignInDelegate {
                     
                 
                     DispatchQueue.main.async {
-                        NotificationCenter.default.post(name: Notification.Name.closeWelcomeVC, object: nil)
+                        NotificationCenter.default.post(name: Notification.Name.openfamilyVC, object: nil)
                         print("A family id has been created.")
                     }
                     
@@ -69,7 +69,7 @@ extension LoginManager: GIDSignInDelegate {
                     newFamilyRef.child("email").setValue(user.profile.email)
                     newFamilyRef.child("name").setValue("New Family", withCompletionBlock: {  snapshot in
                         DispatchQueue.main.async {
-                            NotificationCenter.default.post(name: Notification.Name.closeWelcomeVC, object: nil)
+                            NotificationCenter.default.post(name: Notification.Name.openfamilyVC, object: nil)
                             print("A family id has been created.")
                         }
                         

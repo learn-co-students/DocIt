@@ -51,12 +51,12 @@ class WelcomeViewController: UIViewController {
     // MARK: - Actions
 
     @IBAction func createAccountPressed(_ sender: Any) {
-        NotificationCenter.default.post(name: Notification.Name.closeRegisterVC, object: nil)
+        NotificationCenter.default.post(name: Notification.Name.openRegisterVC, object: nil)
         print("createAccountPressed")
     }
 
     @IBAction func signInPressed(_ sender: Any) {
-        
+        NotificationCenter.default.post(name: Notification.Name.openLoginVC, object: nil)
         print("signInPressed")
     }
 
@@ -251,9 +251,9 @@ extension WelcomeViewController: GIDSignInUIDelegate {
     func sign(_ signIn: GIDSignIn!, present viewController: UIViewController!) {
         present(viewController, animated: true, completion: nil)
     }
-
-    //    func signIn() {
-    //        GIDSignIn.sharedInstance().signIn()
-    //    }
+//TO DO: This method is suppoesed to allow the user to sign in through the app silently. 
+//        func signIn() {
+//            GIDSignIn.sharedInstance().signIn()
+//        }
 
 }

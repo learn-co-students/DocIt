@@ -13,10 +13,10 @@ import Firebase
 
 extension Notification.Name {
     
-    static let openLoginVC = Notification.Name("close-login-view-controller")
-    static let openfamilyVC = Notification.Name("close-family-view-controller")
-    static let openWelcomeVC = Notification.Name("close-welcome-view-controller")
-    static let openRegisterVC = Notification.Name("close-register-view-controller")
+    static let openLoginVC = Notification.Name("open-login-view-controller")
+    static let openfamilyVC = Notification.Name("open-family-view-controller")
+    static let openWelcomeVC = Notification.Name("open-welcome-view-controller")
+    static let openRegisterVC = Notification.Name("open-register-view-controller")
 }
 
 enum StoryboardID: String {
@@ -99,7 +99,6 @@ extension AppController {
             switchToViewController(withStoryboardID: .welcomeViewController)
             
         case Notification.Name.openRegisterVC:
-            print("I don't seem to be working.")
             switchToViewController(withStoryboardID: .registerViewController)
             
         default:
