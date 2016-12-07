@@ -316,9 +316,9 @@
 		DD58FAE41DDBBB1D004A7A22 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				AA9FFBBB1DDA667500847FCF /* Main.storyboard */,
 				BB2A52E61DF88A45007760A5 /* AddMember */,
 				BB2A52E11DF873D1007760A5 /* AddEvent */,
-				AA9FFBBB1DDA667500847FCF /* Main.storyboard */,
 				AA0BF2C31DF5C1200062FA36 /* FamilyMemberCollectionCell */,
 				AA0BF2BC1DF4A8F00062FA36 /* AddMemberCollectionCell */,
 				DDDE22401DF0A776006B234C /* Photo */,
