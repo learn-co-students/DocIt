@@ -60,7 +60,7 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
     @IBAction func saveButtonTapped(_ sender: Any) {
         guard let name = firstNameField.text, name != "",
             let lastName = lastNameField.text, lastName != "",
-            let dob = birthdayField.text, dob != "", let blood = bloodTextField.text, blood != "", let gender = genderTextField.text, gender != "", let weight = weightTextField.text, weight != "", let height = heightTextField.text, height != "", let allergies = allergiesTextField.text, allergies != "" else { return }
+            let dob = birthdayField.text, dob != "", let blood = bloodTextField.text, let gender = genderTextField.text, let weight = weightTextField.text, let height = heightTextField.text, let allergies = allergiesTextField.text else { return }
 
         let disableSaveButton = sender as? UIButton
         disableSaveButton?.isEnabled = false
