@@ -49,19 +49,14 @@ class AddEvent: UIView, UIPickerViewDelegate, UITextFieldDelegate {
         
                     databaseEventsRef.setValue(event.serialize(), withCompletionBlock: { error, dataRef in
         
-                    self.isHidden = true
-                        self.nameTextField.text = ""
-                        self.dateTextField.text = ""
+                    self.clear()
         
         })
     }
     
     @IBAction func cancelEvent(_ sender: UIButton) {
     
-        self.isHidden = true
-        self.nameTextField.text = ""
-        self.dateTextField.text = ""
-    
+        clear()
     }
     
     // MARK: - Methods
@@ -76,6 +71,15 @@ class AddEvent: UIView, UIPickerViewDelegate, UITextFieldDelegate {
         contentView.layer.cornerRadius = 10
     }
 
+    func clear() {
+        
+        self.isHidden = true
+        self.nameTextField.text = ""
+        self.dateTextField.text = ""
+        self.dobSelection.setDate(NSDate() as Date, animated: true)
+    
+    }
+    
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool{
         
         return true
