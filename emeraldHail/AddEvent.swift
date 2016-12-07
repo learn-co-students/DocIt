@@ -92,10 +92,7 @@ class AddEvent: UIView, UIPickerViewDelegate, UITextFieldDelegate {
         dobSelection.datePickerMode = UIDatePickerMode.date
         
         dobSelection.addTarget(self, action: #selector(self.datePickerChanged(sender:)) , for: .valueChanged)
-        
-        
-        
-        
+   
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
