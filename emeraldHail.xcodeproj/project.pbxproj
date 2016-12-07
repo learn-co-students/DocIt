@@ -63,7 +63,6 @@
 		BBF4EEB71DDF59FF00EBD3FE /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF4EEB61DDF59FF00EBD3FE /* EventViewController.swift */; };
 		BBF4EEB91DDF5A0600EBD3FE /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF4EEB81DDF5A0600EBD3FE /* PostViewController.swift */; };
 		DD3BD9831DEB7C2800311BE9 /* PainLevelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3BD9821DEB7C2800311BE9 /* PainLevelCollectionViewCell.swift */; };
-		DD755E1A1DE3A99F002478D0 /* AddMembersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD755E191DE3A99F002478D0 /* AddMembersViewController.swift */; };
 		DDA93D201DDE412000F0A4D4 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA93D1F1DDE412000F0A4D4 /* Secrets.swift */; };
 		DDA93D221DDE508A00F0A4D4 /* PainLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA93D211DDE508A00F0A4D4 /* PainLevelViewController.swift */; };
 		DDB88F871DEE1CD5002E9668 /* PainLevelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDB88F861DEE1CD5002E9668 /* PainLevelView.xib */; };
@@ -137,7 +136,6 @@
 		D4BA12601A0F16DED58FEC5E /* Pods_emeraldHail.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_emeraldHail.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD3BD97B1DE7B9A800311BE9 /* emeraldHail-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "emeraldHail-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		DD3BD9821DEB7C2800311BE9 /* PainLevelCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PainLevelCollectionViewCell.swift; sourceTree = "<group>"; };
-		DD755E191DE3A99F002478D0 /* AddMembersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMembersViewController.swift; sourceTree = "<group>"; };
 		DD755E1B1DE3ACB2002478D0 /* emeraldHail.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = emeraldHail.entitlements; sourceTree = "<group>"; };
 		DDA93D1F1DDE412000F0A4D4 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		DDA93D211DDE508A00F0A4D4 /* PainLevelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PainLevelViewController.swift; sourceTree = "<group>"; };
@@ -343,7 +341,6 @@
 				BBF4EEB41DDF59F900EBD3FE /* FamilyViewController.swift */,
 				BB6DEDB41DE61C7D00D8B93A /* FamilySettingViewController.swift */,
 				BBF4EEB61DDF59FF00EBD3FE /* EventViewController.swift */,
-				DD755E191DE3A99F002478D0 /* AddMembersViewController.swift */,
 				B6F44C071DEE080000995237 /* EditMemberSettingsViewController.swift */,
 				BBF4EEB81DDF5A0600EBD3FE /* PostViewController.swift */,
 				B69638D11DE602FD00FE7023 /* AddNotesViewController.swift */,
@@ -542,7 +539,6 @@
 				BBF4EEB31DDF59DC00EBD3FE /* RegisterViewController.swift in Sources */,
 				AA0BF2C21DF4AB160062FA36 /* AddMemberCollectionViewCell.swift in Sources */,
 				AA2970FE1DEDDF5C0062631D /* Temp.swift in Sources */,
-				DD755E1A1DE3A99F002478D0 /* AddMembersViewController.swift in Sources */,
 				AAC106061DF08CF4007E5116 /* Symp.swift in Sources */,
 				AA3985131DEFAAF90087F1BA /* Pain.swift in Sources */,
 				BBF4EEB91DDF5A0600EBD3FE /* PostViewController.swift in Sources */,
