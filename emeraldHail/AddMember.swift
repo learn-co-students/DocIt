@@ -24,7 +24,7 @@ class AddMember: UIView, UIImagePickerControllerDelegate, UINavigationController
 
     let dobSelection = UIDatePicker()
     let genderSelection = UIPickerView()
-
+    
     let store = DataStore.sharedInstance
 
 
@@ -89,9 +89,10 @@ class AddMember: UIView, UIImagePickerControllerDelegate, UINavigationController
                         self.lastNameField.text = ""
                         self.dateTextField.text = ""
                         self.genderTextField.text = ""
-
+                        
                         self.profileImageView.image = UIImage(named: "adorablebaby")
-
+                        self.genderSelection.selectRow(0, inComponent: 0, animated: true)
+                        self.dobSelection.setDate(NSDate() as Date, animated: true)
 
                     })
                 }
@@ -108,7 +109,8 @@ class AddMember: UIView, UIImagePickerControllerDelegate, UINavigationController
         self.dateTextField.text = ""
         self.genderTextField.text = ""
         self.profileImageView.image = UIImage(named: "adorablebaby")
-
+        self.genderSelection.selectRow(0, inComponent: 0, animated: true)
+        self.dobSelection.setDate(NSDate() as Date, animated: true)
     }
 
     // MARK: - Methods
@@ -127,10 +129,13 @@ class AddMember: UIView, UIImagePickerControllerDelegate, UINavigationController
         contentView.layer.borderColor = UIColor.darkGray.cgColor
 
         addProfileSettings()
-
-        genderSelection.delegate = self
+        
+        
         genderTextField.inputView = genderSelection
-
+        genderSelection.delegate = self
+        
+        dateTextField.delegate = self
+        
     }
 
 
@@ -178,7 +183,7 @@ class AddMember: UIView, UIImagePickerControllerDelegate, UINavigationController
 
     func textFieldDidBeginEditing(_ textField: UITextField){
 
-        self.dateTextField.inputView = dobSelection
+        dateTextField.inputView = dobSelection
 
         dobSelection.datePickerMode = UIDatePickerMode.date
 
