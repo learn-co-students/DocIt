@@ -17,6 +17,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     @IBOutlet weak var memberProfilesView: UICollectionView!
+    @IBOutlet weak var addMember: UIView!
     
     // MARK: Properties
     
@@ -60,6 +61,9 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         super.viewWillAppear(true)
         self.memberProfilesView.reloadData()
     }
+    
+    
+    
     
     // MARK: - Methods
     
@@ -133,6 +137,9 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         if indexPath.row < membersInFamily.count {
             store.member.id = membersInFamily[indexPath.row].id
         } else {
+            
+            self.addMember.isHidden = false
+            
             print("The selected cell is not valid in membersInFamily. You are probably selecting the addMemberCell.")
             return
         }

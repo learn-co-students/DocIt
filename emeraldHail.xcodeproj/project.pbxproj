@@ -46,6 +46,8 @@
 		B6ED5B361DDE4CDB00B56DFD /* TempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6ED5B351DDE4CDB00B56DFD /* TempViewController.swift */; };
 		B6F44C081DEE080000995237 /* EditMemberSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F44C071DEE080000995237 /* EditMemberSettingsViewController.swift */; };
 		BB14EBD71DED43A0004F6D56 /* HealthCore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BB14EBD51DED43A0004F6D56 /* HealthCore.xcdatamodeld */; };
+		BB2A52E31DF888E2007760A5 /* AddMember.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB2A52E21DF888E2007760A5 /* AddMember.xib */; };
+		BB2A52E51DF88A28007760A5 /* AddMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2A52E41DF88A28007760A5 /* AddMember.swift */; };
 		BB5CD3321DE6B41800D82BB3 /* SymptomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5CD3311DE6B41800D82BB3 /* SymptomsViewController.swift */; };
 		BB6DEDB51DE61C7D00D8B93A /* FamilySettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6DEDB41DE61C7D00D8B93A /* FamilySettingViewController.swift */; };
 		BB7BF58B1DECD13C00F290FB /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB7BF58A1DECD13C00F290FB /* LocalAuthentication.framework */; };
@@ -116,6 +118,8 @@
 		B6ED5B351DDE4CDB00B56DFD /* TempViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempViewController.swift; sourceTree = "<group>"; };
 		B6F44C071DEE080000995237 /* EditMemberSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditMemberSettingsViewController.swift; sourceTree = "<group>"; };
 		BB14EBD61DED43A0004F6D56 /* HealthCore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HealthCore.xcdatamodel; sourceTree = "<group>"; };
+		BB2A52E21DF888E2007760A5 /* AddMember.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddMember.xib; sourceTree = "<group>"; };
+		BB2A52E41DF88A28007760A5 /* AddMember.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMember.swift; sourceTree = "<group>"; };
 		BB5CD3311DE6B41800D82BB3 /* SymptomsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SymptomsViewController.swift; sourceTree = "<group>"; };
 		BB6DEDB41DE61C7D00D8B93A /* FamilySettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilySettingViewController.swift; sourceTree = "<group>"; };
 		BB7BF58A1DECD13C00F290FB /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
@@ -279,6 +283,15 @@
 			name = AddEvent;
 			sourceTree = "<group>";
 		};
+		BB2A52E61DF88A45007760A5 /* AddMember */ = {
+			isa = PBXGroup;
+			children = (
+				BB2A52E21DF888E2007760A5 /* AddMember.xib */,
+				BB2A52E41DF88A28007760A5 /* AddMember.swift */,
+			);
+			name = AddMember;
+			sourceTree = "<group>";
+		};
 		CCB9A50487D0810C41F555DF /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -305,6 +318,7 @@
 		DD58FAE41DDBBB1D004A7A22 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				BB2A52E61DF88A45007760A5 /* AddMember */,
 				BB2A52E11DF873D1007760A5 /* AddEvent */,
 				AA9FFBBB1DDA667500847FCF /* Main.storyboard */,
 				AA0BF2C31DF5C1200062FA36 /* FamilyMemberCollectionCell */,
@@ -406,7 +420,7 @@
 				TargetAttributes = {
 					AA9FFBB31DDA667500847FCF = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = N2MERYPM36;
+						DevelopmentTeam = 3SZW3Z4QTH;
 						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -443,6 +457,7 @@
 				AA9892AE1DEA1C290092F3A8 /* NoteView.xib in Resources */,
 				AA9FFBC21DDA667500847FCF /* LaunchScreen.storyboard in Resources */,
 				BBF453BD1DE34B5100E054E9 /* GoogleService-Info.plist in Resources */,
+				BB2A52E31DF888E2007760A5 /* AddMember.xib in Resources */,
 				AAFE44681DDF68BE00922FB0 /* SymptomView.xib in Resources */,
 				AA0BF2BE1DF4A9190062FA36 /* AddMemberView.xib in Resources */,
 				DDB88F871DEE1CD5002E9668 /* PainLevelView.xib in Resources */,
@@ -534,6 +549,7 @@
 				DDA93D221DDE508A00F0A4D4 /* PainLevelViewController.swift in Sources */,
 				AAFE446A1DDF68E600922FB0 /* SymptomView.swift in Sources */,
 				BB9286851DDE3D2100D3D9A6 /* DataStore.swift in Sources */,
+				BB2A52E51DF88A28007760A5 /* AddMember.swift in Sources */,
 				AA6E4D211DE7419B00C8FEE3 /* WelcomeViewController.swift in Sources */,
 				AA9892B01DEA1EA60092F3A8 /* NoteView.swift in Sources */,
 				BBF453BB1DE34AF900E054E9 /* Person.swift in Sources */,
@@ -687,7 +703,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = emeraldHail/emeraldHail.entitlements;
-				DEVELOPMENT_TEAM = N2MERYPM36;
+				DEVELOPMENT_TEAM = 3SZW3Z4QTH;
 				INFOPLIST_FILE = emeraldHail/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -706,7 +722,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = emeraldHail/emeraldHail.entitlements;
-				DEVELOPMENT_TEAM = N2MERYPM36;
+				DEVELOPMENT_TEAM = 3SZW3Z4QTH;
 				INFOPLIST_FILE = emeraldHail/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
