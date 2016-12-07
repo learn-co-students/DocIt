@@ -45,6 +45,8 @@
 		BB6DEDB51DE61C7D00D8B93A /* FamilySettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6DEDB41DE61C7D00D8B93A /* FamilySettingViewController.swift */; };
 		BB7BF58B1DECD13C00F290FB /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB7BF58A1DECD13C00F290FB /* LocalAuthentication.framework */; };
 		BB9286851DDE3D2100D3D9A6 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9286841DDE3D2100D3D9A6 /* DataStore.swift */; };
+		BBAE14021DF79025001F6CB1 /* AddEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAE14001DF79025001F6CB1 /* AddEvent.swift */; };
+		BBAE14031DF79025001F6CB1 /* AddEvent.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBAE14011DF79025001F6CB1 /* AddEvent.xib */; };
 		BBF453B91DE34ACD00E054E9 /* Symptom.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF453B81DE34ACD00E054E9 /* Symptom.swift */; };
 		BBF453BB1DE34AF900E054E9 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF453BA1DE34AF900E054E9 /* Person.swift */; };
 		BBF453BD1DE34B5100E054E9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BBF453BC1DE34B5100E054E9 /* GoogleService-Info.plist */; };
@@ -108,6 +110,8 @@
 		BB6DEDB41DE61C7D00D8B93A /* FamilySettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilySettingViewController.swift; sourceTree = "<group>"; };
 		BB7BF58A1DECD13C00F290FB /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		BB9286841DDE3D2100D3D9A6 /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
+		BBAE14001DF79025001F6CB1 /* AddEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEvent.swift; sourceTree = "<group>"; };
+		BBAE14011DF79025001F6CB1 /* AddEvent.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddEvent.xib; sourceTree = "<group>"; };
 		BBF453B81DE34ACD00E054E9 /* Symptom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Symptom.swift; sourceTree = "<group>"; };
 		BBF453BA1DE34AF900E054E9 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		BBF453BC1DE34B5100E054E9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -263,6 +267,8 @@
 		DD58FAE41DDBBB1D004A7A22 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				BBAE14001DF79025001F6CB1 /* AddEvent.swift */,
+				BBAE14011DF79025001F6CB1 /* AddEvent.xib */,
 				AA9FFBBB1DDA667500847FCF /* Main.storyboard */,
 				DDDE22401DF0A776006B234C /* Photo */,
 				DDB88F851DEE1CC0002E9668 /* PainLevel */,
@@ -403,6 +409,7 @@
 				DDDE22481DF0C486006B234C /* PhotoView.xib in Resources */,
 				B69466641DECCE3000F2E30C /* Assets.xcassets in Resources */,
 				AAF109341DEE4BA700E6DE26 /* TempView.xib in Resources */,
+				BBAE14031DF79025001F6CB1 /* AddEvent.xib in Resources */,
 				AA9FFBBD1DDA667500847FCF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -502,6 +509,7 @@
 				AA9FFBB81DDA667500847FCF /* AppDelegate.swift in Sources */,
 				AA2970FC1DEDDEE70062631D /* Note.swift in Sources */,
 				AA7ED5941DDF4D16005F9AB2 /* Member.swift in Sources */,
+				BBAE14021DF79025001F6CB1 /* AddEvent.swift in Sources */,
 				AA0C2FE51DE8837700445229 /* HeaderCollectionReusableView.swift in Sources */,
 				BBF453B91DE34ACD00E054E9 /* Symptom.swift in Sources */,
 				AA8A59021DF3AFAB0079AE69 /* Extensions.swift in Sources */,

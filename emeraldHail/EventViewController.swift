@@ -19,7 +19,8 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var eventsTable: UITableView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
-
+    @IBOutlet weak var addEvent: UIView!
+    
     // MARK: - Properties
 
     var store = DataStore.sharedInstance
@@ -202,41 +203,9 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
 
     func createEvent() {
-        var nameTextField: UITextField?
-        var dateTextField: UITextField?
-        let alertController = UIAlertController(title: "Create event", message: "Put a name that describe the event and the date when started", preferredStyle: .alert)
-        let save = UIAlertAction(title: "Save", style: .default, handler: { (action) -> Void in
-
-            guard let name = nameTextField?.text, name != "", let date = dateTextField?.text, date != "" else { return }
-
-            let databaseEventsRef = self.database.child("events").child(self.store.member.id).childByAutoId()
-
-            let uniqueID = databaseEventsRef.key
-
-            let event = Event(name: name, startDate: date, uniqueID: uniqueID)
-
-            databaseEventsRef.setValue(event.serialize(), withCompletionBlock: { error, dataRef in
-
-            })
-
-            print("Save Button Pressed")
-        })
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
-            print("Cancel Button Pressed")
-        }
-        alertController.addAction(save)
-        alertController.addAction(cancel)
-        alertController.addTextField { (textField) -> Void in
-            nameTextField = textField
-            nameTextField?.autocapitalizationType = .words
-            nameTextField?.placeholder = "Event name"
-        }
-        alertController.addTextField { (textField) -> Void in
-            dateTextField = textField
-            dateTextField?.autocapitalizationType = .words
-            dateTextField?.placeholder = "Date"
-        }
-        present(alertController, animated: true, completion: nil)
+        
+        self.addEvent.isHidden = false
+        
     }
 
 }
