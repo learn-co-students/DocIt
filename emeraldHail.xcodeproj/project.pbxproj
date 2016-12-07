@@ -270,6 +270,15 @@
 			name = Symptom;
 			sourceTree = "<group>";
 		};
+		BB2A52E11DF873D1007760A5 /* AddEvent */ = {
+			isa = PBXGroup;
+			children = (
+				BBAE14001DF79025001F6CB1 /* AddEvent.swift */,
+				BBAE14011DF79025001F6CB1 /* AddEvent.xib */,
+			);
+			name = AddEvent;
+			sourceTree = "<group>";
+		};
 		CCB9A50487D0810C41F555DF /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -296,8 +305,7 @@
 		DD58FAE41DDBBB1D004A7A22 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				BBAE14001DF79025001F6CB1 /* AddEvent.swift */,
-				BBAE14011DF79025001F6CB1 /* AddEvent.xib */,
+				BB2A52E11DF873D1007760A5 /* AddEvent */,
 				AA9FFBBB1DDA667500847FCF /* Main.storyboard */,
 				AA0BF2C31DF5C1200062FA36 /* FamilyMemberCollectionCell */,
 				AA0BF2BC1DF4A8F00062FA36 /* AddMemberCollectionCell */,
