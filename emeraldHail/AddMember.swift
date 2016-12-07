@@ -24,7 +24,7 @@ class AddMember: UIView, UIImagePickerControllerDelegate, UINavigationController
 
     let dobSelection = UIDatePicker()
     let genderSelection = UIPickerView()
-
+    
     let store = DataStore.sharedInstance
 
 
@@ -84,14 +84,7 @@ class AddMember: UIView, UIImagePickerControllerDelegate, UINavigationController
 
                     databaseMembersRef.setValue(member.serialize(), withCompletionBlock: { error, dataRef in
 
-                        self.isHidden = true
-                        self.firstNameField.text = ""
-                        self.lastNameField.text = ""
-                        self.dateTextField.text = ""
-                        self.genderTextField.text = ""
-
-                        self.profileImageView.image = UIImage(named: "adorablebaby")
-
+                        self.clear()
 
                     })
                 }
@@ -102,13 +95,7 @@ class AddMember: UIView, UIImagePickerControllerDelegate, UINavigationController
     }
 
     @IBAction func cancel(_ sender: UIButton) {
-        self.isHidden = true
-        self.firstNameField.text = ""
-        self.lastNameField.text = ""
-        self.dateTextField.text = ""
-        self.genderTextField.text = ""
-        self.profileImageView.image = UIImage(named: "adorablebaby")
-
+        clear()
     }
 
     // MARK: - Methods
@@ -127,13 +114,29 @@ class AddMember: UIView, UIImagePickerControllerDelegate, UINavigationController
         contentView.layer.borderColor = UIColor.darkGray.cgColor
 
         addProfileSettings()
-
-        genderSelection.delegate = self
+        
+        
         genderTextField.inputView = genderSelection
-
+        genderSelection.delegate = self
+        
+        dateTextField.delegate = self
+        
     }
 
+    func clear() {
+    
+        self.isHidden = true
+        self.firstNameField.text = ""
+        self.lastNameField.text = ""
+        self.dateTextField.text = ""
+        self.genderTextField.text = ""
+        self.profileImageView.image = UIImage(named: "adorablebaby")
+        self.genderSelection.selectRow(0, inComponent: 0, animated: true)
+        self.dobSelection.setDate(NSDate() as Date, animated: true)
 
+        
+    }
+    
     func addGestureRecognizer(imageView: UIImageView){
         imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectProfileImageView)))
     }
@@ -178,7 +181,7 @@ class AddMember: UIView, UIImagePickerControllerDelegate, UINavigationController
 
     func textFieldDidBeginEditing(_ textField: UITextField){
 
-        self.dateTextField.inputView = dobSelection
+        dateTextField.inputView = dobSelection
 
         dobSelection.datePickerMode = UIDatePickerMode.date
 
