@@ -11,7 +11,7 @@ import FirebaseDatabase
 import FirebaseStorage
 import Firebase
 
-class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, UITextFieldDelegate {
+class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDataSource {
     
     // MARK: - Outlets
     
@@ -36,7 +36,7 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        addProfileSettings()
         displayMemberProfileEdits()
         
         bloodSelection.delegate = self
@@ -44,20 +44,22 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
         
         bloodTextField.inputView = bloodSelection
         genderTextField.inputView = genderSelection
-
+        
     }
     
     // MARK: - Methods
     
     // Storage
     
-    @IBAction func deleteMebmerButtonTapped(_ sender: Any) {
+    
+    
+    @IBAction func deleteMemberButtonTapped(_ sender: Any) {
         
         // Alert Controller
-         let alertController = UIAlertController(title: "Are you sure you want to delete a member?",  message: "This action cannot be undone.", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Are you sure you want to delete a member?",  message: "This action cannot be undone.", preferredStyle: .alert)
         
         // Action
-
+        
         let deleteAction = UIAlertAction(title: "Delete", style: .default, handler: { action -> Void in
             
             // Database
@@ -69,7 +71,7 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
             var posts = [Post]()
             
             // Remove members and related events
-
+            
             var eventIDs = [String]()
             
             eventsRef.observe(.value, with: { snapshot in
@@ -79,7 +81,7 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
                     let event = Event(snapshot: child as! FIRDataSnapshot)
                     
                     let eventID = event.uniqueID
-
+                    
                     eventIDs.append(eventID)
                 }
                 
@@ -94,7 +96,7 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
                         let oldPosts = snapshot.value as? [String : Any]
                         
                         if let allKeys = oldPosts?.keys {
-                        
+                            
                             for key in allKeys {
                                 
                                 let dictionary = oldPosts?[key] as! [String : Any]
@@ -108,7 +110,7 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
                             }
                         }
                     })
-
+                    
                     for post in posts {
                         
                         switch post {
@@ -121,34 +123,35 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
                     }
                     
                     postsRef.child(eventID).removeValue() // All posts under event erased
-        
+                    
                 }
                 
                 // Delete events associated with the member
                 
                 eventsRef.removeValue()
                 
-                // Delete the member 
+                // Delete the member
                 
                 memberRef.child(self.store.member.id).removeValue()
-                
-                self.performSegue(withIdentifier: "backToFamilyVCSegue", sender: self)
-                
+             
+                let _ = self.navigationController?.popToRootViewController(animated: true)
+
             })
             
         })
-    
-         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) {
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) {
             UIAlertAction in
             print("Cancel Pressed")
-         }
-         
-         // Add the actions
-         alertController.addAction(deleteAction)
-         alertController.addAction(cancelAction)
-         
-         // Present the controller
-         self.present(alertController, animated: true, completion: nil)
+        }
+        
+        // Add the actions
+        alertController.addAction(deleteAction)
+        alertController.addAction(cancelAction)
+        
+        // Present the controller
+        self.present(alertController, animated: true, completion: nil)
+        
         
     }
     
@@ -176,10 +179,53 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
     @IBAction func didPressCancel(_ sender: Any) {
         let _ = navigationController?.popViewController(animated: true)
     }
-
+    
     // MARK: - Methods
-
-
+    
+    func addProfileSettings() {
+        addGestureRecognizer(imageView: profilePicture)
+        profilePicture.isUserInteractionEnabled = true
+        profilePicture.setRounded()
+        profilePicture.layer.borderColor = UIColor.gray.cgColor
+        profilePicture.layer.borderWidth = 0.5
+    }
+    
+    func addGestureRecognizer(imageView: UIImageView){
+        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectProfileImageView)))
+    }
+    
+    func handleSelectProfileImageView(){
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.sourceType = .photoLibrary
+        picker.allowsEditing = true
+        
+        self.present(picker, animated: true, completion: nil)
+        
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]){
+        
+        var selectedImageFromPicker: UIImage?
+        
+        if let editedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
+            selectedImageFromPicker = editedImage
+        } else if let originalImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            selectedImageFromPicker = originalImage
+        }
+        if let selectedImage = selectedImageFromPicker {
+            profilePicture.image = selectedImage
+        }
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        print("picked canceled")
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboardView))
         tap.cancelsTouchesInView = false
@@ -194,11 +240,11 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
         guard let name = firstNameTextField.text, name != "",
             let lastName = lastNameTextField.text, lastName != "",
             let dob = dobTextField.text, dob != "",
-            let blood = bloodTextField.text, blood != "",
             let gender = genderTextField.text, gender != "",
-            let weight = weightTextField.text, weight != "",
-            let height = heightTextField.text, height != "",
-            let allergies = allergiesTextField.text, allergies != "" else { return }
+            let height = heightTextField.text,
+            let weight = weightTextField.text,
+            let blood = bloodTextField.text,
+            let allergies = allergiesTextField.text else { return }
         
         // TODO: - Do something here to indicate that you can't proceed if a field is empty.
         
@@ -252,12 +298,12 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
         })
     }
     
-
+    
     //DatePicker -> DOB Text Field
     
     
     // return NO to disallow editing.
-
+    
     // MARK: Methods Picker View
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool{
@@ -341,5 +387,5 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
         return ""
     }
     
-
+    
 }
