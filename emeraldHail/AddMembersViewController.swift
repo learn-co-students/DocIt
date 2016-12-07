@@ -14,7 +14,6 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
     
     // MARK: - Outlets
     
-    @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var firstNameField: UITextField!
     @IBOutlet weak var lastNameField: UITextField!
@@ -56,7 +55,8 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
     
     // MARK: - Actions
     
-    @IBAction func saveButtonTapped(_ sender: Any) {
+    @IBAction func didPressSave(_ sender: Any) {
+        
         guard let name = firstNameField.text, name != "",
             let lastName = lastNameField.text, lastName != "",
             let dob = birthdayField.text, dob != "",
@@ -96,14 +96,16 @@ class AddMembersViewController: UIViewController, UIImagePickerControllerDelegat
                 
             })
         }
-        
+
         
     }
     
+    @IBAction func didPressCancel(_ sender: Any) {
     
-    @IBAction func cancelButtonTapped(_ sender: Any) {
         let _ = navigationController?.popViewController(animated: true)
+    
     }
+    
     
     // MARK: - Methods
     
