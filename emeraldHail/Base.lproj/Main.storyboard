@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Zwd-TP-Mtn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16C53a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Zwd-TP-Mtn">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -310,7 +310,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="wqt-oA-wwg">
-                                <rect key="frame" x="38" y="188" width="300" height="431"/>
+                                <rect key="frame" x="38" y="144" width="300" height="431"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FIRST NAME" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aN1-gN-acs">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="14.5"/>
@@ -411,7 +411,7 @@
                                 </subviews>
                             </stackView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="adorablebaby" translatesAutoresizingMaskIntoConstraints="NO" id="lYU-hc-HMC">
-                                <rect key="frame" x="137" y="76" width="100" height="100"/>
+                                <rect key="frame" x="137" y="32" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="lah-CU-no3"/>
                                     <constraint firstAttribute="height" constant="100" id="lv8-tP-Mjs"/>
@@ -568,14 +568,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kid_silhouette" translatesAutoresizingMaskIntoConstraints="NO" id="iew-44-IJM">
-                                <rect key="frame" x="137" y="76" width="100" height="100"/>
+                                <rect key="frame" x="137" y="32" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="HkT-Ou-8RA"/>
                                     <constraint firstAttribute="height" constant="100" id="jyc-v9-3Gj"/>
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="co8-pO-qth">
-                                <rect key="frame" x="37" y="188" width="375" height="431"/>
+                                <rect key="frame" x="37" y="144" width="375" height="431"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FIRST NAME" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6H8-R7-HNw">
                                         <rect key="frame" x="0.0" y="0.0" width="73" height="14.5"/>
@@ -747,7 +747,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="SS9-7J-sXg">
-                                    <rect key="frame" x="0.0" y="64" width="375" height="150"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kid_silhouette" translatesAutoresizingMaskIntoConstraints="NO" id="NAm-Dd-L9Z">
@@ -824,16 +824,21 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kW8-dY-7yT" customClass="AddEvent" customModule="emeraldHail" customModuleProvider="target">
-                                <rect key="frame" x="67" y="355" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kW8-dY-7yT" customClass="AddEvent" customModule="emeraldHail" customModuleProvider="target">
+                                <rect key="frame" x="62" y="218.5" width="250" height="230"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="DOU-nB-Z4T"/>
+                                    <constraint firstAttribute="height" constant="230" id="wvV-24-f2r"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.98039132356643677" green="0.97655218839645386" blue="0.97635632753372192" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="y38-9i-HW6" firstAttribute="height" secondItem="e58-fj-dk1" secondAttribute="height" id="3Fg-rg-20U"/>
+                            <constraint firstItem="kW8-dY-7yT" firstAttribute="centerX" secondItem="e58-fj-dk1" secondAttribute="centerX" id="Xhz-1B-9m3"/>
+                            <constraint firstItem="kW8-dY-7yT" firstAttribute="centerY" secondItem="e58-fj-dk1" secondAttribute="centerY" id="XmN-ze-KMG"/>
                             <constraint firstItem="y38-9i-HW6" firstAttribute="centerX" secondItem="e58-fj-dk1" secondAttribute="centerX" id="uSL-me-OzY"/>
                             <constraint firstItem="y38-9i-HW6" firstAttribute="centerY" secondItem="e58-fj-dk1" secondAttribute="centerY" id="w4B-i4-ib8"/>
                             <constraint firstItem="y38-9i-HW6" firstAttribute="width" secondItem="e58-fj-dk1" secondAttribute="width" id="zeG-0K-IRK"/>
@@ -858,6 +863,7 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="addEvent" destination="kW8-dY-7yT" id="pfn-sZ-oL0"/>
                         <outlet property="eventsTable" destination="y38-9i-HW6" id="Vys-mU-U0O"/>
                         <outlet property="nameLabel" destination="vyO-rN-E2I" id="vSt-Sk-TNW"/>
                         <outlet property="profileImageView" destination="NAm-Dd-L9Z" id="vwr-1H-eqU"/>
@@ -884,7 +890,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="rsP-1R-pvH">
-                                    <rect key="frame" x="0.0" y="64" width="375" height="150"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kid_silhouette" translatesAutoresizingMaskIntoConstraints="NO" id="igx-VA-ans">
@@ -1786,9 +1792,9 @@
     <inferredMetricsTieBreakers>
         <segue reference="rMT-vw-w4o"/>
         <segue reference="AyQ-2m-HY5"/>
-        <segue reference="vNq-cI-Dwc"/>
-        <segue reference="Ywg-j3-Iij"/>
+        <segue reference="C4Q-6Y-LBY"/>
         <segue reference="ZvI-c8-0Bp"/>
+        <segue reference="VAJ-Ob-VfQ"/>
         <segue reference="8mZ-ms-lDd"/>
     </inferredMetricsTieBreakers>
 </document>
