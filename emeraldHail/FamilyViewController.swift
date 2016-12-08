@@ -22,6 +22,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     // MARK: Properties
     
     let store = DataStore.sharedInstance
+    var database: FIRDatabaseReference = FIRDatabase.database().reference()
     let imageSelected = UIImagePickerController()
     var membersInFamily = [Member]()
     var family = [Family]()
@@ -173,7 +174,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     func getFamilyID() {
-        store.family.id = (FIRAuth.auth()?.currentUser?.uid)!
+//        store.family.id = database.child("user").child((FIRAuth.auth()?.currentUser?.uid)!).value(forKey: "FamilyID") as! String
     }
     
     // TODO: Rethink some of the variable names here and in configDatabaseFamily for clarity

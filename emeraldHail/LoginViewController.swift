@@ -14,9 +14,6 @@ import GoogleSignIn
 
 class LoginViewController: UIViewController {
 
-    let store = DataStore.sharedInstance
-
-
     // MARK: - Outlets
 
     @IBOutlet weak var emailField: UITextField!
@@ -26,8 +23,9 @@ class LoginViewController: UIViewController {
 
     // MARK: - Properties
 
-    //let store = DataStore.sharedInstance
-
+    let store = DataStore.sharedInstance
+    var database: FIRDatabaseReference = FIRDatabase.database().reference()
+    
     // MARK: - Loads
 
     override func viewDidLoad() {
@@ -127,6 +125,7 @@ class LoginViewController: UIViewController {
 
 
     func login() {
+        
         guard let email = emailField.text, let password = passwordField.text else { return }
 
         FIRAuth.auth()?.signIn(withEmail: email, password: password) { (user, error) in
@@ -138,11 +137,39 @@ class LoginViewController: UIViewController {
                 return
             }
             // Set the sharedInstance familyID to the current user.uid
-            self.store.family.id = (user?.uid)!
             
-            NotificationCenter.default.post(name: .openfamilyVC, object: nil)
+            self.database.child("user").child((user?.uid)!).observe(.value, with: { snapshot in
+                
+                DispatchQueue.main.async {
+                    
+                var data = snapshot.value as! [String:Any]
+                
+                var familyID = data["FamilyID"] as! String
+                
+                print("======> \(familyID)")
+                
+                
+                self.store.family.id = familyID
+                
+                    
+               
+                }
+                
+                
+                
+                
+            })
+//            NotificationCenter.default.post(name: .openfamilyVC, object: nil)
             
-           // self.performSegue(withIdentifier: "showFamily", sender: nil)
+            
+            
+            
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+                NotificationCenter.default.post(name: .openfamilyVC, object: nil)
+            
+            })
+//            self.performSegue(withIdentifier: "showFamily", sender: nil)
             
 
         }

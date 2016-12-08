@@ -56,6 +56,8 @@
 		BB9286851DDE3D2100D3D9A6 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9286841DDE3D2100D3D9A6 /* DataStore.swift */; };
 		BBAE14021DF79025001F6CB1 /* AddEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAE14001DF79025001F6CB1 /* AddEvent.swift */; };
 		BBAE14031DF79025001F6CB1 /* AddEvent.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBAE14011DF79025001F6CB1 /* AddEvent.xib */; };
+		BBC8830B1DF918E70002A285 /* JoinFamily.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBC8830A1DF918E70002A285 /* JoinFamily.xib */; };
+		BBC8830D1DF918FE0002A285 /* JoinFamily.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC8830C1DF918FE0002A285 /* JoinFamily.swift */; };
 		BBF453B91DE34ACD00E054E9 /* Symptom.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF453B81DE34ACD00E054E9 /* Symptom.swift */; };
 		BBF453BB1DE34AF900E054E9 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF453BA1DE34AF900E054E9 /* Person.swift */; };
 		BBF453BD1DE34B5100E054E9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BBF453BC1DE34B5100E054E9 /* GoogleService-Info.plist */; };
@@ -129,6 +131,8 @@
 		BB9286841DDE3D2100D3D9A6 /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		BBAE14001DF79025001F6CB1 /* AddEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEvent.swift; sourceTree = "<group>"; };
 		BBAE14011DF79025001F6CB1 /* AddEvent.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddEvent.xib; sourceTree = "<group>"; };
+		BBC8830A1DF918E70002A285 /* JoinFamily.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JoinFamily.xib; sourceTree = "<group>"; };
+		BBC8830C1DF918FE0002A285 /* JoinFamily.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinFamily.swift; sourceTree = "<group>"; };
 		BBF453B81DE34ACD00E054E9 /* Symptom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Symptom.swift; sourceTree = "<group>"; };
 		BBF453BA1DE34AF900E054E9 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		BBF453BC1DE34B5100E054E9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -332,6 +336,8 @@
 				AAE7D3EB1DEF6CBE00C59107 /* Symptom */,
 				AA9892B31DEA31D60092F3A8 /* Note */,
 				AA57AC561DEE5A4B00DCA9BF /* Temp */,
+				BBC8830A1DF918E70002A285 /* JoinFamily.xib */,
+				BBC8830C1DF918FE0002A285 /* JoinFamily.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -468,6 +474,7 @@
 				DDDE22481DF0C486006B234C /* PhotoView.xib in Resources */,
 				AA0BF2C51DF5C1540062FA36 /* FamilyMemberView.xib in Resources */,
 				B69466641DECCE3000F2E30C /* Assets.xcassets in Resources */,
+				BBC8830B1DF918E70002A285 /* JoinFamily.xib in Resources */,
 				AAF109341DEE4BA700E6DE26 /* TempView.xib in Resources */,
 				BBAE14031DF79025001F6CB1 /* AddEvent.xib in Resources */,
 				AA9FFBBD1DDA667500847FCF /* Main.storyboard in Resources */,
@@ -558,6 +565,7 @@
 				AA9892B01DEA1EA60092F3A8 /* NoteView.swift in Sources */,
 				BBF453BB1DE34AF900E054E9 /* Person.swift in Sources */,
 				DDDE22441DF0B811006B234C /* Photo.swift in Sources */,
+				BBC8830D1DF918FE0002A285 /* JoinFamily.swift in Sources */,
 				AA2971011DEE05FA0062631D /* FamilyManager.swift in Sources */,
 				DDDE22461DF0C479006B234C /* PhotoView.swift in Sources */,
 				BBF4EEB71DDF59FF00EBD3FE /* EventViewController.swift in Sources */,

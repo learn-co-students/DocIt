@@ -11,9 +11,9 @@ import Firebase
 
 class AddEvent: UIView, UIPickerViewDelegate, UITextFieldDelegate {
     
-    @IBOutlet var contentView: UIView!
-    
     // MARK: - Outlets
+    
+    @IBOutlet var contentView: UIView!
     
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var dateTextField: UITextField!
