@@ -31,8 +31,8 @@
 		AA9FFBB81DDA667500847FCF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9FFBB71DDA667500847FCF /* AppDelegate.swift */; };
 		AA9FFBBD1DDA667500847FCF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA9FFBBB1DDA667500847FCF /* Main.storyboard */; };
 		AA9FFBC21DDA667500847FCF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA9FFBC01DDA667500847FCF /* LaunchScreen.storyboard */; };
-		AAB9FD391DF9EE550090AD01 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAB9FD381DF9EE550090AD01 /* GoogleService-Info.plist */; };
 		AAC106061DF08CF4007E5116 /* Symp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC106051DF08CF4007E5116 /* Symp.swift */; };
+		AAD5E92F1DFA00F600D66A14 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAD5E92E1DFA00F600D66A14 /* GoogleService-Info.plist */; };
 		AAE7D3ED1DEF6DB300C59107 /* SymptomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE7D3EC1DEF6DB300C59107 /* SymptomCell.swift */; };
 		AAF109341DEE4BA700E6DE26 /* TempView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAF109331DEE4BA700E6DE26 /* TempView.xib */; };
 		AAFE445E1DDF5AE900922FB0 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFE445D1DDF5AE900922FB0 /* Event.swift */; };
@@ -106,8 +106,8 @@
 		AA9FFBBC1DDA667500847FCF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AA9FFBC11DDA667500847FCF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AA9FFBC31DDA667500847FCF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AAB9FD381DF9EE550090AD01 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AAC106051DF08CF4007E5116 /* Symp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Symp.swift; sourceTree = "<group>"; };
+		AAD5E92E1DFA00F600D66A14 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AAE7D3EC1DEF6DB300C59107 /* SymptomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SymptomCell.swift; sourceTree = "<group>"; };
 		AAF109331DEE4BA700E6DE26 /* TempView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TempView.xib; sourceTree = "<group>"; };
 		AAFE445D1DDF5AE900922FB0 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
@@ -243,7 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				DD755E1B1DE3ACB2002478D0 /* emeraldHail.entitlements */,
-				AAB9FD381DF9EE550090AD01 /* GoogleService-Info.plist */,
+				AAD5E92E1DFA00F600D66A14 /* GoogleService-Info.plist */,
 				DD58FAE51DDBBB40004A7A22 /* Controllers */,
 				DD58FAE41DDBBB1D004A7A22 /* View */,
 				AA9FFBC91DDA6A8E00847FCF /* Model */,
@@ -436,6 +436,9 @@
 							com.apple.Keychain = {
 								enabled = 1;
 							};
+							com.apple.SafariKeychain = {
+								enabled = 1;
+							};
 						};
 					};
 				};
@@ -465,7 +468,7 @@
 			files = (
 				AA9892AE1DEA1C290092F3A8 /* NoteView.xib in Resources */,
 				AA9FFBC21DDA667500847FCF /* LaunchScreen.storyboard in Resources */,
-				AAB9FD391DF9EE550090AD01 /* GoogleService-Info.plist in Resources */,
+				AAD5E92F1DFA00F600D66A14 /* GoogleService-Info.plist in Resources */,
 				BB2A52E31DF888E2007760A5 /* AddMember.xib in Resources */,
 				AAFE44681DDF68BE00922FB0 /* SymptomView.xib in Resources */,
 				AA0BF2BE1DF4A9190062FA36 /* AddMemberView.xib in Resources */,

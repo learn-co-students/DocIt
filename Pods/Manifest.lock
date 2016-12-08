@@ -1,4 +1,9 @@
 PODS:
+  - Branch (0.12.19):
+    - Branch/Core (= 0.12.19)
+    - Branch/without-IDFA (= 0.12.19)
+  - Branch/Core (0.12.19)
+  - Branch/without-IDFA (0.12.19)
   - Firebase/Auth (3.10.0):
     - Firebase/Core
     - FirebaseAuth (= 3.0.6)
@@ -98,6 +103,7 @@ PODS:
   - SDWebImage/Core (3.8.2)
 
 DEPENDENCIES:
+  - Branch
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
@@ -119,6 +125,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/pruthvikar/Fusuma.git
 
 SPEC CHECKSUMS:
+  Branch: 75ed1785250502588cfb4a5de40a5136bdaa1573
   Firebase: 387f37c7dca894a02708da9ff35ba147040eae9e
   FirebaseAnalytics: 9c67af0ebeb8d2146c9b4ea2616439affa947b58
   FirebaseAuth: 96e9674ff31d6e1f826d53e26aa003a57cab0295
@@ -140,6 +147,6 @@ SPEC CHECKSUMS:
   IQKeyboardManagerSwift: 58bbcf46b5cf9fd4ed625d28a60cb2fbae4ab0f4
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
 
-PODFILE CHECKSUM: 89ce702f1184ffe2d36ae09c7f97e77840a47038
+PODFILE CHECKSUM: 32bc049b77e98d3544c662a0047e3670545b3d17
 
 COCOAPODS: 1.0.1

@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>branch_app_domain</key>
+	<string>rzhj.app.link</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -36,6 +38,16 @@
 				<string>com.flatironschool.cookie-heart</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>io.branch.sdk</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>docit</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
@@ -45,6 +57,8 @@
 	<string></string>
 	<key>NSCameraUsageDescription</key>
 	<string></string>
+	<key>NSContactsUsageDescription</key>
+	<string>Doc It uses your contacts to make it easy to share your family with your partner.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string></string>
 	<key>UILaunchStoryboardName</key>
@@ -59,5 +73,10 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>branch_key</key>
+	<dict>
+		<key>live</key>
+		<string>key_live_hoznIRQidfKOhPLqhmqbFmioDxadwSxU</string>
+	</dict>
 </dict>
 </plist>

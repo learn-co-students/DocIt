@@ -11,7 +11,7 @@ import Firebase
 import FirebaseDatabase
 import GoogleSignIn
 import IQKeyboardManagerSwift
-
+import Branch
 
 
 @UIApplicationMain
@@ -23,6 +23,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // MARK: - Branch.io
+        
+        let branch = Branch.getInstance()
+        
+        branch?.initSession(launchOptions: launchOptions, andRegisterDeepLinkHandler: { (params, error) in
+            if error == nil {
+                // params are the deep linked params associated with the link that the user clicked -> was re-directed to this app
+                print("params: \(params.description)")
+            }
+        })
+        
         
         FIRApp.configure()
         FIRDatabase.database().persistenceEnabled = true
@@ -48,18 +60,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
 
+        
+        
         guard let sourceApplication = options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String else {return false}
         
         print("\n\nsource app: \(sourceApplication)\n\n")
         
-        if GIDSignIn.sharedInstance().handle(url, sourceApplication: sourceApplication, annotation: options[UIApplicationOpenURLOptionsKey.annotation]) {
+        if GIDSignIn.sharedInstance().handle(url, sourceApplication: sourceApplication, annotation: options[UIApplicationOpenURLOptionsKey.annotation]) || Branch.getInstance().handleDeepLink(url) {
             
+            // ^ pass the url to the handle deep link call
+        
             return true
             
         }
         
         return false
 
+    }
+    
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
+        Branch.getInstance().continue(userActivity)
+        
+        return true
+    }
+    
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification launchOptions: [AnyHashable: Any]) -> Void {
+        Branch.getInstance().handlePushNotification(launchOptions)
     }
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
