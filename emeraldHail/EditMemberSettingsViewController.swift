@@ -277,7 +277,6 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
         let member = FIRDatabase.database().reference().child("members").child(store.family.id).child(store.member.id)
         
         member.observe(.value, with: { (snapshot) in
-            //  print(snapshot.value)
             
             let value = snapshot.value as? [String : Any]
             let imageString = value?["profileImage"] as? String
@@ -306,12 +305,6 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
             
         })
     }
-    
-    
-    //DatePicker -> DOB Text Field
-    
-    
-    // return NO to disallow editing.
     
     // MARK: Methods Picker View
     

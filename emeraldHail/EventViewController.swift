@@ -168,7 +168,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         }
         
-        edit.backgroundColor = UIColor.orange
+        edit.backgroundColor = Constants.Colors.neonCarrot
         
         return [delete, edit]
     }
