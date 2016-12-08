@@ -131,23 +131,20 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("Selecting a cell...")
-        print("Cell at \(indexPath.row) selected!")
-        
+
         if indexPath.row < membersInFamily.count {
             store.member.id = membersInFamily[indexPath.row].id
         } else {
-            
             self.addMember.isHidden = false
-            
-            print("The selected cell is not valid in membersInFamily. You are probably selecting the addMemberCell.")
             return
         }
+        
     }
     
     // MARK: Header resuable view
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
         switch kind {
         case UICollectionElementKindSectionHeader:
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) as! HeaderCollectionReusableView
@@ -160,6 +157,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         default:
             assert(false, "Unexpected element kind")
         }
+        
     }
     
     // MARK: Functions
