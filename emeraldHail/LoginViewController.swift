@@ -70,7 +70,9 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func createAccountPressed(_ sender: Any) {
-        self.performSegue(withIdentifier: "showCreateAccount", sender: nil)
+        
+        NotificationCenter.default.post(name: .openRegisterVC, object: nil)
+      //  self.performSegue(withIdentifier: "showCreateAccount", sender: nil)
     }
 
     // This function enables/disables the signIn button when the fields are empty/not empty.
@@ -138,7 +140,9 @@ class LoginViewController: UIViewController {
             // Set the sharedInstance familyID to the current user.uid
             self.store.family.id = (user?.uid)!
             
-            self.performSegue(withIdentifier: "showFamily", sender: nil)
+            NotificationCenter.default.post(name: .openfamilyVC, object: nil)
+            
+           // self.performSegue(withIdentifier: "showFamily", sender: nil)
             
 
         }

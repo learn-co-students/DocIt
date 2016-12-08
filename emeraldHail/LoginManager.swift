@@ -38,8 +38,8 @@ extension LoginManager: GIDSignInDelegate {
         guard let accessToken = user.authentication.accessToken else { return }
         
         let credential = FIRGoogleAuthProvider.credential(withIDToken: idToken, accessToken: accessToken)
-        let store = DataStore.sharedInstance
-        let family = FIRDatabase.database().reference().child("family")
+        //let store = DataStore.sharedInstance
+        //let family = FIRDatabase.database().reference().child("family")
         FIRAuth.auth()?.signIn(with: credential, completion: { loggedInUser, error in
             
             guard let userID = loggedInUser?.uid else {return}
@@ -50,9 +50,8 @@ extension LoginManager: GIDSignInDelegate {
                 
                 if let snapshot = snapshot.value as? [String:Any] {
                     
-                
                     DispatchQueue.main.async {
-                        NotificationCenter.default.post(name: Notification.Name.closeWelcomeVC, object: nil)
+                        NotificationCenter.default.post(name: Notification.Name.openfamilyVC, object: nil)
                         print("A family id has been created.")
                     }
                     
@@ -69,7 +68,7 @@ extension LoginManager: GIDSignInDelegate {
                     newFamilyRef.child("email").setValue(user.profile.email)
                     newFamilyRef.child("name").setValue("New Family", withCompletionBlock: {  snapshot in
                         DispatchQueue.main.async {
-                            NotificationCenter.default.post(name: Notification.Name.closeWelcomeVC, object: nil)
+                            NotificationCenter.default.post(name: Notification.Name.openfamilyVC, object: nil)
                             print("A family id has been created.")
                         }
                         

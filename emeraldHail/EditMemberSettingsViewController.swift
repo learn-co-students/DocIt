@@ -31,6 +31,10 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
     let bloodSelection = UIPickerView()
     let dobSelection = UIDatePicker()
     let genderSelection = UIPickerView()
+    let weightSelection = UIPickerView()
+    let heightSelection = UIPickerView()
+    var feet = String()
+    var inches = String()
     
     // MARK: - Loads
     
@@ -41,9 +45,14 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
         
         bloodSelection.delegate = self
         genderSelection.delegate = self
+        weightSelection.delegate = self
+        heightSelection.delegate = self
+        
         
         bloodTextField.inputView = bloodSelection
         genderTextField.inputView = genderSelection
+        weightTextField.inputView = weightSelection
+        heightTextField.inputView = heightSelection
         
     }
     
@@ -336,14 +345,27 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
         formatter.dateStyle = .medium
         formatter.timeStyle = .none
         formatter.dateFormat = "MM-dd-yyyy"
-        //        var calendar = Calendar(identifier: .gregorian)
+        //        var calendar = Calendar(identifier: .gregopen orian)
         dobTextField.text = formatter.string(from: sender.date)
         
         
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int{
-        return 1
+        
+        switch pickerView {
+        case bloodSelection:
+            return 1
+        case genderSelection:
+            return 1
+        case weightSelection:
+            return 1
+        case heightSelection:
+            return 2
+        default:
+            return 1
+        
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
@@ -353,6 +375,11 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
             return store.bloodTypeSelections.count
         case genderSelection:
             return store.genderSelections.count
+        case weightSelection:
+            return store.weightSelections.count
+        case heightSelection:
+            return store.heightSelections.count
+        
         default:
             break
         }
@@ -362,11 +389,23 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
+        
         switch pickerView {
         case bloodSelection:
             bloodTextField.text = store.bloodTypeSelections[row]
         case genderSelection:
             genderTextField.text = store.genderSelections[row]
+        case weightSelection:
+            weightTextField.text = store.weightSelections[row]
+        case heightSelection:
+            if component == 0 {
+                feet = store.heightSelectionsFeet[row]
+                print("DID I GET SOME \(feet)")
+            } else if component == 1 {
+                inches = store.heightSelections[row]
+                print("DID I GET ALOT OF \(inches)")
+            }
+            heightTextField.text = "\(feet)\(inches)"
         default:
             break
         }
@@ -380,6 +419,14 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
             return store.bloodTypeSelections[row]
         case genderSelection:
             return store.genderSelections[row]
+        case weightSelection:
+            return store.weightSelections[row]
+        case heightSelection:
+            if component == 0{
+                return store.heightSelectionsFeet[row]
+            } else {
+                return store.heightSelections[row]
+            }
         default:
             break
         }

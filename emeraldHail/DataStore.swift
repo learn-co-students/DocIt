@@ -42,22 +42,24 @@ class DataStore{
     
     
     
-    // FAMILY
-
-    var family = Family(id: "", name: "", email: "", coverImage: nil, coverImageStr: "", members: [])
+    // MARK: - Instances
     
-    var familyPicture = ""
-
-    // MEMBER
+    var family = Family(id: "", name: "", email: "", coverImage: nil, coverImageStr: "", members: [])
 
     var member = Member(profileImage: "", firstName: "", lastName: "", gender: "", birthday: "", bloodType: "", height: "", weight: "", allergies: "", id: "")
     
-
-    // Picker values
+    var event = Event(name: "", startDate: "", uniqueID: "")
+    
+    
+    // MARK: - Picker values
     
     var bloodTypeSelections : [String] = [BloodType.ABNeg.rawValue, BloodType.ABPos.rawValue, BloodType.ANeg.rawValue, BloodType.APos.rawValue, BloodType.BNeg.rawValue, BloodType.BPos.rawValue, BloodType.ONeg.rawValue, BloodType.OPos.rawValue]
     
     var genderSelections: [String] = [Gender.female.rawValue, Gender.male.rawValue, Gender.other.rawValue] 
+    
+    var heightSelections : [String] = ["0\"","1\"","2\"","3\"","4\"","5\"","6\"", "7\"","8\"","9\"","11\""]
+    
+    var heightSelectionsFeet : [String] = ["0'","1'","2'","3'","4'","5'","6'", "7'","8'","9'"]
     
     var weightSelections: [String] = []
 
@@ -69,10 +71,10 @@ class DataStore{
         }
         
     }
-    
-    // EVENT
 
     var eventID = ""
+    var editingEvent: Bool = false
+    
 
     // POST
 
@@ -85,12 +87,6 @@ class DataStore{
     // METHODS
 
     func clearDataStore() {
-
-
-    //familyID = ""
-
-        
-        familyPicture = ""
 
         eventID = ""
         postID = ""

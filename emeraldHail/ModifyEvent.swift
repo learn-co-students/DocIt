@@ -1,22 +1,22 @@
-//
-//  AddEvent.swift
+//  
+//  ModifyEvent.swift
 //  emeraldHail
 //
-//  Created by Enrique Torrendell on 12/6/16.
+//  Created by Enrique Torrendell on 12/7/16.
 //  Copyright © 2016 Flatiron School. All rights reserved.
 //
 
 import UIKit
 import Firebase
 
-class AddEvent: UIView, UIPickerViewDelegate, UITextFieldDelegate {
+class ModifyEvent: UIView, UIPickerViewDelegate, UITextFieldDelegate {
     
     @IBOutlet var contentView: UIView!
     
     // MARK: - Outlets
     
     @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var dateTextField: UITextField!
+    @IBOutlet weak var dateTextField: UITextField! 
     
     // MARK: - Properties
     
@@ -40,39 +40,47 @@ class AddEvent: UIView, UIPickerViewDelegate, UITextFieldDelegate {
     
     @IBAction func saveEvent(_ sender: UIButton) {
         
-        guard let name = nameTextField?.text, name != "", let date = dateTextField?.text, date != "" else { return }
-        
-        let databaseEventsRef = self.database.child("events").child(self.store.member.id).childByAutoId()
-        
-        let uniqueID = databaseEventsRef.key
-        
-        let event = Event(name: name, startDate: date, uniqueID: uniqueID)
-        
-        clear()
-        
-        databaseEventsRef.setValue(event.serialize(), withCompletionBlock: { error, dataRef in
-            
-            self.isHidden = true
-            self.nameTextField.text = ""
-            self.dateTextField.text = ""
-            
-        })
+        saveToFirebase()
     }
     
     @IBAction func cancelEvent(_ sender: UIButton) {
+        
         clear()
     }
     
     // MARK: - Methods
     
     func commonInit() {
-        Bundle.main.loadNibNamed("AddEvent", owner: self, options: nil)
+        
+        Bundle.main.loadNibNamed("ModifyEvent", owner: self, options: nil)
         
         dateTextField.delegate = self
         
         addSubview(contentView)
         
+        nameTextField.text = store.event.name
+        dateTextField.text = store.event.startDate
+        
         contentView.layer.cornerRadius = 10
+    }
+    
+    // MARK: Methods Firebase
+   
+    func saveToFirebase() {
+        
+        guard let name = nameTextField?.text, name != "", let date = dateTextField?.text, date != "" else { return }
+        
+        let databaseEventsRef = self.database.child("events").child(self.store.member.id).child(self.store.eventID)
+        
+        let uniqueID = databaseEventsRef.key
+        
+        let event = Event(name: name, startDate: date, uniqueID: uniqueID)
+        
+        databaseEventsRef.updateChildValues(event.serialize(), withCompletionBlock: { error, dataRef in
+            
+            self.clear()
+            
+        })
     }
     
     func clear() {
@@ -83,6 +91,8 @@ class AddEvent: UIView, UIPickerViewDelegate, UITextFieldDelegate {
         self.dobSelection.setDate(NSDate() as Date, animated: true)
         
     }
+    
+    // MARK: Methods Date Picker
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool{
         
@@ -96,6 +106,9 @@ class AddEvent: UIView, UIPickerViewDelegate, UITextFieldDelegate {
         dobSelection.datePickerMode = UIDatePickerMode.date
         
         dobSelection.addTarget(self, action: #selector(self.datePickerChanged(sender:)) , for: .valueChanged)
+        
+        
+        
         
     }
     
@@ -116,12 +129,9 @@ class AddEvent: UIView, UIPickerViewDelegate, UITextFieldDelegate {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
         formatter.timeStyle = .none
-        formatter.dateFormat = "MMM dd, yyyy"
-        dateTextField.text = formatter.string(from: sender.date).uppercased()
+        formatter.dateFormat = "MM-dd-yyyy"
+        dateTextField.text = formatter.string(from: sender.date)
         
     }
-    
-    
-    
     
 }
