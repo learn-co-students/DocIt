@@ -30,10 +30,11 @@ struct Event {
     }
     
     init(dictionary: [String : Any], uniqueID: String) {
+        
         name = dictionary["name"] as? String ?? "No name"
         startDate = dictionary["startDate"] as? String ?? "No start date"
-        
         self.uniqueID = uniqueID
+        
     }
     
     

@@ -32,6 +32,17 @@ extension UIImageView {
 // MARK: - Get random color
 
 extension UIColor {
+    
+    class func getDocitColor() -> UIColor {
+        let docitColors: [UIColor] = [Constants.Colors.purpleCake, Constants.Colors.neonCarrot,  Constants.Colors.cinnabar, Constants.Colors.ufoGreen]
+        
+        let randomNum = arc4random_uniform(5)
+        let randomColor = docitColors[Int(randomNum)]
+        
+        return randomColor
+        
+    }
+    
     class func getRandomColor() -> UIColor {
         let red: CGFloat = CGFloat(drand48())
         let green: CGFloat = CGFloat(drand48())

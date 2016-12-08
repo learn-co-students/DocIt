@@ -28,6 +28,9 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var database: FIRDatabaseReference = FIRDatabase.database().reference()
     var memberID = ""
     var member = [Member]()
+    
+    let docitColors: [UIColor] = [Constants.Colors.purpleCake, Constants.Colors.neonCarrot,  Constants.Colors.cinnabar, Constants.Colors.ufoGreen]
+    var counter = 0
 
     // MARK: - Loads
 
@@ -64,11 +67,11 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let cell = tableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath) as! EventTableViewCell
 
         let event = events[indexPath.row]
+        
         cell.eventName.text = event.name
         cell.eventDate.text = event.startDate.uppercased()
-        cell.backgroundColor = UIColor.getRandomColor()
 
-        store.eventID =  event.uniqueID
+        store.eventID = event.uniqueID
 
         return cell
     }
@@ -135,7 +138,19 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
 
     }
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("Prepare for segue...")
+        
+        switch sender {
+        case is UITableViewCell:
+            guard let indexPath = eventsTable.indexPath(for: sender as! UITableViewCell) else { return }
+            print(events[indexPath.row].uniqueID)
+            store.eventID = events[indexPath.row].uniqueID
+        default:
+            break
+        }
+    }
 
     // MARK: - Methods
 

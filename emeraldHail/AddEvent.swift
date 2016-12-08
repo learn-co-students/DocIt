@@ -12,7 +12,7 @@ import Firebase
 class AddEvent: UIView, UIPickerViewDelegate, UITextFieldDelegate {
     
     @IBOutlet var contentView: UIView!
-
+    
     // MARK: - Outlets
     
     @IBOutlet weak var nameTextField: UITextField!
@@ -32,36 +32,36 @@ class AddEvent: UIView, UIPickerViewDelegate, UITextFieldDelegate {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        commonInit() 
+        commonInit()
     }
-
+    
     // MARK: - Actions
     
     @IBAction func saveEvent(_ sender: UIButton) {
-    
-                    guard let name = nameTextField?.text, name != "", let date = dateTextField?.text, date != "" else { return }
         
-                    let databaseEventsRef = self.database.child("events").child(self.store.member.id).childByAutoId()
+        guard let name = nameTextField?.text, name != "", let date = dateTextField?.text, date != "" else { return }
         
-                    let uniqueID = databaseEventsRef.key
+        let databaseEventsRef = self.database.child("events").child(self.store.member.id).childByAutoId()
         
-                    let event = Event(name: name, startDate: date, uniqueID: uniqueID)
+        let uniqueID = databaseEventsRef.key
         
-                    databaseEventsRef.setValue(event.serialize(), withCompletionBlock: { error, dataRef in
+        let event = Event(name: name, startDate: date, uniqueID: uniqueID)
         
-                    self.isHidden = true
-                        self.nameTextField.text = ""
-                        self.dateTextField.text = ""
-        
+        databaseEventsRef.setValue(event.serialize(), withCompletionBlock: { error, dataRef in
+            
+            self.isHidden = true
+            self.nameTextField.text = ""
+            self.dateTextField.text = ""
+            
         })
     }
     
     @IBAction func cancelEvent(_ sender: UIButton) {
-    
+        
         self.isHidden = true
         self.nameTextField.text = ""
         self.dateTextField.text = ""
-    
+        
     }
     
     // MARK: - Methods
@@ -75,7 +75,7 @@ class AddEvent: UIView, UIPickerViewDelegate, UITextFieldDelegate {
         
         contentView.layer.cornerRadius = 10
     }
-
+    
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool{
         
         return true
@@ -111,12 +111,12 @@ class AddEvent: UIView, UIPickerViewDelegate, UITextFieldDelegate {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
         formatter.timeStyle = .none
-        formatter.dateFormat = "MM-dd-yyyy"
-        dateTextField.text = formatter.string(from: sender.date)
+        formatter.dateFormat = "MMM dd, yyyy"
+        dateTextField.text = formatter.string(from: sender.date).uppercased()
         
     }
-
     
-
-
+    
+    
+    
 }
