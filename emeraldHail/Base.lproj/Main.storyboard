@@ -59,7 +59,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ztv-y5-Ks1">
-                                <rect key="frame" x="110" y="371" width="155" height="30"/>
+                                <rect key="frame" x="110" y="469" width="155" height="30"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                                 <state key="normal" title="Forgot your password?">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -69,7 +69,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OsV-A4-0Ni">
-                                <rect key="frame" x="125" y="406" width="125" height="30"/>
+                                <rect key="frame" x="125" y="504" width="125" height="30"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                                 <state key="normal" title="Create an account">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -118,7 +118,7 @@
                             <constraint firstItem="Gi7-d8-LyO" firstAttribute="top" secondItem="HKX-dZ-sjJ" secondAttribute="bottom" constant="50" id="d41-GK-pVX"/>
                             <constraint firstItem="OsV-A4-0Ni" firstAttribute="top" secondItem="Ztv-y5-Ks1" secondAttribute="bottom" constant="5" id="d7J-iD-9WE"/>
                             <constraint firstItem="Gi7-d8-LyO" firstAttribute="top" secondItem="G0E-hT-X9b" secondAttribute="bottom" constant="5" id="gLC-3F-u8s"/>
-                            <constraint firstItem="Ztv-y5-Ks1" firstAttribute="top" secondItem="Gi7-d8-LyO" secondAttribute="bottom" constant="12" id="gkf-lN-yh6"/>
+                            <constraint firstItem="Ztv-y5-Ks1" firstAttribute="top" secondItem="Gi7-d8-LyO" secondAttribute="bottom" constant="110" id="gkf-lN-yh6"/>
                             <constraint firstItem="Gi7-d8-LyO" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="iBj-mn-41W"/>
                             <constraint firstItem="tGj-Eg-72C" firstAttribute="centerX" secondItem="HKX-dZ-sjJ" secondAttribute="centerX" id="iDG-1k-JaR"/>
                             <constraint firstItem="HKX-dZ-sjJ" firstAttribute="height" secondItem="Gi7-d8-LyO" secondAttribute="height" id="r88-IZ-Bbb"/>
