@@ -12,11 +12,17 @@ import GoogleSignIn
 
 
 
-class LoginManager: NSObject { }
+class LoginManager: NSObject {
 
+let store = DataStore.sharedInstance
+let database = FIRDatabase.database().reference()
+    
+}
 
 // MARK: - Google Sign in
 extension LoginManager: GIDSignInDelegate {
+    
+    
     
     
     
@@ -44,29 +50,38 @@ extension LoginManager: GIDSignInDelegate {
             
             guard let userID = loggedInUser?.uid else {return}
             
-            let membersRef = FIRDatabase.database().reference().child("family").child(userID)
+            let membersRef = FIRDatabase.database().reference().child("user").child(userID)
             
             membersRef.observeSingleEvent(of: .value, with: { snapshot in
                 
                 if let snapshot = snapshot.value as? [String:Any] {
                     
+            
+                    
+                    membersRef.child("familyID").setValue(snapshot["familyID"])
+                    
+                    
+                    
                     DispatchQueue.main.async {
                         NotificationCenter.default.post(name: Notification.Name.openfamilyVC, object: nil)
-                        print("A family id has been created.")
+                        print("A family id exists already.")
                     }
                     
                 } else {
                     
                     guard let firebaseUser = loggedInUser else { return }
                     
-                    DataStore.sharedInstance.family.id = firebaseUser.uid
-                    let membersRef = FIRDatabase.database().reference().child("family")
-                    let newFamilyRef = membersRef.child(firebaseUser.uid)
+                    self.store.user.id = firebaseUser.uid
                     
+                    let membersRef = FIRDatabase.database().reference().child("user")
                     
+                   self.store.user.familyId = membersRef.child(self.store.user.id).child("familyID").childByAutoId().key
                     
-                    newFamilyRef.child("email").setValue(user.profile.email)
-                    newFamilyRef.child("name").setValue("New Family", withCompletionBlock: {  snapshot in
+                    membersRef.child("email").setValue(user.profile.email)
+                    
+                    self.database.child("family").child(self.store.user.familyId).child("name").setValue("New Family", withCompletionBlock: {
+                        
+                        snapshot in
                         DispatchQueue.main.async {
                             NotificationCenter.default.post(name: Notification.Name.openfamilyVC, object: nil)
                             print("A family id has been created.")
