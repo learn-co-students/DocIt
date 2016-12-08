@@ -181,7 +181,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     func configDatabaseMember() {
         let membersRef = FIRDatabase.database().reference().child("members")
-        let familyRef = membersRef.child(store.family.id)
+        let familyRef = membersRef.child(store.user.familyId)
         
         familyRef.observe(.value, with: { snapshot in
             
@@ -202,7 +202,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     func configDatabaseFamily() {
         let membersRef = FIRDatabase.database().reference().child("family")
-        let familyRef = membersRef.child(store.family.id)
+        let familyRef = membersRef.child(store.user.familyId)
         
         familyRef.observe(.value, with: { snapshot in
             
@@ -222,7 +222,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         let alertController = UIAlertController(title: nil, message: "Change your family name", preferredStyle: .alert)
         let save = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
             guard let name = nameTextField?.text, name != "" else { return }
-            let databaseEventsRef = FIRDatabase.database().reference().child("family").child(self.store.family.id)
+            let databaseEventsRef = FIRDatabase.database().reference().child("family").child(self.store.user.familyId)
             
             // TODO: We shoul be handling all the errors properly
             databaseEventsRef.updateChildValues(["name": name], withCompletionBlock: { (error, dataRef) in

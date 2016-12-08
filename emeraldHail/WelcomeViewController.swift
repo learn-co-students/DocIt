@@ -19,7 +19,7 @@ class WelcomeViewController: UIViewController {
     @IBOutlet weak var createAccount: UIButton!
     @IBOutlet weak var signIn: UIButton!
     @IBOutlet weak var touchID: UIButton!
-    @IBOutlet weak var joinFamily: JoinFamily!
+    
 
     // MARK: - Properties
 
@@ -65,16 +65,7 @@ class WelcomeViewController: UIViewController {
         authenticateUser()
     }
 
-    @IBAction func joinFamily(_ sender: UIButton) {
-        
-        if joinFamily.isHidden == true {
-            joinFamily.isHidden = false
-        } else {
-            joinFamily.isHidden = true
-        
-        }
-    }
-    // MARK: - Methods
+       // MARK: - Methods
 
     func setupViews() {
         view.backgroundColor = Constants.Colors.desertStorm

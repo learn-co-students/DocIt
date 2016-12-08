@@ -63,7 +63,7 @@ class AddMember: UIView, UIImagePickerControllerDelegate, UINavigationController
           else { return }
 
         let database: FIRDatabaseReference = FIRDatabase.database().reference()
-        let databaseMembersRef = database.child("members").child((FIRAuth.auth()?.currentUser?.uid)!).childByAutoId()
+        let databaseMembersRef = database.child("members").child(store.user.familyId).childByAutoId()
         let uniqueID = databaseMembersRef.key
 
         let storageRef = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")

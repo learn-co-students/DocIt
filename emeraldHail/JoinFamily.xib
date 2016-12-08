@@ -13,17 +13,15 @@
             <connections>
                 <outlet property="contentView" destination="iN0-l3-epB" id="1s2-rz-De8"/>
                 <outlet property="familyTextField" destination="cfl-cr-DkO" id="FWI-lJ-0cc"/>
-                <outlet property="nameTextField" destination="sbF-Kv-3o0" id="dxL-Q2-zBn"/>
-                <outlet property="passwordTextField" destination="Fbd-Dc-V0M" id="olJ-cY-fb9"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="326" height="311"/>
+            <rect key="frame" x="0.0" y="0.0" width="326" height="190"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jAe-0R-fgo">
-                    <rect key="frame" x="12" y="251" width="139" height="50"/>
+                    <rect key="frame" x="12" y="126" width="139" height="50"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.85882352939999995" green="0.17254901959999999" blue="0.21960784310000001" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
@@ -35,7 +33,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eFE-qd-bmW">
-                    <rect key="frame" x="175" y="251" width="139" height="50"/>
+                    <rect key="frame" x="175" y="126" width="139" height="50"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.095571972429999999" green="0.79535108799999998" blue="0.9092373252" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
@@ -52,29 +50,17 @@
                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Fbd-Dc-V0M">
-                    <rect key="frame" x="12" y="135" width="302" height="50"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
-                </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Family ID" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cfl-cr-DkO">
-                    <rect key="frame" x="12" y="193" width="302" height="50"/>
+                    <rect key="frame" x="12" y="68" width="302" height="50"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
-                </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sbF-Kv-3o0">
-                    <rect key="frame" x="12" y="77" width="302" height="50"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
                 </textField>
             </subviews>
             <color key="backgroundColor" red="0.98039013147354126" green="0.97651582956314087" blue="0.97630792856216431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="160" y="454.5"/>
+            <point key="canvasLocation" x="160" y="394"/>
         </view>
     </objects>
 </document>

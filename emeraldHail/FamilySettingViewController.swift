@@ -20,6 +20,7 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
     // MARK: - Outlets
     
     @IBOutlet weak var touchID: UISegmentedControl!
+    @IBOutlet weak var joinFamily: JoinFamily!
     
     // MARK: - Properties
 
@@ -57,7 +58,7 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
     @IBAction func touchIDOnOff(_ sender: UISegmentedControl) {
         
         if touchID.selectedSegmentIndex == 0 {
-            
+        
             touchID(activate: false)
             deleteAllData(entity: "CurrentUser")
             
@@ -69,11 +70,22 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
             saveDataToCoreData()
             
         }
-        
     }
+    
     @IBAction func sendEmail(_ sender: UIButton) {
         sendEmail()
     }
+    
+    @IBAction func joinFamily(_ sender: UIButton) {
+        
+        if joinFamily.isHidden == true {
+            joinFamily.isHidden = false
+        } else {
+            joinFamily.isHidden = true
+            
+        }
+    }
+
     
     // MARK: - Methods
 

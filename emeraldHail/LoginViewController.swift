@@ -142,13 +142,14 @@ class LoginViewController: UIViewController {
                 
                 DispatchQueue.main.async {
                     
-                var data = snapshot.value as! [String:Any]
+                var data = snapshot.value as? [String:Any]
                 
-                var familyID = data["FamilyID"] as! String
+                    guard let familyID = data?["familyID"] as? String else { return }
                 
                 print("======> \(familyID)")
                 
-                
+                self.store.user.id = (user?.uid)!
+                self.store.user.familyId = familyID
                 self.store.family.id = familyID
                 
                     
@@ -166,6 +167,7 @@ class LoginViewController: UIViewController {
             
             
             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+                
                 NotificationCenter.default.post(name: .openfamilyVC, object: nil)
             
             })

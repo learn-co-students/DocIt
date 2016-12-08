@@ -118,23 +118,32 @@ class RegisterViewController: UIViewController {
                 
                 
                 // Set the sharedInstance familyID to the current user.uid
-                self.store.family.id = (user?.uid)!
                 
-                self.family.child("user").child(self.store.family.id).setValue(self.store.family.id)
+                self.store.user.id = (user?.uid)!
                 
-                self.family.child("family").child((self.store.family.id)).child("email").setValue(email)
+         
+                
+                self.store.user.familyId = self.family.child("user").child(self.store.family.id).child("familyID").childByAutoId().key
+                self.store.family.id = self.store.user.familyId
+                
+                self.family.child("user").child(self.store.user.id).child("familyID").setValue(self.store.user.familyId)
+                    
+                self.family.child("user").child((self.store.user.id)).child("email").setValue(email)
+                
                 
                 // TODO: Set the initial family name to something more descriptive (perhaps using their last name or something?)
-                self.family.child("family").child(self.store.family.id).child("name").setValue("New Family")
+                self.family.child("family").child(self.store.user.familyId).child("name").setValue("New Family")
                 // TO DO: Change segue to notification center post
                 
                 
                 self.touchID(activate: false)
                 
                 self.saveDataToCoreData()
+                    
                 
                 NotificationCenter.default.post(name: .openfamilyVC, object: nil)
-                //  self.performSegue(withIdentifier: "showFamily", sender: nil)
+                
+                    //  self.performSegue(withIdentifier: "showFamily", sender: nil)
             }
         }
     }

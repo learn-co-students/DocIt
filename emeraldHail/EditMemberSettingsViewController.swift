@@ -73,7 +73,7 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
             
             // Database
             let database = FIRDatabase.database().reference()
-            let memberRef = database.child("members").child(self.store.family.id)
+            let memberRef = database.child("members").child(self.store.user.familyId)
             let eventsRef = database.child("events").child(self.store.member.id)
             let postsRef = database.child("posts")
             
@@ -266,7 +266,7 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
                                          "weight": weight,
                                          "allergies": allergies]
         
-        let memberReference : FIRDatabaseReference = FIRDatabase.database().reference().child("members").child(store.family.id).child(store.member.id)
+        let memberReference : FIRDatabaseReference = FIRDatabase.database().reference().child("members").child(store.user.familyId).child(store.member.id)
         memberReference.updateChildValues(updatedInfo)
         
         let _ = navigationController?.popViewController(animated: true)
@@ -274,7 +274,7 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
     }
     
     func displayMemberProfileEdits() {
-        let member = FIRDatabase.database().reference().child("members").child(store.family.id).child(store.member.id)
+        let member = FIRDatabase.database().reference().child("members").child(store.user.familyId).child(store.member.id)
         
         member.observe(.value, with: { (snapshot) in
             

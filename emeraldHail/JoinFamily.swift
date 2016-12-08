@@ -10,13 +10,11 @@ import UIKit
 import Firebase
 
 class JoinFamily: UIView {
-
+    
     // MARK: - Outlets
     
     @IBOutlet var contentView: UIView!
     
-    @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var familyTextField: UITextField!
     
     // MARK: - Properties
@@ -41,10 +39,10 @@ class JoinFamily: UIView {
     
     
     @IBAction func join(_ sender: UIButton) {
-        registerAndJoin()
+        joinFamily()
         self.isHidden = true
     }
-
+    
     // MARK: - Methods
     
     func commonInit() {
@@ -64,46 +62,40 @@ class JoinFamily: UIView {
         contentView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     }
     
-    func registerAndJoin() {
-        guard let email = nameTextField.text, let password = passwordTextField.text else { return }
+    func joinFamily() {
         
-        FIRAuth.auth()?.createUser(withEmail: email, password: password) { (user, error) in
-            if let error = error {
-                // TODO: Format the error.localizedDescription for natural language, ex. "Invalid email", "Password must be 6 characters or more", etc.
-                // Set errorLabel to the error.localizedDescription
-//                self.errorLabel.text = error.localizedDescription
-                print("===========================\(error.localizedDescription)")
-                return
-            }
-            FIRAuth.auth()?.signIn(withEmail: email, password: password) { (user, error) in
-                if let error = error {
-                    print(error.localizedDescription)
-                }
-                
-                
-                // Set the sharedInstance familyID to the current user.uid
-                self.store.family.id = self.familyTextField.text!
-                
-                self.database.child("user").child((user?.uid)!).child("FamilyID").setValue(self.store.family.id)
-                
-                
-                
-//                self.database.child("family").child((self.store.family.id)).child("email").setValue(email)
-                
-                // TODO: Set the initial family name to something more descriptive (perhaps using their last name or something?)
-//                self.database.child("family").child(self.store.family.id).child("name").setValue("New Family")
-                // TO DO: Change segue to notification center post
-                
-                
-//                self.touchID(activate: false)
-//                
-//                self.saveDataToCoreData()
-                
-                NotificationCenter.default.post(name: .openfamilyVC, object: nil)
-                //  self.performSegue(withIdentifier: "showFamily", sender: nil)
-            }
+        guard let familyID = familyTextField.text, familyID != "" else { return }
+        
+        print(store.user.id)
+        print(store.user.familyId)
+        
+        // Set the sharedInstance familyID to the current user.uid
+        self.store.user.familyId = familyID
+        
+        self.database.child("user").child(store.user.id).child("familyID").setValue(store.user.familyId)
+        
+        
+        
+        //                self.database.child("family").child((self.store.family.id)).child("email").setValue(email)
+        
+        // TODO: Set the initial family name to something more descriptive (perhaps using their last name or something?)
+        //                self.database.child("family").child(self.store.family.id).child("name").setValue("New Family")
+        // TO DO: Change segue to notification center post
+        
+        
+        //                self.touchID(activate: false)
+        //
+        //                self.saveDataToCoreData()
+//        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
+        
+        
+        
+        NotificationCenter.default.post(name: .openfamilyVC, object: nil)
+        //  self.performSegue(withIdentifier: "showFamily", sender: nil)
         }
-
     }
-    
-}
+
+
+
+
+
