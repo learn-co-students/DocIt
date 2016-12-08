@@ -20,6 +20,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var addEvent: UIView!
+    @IBOutlet weak var modifyEvent: ModifyEvent!
     
     // MARK: - Properties
     
@@ -142,14 +143,20 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         let edit = UITableViewRowAction(style: .normal, title: "Edit") { (action, indexPath) in
             // share item at indexPath
-            print("It's the edit button ************************************************************* ")
+            
+            self.store.eventID = self.events[indexPath.row].uniqueID
+            
+            self.modifyEvent.nameTextField.text = self.events[indexPath.row].name
+            self.modifyEvent.dateTextField.text = self.events[indexPath.row].startDate
+                
+            self.modifyEvent.isHidden = false
+        
         }
         
         edit.backgroundColor = UIColor.orange
         
         return [delete, edit]
     }
-    
     
     
     

@@ -699,13 +699,23 @@
                                     <constraint firstAttribute="height" constant="230" id="wvV-24-f2r"/>
                                 </constraints>
                             </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pkh-fJ-8qy" customClass="modifyEvent" customModule="emeraldHail" customModuleProvider="target">
+                                <rect key="frame" x="62" y="218" width="250" height="230"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="230" id="Pkt-C0-btY"/>
+                                    <constraint firstAttribute="width" constant="250" id="meb-Cc-Ccg"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.98039132356643677" green="0.97655218839645386" blue="0.97635632753372192" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="y38-9i-HW6" firstAttribute="height" secondItem="e58-fj-dk1" secondAttribute="height" id="3Fg-rg-20U"/>
+                            <constraint firstItem="pkh-fJ-8qy" firstAttribute="centerY" secondItem="e58-fj-dk1" secondAttribute="centerY" id="JW7-Bb-LWX"/>
                             <constraint firstItem="kW8-dY-7yT" firstAttribute="centerX" secondItem="e58-fj-dk1" secondAttribute="centerX" id="Xhz-1B-9m3"/>
                             <constraint firstItem="kW8-dY-7yT" firstAttribute="centerY" secondItem="e58-fj-dk1" secondAttribute="centerY" id="XmN-ze-KMG"/>
+                            <constraint firstItem="pkh-fJ-8qy" firstAttribute="centerX" secondItem="e58-fj-dk1" secondAttribute="centerX" id="e6V-cf-3ci"/>
                             <constraint firstItem="y38-9i-HW6" firstAttribute="centerX" secondItem="e58-fj-dk1" secondAttribute="centerX" id="uSL-me-OzY"/>
                             <constraint firstItem="y38-9i-HW6" firstAttribute="centerY" secondItem="e58-fj-dk1" secondAttribute="centerY" id="w4B-i4-ib8"/>
                             <constraint firstItem="y38-9i-HW6" firstAttribute="width" secondItem="e58-fj-dk1" secondAttribute="width" id="zeG-0K-IRK"/>
@@ -732,6 +742,7 @@
                     <connections>
                         <outlet property="addEvent" destination="kW8-dY-7yT" id="pfn-sZ-oL0"/>
                         <outlet property="eventsTable" destination="y38-9i-HW6" id="Vys-mU-U0O"/>
+                        <outlet property="modifyEvent" destination="pkh-fJ-8qy" id="yRF-0m-Ujz"/>
                         <outlet property="nameLabel" destination="vyO-rN-E2I" id="vSt-Sk-TNW"/>
                         <outlet property="profileImageView" destination="NAm-Dd-L9Z" id="vwr-1H-eqU"/>
                     </connections>

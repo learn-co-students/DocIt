@@ -151,7 +151,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         switch kind {
         case UICollectionElementKindSectionHeader:
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) as! HeaderCollectionReusableView
-            let familyPictureUrl = URL(string: store.familyPicture)
+            let familyPictureUrl = URL(string: store.family.coverImageStr!)
             
             headerView.familyNameLabel.text = store.family.name
             headerView.profileImage.sd_setImage(with: familyPictureUrl)
@@ -213,7 +213,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
             self.store.family.name = familyName as? String
             
             guard let coverImgStr = dic?["coverImageStr"] else { return }
-            self.store.familyPicture = coverImgStr as! String
+            self.store.family.coverImageStr = coverImgStr as! String
         })
     }
     

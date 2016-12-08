@@ -1,5 +1,5 @@
-//
-//  modifyEvent.swift
+//  
+//  ModifyEvent.swift
 //  emeraldHail
 //
 //  Created by Enrique Torrendell on 12/7/16.
@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class modifyEvent: UIView, UIPickerViewDelegate, UITextFieldDelegate {
+class ModifyEvent: UIView, UIPickerViewDelegate, UITextFieldDelegate {
     
     @IBOutlet var contentView: UIView!
     
@@ -51,41 +51,26 @@ class modifyEvent: UIView, UIPickerViewDelegate, UITextFieldDelegate {
     // MARK: - Methods
     
     func commonInit() {
-        Bundle.main.loadNibNamed("modifyEvent", owner: self, options: nil)
+        
+        Bundle.main.loadNibNamed("ModifyEvent", owner: self, options: nil)
         
         dateTextField.delegate = self
         
-        readFromFirebase()
-        
         addSubview(contentView)
+        
+        nameTextField.text = store.event.name
+        dateTextField.text = store.event.startDate
         
         contentView.layer.cornerRadius = 10
     }
     
-    
-}
-
-extension modifyEvent {
-    
     // MARK: Methods Firebase
-        
-    func readFromFirebase() {
-        
-        database.child("events").observe(.value, with: { (snapshot) in
-            
-            
-            
-            
-        })
-        
-        
-    }
-    
+   
     func saveToFirebase() {
         
         guard let name = nameTextField?.text, name != "", let date = dateTextField?.text, date != "" else { return }
         
-        let databaseEventsRef = self.database.child("events").child(self.store.member.id).childByAutoId()
+        let databaseEventsRef = self.database.child("events").child(self.store.member.id).child(self.store.eventID)
         
         let uniqueID = databaseEventsRef.key
         
@@ -106,12 +91,6 @@ extension modifyEvent {
         self.dobSelection.setDate(NSDate() as Date, animated: true)
         
     }
-    
-}
-
-
-
-extension modifyEvent {
     
     // MARK: Methods Date Picker
     
