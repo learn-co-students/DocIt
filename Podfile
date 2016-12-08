@@ -10,6 +10,7 @@ target 'emeraldHail' do
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'Firebase/Storage'
+  pod 'Firebase/Invites'
   pod 'SDWebImage', '~>3.8'
   pod 'GoogleSignIn'
   pod 'IQKeyboardManagerSwift'
