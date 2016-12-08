@@ -62,6 +62,16 @@ class ModifyEvent: UIView, UIPickerViewDelegate, UITextFieldDelegate {
         dateTextField.text = store.event.startDate
         
         contentView.layer.cornerRadius = 10
+        contentView.layer.borderColor = Constants.Colors.submarine.cgColor
+        contentView.layer.borderWidth = 1
+        
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        
+        contentView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+        contentView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+        contentView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        contentView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        
     }
     
     // MARK: Methods Firebase

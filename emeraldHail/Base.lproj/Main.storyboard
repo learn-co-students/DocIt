@@ -696,31 +696,27 @@
                                 </prototypes>
                             </tableView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kW8-dY-7yT" customClass="AddEvent" customModule="emeraldHail" customModuleProvider="target">
-                                <rect key="frame" x="62" y="219" width="250" height="230"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="250" id="DOU-nB-Z4T"/>
-                                    <constraint firstAttribute="height" constant="230" id="wvV-24-f2r"/>
-                                </constraints>
+                                <rect key="frame" x="25" y="75" width="325" height="250"/>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pkh-fJ-8qy" customClass="ModifyEvent" customModule="emeraldHail" customModuleProvider="target">
-                                <rect key="frame" x="62" y="218" width="250" height="230"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="25" y="75" width="325" height="250"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="230" id="Pkt-C0-btY"/>
-                                    <constraint firstAttribute="width" constant="250" id="meb-Cc-Ccg"/>
+                                    <constraint firstAttribute="height" constant="250" id="4kA-sA-tn5"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.98039132356643677" green="0.97655218839645386" blue="0.97635632753372192" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="kW8-dY-7yT" firstAttribute="centerY" secondItem="pkh-fJ-8qy" secondAttribute="centerY" id="0pr-zQ-rRP"/>
                             <constraint firstItem="y38-9i-HW6" firstAttribute="height" secondItem="e58-fj-dk1" secondAttribute="height" id="3Fg-rg-20U"/>
-                            <constraint firstItem="pkh-fJ-8qy" firstAttribute="centerY" secondItem="e58-fj-dk1" secondAttribute="centerY" id="JW7-Bb-LWX"/>
-                            <constraint firstItem="kW8-dY-7yT" firstAttribute="centerX" secondItem="e58-fj-dk1" secondAttribute="centerX" id="Xhz-1B-9m3"/>
-                            <constraint firstItem="kW8-dY-7yT" firstAttribute="centerY" secondItem="e58-fj-dk1" secondAttribute="centerY" id="XmN-ze-KMG"/>
+                            <constraint firstItem="kW8-dY-7yT" firstAttribute="width" secondItem="pkh-fJ-8qy" secondAttribute="width" id="P48-0J-k42"/>
+                            <constraint firstItem="pkh-fJ-8qy" firstAttribute="centerY" secondItem="e58-fj-dk1" secondAttribute="centerY" multiplier="0.6" id="QgE-jB-Gnn"/>
+                            <constraint firstItem="kW8-dY-7yT" firstAttribute="height" secondItem="pkh-fJ-8qy" secondAttribute="height" id="aFJ-pk-4LT"/>
                             <constraint firstItem="pkh-fJ-8qy" firstAttribute="centerX" secondItem="e58-fj-dk1" secondAttribute="centerX" id="e6V-cf-3ci"/>
+                            <constraint firstItem="kW8-dY-7yT" firstAttribute="centerX" secondItem="pkh-fJ-8qy" secondAttribute="centerX" id="fHJ-jC-JZB"/>
                             <constraint firstItem="y38-9i-HW6" firstAttribute="centerX" secondItem="e58-fj-dk1" secondAttribute="centerX" id="uSL-me-OzY"/>
+                            <constraint firstItem="pkh-fJ-8qy" firstAttribute="width" secondItem="e58-fj-dk1" secondAttribute="width" constant="-50" id="vJg-V3-Jwg"/>
                             <constraint firstItem="y38-9i-HW6" firstAttribute="centerY" secondItem="e58-fj-dk1" secondAttribute="centerY" id="w4B-i4-ib8"/>
                             <constraint firstItem="y38-9i-HW6" firstAttribute="width" secondItem="e58-fj-dk1" secondAttribute="width" id="zeG-0K-IRK"/>
                         </constraints>
