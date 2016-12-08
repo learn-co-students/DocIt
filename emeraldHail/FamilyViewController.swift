@@ -36,7 +36,6 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         print("Inside FamilyVC, the familyID is: \(store.family.id)")
         
         hideKeyboardWhenTappedAround()
-        getFamilyID()
         
         imageSelected.delegate = self
         memberProfilesView.delegate = self
@@ -161,8 +160,6 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         
     }
     
-    // MARK: Functions
-    
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(FamilyViewController.dismissKeyboardView))
         tap.cancelsTouchesInView = false
@@ -171,10 +168,6 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     func dismissKeyboardView() {
         view.endEditing(true)
-    }
-    
-    func getFamilyID() {
-//        store.family.id = database.child("user").child((FIRAuth.auth()?.currentUser?.uid)!).value(forKey: "FamilyID") as! String
     }
     
     // TODO: Rethink some of the variable names here and in configDatabaseFamily for clarity

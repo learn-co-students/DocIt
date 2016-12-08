@@ -82,31 +82,32 @@ extension LoginManager: GIDSignInDelegate {
                     
                 } else {
                     
-                    guard let firebaseUser = loggedInUser else { return }
-                    
-                    self.store.user.id = firebaseUser.uid
-                    
-                    let membersRef = FIRDatabase.database().reference().child("user")
-                    
-                    self.store.user.familyId = membersRef.child(self.store.user.id).child("familyID").childByAutoId().key
-                    
-                    membersRef.child("email").setValue(user.profile.email)
-                    
-                    self.database.child("family").child(self.store.user.familyId).child("name").setValue("New Family", withCompletionBlock: {
-                        
-                        snapshot in
-                        DispatchQueue.main.async {
-                            NotificationCenter.default.post(name: Notification.Name.openfamilyVC, object: nil)
-                            print("A family id has been created.")
-                        }
-                        
-                        
-                    })
-                }}
-                
-            )}
-            
-        )}
+//                    guard let firebaseUser = loggedInUser else { return }
+//                    
+//                    self.store.user.id = firebaseUser.uid
+//                    
+//                    let membersRef = FIRDatabase.database().reference().child("user")
+//                    
+//                    self.store.user.familyId = membersRef.child(self.store.user.id).child("familyID").childByAutoId().key
+//                    
+//                    membersRef.child("email").setValue(user.profile.email)
+//                    
+//                    self.database.child("family").child(self.store.user.familyId).child("name").setValue("New Family", withCompletionBlock: {
+//                        
+//                        snapshot in
+//                        DispatchQueue.main.async {
+//                            NotificationCenter.default.post(name: Notification.Name.openfamilyVC, object: nil)
+//                            print("A family id has been created.")
+//                        }
+//                        
+//                        
+//                    })
+//                }}
+                }
+            })
+        })
+        
+    }
     
     
 }
