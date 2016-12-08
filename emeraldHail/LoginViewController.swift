@@ -25,6 +25,7 @@ class LoginViewController: UIViewController {
 
     let store = DataStore.sharedInstance
     var database: FIRDatabaseReference = FIRDatabase.database().reference()
+    let loginManager = LoginManager()
     
     // MARK: - Loads
 
@@ -33,6 +34,10 @@ class LoginViewController: UIViewController {
 
         setupViews()
         hideKeyboardWhenTappedAround()
+        configureGoogleButton()
+
+        GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance().delegate = loginManager
 
     }
 
@@ -180,3 +185,38 @@ class LoginViewController: UIViewController {
 
 
 }
+
+// MARK: - Google UI Delegate
+extension LoginViewController: GIDSignInUIDelegate {
+    
+    func configureGoogleButton() {
+        let googleSignInButton = GIDSignInButton()
+        
+        googleSignInButton.colorScheme = .light
+        googleSignInButton.style = .standard
+        
+        self.view.addSubview(googleSignInButton)
+        googleSignInButton.translatesAutoresizingMaskIntoConstraints = false
+        googleSignInButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        googleSignInButton.topAnchor.constraint(equalTo: signIn.bottomAnchor, constant: 10).isActive = true
+        googleSignInButton.heightAnchor.constraint(equalTo: passwordField.heightAnchor).isActive = true
+        googleSignInButton.widthAnchor.constraint(equalTo: passwordField.widthAnchor).isActive = true
+        view.layoutIfNeeded()
+    }
+    
+    func sign(_ signIn: GIDSignIn!, dismiss viewController: UIViewController!) {
+        viewController.dismiss(animated: false, completion: { _ in
+        })
+        
+    }
+    
+    func sign(_ signIn: GIDSignIn!, present viewController: UIViewController!) {
+        present(viewController, animated: true, completion: nil)
+    }
+    //TO DO: This method is suppoesed to allow the user to sign in through the app silently.
+    //        func signIn() {
+    //            GIDSignIn.sharedInstance().signIn()
+    //        }
+    
+}
+
