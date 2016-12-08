@@ -25,7 +25,7 @@ class LoginViewController: UIViewController {
 
     let store = DataStore.sharedInstance
     var database: FIRDatabaseReference = FIRDatabase.database().reference()
-    let loginManager = LoginManager()
+//    let loginManager = LoginManager()
     
     // MARK: - Loads
 
@@ -37,7 +37,7 @@ class LoginViewController: UIViewController {
         configureGoogleButton()
 
         GIDSignIn.sharedInstance().uiDelegate = self
-        GIDSignIn.sharedInstance().delegate = loginManager
+        GIDSignIn.sharedInstance().delegate = self
 
     }
 
@@ -219,4 +219,77 @@ extension LoginViewController: GIDSignInUIDelegate {
     //        }
     
 }
+
+// MARK: - Google Sign in
+extension LoginViewController: GIDSignInDelegate {
+    
+    
+    
+    
+    
+    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
+        // TODO
+    }
+    
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        print(123123123123)
+        
+        if let err = error {
+            print("Failed to log into Google: ", err)
+            return
+        }
+        print("Successfully logged into Google", user)
+        
+        guard let idToken = user.authentication.idToken else { return }
+        guard let accessToken = user.authentication.accessToken else { return }
+        
+        let credential = FIRGoogleAuthProvider.credential(withIDToken: idToken, accessToken: accessToken)
+        //let store = DataStore.sharedInstance
+        //let family = FIRDatabase.database().reference().child("family")
+        FIRAuth.auth()?.signIn(with: credential, completion: { loggedInUser, error in
+            
+            guard let userID = loggedInUser?.uid else {return}
+            
+            let membersRef = FIRDatabase.database().reference().child("user").child(userID)
+            
+            membersRef.observeSingleEvent(of: .value, with: { snapshot in
+                
+                if let data = snapshot.value as? [String:Any] {
+                    
+                    
+                    guard let familyID = data["familyID"] as? String else { return }
+                    
+                    print("======> \(familyID)")
+                    
+                    self.store.user.id = userID
+                    self.store.user.familyId = familyID
+                    self.store.family.id = familyID
+                    
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+                        NotificationCenter.default.post(name: Notification.Name.openfamilyVC, object: nil)
+                    })
+                    
+                    
+                    
+                    print(self.store.user.id)
+                    print(self.store.user.familyId)
+                    
+                    
+                    
+                    print("A family id exists already.")
+                    
+                    
+                } else {
+                    
+                    print("HEHEHEHEHHEHEHEHE")
+                    self.errorLabel.text = "Your email address is not registered.\nPlease register."
+                    
+                }
+            })
+        })
+    }
+}
+
 
