@@ -44,9 +44,9 @@ class DataStore{
     
     // MARK: - Instances
     
-    var user = Person(id: "", familyId: "")
+    var user = Person(id: "", familyId: "", email: "")
     
-    var family = Family(id: "", name: "", email: "", coverImage: nil, coverImageStr: "", members: [])
+    var family = Family(id: "", name: "", coverImage: nil, coverImageStr: "", members: [])
 
     var member = Member(profileImage: "", firstName: "", lastName: "", gender: "", birthday: "", bloodType: "", height: "", weight: "", allergies: "", id: "")
     

@@ -93,7 +93,7 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
         let alert = UIAlertController(title: nil, message: "Change your family name", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default, handler: { (action) in
             let userInput = alert.textFields![0].text
-            let ref = FIRDatabase.database().reference().child("family").child(self.store.family.id)
+            let ref = FIRDatabase.database().reference().child("family").child(self.store.user.familyId)
 
             guard let name = userInput, name != "" else { return }
 

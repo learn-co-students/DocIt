@@ -146,12 +146,12 @@ class LoginViewController: UIViewController {
                 var data = snapshot.value as? [String:Any]
                 
                     guard let familyID = data?["familyID"] as? String else { return }
+                    guard let userEmail = data?["email"] as? String else { return }
                 
-                print("======> \(familyID)")
-                
-                self.store.user.id = (user?.uid)!
-                self.store.user.familyId = familyID
-                self.store.family.id = familyID
+                    self.store.user.id = (user?.uid)!
+                    self.store.user.email = userEmail
+                    self.store.user.familyId = familyID
+                    self.store.family.id = familyID
                 
                     
                

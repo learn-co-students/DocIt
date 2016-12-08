@@ -74,24 +74,8 @@ class JoinFamily: UIView {
         
         self.database.child("user").child(store.user.id).child("familyID").setValue(store.user.familyId)
         
-        
-        
-        //                self.database.child("family").child((self.store.family.id)).child("email").setValue(email)
-        
-        // TODO: Set the initial family name to something more descriptive (perhaps using their last name or something?)
-        //                self.database.child("family").child(self.store.family.id).child("name").setValue("New Family")
-        // TO DO: Change segue to notification center post
-        
-        
-        //                self.touchID(activate: false)
-        //
-        //                self.saveDataToCoreData()
-//        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
-        
-        
-        
         NotificationCenter.default.post(name: .openfamilyVC, object: nil)
-        //  self.performSegue(withIdentifier: "showFamily", sender: nil)
+        
         }
     }
 

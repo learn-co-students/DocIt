@@ -130,7 +130,6 @@ class RegisterViewController: UIViewController {
                     
                 self.family.child("user").child((self.store.user.id)).child("email").setValue(email)
                 
-                
                 // TODO: Set the initial family name to something more descriptive (perhaps using their last name or something?)
                 self.family.child("family").child(self.store.user.familyId).child("name").setValue("New Family")
                 // TO DO: Change segue to notification center post
