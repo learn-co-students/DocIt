@@ -87,6 +87,7 @@ class LoginViewController: UIViewController {
 
     @IBAction func pressedGoogleSignIn(_ sender: Any) {
             GIDSignIn.sharedInstance().signIn()
+        print("We are hitting the google button")
 
     }
 

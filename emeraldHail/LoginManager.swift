@@ -13,9 +13,9 @@ import GoogleSignIn
 
 
 class LoginManager: NSObject {
-
-let store = DataStore.sharedInstance
-let database = FIRDatabase.database().reference()
+    
+    let store = DataStore.sharedInstance
+    let database = FIRDatabase.database().reference()
     
 }
 
@@ -54,18 +54,31 @@ extension LoginManager: GIDSignInDelegate {
             
             membersRef.observeSingleEvent(of: .value, with: { snapshot in
                 
-                if let snapshot = snapshot.value as? [String:Any] {
+                if let data = snapshot.value as? [String:Any] {
+                
                     
-            
+                    guard let familyID = data["familyID"] as? String else { return }
                     
-                    membersRef.child("familyID").setValue(snapshot["familyID"])
+                    print("======> \(familyID)")
+                    
+                    self.store.user.id = userID
+                    self.store.user.familyId = familyID
+                    self.store.family.id = familyID
                     
                     
-                    
-                    DispatchQueue.main.async {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
                         NotificationCenter.default.post(name: Notification.Name.openfamilyVC, object: nil)
-                        print("A family id exists already.")
-                    }
+                    })
+                    
+                    
+                    
+                    print(self.store.user.id)
+                    print(self.store.user.familyId)
+                    
+                    
+                    
+                    print("A family id exists already.")
+                    
                     
                 } else {
                     
@@ -75,7 +88,7 @@ extension LoginManager: GIDSignInDelegate {
                     
                     let membersRef = FIRDatabase.database().reference().child("user")
                     
-                   self.store.user.familyId = membersRef.child(self.store.user.id).child("familyID").childByAutoId().key
+                    self.store.user.familyId = membersRef.child(self.store.user.id).child("familyID").childByAutoId().key
                     
                     membersRef.child("email").setValue(user.profile.email)
                     
