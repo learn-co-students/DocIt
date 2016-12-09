@@ -121,7 +121,7 @@ class RegisterViewController: UIViewController {
                 
                 self.store.user.id = (user?.uid)!
                 
-         
+                
                 
                 self.store.user.familyId = self.family.child("user").child(self.store.user.id).child("familyID").childByAutoId().key
                 self.store.family.id = self.store.user.familyId

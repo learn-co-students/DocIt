@@ -221,16 +221,12 @@ extension LoginViewController: GIDSignInUIDelegate {
 }
 
 // MARK: - Google Sign in
+
 extension LoginViewController: GIDSignInDelegate {
     
-    
-    
-    
-    
-    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
-        // TODO
-    }
-    
+//    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
+//        // TODO
+//    }
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         print(123123123123)
@@ -245,15 +241,12 @@ extension LoginViewController: GIDSignInDelegate {
         guard let accessToken = user.authentication.accessToken else { return }
         
         let credential = FIRGoogleAuthProvider.credential(withIDToken: idToken, accessToken: accessToken)
-        //let store = DataStore.sharedInstance
-        //let family = FIRDatabase.database().reference().child("family")
+        
         FIRAuth.auth()?.signIn(with: credential, completion: { loggedInUser, error in
             
             guard let userID = loggedInUser?.uid else {return}
             
-            let membersRef = FIRDatabase.database().reference().child("user").child(userID)
-            
-            membersRef.observeSingleEvent(of: .value, with: { snapshot in
+            self.database.child("user").child(userID).observeSingleEvent(of: .value, with: { snapshot in
                 
                 if let data = snapshot.value as? [String:Any] {
                     
@@ -283,8 +276,27 @@ extension LoginViewController: GIDSignInDelegate {
                     
                 } else {
                     
-                    print("HEHEHEHEHHEHEHEHE")
-                    self.errorLabel.text = "Your email address is not registered.\nPlease register."
+                    
+                    self.store.user.id = userID
+                    
+                    let familyID = self.database.child("user").child(userID).child("familyID").childByAutoId().key
+                    
+                    print("THIS IS THE FAMILY ID \(familyID)")
+                    
+                    self.store.user.familyId = familyID
+                    self.store.family.id = familyID
+                    
+                    self.database.child("user").child(userID).child("familyID").setValue(familyID)
+                    self.database.child("family").child("name").setValue("New Family")
+                    self.database.child("user").child(self.store.user.id).child("email").setValue((loggedInUser?.email)!)
+                    
+                    print("YEAHHH")
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+                        
+                        NotificationCenter.default.post(name: Notification.Name.openfamilyVC, object: nil)
+                    })
+                    
                     
                 }
             })
