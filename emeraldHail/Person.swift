@@ -14,11 +14,13 @@ struct Person {
     
     var id: String
     var familyId: String
+    var email: String
     
-    init(id: String, familyId: String) {
+    init(id: String, familyId: String, email: String) {
         
         self.id = id
         self.familyId = familyId
+        self.email = email
         
     }
     

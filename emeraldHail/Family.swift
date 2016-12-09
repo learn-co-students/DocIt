@@ -14,7 +14,6 @@ class Family {
     
     var id: String
     var name: String?
-    var email: String?
     var coverImage: UIImage?
     var coverImageStr: String?
     var members: [Member]?
@@ -24,10 +23,9 @@ class Family {
     }
     
     // MARK: - Initializers
-    init(id: String, name: String, email: String, coverImage: UIImage?, coverImageStr: String?, members: [Member]?) {
+    init(id: String, name: String, coverImage: UIImage?, coverImageStr: String?, members: [Member]?) {
         self.id = id
         self.name = name
-        self.email = email
         self.coverImage = coverImage
         self.coverImageStr = coverImageStr
         self.members = []
@@ -61,7 +59,7 @@ class Family {
     
     // TODO: Why are we forcing this? Enrique
     func serialize() -> [String:Any] {
-        return ["email":email!, "name":name!, "coverImageStr": coverImageStr!]
+        return ["name":name!, "coverImageStr": coverImageStr!]
     }
     
 }

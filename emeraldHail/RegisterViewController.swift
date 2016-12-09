@@ -123,10 +123,11 @@ class RegisterViewController: UIViewController {
                     self.store.user.familyId = self.family.child("user").child(self.store.user.id).child("familyID").childByAutoId().key
                     self.store.family.id = self.store.user.familyId
                 
+
                     self.touchID(activate: false)
                     self.saveDataToCoreData()
+
                 
-                    
                 } else {
                  
                     self.store.user.id = (user?.uid)!

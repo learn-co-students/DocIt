@@ -43,7 +43,6 @@
 		B674039C1DF1CC2E00172ACD /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B674039B1DF1CC2E00172ACD /* AppController.swift */; };
 		B69466641DECCE3000F2E30C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B69466631DECCE3000F2E30C /* Assets.xcassets */; };
 		B69638D21DE602FD00FE7023 /* AddNotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69638D11DE602FD00FE7023 /* AddNotesViewController.swift */; };
-		B6E47C8F1DF6098D00BC092C /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E47C8E1DF6098D00BC092C /* LoginManager.swift */; };
 		B6ED5B361DDE4CDB00B56DFD /* TempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6ED5B351DDE4CDB00B56DFD /* TempViewController.swift */; };
 		B6F44C081DEE080000995237 /* EditMemberSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F44C071DEE080000995237 /* EditMemberSettingsViewController.swift */; };
 		BB14EBD71DED43A0004F6D56 /* HealthCore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BB14EBD51DED43A0004F6D56 /* HealthCore.xcdatamodeld */; };
@@ -118,7 +117,6 @@
 		B674039B1DF1CC2E00172ACD /* AppController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppController.swift; sourceTree = "<group>"; };
 		B69466631DECCE3000F2E30C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B69638D11DE602FD00FE7023 /* AddNotesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNotesViewController.swift; sourceTree = "<group>"; };
-		B6E47C8E1DF6098D00BC092C /* LoginManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
 		B6ED5B351DDE4CDB00B56DFD /* TempViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempViewController.swift; sourceTree = "<group>"; };
 		B6F44C071DEE080000995237 /* EditMemberSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditMemberSettingsViewController.swift; sourceTree = "<group>"; };
 		BB14EBD61DED43A0004F6D56 /* HealthCore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HealthCore.xcdatamodel; sourceTree = "<group>"; };
@@ -347,7 +345,6 @@
 			children = (
 				B674039B1DF1CC2E00172ACD /* AppController.swift */,
 				AA6E4D201DE7419B00C8FEE3 /* WelcomeViewController.swift */,
-				B6E47C8E1DF6098D00BC092C /* LoginManager.swift */,
 				BBF4EEB01DDF59D400EBD3FE /* LoginViewController.swift */,
 				BBF4EEB21DDF59DC00EBD3FE /* RegisterViewController.swift */,
 				BBF4EEB41DDF59F900EBD3FE /* FamilyViewController.swift */,
@@ -529,7 +526,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -542,7 +539,6 @@
 				B6ED5B361DDE4CDB00B56DFD /* TempViewController.swift in Sources */,
 				DDDE224A1DF0C4A5006B234C /* PhotoCell.swift in Sources */,
 				AAFE44661DDF634800922FB0 /* PainLevel.swift in Sources */,
-				B6E47C8F1DF6098D00BC092C /* LoginManager.swift in Sources */,
 				AAE7D3ED1DEF6DB300C59107 /* SymptomCell.swift in Sources */,
 				DDB88F8B1DEE1E03002E9668 /* PainLevelCell.swift in Sources */,
 				B6F44C081DEE080000995237 /* EditMemberSettingsViewController.swift in Sources */,
