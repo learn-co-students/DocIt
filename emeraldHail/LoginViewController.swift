@@ -34,15 +34,12 @@ class LoginViewController: UIViewController {
         
         setupViews()
         hideKeyboardWhenTappedAround()
-<<<<<<< HEAD
-        
-=======
+
         configureGoogleButton()
 
         GIDSignIn.sharedInstance().uiDelegate = self
         GIDSignIn.sharedInstance().delegate = self
 
->>>>>>> master
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -199,10 +196,6 @@ class LoginViewController: UIViewController {
 
 
 
-<<<<<<< HEAD
-=======
-}
-
 // MARK: - Google UI Delegate
 extension LoginViewController: GIDSignInUIDelegate {
     
@@ -321,5 +314,3 @@ extension LoginViewController: GIDSignInDelegate {
     }
 }
 
-
->>>>>>> master
