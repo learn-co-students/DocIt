@@ -32,7 +32,6 @@
 		AA9FFBBD1DDA667500847FCF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA9FFBBB1DDA667500847FCF /* Main.storyboard */; };
 		AA9FFBC21DDA667500847FCF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA9FFBC01DDA667500847FCF /* LaunchScreen.storyboard */; };
 		AAC106061DF08CF4007E5116 /* Symp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC106051DF08CF4007E5116 /* Symp.swift */; };
-		AAD5E92F1DFA00F600D66A14 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAD5E92E1DFA00F600D66A14 /* GoogleService-Info.plist */; };
 		AAE7D3ED1DEF6DB300C59107 /* SymptomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE7D3EC1DEF6DB300C59107 /* SymptomCell.swift */; };
 		AAF109341DEE4BA700E6DE26 /* TempView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAF109331DEE4BA700E6DE26 /* TempView.xib */; };
 		AAFE445E1DDF5AE900922FB0 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFE445D1DDF5AE900922FB0 /* Event.swift */; };
@@ -66,6 +65,7 @@
 		BBF4EEB71DDF59FF00EBD3FE /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF4EEB61DDF59FF00EBD3FE /* EventViewController.swift */; };
 		BBF4EEB91DDF5A0600EBD3FE /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF4EEB81DDF5A0600EBD3FE /* PostViewController.swift */; };
 		DD3BD9831DEB7C2800311BE9 /* PainLevelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3BD9821DEB7C2800311BE9 /* PainLevelCollectionViewCell.swift */; };
+		DD5970D71DFB0CA4000DA750 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD5970D61DFB0CA4000DA750 /* GoogleService-Info.plist */; };
 		DDA93D201DDE412000F0A4D4 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA93D1F1DDE412000F0A4D4 /* Secrets.swift */; };
 		DDA93D221DDE508A00F0A4D4 /* PainLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA93D211DDE508A00F0A4D4 /* PainLevelViewController.swift */; };
 		DDB88F871DEE1CD5002E9668 /* PainLevelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDB88F861DEE1CD5002E9668 /* PainLevelView.xib */; };
@@ -106,7 +106,6 @@
 		AA9FFBC11DDA667500847FCF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AA9FFBC31DDA667500847FCF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AAC106051DF08CF4007E5116 /* Symp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Symp.swift; sourceTree = "<group>"; };
-		AAD5E92E1DFA00F600D66A14 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AAE7D3EC1DEF6DB300C59107 /* SymptomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SymptomCell.swift; sourceTree = "<group>"; };
 		AAF109331DEE4BA700E6DE26 /* TempView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TempView.xib; sourceTree = "<group>"; };
 		AAFE445D1DDF5AE900922FB0 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
@@ -142,6 +141,7 @@
 		D4BA12601A0F16DED58FEC5E /* Pods_emeraldHail.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_emeraldHail.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD3BD97B1DE7B9A800311BE9 /* emeraldHail-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "emeraldHail-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		DD3BD9821DEB7C2800311BE9 /* PainLevelCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PainLevelCollectionViewCell.swift; sourceTree = "<group>"; };
+		DD5970D61DFB0CA4000DA750 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DD755E1B1DE3ACB2002478D0 /* emeraldHail.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = emeraldHail.entitlements; sourceTree = "<group>"; };
 		DDA93D1F1DDE412000F0A4D4 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		DDA93D211DDE508A00F0A4D4 /* PainLevelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PainLevelViewController.swift; sourceTree = "<group>"; };
@@ -241,7 +241,7 @@
 			isa = PBXGroup;
 			children = (
 				DD755E1B1DE3ACB2002478D0 /* emeraldHail.entitlements */,
-				AAD5E92E1DFA00F600D66A14 /* GoogleService-Info.plist */,
+				DD5970D61DFB0CA4000DA750 /* GoogleService-Info.plist */,
 				DD58FAE51DDBBB40004A7A22 /* Controllers */,
 				DD58FAE41DDBBB1D004A7A22 /* View */,
 				AA9FFBC91DDA6A8E00847FCF /* Model */,
@@ -465,7 +465,7 @@
 			files = (
 				AA9892AE1DEA1C290092F3A8 /* NoteView.xib in Resources */,
 				AA9FFBC21DDA667500847FCF /* LaunchScreen.storyboard in Resources */,
-				AAD5E92F1DFA00F600D66A14 /* GoogleService-Info.plist in Resources */,
+				DD5970D71DFB0CA4000DA750 /* GoogleService-Info.plist in Resources */,
 				BB2A52E31DF888E2007760A5 /* AddMember.xib in Resources */,
 				AAFE44681DDF68BE00922FB0 /* SymptomView.xib in Resources */,
 				AA0BF2BE1DF4A9190062FA36 /* AddMemberView.xib in Resources */,
@@ -526,7 +526,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
