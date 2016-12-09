@@ -22,10 +22,10 @@ class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     
     // MARK: - Outlets
     
+    @IBOutlet weak var noteView: UIView!
     @IBOutlet weak var temperaturePickerView: UIPickerView!
     @IBOutlet weak var tempSegments: UISegmentedControl!
-    @IBOutlet weak var temperatureSegment: UISegmentedControl!
-    @IBOutlet weak var temperatureImageVIew: UIImageView!
+
     
     // MARK: - Methods 
     
@@ -41,12 +41,12 @@ class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     // MARK: - Loads
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         self.temperaturePickerView.delegate = self
         self.temperaturePickerView.dataSource = self
-        // Do any additional setup after loading the view.
-        self.temperatureImageVIew.image = UIImage(named: "defaultTempImage")
-        
+        setupView()
+       
     }
     
     // Save button temperature for the event based on these three options to member profile.
@@ -54,23 +54,56 @@ class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     
     // MARK: - Actions
     
-    @IBAction func saveTemperature(_ sender: Any) {
+    @IBAction func cancel(_ sender: UIButton) {
+    
+        dismiss(animated: true, completion: nil)
+    
+    }
+    
+    @IBAction func save(_ sender: UIButton) {
+        saveTemp()
+    }
+    
+    // MARK: - Methods 
+    
+    func setupView() {
         
+        noteView.layer.cornerRadius = 10
+        noteView.layer.borderColor = UIColor.lightGray.cgColor
+        noteView.layer.borderWidth = 1
+        
+        
+        
+        temperaturePickerView.layer.cornerRadius = 10
+        temperaturePickerView.layer.borderColor = UIColor.lightGray.cgColor
+        temperaturePickerView.backgroundColor = UIColor.white
+        temperaturePickerView.layer.borderWidth = 1
+        temperaturePickerView.tintColor = UIColor.darkGray
+        
+        
+        view.backgroundColor = UIColor.clear
+        view.isOpaque = false
+        
+        
+    }
+
+    func saveTemp() {
         let postsRef = database.child("posts").child(store.eventID).childByAutoId()
         let uniqueID = postsRef.key
         
         var tempType: String
         // created Temp Type and switch instance based on selection.
         switch tempSegments.selectedSegmentIndex {
+            
         case 0:
-          tempType = "Oral"
+            tempType = "Oral"
         case 1:
-          tempType = "Ear"
+            tempType = "Ear"
         case 2:
-          tempType = "Armpit"
+            tempType = "Armpit"
             
             
-        default: tempType = "Ear Temperature"
+        default: tempType = "Ear"
         }
         
         let newTemp = Temp(content: selectedTemp, timestamp: getTimestamp(), uniqueID: uniqueID, tempType: tempType)
@@ -79,26 +112,8 @@ class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
             self.dismiss(animated: true, completion: nil)
         })
         
+
     }
-    
-    @IBAction func dismissModallView(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    @IBAction func segmentTemperatures(_ sender: UISegmentedControl) {
-        switch tempSegments.selectedSegmentIndex {
-        case 0:
-            temperatureImageVIew.image = UIImage(named: "oralTemp")
-        case 1:
-            temperatureImageVIew.image = UIImage(named: "earTemp")
-        case 2:
-            temperatureImageVIew.image = UIImage(named: "armpitTemp")
-            
-        default: print("Images have failed and something is wrong")
-        }
-    }
-    
-    // MARK: - Methods 
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return availableTemps.count
