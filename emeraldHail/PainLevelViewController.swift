@@ -102,8 +102,15 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! PainLevelCollectionViewCell
         
-        cell.painLevelImage.image = painLevels[indexPath.item].image
-        cell.painLevelDescription.text = painLevels[indexPath.item].description
+        cell.painLevelImage.image = painLevels[indexPath.row].image
+        cell.painLevelDescription.text = painLevels[indexPath.row].description
+        
+        if cell.isSelected == true {
+            cell.wasSelected()
+        }
+        else if cell.isSelected == false {
+            cell.wasDeselected()
+        }
         
         
         return cell
@@ -111,17 +118,16 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let cell = collectionView.cellForItem(at: indexPath) as! PainLevelCollectionViewCell
-        
+        guard let cell = collectionView.cellForItem(at: indexPath) as? PainLevelCollectionViewCell else { return }
+        selectedPainLevel = painLevels[indexPath.row]
         cell.wasSelected()
-        selectedPainLevel = painLevels[indexPath.item]
+        
         
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         
-        let cell = collectionView.cellForItem(at: indexPath) as! PainLevelCollectionViewCell
-        
+        guard let cell = collectionView.cellForItem(at: indexPath) as? PainLevelCollectionViewCell else { return }
         cell.wasDeselected()
         
     }
@@ -133,6 +139,7 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
         return true
         
     }
+
     
     func addPainLevel(){
         
