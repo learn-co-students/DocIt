@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16C53a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Zwd-TP-Mtn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Zwd-TP-Mtn">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -693,7 +693,7 @@
                                         <rect key="frame" x="0.0" y="178" width="375" height="125"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QKB-QM-ocB" id="fxY-VR-Bs9">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="124"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="124.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rLO-IL-KHX">
@@ -848,7 +848,7 @@
                                         <rect key="frame" x="0.0" y="178" width="375" height="175"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UUt-sg-gbE" id="h81-2d-teZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="174"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="174.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="th2-zl-Cpp" customClass="NoteView" customModule="emeraldHail" customModuleProvider="target">
@@ -873,7 +873,7 @@
                                         <rect key="frame" x="0.0" y="353" width="375" height="175"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="peP-XC-WVV" id="RcP-so-JzR">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="174"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="174.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gV2-le-btI" customClass="TempView" customModule="emeraldHail" customModuleProvider="target">
@@ -898,7 +898,7 @@
                                         <rect key="frame" x="0.0" y="528" width="375" height="175"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IDA-b7-ivE" id="HtV-7Y-KVc">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="174"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="174.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zBC-MT-qb4" customClass="PainLevelView" customModule="emeraldHail" customModuleProvider="target">
@@ -923,7 +923,7 @@
                                         <rect key="frame" x="0.0" y="703" width="375" height="175"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ohs-z1-J7Z" id="LZo-vS-hDY">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="174"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="174.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZHG-bj-TMs" customClass="SymptomView" customModule="emeraldHail" customModuleProvider="target">
@@ -948,7 +948,7 @@
                                         <rect key="frame" x="0.0" y="878" width="375" height="175"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RKd-F6-2Wm" id="N4Z-Yb-Ngb">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="174"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="174.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DVu-eA-2WR" customClass="PhotoView" customModule="emeraldHail" customModuleProvider="target">
@@ -968,70 +968,58 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xkz-te-VXE">
-                                <rect key="frame" x="285" y="602" width="75" height="50"/>
-                                <color key="backgroundColor" red="0.12549019610000001" green="0.75294117650000003" blue="0.8862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xkz-te-VXE">
+                                <rect key="frame" x="300" y="592" width="60" height="60"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="75" id="amD-ca-rVx"/>
-                                    <constraint firstAttribute="height" constant="50" id="xIf-cL-RFh"/>
+                                    <constraint firstAttribute="width" constant="60" id="amD-ca-rVx"/>
+                                    <constraint firstAttribute="height" constant="60" id="xIf-cL-RFh"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
-                                <state key="normal" title="Add">
+                                <state key="normal" title="Add" image="post_plus">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="addPost:" destination="5Sa-dZ-5lG" eventType="touchUpInside" id="YSt-lc-T1O"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="400-cH-6lH">
-                                <rect key="frame" x="285" y="352" width="75" height="50"/>
-                                <color key="backgroundColor" red="0.98039132356643677" green="0.97655218839645386" blue="0.97635632753372192" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="Photo">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="400-cH-6lH">
+                                <rect key="frame" x="300.5" y="267" width="60" height="60"/>
+                                <state key="normal" title="Photo" image="post_photo">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
                                 <connections>
                                     <action selector="addPhoto:" destination="5Sa-dZ-5lG" eventType="touchUpInside" id="wHp-Oc-pFz"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BSC-26-26h">
-                                <rect key="frame" x="285" y="402" width="75" height="50"/>
-                                <color key="backgroundColor" red="0.98039132360000003" green="0.97655218840000002" blue="0.97635632750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="Pain">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BSC-26-26h">
+                                <rect key="frame" x="300" y="332" width="60" height="60"/>
+                                <state key="normal" title="Pain" image="post_pain">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
                                 <connections>
                                     <segue destination="2oG-rv-nlI" kind="presentation" modalPresentationStyle="overCurrentContext" id="l7C-YB-faU"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lqt-RP-eNc">
-                                <rect key="frame" x="285" y="452" width="75" height="50"/>
-                                <color key="backgroundColor" red="0.98039132360000003" green="0.97655218840000002" blue="0.97635632750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="Temp">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lqt-RP-eNc">
+                                <rect key="frame" x="300.5" y="397" width="60" height="60"/>
+                                <state key="normal" title="Temp" image="post_temp">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
                                 <connections>
                                     <segue destination="bPG-yb-BOM" kind="presentation" identifier="tempSegue" modalPresentationStyle="overCurrentContext" id="dY3-h7-Km6"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2mw-Nh-Xz1">
-                                <rect key="frame" x="285" y="502" width="75" height="50"/>
-                                <color key="backgroundColor" red="0.98039132360000003" green="0.97655218840000002" blue="0.97635632750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="Symp">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2mw-Nh-Xz1">
+                                <rect key="frame" x="300" y="462" width="60" height="60"/>
+                                <state key="normal" title="Symp" image="post_symp">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
                                 <connections>
                                     <segue destination="z5g-W1-3kv" kind="presentation" identifier="showAddSymptoms" modalPresentationStyle="overCurrentContext" id="oOk-0S-tl0"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ttc-3X-xZr">
-                                <rect key="frame" x="285" y="552" width="75" height="50"/>
-                                <color key="backgroundColor" red="0.98039132360000003" green="0.97655218840000002" blue="0.97635632750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="Note">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ttc-3X-xZr">
+                                <rect key="frame" x="300" y="527" width="60" height="60"/>
+                                <state key="normal" title="Note" image="post_note">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
                                 <connections>
@@ -1050,20 +1038,20 @@
                             <constraint firstItem="ttc-3X-xZr" firstAttribute="height" secondItem="xkz-te-VXE" secondAttribute="height" id="Eki-9L-j3I"/>
                             <constraint firstItem="BSC-26-26h" firstAttribute="centerX" secondItem="Lqt-RP-eNc" secondAttribute="centerX" id="Hve-n7-Tao"/>
                             <constraint firstItem="xkz-te-VXE" firstAttribute="trailing" secondItem="QY9-3s-j0B" secondAttribute="trailing" constant="-15" id="Jhp-8R-rvW"/>
-                            <constraint firstItem="2mw-Nh-Xz1" firstAttribute="top" secondItem="Lqt-RP-eNc" secondAttribute="bottom" id="OAx-D9-rVK"/>
+                            <constraint firstItem="2mw-Nh-Xz1" firstAttribute="top" secondItem="Lqt-RP-eNc" secondAttribute="bottom" constant="5" id="OAx-D9-rVK"/>
                             <constraint firstItem="400-cH-6lH" firstAttribute="height" secondItem="BSC-26-26h" secondAttribute="height" id="RQ3-pl-zmX"/>
                             <constraint firstItem="BSC-26-26h" firstAttribute="width" secondItem="Lqt-RP-eNc" secondAttribute="width" id="RSM-Ik-M8m"/>
-                            <constraint firstItem="Lqt-RP-eNc" firstAttribute="top" secondItem="BSC-26-26h" secondAttribute="bottom" id="S4v-Qb-C6s"/>
+                            <constraint firstItem="Lqt-RP-eNc" firstAttribute="top" secondItem="BSC-26-26h" secondAttribute="bottom" constant="5" id="S4v-Qb-C6s"/>
                             <constraint firstItem="QY9-3s-j0B" firstAttribute="width" secondItem="0PA-xm-J8G" secondAttribute="width" id="Tmc-HV-HTU"/>
-                            <constraint firstItem="ttc-3X-xZr" firstAttribute="top" secondItem="2mw-Nh-Xz1" secondAttribute="bottom" id="TwV-wH-zpa"/>
+                            <constraint firstItem="ttc-3X-xZr" firstAttribute="top" secondItem="2mw-Nh-Xz1" secondAttribute="bottom" constant="5" id="TwV-wH-zpa"/>
                             <constraint firstItem="ttc-3X-xZr" firstAttribute="width" secondItem="xkz-te-VXE" secondAttribute="width" id="aaS-Yx-7rD"/>
                             <constraint firstItem="2mw-Nh-Xz1" firstAttribute="centerX" secondItem="ttc-3X-xZr" secondAttribute="centerX" id="amy-9c-DCS"/>
                             <constraint firstItem="400-cH-6lH" firstAttribute="centerX" secondItem="BSC-26-26h" secondAttribute="centerX" id="dJo-Cp-LXG"/>
                             <constraint firstItem="QY9-3s-j0B" firstAttribute="centerX" secondItem="0PA-xm-J8G" secondAttribute="centerX" id="fGI-Kx-167"/>
-                            <constraint firstItem="BSC-26-26h" firstAttribute="top" secondItem="400-cH-6lH" secondAttribute="bottom" id="fMr-ge-dFF"/>
+                            <constraint firstItem="BSC-26-26h" firstAttribute="top" secondItem="400-cH-6lH" secondAttribute="bottom" constant="5" id="fMr-ge-dFF"/>
                             <constraint firstItem="ttc-3X-xZr" firstAttribute="trailing" secondItem="xkz-te-VXE" secondAttribute="trailing" id="g7F-2z-XWN"/>
                             <constraint firstItem="400-cH-6lH" firstAttribute="width" secondItem="BSC-26-26h" secondAttribute="width" id="s9V-Xe-0uk"/>
-                            <constraint firstItem="xkz-te-VXE" firstAttribute="top" secondItem="ttc-3X-xZr" secondAttribute="bottom" id="su6-n3-JQJ"/>
+                            <constraint firstItem="xkz-te-VXE" firstAttribute="top" secondItem="ttc-3X-xZr" secondAttribute="bottom" constant="5" id="su6-n3-JQJ"/>
                             <constraint firstItem="2mw-Nh-Xz1" firstAttribute="width" secondItem="ttc-3X-xZr" secondAttribute="width" id="tli-RT-Pui"/>
                             <constraint firstItem="QY9-3s-j0B" firstAttribute="height" secondItem="0PA-xm-J8G" secondAttribute="height" id="w7y-Tv-QM7"/>
                             <constraint firstItem="xkz-te-VXE" firstAttribute="bottom" secondItem="QY9-3s-j0B" secondAttribute="bottom" constant="-15" id="wRc-g5-IMv"/>
@@ -1183,7 +1171,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yiu-ZG-DWm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1085.5999999999999" y="1941.6791604197902"/>
+            <point key="canvasLocation" x="1074" y="1908"/>
         </scene>
         <!--Pain Level View Controller-->
         <scene sceneID="gnp-st-bTw">
@@ -1295,7 +1283,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VVS-7b-fRD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1920.8" y="1941.6791604197902"/>
+            <point key="canvasLocation" x="1882" y="1907"/>
         </scene>
         <!--Note-->
         <scene sceneID="VHJ-My-v70">
@@ -1372,7 +1360,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5tf-uz-2dn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-570.39999999999998" y="1941.6791604197902"/>
+            <point key="canvasLocation" x="-626" y="1908"/>
         </scene>
         <!--Temp View Controller-->
         <scene sceneID="mPV-Hu-Nz6">
@@ -1570,14 +1558,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wF1-Py-2gR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-908" y="341"/>
+            <point key="canvasLocation" x="-908" y="340"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="tdI-wp-S1Q">
             <objects>
                 <navigationController storyboardIdentifier="family-nav-controller" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="XIF-ae-qWP" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ixB-h9-CxZ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ixB-h9-CxZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -1672,19 +1660,20 @@
                                     <action selector="touchId:" destination="Lab-UU-Fjj" eventType="touchUpInside" id="JwW-sE-uiU"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="docit-logo-draft" translatesAutoresizingMaskIntoConstraints="NO" id="bhi-6r-FRg">
-                                <rect key="frame" x="112.5" y="133.5" width="150" height="67"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="NHu-6j-Rj3"/>
-                                    <constraint firstAttribute="height" constant="67" id="WdJ-m5-TS8"/>
-                                </constraints>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get a pulse on your family's health" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ACu-eV-wVK">
-                                <rect key="frame" x="71.5" y="212.5" width="232" height="18"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Family health tracker" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ACu-eV-wVK">
+                                <rect key="frame" x="117.5" y="207" width="140" height="18"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Doc-It-Logo" translatesAutoresizingMaskIntoConstraints="NO" id="bhi-6r-FRg">
+                                <rect key="frame" x="84" y="139" width="207" height="56"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="210" id="atX-Tk-4hH"/>
+                                    <constraint firstAttribute="height" constant="56" id="nEX-nc-01W"/>
+                                    <constraint firstAttribute="width" secondItem="bhi-6r-FRg" secondAttribute="height" multiplier="226:61" id="ujt-Il-T5c"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1712,14 +1701,20 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RuX-TL-eqM" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-908" y="-350"/>
+            <point key="canvasLocation" x="-908" y="-350.37481259370315"/>
         </scene>
     </scenes>
     <resources>
+        <image name="Doc-It-Logo" width="400" height="109"/>
         <image name="addFamilyMember" width="625" height="625"/>
         <image name="blackfam" width="2290" height="1526"/>
-        <image name="docit-logo-draft" width="859" height="387"/>
         <image name="kid_silhouette" width="347" height="347"/>
+        <image name="post_note" width="625" height="625"/>
+        <image name="post_pain" width="625" height="625"/>
+        <image name="post_photo" width="625" height="625"/>
+        <image name="post_plus" width="625" height="625"/>
+        <image name="post_symp" width="625" height="625"/>
+        <image name="post_temp" width="625" height="625"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="AyQ-2m-HY5"/>

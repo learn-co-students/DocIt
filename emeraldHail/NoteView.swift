@@ -51,7 +51,7 @@ class NoteView: UIView {
     }
     
     override func draw(_ rect: CGRect) {
-        drawTimeline(circleColor: Constants.Colors.scooter.cgColor, lineColor: Constants.Colors.submarine.cgColor)
+        drawTimeline(circleColor: Constants.Colors.corn.cgColor, lineColor: Constants.Colors.submarine.cgColor)
     }
     
     
