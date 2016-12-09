@@ -72,7 +72,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBAction func addPost(_ sender: UIButton) {
         
         UIView.animate(withDuration: 0.3) {
-            self.postButtons.forEach {
+            self.postButtons.forEach { 
                 $0.isHidden = !$0.isHidden
             }
         }
@@ -82,7 +82,11 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         handleCameraImage()
     }
     
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        self.postButtons.forEach {
+            $0.isHidden = true
+        }
+    }
     
     // MARK: - Methods
     

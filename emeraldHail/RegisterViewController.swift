@@ -120,6 +120,8 @@ class RegisterViewController: UIViewController {
                     // Set the sharedInstance familyID to the current user.uid
                     
                     self.store.user.id = (user?.uid)!
+                    self.family.child("user").child(self.store.user.id).child("familyID").childByAutoId()
+                    
                     self.store.user.familyId = self.family.child("user").child(self.store.user.id).child("familyID").childByAutoId().key
                     self.store.family.id = self.store.user.familyId
                 
@@ -133,6 +135,7 @@ class RegisterViewController: UIViewController {
                     self.store.user.id = (user?.uid)!
                     self.store.user.familyId = self.store.inviteFamilyID
                     self.family.child("user").child(self.store.user.id).child("familyID").setValue(self.store.user.familyId)
+                    
                     
                 }
                 
