@@ -15,7 +15,10 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
     
     @IBOutlet weak var painLevelCollectionView: UICollectionView!
     
-    // MARK: - Properties 
+    @IBOutlet weak var painView: UIView!
+    @IBOutlet weak var saveButton: UIButton!
+    
+    // MARK: - Properties
     
     var noPain: PainLevel = .noPain
     var mild:PainLevel = .mild
@@ -33,27 +36,7 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
     let store = DataStore.sharedInstance
     
 
-    @IBOutlet weak var saveButton: UIButton!
-    @IBAction func saveButtonTapped(_ sender: Any) {
-        
-        // Save button works only if selectedPainLevel is not nil
-    
-        if let painLevel = selectedPainLevel  {
-            
-            print("selectdPainLevel is ------- \(painLevel)")
-            
-        addPainLevel()
-            
-        // Disable the button after it's tapped with selectedPainLevel
-        saveButton.isEnabled = false
-            
-        }
-        
-    }
-    
-    @IBAction func cancelButtonTapped(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
+  
     
        // MARK: - Loads
 
@@ -66,10 +49,51 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
         
         painLevels = [noPain, mild, moderate, severe, verySevere, excruciating]
         
+        setupView()
+        
     }
     
-    // MARK: - Methods
+    // MARK: - Actions
     
+    @IBAction func save(_ sender: UIButton) {
+        if let painLevel = selectedPainLevel  {
+            
+            print("selectdPainLevel is ------- \(painLevel)")
+            
+            addPainLevel()
+            
+            saveButton.isEnabled = false
+        }
+    }
+    
+    @IBAction func cancel(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
+    // MARK: - Methods
+
+    func setupView() {
+        
+        painView.layer.cornerRadius = 10
+        painView.layer.borderColor = UIColor.lightGray.cgColor
+        painView.layer.borderWidth = 1
+        
+        
+        
+        painLevelCollectionView.layer.cornerRadius = 10
+        painLevelCollectionView.layer.borderColor = UIColor.lightGray.cgColor
+        painLevelCollectionView.backgroundColor = UIColor.white
+        painLevelCollectionView.layer.borderWidth = 1
+        painLevelCollectionView.tintColor = UIColor.darkGray
+        
+        
+        view.backgroundColor = UIColor.clear
+        view.isOpaque = false
+        
+        
+    }
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return painLevels.count

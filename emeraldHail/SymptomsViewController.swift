@@ -14,6 +14,7 @@ class SymptomsViewController: UIViewController, UITableViewDelegate, UITableView
     
     // MARK: - Outlets 
     
+    @IBOutlet weak var symptomView: UIView!
     @IBOutlet weak var symptomTableView: UITableView!
     
     // MARK: Properties
@@ -31,9 +32,14 @@ class SymptomsViewController: UIViewController, UITableViewDelegate, UITableView
         super.viewDidLoad()
         symptomTableView.allowsMultipleSelection = true
         symptomTableView.reloadData()
+        setupView()
     }
     
     // MARK: - Actions 
+    
+    @IBAction func cancel(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
+    }
     
     @IBAction func save(_ sender: UIButton) {
         
@@ -58,6 +64,28 @@ class SymptomsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     // MARK: Methods 
+    
+    func setupView() {
+        
+        symptomView.layer.cornerRadius = 10
+        symptomView.layer.borderColor = UIColor.lightGray.cgColor
+        symptomView.layer.borderWidth = 1
+        
+        
+        
+        symptomTableView.layer.cornerRadius = 10
+        symptomTableView.layer.borderColor = UIColor.lightGray.cgColor
+        symptomTableView.backgroundColor = UIColor.white
+        symptomTableView.layer.borderWidth = 1
+        symptomTableView.tintColor = UIColor.darkGray
+        
+        
+        view.backgroundColor = UIColor.clear
+        view.isOpaque = false
+        
+        
+    }
+
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
