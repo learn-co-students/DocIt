@@ -162,6 +162,13 @@ class LoginViewController: UIViewController {
                         self.store.user.id = (user?.uid)!
                         self.store.user.familyId = familyID
                         self.store.family.id = familyID
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+                            
+                            NotificationCenter.default.post(name: .openfamilyVC, object: nil)
+                            
+                        })
+
                     }
                 })
             } else {
@@ -169,6 +176,14 @@ class LoginViewController: UIViewController {
                 self.store.user.id = (user?.uid)!
                 self.store.user.familyId = self.store.inviteFamilyID
                 self.database.child("user").child(self.store.user.id).child("familyID").setValue(self.store.user.familyId)
+
+                self.store.inviteFamilyID = ""
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+                    
+                    NotificationCenter.default.post(name: .openfamilyVC, object: nil)
+                    
+                })
 
                 
             }
@@ -183,12 +198,7 @@ class LoginViewController: UIViewController {
         
         
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
-            
-            NotificationCenter.default.post(name: .openfamilyVC, object: nil)
-            
-        })
-        //            self.performSegue(withIdentifier: "showFamily", sender: nil)
+               //            self.performSegue(withIdentifier: "showFamily", sender: nil)
         
         
     }
