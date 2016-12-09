@@ -150,8 +150,9 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
             
             
         } else {
-            self.addMember.isHidden = false
-            return
+            
+        performSegue(withIdentifier: "addMember", sender: nil)
+            
         }
         
     }

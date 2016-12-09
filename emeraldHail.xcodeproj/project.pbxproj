@@ -50,6 +50,7 @@
 		BB2A52E31DF888E2007760A5 /* AddMember.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB2A52E21DF888E2007760A5 /* AddMember.xib */; };
 		BB2A52E51DF88A28007760A5 /* AddMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2A52E41DF88A28007760A5 /* AddMember.swift */; };
 		BB5CD3321DE6B41800D82BB3 /* SymptomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5CD3311DE6B41800D82BB3 /* SymptomsViewController.swift */; };
+		BB5FB2881DFB4CA6008CAB7A /* AddMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5FB2871DFB4CA6008CAB7A /* AddMemberViewController.swift */; };
 		BB6DEDB51DE61C7D00D8B93A /* FamilySettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6DEDB41DE61C7D00D8B93A /* FamilySettingViewController.swift */; };
 		BB7BF58B1DECD13C00F290FB /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB7BF58A1DECD13C00F290FB /* LocalAuthentication.framework */; };
 		BB9286851DDE3D2100D3D9A6 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9286841DDE3D2100D3D9A6 /* DataStore.swift */; };
@@ -124,6 +125,7 @@
 		BB2A52E21DF888E2007760A5 /* AddMember.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddMember.xib; sourceTree = "<group>"; };
 		BB2A52E41DF88A28007760A5 /* AddMember.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMember.swift; sourceTree = "<group>"; };
 		BB5CD3311DE6B41800D82BB3 /* SymptomsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SymptomsViewController.swift; sourceTree = "<group>"; };
+		BB5FB2871DFB4CA6008CAB7A /* AddMemberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMemberViewController.swift; sourceTree = "<group>"; };
 		BB6DEDB41DE61C7D00D8B93A /* FamilySettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilySettingViewController.swift; sourceTree = "<group>"; };
 		BB7BF58A1DECD13C00F290FB /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		BB9286841DDE3D2100D3D9A6 /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
@@ -343,20 +345,21 @@
 		DD58FAE51DDBBB40004A7A22 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				B674039B1DF1CC2E00172ACD /* AppController.swift */,
-				AA6E4D201DE7419B00C8FEE3 /* WelcomeViewController.swift */,
-				BBF4EEB01DDF59D400EBD3FE /* LoginViewController.swift */,
-				BBF4EEB21DDF59DC00EBD3FE /* RegisterViewController.swift */,
-				BBF4EEB41DDF59F900EBD3FE /* FamilyViewController.swift */,
-				BB6DEDB41DE61C7D00D8B93A /* FamilySettingViewController.swift */,
-				BBF4EEB61DDF59FF00EBD3FE /* EventViewController.swift */,
-				B6F44C071DEE080000995237 /* EditMemberSettingsViewController.swift */,
-				BBF4EEB81DDF5A0600EBD3FE /* PostViewController.swift */,
+				BB5FB2871DFB4CA6008CAB7A /* AddMemberViewController.swift */,
 				B69638D11DE602FD00FE7023 /* AddNotesViewController.swift */,
-				B6ED5B351DDE4CDB00B56DFD /* TempViewController.swift */,
-				DDA93D211DDE508A00F0A4D4 /* PainLevelViewController.swift */,
-				BB5CD3311DE6B41800D82BB3 /* SymptomsViewController.swift */,
+				B674039B1DF1CC2E00172ACD /* AppController.swift */,
+				B6F44C071DEE080000995237 /* EditMemberSettingsViewController.swift */,
+				BBF4EEB61DDF59FF00EBD3FE /* EventViewController.swift */,
+				BB6DEDB41DE61C7D00D8B93A /* FamilySettingViewController.swift */,
+				BBF4EEB41DDF59F900EBD3FE /* FamilyViewController.swift */,
 				AA0C2FE31DE8837700445229 /* HeaderCollectionReusableView.swift */,
+				BBF4EEB01DDF59D400EBD3FE /* LoginViewController.swift */,
+				DDA93D211DDE508A00F0A4D4 /* PainLevelViewController.swift */,
+				BBF4EEB81DDF5A0600EBD3FE /* PostViewController.swift */,
+				BBF4EEB21DDF59DC00EBD3FE /* RegisterViewController.swift */,
+				BB5CD3311DE6B41800D82BB3 /* SymptomsViewController.swift */,
+				B6ED5B351DDE4CDB00B56DFD /* TempViewController.swift */,
+				AA6E4D201DE7419B00C8FEE3 /* WelcomeViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -572,6 +575,7 @@
 				AA7ED5921DDF4C6F005F9AB2 /* Family.swift in Sources */,
 				BB6DEDB51DE61C7D00D8B93A /* FamilySettingViewController.swift in Sources */,
 				BBF4EEB11DDF59D400EBD3FE /* LoginViewController.swift in Sources */,
+				BB5FB2881DFB4CA6008CAB7A /* AddMemberViewController.swift in Sources */,
 				BBF4EEB51DDF59F900EBD3FE /* FamilyViewController.swift in Sources */,
 				B69638D21DE602FD00FE7023 /* AddNotesViewController.swift in Sources */,
 				AA0BF2C71DF5C1900062FA36 /* FamilyMemberView.swift in Sources */,
