@@ -85,6 +85,11 @@ class DataStore{
     // IMAGE POST
     
     var imagePostID = ""// this many be needed - please do not delete this comment - Luna :)
+    
+    
+    // Branch.io
+    
+    var inviteFamilyID = ""
 
     // METHODS
 
@@ -94,7 +99,7 @@ class DataStore{
         postID = ""
         imagePostID = ""
 
-        
+    
 
 
     }

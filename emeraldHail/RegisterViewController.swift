@@ -116,34 +116,29 @@ class RegisterViewController: UIViewController {
                     print(error.localizedDescription)
                 }
                 
-                
-                // Set the sharedInstance familyID to the current user.uid
-                
-                self.store.user.id = (user?.uid)!
-                
-         
-                
-                self.store.user.familyId = self.family.child("user").child(self.store.user.id).child("familyID").childByAutoId().key
-                self.store.family.id = self.store.user.familyId
-                
-                self.family.child("user").child(self.store.user.id).child("familyID").setValue(self.store.user.familyId)
+                if self.store.inviteFamilyID == "" {
+                    // Set the sharedInstance familyID to the current user.uid
                     
+                    self.store.user.id = (user?.uid)!
+                    self.store.user.familyId = self.family.child("user").child(self.store.user.id).child("familyID").childByAutoId().key
+                    self.store.family.id = self.store.user.familyId
+                
+                    self.touchID(activate: false)
+                    self.saveDataToCoreData()
+                
+                    
+                } else {
+                 
+                    self.store.user.id = (user?.uid)!
+                    self.store.user.familyId = self.store.inviteFamilyID
+                    self.family.child("user").child(self.store.user.id).child("familyID").setValue(self.store.user.familyId)
+                    
+                }
+                
                 self.family.child("user").child((self.store.user.id)).child("email").setValue(email)
-                
-                
-                // TODO: Set the initial family name to something more descriptive (perhaps using their last name or something?)
                 self.family.child("family").child(self.store.user.familyId).child("name").setValue("New Family")
-                // TO DO: Change segue to notification center post
-                
-                
-                self.touchID(activate: false)
-                
-                self.saveDataToCoreData()
                     
-                
                 NotificationCenter.default.post(name: .openfamilyVC, object: nil)
-                
-                    //  self.performSegue(withIdentifier: "showFamily", sender: nil)
             }
         }
     }

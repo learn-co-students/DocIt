@@ -14,6 +14,7 @@ import FirebaseDatabase
 import SDWebImage
 import CoreData
 import MessageUI
+import Branch
 
 class FamilySettingViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MFMailComposeViewControllerDelegate {
 
@@ -86,6 +87,40 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
         }
     }
 
+    @IBAction func didPressInviteParent(_ sender: UIButton) {
+        print("didPressInviteParent pressed")
+        
+        let branchUniversalObject: BranchUniversalObject = BranchUniversalObject(canonicalIdentifier: "123123123")
+        
+        
+        let linkProperties: BranchLinkProperties = BranchLinkProperties()
+        linkProperties.feature = "invite"
+        linkProperties.channel = "SMS"
+        linkProperties.addControlParam("$ios_url", withValue: "docit://")
+        linkProperties.addControlParam("familyID", withValue: "HELLOHENRY")
+        
+        let newLinkProperties: BranchLinkProperties = BranchLinkProperties()
+        newLinkProperties.feature = "invite"
+        newLinkProperties.channel = "SMS"
+        newLinkProperties.addControlParam("$ios_url", withValue: "docit://")
+        newLinkProperties.addControlParam("inviteFamilyID", withValue: store.user.familyId)
+        
+        branchUniversalObject.getShortUrl(with: linkProperties) { (url, error) in
+            if error == nil {
+                print("1. got my Branch link to share: \(url)")
+            }
+        }
+        
+        branchUniversalObject.getShortUrl(with: newLinkProperties) { (url, error) in
+            if error == nil {
+                print("2. got my Branch link to share: \(url)")
+            }
+        }
+        
+        print(branchUniversalObject)
+        
+        
+    }
     
     // MARK: - Methods
 
