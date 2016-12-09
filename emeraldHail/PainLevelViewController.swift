@@ -56,13 +56,11 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
     // MARK: - Actions
     
     @IBAction func save(_ sender: UIButton) {
+        
         if let painLevel = selectedPainLevel  {
-            
-            print("selectdPainLevel is ------- \(painLevel)")
-            
             addPainLevel()
-            
             saveButton.isEnabled = false
+        
         }
     }
     
@@ -130,6 +128,7 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
     
     
     func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
+        
         
         return true
         
