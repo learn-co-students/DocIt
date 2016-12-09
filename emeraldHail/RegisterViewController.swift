@@ -25,7 +25,7 @@ class RegisterViewController: UIViewController {
     // MARK: - Properties
     
     let store = DataStore.sharedInstance
-    let family = FIRDatabase.database().reference()
+    let database = FIRDatabase.database().reference()
     
     // MARK: - Loads
     
@@ -119,28 +119,41 @@ class RegisterViewController: UIViewController {
                 if self.store.inviteFamilyID == "" {
                     // Set the sharedInstance familyID to the current user.uid
                     
-                    self.store.user.id = (user?.uid)!
-                    self.family.child("user").child(self.store.user.id).child("familyID").childByAutoId()
+                    print("1")
                     
-                    self.store.user.familyId = self.family.child("user").child(self.store.user.id).child("familyID").childByAutoId().key
+                    self.store.user.id = (user?.uid)!
+                    
+                    let familyID = self.database.child("user").child(self.store.user.id).child("familyID").childByAutoId().key
+                    
+                    print("==============> \(familyID)")
+                    
+                    self.store.user.familyId = familyID
                     self.store.family.id = self.store.user.familyId
-                
-
+                    self.store.inviteFamilyID = ""
+                    
+                    self.database.child("user").child(self.store.user.id).child("familyID").setValue(familyID)
+                    self.database.child("user").child(self.store.user.id).child("email").setValue(email)
+                    self.database.child("family").child(self.store.user.familyId).child("name").setValue("New Family")
+                    
                     self.touchID(activate: false)
                     self.saveDataToCoreData()
 
                 
                 } else {
                  
+                    print("2")
+                    
                     self.store.user.id = (user?.uid)!
                     self.store.user.familyId = self.store.inviteFamilyID
-                    self.family.child("user").child(self.store.user.id).child("familyID").setValue(self.store.user.familyId)
+                    self.database.child("user").child(self.store.user.id).child("familyID").setValue(self.store.user.familyId)
+                    self.store.inviteFamilyID = ""
                     
+                    self.database.child("user").child((self.store.user.id)).child("email").setValue(email)
+                    self.database.child("family").child(self.store.user.familyId).child("name").setValue("New Family")
                     
                 }
                 
-                self.family.child("user").child((self.store.user.id)).child("email").setValue(email)
-                self.family.child("family").child(self.store.user.familyId).child("name").setValue("New Family")
+                
                     
                 NotificationCenter.default.post(name: .openfamilyVC, object: nil)
             }
