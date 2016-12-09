@@ -41,6 +41,9 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.eventsTable.separatorStyle = .none
         eventsTable.reloadData()
         showPictureAndName()
+        
+        self.title = store.member.firstName
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -70,12 +73,16 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         cell.eventDate.text = event.startDate.uppercased()
 
         store.eventID = event.uniqueID
+        
 
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         store.eventID = events[indexPath.row].uniqueID
+        store.event.name = events[indexPath.row].name
+        
+        
     }
     
     

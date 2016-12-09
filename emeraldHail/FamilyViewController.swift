@@ -133,7 +133,22 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
         if indexPath.row < membersInFamily.count {
-            store.member.id = membersInFamily[indexPath.row].id
+            
+            let selectedMember = membersInFamily[indexPath.row]
+            
+            store.member.id = selectedMember.id
+            store.member.firstName = selectedMember.firstName
+            store.member.lastName = selectedMember.lastName
+            store.member.allergies = selectedMember.allergies
+            store.member.birthday = selectedMember.birthday
+            store.member.bloodType = selectedMember.bloodType
+            store.member.gender = selectedMember.gender
+            store.member.height = selectedMember.height
+            store.member.weight = selectedMember.weight
+            
+            print(store.member)
+            
+            
         } else {
             self.addMember.isHidden = false
             return
