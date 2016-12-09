@@ -47,13 +47,12 @@
 		BB14EBD71DED43A0004F6D56 /* HealthCore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BB14EBD51DED43A0004F6D56 /* HealthCore.xcdatamodeld */; };
 		BB230F131DF8C04800887E20 /* ModifyEvent.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB230F121DF8C04800887E20 /* ModifyEvent.xib */; };
 		BB230F151DF8C05900887E20 /* ModifyEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB230F141DF8C05900887E20 /* ModifyEvent.swift */; };
+		BB35032B1DFB6F24003561CE /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB35032A1DFB6F24003561CE /* AddEventViewController.swift */; };
 		BB5CD3321DE6B41800D82BB3 /* SymptomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5CD3311DE6B41800D82BB3 /* SymptomsViewController.swift */; };
 		BB5FB2881DFB4CA6008CAB7A /* AddMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5FB2871DFB4CA6008CAB7A /* AddMemberViewController.swift */; };
 		BB6DEDB51DE61C7D00D8B93A /* FamilySettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6DEDB41DE61C7D00D8B93A /* FamilySettingViewController.swift */; };
 		BB7BF58B1DECD13C00F290FB /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB7BF58A1DECD13C00F290FB /* LocalAuthentication.framework */; };
 		BB9286851DDE3D2100D3D9A6 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9286841DDE3D2100D3D9A6 /* DataStore.swift */; };
-		BBAE14021DF79025001F6CB1 /* AddEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAE14001DF79025001F6CB1 /* AddEvent.swift */; };
-		BBAE14031DF79025001F6CB1 /* AddEvent.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBAE14011DF79025001F6CB1 /* AddEvent.xib */; };
 		BBC8830B1DF918E70002A285 /* JoinFamily.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBC8830A1DF918E70002A285 /* JoinFamily.xib */; };
 		BBC8830D1DF918FE0002A285 /* JoinFamily.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC8830C1DF918FE0002A285 /* JoinFamily.swift */; };
 		BBF453B91DE34ACD00E054E9 /* Symptom.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF453B81DE34ACD00E054E9 /* Symptom.swift */; };
@@ -120,13 +119,12 @@
 		BB14EBD61DED43A0004F6D56 /* HealthCore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HealthCore.xcdatamodel; sourceTree = "<group>"; };
 		BB230F121DF8C04800887E20 /* ModifyEvent.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ModifyEvent.xib; sourceTree = "<group>"; };
 		BB230F141DF8C05900887E20 /* ModifyEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModifyEvent.swift; sourceTree = "<group>"; };
+		BB35032A1DFB6F24003561CE /* AddEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEventViewController.swift; sourceTree = "<group>"; };
 		BB5CD3311DE6B41800D82BB3 /* SymptomsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SymptomsViewController.swift; sourceTree = "<group>"; };
 		BB5FB2871DFB4CA6008CAB7A /* AddMemberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMemberViewController.swift; sourceTree = "<group>"; };
 		BB6DEDB41DE61C7D00D8B93A /* FamilySettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilySettingViewController.swift; sourceTree = "<group>"; };
 		BB7BF58A1DECD13C00F290FB /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		BB9286841DDE3D2100D3D9A6 /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
-		BBAE14001DF79025001F6CB1 /* AddEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEvent.swift; sourceTree = "<group>"; };
-		BBAE14011DF79025001F6CB1 /* AddEvent.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddEvent.xib; sourceTree = "<group>"; };
 		BBC8830A1DF918E70002A285 /* JoinFamily.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JoinFamily.xib; sourceTree = "<group>"; };
 		BBC8830C1DF918FE0002A285 /* JoinFamily.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinFamily.swift; sourceTree = "<group>"; };
 		BBF453B81DE34ACD00E054E9 /* Symptom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Symptom.swift; sourceTree = "<group>"; };
@@ -281,8 +279,6 @@
 			children = (
 				BB230F121DF8C04800887E20 /* ModifyEvent.xib */,
 				BB230F141DF8C05900887E20 /* ModifyEvent.swift */,
-				BBAE14001DF79025001F6CB1 /* AddEvent.swift */,
-				BBAE14011DF79025001F6CB1 /* AddEvent.xib */,
 			);
 			name = Events;
 			sourceTree = "<group>";
@@ -332,6 +328,7 @@
 			isa = PBXGroup;
 			children = (
 				BB5FB2871DFB4CA6008CAB7A /* AddMemberViewController.swift */,
+				BB35032A1DFB6F24003561CE /* AddEventViewController.swift */,
 				B69638D11DE602FD00FE7023 /* AddNotesViewController.swift */,
 				B674039B1DF1CC2E00172ACD /* AppController.swift */,
 				B6F44C071DEE080000995237 /* EditMemberSettingsViewController.swift */,
@@ -464,7 +461,6 @@
 				B69466641DECCE3000F2E30C /* Assets.xcassets in Resources */,
 				BBC8830B1DF918E70002A285 /* JoinFamily.xib in Resources */,
 				AAF109341DEE4BA700E6DE26 /* TempView.xib in Resources */,
-				BBAE14031DF79025001F6CB1 /* AddEvent.xib in Resources */,
 				AA9FFBBD1DDA667500847FCF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -525,6 +521,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6ED5B361DDE4CDB00B56DFD /* TempViewController.swift in Sources */,
+				BB35032B1DFB6F24003561CE /* AddEventViewController.swift in Sources */,
 				DDDE224A1DF0C4A5006B234C /* PhotoCell.swift in Sources */,
 				AAFE44661DDF634800922FB0 /* PainLevel.swift in Sources */,
 				AAE7D3ED1DEF6DB300C59107 /* SymptomCell.swift in Sources */,
@@ -567,7 +564,6 @@
 				AA9FFBB81DDA667500847FCF /* AppDelegate.swift in Sources */,
 				AA2970FC1DEDDEE70062631D /* Note.swift in Sources */,
 				AA7ED5941DDF4D16005F9AB2 /* Member.swift in Sources */,
-				BBAE14021DF79025001F6CB1 /* AddEvent.swift in Sources */,
 				AA0C2FE51DE8837700445229 /* HeaderCollectionReusableView.swift in Sources */,
 				AA0BF2C01DF4AA780062FA36 /* AddMemberView.swift in Sources */,
 				BBF453B91DE34ACD00E054E9 /* Symptom.swift in Sources */,
