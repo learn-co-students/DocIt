@@ -76,7 +76,7 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
     @IBAction func deleteMemberButtonTapped(_ sender: Any) {
         
         // Alert Controller
-        let alertController = UIAlertController(title: "Are you sure you want to delete a member?",  message: "This action cannot be undone.", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Are you sure you want to delete this member?",  message: "This action cannot be undone.", preferredStyle: .alert)
         
         // Action
         
@@ -123,7 +123,7 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
                                 let post = Post(dictionary: dictionary)
                                 
                                 posts.append(post)
-                                print("0--------------------\(posts)")
+
                                 
                                 print(post.description)
                             }
@@ -427,13 +427,15 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
             case weightSelection:
                 return store.weightSelections.count
             case heightSelection:
-                return store.heightSelections.count
-                
+                if component == 0 {
+                    return store.heightSelectionsFeet.count
+                } else if component == 1 {
+                    return store.heightSelections.count
+                }
             default:
                 break
             }
             return 0
-            
         }
         
         func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
@@ -449,10 +451,8 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
             case heightSelection:
                 if component == 0 {
                     feet = store.heightSelectionsFeet[row]
-                    print("DID I GET SOME \(feet)")
                 } else if component == 1 {
                     inches = store.heightSelections[row]
-                    print("DID I GET ALOT OF \(inches)")
                 }
                 heightTextField.text = "\(feet)\(inches)"
             default:
@@ -471,15 +471,14 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
             case weightSelection:
                 return store.weightSelections[row]
             case heightSelection:
-                if component == 0{
+                if component == 0 {
                     return store.heightSelectionsFeet[row]
-                } else {
+                } else if component == 1 {
                     return store.heightSelections[row]
                 }
             default:
                 break
             }
-            
             return ""
         }
         

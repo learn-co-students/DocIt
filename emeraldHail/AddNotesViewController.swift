@@ -30,7 +30,6 @@ class AddNotesViewController: UIViewController, UITextViewDelegate {
         hideKeyboardWhenTappedAround()
         
         setupView()
-
         
         addNotesTextView.delegate = self
         addNotesTextView.becomeFirstResponder()

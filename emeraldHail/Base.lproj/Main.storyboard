@@ -704,7 +704,7 @@
                                         <rect key="frame" x="0.0" y="401" width="351" height="30"/>
                                         <color key="textColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                     </textField>
                                 </subviews>
                                 <constraints>
