@@ -198,7 +198,7 @@ class WelcomeViewController: UIViewController {
 
         if store.family.id != "" {
 
-        let database = FIRDatabase.database().reference().child("settings").child(store.family.id).child("touchID")
+        let database = FIRDatabase.database().reference().child(Constants.DatabaseChildNames.settings).child(store.family.id).child("touchID")
 
         database.observe(.value, with: { (snapshot) in
 

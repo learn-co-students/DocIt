@@ -42,7 +42,7 @@ struct Constants {
         static let user = "user"
     }
     
-    struct storageChildNames {
+    struct StorageChildNames {
         
         static let familyImages = "familyImages"
         static let postsImages = "postsImages"

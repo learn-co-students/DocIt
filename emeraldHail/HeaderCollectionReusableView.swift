@@ -24,7 +24,7 @@ class HeaderCollectionReusableView: UICollectionReusableView {
     // MARK: - Methods 
     
     func configDatabaseFamily() {
-        let membersRef = FIRDatabase.database().reference().child("family")
+        let membersRef = FIRDatabase.database().reference().child(Constants.DatabaseChildNames.family)
         let familyRef = membersRef.child(store.family.id)
         
         familyRef.observe(.value, with: { snapshot in

@@ -119,7 +119,7 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
         let okAction = UIAlertAction(title: "OK", style: .default, handler: { (action) in
             let userInput = alert.textFields![0].text
 
-            let ref = FIRDatabase.database().reference().child("family").child(self.store.user.familyId)
+            let ref = FIRDatabase.database().reference().child(Constants.DatabaseChildNames.family).child(self.store.user.familyId)
 
 
             guard let name = userInput, name != "" else { return }
@@ -143,7 +143,7 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
         let database = FIRDatabase.database().reference()
         let familyDatabase = database.child(Constants.DatabaseChildNames.family).child(store.family.id)
         let storageRef = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
-        let storeImageRef = storageRef.child(Constants.storageChildNames.familyImages).child(store.family.id)
+        let storeImageRef = storageRef.child(Constants.StorageChildNames.familyImages).child(store.family.id)
         
         if let uploadData = UIImageJPEGRepresentation(photo, 0.25) {
             

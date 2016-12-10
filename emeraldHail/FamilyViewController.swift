@@ -188,7 +188,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     // TODO: Rethink some of the variable names here and in configDatabaseFamily for clarity
     
     func configDatabaseMember() {
-        let membersRef = FIRDatabase.database().reference().child("members")
+        let membersRef = FIRDatabase.database().reference().child(Constants.DatabaseChildNames.members)
         let familyRef = membersRef.child(store.user.familyId)
         
         familyRef.observe(.value, with: { snapshot in
@@ -220,7 +220,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
             self.store.family.name = familyName as? String
             
             guard let coverImgStr = dic?["coverImageStr"] else { return }
-            self.store.family.coverImageStr = coverImgStr as! String
+            self.store.family.coverImageStr = coverImgStr as? String
         })
     }
     
@@ -230,7 +230,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         let alertController = UIAlertController(title: nil, message: "Change your family name", preferredStyle: .alert)
         let save = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
             guard let name = nameTextField?.text, name != "" else { return }
-            let databaseEventsRef = FIRDatabase.database().reference().child("family").child(self.store.user.familyId)
+            let databaseEventsRef = FIRDatabase.database().reference().child(Constants.DatabaseChildNames.family).child(self.store.user.familyId)
             
             // TODO: We shoul be handling all the errors properly
             databaseEventsRef.updateChildValues(["name": name], withCompletionBlock: { (error, dataRef) in

@@ -33,7 +33,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     var uniqueID: String?
     var posts = [Post]()
     var store = DataStore.sharedInstance
-    let postsRef = FIRDatabase.database().reference().child("posts")
+    let postsRef = FIRDatabase.database().reference().child(Constants.DatabaseChildNames.posts)
     
     // MARK: - Loads
     
@@ -160,7 +160,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
             let storageRef = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
             //            let storageImgRef = storageRef.child("postsImages").child(store.imagePostID)
             
-            let storageImgRef = storageRef.child("postsImages").child(store.postID)
+            let storageImgRef = storageRef.child(Constants.StorageChildNames.postsImages).child(store.postID)
             
             storageImgRef.delete(completion: { error -> Void in
                 
@@ -226,7 +226,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func fetchMemberDetails() {
-        let member = FIRDatabase.database().reference().child("members").child(store.family.id).child(store.member.id)
+        let member = FIRDatabase.database().reference().child(Constants.DatabaseChildNames.members).child(store.family.id).child(store.member.id)
         
         member.observe(.value, with: { snapshot in
             var member = snapshot.value as? [String:Any]
@@ -299,7 +299,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         let database: FIRDatabaseReference = FIRDatabase.database().reference()
         
-        let databasePostsRef = database.child("posts").child(store.eventID).childByAutoId()
+        let databasePostsRef = database.child(Constants.DatabaseChildNames.posts).child(store.eventID).childByAutoId()
         
         let uniqueID = databasePostsRef.key
         
@@ -309,7 +309,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         store.imagePostID = uniqueID
         
-        let storageImageRef = storageRef.child("postsImages").child(store.imagePostID)
+        let storageImageRef = storageRef.child(Constants.StorageChildNames.postsImages).child(store.imagePostID)
         
         if let uploadData = UIImageJPEGRepresentation(image, 0.25){
             
@@ -342,6 +342,3 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     
 }
 
-extension FusumaViewController{
-    
-}

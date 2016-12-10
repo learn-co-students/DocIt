@@ -123,7 +123,7 @@ class RegisterViewController: UIViewController {
                     
                     self.store.user.id = (user?.uid)!
                     
-                    let familyID = self.database.child("user").child(self.store.user.id).child("familyID").childByAutoId().key
+                    let familyID = self.database.child(Constants.DatabaseChildNames.user).child(self.store.user.id).child("familyID").childByAutoId().key
                     
                     print("==============> \(familyID)")
                     
@@ -131,9 +131,9 @@ class RegisterViewController: UIViewController {
                     self.store.family.id = self.store.user.familyId
                     self.store.inviteFamilyID = ""
                     
-                    self.database.child("user").child(self.store.user.id).child("familyID").setValue(familyID)
-                    self.database.child("user").child(self.store.user.id).child("email").setValue(email)
-                    self.database.child("family").child(self.store.user.familyId).child("name").setValue("New Family")
+                    self.database.child(Constants.DatabaseChildNames.user).child(self.store.user.id).child("familyID").setValue(familyID)
+                    self.database.child(Constants.DatabaseChildNames.user).child(self.store.user.id).child("email").setValue(email)
+                    self.database.child(Constants.DatabaseChildNames.family).child(self.store.user.familyId).child("name").setValue("New Family")
                     
                     self.touchID(activate: false)
                     self.saveDataToCoreData()
@@ -145,11 +145,11 @@ class RegisterViewController: UIViewController {
                     
                     self.store.user.id = (user?.uid)!
                     self.store.user.familyId = self.store.inviteFamilyID
-                    self.database.child("user").child(self.store.user.id).child("familyID").setValue(self.store.user.familyId)
+                    self.database.child(Constants.DatabaseChildNames.user).child(self.store.user.id).child("familyID").setValue(self.store.user.familyId)
                     self.store.inviteFamilyID = ""
                     
-                    self.database.child("user").child((self.store.user.id)).child("email").setValue(email)
-                    self.database.child("family").child(self.store.user.familyId).child("name").setValue("New Family")
+                    self.database.child(Constants.DatabaseChildNames.user).child((self.store.user.id)).child("email").setValue(email)
+                    self.database.child(Constants.DatabaseChildNames.family).child(self.store.user.familyId).child("name").setValue("New Family")
                     
                 }
                 
@@ -162,7 +162,7 @@ class RegisterViewController: UIViewController {
     
     func touchID(activate: Bool) {
         
-        FIRDatabase.database().reference().child("settings").child(store.family.id).child("touchID").setValue(activate)
+        FIRDatabase.database().reference().child(Constants.DatabaseChildNames.settings).child(store.family.id).child("touchID").setValue(activate)
         
     }
     

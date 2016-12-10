@@ -149,7 +149,7 @@ class LoginViewController: UIViewController {
                 
                 
 
-                self.database.child("user").child((user?.uid)!).observe(.value, with: { snapshot in
+                self.database.child(Constants.DatabaseChildNames.user).child((user?.uid)!).observe(.value, with: { snapshot in
                 
                     DispatchQueue.main.async {
                         
@@ -175,7 +175,7 @@ class LoginViewController: UIViewController {
                 
                 self.store.user.id = (user?.uid)!
                 self.store.user.familyId = self.store.inviteFamilyID
-                self.database.child("user").child(self.store.user.id).child("familyID").setValue(self.store.user.familyId)
+                self.database.child(Constants.DatabaseChildNames.user).child(self.store.user.id).child("familyID").setValue(self.store.user.familyId)
 
                 self.store.inviteFamilyID = ""
                 
@@ -266,7 +266,7 @@ extension LoginViewController: GIDSignInDelegate {
             
             guard let userID = loggedInUser?.uid else {return}
             
-            self.database.child("user").child(userID).observeSingleEvent(of: .value, with: { snapshot in
+            self.database.child(Constants.DatabaseChildNames.user).child(userID).observeSingleEvent(of: .value, with: { snapshot in
                 
                 if let data = snapshot.value as? [String:Any] {
                     
@@ -299,16 +299,16 @@ extension LoginViewController: GIDSignInDelegate {
                     
                     self.store.user.id = userID
                     
-                    let familyID = self.database.child("user").child(userID).child("familyID").childByAutoId().key
+                    let familyID = self.database.child(Constants.DatabaseChildNames.user).child(userID).child("familyID").childByAutoId().key
                     
                     print("THIS IS THE FAMILY ID \(familyID)")
                     
                     self.store.user.familyId = familyID
                     self.store.family.id = familyID
                     
-                    self.database.child("user").child(userID).child("familyID").setValue(familyID)
-                    self.database.child("family").child("name").setValue("New Family")
-                    self.database.child("user").child(self.store.user.id).child("email").setValue((loggedInUser?.email)!)
+                    self.database.child(Constants.DatabaseChildNames.user).child(userID).child("familyID").setValue(familyID)
+                    self.database.child(Constants.DatabaseChildNames.family).child("name").setValue("New Family")
+                    self.database.child(Constants.DatabaseChildNames.user).child(self.store.user.id).child("email").setValue((loggedInUser?.email)!)
                     
                     print("YEAHHH")
                     

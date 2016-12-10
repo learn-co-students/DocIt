@@ -175,7 +175,7 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
     
     func deleteImagesFromStorage(uniqueID: String){
         
-        storageRef.child(Constants.storageChildNames.postsImages).child(uniqueID).delete(completion: { error -> Void in
+        storageRef.child(Constants.StorageChildNames.postsImages).child(uniqueID).delete(completion: { error -> Void in
             
             if error != nil {
                 print("******* Error occured while deleting post imgs from Firebase storage ******** \(uniqueID)")
@@ -187,7 +187,7 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
     }
      func deleteProfileImagesFromStorage(){
         
-        storageRef.child(Constants.storageChildNames.profileImages).child(self.store.member.id).delete { error -> Void in
+        storageRef.child(Constants.StorageChildNames.profileImages).child(self.store.member.id).delete { error -> Void in
             
             if error != nil {
                 print("******* Error occured while deleting profile imgs from Firebase storage ******** \(self.store.member.id)")

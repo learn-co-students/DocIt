@@ -63,7 +63,7 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
         
         let storageRef = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
         let imageId = uniqueID
-        let storageImageRef = storageRef.child(Constants.storageChildNames.profileImages).child(imageId)
+        let storageImageRef = storageRef.child(Constants.StorageChildNames.profileImages).child(imageId)
         
         if let uploadData = UIImageJPEGRepresentation(self.profileImageView.image!, 0.25) {
             

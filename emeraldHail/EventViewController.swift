@@ -208,7 +208,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func deleteImagesFromStorage(uniqueID: String){
         
         let storageRef = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
-        let storageImageRef = storageRef.child(Constants.storageChildNames.postsImages).child(uniqueID)
+        let storageImageRef = storageRef.child(Constants.StorageChildNames.postsImages).child(uniqueID)
         
         storageImageRef.delete(completion: { error -> Void in
             
@@ -253,7 +253,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         let memberID: String = store.member.id
         
-        let eventsRef = FIRDatabase.database().reference().child("events").child(memberID)
+        let eventsRef = FIRDatabase.database().reference().child(Constants.DatabaseChildNames.events).child(memberID)
         
         eventsRef.observe(.value, with: { snapshot in
             
