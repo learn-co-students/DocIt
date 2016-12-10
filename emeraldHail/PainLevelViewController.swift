@@ -73,23 +73,15 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
 
     func setupView() {
         
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.25)
+        
         painView.layer.cornerRadius = 10
-        painView.layer.borderColor = UIColor.lightGray.cgColor
+        painView.layer.borderColor = Constants.Colors.submarine.cgColor
         painView.layer.borderWidth = 1
         
-        
-        
-        painLevelCollectionView.layer.cornerRadius = 10
-        painLevelCollectionView.layer.borderColor = UIColor.lightGray.cgColor
-        painLevelCollectionView.backgroundColor = UIColor.white
-        painLevelCollectionView.layer.borderWidth = 1
+
         painLevelCollectionView.tintColor = UIColor.darkGray
-        
-        
-        view.backgroundColor = UIColor.clear
-        view.isOpaque = false
-        
-        
+    
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -106,10 +98,12 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
         cell.painLevelDescription.text = painLevels[indexPath.row].description
         
         if cell.isSelected == true {
-            cell.wasSelected()
+//            cell.wasSelected()
+            cell.backgroundColor = Constants.Colors.submarine
         }
         else if cell.isSelected == false {
-            cell.wasDeselected()
+//            cell.wasDeselected()
+            cell.backgroundColor = UIColor.clear
         }
         
         
@@ -120,15 +114,18 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
         
         guard let cell = collectionView.cellForItem(at: indexPath) as? PainLevelCollectionViewCell else { return }
         selectedPainLevel = painLevels[indexPath.row]
-        cell.wasSelected()
+//        cell.wasSelected()
         
+        cell.backgroundColor = Constants.Colors.submarine
         
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         
         guard let cell = collectionView.cellForItem(at: indexPath) as? PainLevelCollectionViewCell else { return }
-        cell.wasDeselected()
+//        cell.wasDeselected()
+        
+        cell.backgroundColor = UIColor.clear
         
     }
     
