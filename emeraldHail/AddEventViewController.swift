@@ -51,7 +51,7 @@ class AddEventViewController: UIViewController, UIPickerViewDelegate, UITextFiel
         
         guard let name = nameTextField?.text, name != "", let date = dateTextField?.text, date != "" else { return }
         
-        let databaseEventsRef = self.database.child(Constants.DatabaseChildNames.events).child(self.store.member.id).childByAutoId()
+        let databaseEventsRef = self.database.child(Constants.Database.events).child(self.store.member.id).childByAutoId()
         
         let uniqueID = databaseEventsRef.key
         
@@ -70,7 +70,7 @@ class AddEventViewController: UIViewController, UIPickerViewDelegate, UITextFiel
             
             guard let name = nameTextField?.text, name != "", let date = dateTextField?.text, date != "" else { return }
             
-            let databaseEventsRef = self.database.child(Constants.DatabaseChildNames.events).child(self.store.member.id).child(self.store.eventID)
+            let databaseEventsRef = self.database.child(Constants.Database.events).child(self.store.member.id).child(self.store.eventID)
             
             let uniqueID = databaseEventsRef.key
             

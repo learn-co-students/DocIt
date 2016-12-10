@@ -102,10 +102,10 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
 
-        let databaseEvents = self.database.child(Constants.DatabaseChildNames.events).child(store.member.id)
+        let databaseEvents = self.database.child(Constants.Database.events).child(store.member.id)
         let uniqueEventID = events[indexPath.row].uniqueID
 
-        let databasePosts = self.database.child(Constants.DatabaseChildNames.posts).child(uniqueEventID)
+        let databasePosts = self.database.child(Constants.Database.posts).child(uniqueEventID)
 
         var posts = [Post]()
         let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
@@ -217,7 +217,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func deleteImagesFromStorage(uniqueID: String){
 
         let storageRef = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
-        let storageImageRef = storageRef.child(Constants.StorageChildNames.postsImages).child(uniqueID)
+        let storageImageRef = storageRef.child(Constants.Storage.postsImages).child(uniqueID)
 
         storageImageRef.delete(completion: { error -> Void in
 
@@ -243,7 +243,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     func showPictureAndName() {
 
-        let member = FIRDatabase.database().reference().child(Constants.DatabaseChildNames.members).child(store.user.familyId).child(store.member.id)
+        let member = FIRDatabase.database().reference().child(Constants.Database.members).child(store.user.familyId).child(store.member.id)
         
         member.observe(.value, with: { snapshot in
             var member = snapshot.value as? [String : Any]
@@ -263,7 +263,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
         let memberID: String = store.member.id
 
-        let eventsRef = FIRDatabase.database().reference().child(Constants.DatabaseChildNames.events).child(memberID)
+        let eventsRef = FIRDatabase.database().reference().child(Constants.Database.events).child(memberID)
 
         eventsRef.observe(.value, with: { snapshot in
 

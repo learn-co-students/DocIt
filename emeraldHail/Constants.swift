@@ -32,7 +32,7 @@ struct Constants {
         
     }
     
-    struct DatabaseChildNames {
+    struct Database {
         
         static let events = "events"
         static let family = "family"
@@ -42,7 +42,7 @@ struct Constants {
         static let user = "user"
     }
     
-    struct StorageChildNames {
+    struct Storage {
         
         static let familyImages = "familyImages"
         static let postsImages = "postsImages"

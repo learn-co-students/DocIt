@@ -119,7 +119,7 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
         let okAction = UIAlertAction(title: "OK", style: .default, handler: { (action) in
             let userInput = alert.textFields![0].text
 
-            let ref = FIRDatabase.database().reference().child(Constants.DatabaseChildNames.family).child(self.store.user.familyId)
+            let ref = FIRDatabase.database().reference().child(Constants.Database.family).child(self.store.user.familyId)
 
 
             guard let name = userInput, name != "" else { return }
@@ -141,9 +141,9 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
     func changeFamilyCoverPic(photo: UIImage, handler: @escaping (Bool) -> Void) {
 
         let database = FIRDatabase.database().reference()
-        let familyDatabase = database.child(Constants.DatabaseChildNames.family).child(store.user.familyId)
+        let familyDatabase = database.child(Constants.Database.family).child(store.user.familyId)
         let storageRef = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
-        let storeImageRef = storageRef.child(Constants.StorageChildNames.familyImages).child(store.user.familyId)
+        let storeImageRef = storageRef.child(Constants.Storage.familyImages).child(store.user.familyId)
 
 
         if let uploadData = UIImageJPEGRepresentation(photo, 0.25) {
@@ -231,7 +231,7 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
     func checkTouchID() {
 
 
-        let database = FIRDatabase.database().reference().child(Constants.DatabaseChildNames.settings).child(store.user.familyId).child("touchID")
+        let database = FIRDatabase.database().reference().child(Constants.Database.settings).child(store.user.familyId).child("touchID")
 
         database.observe(.value, with: { (snapshot) in
 
@@ -255,7 +255,7 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
 
     func touchID(activate: Bool) {
 
-        FIRDatabase.database().reference().child(Constants.DatabaseChildNames.settings).child(store.user.familyId).child("touchID").setValue(activate)
+        FIRDatabase.database().reference().child(Constants.Database.settings).child(store.user.familyId).child("touchID").setValue(activate)
 
 
     }
