@@ -285,7 +285,6 @@ extension LoginViewController: GIDSignInDelegate {
                         NotificationCenter.default.post(name: Notification.Name.openfamilyVC, object: nil)
                     })
 
-
                     print(self.store.user.id)
                     print(self.store.user.familyId)
 

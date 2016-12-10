@@ -182,6 +182,22 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
     
     // MARK: - Methods
     
+    @IBAction func genderEditingDidBegin(_ sender: Any) {
+        genderTextField.text = store.genderSelections[genderSelection.selectedRow(inComponent: 0)]
+    }
+
+    @IBAction func heightEditingDidBegin(_ sender: Any) {
+        heightTextField.text = store.heightSelectionsFeet[heightSelection.selectedRow(inComponent: 0)] + store.heightSelections[heightSelection.selectedRow(inComponent: 1)]
+    }
+    
+    @IBAction func weightEditingDidBegin(_ sender: Any) {
+        weightTextField.text = store.weightSelections[weightSelection.selectedRow(inComponent: 0)]
+    }
+    
+    @IBAction func bloodTypeEditingDidBegin(_ sender: Any) {
+        bloodTextField.text = store.bloodTypeSelections[bloodSelection.selectedRow(inComponent: 0)]
+    }
+    
     func deletePostImagesFromStorage(uniqueID: String){
         
         storageRef.child(Constants.Storage.postsImages).child(uniqueID).delete(completion: { error -> Void in
