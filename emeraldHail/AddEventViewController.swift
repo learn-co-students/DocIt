@@ -17,6 +17,7 @@ class AddEventViewController: UIViewController, UIPickerViewDelegate, UITextFiel
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var dateTextField: UITextField!
     @IBOutlet weak var eventView: UIView!
+    @IBOutlet weak var saveButton: UIButton!
     
     // MARK: - Properties
     
@@ -43,44 +44,47 @@ class AddEventViewController: UIViewController, UIPickerViewDelegate, UITextFiel
     
     @IBAction func saveEvent(_ sender: UIButton) {
         
+        
+        
         if eventViewTitle.text == "Create Event" {
             
             guard let name = nameTextField?.text, name != "", let date = dateTextField?.text, date != "" else { return }
             
-            let databaseEventsRef = self.database.child("events").child(self.store.member.id).childByAutoId()
+            let databaseEventsRef = self.database.child(Constants.Database.events).child(self.store.member.id).childByAutoId()
             
             let uniqueID = databaseEventsRef.key
             
             let event = Event(name: name, startDate: date, uniqueID: uniqueID)
-            
             
             databaseEventsRef.setValue(event.serialize(), withCompletionBlock: { error, dataRef in
+                    
+                    self.nameTextField.text = ""
+                    self.dateTextField.text = ""
+                    
+                })
+    
+            }
                 
-                self.nameTextField.text = ""
-                self.dateTextField.text = ""
+                else {
                 
-            })
+                guard let name = nameTextField?.text, name != "", let date = dateTextField?.text, date != "" else { return }
+                
+                let databaseEventsRef = self.database.child(Constants.Database.events).child(self.store.member.id).child(self.store.eventID)
+                
+                let uniqueID = databaseEventsRef.key
+                
+                let event = Event(name: name, startDate: date, uniqueID: uniqueID)
+                
+                databaseEventsRef.updateChildValues(event.serialize(), withCompletionBlock: { error, dataRef in
+                
+                
+                })
+                
+                }
+                
+                dismiss(animated: true, completion: nil)
         }
-            
-        else {
-            
-            guard let name = nameTextField?.text, name != "", let date = dateTextField?.text, date != "" else { return }
-            
-            let databaseEventsRef = self.database.child("events").child(self.store.member.id).child(self.store.eventID)
-            
-            let uniqueID = databaseEventsRef.key
-            
-            let event = Event(name: name, startDate: date, uniqueID: uniqueID)
-            
-            databaseEventsRef.updateChildValues(event.serialize(), withCompletionBlock: { error, dataRef in
-                
-                
-            })
-            
-        }
-        
-        dismiss(animated: true, completion: nil)
-    }
+    
     
     @IBAction func cancelEvent(_ sender: UIButton) {
         
@@ -102,6 +106,8 @@ class AddEventViewController: UIViewController, UIPickerViewDelegate, UITextFiel
     func setupView() {
         
         view.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.25)
+        
+        saveButton.isEnabled = true
         
         eventView.layer.cornerRadius = 10
         eventView.layer.borderColor = Constants.Colors.submarine.cgColor

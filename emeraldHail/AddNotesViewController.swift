@@ -59,7 +59,7 @@ class AddNotesViewController: UIViewController, UITextViewDelegate {
         
         guard let noteText = addNotesTextView.text, noteText != "" else { return }
         
-        let postsRef = database.child("posts").child(store.eventID).childByAutoId()
+        let postsRef = database.child(Constants.Database.posts).child(store.eventID).childByAutoId()
         let uniqueID = postsRef.key
         
         let newNote = Note(content: noteText, timestamp: getTimestamp(), uniqueID: uniqueID)

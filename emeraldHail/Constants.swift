@@ -32,4 +32,21 @@ struct Constants {
         
     }
     
+    struct Database {
+        
+        static let events = "events"
+        static let family = "family"
+        static let members = "members"
+        static let posts = "posts"
+        static let settings = "settings"
+        static let user = "user"
+    }
+    
+    struct Storage {
+        
+        static let familyImages = "familyImages"
+        static let postsImages = "postsImages"
+        static let profileImages = "profileImages"
+    }
+    
 }

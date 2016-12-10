@@ -86,7 +86,7 @@ class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     }
 
     func saveTemp() {
-        let postsRef = database.child("posts").child(store.eventID).childByAutoId()
+        let postsRef = database.child(Constants.Database.posts).child(store.eventID).childByAutoId()
         let uniqueID = postsRef.key
         
         var tempType: String

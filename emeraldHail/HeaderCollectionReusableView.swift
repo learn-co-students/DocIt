@@ -12,29 +12,31 @@ import FirebaseDatabase
 import SDWebImage
 
 class HeaderCollectionReusableView: UICollectionReusableView {
-    
+
     // MARK: - Outlets
     @IBOutlet weak var familyNameLabel: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
-    
+
     // MARK: - Properties
-    
+
     let store = DataStore.sharedInstance
-    
-    // MARK: - Methods 
-    
+
+    // MARK: - Methods
+
     func configDatabaseFamily() {
-        let membersRef = FIRDatabase.database().reference().child("family")
-        let familyRef = membersRef.child(store.family.id)
-        
+
+        let membersRef = FIRDatabase.database().reference().child(Constants.Database.family)
+        let familyRef = membersRef.child(store.user.familyId)
+
         familyRef.observe(.value, with: { snapshot in
             var dic = snapshot.value as! [String : Any]
-            
+
             let imageString = dic["coverImageStr"] as! String
-            
+
             let profileImgUrl = URL(string: imageString)
             self.profileImage.sd_setImage(with: profileImgUrl)
         })
     }
-    
+
 }
+// hello

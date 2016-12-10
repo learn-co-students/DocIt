@@ -19,6 +19,7 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
     @IBOutlet weak var lastNameField: UITextField!
     @IBOutlet weak var dateTextField: UITextField!
     @IBOutlet weak var genderTextField: UITextField!
+    @IBOutlet weak var saveButton: UIButton!
     
     // MARK: - Properties
     
@@ -33,7 +34,7 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-
+        saveButton.isEnabled = true
         
         // Do any additional setup after loading the view.
     }
@@ -57,12 +58,13 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
             else { return }
         
         
-        let databaseMembersRef = database.child("members").child(store.user.familyId).childByAutoId()
+        let databaseMembersRef = database.child(Constants.Database.members).child(store.user.familyId).childByAutoId()
         let uniqueID = databaseMembersRef.key
+        print("UNIQUE ID IS: ----------------------------- \(uniqueID)")
         
         let storageRef = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
         let imageId = uniqueID
-        let storageImageRef = storageRef.child("profileImages").child(imageId)
+        let storageImageRef = storageRef.child(Constants.Storage.profileImages).child(imageId)
         
         if let uploadData = UIImageJPEGRepresentation(self.profileImageView.image!, 0.25) {
             
@@ -78,6 +80,7 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
                     
                     databaseMembersRef.setValue(member.serialize(), withCompletionBlock: { error, dataRef in
                         
+                        self.saveButton.isEnabled = false
                         self.dismiss(animated: true, completion: nil)
                         
                     })
