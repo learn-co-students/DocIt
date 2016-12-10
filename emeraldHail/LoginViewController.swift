@@ -251,7 +251,6 @@ extension LoginViewController: GIDSignInDelegate {
 //    }
 
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        print(123123123123)
 
         if let err = error {
             print("Failed to log into Google: ", err)

@@ -160,8 +160,6 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
-        
-        
         switch kind {
         case UICollectionElementKindSectionHeader:
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) as! HeaderCollectionReusableView
@@ -174,7 +172,11 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         default:
             assert(false, "Unexpected element kind")
         }
-        return HeaderCollectionReusableView
+        
+        // TODO: What is going on here?
+        let none = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "none", for: indexPath) as! HeaderCollectionReusableView
+        
+        return none
     }
     
     func hideKeyboardWhenTappedAround() {
