@@ -34,8 +34,7 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
         super.viewDidLoad()
         setupView()
 
-        firstNameField.becomeFirstResponder()
-        view.backgroundColor = UIColor(red: 0.13, green: 0.75, blue: 0.89, alpha: 0.25)
+        
         // Do any additional setup after loading the view.
     }
 
@@ -105,8 +104,8 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
         addMember.layer.borderColor = Constants.Colors.submarine.cgColor
         addMember.layer.borderWidth = 1
         
-        view.backgroundColor = UIColor.clear
-        view.isOpaque = false
+        firstNameField.becomeFirstResponder()
+        view.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.25)
         
         genderTextField.inputView = genderSelection
         genderSelection.delegate = self

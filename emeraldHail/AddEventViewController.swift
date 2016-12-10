@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 class AddEventViewController: UIViewController, UIPickerViewDelegate, UITextFieldDelegate {
-
+    
     
     // MARK: - Outlets
     
@@ -26,16 +26,17 @@ class AddEventViewController: UIViewController, UIPickerViewDelegate, UITextFiel
     var store = DataStore.sharedInstance
     let dobSelection = UIDatePicker()
     
-
-    // MARK: - Loads 
+    
+    // MARK: - Loads
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-
+        
+        nameTextField.becomeFirstResponder()
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -48,24 +49,24 @@ class AddEventViewController: UIViewController, UIPickerViewDelegate, UITextFiel
     @IBAction func saveEvent(_ sender: UIButton) {
         
         if eventViewTitle.text == "Create Event" {
-        
-        guard let name = nameTextField?.text, name != "", let date = dateTextField?.text, date != "" else { return }
-        
-        let databaseEventsRef = self.database.child("events").child(self.store.member.id).childByAutoId()
-        
-        let uniqueID = databaseEventsRef.key
-        
-        let event = Event(name: name, startDate: date, uniqueID: uniqueID)
-        
-        
-        databaseEventsRef.setValue(event.serialize(), withCompletionBlock: { error, dataRef in
             
-            self.nameTextField.text = ""
-            self.dateTextField.text = ""
+            guard let name = nameTextField?.text, name != "", let date = dateTextField?.text, date != "" else { return }
             
-        })
+            let databaseEventsRef = self.database.child("events").child(self.store.member.id).childByAutoId()
+            
+            let uniqueID = databaseEventsRef.key
+            
+            let event = Event(name: name, startDate: date, uniqueID: uniqueID)
+            
+            
+            databaseEventsRef.setValue(event.serialize(), withCompletionBlock: { error, dataRef in
+                
+                self.nameTextField.text = ""
+                self.dateTextField.text = ""
+                
+            })
         }
-        
+            
         else {
             
             guard let name = nameTextField?.text, name != "", let date = dateTextField?.text, date != "" else { return }
@@ -87,8 +88,18 @@ class AddEventViewController: UIViewController, UIPickerViewDelegate, UITextFiel
     }
     
     @IBAction func cancelEvent(_ sender: UIButton) {
-       
-    dismiss(animated: true, completion: nil)
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func startDateDidBeginEditing(_ sender: Any) {
+        
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .none
+        formatter.dateFormat = "MMM dd, yyyy"
+        dateTextField.text = formatter.string(from: dobSelection.date).uppercased()
+        
     }
     
     // MARK: - Methods
@@ -97,11 +108,10 @@ class AddEventViewController: UIViewController, UIPickerViewDelegate, UITextFiel
         
         
         eventView.layer.cornerRadius = 10
-        eventView.layer.borderColor = UIColor.lightGray.cgColor
+        eventView.layer.borderColor = Constants.Colors.submarine.cgColor
         eventView.layer.borderWidth = 1
         
-        view.backgroundColor = UIColor.clear
-        view.isOpaque = false
+        view.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.25)
         
         eventViewTitle.text = store.buttonEvent
         
@@ -111,7 +121,7 @@ class AddEventViewController: UIViewController, UIPickerViewDelegate, UITextFiel
             
             nameTextField.text = store.event.name
             dateTextField.text = store.event.startDate
-
+            
             print(store.event.name)
             print(store.event.startDate)
             
