@@ -196,9 +196,9 @@ class WelcomeViewController: UIViewController {
 
     func checkTouchID() {
 
-        if store.family.id != "" {
+        if store.user.familyId != "" {
 
-        let database = FIRDatabase.database().reference().child("settings").child(store.family.id).child("touchID")
+        let database = FIRDatabase.database().reference().child("settings").child(store.user.familyId).child("touchID")
 
         database.observe(.value, with: { (snapshot) in
 
