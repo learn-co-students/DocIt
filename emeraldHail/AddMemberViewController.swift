@@ -14,7 +14,6 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
     // MARK: Outlets
     
     @IBOutlet weak var addMember: UIView!
-    @IBOutlet weak var credentialView: UIView!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var firstNameField: UITextField!
     @IBOutlet weak var lastNameField: UITextField!
@@ -35,6 +34,8 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
         super.viewDidLoad()
         setupView()
 
+        firstNameField.becomeFirstResponder()
+        view.backgroundColor = UIColor(red: 0.13, green: 0.75, blue: 0.89, alpha: 0.25)
         // Do any additional setup after loading the view.
     }
 
@@ -99,17 +100,10 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
         addGestureRecognizer(imageView: profileImageView)
         profileImageView.isUserInteractionEnabled = true
         profileImageView.setRounded()
-//        profileImageView.layer.borderColor = UIColor.gray.cgColor
-//        profileImageView.layer.borderWidth = 0.5
-
         
         addMember.layer.cornerRadius = 10
-        addMember.layer.borderColor = UIColor.lightGray.cgColor
+        addMember.layer.borderColor = Constants.Colors.submarine.cgColor
         addMember.layer.borderWidth = 1
-        
-        credentialView.layer.cornerRadius = 10
-        credentialView.layer.borderColor = UIColor.lightGray.cgColor
-        credentialView.layer.borderWidth = 1
         
         view.backgroundColor = UIColor.clear
         view.isOpaque = false
@@ -118,6 +112,8 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
         genderSelection.delegate = self
         
         dateTextField.delegate = self
+        
+        
         
     }
     
@@ -158,11 +154,30 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
         picker.dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func birthdayDidBeginEditing(_ sender: Any) {
+        
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .none
+        formatter.dateFormat = "MMM dd, yyyy"
+        dateTextField.text = formatter.string(from: dobSelection.date).uppercased()
+        
+    }
+    
+    @IBAction func generDidBeginEditing(_ sender: Any) {
+        
+        genderTextField.text = store.genderSelections[genderSelection.selectedRow(inComponent: 0)]
+        
+    }
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool{
         
         return true
     }
+    
+    
+    
+    
     
     func textFieldDidBeginEditing(_ textField: UITextField){
         
@@ -194,8 +209,8 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
         formatter.timeStyle = .none
-        formatter.dateFormat = "MM-dd-yyyy"
-        dateTextField.text = formatter.string(from: sender.date)
+        formatter.dateFormat = "MMM dd, yyyy"
+        dateTextField.text = formatter.string(from: sender.date).uppercased()
         
     }
     
@@ -207,7 +222,6 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
         
         switch pickerView {
-            
             
         case genderSelection:
             return store.genderSelections.count

@@ -11,9 +11,8 @@ import Firebase
 import CoreData
 
 class RegisterViewController: UIViewController {
+    
     // TO DO : Create a function that would prevent users from registering with google twice. if they registered they shouldn't be allowed to create an account
-    
-    
     
     // MARK: - Outlets
     
@@ -33,8 +32,6 @@ class RegisterViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         hideKeyboardWhenTappedAround()
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
