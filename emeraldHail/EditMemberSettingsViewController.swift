@@ -102,7 +102,7 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
                     
                     print("Event ID is: \(eventID)")
                     
-                    self.deleteImagesFromStorage(uniqueID: eventID)
+                    self.deletePostImagesFromStorage(uniqueID: eventID)
                     
                     postsRef.child(eventID).observeSingleEvent(of: .value, with: { snapshot in
                         
@@ -128,7 +128,7 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
                         
                         switch post {
                         case .photo(_):
-                            self.deleteImagesFromStorage(uniqueID: post.description)
+                            self.deletePostImagesFromStorage(uniqueID: post.description)
 
                         default:
                             break
@@ -136,7 +136,8 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
                         
                     }
                     
-                    postsRef.child(eventID).removeValue() // All posts under event erased
+                    postsRef.child(eventID).removeValue()
+                    // All posts under event erased
                     
                 }
                 
@@ -173,7 +174,7 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
         
     }
     
-    func deleteImagesFromStorage(uniqueID: String){
+    func deletePostImagesFromStorage(uniqueID: String){
         
         storageRef.child(Constants.StorageChildNames.postsImages).child(uniqueID).delete(completion: { error -> Void in
             
