@@ -17,7 +17,6 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     @IBOutlet weak var memberProfilesView: UICollectionView!
-    @IBOutlet weak var addMember: UIView!
     
     // MARK: Properties
     
