@@ -36,7 +36,7 @@ class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     var postRef : FIRDatabaseReference = FIRDatabase.database().reference().child("posts")
     
     // Set default temp
-    var selectedTemp = "96.6"
+    var selectedTemp = "98.6"
     
     // MARK: - Loads
     
@@ -68,22 +68,19 @@ class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     
     func setupView() {
         
+        temperaturePickerView.selectRow(10, inComponent: 0, animated: false)
+        
+        view.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.25)
+        
         noteView.layer.cornerRadius = 10
-        noteView.layer.borderColor = UIColor.lightGray.cgColor
+        noteView.layer.borderColor = Constants.Colors.submarine.cgColor
         noteView.layer.borderWidth = 1
         
-        
-        
-        temperaturePickerView.layer.cornerRadius = 10
-        temperaturePickerView.layer.borderColor = UIColor.lightGray.cgColor
         temperaturePickerView.backgroundColor = UIColor.white
-        temperaturePickerView.layer.borderWidth = 1
-        temperaturePickerView.tintColor = UIColor.darkGray
-        
+        temperaturePickerView.tintColor = Constants.Colors.submarine
         
         view.backgroundColor = UIColor.clear
         view.isOpaque = false
-        
         
     }
 
@@ -115,6 +112,8 @@ class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
 
     }
     
+    
+    
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return availableTemps.count
     }
@@ -131,6 +130,9 @@ class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         //save the value for the pickerview temperature selected.
         selectedTemp = availableTemps[row]
+        
+        
     }
+    
     
 }

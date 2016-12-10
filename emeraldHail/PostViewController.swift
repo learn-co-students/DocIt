@@ -50,8 +50,6 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         // TODO: Maybe limit the size of the cell or number of characters. Then implement
         postTableView.rowHeight = UITableViewAutomaticDimension
         postTableView.estimatedRowHeight = 150
-    
-        print("kajsfhksdahfkhaksdjhf;kashdkfhklasdhfklhaslkhflkhklasdhfkjhasdfkjf \(self.store.event.name)")
         
         self.title = self.store.event.name
         

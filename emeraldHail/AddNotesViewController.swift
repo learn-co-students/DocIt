@@ -43,13 +43,15 @@ class AddNotesViewController: UIViewController, UITextViewDelegate {
     func setupView() {
         
         noteView.layer.cornerRadius = 10
-        noteView.layer.borderColor = UIColor.lightGray.cgColor
+        noteView.layer.borderColor = Constants.Colors.submarine.cgColor
         noteView.layer.borderWidth = 1
         
-        addNotesTextView.layer.cornerRadius = 10
-        addNotesTextView.layer.borderColor = UIColor.lightGray.cgColor
-        addNotesTextView.layer.borderWidth = 1
-        addNotesTextView.placeholderText = "Add your note"
+        view.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.25)
+        
+//        addNotesTextView.layer.cornerRadius = 10
+//        addNotesTextView.layer.borderColor = Constants.Colors.submarine.cgColor
+//        addNotesTextView.layer.borderWidth = 1
+//        addNotesTextView.placeholderText = "Add your note"
         
         view.backgroundColor = UIColor.clear
         view.isOpaque = false

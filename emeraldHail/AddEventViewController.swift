@@ -11,9 +11,7 @@ import Firebase
 
 class AddEventViewController: UIViewController, UIPickerViewDelegate, UITextFieldDelegate {
     
-    
     // MARK: - Outlets
-    
     
     @IBOutlet weak var eventViewTitle: UILabel!
     @IBOutlet weak var nameTextField: UITextField!
@@ -25,7 +23,6 @@ class AddEventViewController: UIViewController, UIPickerViewDelegate, UITextFiel
     var database: FIRDatabaseReference = FIRDatabase.database().reference()
     var store = DataStore.sharedInstance
     let dobSelection = UIDatePicker()
-    
     
     // MARK: - Loads
     
@@ -41,8 +38,6 @@ class AddEventViewController: UIViewController, UIPickerViewDelegate, UITextFiel
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
     
     // MARK: - Actions
     
@@ -106,12 +101,11 @@ class AddEventViewController: UIViewController, UIPickerViewDelegate, UITextFiel
     
     func setupView() {
         
+        view.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.25)
         
         eventView.layer.cornerRadius = 10
         eventView.layer.borderColor = Constants.Colors.submarine.cgColor
         eventView.layer.borderWidth = 1
-        
-        view.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.25)
         
         eventViewTitle.text = store.buttonEvent
         
@@ -121,9 +115,6 @@ class AddEventViewController: UIViewController, UIPickerViewDelegate, UITextFiel
             
             nameTextField.text = store.event.name
             dateTextField.text = store.event.startDate
-            
-            print(store.event.name)
-            print(store.event.startDate)
             
         }
         
