@@ -213,12 +213,12 @@ extension LoginViewController: GIDSignInUIDelegate {
         let googleSignInButton = GIDSignInButton()
         
         googleSignInButton.colorScheme = .light
-        googleSignInButton.style = .standard
+        googleSignInButton.style = .wide
         
         self.view.addSubview(googleSignInButton)
         googleSignInButton.translatesAutoresizingMaskIntoConstraints = false
         googleSignInButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        googleSignInButton.topAnchor.constraint(equalTo: signIn.bottomAnchor, constant: 10).isActive = true
+        googleSignInButton.topAnchor.constraint(equalTo: signIn.bottomAnchor, constant: 12).isActive = true
         googleSignInButton.heightAnchor.constraint(equalTo: passwordField.heightAnchor).isActive = true
         googleSignInButton.widthAnchor.constraint(equalTo: passwordField.widthAnchor).isActive = true
         view.layoutIfNeeded()
