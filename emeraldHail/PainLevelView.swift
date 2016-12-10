@@ -19,7 +19,7 @@ class PainLevelView: UIView {
     var pain: Pain! {
         didSet {
             
-            painLevelLabel.text = pain.content
+            painLevelLabel.text = pain.content.uppercased()
             timestampLabel.text = pain.naturalTime
       
             switch pain.content {
