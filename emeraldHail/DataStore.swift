@@ -52,6 +52,7 @@ class DataStore{
     
     var event = Event(name: "", startDate: "", uniqueID: "")
     
+    var buttonEvent = ""
     
     // MARK: - Picker values
     

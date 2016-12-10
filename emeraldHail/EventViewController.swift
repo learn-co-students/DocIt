@@ -16,6 +16,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     // MARK: - Outlets
     
+    @IBOutlet weak var addEventButton: UIBarButtonItem!
     @IBOutlet weak var eventsTable: UITableView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
@@ -53,10 +54,13 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     // MARK: - Actions
-    
-    @IBAction func addEvent(_ sender: Any) {
-        createEvent()
+   
+    @IBAction func addEvent(_ sender: UIBarButtonItem) {
+        store.buttonEvent = "Create Event"
+        performSegue(withIdentifier: "addEvent", sender: nil)
+
     }
+    
     
     // MARK: TableView Methods
     
@@ -168,10 +172,14 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             
             self.store.eventID = self.events[indexPath.row].uniqueID
             
-            self.modifyEvent.nameTextField.text = self.events[indexPath.row].name
-            self.modifyEvent.dateTextField.text = self.events[indexPath.row].startDate
+            self.store.event.name = self.events[indexPath.row].name
+            self.store.event.startDate = self.events[indexPath.row].startDate
                 
-            self.modifyEvent.isHidden = false
+            self.store.buttonEvent = "Modify Event"
+            
+            self.performSegue(withIdentifier: "addEvent", sender: nil)
+            
+            
         
         }
         
@@ -181,13 +189,16 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("Prepare for segue...")
+        
         
         switch sender {
         case is UITableViewCell:
             guard let indexPath = eventsTable.indexPath(for: sender as! UITableViewCell) else { return }
             print(events[indexPath.row].uniqueID)
-            store.eventID = events[indexPath.row].uniqueID
+                        store.eventID = events[indexPath.row].uniqueID
+            
+            
+            
         default:
             break
         }
@@ -261,19 +272,6 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             
             self.eventsTable.reloadData()
         })
-        
-    }
-    
-    func createEvent() {
-        
-        if self.addEvent.isHidden == true {
-            self.addEvent.isHidden = false
-        }
-        else {
-            self.addEvent.isHidden = true
-        }
-        
-        
         
     }
     

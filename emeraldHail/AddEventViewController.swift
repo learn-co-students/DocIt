@@ -15,6 +15,7 @@ class AddEventViewController: UIViewController, UIPickerViewDelegate, UITextFiel
     // MARK: - Outlets
     
     
+    @IBOutlet weak var eventViewTitle: UILabel!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var dateTextField: UITextField!
     @IBOutlet weak var eventView: UIView!
@@ -46,6 +47,8 @@ class AddEventViewController: UIViewController, UIPickerViewDelegate, UITextFiel
     
     @IBAction func saveEvent(_ sender: UIButton) {
         
+        if eventViewTitle.text == "Create Event" {
+        
         guard let name = nameTextField?.text, name != "", let date = dateTextField?.text, date != "" else { return }
         
         let databaseEventsRef = self.database.child("events").child(self.store.member.id).childByAutoId()
@@ -61,6 +64,26 @@ class AddEventViewController: UIViewController, UIPickerViewDelegate, UITextFiel
             self.dateTextField.text = ""
             
         })
+        }
+        
+        else {
+            
+            guard let name = nameTextField?.text, name != "", let date = dateTextField?.text, date != "" else { return }
+            
+            let databaseEventsRef = self.database.child("events").child(self.store.member.id).child(self.store.eventID)
+            
+            let uniqueID = databaseEventsRef.key
+            
+            let event = Event(name: name, startDate: date, uniqueID: uniqueID)
+            
+            databaseEventsRef.updateChildValues(event.serialize(), withCompletionBlock: { error, dataRef in
+                
+                
+            })
+            
+        }
+        
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func cancelEvent(_ sender: UIButton) {
@@ -80,10 +103,22 @@ class AddEventViewController: UIViewController, UIPickerViewDelegate, UITextFiel
         view.backgroundColor = UIColor.clear
         view.isOpaque = false
         
+        eventViewTitle.text = store.buttonEvent
         
         dateTextField.delegate = self
         
+        if eventViewTitle.text == "Modify Event" {
+            
+            nameTextField.text = store.event.name
+            dateTextField.text = store.event.startDate
+
+            print(store.event.name)
+            print(store.event.startDate)
+            
+        }
+        
     }
+    
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool{
         
