@@ -104,7 +104,6 @@ class SymptomsViewController: UIViewController, UITableViewDelegate, UITableView
         print(selectedSymtoms)
     }
     
-    
 }
 
 class SymptomViewCell: UITableViewCell {

@@ -114,20 +114,19 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
                         
                         let oldPosts = snapshot.value as? [String : Any]
                         
-                        if let allKeys = oldPosts?.keys {
+                        guard let allKeys = oldPosts?.keys else { return }
+                        
+                        for key in allKeys {
                             
-                            for key in allKeys {
-                                
-                                let dictionary = oldPosts?[key] as! [String : Any]
-                                
-                                let post = Post(dictionary: dictionary)
-                                
-                                posts.append(post)
-
-                                
-                                print(post.description)
-                            }
+                            let dictionary = oldPosts?[key] as! [String : Any]
+                            
+                            let post = Post(dictionary: dictionary)
+                            
+                            posts.append(post)
+                            
+                            print(post.description)
                         }
+                        
                     })
                     
                     for post in posts {
@@ -185,7 +184,7 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
     @IBAction func genderEditingDidBegin(_ sender: Any) {
         genderTextField.text = store.genderSelections[genderSelection.selectedRow(inComponent: 0)]
     }
-
+    
     @IBAction func heightEditingDidBegin(_ sender: Any) {
         heightTextField.text = store.heightSelectionsFeet[heightSelection.selectedRow(inComponent: 0)] + store.heightSelections[heightSelection.selectedRow(inComponent: 1)]
     }
@@ -230,7 +229,7 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
         addGestureRecognizer(imageView: profilePicture)
         profilePicture.isUserInteractionEnabled = true
         profilePicture.setRounded()
-       
+        
     }
     
     func addGestureRecognizer(imageView: UIImageView){
@@ -305,182 +304,179 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
                     print (error?.localizedDescription ?? "Error in saveButtonTapped in AddMembersViewController.swift" )
                     return
                 }
-                if let profileImageUrl = metadata?.downloadURL()?.absoluteString {
-                    
-                    
-                    
-                    let updatedInfo: [String:Any] = ["firstName":name,
-                                                     "lastName": lastName,
-                                                     "birthday": dob,
-                                                     "gender": gender,
-                                                     "profileImage": profileImageUrl,
-                                                     "bloodType": blood,
-                                                     "height": height,
-                                                     "weight": weight,
-                                                     "allergies": allergies]
-                    
-                    
-                    memberReference.updateChildValues(updatedInfo)
-                    
-                    let _ = self.navigationController?.popViewController(animated: true)
-                    
-                }
+                guard let profileImageUrl = metadata?.downloadURL()?.absoluteString else { return }
+                
+                let updatedInfo: [String:Any] = ["firstName":name,
+                                                 "lastName": lastName,
+                                                 "birthday": dob,
+                                                 "gender": gender,
+                                                 "profileImage": profileImageUrl,
+                                                 "bloodType": blood,
+                                                 "height": height,
+                                                 "weight": weight,
+                                                 "allergies": allergies]
+                
+                
+                memberReference.updateChildValues(updatedInfo)
+                
+                let _ = self.navigationController?.popViewController(animated: true)
+                
             })
         }
     }
     
-        func displayMemberProfileEdits() {
-            let member = databaseMember.child(store.user.familyId).child(store.member.id)
+    func displayMemberProfileEdits() {
+        let member = databaseMember.child(store.user.familyId).child(store.member.id)
+        
+        member.observe(.value, with: { (snapshot) in
             
-            member.observe(.value, with: { (snapshot) in
-                
-                let value = snapshot.value as? [String : Any]
-                let imageString = value?["profileImage"] as? String
-                guard let imgUrl = imageString else {return}
-                let profileImgUrl = URL(string: imgUrl)
-                let firstName = value?["firstName"] as? String
-                let lastName = value?["lastName"] as? String
-                let gender = value?["gender"] as? String
-                let bloodType = value?["bloodType"] as? String
-                let birthday = value?["birthday"] as? String
-                let height = value?["height"] as? String
-                let weight = value?["weight"] as? String
-                let allergies = value?["allergies"] as? String
-                
-                self.firstNameTextField.text = firstName
-                self.lastNameTextField.text = lastName
-                self.genderTextField.text = gender
-                self.dobTextField.text = birthday
-                self.bloodTextField.text = bloodType
-                self.allergiesTextField.text = allergies
-                self.heightTextField.text = height
-                self.weightTextField.text = weight
-                self.profilePicture.sd_setImage(with: profileImgUrl)
-                self.profilePicture.setRounded()
-                self.profilePicture.contentMode = .scaleAspectFill
-                
-            })
-        }
-        
-        // MARK: Methods Picker View
-        
-        func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool{
-            return true
-        }
-        
-        func textFieldDidBeginEditing(_ textField: UITextField){
-            let dobSelection = UIDatePicker()
-            dobTextField.inputView = dobSelection
-            dobSelection.datePickerMode = UIDatePickerMode.date
-            dobSelection.addTarget(self, action: #selector(self.datePickerChanged(sender:)) , for: .valueChanged)
-        }
-        
-        func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-            dobTextField.resignFirstResponder()
-            return true
-        }
-        
-        // return YES to allow editing to stop and to resign first responder status. NO to disallow the editing session to end
-        func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+            let value = snapshot.value as? [String : Any]
+            let imageString = value?["profileImage"] as? String
+            guard let imgUrl = imageString else {return}
+            let profileImgUrl = URL(string: imgUrl)
+            let firstName = value?["firstName"] as? String
+            let lastName = value?["lastName"] as? String
+            let gender = value?["gender"] as? String
+            let bloodType = value?["bloodType"] as? String
+            let birthday = value?["birthday"] as? String
+            let height = value?["height"] as? String
+            let weight = value?["weight"] as? String
+            let allergies = value?["allergies"] as? String
             
-            return self.view.endEditing(true)
+            self.firstNameTextField.text = firstName
+            self.lastNameTextField.text = lastName
+            self.genderTextField.text = gender
+            self.dobTextField.text = birthday
+            self.bloodTextField.text = bloodType
+            self.allergiesTextField.text = allergies
+            self.heightTextField.text = height
+            self.weightTextField.text = weight
+            self.profilePicture.sd_setImage(with: profileImgUrl)
+            self.profilePicture.setRounded()
+            self.profilePicture.contentMode = .scaleAspectFill
+            
+        })
+    }
+    
+    // MARK: Methods Picker View
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool{
+        return true
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField){
+        let dobSelection = UIDatePicker()
+        dobTextField.inputView = dobSelection
+        dobSelection.datePickerMode = UIDatePickerMode.date
+        dobSelection.addTarget(self, action: #selector(self.datePickerChanged(sender:)) , for: .valueChanged)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        dobTextField.resignFirstResponder()
+        return true
+    }
+    
+    // return YES to allow editing to stop and to resign first responder status. NO to disallow the editing session to end
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        
+        return self.view.endEditing(true)
+        
+    }
+    
+    
+    func datePickerChanged(sender: UIDatePicker) {
+        //        let myLocale = Locale(identifier: "en_US")
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .none
+        formatter.dateFormat = "MM-dd-yyyy"
+        //        var calendar = Calendar(identifier: .gregopen orian)
+        dobTextField.text = formatter.string(from: sender.date)
+        
+        
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int{
+        
+        switch pickerView {
+        case bloodSelection:
+            return 1
+        case genderSelection:
+            return 1
+        case weightSelection:
+            return 1
+        case heightSelection:
+            return 2
+        default:
+            return 1
             
         }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
         
-        
-        func datePickerChanged(sender: UIDatePicker) {
-            //        let myLocale = Locale(identifier: "en_US")
-            let formatter = DateFormatter()
-            formatter.dateStyle = .medium
-            formatter.timeStyle = .none
-            formatter.dateFormat = "MM-dd-yyyy"
-            //        var calendar = Calendar(identifier: .gregopen orian)
-            dobTextField.text = formatter.string(from: sender.date)
-            
-            
-        }
-        
-        func numberOfComponents(in pickerView: UIPickerView) -> Int{
-            
-            switch pickerView {
-            case bloodSelection:
-                return 1
-            case genderSelection:
-                return 1
-            case weightSelection:
-                return 1
-            case heightSelection:
-                return 2
-            default:
-                return 1
-                
+        switch pickerView {
+        case bloodSelection:
+            return store.bloodTypeSelections.count
+        case genderSelection:
+            return store.genderSelections.count
+        case weightSelection:
+            return store.weightSelections.count
+        case heightSelection:
+            if component == 0 {
+                return store.heightSelectionsFeet.count
+            } else if component == 1 {
+                return store.heightSelections.count
             }
+        default:
+            break
         }
+        return 0
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
-        func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
-            
-            switch pickerView {
-            case bloodSelection:
-                return store.bloodTypeSelections.count
-            case genderSelection:
-                return store.genderSelections.count
-            case weightSelection:
-                return store.weightSelections.count
-            case heightSelection:
-                if component == 0 {
-                    return store.heightSelectionsFeet.count
-                } else if component == 1 {
-                    return store.heightSelections.count
-                }
-            default:
-                break
+        
+        switch pickerView {
+        case bloodSelection:
+            bloodTextField.text = store.bloodTypeSelections[row]
+        case genderSelection:
+            genderTextField.text = store.genderSelections[row]
+        case weightSelection:
+            weightTextField.text = store.weightSelections[row]
+        case heightSelection:
+            if component == 0 {
+                feet = store.heightSelectionsFeet[row]
+            } else if component == 1 {
+                inches = store.heightSelections[row]
             }
-            return 0
+            heightTextField.text = "\(feet)\(inches)"
+        default:
+            break
         }
         
-        func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-            
-            
-            switch pickerView {
-            case bloodSelection:
-                bloodTextField.text = store.bloodTypeSelections[row]
-            case genderSelection:
-                genderTextField.text = store.genderSelections[row]
-            case weightSelection:
-                weightTextField.text = store.weightSelections[row]
-            case heightSelection:
-                if component == 0 {
-                    feet = store.heightSelectionsFeet[row]
-                } else if component == 1 {
-                    inches = store.heightSelections[row]
-                }
-                heightTextField.text = "\(feet)\(inches)"
-            default:
-                break
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        
+        switch pickerView {
+        case bloodSelection:
+            return store.bloodTypeSelections[row]
+        case genderSelection:
+            return store.genderSelections[row]
+        case weightSelection:
+            return store.weightSelections[row]
+        case heightSelection:
+            if component == 0 {
+                return store.heightSelectionsFeet[row]
+            } else if component == 1 {
+                return store.heightSelections[row]
             }
-            
+        default:
+            break
         }
-        
-        func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-            
-            switch pickerView {
-            case bloodSelection:
-                return store.bloodTypeSelections[row]
-            case genderSelection:
-                return store.genderSelections[row]
-            case weightSelection:
-                return store.weightSelections[row]
-            case heightSelection:
-                if component == 0 {
-                    return store.heightSelectionsFeet[row]
-                } else if component == 1 {
-                    return store.heightSelections[row]
-                }
-            default:
-                break
-            }
-            return ""
-        }
-        
-        
+        return ""
+    }
+    
+    
 }

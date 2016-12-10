@@ -36,8 +36,6 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
     
     let store = DataStore.sharedInstance
     
-
-  
     
        // MARK: - Loads
 
@@ -134,10 +132,7 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
     
     
     func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        
-        
         return true
-        
     }
 
     

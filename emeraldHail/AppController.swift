@@ -39,9 +39,6 @@ class AppController: UIViewController {
         loadInitialViewController()
     }
     
-    
-    
-    
 }
 
 
@@ -69,7 +66,6 @@ extension AppController {
         activeVC = loadViewController(withStoryboardID: id)
         add(viewController: activeVC, animated: true)
     }
-    
     
     
     func loadViewController(withStoryboardID id: StoryboardID) -> UIViewController {

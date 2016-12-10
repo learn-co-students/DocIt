@@ -60,10 +60,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         super.viewWillAppear(true)
         self.memberProfilesView.reloadData()
     }
-    
-    
-    
-    
+ 
     // MARK: - Methods
     
     func configureLayout() {
@@ -99,7 +96,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     }
     
-    // MARK: Collection view methods
+    // MARK: - Collection view methods
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -147,7 +144,6 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
             
             print(store.member)
             
-            
         } else {
             
         performSegue(withIdentifier: "addMember", sender: nil)
@@ -156,7 +152,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         
     }
     
-    // MARK: Header resuable view
+    // MARK: - Header resuable view
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
@@ -260,7 +256,6 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         memberProfilesView.reloadData()
         refresher.endRefreshing()
     }
-    
     
 }
 

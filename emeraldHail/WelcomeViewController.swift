@@ -29,8 +29,6 @@ class WelcomeViewController: UIViewController {
     var store = DataStore.sharedInstance
 
 
-
-
     // MARK: - Loads
 
     override func viewDidLoad() {
@@ -39,9 +37,6 @@ class WelcomeViewController: UIViewController {
         fetchData()
         updateFamilyId()
         setupViews()
-
-
-
         checkTouchID()
         store.fillWeightData()
 
@@ -193,32 +188,32 @@ class WelcomeViewController: UIViewController {
 
     }
 
-
+    
     func checkTouchID() {
-
+        
         if store.user.familyId != "" {
-
-        let database = FIRDatabase.database().reference().child(Constants.Database.settings).child(store.user.familyId).child("touchID")
-
-        database.observe(.value, with: { (snapshot) in
-
-            let value = snapshot.value as? Bool
-
-            if value == true {
-
-                self.touchID.isHidden = false
-
-            }
-
-            else if value == false {
-
-                self.touchID.isHidden = true
-            }
-
-
-        })
-
+            
+            let database = FIRDatabase.database().reference().child(Constants.Database.settings).child(store.user.familyId).child("touchID")
+            
+            database.observe(.value, with: { (snapshot) in
+                
+                let value = snapshot.value as? Bool
+                
+                if value == true {
+                    
+                    self.touchID.isHidden = false
+                    
+                }
+                    
+                else if value == false {
+                    
+                    self.touchID.isHidden = true
+                }
+                
+            })
+            
         } else {
+        
             print("no family id")
         }
     }

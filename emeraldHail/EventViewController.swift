@@ -110,7 +110,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         var posts = [Post]()
         let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
 
-            print("******************************** The delete button is tapped ***************************** ")
+            print("********** The delete button is tapped ********** ")
 
             // Alert Controller
 
@@ -120,7 +120,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
             let deleteAction = UIAlertAction(title: "Delete", style: .default, handler: { action -> Void in
 
-                print("********************************* User confimed to delete the event **************************** ")
+                print("********** User confimed to delete the event ********** ")
 
                 // delete item at indexPath
 
@@ -128,26 +128,27 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 databaseEvents.child(uniqueEventID).removeValue()
 
                 databasePosts.observeSingleEvent(of: .value, with: { snapshot in
+                    
                     let oldPosts = snapshot.value as? [String: Any]
                     let allKeys = oldPosts?.keys
 
-                    if let keys = allKeys {
-                        for key in keys {
-                            let dictionary = oldPosts?[key] as? [String: Any]
+                    guard let keys = allKeys else { return }
+                    
+                    for key in keys {
+                        
+                        let dictionary = oldPosts?[key] as? [String: Any]
 
-                            let post = Post(dictionary: dictionary!)
+                        let post = Post(dictionary: dictionary!)
 
-                            posts.append(post)
+                        posts.append(post)
 
                         }
-                    }
 
                     for post in posts {
                         self.deleteImagesFromStorage(uniqueID: post.description)
                     }
 
                     databasePosts.removeValue()
-
 
                 })
 
@@ -169,14 +170,10 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             // Present the controller
             self.present(alertController, animated: true, completion: nil)
 
-
         }
-
-
 
         let edit = UITableViewRowAction(style: .normal, title: "Edit") { (action, indexPath) in
             // share item at indexPath
-
 
             self.store.eventID = self.events[indexPath.row].uniqueID
 
@@ -186,8 +183,6 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             self.store.buttonEvent = "Modify Event"
 
             self.performSegue(withIdentifier: "addEvent", sender: nil)
-
-
 
         }
 
@@ -204,8 +199,6 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             guard let indexPath = eventsTable.indexPath(for: sender as! UITableViewCell) else { return }
             print(events[indexPath.row].uniqueID)
                         store.eventID = events[indexPath.row].uniqueID
-
-
 
         default:
             break

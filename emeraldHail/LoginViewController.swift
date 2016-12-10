@@ -90,7 +90,6 @@ class LoginViewController: UIViewController {
         }
     }
 
-
     @IBAction func pressedGoogleSignIn(_ sender: Any) {
         GIDSignIn.sharedInstance().signIn()
         print("We are hitting the google button")
@@ -130,7 +129,6 @@ class LoginViewController: UIViewController {
         view.endEditing(true)
     }
 
-
     func login() {
 
         guard let email = emailField.text, let password = passwordField.text else { return }
@@ -140,14 +138,12 @@ class LoginViewController: UIViewController {
                 // TODO: Format the error.localizedDescription for natural language, ex. "Invalid email", "Password must be 6 characters or more", etc.
                 // Set errorLabel to the error.localizedDescription
                 self.errorLabel.text = error.localizedDescription
-                print("===========================\(error.localizedDescription)")
+                print("======>\(error.localizedDescription)")
                 return
             }
             // Set the sharedInstance familyID to the current user.uid
 
             if self.store.inviteFamilyID == "" {
-
-
 
                 self.database.child(Constants.Database.user).child((user?.uid)!).observe(.value, with: { snapshot in
 
@@ -187,26 +183,15 @@ class LoginViewController: UIViewController {
 
                 })
 
-
             }
-
-
 
         }
 
         //            NotificationCenter.default.post(name: .openfamilyVC, object: nil)
-
-
-
-
-
-               //            self.performSegue(withIdentifier: "showFamily", sender: nil)
-
+        //            self.performSegue(withIdentifier: "showFamily", sender: nil)
 
     }
 }
-
-
 
 // MARK: - Google UI Delegate
 extension LoginViewController: GIDSignInUIDelegate {
@@ -304,8 +289,7 @@ extension LoginViewController: GIDSignInDelegate {
 
                     self.database.child(Constants.Database.user).child(userID).child("familyID").setValue(familyID)
                     self.database.child(Constants.Database.family).child(familyID).child("name").setValue("New Family")
-                    
-                    self.database.child(Constants.Database.user).child(self.store.user.id).child("email").setValue((loggedInUser?.email)!)
+                self.database.child(Constants.Database.user).child(self.store.user.id).child("email").setValue((loggedInUser?.email)!)
 
                     print("YEAHHH")
 
@@ -313,7 +297,6 @@ extension LoginViewController: GIDSignInDelegate {
 
                         NotificationCenter.default.post(name: Notification.Name.openfamilyVC, object: nil)
                     })
-
 
                 }
             })

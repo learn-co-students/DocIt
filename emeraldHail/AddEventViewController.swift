@@ -44,8 +44,6 @@ class AddEventViewController: UIViewController, UIPickerViewDelegate, UITextFiel
     
     @IBAction func saveEvent(_ sender: UIButton) {
         
-        
-        
         if eventViewTitle.text == "Create Event" {
             
             guard let name = nameTextField?.text, name != "", let date = dateTextField?.text, date != "" else { return }
@@ -57,33 +55,33 @@ class AddEventViewController: UIViewController, UIPickerViewDelegate, UITextFiel
             let event = Event(name: name, startDate: date, uniqueID: uniqueID)
             
             databaseEventsRef.setValue(event.serialize(), withCompletionBlock: { error, dataRef in
-                    
-                    self.nameTextField.text = ""
-                    self.dateTextField.text = ""
-                    
-                })
-    
-            }
                 
-                else {
+                self.nameTextField.text = ""
+                self.dateTextField.text = ""
                 
-                guard let name = nameTextField?.text, name != "", let date = dateTextField?.text, date != "" else { return }
-                
-                let databaseEventsRef = self.database.child(Constants.Database.events).child(self.store.member.id).child(self.store.eventID)
-                
-                let uniqueID = databaseEventsRef.key
-                
-                let event = Event(name: name, startDate: date, uniqueID: uniqueID)
-                
-                databaseEventsRef.updateChildValues(event.serialize(), withCompletionBlock: { error, dataRef in
-                
-                
-                })
-                
-                }
-                
-                dismiss(animated: true, completion: nil)
+            })
+            
         }
+            
+        else {
+            
+            guard let name = nameTextField?.text, name != "", let date = dateTextField?.text, date != "" else { return }
+            
+            let databaseEventsRef = self.database.child(Constants.Database.events).child(self.store.member.id).child(self.store.eventID)
+            
+            let uniqueID = databaseEventsRef.key
+            
+            let event = Event(name: name, startDate: date, uniqueID: uniqueID)
+            
+            databaseEventsRef.updateChildValues(event.serialize(), withCompletionBlock: { error, dataRef in
+                
+                
+            })
+            
+        }
+        
+        dismiss(animated: true, completion: nil)
+    }
     
     
     @IBAction func cancelEvent(_ sender: UIButton) {

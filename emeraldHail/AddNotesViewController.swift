@@ -62,7 +62,6 @@ class AddNotesViewController: UIViewController, UITextViewDelegate {
         let uniqueID = postsRef.key
         
         let newNote = Note(content: noteText, timestamp: getTimestamp(), uniqueID: uniqueID)
-    
         
         postsRef.setValue(newNote.serialize(), withCompletionBlock: { error, ref in
             self.dismiss(animated: true, completion: nil)

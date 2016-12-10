@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UITextFieldDelegate {
-
+    
     // MARK: Outlets
     
     @IBOutlet weak var addMember: UIView!
@@ -38,7 +38,7 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
         
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -60,34 +60,34 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
         
         let databaseMembersRef = database.child(Constants.Database.members).child(store.user.familyId).childByAutoId()
         let uniqueID = databaseMembersRef.key
-        print("UNIQUE ID IS: ----------------------------- \(uniqueID)")
         
         let storageRef = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
         let imageId = uniqueID
         let storageImageRef = storageRef.child(Constants.Storage.profileImages).child(imageId)
         
-        if let uploadData = UIImageJPEGRepresentation(self.profileImageView.image!, 0.25) {
+        
+        guard let uploadData = UIImageJPEGRepresentation(self.profileImageView.image!, 0.25) else { return }
+        
+        storageImageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
+            if error != nil {
+                print (error?.localizedDescription ?? "Error in saveButtonTapped in AddMembersViewController.swift" )
+                return
+            }
+            guard let profileImageUrl = metadata?.downloadURL()?.absoluteString else { return }
             
-            storageImageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
-                if error != nil {
-                    print (error?.localizedDescription ?? "Error in saveButtonTapped in AddMembersViewController.swift" )
-                    return
-                }
-                if let profileImageUrl = metadata?.downloadURL()?.absoluteString {
-                    
-                    let member = Member(profileImage: profileImageUrl, firstName: name, lastName: lastName, gender: gender, birthday: dob, bloodType: "", height: "", weight: "", allergies: "", id: uniqueID)
-                    
-                    
-                    databaseMembersRef.setValue(member.serialize(), withCompletionBlock: { error, dataRef in
-                        
-                        self.saveButton.isEnabled = false
-                        self.dismiss(animated: true, completion: nil)
-                        
-                    })
-                }
+            let member = Member(profileImage: profileImageUrl, firstName: name, lastName: lastName, gender: gender, birthday: dob, bloodType: "", height: "", weight: "", allergies: "", id: uniqueID)
+            
+            
+            databaseMembersRef.setValue(member.serialize(), withCompletionBlock: { error, dataRef in
+                
+                self.saveButton.isEnabled = false
+                self.dismiss(animated: true, completion: nil)
                 
             })
-        }
+            
+            
+        })
+        
         
     }
     
@@ -262,5 +262,5 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
         return ""
     }
     
-
+    
 }

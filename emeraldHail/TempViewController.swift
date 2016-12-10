@@ -131,9 +131,5 @@ class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         //save the value for the pickerview temperature selected.
         selectedTemp = availableTemps[row]
-        
-        
     }
-    
-    
 }
