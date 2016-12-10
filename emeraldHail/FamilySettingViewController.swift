@@ -141,9 +141,9 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
     func changeFamilyCoverPic(photo: UIImage, handler: @escaping (Bool) -> Void) {
         
         let database = FIRDatabase.database().reference()
-        let familyDatabase = database.child("family").child(store.family.id)
+        let familyDatabase = database.child("family").child(store.user.familyId)
         let storageRef = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
-        let storeImageRef = storageRef.child("familyImages").child(store.family.id)
+        let storeImageRef = storageRef.child("familyImages").child(store.user.familyId)
         
         if let uploadData = UIImageJPEGRepresentation(photo, 0.25) {
             
@@ -229,7 +229,7 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
     
     func checkTouchID() {
         
-        let database = FIRDatabase.database().reference().child("settings").child(store.family.id).child("touchID")
+        let database = FIRDatabase.database().reference().child("settings").child(store.user.familyId).child("touchID")
         
         database.observe(.value, with: { (snapshot) in
             
@@ -253,7 +253,7 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
     
     func touchID(activate: Bool) {
         
-        FIRDatabase.database().reference().child("settings").child(store.family.id).child("touchID").setValue(activate)
+        FIRDatabase.database().reference().child("settings").child(store.user.familyId).child("touchID").setValue(activate)
         
     }
     

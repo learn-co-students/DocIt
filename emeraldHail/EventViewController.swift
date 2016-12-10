@@ -29,6 +29,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var database: FIRDatabaseReference = FIRDatabase.database().reference()
     var memberID = ""
     var member = [Member]()
+    let notificationCenter = NotificationCenter.default
     
     // MARK: - Loads
     
@@ -42,7 +43,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         eventsTable.reloadData()
         showPictureAndName()
         
-        self.title = store.member.firstName
+        self.title = "Event"
         
     }
     
@@ -76,6 +77,14 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         cell.eventDate.text = event.startDate.uppercased()
 
         store.eventID = event.uniqueID
+        
+        if profileImageView.bounds.origin.y < 0 {
+            
+            self.title = store.member.firstName
+        }
+        
+
+        
         
 
         return cell
@@ -233,7 +242,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func showPictureAndName() {
-        let member = FIRDatabase.database().reference().child("members").child(store.family.id).child(store.member.id)
+        let member = FIRDatabase.database().reference().child("members").child(store.user.familyId).child(store.member.id)
         
         member.observe(.value, with: { snapshot in
             var member = snapshot.value as? [String : Any]

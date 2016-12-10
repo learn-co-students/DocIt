@@ -25,7 +25,7 @@ class HeaderCollectionReusableView: UICollectionReusableView {
     
     func configDatabaseFamily() {
         let membersRef = FIRDatabase.database().reference().child("family")
-        let familyRef = membersRef.child(store.family.id)
+        let familyRef = membersRef.child(store.user.familyId)
         
         familyRef.observe(.value, with: { snapshot in
             var dic = snapshot.value as! [String : Any]
@@ -38,3 +38,4 @@ class HeaderCollectionReusableView: UICollectionReusableView {
     }
     
 }
+// hello

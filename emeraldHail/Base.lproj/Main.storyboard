@@ -378,14 +378,6 @@
                                     </connections>
                                 </collectionReusableView>
                             </collectionView>
-                            <view hidden="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="exm-S5-hkB" userLabel="addMember" customClass="AddMember" customModule="emeraldHail" customModuleProvider="target">
-                                <rect key="frame" x="38" y="94" width="300" height="480"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="480" id="8Ar-oz-oTC"/>
-                                    <constraint firstAttribute="width" constant="300" id="AFN-E2-YsP"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.97647058823529409" green="0.97254901960784312" blue="0.97254901960784312" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -509,19 +501,10 @@
                                     <action selector="didPressInviteParent:" destination="bHr-j8-e7W" eventType="touchUpInside" id="n5D-0v-K3c"/>
                                 </connections>
                             </button>
-                            <view hidden="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yYb-pT-whf" customClass="JoinFamily" customModule="emeraldHail" customModuleProvider="target">
-                                <rect key="frame" x="38" y="344" width="326" height="311"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="326" id="7Bv-p8-hBR"/>
-                                    <constraint firstAttribute="height" constant="311" id="WXp-q2-hTs"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.97647058823529409" green="0.97254901960784312" blue="0.97254901960784312" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" red="0.12560352683067322" green="0.75167614221572876" blue="0.88603806495666504" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="yYb-pT-whf" firstAttribute="centerY" secondItem="HND-Eo-G97" secondAttribute="centerY" id="2EA-nj-Oww"/>
                             <constraint firstItem="tkA-Uo-Tn7" firstAttribute="top" secondItem="W30-XH-IpY" secondAttribute="bottom" constant="12" id="7QD-Fg-vf3"/>
                             <constraint firstItem="UYV-Us-6hb" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="jTf-v1-YLa" secondAttribute="trailing" constant="12" id="8yk-oz-gdI"/>
                             <constraint firstItem="2F6-SI-HLP" firstAttribute="width" secondItem="W30-XH-IpY" secondAttribute="width" id="Cow-GQ-Y55"/>
@@ -535,7 +518,6 @@
                             <constraint firstItem="jTf-v1-YLa" firstAttribute="leading" secondItem="HND-Eo-G97" secondAttribute="leadingMargin" constant="93" id="dvs-RB-zCx"/>
                             <constraint firstItem="W30-XH-IpY" firstAttribute="width" secondItem="TgT-Sn-ZkG" secondAttribute="width" id="iQb-cz-JJ8"/>
                             <constraint firstItem="TgT-Sn-ZkG" firstAttribute="top" secondItem="tkA-Uo-Tn7" secondAttribute="bottom" constant="12" id="iqL-a4-xER"/>
-                            <constraint firstItem="yYb-pT-whf" firstAttribute="centerX" secondItem="HND-Eo-G97" secondAttribute="centerX" id="nh3-Kc-DPS"/>
                             <constraint firstItem="TgT-Sn-ZkG" firstAttribute="centerX" secondItem="HND-Eo-G97" secondAttribute="centerX" id="soP-ZY-JIr"/>
                             <constraint firstItem="TgT-Sn-ZkG" firstAttribute="width" secondItem="HND-Eo-G97" secondAttribute="width" multiplier="0.8" id="srA-rT-v4F"/>
                             <constraint firstAttribute="trailingMargin" secondItem="UYV-Us-6hb" secondAttribute="trailing" constant="92" id="tM7-Vj-I0n"/>
@@ -544,7 +526,6 @@
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="JL3-N3-RR3"/>
                     <connections>
-                        <outlet property="joinFamily" destination="yYb-pT-whf" id="IKf-Uf-rbJ"/>
                         <outlet property="touchID" destination="UYV-Us-6hb" id="Lsy-xB-AXL"/>
                     </connections>
                 </viewController>
@@ -879,7 +860,7 @@
                                         <rect key="frame" x="0.0" y="178" width="375" height="125"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QKB-QM-ocB" id="fxY-VR-Bs9">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="124.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="125"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rLO-IL-KHX">
@@ -1023,7 +1004,7 @@
                                         <rect key="frame" x="0.0" y="178" width="375" height="175"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UUt-sg-gbE" id="h81-2d-teZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="174.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="175"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="th2-zl-Cpp" customClass="NoteView" customModule="emeraldHail" customModuleProvider="target">
@@ -1048,7 +1029,7 @@
                                         <rect key="frame" x="0.0" y="353" width="375" height="175"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="peP-XC-WVV" id="RcP-so-JzR">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="174.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="175"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gV2-le-btI" customClass="TempView" customModule="emeraldHail" customModuleProvider="target">
@@ -1073,7 +1054,7 @@
                                         <rect key="frame" x="0.0" y="528" width="375" height="175"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IDA-b7-ivE" id="HtV-7Y-KVc">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="174.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="175"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zBC-MT-qb4" customClass="PainLevelView" customModule="emeraldHail" customModuleProvider="target">
@@ -1098,7 +1079,7 @@
                                         <rect key="frame" x="0.0" y="703" width="375" height="175"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ohs-z1-J7Z" id="LZo-vS-hDY">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="174.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="175"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZHG-bj-TMs" customClass="SymptomView" customModule="emeraldHail" customModuleProvider="target">
@@ -1123,7 +1104,7 @@
                                         <rect key="frame" x="0.0" y="878" width="375" height="175"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RKd-F6-2Wm" id="N4Z-Yb-Ngb">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="174.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="175"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DVu-eA-2WR" customClass="PhotoView" customModule="emeraldHail" customModuleProvider="target">
@@ -1740,7 +1721,7 @@
             <objects>
                 <navigationController storyboardIdentifier="family-nav-controller" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="XIF-ae-qWP" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ixB-h9-CxZ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ixB-h9-CxZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>

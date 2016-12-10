@@ -145,6 +145,7 @@ class RegisterViewController: UIViewController {
                     
                     self.store.user.id = (user?.uid)!
                     self.store.user.familyId = self.store.inviteFamilyID
+                    self.store.family.id = self.store.user.familyId
                     self.database.child("user").child(self.store.user.id).child("familyID").setValue(self.store.user.familyId)
                     self.store.inviteFamilyID = ""
                     

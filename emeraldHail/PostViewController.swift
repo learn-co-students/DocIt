@@ -40,7 +40,6 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽\nInside the PostVC\nfamilyID: \(store.family.id)\nmemberID: \(store.member.id)\neventID: \(store.eventID)\n👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽👌🏽")
         
         postTableView.delegate = self
         postTableView.dataSource = self
@@ -226,7 +225,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func fetchMemberDetails() {
-        let member = FIRDatabase.database().reference().child("members").child(store.family.id).child(store.member.id)
+        let member = FIRDatabase.database().reference().child("members").child(store.user.familyId).child(store.member.id)
         
         member.observe(.value, with: { snapshot in
             var member = snapshot.value as? [String:Any]
