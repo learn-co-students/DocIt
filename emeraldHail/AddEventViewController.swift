@@ -1,22 +1,24 @@
 //
-//  AddEvent.swift
+//  AddEventViewController.swift
 //  emeraldHail
 //
-//  Created by Enrique Torrendell on 12/6/16.
+//  Created by Enrique Torrendell on 12/9/16.
 //  Copyright © 2016 Flatiron School. All rights reserved.
 //
 
 import UIKit
 import Firebase
 
-class AddEvent: UIView, UIPickerViewDelegate, UITextFieldDelegate {
+class AddEventViewController: UIViewController, UIPickerViewDelegate, UITextFieldDelegate {
+
     
     // MARK: - Outlets
     
-    @IBOutlet var contentView: UIView!
     
+    @IBOutlet weak var eventViewTitle: UILabel!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var dateTextField: UITextField!
+    @IBOutlet weak var eventView: UIView!
     
     // MARK: - Properties
     
@@ -24,21 +26,28 @@ class AddEvent: UIView, UIPickerViewDelegate, UITextFieldDelegate {
     var store = DataStore.sharedInstance
     let dobSelection = UIDatePicker()
     
-    // MARK: - Loads
+
+    // MARK: - Loads 
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        commonInit()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupView()
+
+        // Do any additional setup after loading the view.
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        commonInit()
-    }
+    
     
     // MARK: - Actions
     
     @IBAction func saveEvent(_ sender: UIButton) {
+        
+        if eventViewTitle.text == "Create Event" {
         
         guard let name = nameTextField?.text, name != "", let date = dateTextField?.text, date != "" else { return }
         
@@ -48,50 +57,68 @@ class AddEvent: UIView, UIPickerViewDelegate, UITextFieldDelegate {
         
         let event = Event(name: name, startDate: date, uniqueID: uniqueID)
         
-        clear()
         
         databaseEventsRef.setValue(event.serialize(), withCompletionBlock: { error, dataRef in
             
-            self.isHidden = true
             self.nameTextField.text = ""
             self.dateTextField.text = ""
             
         })
+        }
+        
+        else {
+            
+            guard let name = nameTextField?.text, name != "", let date = dateTextField?.text, date != "" else { return }
+            
+            let databaseEventsRef = self.database.child("events").child(self.store.member.id).child(self.store.eventID)
+            
+            let uniqueID = databaseEventsRef.key
+            
+            let event = Event(name: name, startDate: date, uniqueID: uniqueID)
+            
+            databaseEventsRef.updateChildValues(event.serialize(), withCompletionBlock: { error, dataRef in
+                
+                
+            })
+            
+        }
+        
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func cancelEvent(_ sender: UIButton) {
-        clear()
+       
+    dismiss(animated: true, completion: nil)
     }
     
     // MARK: - Methods
     
-    func commonInit() {
-        Bundle.main.loadNibNamed("AddEvent", owner: self, options: nil)
+    func setupView() {
+        
+        
+        eventView.layer.cornerRadius = 10
+        eventView.layer.borderColor = UIColor.lightGray.cgColor
+        eventView.layer.borderWidth = 1
+        
+        view.backgroundColor = UIColor.clear
+        view.isOpaque = false
+        
+        eventViewTitle.text = store.buttonEvent
         
         dateTextField.delegate = self
         
-        addSubview(contentView)
+        if eventViewTitle.text == "Modify Event" {
+            
+            nameTextField.text = store.event.name
+            dateTextField.text = store.event.startDate
+
+            print(store.event.name)
+            print(store.event.startDate)
+            
+        }
         
-        contentView.layer.cornerRadius = 10
-        contentView.layer.borderColor = Constants.Colors.submarine.cgColor
-        contentView.layer.borderWidth = 1
-        
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        
-        contentView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        contentView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-        contentView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        contentView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     }
     
-    func clear() {
-        
-        self.isHidden = true
-        self.nameTextField.text = ""
-        self.dateTextField.text = ""
-        self.dobSelection.setDate(NSDate() as Date, animated: true)
-        
-    }
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool{
         
@@ -129,7 +156,6 @@ class AddEvent: UIView, UIPickerViewDelegate, UITextFieldDelegate {
         dateTextField.text = formatter.string(from: sender.date).uppercased()
         
     }
-    
     
     
     
