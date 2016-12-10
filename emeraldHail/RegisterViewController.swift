@@ -149,7 +149,7 @@ class RegisterViewController: UIViewController {
                     self.store.inviteFamilyID = ""
 
                     self.database.child(Constants.Database.user).child((self.store.user.id)).child("email").setValue(email)
-                    self.database.child(Constants.Database.family).child(self.store.user.familyId).child("name").setValue("New Family")
+                    
 
                 }
 
