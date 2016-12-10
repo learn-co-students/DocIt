@@ -16,19 +16,19 @@ import Firebase
 class WelcomeViewController: UIViewController {
 
     // MARK: - Outlets
-    
+
     @IBOutlet weak var googleContainerView: UIImageView!
     @IBOutlet weak var createAccount: UIButton!
     @IBOutlet weak var signIn: UIButton!
     @IBOutlet weak var touchID: UIButton!
-    
+
 
     // MARK: - Properties
 
     var userInfo = [CurrentUser]()
     var store = DataStore.sharedInstance
 
-    
+
 
 
     // MARK: - Loads
@@ -41,49 +41,49 @@ class WelcomeViewController: UIViewController {
         setupViews()
 
 
-       
+
         checkTouchID()
         store.fillWeightData()
-        
+
     }
 
     // MARK: - Actions
 
     @IBAction func createAccountPressed(_ sender: Any) {
-        
+
         NotificationCenter.default.post(name: Notification.Name.openRegisterVC, object: nil)
-        
+
     }
 
     @IBAction func signInPressed(_ sender: Any) {
-    
+
         NotificationCenter.default.post(name: Notification.Name.openLoginVC, object: nil)
-    
+
     }
 
     @IBAction func touchId(_ sender: UIButton) {
-    
+
         authenticateUser()
-    
+
     }
 
        // MARK: - Methods
 
     func setupViews() {
-    
+
         view.backgroundColor = Constants.Colors.desertStorm
         createAccount.layer.cornerRadius = 2
         signIn.layer.borderWidth = 1
         signIn.layer.borderColor = UIColor.lightGray.cgColor
         signIn.layer.cornerRadius = 2
-    
+
     }
 
     func updateFamilyId() {
 
         if !userInfo.isEmpty {
-            store.family.id = userInfo[0].familyID!
-        
+            store.user.familyId = userInfo[0].familyID!
+
         }
     }
 
@@ -100,14 +100,14 @@ class WelcomeViewController: UIViewController {
         } catch {
 
             print("error")
-        
+
         }
     }
 
     // MARK: Methods Touch ID
 
     func authenticateUser() {
-        
+
         let context = LAContext()
         var error: NSError?
 
@@ -118,7 +118,7 @@ class WelcomeViewController: UIViewController {
 
                 if success {
                     self.navigateToAuthenticatedVC()
-                    
+
                 } else {
                     if let error = error as? NSError {
                         let message = self.errorMessage(errorCode: error.code)
@@ -130,31 +130,31 @@ class WelcomeViewController: UIViewController {
         } else {
             self.showAlertViewforNoBiometrics()
             return
-            
+
         }
     }
 
     func navigateToAuthenticatedVC() {
 
         NotificationCenter.default.post(name: .openLoginVC, object: nil)
-        
+
     }
 
     func showAlertViewforNoBiometrics() {
-        
+
         showAlertViewWithTitle(title: "Error", message: "This device does not have a Touch ID sensor.")
-        
+
     }
 
     func showAlertViewWithTitle(title: String, message: String) {
-        
+
         let ac = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
 
         ac.addAction(ok)
 
         present(ac, animated: true, completion: nil)
-        
+
     }
 
     func showAlertViewAfterEvaluatingPolicyWithMessage(message: String) {
@@ -188,17 +188,18 @@ class WelcomeViewController: UIViewController {
         default:
             message = "Did not find any error in LAError."
         }
-        
+
         return message
-        
+
     }
 
 
     func checkTouchID() {
 
-        if store.family.id != "" {
+        if store.user.familyId != "" {
 
-        let database = FIRDatabase.database().reference().child(Constants.DatabaseChildNames.settings).child(store.family.id).child("touchID")
+
+        let database = FIRDatabase.database().reference().child(Constants.DatabaseChildNames.settings).child(store.user.familyId).child("touchID")
 
         database.observe(.value, with: { (snapshot) in
 
@@ -224,4 +225,3 @@ class WelcomeViewController: UIViewController {
     }
 
 }
-

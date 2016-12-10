@@ -32,7 +32,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("Inside FamilyVC, the familyID is: \(store.family.id)")
+        print("Inside FamilyVC, the familyID is: \(store.user.familyId)")
         
         hideKeyboardWhenTappedAround()
         
