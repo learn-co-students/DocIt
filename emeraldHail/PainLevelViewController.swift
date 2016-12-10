@@ -17,6 +17,7 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
     
     @IBOutlet weak var painView: UIView!
     @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var postTitleLabel: UILabel!
     
     // MARK: - Properties
     
@@ -73,14 +74,15 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
 
     func setupView() {
         
-        view.backgroundColor = UIColor.black.withAlphaComponent(0.25)
+        postTitleLabel.text = "How does \(store.member.firstName) feel?"
+        
+        view.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.35)
         
         painView.layer.cornerRadius = 10
         painView.layer.borderColor = Constants.Colors.submarine.cgColor
         painView.layer.borderWidth = 1
-        
 
-        painLevelCollectionView.tintColor = UIColor.darkGray
+//        painLevelCollectionView.tintColor = UIColor.darkGray
     
     }
 
@@ -117,6 +119,7 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
 //        cell.wasSelected()
         
         cell.backgroundColor = Constants.Colors.submarine
+        cell.layer.cornerRadius = 10
         
     }
     

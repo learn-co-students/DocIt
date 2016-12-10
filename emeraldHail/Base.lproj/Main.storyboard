@@ -1293,10 +1293,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wX1-Oy-Yip">
-                                <rect key="frame" x="12.5" y="70" width="351" height="325"/>
+                                <rect key="frame" x="12.5" y="70" width="351" height="425"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="86I-Eo-ite">
-                                        <rect key="frame" x="178.5" y="263" width="160.5" height="50"/>
+                                        <rect key="frame" x="178.5" y="363" width="160.5" height="50"/>
                                         <color key="backgroundColor" red="0.17254901959999999" green="0.75294117650000003" blue="0.88235294119999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="1Kd-ni-mB8"/>
@@ -1309,14 +1309,14 @@
                                             <action selector="save:" destination="z5g-W1-3kv" eventType="touchUpInside" id="QkS-qz-DgP"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Symptom" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="11w-69-mVk">
-                                        <rect key="frame" x="122" y="12" width="107.5" height="20.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select all symptoms that apply" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="11w-69-mVk">
+                                        <rect key="frame" x="60" y="12" width="231" height="21"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kko-h0-SYX">
-                                        <rect key="frame" x="12" y="263" width="160.5" height="50"/>
+                                        <rect key="frame" x="12" y="363" width="160.5" height="50"/>
                                         <color key="backgroundColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <state key="normal" title="Cancel">
@@ -1327,7 +1327,7 @@
                                         </connections>
                                     </button>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsMultipleSelection="YES" rowHeight="34" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nqx-H7-96D">
-                                        <rect key="frame" x="12" y="44.5" width="327" height="206.5"/>
+                                        <rect key="frame" x="12" y="44.5" width="327" height="306.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <prototypes>
@@ -1376,7 +1376,7 @@
                                     <constraint firstItem="nqx-H7-96D" firstAttribute="top" secondItem="11w-69-mVk" secondAttribute="bottom" constant="12" id="kA5-iA-R85"/>
                                     <constraint firstItem="11w-69-mVk" firstAttribute="top" secondItem="wX1-Oy-Yip" secondAttribute="top" constant="12" id="qEP-D0-u1N"/>
                                     <constraint firstAttribute="trailing" secondItem="86I-Eo-ite" secondAttribute="trailing" constant="12" id="rR0-in-iSi"/>
-                                    <constraint firstAttribute="height" constant="325" id="zLR-Me-etc"/>
+                                    <constraint firstAttribute="height" constant="425" id="zLR-Me-etc"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -1409,13 +1409,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YKP-7Y-Tbv">
-                                <rect key="frame" x="12.5" y="70" width="351" height="325"/>
+                                <rect key="frame" x="12.5" y="70" width="351" height="425"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="h1y-yL-S09">
-                                        <rect key="frame" x="12" y="46" width="327" height="205"/>
+                                        <rect key="frame" x="12" y="46" width="327" height="305"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="205" id="8CG-eG-8jM"/>
+                                            <constraint firstAttribute="height" constant="305" id="8CG-eG-8jM"/>
                                         </constraints>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="9W7-8b-9y3">
                                             <size key="itemSize" width="125" height="125"/>
@@ -1461,7 +1461,7 @@
                                         </connections>
                                     </collectionView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oAD-Wd-Ekb">
-                                        <rect key="frame" x="178.5" y="263" width="160.5" height="50"/>
+                                        <rect key="frame" x="178.5" y="363" width="160.5" height="50"/>
                                         <color key="backgroundColor" red="0.17254901959999999" green="0.75294117650000003" blue="0.88235294119999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="4rV-Zc-v7J"/>
@@ -1474,14 +1474,14 @@
                                             <action selector="save:" destination="2oG-rv-nlI" eventType="touchUpInside" id="SvC-e6-ux1"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Pain Level" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gTO-D0-OgW">
-                                        <rect key="frame" x="120.5" y="12" width="110" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How does Enrique feel?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gTO-D0-OgW">
+                                        <rect key="frame" x="0.0" y="12" width="351" height="21"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F8l-Wx-pBK">
-                                        <rect key="frame" x="12" y="263" width="160.5" height="50"/>
+                                        <rect key="frame" x="12" y="363" width="160.5" height="50"/>
                                         <color key="backgroundColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <state key="normal" title="Cancel">
@@ -1505,8 +1505,9 @@
                                     <constraint firstItem="F8l-Wx-pBK" firstAttribute="top" secondItem="h1y-yL-S09" secondAttribute="bottom" constant="12" id="Wrk-FU-G45"/>
                                     <constraint firstItem="gTO-D0-OgW" firstAttribute="centerX" secondItem="YKP-7Y-Tbv" secondAttribute="centerX" id="Ztf-1E-Dm0"/>
                                     <constraint firstItem="F8l-Wx-pBK" firstAttribute="leading" secondItem="YKP-7Y-Tbv" secondAttribute="leading" constant="12" id="aMN-t4-XDQ"/>
+                                    <constraint firstItem="gTO-D0-OgW" firstAttribute="width" secondItem="YKP-7Y-Tbv" secondAttribute="width" id="c8P-fo-mMv"/>
                                     <constraint firstItem="F8l-Wx-pBK" firstAttribute="width" secondItem="oAD-Wd-Ekb" secondAttribute="width" id="oY2-ZI-zKz"/>
-                                    <constraint firstAttribute="height" constant="325" id="s7r-jj-3vC"/>
+                                    <constraint firstAttribute="height" constant="425" id="s7r-jj-3vC"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -1520,6 +1521,7 @@
                     <connections>
                         <outlet property="painLevelCollectionView" destination="h1y-yL-S09" id="HsI-wo-dq4"/>
                         <outlet property="painView" destination="YKP-7Y-Tbv" id="X5d-kW-iLY"/>
+                        <outlet property="postTitleLabel" destination="gTO-D0-OgW" id="cPC-Kb-66D"/>
                         <outlet property="saveButton" destination="oAD-Wd-Ekb" id="9VD-GQ-1uR"/>
                     </connections>
                 </viewController>
@@ -1556,8 +1558,8 @@
                                             <action selector="addNotes:" destination="xCx-Yr-OUd" eventType="touchUpInside" id="mHV-80-4op"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Note" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cBO-CQ-qvA">
-                                        <rect key="frame" x="139" y="12" width="72" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's happening?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cBO-CQ-qvA">
+                                        <rect key="frame" x="103" y="12" width="145" height="21"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -1646,8 +1648,8 @@
                                             <action selector="save:" destination="bPG-yb-BOM" eventType="touchUpInside" id="a3m-1f-np8"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Temperature" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HL5-vK-VwO">
-                                        <rect key="frame" x="109" y="12" width="132" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's Luna's Temp?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HL5-vK-VwO">
+                                        <rect key="frame" x="-0.5" y="12" width="351" height="21"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -1685,6 +1687,7 @@
                                     <constraint firstItem="EAh-TB-Kqc" firstAttribute="width" secondItem="HZx-rt-ZEL" secondAttribute="width" multiplier="0.5" constant="-15" id="3VS-t2-QOR"/>
                                     <constraint firstAttribute="bottom" secondItem="gzC-yZ-6Ad" secondAttribute="bottom" constant="12" id="6CB-x8-lZO"/>
                                     <constraint firstItem="gzC-yZ-6Ad" firstAttribute="top" secondItem="qd7-6W-pN2" secondAttribute="bottom" constant="12" id="6Mj-BV-9RR"/>
+                                    <constraint firstItem="HL5-vK-VwO" firstAttribute="width" secondItem="HZx-rt-ZEL" secondAttribute="width" id="7mM-dC-DCj"/>
                                     <constraint firstItem="mhn-Db-d6U" firstAttribute="centerX" secondItem="qd7-6W-pN2" secondAttribute="centerX" id="9kW-Lb-h0G"/>
                                     <constraint firstItem="gzC-yZ-6Ad" firstAttribute="leading" secondItem="HZx-rt-ZEL" secondAttribute="leading" constant="12" id="Bb4-hK-c1H"/>
                                     <constraint firstAttribute="trailing" secondItem="EAh-TB-Kqc" secondAttribute="trailing" constant="12" id="Cld-lu-uQs"/>
@@ -1710,6 +1713,7 @@
                     </view>
                     <connections>
                         <outlet property="noteView" destination="HZx-rt-ZEL" id="8oy-lH-o8u"/>
+                        <outlet property="postTitleLabel" destination="HL5-vK-VwO" id="Egy-7j-qeD"/>
                         <outlet property="tempSegments" destination="mhn-Db-d6U" id="Cw5-wr-9nw"/>
                         <outlet property="temperaturePickerView" destination="qd7-6W-pN2" id="TEY-Vh-mUS"/>
                     </connections>

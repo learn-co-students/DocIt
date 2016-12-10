@@ -25,6 +25,7 @@ class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     @IBOutlet weak var noteView: UIView!
     @IBOutlet weak var temperaturePickerView: UIPickerView!
     @IBOutlet weak var tempSegments: UISegmentedControl!
+    @IBOutlet weak var postTitleLabel: UILabel!
 
     
     // MARK: - Methods 
@@ -68,9 +69,11 @@ class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     
     func setupView() {
         
+        postTitleLabel.text = "What's \(store.member.firstName)'s Temp?"
+        
         temperaturePickerView.selectRow(10, inComponent: 0, animated: false)
         
-        view.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.25)
+        view.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.35)
         
         noteView.layer.cornerRadius = 10
         noteView.layer.borderColor = Constants.Colors.submarine.cgColor
@@ -79,8 +82,6 @@ class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         temperaturePickerView.backgroundColor = UIColor.white
         temperaturePickerView.tintColor = Constants.Colors.submarine
         
-        view.backgroundColor = UIColor.clear
-        view.isOpaque = false
         
     }
 

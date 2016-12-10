@@ -67,6 +67,8 @@ class SymptomsViewController: UIViewController, UITableViewDelegate, UITableView
     
     func setupView() {
         
+        view.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.35)
+        
         symptomView.layer.cornerRadius = 10
         symptomView.layer.borderColor = Constants.Colors.submarine.cgColor
         symptomView.layer.borderWidth = 1
@@ -93,11 +95,13 @@ class SymptomsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedSymtoms["\(indexPath.row)"] = symptoms[indexPath.row].rawValue
+        selectedSymtoms["s\(indexPath.row)"] = symptoms[indexPath.row].rawValue
+        print(selectedSymtoms)
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         selectedSymtoms.removeValue(forKey: "s\(indexPath.row)")
+        print(selectedSymtoms)
     }
     
     
