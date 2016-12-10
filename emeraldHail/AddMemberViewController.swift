@@ -57,12 +57,13 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
             else { return }
         
         
-        let databaseMembersRef = database.child("members").child(store.user.familyId).childByAutoId()
+        let databaseMembersRef = database.child(Constants.DatabaseChildNames.members).child(store.user.familyId).childByAutoId()
         let uniqueID = databaseMembersRef.key
+        print("UNIQUE ID IS: ----------------------------- \(uniqueID)")
         
         let storageRef = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
         let imageId = uniqueID
-        let storageImageRef = storageRef.child("profileImages").child(imageId)
+        let storageImageRef = storageRef.child(Constants.storageChildNames.profileImages).child(imageId)
         
         if let uploadData = UIImageJPEGRepresentation(self.profileImageView.image!, 0.25) {
             

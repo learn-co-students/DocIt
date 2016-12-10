@@ -30,13 +30,13 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="# - Pain Level" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WbS-M1-nDZ">
-                    <rect key="frame" x="80" y="12" width="91.5" height="136"/>
-                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="15"/>
-                    <nil key="textColor"/>
+                    <rect key="frame" x="80" y="77.5" width="102" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aMz-1I-hZ5">
-                    <rect key="frame" x="206.5" y="47" width="80" height="80"/>
+                    <rect key="frame" x="207" y="47" width="80" height="80"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="80" id="4Ng-oC-UZq"/>
                         <constraint firstAttribute="width" constant="80" id="lZ9-FF-XTp"/>
@@ -48,12 +48,11 @@
                 <constraint firstItem="WbS-M1-nDZ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="80" id="6g4-1N-MdM"/>
                 <constraint firstItem="aMz-1I-hZ5" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="9wX-gh-GH6"/>
                 <constraint firstAttribute="bottom" secondItem="4oB-rV-YH8" secondAttribute="bottom" constant="12" id="GYY-8S-FnO"/>
+                <constraint firstItem="WbS-M1-nDZ" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Ifm-hN-O4q"/>
                 <constraint firstItem="4oB-rV-YH8" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.5" id="OHM-dc-QDr"/>
-                <constraint firstItem="aMz-1I-hZ5" firstAttribute="leading" secondItem="WbS-M1-nDZ" secondAttribute="trailing" constant="35" id="dXE-OM-nQt"/>
+                <constraint firstItem="aMz-1I-hZ5" firstAttribute="leading" secondItem="WbS-M1-nDZ" secondAttribute="trailing" constant="25" id="dXE-OM-nQt"/>
                 <constraint firstAttribute="trailing" secondItem="4oB-rV-YH8" secondAttribute="trailing" constant="12" id="p5K-dW-nsn"/>
                 <constraint firstItem="4oB-rV-YH8" firstAttribute="top" secondItem="aMz-1I-hZ5" secondAttribute="bottom" constant="21" id="rtO-Fd-m0q"/>
-                <constraint firstItem="WbS-M1-nDZ" firstAttribute="bottom" secondItem="4oB-rV-YH8" secondAttribute="top" id="yiz-fw-uoc"/>
-                <constraint firstItem="WbS-M1-nDZ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="12" id="zbn-bp-Z19"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

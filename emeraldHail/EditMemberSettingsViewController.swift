@@ -56,6 +56,11 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
         
     }
     
+    // Database and Storage
+    
+    let database = FIRDatabase.database().reference()
+    let storageRef = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
+    
     // MARK: - Methods
     
     // Storage
@@ -72,10 +77,9 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
         let deleteAction = UIAlertAction(title: "Delete", style: .default, handler: { action -> Void in
             
             // Database
-            let database = FIRDatabase.database().reference()
-            let memberRef = database.child("members").child(self.store.user.familyId)
-            let eventsRef = database.child("events").child(self.store.member.id)
-            let postsRef = database.child("posts")
+            let memberRef = self.database.child(Constants.DatabaseChildNames.members).child(self.store.user.familyId)
+            let eventsRef = self.database.child(Constants.DatabaseChildNames.events).child(self.store.member.id)
+            let postsRef = self.database.child(Constants.DatabaseChildNames.posts)
             
             var posts = [Post]()
             
@@ -125,6 +129,7 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
                         switch post {
                         case .photo(_):
                             self.deleteImagesFromStorage(uniqueID: post.description)
+
                         default:
                             break
                         }
@@ -139,8 +144,12 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
                 
                 eventsRef.removeValue()
                 
-                // Delete the member
+                // Delete the member from storage
                 
+                
+                self.deleteProfileImagesFromStorage()
+                
+                // Delete the member from database
                 memberRef.child(self.store.member.id).removeValue()
              
                 let _ = self.navigationController?.popToRootViewController(animated: true)
@@ -166,19 +175,27 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
     
     func deleteImagesFromStorage(uniqueID: String){
         
-        let storageRef = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
-        let storageImageRef = storageRef.child("postsImages").child(uniqueID)
-        
-        storageImageRef.delete(completion: { error -> Void in
+        storageRef.child(Constants.storageChildNames.postsImages).child(uniqueID).delete(completion: { error -> Void in
             
             if error != nil {
-                print("******* Error occured while deleting imgs from Firebase storage ******** \(uniqueID)")
+                print("******* Error occured while deleting post imgs from Firebase storage ******** \(uniqueID)")
             } else {
-                print("Image removed from Firebase successfully! \(uniqueID)")
+                print("Post image removed from Firebase successfully! \(uniqueID)")
             }
             
         })
+    }
+     func deleteProfileImagesFromStorage(){
         
+        storageRef.child(Constants.storageChildNames.profileImages).child(self.store.member.id).delete { error -> Void in
+            
+            if error != nil {
+                print("******* Error occured while deleting profile imgs from Firebase storage ******** \(self.store.member.id)")
+            } else {
+                print("profile img removed successfully from the associated member")
+            }
+        }
+
     }
     
     @IBAction func saveMemberSettings(_ sender: Any) {
@@ -266,7 +283,7 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
                                          "weight": weight,
                                          "allergies": allergies]
         
-        let memberReference : FIRDatabaseReference = FIRDatabase.database().reference().child("members").child(store.user.familyId).child(store.member.id)
+        let memberReference : FIRDatabaseReference = FIRDatabase.database().reference().child(Constants.DatabaseChildNames.members).child(store.user.familyId).child(store.member.id)
         memberReference.updateChildValues(updatedInfo)
         
         let _ = navigationController?.popViewController(animated: true)
@@ -274,7 +291,7 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
     }
     
     func displayMemberProfileEdits() {
-        let member = FIRDatabase.database().reference().child("members").child(store.user.familyId).child(store.member.id)
+        let member = FIRDatabase.database().reference().child(Constants.DatabaseChildNames.members).child(store.user.familyId).child(store.member.id)
         
         member.observe(.value, with: { (snapshot) in
             

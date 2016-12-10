@@ -93,10 +93,10 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
-        let databaseEvents = self.database.child("events").child(store.member.id)
+        let databaseEvents = self.database.child(Constants.DatabaseChildNames.events).child(store.member.id)
         let uniqueEventID = events[indexPath.row].uniqueID
         
-        let databasePosts = self.database.child("posts").child(uniqueEventID)
+        let databasePosts = self.database.child(Constants.DatabaseChildNames.posts).child(uniqueEventID)
         
         var posts = [Post]()
         let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
@@ -208,7 +208,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func deleteImagesFromStorage(uniqueID: String){
         
         let storageRef = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
-        let storageImageRef = storageRef.child("postsImages").child(uniqueID)
+        let storageImageRef = storageRef.child(Constants.storageChildNames.postsImages).child(uniqueID)
         
         storageImageRef.delete(completion: { error -> Void in
             
@@ -233,7 +233,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func showPictureAndName() {
-        let member = FIRDatabase.database().reference().child("members").child(store.family.id).child(store.member.id)
+        let member = FIRDatabase.database().reference().child(Constants.DatabaseChildNames.members).child(store.family.id).child(store.member.id)
         
         member.observe(.value, with: { snapshot in
             var member = snapshot.value as? [String : Any]

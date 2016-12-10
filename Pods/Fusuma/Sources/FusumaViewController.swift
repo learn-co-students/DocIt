@@ -39,8 +39,8 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
     @objc optional func fusumaClosed()
 }
 
-public var fusumaBaseTintColor   = UIColor.hex("#FFFFFF", alpha: 1.0)
-public var fusumaTintColor       = UIColor.hex("#009688", alpha: 1.0)
+public var fusumaBaseTintColor   = UIColor(red: 0.74, green: 0.76, blue: 0.78, alpha: 1.00)
+public var fusumaTintColor       = UIColor(red: 0.74, green: 0.76, blue: 0.78, alpha: 1.00)
 public var fusumaBackgroundColor = UIColor.hex("#212121", alpha: 1.0)
 
 public var fusumaAlbumImage : UIImage? = nil
@@ -58,9 +58,9 @@ public var fusumaVideoStopImage : UIImage? = nil
 
 public var fusumaCropImage: Bool = true
 
-public var fusumaCameraRollTitle = "CAMERA ROLL"
-public var fusumaCameraTitle = "PHOTO"
-public var fusumaVideoTitle = "VIDEO"
+public var fusumaCameraRollTitle = "Camera Roll"
+public var fusumaCameraTitle = "Photo"
+public var fusumaVideoTitle = "Video"
 
 public var fusumaTintIcons : Bool = true
 
