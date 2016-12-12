@@ -8,24 +8,28 @@
 
 import UIKit
 import Firebase
+import Fusuma
 
-class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UITextFieldDelegate {
+class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UITextFieldDelegate, FusumaDelegate {
     
     // MARK: Outlets
     
     @IBOutlet weak var addMember: UIView!
+    @IBOutlet weak var touchView: UIView!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var firstNameField: UITextField!
     @IBOutlet weak var lastNameField: UITextField!
     @IBOutlet weak var dateTextField: UITextField!
     @IBOutlet weak var genderTextField: UITextField!
     @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet var touchDismiss: UITapGestureRecognizer!
     
     // MARK: - Properties
     
     let dobSelection = UIDatePicker()
     let genderSelection = UIPickerView()
     let database = FIRDatabase.database().reference()
+   
     
     let store = DataStore.sharedInstance
     
@@ -34,7 +38,10 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        saveButton.isEnabled = true
+       
+        saveButton.isEnabled = false
+        saveButton.backgroundColor = Constants.Colors.submarine
+        
         
         // Do any additional setup after loading the view.
     }
@@ -47,8 +54,14 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
     
     // MARK: - Actions
     
+    @IBAction func touchDismiss(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
     
     @IBAction func save(_ sender: UIButton) {
+        
+        saveButton.isEnabled = false
+        profileImageView.isUserInteractionEnabled = false
         
         guard let name = firstNameField.text, name != "",
             let lastName = lastNameField.text, lastName != "",
@@ -120,42 +133,12 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
     }
     
     
+
     func addGestureRecognizer(imageView: UIImageView){
-        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectProfileImageView)))
+        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleCameraImage)))
     }
     
-    func handleSelectProfileImageView(){
-        let picker = UIImagePickerController()
-        picker.delegate = self
-        picker.sourceType = .photoLibrary
-        picker.allowsEditing = true
-        
-        self.addMember.viewController()?.present(picker
-            , animated: true, completion: nil)
-        
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]){
-        
-        var selectedImageFromPicker: UIImage?
-        
-        if let editedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
-            selectedImageFromPicker = editedImage
-        } else if let originalImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            selectedImageFromPicker = originalImage
-        }
-        if let selectedImage = selectedImageFromPicker {
-            profileImageView.image = selectedImage
-        }
-        
-        picker.dismiss(animated: true, completion: nil)
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        print("picked canceled")
-        picker.dismiss(animated: true, completion: nil)
-    }
-    
+
     @IBAction func birthdayDidBeginEditing(_ sender: Any) {
         
         let formatter = DateFormatter()
@@ -174,11 +157,15 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool{
         
+        if firstNameField.text != "" && lastNameField.text != "" && dateTextField.text != "" && genderTextField.text != "" {
+            
+            saveButton.isEnabled = true
+            saveButton.backgroundColor = Constants.Colors.scooter
+            
+        }           
+        
         return true
     }
-    
-    
-    
     
     
     func textFieldDidBeginEditing(_ textField: UITextField){
@@ -191,16 +178,17 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
         
         
         
-        
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         dateTextField.resignFirstResponder()
+
         
         return true
     }
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        
         
         return true
         
@@ -261,6 +249,55 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
         
         return ""
     }
+    
+    // MARK: Fusuma
+    
+    func handleCameraImage() {
+        
+        let fusuma = FusumaViewController()
+        fusuma.delegate = self
+        self.present(fusuma, animated: true, completion: nil)
+        fusumaCropImage = true
+        
+    }
+    
+    // Return the image which is selected from camera roll or is taken via the camera.
+    
+    func fusumaImageSelected(_ image: UIImage) {
+        
+        // present some alert with the image
+        // add button to alert to send
+        // upload from button
+        
+        print("Image selected")
+        
+    }
+    
+    // Return the image but called after is dismissed.
+    
+    func fusumaDismissedWithImage(_ image: UIImage) {
+        
+        profileImageView.image = image
+        
+        print("Called just after FusumaViewController is dismissed.")
+        
+    }
+    
+    func fusumaVideoCompleted(withFileURL fileURL: URL) {
+        
+        print("Called just after a video has been selected.")
+        
+    }
+    
+    // When camera roll is not authorized, this method is called.
+    
+    func fusumaCameraRollUnauthorized() {
+        
+        print("Camera access denied")
+        
+    }
+    
+
     
     
 }

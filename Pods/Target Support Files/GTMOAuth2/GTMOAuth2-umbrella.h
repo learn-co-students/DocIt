@@ -1,6 +1,4 @@
-#ifdef __OBJC__
 #import <UIKit/UIKit.h>
-#endif
 
 #import "GTMOAuth2Authentication.h"
 #import "GTMOAuth2SignIn.h"

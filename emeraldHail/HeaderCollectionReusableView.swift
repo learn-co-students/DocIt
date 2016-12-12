@@ -16,16 +16,17 @@ class HeaderCollectionReusableView: UICollectionReusableView {
     // MARK: - Outlets
     @IBOutlet weak var familyNameLabel: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
-
+    
     // MARK: - Properties
 
     let store = DataStore.sharedInstance
-
+    let database = FIRDatabase.database().reference()
+    
     // MARK: - Methods
 
     func configDatabaseFamily() {
-
-        let membersRef = FIRDatabase.database().reference().child(Constants.Database.family)
+        
+        let membersRef = database.child(Constants.Database.family)
         let familyRef = membersRef.child(store.user.familyId)
 
         familyRef.observe(.value, with: { snapshot in

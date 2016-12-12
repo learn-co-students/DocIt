@@ -65,6 +65,11 @@ class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         saveTemp()
     }
     
+    @IBAction func dismissController(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+   
+    
     // MARK: - Methods 
     
     func setupView() {

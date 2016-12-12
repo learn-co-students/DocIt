@@ -41,6 +41,10 @@ class SymptomsViewController: UIViewController, UITableViewDelegate, UITableView
         dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func dismissController(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     @IBAction func save(_ sender: UIButton) {
         
         // Prevent adding an empty ditionary to firebase

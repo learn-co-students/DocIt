@@ -13,6 +13,7 @@ class AddEventViewController: UIViewController, UIPickerViewDelegate, UITextFiel
     
     // MARK: - Outlets
     
+    @IBOutlet weak var touchView: UIView!
     @IBOutlet weak var eventViewTitle: UILabel!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var dateTextField: UITextField!
@@ -32,6 +33,11 @@ class AddEventViewController: UIViewController, UIPickerViewDelegate, UITextFiel
         setupView()
         
         nameTextField.becomeFirstResponder()
+        
+        saveButton.isEnabled = false
+        saveButton.backgroundColor = Constants.Colors.submarine
+        
+
         // Do any additional setup after loading the view.
     }
     
@@ -42,7 +48,13 @@ class AddEventViewController: UIViewController, UIPickerViewDelegate, UITextFiel
     
     // MARK: - Actions
     
+    @IBAction func dismissView(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     @IBAction func saveEvent(_ sender: UIButton) {
+        
+        saveButton.isEnabled = false
         
         if eventViewTitle.text == "Create Event" {
             
@@ -126,6 +138,14 @@ class AddEventViewController: UIViewController, UIPickerViewDelegate, UITextFiel
     
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool{
+        
+        if nameTextField.text != "" && dateTextField.text != ""  {
+            
+            saveButton.isEnabled = true
+            saveButton.backgroundColor = Constants.Colors.scooter
+            
+        }
+
         
         return true
     }
