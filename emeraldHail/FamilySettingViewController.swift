@@ -26,6 +26,7 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
     // MARK: - Properties
     
     let store = DataStore.sharedInstance
+    let database = FIRDatabase.database().reference()
     
     // MARK: - Loads
     
@@ -140,7 +141,6 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
     
     func changeFamilyCoverPic(photo: UIImage, handler: @escaping (Bool) -> Void) {
         
-        let database = FIRDatabase.database().reference()
         let familyDatabase = database.child(Constants.Database.family).child(store.user.familyId)
         let storageRef = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
         let storeImageRef = storageRef.child(Constants.Storage.familyImages).child(store.user.familyId)

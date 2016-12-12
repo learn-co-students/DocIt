@@ -22,6 +22,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     let store = DataStore.sharedInstance
     var database = FIRDatabase.database().reference()
+    
     let imageSelected = UIImagePickerController()
     var membersInFamily = [Member]()
     var family = [Family]()
@@ -43,6 +44,8 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         configDatabaseFamily()
         configDatabaseMember()
         
+        
+        
         memberProfilesView.reloadData()
         
         self.memberProfilesView.alwaysBounceVertical = true
@@ -50,7 +53,6 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         refresher.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
         memberProfilesView.addSubview(refresher)
     
-        profileImage?.backgroundColor = Constants.Colors.scooter
         
         configureLayout()
 
@@ -162,7 +164,18 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
             let familyPictureUrl = URL(string: store.family.coverImageStr!)
             
             headerView.familyNameLabel.text = store.family.name
+            
+            if store.family.coverImageStr == nil {
+                
+                headerView.profileImage?.image = UIImage(named: "blackfam")
+                
+            } else {
+            
             headerView.profileImage.sd_setImage(with: familyPictureUrl)
+            
+            }
+            
+            
             
             return headerView
         default:
