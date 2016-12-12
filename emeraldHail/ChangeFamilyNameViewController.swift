@@ -10,9 +10,10 @@ import UIKit
 import Firebase
 
 class ChangeFamilyNameViewController: UIViewController {
-
+    
     // MARK: - Outlets
     
+    @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var changeNameTextField: UITextField!
     @IBOutlet weak var changeFamilyView: UIView!
     
@@ -25,38 +26,71 @@ class ChangeFamilyNameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        view.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.25)
-        changeFamilyView.layer.cornerRadius = 10
-        changeFamilyView.layer.borderColor = Constants.Colors.submarine.cgColor
-        changeFamilyView.layer.borderWidth = 1
+        
+        setupViews()
+        
     }
-
+    
     
     // MARK: - Actions
     
     @IBAction func cancel(_ sender: Any) {
+        
         dismiss(animated: true, completion: nil)
+        
     }
     
     
     @IBAction func save(_ sender: Any) {
         
-        
-        
         saveNewFamilyName()
-        
         
     }
     
     
     @IBAction func dismissController(_ sender: Any) {
+        
         dismiss(animated: true, completion: nil)
+        
     }
     
+    @IBAction func editingFamilyName(_ sender: UITextField) {
+    
+        if changeNameTextField.text?.isEmpty == true {
+            
+            saveButton.isEnabled = false
+            saveButton.backgroundColor = Constants.Colors.submarine
+            
+        } else {
+            
+            saveButton.isEnabled = true
+            saveButton.backgroundColor = Constants.Colors.scooter
+
+        }
+    
+    }
+   
     // MARK: - Methods
     
+    func setupViews() {
+        
+        view.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.25)
+        changeFamilyView.layer.cornerRadius = 10
+        changeFamilyView.layer.borderColor = Constants.Colors.submarine.cgColor
+        changeFamilyView.layer.borderWidth = 1
+        
+        saveButton.isEnabled = false
+        saveButton.backgroundColor = Constants.Colors.submarine
+        
+        changeNameTextField.text = store.family.name
+        changeNameTextField.becomeFirstResponder()
+        
+    }
+    
+    
     func saveNewFamilyName() {
+        
+        saveButton.isEnabled = false
         
         let ref = database.child(Constants.Database.family).child(self.store.user.familyId)
         
@@ -70,9 +104,6 @@ class ChangeFamilyNameViewController: UIViewController {
         
         dismiss(animated: true, completion: nil)
         
-        
-        
     }
-    
     
 }

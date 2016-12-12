@@ -635,6 +635,9 @@
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                        <connections>
+                                            <action selector="editingFamilyName:" destination="NK3-fa-N2O" eventType="editingChanged" id="LZ2-m3-aJS"/>
+                                        </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="89w-61-XZr">
                                         <rect key="frame" x="12" y="148" width="160" height="50"/>
@@ -700,6 +703,7 @@
                     <connections>
                         <outlet property="changeFamilyView" destination="WdY-fK-o2m" id="5ze-R8-UI0"/>
                         <outlet property="changeNameTextField" destination="HVM-12-ETb" id="0ZI-lF-gCG"/>
+                        <outlet property="saveButton" destination="Z7D-gR-3eu" id="0Jj-7B-asK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qgh-vc-ua3" userLabel="First Responder" sceneMemberID="firstResponder"/>

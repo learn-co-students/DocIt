@@ -34,16 +34,6 @@ class AddEventViewController: UIViewController, UIPickerViewDelegate, UITextFiel
         
         nameTextField.becomeFirstResponder()
         
-        saveButton.isEnabled = false
-        saveButton.backgroundColor = Constants.Colors.submarine
-        
-
-        // Do any additional setup after loading the view.
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     // MARK: - Actions
@@ -133,6 +123,9 @@ class AddEventViewController: UIViewController, UIPickerViewDelegate, UITextFiel
             dateTextField.text = store.event.startDate
             
         }
+        
+        saveButton.isEnabled = false
+        saveButton.backgroundColor = Constants.Colors.submarine
         
     }
     
