@@ -18,6 +18,7 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var postTitleLabel: UILabel!
 
+    @IBOutlet weak var collectionViewFlowLayout: UICollectionViewFlowLayout!
     
     // MARK: - Properties
     
@@ -49,6 +50,7 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
         painLevels = [noPain, mild, moderate, severe, verySevere, excruciating]
         
         setupView()
+        configureLayout()
         
     }
     
@@ -67,6 +69,23 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
     
     
     // MARK: - Methods
+    
+    func configureLayout() {
+        let viewWidth = painLevelCollectionView.bounds.width
+        let numberOfColumns: CGFloat = 2
+        let spacing: CGFloat = 12
+        let insets = UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing)
+        let widthDeductionPerItem: CGFloat = (spacing*(numberOfColumns-1) + insets.left + insets.right)/numberOfColumns
+        let heightDeductionPerItem: CGFloat = (spacing*(numberOfColumns-1) + insets.top + insets.bottom)/numberOfColumns
+        let itemSize = CGSize(width: viewWidth/numberOfColumns - widthDeductionPerItem, height: viewWidth/numberOfColumns - heightDeductionPerItem)
+        
+        self.collectionViewFlowLayout.itemSize = itemSize
+        self.collectionViewFlowLayout.minimumInteritemSpacing = spacing
+        self.collectionViewFlowLayout.minimumLineSpacing = spacing
+        self.collectionViewFlowLayout.sectionInset = insets
+        
+    }
+
 
     func setupView() {
         
