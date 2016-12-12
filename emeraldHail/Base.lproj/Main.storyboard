@@ -374,12 +374,13 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blackfam" translatesAutoresizingMaskIntoConstraints="NO" id="hNa-6z-wVq">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sunset" translatesAutoresizingMaskIntoConstraints="NO" id="hNa-6z-wVq">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
+                                            <color key="backgroundColor" red="0.18267938489999999" green="0.75351297859999999" blue="0.87854671480000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </imageView>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HKx-6P-0wu">
+                                        <view alpha="0.20000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HKx-6P-0wu">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
-                                            <color key="backgroundColor" red="0.18267938494682312" green="0.75351297855377197" blue="0.87854671478271484" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Family Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cLw-J8-NoL">
                                             <rect key="frame" x="0.0" y="60" width="375" height="30"/>
@@ -391,7 +392,6 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
-                                    <color key="backgroundColor" red="0.12549019610000001" green="0.75294117650000003" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstItem="HKx-6P-0wu" firstAttribute="width" secondItem="hNa-6z-wVq" secondAttribute="width" id="4F0-4t-gey"/>
                                         <constraint firstItem="cLw-J8-NoL" firstAttribute="centerX" secondItem="HKx-6P-0wu" secondAttribute="centerX" id="5Ed-I6-6tg"/>
@@ -2012,7 +2012,6 @@
     <resources>
         <image name="Doc-It-Logo" width="400" height="109"/>
         <image name="addFamilyMember" width="625" height="625"/>
-        <image name="blackfam" width="2290" height="1526"/>
         <image name="kid_silhouette" width="347" height="347"/>
         <image name="moderate" width="145" height="144"/>
         <image name="post_note" width="625" height="625"/>
@@ -2021,6 +2020,7 @@
         <image name="post_plus" width="625" height="625"/>
         <image name="post_symp" width="625" height="625"/>
         <image name="post_temp" width="625" height="625"/>
+        <image name="sunset" width="2250" height="1075"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="AyQ-2m-HY5"/>
