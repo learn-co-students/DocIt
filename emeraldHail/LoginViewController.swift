@@ -206,8 +206,6 @@ extension LoginViewController: GIDSignInUIDelegate {
         googleSignInButton.translatesAutoresizingMaskIntoConstraints = false
         googleSignInButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         googleSignInButton.topAnchor.constraint(equalTo: signIn.bottomAnchor, constant: 12).isActive = true
-        googleSignInButton.heightAnchor.constraint(equalTo: passwordField.heightAnchor).isActive = true
-        googleSignInButton.widthAnchor.constraint(equalTo: passwordField.widthAnchor).isActive = true
         view.layoutIfNeeded()
     }
 
