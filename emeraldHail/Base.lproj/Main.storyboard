@@ -400,7 +400,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
                                             <color key="backgroundColor" red="0.18267938489999999" green="0.75351297859999999" blue="0.87854671480000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </imageView>
-                                        <view alpha="0.20000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HKx-6P-0wu">
+                                        <view alpha="0.25" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HKx-6P-0wu">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
                                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </view>
