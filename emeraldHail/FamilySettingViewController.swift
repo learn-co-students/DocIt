@@ -42,9 +42,6 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
         handleSelectProfileImageView()
     }
     
-    @IBAction func changeFamilyNamePressed(_ sender: Any) {
-        changeFamilyName()
-    }
     
     @IBAction func logoutPressed(_ sender: Any) {
         do {
@@ -114,30 +111,6 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
     }
     
     // MARK: - Methods
-    
-    func changeFamilyName() {
-        let alert = UIAlertController(title: nil, message: "Change your family name", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default, handler: { (action) in
-            let userInput = alert.textFields![0].text
-            
-            let ref = FIRDatabase.database().reference().child(Constants.Database.family).child(self.store.user.familyId)
-            
-            
-            guard let name = userInput, name != "" else { return }
-            
-            ref.updateChildValues(["name": name], withCompletionBlock: { (error, dataRef) in
-                if let error = error {
-                    print(error.localizedDescription)
-                }
-            })
-        })
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        alert.addTextField(configurationHandler: nil)
-        alert.textFields![0].placeholder = store.family.name
-        alert.addAction(okAction)
-        alert.addAction(cancelAction)
-        present(alert, animated: true, completion: nil)
-    }
     
     func changeFamilyCoverPic(photo: UIImage, handler: @escaping (Bool) -> Void) {
         
