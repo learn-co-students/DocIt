@@ -30,6 +30,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var memberID = ""
     var member = [Member]()
     let notificationCenter = NotificationCenter.default
+    var navigationBarAppearace = UINavigationBar.appearance()
 
     // MARK: - Loads
 
@@ -42,9 +43,9 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.eventsTable.separatorStyle = .none
         eventsTable.reloadData()
         showPictureAndName()
-
-        self.title = "Event"
-
+        
+        self.title = "Events"
+    
     }
 
     override func viewWillAppear(_ animated: Bool) {

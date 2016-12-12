@@ -49,6 +49,8 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         refresher.tintColor = Constants.Colors.scooter
         refresher.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
         memberProfilesView.addSubview(refresher)
+    
+        profileImage?.backgroundColor = Constants.Colors.scooter
         
         configureLayout()
 
