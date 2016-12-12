@@ -15,18 +15,21 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
     // MARK: Outlets
     
     @IBOutlet weak var addMember: UIView!
+    @IBOutlet weak var touchView: UIView!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var firstNameField: UITextField!
     @IBOutlet weak var lastNameField: UITextField!
     @IBOutlet weak var dateTextField: UITextField!
     @IBOutlet weak var genderTextField: UITextField!
     @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet var touchDismiss: UITapGestureRecognizer!
     
     // MARK: - Properties
     
     let dobSelection = UIDatePicker()
     let genderSelection = UIPickerView()
     let database = FIRDatabase.database().reference()
+   
     
     let store = DataStore.sharedInstance
     
@@ -39,6 +42,7 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
         saveButton.isEnabled = false
         saveButton.backgroundColor = Constants.Colors.submarine
         
+        
         // Do any additional setup after loading the view.
     }
     
@@ -50,6 +54,9 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
     
     // MARK: - Actions
     
+    @IBAction func touchDismiss(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
     
     @IBAction func save(_ sender: UIButton) {
         
@@ -159,9 +166,6 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
         
         return true
     }
-    
-    
-    
     
     
     func textFieldDidBeginEditing(_ textField: UITextField){

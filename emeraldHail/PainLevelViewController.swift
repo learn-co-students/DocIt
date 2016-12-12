@@ -61,6 +61,10 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
         
     }
     
+    @IBAction func dismissController(_ sender: Any) {
+    dismiss(animated: true, completion: nil)    
+    }
+    
     @IBAction func cancel(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }

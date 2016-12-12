@@ -13,6 +13,7 @@ class AddEventViewController: UIViewController, UIPickerViewDelegate, UITextFiel
     
     // MARK: - Outlets
     
+    @IBOutlet weak var touchView: UIView!
     @IBOutlet weak var eventViewTitle: UILabel!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var dateTextField: UITextField!
@@ -46,6 +47,10 @@ class AddEventViewController: UIViewController, UIPickerViewDelegate, UITextFiel
     }
     
     // MARK: - Actions
+    
+    @IBAction func dismissView(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
     
     @IBAction func saveEvent(_ sender: UIButton) {
         

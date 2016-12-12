@@ -39,6 +39,15 @@ class AddNotesViewController: UIViewController, UITextViewDelegate {
         super.viewDidAppear(true)
     }
     
+    // MARK: - Actions
+    
+    @IBAction func dismissController(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
+    // MARK: - Methods
+    
     func setupView() {
         
         view.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.35)

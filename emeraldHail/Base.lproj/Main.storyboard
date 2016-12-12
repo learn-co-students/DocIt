@@ -148,6 +148,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Bp-cS-zOw">
+                                <rect key="frame" x="-0.5" y="-0.5" width="375" height="667"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="g4x-83-YVT" appends="YES" id="shn-by-W5C"/>
+                                </connections>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="guT-kQ-bry">
                                 <rect key="frame" x="12" y="70" width="351" height="375"/>
                                 <subviews>
@@ -264,6 +272,10 @@
                         </subviews>
                         <color key="backgroundColor" red="0.1843137255" green="0.75294117650000003" blue="0.87843137250000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="9Bp-cS-zOw" firstAttribute="centerY" secondItem="xgm-Qr-g2w" secondAttribute="centerY" id="B2W-rc-7JN"/>
+                            <constraint firstItem="9Bp-cS-zOw" firstAttribute="centerX" secondItem="xgm-Qr-g2w" secondAttribute="centerX" id="Eo3-me-lWb"/>
+                            <constraint firstItem="9Bp-cS-zOw" firstAttribute="height" secondItem="xgm-Qr-g2w" secondAttribute="height" id="KeK-5m-VpA"/>
+                            <constraint firstItem="9Bp-cS-zOw" firstAttribute="width" secondItem="xgm-Qr-g2w" secondAttribute="width" id="Nvm-RJ-qXh"/>
                             <constraint firstItem="guT-kQ-bry" firstAttribute="top" secondItem="4a6-5f-X8N" secondAttribute="bottom" constant="50" id="Xzj-8k-Mll"/>
                             <constraint firstItem="guT-kQ-bry" firstAttribute="centerX" secondItem="xgm-Qr-g2w" secondAttribute="centerX" id="r7R-5M-lGC"/>
                             <constraint firstItem="guT-kQ-bry" firstAttribute="width" secondItem="xgm-Qr-g2w" secondAttribute="width" constant="-24" id="sg0-pm-Zns"/>
@@ -277,9 +289,16 @@
                         <outlet property="lastNameField" destination="KyO-eh-dLG" id="Yo5-dd-FlU"/>
                         <outlet property="profileImageView" destination="ML0-1f-JBV" id="x5V-8o-98o"/>
                         <outlet property="saveButton" destination="5Li-Ap-e3h" id="WpX-9N-bIG"/>
+                        <outlet property="touchDismiss" destination="g4x-83-YVT" id="kL8-AY-PdJ"/>
+                        <outlet property="touchView" destination="9Bp-cS-zOw" id="GpD-ES-qMG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Do3-ml-xo3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="g4x-83-YVT">
+                    <connections>
+                        <action selector="touchDismiss:" destination="MTa-HX-edf" id="oQ5-n8-ihT"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1436" y="-1028.6356821589206"/>
         </scene>
@@ -792,6 +811,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="edR-if-yA9">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="Mfe-NP-L40" appends="YES" id="jnv-BO-pWP"/>
+                                </connections>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RwM-af-gJ3">
                                 <rect key="frame" x="12" y="70" width="351" height="225"/>
                                 <subviews>
@@ -884,9 +912,15 @@
                         <outlet property="eventViewTitle" destination="6Dm-J1-y1q" id="yFR-qT-I6O"/>
                         <outlet property="nameTextField" destination="LDB-r3-cZk" id="23V-Ik-R4F"/>
                         <outlet property="saveButton" destination="Cr3-MA-jjW" id="O3Z-2V-WsW"/>
+                        <outlet property="touchView" destination="edR-if-yA9" id="KHy-Qt-jWo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ois-T6-1SC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Mfe-NP-L40">
+                    <connections>
+                        <action selector="dismissView:" destination="nZm-vw-Pio" id="Src-OK-PVD"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-186" y="1128"/>
         </scene>
@@ -937,7 +971,7 @@
                                         <rect key="frame" x="0.0" y="178" width="375" height="125"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QKB-QM-ocB" id="fxY-VR-Bs9">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="125"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="124.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rLO-IL-KHX">
@@ -1076,7 +1110,7 @@
                                         <rect key="frame" x="0.0" y="178" width="375" height="175"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UUt-sg-gbE" id="h81-2d-teZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="175"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="174.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="th2-zl-Cpp" customClass="NoteView" customModule="emeraldHail" customModuleProvider="target">
@@ -1101,7 +1135,7 @@
                                         <rect key="frame" x="0.0" y="353" width="375" height="175"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="peP-XC-WVV" id="RcP-so-JzR">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="175"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="174.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gV2-le-btI" customClass="TempView" customModule="emeraldHail" customModuleProvider="target">
@@ -1126,7 +1160,7 @@
                                         <rect key="frame" x="0.0" y="528" width="375" height="175"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IDA-b7-ivE" id="HtV-7Y-KVc">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="175"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="174.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zBC-MT-qb4" customClass="PainLevelView" customModule="emeraldHail" customModuleProvider="target">
@@ -1151,7 +1185,7 @@
                                         <rect key="frame" x="0.0" y="703" width="375" height="175"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ohs-z1-J7Z" id="LZo-vS-hDY">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="175"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="174.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZHG-bj-TMs" customClass="SymptomView" customModule="emeraldHail" customModuleProvider="target">
@@ -1176,7 +1210,7 @@
                                         <rect key="frame" x="0.0" y="878" width="375" height="175"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RKd-F6-2Wm" id="N4Z-Yb-Ngb">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="175"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="174.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DVu-eA-2WR" customClass="PhotoView" customModule="emeraldHail" customModuleProvider="target">
@@ -1313,6 +1347,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xNh-g5-GP2">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="ddo-rC-E1v" appends="YES" id="jwz-fN-hPh"/>
+                                </connections>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wX1-Oy-Yip">
                                 <rect key="frame" x="12" y="70" width="351" height="425"/>
                                 <subviews>
@@ -1356,7 +1398,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="327" height="34"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SDQ-ud-T3F" id="SCt-Q1-PQQ">
-                                                    <rect key="frame" x="0.0" y="0.0" width="327" height="34"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="327" height="33"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zwl-Ic-cdE">
@@ -1404,8 +1446,12 @@
                         <color key="backgroundColor" red="0.1843137255" green="0.75294117650000003" blue="0.87843137250000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="wX1-Oy-Yip" firstAttribute="top" secondItem="IZf-Df-DrL" secondAttribute="bottom" constant="50" id="4BM-zI-tXy"/>
+                            <constraint firstItem="xNh-g5-GP2" firstAttribute="centerX" secondItem="ogh-pv-rqw" secondAttribute="centerX" id="E4L-8Y-9jZ"/>
+                            <constraint firstItem="xNh-g5-GP2" firstAttribute="width" secondItem="ogh-pv-rqw" secondAttribute="width" id="QGu-Zj-lTI"/>
                             <constraint firstItem="wX1-Oy-Yip" firstAttribute="width" secondItem="ogh-pv-rqw" secondAttribute="width" constant="-24" id="SFN-AN-xKB"/>
                             <constraint firstItem="wX1-Oy-Yip" firstAttribute="centerX" secondItem="ogh-pv-rqw" secondAttribute="centerX" id="da8-Rx-J0b"/>
+                            <constraint firstItem="xNh-g5-GP2" firstAttribute="height" secondItem="ogh-pv-rqw" secondAttribute="height" id="tRc-t9-Hhk"/>
+                            <constraint firstItem="xNh-g5-GP2" firstAttribute="centerY" secondItem="ogh-pv-rqw" secondAttribute="centerY" id="uhf-2u-FWh"/>
                         </constraints>
                     </view>
                     <connections>
@@ -1414,6 +1460,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yiu-ZG-DWm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="ddo-rC-E1v">
+                    <connections>
+                        <action selector="dismissController:" destination="z5g-W1-3kv" id="S6h-jn-O5i"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1266" y="2035"/>
         </scene>
@@ -1429,6 +1480,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cIb-QA-It4">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="ggK-km-bzJ" appends="YES" id="xwA-g6-EGn"/>
+                                </connections>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YKP-7Y-Tbv">
                                 <rect key="frame" x="12" y="70" width="351" height="425"/>
                                 <subviews>
@@ -1543,8 +1602,12 @@
                         </subviews>
                         <color key="backgroundColor" red="0.1843137255" green="0.75294117650000003" blue="0.87843137250000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="cIb-QA-It4" firstAttribute="centerX" secondItem="ILM-o1-Nn4" secondAttribute="centerX" id="Grp-gR-rm9"/>
                             <constraint firstItem="YKP-7Y-Tbv" firstAttribute="centerX" secondItem="ILM-o1-Nn4" secondAttribute="centerX" id="Pje-Fx-5Az"/>
                             <constraint firstItem="YKP-7Y-Tbv" firstAttribute="top" secondItem="1d2-df-0hG" secondAttribute="bottom" constant="50" id="TwN-4F-GjB"/>
+                            <constraint firstItem="cIb-QA-It4" firstAttribute="centerY" secondItem="ILM-o1-Nn4" secondAttribute="centerY" id="a5F-s4-Eg5"/>
+                            <constraint firstItem="cIb-QA-It4" firstAttribute="height" secondItem="ILM-o1-Nn4" secondAttribute="height" id="fxA-oK-Zkm"/>
+                            <constraint firstItem="cIb-QA-It4" firstAttribute="width" secondItem="ILM-o1-Nn4" secondAttribute="width" id="is4-Td-aNC"/>
                             <constraint firstItem="YKP-7Y-Tbv" firstAttribute="width" secondItem="ILM-o1-Nn4" secondAttribute="width" constant="-24" id="p0E-GG-flS"/>
                         </constraints>
                     </view>
@@ -1556,6 +1619,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VVS-7b-fRD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="ggK-km-bzJ">
+                    <connections>
+                        <action selector="dismissController:" destination="2oG-rv-nlI" id="TR1-Ay-7p9"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2072.8000000000002" y="2033.433283358321"/>
         </scene>
@@ -1571,6 +1639,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ntl-KJ-3Qc">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="epj-jH-Hxm" appends="YES" id="d9b-x7-v1v"/>
+                                </connections>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="at4-bz-T6Z">
                                 <rect key="frame" x="12" y="70" width="351" height="325"/>
                                 <subviews>
@@ -1635,8 +1711,12 @@
                         </subviews>
                         <color key="backgroundColor" red="0.1843137255" green="0.75294117650000003" blue="0.87843137250000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="ntl-KJ-3Qc" firstAttribute="height" secondItem="1zD-lC-LGA" secondAttribute="height" id="8YA-Ig-jnC"/>
                             <constraint firstItem="at4-bz-T6Z" firstAttribute="width" secondItem="1zD-lC-LGA" secondAttribute="width" constant="-24" id="E55-3l-s4u"/>
                             <constraint firstItem="at4-bz-T6Z" firstAttribute="centerX" secondItem="1zD-lC-LGA" secondAttribute="centerX" id="E6t-SM-l9u"/>
+                            <constraint firstItem="ntl-KJ-3Qc" firstAttribute="centerY" secondItem="1zD-lC-LGA" secondAttribute="centerY" id="Pn0-Qe-lcp"/>
+                            <constraint firstItem="ntl-KJ-3Qc" firstAttribute="width" secondItem="1zD-lC-LGA" secondAttribute="width" id="b3T-3J-dVS"/>
+                            <constraint firstItem="ntl-KJ-3Qc" firstAttribute="centerX" secondItem="1zD-lC-LGA" secondAttribute="centerX" id="ctZ-hQ-qvU"/>
                             <constraint firstItem="at4-bz-T6Z" firstAttribute="top" secondItem="8mz-QM-0S7" secondAttribute="bottom" constant="50" id="q9t-Ef-gMW"/>
                         </constraints>
                     </view>
@@ -1646,6 +1726,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5tf-uz-2dn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="epj-jH-Hxm">
+                    <connections>
+                        <action selector="dismissController:" destination="xCx-Yr-OUd" id="wO0-U5-jBS"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-433" y="2035"/>
         </scene>
@@ -1661,6 +1746,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X2v-e7-ZjS">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="pjH-gz-gzq" appends="YES" id="XXe-4R-IXx"/>
+                                </connections>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HZx-rt-ZEL">
                                 <rect key="frame" x="12" y="70" width="351" height="325"/>
                                 <subviews>
@@ -1736,9 +1829,13 @@
                         </subviews>
                         <color key="backgroundColor" red="0.1843137255" green="0.75294117650000003" blue="0.87843137250000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="X2v-e7-ZjS" firstAttribute="centerY" secondItem="zAU-xP-gfB" secondAttribute="centerY" id="7tE-6X-4H2"/>
                             <constraint firstItem="HZx-rt-ZEL" firstAttribute="width" secondItem="zAU-xP-gfB" secondAttribute="width" constant="-24" id="TS5-IC-C57"/>
                             <constraint firstItem="HZx-rt-ZEL" firstAttribute="top" secondItem="6y3-0a-err" secondAttribute="bottom" constant="50" id="Xhk-aW-0ww"/>
+                            <constraint firstItem="X2v-e7-ZjS" firstAttribute="height" secondItem="zAU-xP-gfB" secondAttribute="height" id="a9J-gY-hnL"/>
+                            <constraint firstItem="X2v-e7-ZjS" firstAttribute="centerX" secondItem="zAU-xP-gfB" secondAttribute="centerX" id="jzV-Y7-BLZ"/>
                             <constraint firstItem="HZx-rt-ZEL" firstAttribute="centerX" secondItem="zAU-xP-gfB" secondAttribute="centerX" id="wVG-TZ-CTB"/>
+                            <constraint firstItem="X2v-e7-ZjS" firstAttribute="width" secondItem="zAU-xP-gfB" secondAttribute="width" id="xYv-R1-Zgb"/>
                         </constraints>
                     </view>
                     <connections>
@@ -1749,6 +1846,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hAy-Ib-wLq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="pjH-gz-gzq">
+                    <connections>
+                        <action selector="dismissController:" destination="bPG-yb-BOM" id="ITN-KC-jdv"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="455" y="2036"/>
         </scene>
@@ -1870,7 +1972,7 @@
             <objects>
                 <navigationController storyboardIdentifier="family-nav-controller" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="XIF-ae-qWP" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ixB-h9-CxZ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ixB-h9-CxZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
