@@ -53,6 +53,8 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
     
     @IBAction func save(_ sender: UIButton) {
         
+        saveButton.isEnabled = false
+        
         guard let name = firstNameField.text, name != "",
             let lastName = lastNameField.text, lastName != "",
             let dob = dateTextField.text, dob != "",

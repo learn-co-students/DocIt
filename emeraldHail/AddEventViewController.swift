@@ -49,6 +49,8 @@ class AddEventViewController: UIViewController, UIPickerViewDelegate, UITextFiel
     
     @IBAction func saveEvent(_ sender: UIButton) {
         
+        saveButton.isEnabled = false
+        
         if eventViewTitle.text == "Create Event" {
             
             guard let name = nameTextField?.text, name != "", let date = dateTextField?.text, date != "" else { return }
