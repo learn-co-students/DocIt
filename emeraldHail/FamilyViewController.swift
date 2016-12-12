@@ -21,7 +21,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     // MARK: Properties
     
     let store = DataStore.sharedInstance
-    var database: FIRDatabaseReference = FIRDatabase.database().reference()
+    var database = FIRDatabase.database().reference()
     let imageSelected = UIImagePickerController()
     var membersInFamily = [Member]()
     var family = [Family]()
@@ -44,8 +44,6 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         configDatabaseMember()
         
         memberProfilesView.reloadData()
-        
-        // TODO: Pull to refresh tests
         
         self.memberProfilesView.alwaysBounceVertical = true
         refresher.tintColor = Constants.Colors.scooter
@@ -188,8 +186,8 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     // TODO: Rethink some of the variable names here and in configDatabaseFamily for clarity
     
     func configDatabaseMember() {
-        let membersRef = FIRDatabase.database().reference().child(Constants.Database.members)
-        let familyRef = membersRef.child(store.user.familyId)
+        
+        let familyRef = database.child(Constants.Database.members).child(store.user.familyId)
         
         familyRef.observe(.value, with: { snapshot in
             
@@ -209,8 +207,8 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     // TODO: Rethink some of the variable names here for clarity
     
     func configDatabaseFamily() {
-        let membersRef = FIRDatabase.database().reference().child("family")
-        let familyRef = membersRef.child(store.user.familyId)
+        
+        let familyRef = database.child("family").child(store.user.familyId)
         
         familyRef.observe(.value, with: { snapshot in
             
@@ -225,15 +223,16 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     func changeFamilyName() {
+        
         var nameTextField: UITextField?
         
         let alertController = UIAlertController(title: nil, message: "Change your family name", preferredStyle: .alert)
         let save = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
             guard let name = nameTextField?.text, name != "" else { return }
-            let databaseEventsRef = FIRDatabase.database().reference().child(Constants.Database.family).child(self.store.user.familyId)
+            let eventsRef = self.database.child(Constants.Database.family).child(self.store.user.familyId)
             
             // TODO: We shoul be handling all the errors properly
-            databaseEventsRef.updateChildValues(["name": name], withCompletionBlock: { (error, dataRef) in
+            eventsRef.updateChildValues(["name": name], withCompletionBlock: { (error, dataRef) in
             })
             
             print("Save Button Pressed")

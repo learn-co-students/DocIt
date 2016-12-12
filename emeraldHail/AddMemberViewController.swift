@@ -34,7 +34,10 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        saveButton.isEnabled = true
+       
+            saveButton.isEnabled = false
+            saveButton.backgroundColor = Constants.Colors.submarine
+        
         
         // Do any additional setup after loading the view.
     }
@@ -49,6 +52,9 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
     
     
     @IBAction func save(_ sender: UIButton) {
+        
+        saveButton.isEnabled = false
+        profileImageView.isUserInteractionEnabled = false
         
         guard let name = firstNameField.text, name != "",
             let lastName = lastNameField.text, lastName != "",
@@ -174,6 +180,14 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool{
         
+        if firstNameField.text != "" && lastNameField.text != "" && dateTextField.text != "" && genderTextField.text != "" {
+            
+            saveButton.isEnabled = true
+            saveButton.backgroundColor = Constants.Colors.scooter
+            
+            
+        }
+        
         return true
     }
     
@@ -191,16 +205,17 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
         
         
         
-        
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         dateTextField.resignFirstResponder()
+
         
         return true
     }
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        
         
         return true
         
