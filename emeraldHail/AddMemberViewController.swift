@@ -8,8 +8,9 @@
 
 import UIKit
 import Firebase
+import Fusuma
 
-class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UITextFieldDelegate {
+class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UITextFieldDelegate, FusumaDelegate {
     
     // MARK: Outlets
     
@@ -35,8 +36,8 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
         super.viewDidLoad()
         setupView()
        
-            saveButton.isEnabled = false
-            saveButton.backgroundColor = Constants.Colors.submarine
+        saveButton.isEnabled = false
+        saveButton.backgroundColor = Constants.Colors.submarine
         
         
         // Do any additional setup after loading the view.
@@ -126,42 +127,12 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
     }
     
     
+
     func addGestureRecognizer(imageView: UIImageView){
-        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectProfileImageView)))
+        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleCameraImage)))
     }
     
-    func handleSelectProfileImageView(){
-        let picker = UIImagePickerController()
-        picker.delegate = self
-        picker.sourceType = .photoLibrary
-        picker.allowsEditing = true
-        
-        self.addMember.viewController()?.present(picker
-            , animated: true, completion: nil)
-        
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]){
-        
-        var selectedImageFromPicker: UIImage?
-        
-        if let editedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
-            selectedImageFromPicker = editedImage
-        } else if let originalImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            selectedImageFromPicker = originalImage
-        }
-        if let selectedImage = selectedImageFromPicker {
-            profileImageView.image = selectedImage
-        }
-        
-        picker.dismiss(animated: true, completion: nil)
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        print("picked canceled")
-        picker.dismiss(animated: true, completion: nil)
-    }
-    
+
     @IBAction func birthdayDidBeginEditing(_ sender: Any) {
         
         let formatter = DateFormatter()
@@ -185,8 +156,7 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
             saveButton.isEnabled = true
             saveButton.backgroundColor = Constants.Colors.scooter
             
-            
-        }
+        }           
         
         return true
     }
@@ -276,6 +246,57 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
         
         return ""
     }
+    
+    // Fusuma
+    
+    // MARK: Fusuma
+    
+    func handleCameraImage() {
+        
+        let fusuma = FusumaViewController()
+        fusuma.delegate = self
+        self.present(fusuma, animated: true, completion: nil)
+        fusumaCropImage = true
+        
+    }
+    
+    // Return the image which is selected from camera roll or is taken via the camera.
+    
+    func fusumaImageSelected(_ image: UIImage) {
+        
+        // present some alert with the image
+        // add button to alert to send
+        // upload from button
+        
+        print("Image selected")
+        
+    }
+    
+    // Return the image but called after is dismissed.
+    
+    func fusumaDismissedWithImage(_ image: UIImage) {
+        
+        profileImageView.image = image
+        
+        print("Called just after FusumaViewController is dismissed.")
+        
+    }
+    
+    func fusumaVideoCompleted(withFileURL fileURL: URL) {
+        
+        print("Called just after a video has been selected.")
+        
+    }
+    
+    // When camera roll is not authorized, this method is called.
+    
+    func fusumaCameraRollUnauthorized() {
+        
+        print("Camera access denied")
+        
+    }
+    
+
     
     
 }
