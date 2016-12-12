@@ -38,7 +38,6 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
             saveButton.isEnabled = false
             saveButton.backgroundColor = Constants.Colors.submarine
         
-        
         // Do any additional setup after loading the view.
     }
     
