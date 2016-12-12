@@ -54,6 +54,7 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
     @IBAction func save(_ sender: UIButton) {
         
         saveButton.isEnabled = false
+        profileImageView.isUserInteractionEnabled = false
         
         guard let name = firstNameField.text, name != "",
             let lastName = lastNameField.text, lastName != "",
@@ -183,7 +184,7 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
             
             saveButton.isEnabled = true
             saveButton.backgroundColor = Constants.Colors.scooter
-            profileImageView.isUserInteractionEnabled = false
+            
             
         }
         
