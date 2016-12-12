@@ -45,7 +45,6 @@
 		B6ED5B361DDE4CDB00B56DFD /* TempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6ED5B351DDE4CDB00B56DFD /* TempViewController.swift */; };
 		B6F44C081DEE080000995237 /* EditMemberSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F44C071DEE080000995237 /* EditMemberSettingsViewController.swift */; };
 		BB14EBD71DED43A0004F6D56 /* HealthCore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BB14EBD51DED43A0004F6D56 /* HealthCore.xcdatamodeld */; };
-		BB190F1E1DFF2BB6001D8CFE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB190F1D1DFF2BB6001D8CFE /* GoogleService-Info.plist */; };
 		BB35032B1DFB6F24003561CE /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB35032A1DFB6F24003561CE /* AddEventViewController.swift */; };
 		BB5CD3321DE6B41800D82BB3 /* SymptomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5CD3311DE6B41800D82BB3 /* SymptomsViewController.swift */; };
 		BB5FB2881DFB4CA6008CAB7A /* AddMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5FB2871DFB4CA6008CAB7A /* AddMemberViewController.swift */; };
@@ -67,6 +66,7 @@
 		DDB88F871DEE1CD5002E9668 /* PainLevelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDB88F861DEE1CD5002E9668 /* PainLevelView.xib */; };
 		DDB88F891DEE1CEC002E9668 /* PainLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB88F881DEE1CEC002E9668 /* PainLevelView.swift */; };
 		DDB88F8B1DEE1E03002E9668 /* PainLevelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB88F8A1DEE1E03002E9668 /* PainLevelCell.swift */; };
+		DDC3B5C41DFF464300677F09 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DDC3B5C31DFF464300677F09 /* GoogleService-Info.plist */; };
 		DDDE22441DF0B811006B234C /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDE22431DF0B811006B234C /* Photo.swift */; };
 		DDDE22461DF0C479006B234C /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDE22451DF0C479006B234C /* PhotoView.swift */; };
 		DDDE22481DF0C486006B234C /* PhotoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDDE22471DF0C486006B234C /* PhotoView.xib */; };
@@ -115,7 +115,6 @@
 		B6ED5B351DDE4CDB00B56DFD /* TempViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempViewController.swift; sourceTree = "<group>"; };
 		B6F44C071DEE080000995237 /* EditMemberSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditMemberSettingsViewController.swift; sourceTree = "<group>"; };
 		BB14EBD61DED43A0004F6D56 /* HealthCore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HealthCore.xcdatamodel; sourceTree = "<group>"; };
-		BB190F1D1DFF2BB6001D8CFE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BB35032A1DFB6F24003561CE /* AddEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEventViewController.swift; sourceTree = "<group>"; };
 		BB5CD3311DE6B41800D82BB3 /* SymptomsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SymptomsViewController.swift; sourceTree = "<group>"; };
 		BB5FB2871DFB4CA6008CAB7A /* AddMemberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMemberViewController.swift; sourceTree = "<group>"; };
@@ -140,6 +139,7 @@
 		DDB88F861DEE1CD5002E9668 /* PainLevelView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PainLevelView.xib; sourceTree = "<group>"; };
 		DDB88F881DEE1CEC002E9668 /* PainLevelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PainLevelView.swift; sourceTree = "<group>"; };
 		DDB88F8A1DEE1E03002E9668 /* PainLevelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PainLevelCell.swift; sourceTree = "<group>"; };
+		DDC3B5C31DFF464300677F09 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DDDE22431DF0B811006B234C /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		DDDE22451DF0C479006B234C /* PhotoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
 		DDDE22471DF0C486006B234C /* PhotoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoView.xib; sourceTree = "<group>"; };
@@ -232,8 +232,8 @@
 		AA9FFBB61DDA667500847FCF /* emeraldHail */ = {
 			isa = PBXGroup;
 			children = (
-				BB190F1D1DFF2BB6001D8CFE /* GoogleService-Info.plist */,
 				DD755E1B1DE3ACB2002478D0 /* emeraldHail.entitlements */,
+				DDC3B5C31DFF464300677F09 /* GoogleService-Info.plist */,
 				DD58FAE51DDBBB40004A7A22 /* Controllers */,
 				DD58FAE41DDBBB1D004A7A22 /* View */,
 				AA9FFBC91DDA6A8E00847FCF /* Model */,
@@ -440,7 +440,7 @@
 				AAFE44681DDF68BE00922FB0 /* SymptomView.xib in Resources */,
 				AA0BF2BE1DF4A9190062FA36 /* AddMemberView.xib in Resources */,
 				DDB88F871DEE1CD5002E9668 /* PainLevelView.xib in Resources */,
-				BB190F1E1DFF2BB6001D8CFE /* GoogleService-Info.plist in Resources */,
+				DDC3B5C41DFF464300677F09 /* GoogleService-Info.plist in Resources */,
 				DDDE22481DF0C486006B234C /* PhotoView.xib in Resources */,
 				AA0BF2C51DF5C1540062FA36 /* FamilyMemberView.xib in Resources */,
 				B69466641DECCE3000F2E30C /* Assets.xcassets in Resources */,
