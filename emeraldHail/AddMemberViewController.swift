@@ -247,8 +247,6 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
         return ""
     }
     
-    // Fusuma
-    
     // MARK: Fusuma
     
     func handleCameraImage() {

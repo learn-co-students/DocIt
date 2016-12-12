@@ -10,8 +10,9 @@ import UIKit
 import FirebaseDatabase
 import FirebaseStorage
 import Firebase
+import Fusuma
 
-class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDataSource {
+class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDataSource, FusumaDelegate {
     
     // MARK: - Outlets
     
@@ -233,40 +234,8 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
     }
     
     func addGestureRecognizer(imageView: UIImageView){
-        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectProfileImageView)))
+        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleCameraImage)))
     }
-    
-    func handleSelectProfileImageView(){
-        let picker = UIImagePickerController()
-        picker.delegate = self
-        picker.sourceType = .photoLibrary
-        picker.allowsEditing = true
-        
-        self.present(picker, animated: true, completion: nil)
-        
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]){
-        
-        var selectedImageFromPicker: UIImage?
-        
-        if let editedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
-            selectedImageFromPicker = editedImage
-        } else if let originalImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            selectedImageFromPicker = originalImage
-        }
-        if let selectedImage = selectedImageFromPicker {
-            profilePicture.image = selectedImage
-        }
-        
-        dismiss(animated: true, completion: nil)
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        print("picked canceled")
-        dismiss(animated: true, completion: nil)
-    }
-    
     
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboardView))
@@ -478,5 +447,53 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
         return ""
     }
     
+    
+    // MARK: Fusuma
+    
+    func handleCameraImage() {
+        
+        let fusuma = FusumaViewController()
+        fusuma.delegate = self
+        self.present(fusuma, animated: true, completion: nil)
+        fusumaCropImage = true
+        
+    }
+    
+    // Return the image which is selected from camera roll or is taken via the camera.
+    
+    func fusumaImageSelected(_ image: UIImage) {
+        
+        // present some alert with the image
+        // add button to alert to send
+        // upload from button
+        
+        print("Image selected")
+        
+    }
+    
+    // Return the image but called after is dismissed.
+    
+    func fusumaDismissedWithImage(_ image: UIImage) {
+        
+        profilePicture.image = image
+        
+        print("Called just after FusumaViewController is dismissed.")
+        
+    }
+    
+    func fusumaVideoCompleted(withFileURL fileURL: URL) {
+        
+        print("Called just after a video has been selected.")
+        
+    }
+    
+    // When camera roll is not authorized, this method is called.
+    
+    func fusumaCameraRollUnauthorized() {
+        
+        print("Camera access denied")
+        
+    }
+
     
 }
