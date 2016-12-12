@@ -56,6 +56,8 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         
         configureLayout()
 
+        
+        print("======================> \(store.family.coverImageStr)")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -165,13 +167,12 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
             
             headerView.familyNameLabel.text = store.family.name
             
-            if store.family.coverImageStr == nil {
-                
-                headerView.profileImage?.image = UIImage(named: "blackfam")
-                
-            } else {
+            if store.family.coverImageStr != "" {
+                headerView.profileImage.sd_setImage(with: familyPictureUrl)
+            } 
             
-            headerView.profileImage.sd_setImage(with: familyPictureUrl)
+            else {
+                headerView.profileImage?.image = UIImage(named: "sunset2")
             
             }
             
