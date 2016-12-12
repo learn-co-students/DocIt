@@ -14,10 +14,10 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
     // MARK: - Outlets 
     
     @IBOutlet weak var painLevelCollectionView: UICollectionView!
-    
     @IBOutlet weak var painView: UIView!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var postTitleLabel: UILabel!
+
     
     // MARK: - Properties
     
@@ -56,11 +56,9 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
     
     @IBAction func save(_ sender: UIButton) {
         
-        if let painLevel = selectedPainLevel  {
             addPainLevel()
             saveButton.isEnabled = false
         
-        }
     }
     
     @IBAction func cancel(_ sender: UIButton) {
