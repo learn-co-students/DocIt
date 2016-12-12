@@ -22,9 +22,11 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         didSet {
             postButtons.forEach {
                 $0.isHidden = true
+                $0.alpha = 0.0
             }
         }
     }
+    @IBOutlet weak var plusButton: UIButton!
     
     // MARK: - Properties
     
@@ -33,6 +35,8 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     var posts = [Post]()
     var store = DataStore.sharedInstance
     let postsRef = FIRDatabase.database().reference().child(Constants.Database.posts)
+    
+    var plusButtonIsRotated = false
     
     // MARK: - Loads
     
@@ -49,6 +53,21 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         postTableView.estimatedRowHeight = 150
         
         self.title = self.store.event.name
+
+        
+        plusButton.layer.shadowColor = UIColor.black.cgColor
+        plusButton.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+        plusButton.layer.masksToBounds = false
+        plusButton.layer.shadowRadius = 1.0
+        plusButton.layer.shadowOpacity = 0.3
+        
+        self.postButtons.forEach {
+            $0.layer.shadowColor = UIColor.black.cgColor
+            $0.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+            $0.layer.masksToBounds = false
+            $0.layer.shadowRadius = 1.0
+            $0.layer.shadowOpacity = 0.3
+        }
         
         fetchPosts()
         fetchMemberDetails()
@@ -57,11 +76,6 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        
-        postButtons.forEach {
-            $0.isHidden = true
-        }
-        
         postTableView.reloadData()
     }
     
@@ -70,21 +84,50 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBAction func addPost(_ sender: UIButton) {
         
-        UIView.animate(withDuration: 0.3) {
-            self.postButtons.forEach {
-                $0.isHidden = !$0.isHidden
-            }
-        }
+        animatePostButtons()
+
     }
     
     @IBAction func addPhoto(_ sender: UIButton) {
+        animatePostButtons()
         handleCameraImage()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        self.postButtons.forEach {
-            $0.isHidden = true
-        }
+        animatePostButtons()
+    }
+    
+    func animatePostButtons() {
+        
+        // usingSpringWithDamping: 0.1, initialSpringVelocity: 0.2,
+        
+        self.view.layoutIfNeeded()
+        
+        UIView.animate(withDuration: 0.15, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.2, options: .curveLinear, animations: {
+            
+            if !self.plusButtonIsRotated {
+                self.plusButton.transform = CGAffineTransform(rotationAngle: CGFloat(45).degreesToRadians)
+                
+                self.postButtons.forEach {
+                    $0.isHidden = false
+                    $0.alpha = 1.0
+                }
+                
+                self.plusButtonIsRotated = true
+            } else {
+                self.plusButton.transform = CGAffineTransform(rotationAngle: CGFloat(0).degreesToRadians)
+                
+                self.postButtons.forEach {
+                    $0.isHidden = true
+                    $0.alpha = 0.0
+                }
+                
+                self.plusButtonIsRotated = false
+            }
+            
+            
+        }, completion: nil)
+        
     }
     
     // MARK: - Methods

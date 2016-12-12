@@ -198,6 +198,13 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
         bloodTextField.text = store.bloodTypeSelections[bloodSelection.selectedRow(inComponent: 0)]
     }
     
+    @IBAction func birthdayEditingDidBegin(_ sender: Any) {
+        let dobSelection = UIDatePicker()
+        dobTextField.inputView = dobSelection
+        dobSelection.datePickerMode = UIDatePickerMode.date
+        dobSelection.addTarget(self, action: #selector(self.datePickerChanged(sender:)) , for: .valueChanged)
+    }
+    
     func deletePostImagesFromStorage(uniqueID: String){
         
         storageRef.child(Constants.Storage.postsImages).child(uniqueID).delete(completion: { error -> Void in
@@ -345,24 +352,18 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
         return true
     }
     
-    // return YES to allow editing to stop and to resign first responder status. NO to disallow the editing session to end
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        
         return self.view.endEditing(true)
-        
     }
     
     
     func datePickerChanged(sender: UIDatePicker) {
-        //        let myLocale = Locale(identifier: "en_US")
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
         formatter.timeStyle = .none
-        formatter.dateFormat = "MM-dd-yyyy"
-        //        var calendar = Calendar(identifier: .gregopen orian)
-        dobTextField.text = formatter.string(from: sender.date)
-        
-        
+        formatter.dateFormat = "MMM dd, yyyy"
+
+        dobTextField.text = formatter.string(from: sender.date).uppercased()
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int{
