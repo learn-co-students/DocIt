@@ -127,12 +127,8 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
         genderSelection.delegate = self
         
         dateTextField.delegate = self
-        
-        
-        
+    
     }
-    
-    
 
     func addGestureRecognizer(imageView: UIImageView){
         imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleCameraImage)))
@@ -176,28 +172,24 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
         
         dobSelection.addTarget(self, action: #selector(self.datePickerChanged(sender:)) , for: .valueChanged)
         
-        
-        
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         dateTextField.resignFirstResponder()
 
-        
         return true
     }
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        
-        
+
         return true
-        
+    
     }
     
     func datePickerChanged(sender: UIDatePicker) {
         
         let formatter = DateFormatter()
-        formatter.dateStyle = .medium
+        formatter.dateStyle = .short
         formatter.timeStyle = .none
         formatter.dateFormat = "MMM dd, yyyy"
         dateTextField.text = formatter.string(from: sender.date).uppercased()
