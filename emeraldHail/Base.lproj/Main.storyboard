@@ -13,6 +13,91 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Forgot Password View Controller-->
+        <scene sceneID="FjR-yv-izM">
+            <objects>
+                <viewController id="fAt-OM-gyd" customClass="ForgotPasswordViewController" customModule="emeraldHail" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Bz7-zi-Pn7"/>
+                        <viewControllerLayoutGuide type="bottom" id="JKR-JN-LKU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="owk-6N-gfa">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rlO-na-Nbi">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="iNH-BH-GNf" appends="YES" id="xQ8-C7-fx9"/>
+                                </connections>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n3t-Ga-peI">
+                                <rect key="frame" x="12" y="246" width="351" height="255"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Forgot Password" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gFd-je-7hy">
+                                        <rect key="frame" x="113" y="12" width="127" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email address" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d43-0g-tMD" customClass="DocItTextField" customModule="emeraldHail" customModuleProvider="target">
+                                        <rect key="frame" x="12" y="51" width="327" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                        <connections>
+                                            <action selector="editingFamilyName:" destination="fAt-OM-gyd" eventType="editingChanged" id="Qsx-bL-7EN"/>
+                                        </connections>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kdj-r4-4w5">
+                                        <rect key="frame" x="12" y="113" width="160" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <state key="normal" title="Cancel">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="cancel:" destination="fAt-OM-gyd" eventType="touchUpInside" id="w4P-qT-rBk"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XpU-zo-Yp8">
+                                        <rect key="frame" x="179" y="113" width="160" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.17254901959999999" green="0.75294117650000003" blue="0.88235294119999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                                        <state key="normal" title="Send">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.98039132360000003" green="0.97655218840000002" blue="0.97635632750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="cancelButton" destination="kdj-r4-4w5" id="9Ev-ww-iVk"/>
+                        <outlet property="emailTextField" destination="d43-0g-tMD" id="dKl-pg-mh5"/>
+                        <outlet property="forgotView" destination="n3t-Ga-peI" id="mF7-s2-gvd"/>
+                        <outlet property="sendButton" destination="XpU-zo-Yp8" id="XgK-9f-ac0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oJs-hD-sD9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="iNH-BH-GNf">
+                    <connections>
+                        <action selector="tapDismiss:" destination="fAt-OM-gyd" id="qIl-BA-o9q"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="-1616.8" y="-1126.6866566716642"/>
+        </scene>
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -25,7 +110,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="yourname@gmail.com" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="tGj-Eg-72C" customClass="DocItTextField" customModule="emeraldHail" customModuleProvider="target">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email address" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="tGj-Eg-72C" customClass="DocItTextField" customModule="emeraldHail" customModuleProvider="target">
                                 <rect key="frame" x="38" y="127" width="300" height="50"/>
                                 <color key="textColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
@@ -64,7 +149,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="forgotPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Mqu-6C-Bzk"/>
+                                    <segue destination="fAt-OM-gyd" kind="presentation" modalPresentationStyle="overCurrentContext" id="4K1-eD-35B"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OsV-A4-0Ni">
@@ -172,7 +257,6 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="cancel:" destination="xCx-Yr-OUd" eventType="touchUpInside" id="FXN-1o-kEg"/>
                                             <action selector="cancel:" destination="MTa-HX-edf" eventType="touchUpInside" id="sKf-eH-8hb"/>
                                         </connections>
                                     </button>
@@ -247,7 +331,6 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="addNotes:" destination="xCx-Yr-OUd" eventType="touchUpInside" id="0VB-aC-E5a"/>
                                             <action selector="save:" destination="MTa-HX-edf" eventType="touchUpInside" id="KfM-k2-18J"/>
                                         </connections>
                                     </button>
@@ -651,9 +734,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="cancel:" destination="xCx-Yr-OUd" eventType="touchUpInside" id="59o-Gz-QLd"/>
                                             <action selector="cancel:" destination="NK3-fa-N2O" eventType="touchUpInside" id="J7v-Oh-Xcs"/>
-                                            <action selector="cancel:" destination="MTa-HX-edf" eventType="touchUpInside" id="k6f-XE-9Nz"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z7D-gR-3eu">
@@ -667,8 +748,6 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="addNotes:" destination="xCx-Yr-OUd" eventType="touchUpInside" id="cOA-eP-i9Q"/>
-                                            <action selector="save:" destination="MTa-HX-edf" eventType="touchUpInside" id="OgR-wT-hjh"/>
                                             <action selector="save:" destination="NK3-fa-N2O" eventType="touchUpInside" id="eqb-le-oBR"/>
                                         </connections>
                                     </button>
@@ -695,12 +774,12 @@
                         <color key="backgroundColor" red="0.18267938489999999" green="0.75351297859999999" blue="0.87854671480000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="WdY-fK-o2m" firstAttribute="centerX" secondItem="mms-w0-Udw" secondAttribute="centerX" id="1qi-hK-v5q"/>
-                            <constraint firstItem="mms-w0-Udw" firstAttribute="bottom" secondItem="Exy-yc-aMf" secondAttribute="top" id="SY6-wa-uZv"/>
-                            <constraint firstItem="WdY-fK-o2m" firstAttribute="top" secondItem="srV-Tu-ZgZ" secondAttribute="bottom" constant="50" id="UbG-YV-xhS"/>
                             <constraint firstAttribute="trailing" secondItem="mms-w0-Udw" secondAttribute="trailing" id="Znb-yt-zUM"/>
                             <constraint firstItem="mms-w0-Udw" firstAttribute="top" secondItem="lQi-k2-O3b" secondAttribute="top" id="dFd-xf-vPZ"/>
+                            <constraint firstItem="WdY-fK-o2m" firstAttribute="top" secondItem="srV-Tu-ZgZ" secondAttribute="bottom" constant="50" id="s1Q-2a-bTj"/>
                             <constraint firstItem="mms-w0-Udw" firstAttribute="leading" secondItem="lQi-k2-O3b" secondAttribute="leading" id="s2z-58-hYr"/>
                             <constraint firstItem="WdY-fK-o2m" firstAttribute="width" secondItem="mms-w0-Udw" secondAttribute="width" constant="-24" id="twx-la-njv"/>
+                            <constraint firstItem="mms-w0-Udw" firstAttribute="bottom" secondItem="Exy-yc-aMf" secondAttribute="top" id="x6f-6k-YOu"/>
                         </constraints>
                     </view>
                     <connections>
@@ -1184,7 +1263,7 @@
                                         <rect key="frame" x="0.0" y="178" width="375" height="125"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QKB-QM-ocB" id="fxY-VR-Bs9">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="124.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="124"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rLO-IL-KHX">
@@ -1331,7 +1410,7 @@
                                         <rect key="frame" x="0.0" y="178" width="375" height="175"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UUt-sg-gbE" id="h81-2d-teZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="174.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="174"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="th2-zl-Cpp" customClass="NoteView" customModule="emeraldHail" customModuleProvider="target">
@@ -1356,7 +1435,7 @@
                                         <rect key="frame" x="0.0" y="353" width="375" height="175"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="peP-XC-WVV" id="RcP-so-JzR">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="174.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="174"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gV2-le-btI" customClass="TempView" customModule="emeraldHail" customModuleProvider="target">
@@ -1381,7 +1460,7 @@
                                         <rect key="frame" x="0.0" y="528" width="375" height="175"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IDA-b7-ivE" id="HtV-7Y-KVc">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="174.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="174"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zBC-MT-qb4" customClass="PainLevelView" customModule="emeraldHail" customModuleProvider="target">
@@ -1406,7 +1485,7 @@
                                         <rect key="frame" x="0.0" y="703" width="375" height="175"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ohs-z1-J7Z" id="LZo-vS-hDY">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="174.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="174"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZHG-bj-TMs" customClass="SymptomView" customModule="emeraldHail" customModuleProvider="target">
@@ -1431,7 +1510,7 @@
                                         <rect key="frame" x="0.0" y="878" width="375" height="175"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RKd-F6-2Wm" id="N4Z-Yb-Ngb">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="174.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="174"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DVu-eA-2WR" customClass="PhotoView" customModule="emeraldHail" customModuleProvider="target">
@@ -1625,7 +1704,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="327" height="34"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SDQ-ud-T3F" id="SCt-Q1-PQQ">
-                                                    <rect key="frame" x="0.0" y="0.0" width="327" height="33.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="327" height="33"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zwl-Ic-cdE">
@@ -2152,7 +2231,7 @@
                                 <color key="textColor" red="0.12549019610000001" green="0.75294117650000003" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="yourname@gmail.com" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="wHI-sV-xOK" customClass="DocItTextField" customModule="emeraldHail" customModuleProvider="target">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email address" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="wHI-sV-xOK" customClass="DocItTextField" customModule="emeraldHail" customModuleProvider="target">
                                 <rect key="frame" x="38" y="127" width="300" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="pyP-ay-gSU"/>
@@ -2207,7 +2286,7 @@
             <objects>
                 <navigationController storyboardIdentifier="family-nav-controller" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="XIF-ae-qWP" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ixB-h9-CxZ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ixB-h9-CxZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>

@@ -46,6 +46,7 @@
 		B6F44C081DEE080000995237 /* EditMemberSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F44C071DEE080000995237 /* EditMemberSettingsViewController.swift */; };
 		BB14EBD71DED43A0004F6D56 /* HealthCore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BB14EBD51DED43A0004F6D56 /* HealthCore.xcdatamodeld */; };
 		BB35032B1DFB6F24003561CE /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB35032A1DFB6F24003561CE /* AddEventViewController.swift */; };
+		BB36CAB31DFF8E8700D10661 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB36CAB21DFF8E8700D10661 /* ForgotPasswordViewController.swift */; };
 		BB5CD3321DE6B41800D82BB3 /* SymptomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5CD3311DE6B41800D82BB3 /* SymptomsViewController.swift */; };
 		BB5FB2881DFB4CA6008CAB7A /* AddMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5FB2871DFB4CA6008CAB7A /* AddMemberViewController.swift */; };
 		BB6DEDB51DE61C7D00D8B93A /* FamilySettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6DEDB41DE61C7D00D8B93A /* FamilySettingViewController.swift */; };
@@ -118,6 +119,7 @@
 		B6F44C071DEE080000995237 /* EditMemberSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditMemberSettingsViewController.swift; sourceTree = "<group>"; };
 		BB14EBD61DED43A0004F6D56 /* HealthCore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HealthCore.xcdatamodel; sourceTree = "<group>"; };
 		BB35032A1DFB6F24003561CE /* AddEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEventViewController.swift; sourceTree = "<group>"; };
+		BB36CAB21DFF8E8700D10661 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		BB5CD3311DE6B41800D82BB3 /* SymptomsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SymptomsViewController.swift; sourceTree = "<group>"; };
 		BB5FB2871DFB4CA6008CAB7A /* AddMemberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMemberViewController.swift; sourceTree = "<group>"; };
 		BB6DEDB41DE61C7D00D8B93A /* FamilySettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilySettingViewController.swift; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 				B6F44C071DEE080000995237 /* EditMemberSettingsViewController.swift */,
 				BBF4EEB61DDF59FF00EBD3FE /* EventViewController.swift */,
 				BB6DEDB41DE61C7D00D8B93A /* FamilySettingViewController.swift */,
+				BB36CAB21DFF8E8700D10661 /* ForgotPasswordViewController.swift */,
 				BBF4EEB41DDF59F900EBD3FE /* FamilyViewController.swift */,
 				AA0C2FE31DE8837700445229 /* HeaderCollectionReusableView.swift */,
 				BBF4EEB01DDF59D400EBD3FE /* LoginViewController.swift */,
@@ -558,6 +561,7 @@
 				AA7ED5941DDF4D16005F9AB2 /* Member.swift in Sources */,
 				AA0C2FE51DE8837700445229 /* HeaderCollectionReusableView.swift in Sources */,
 				AA0BF2C01DF4AA780062FA36 /* AddMemberView.swift in Sources */,
+				BB36CAB31DFF8E8700D10661 /* ForgotPasswordViewController.swift in Sources */,
 				BBF453B91DE34ACD00E054E9 /* Symptom.swift in Sources */,
 				AA8A59021DF3AFAB0079AE69 /* Extensions.swift in Sources */,
 				AA57AC531DEE4CDB00DCA9BF /* TempView.swift in Sources */,

@@ -55,26 +55,7 @@ class LoginViewController: UIViewController {
         signIn.isEnabled = false
     }
 
-    @IBAction func forgotPressed(_ sender: Any) {
-        let alert = UIAlertController(title: "Forgot?", message: "Please enter your login email address.\n\nWe'll send you an email with instructions on how to reset your password.", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default, handler: { (action) in
-            let userInput = alert.textFields![0].text
-            if (userInput!.isEmpty) { return }
-            FIRAuth.auth()?.sendPasswordReset(withEmail: userInput!, completion: { (error) in
-                if let error = error {
-                    print(error.localizedDescription)
-                }
-            })
-        })
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        alert.addTextField(configurationHandler: nil)
-        alert.textFields![0].placeholder = "yourname@gmail.com"
-        alert.addAction(okAction)
-        alert.addAction(cancelAction)
-        present(alert, animated: true, completion: nil)
-    }
-
-    @IBAction func createAccountPressed(_ sender: Any) {
+     @IBAction func createAccountPressed(_ sender: Any) {
 
         NotificationCenter.default.post(name: .openRegisterVC, object: nil)
         //  self.performSegue(withIdentifier: "showCreateAccount", sender: nil)

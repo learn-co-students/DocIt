@@ -80,13 +80,14 @@ class ChangeFamilyNameViewController: UIViewController {
         
         saveButton.isEnabled = false
         saveButton.backgroundColor = Constants.Colors.submarine
+        
         saveButton.docItStyle()
         
         cancelButton.docItStyle()
         
         changeNameTextField.text = store.family.name
         changeNameTextField.becomeFirstResponder()
-        
+        changeNameTextField.docItStyle()
         
         
     }
