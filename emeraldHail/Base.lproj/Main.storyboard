@@ -578,34 +578,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Touch ID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jTf-v1-YLa">
-                                <rect key="frame" x="109" y="409" width="60" height="18"/>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
-                                <color key="textColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <segmentedControl hidden="YES" opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="UYV-Us-6hb">
-                                <rect key="frame" x="198" y="404" width="69" height="29"/>
-                                <segments>
-                                    <segment title="Off"/>
-                                    <segment title="On"/>
-                                </segments>
-                                <connections>
-                                    <action selector="touchIDOnOff:" destination="bHr-j8-e7W" eventType="valueChanged" id="VfU-Hn-Ao2"/>
-                                </connections>
-                            </segmentedControl>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hqH-g9-i8v">
-                                <rect key="frame" x="127" y="557" width="122" height="30"/>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
-                                <state key="normal" title="Send us feedback">
-                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="sendEmail:" destination="bHr-j8-e7W" eventType="touchUpInside" id="FcC-ng-LfI"/>
-                                </connections>
-                            </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="cLa-oC-lUt">
-                                <rect key="frame" x="12" y="215.5" width="351" height="236"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="cLa-oC-lUt">
+                                <rect key="frame" x="12" y="144.5" width="351" height="378"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2F6-SI-HLP">
                                         <rect key="frame" x="0.0" y="0.0" width="351" height="50"/>
@@ -663,6 +637,38 @@
                                             <action selector="logoutPressed:" destination="bHr-j8-e7W" eventType="touchUpInside" id="YMA-51-bqG"/>
                                         </connections>
                                     </button>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Touch ID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jTf-v1-YLa">
+                                        <rect key="frame" x="145.5" y="248" width="60" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                                        <color key="textColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <segmentedControl hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="UYV-Us-6hb">
+                                        <rect key="frame" x="141" y="278" width="69" height="29"/>
+                                        <segments>
+                                            <segment title="Off"/>
+                                            <segment title="On"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="touchIDOnOff:" destination="bHr-j8-e7W" eventType="valueChanged" id="VfU-Hn-Ao2"/>
+                                        </connections>
+                                    </segmentedControl>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hqH-g9-i8v">
+                                        <rect key="frame" x="114.5" y="318" width="122" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                                        <state key="normal" title="Send us feedback">
+                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="sendEmail:" destination="bHr-j8-e7W" eventType="touchUpInside" id="FcC-ng-LfI"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Made with ❤️ in NYC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MlL-Le-IQd">
+                                        <rect key="frame" x="103.5" y="360" width="144.5" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                                        <color key="textColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="W30-XH-IpY" firstAttribute="width" secondItem="cLa-oC-lUt" secondAttribute="width" id="1jt-Fc-AEF"/>
@@ -671,27 +677,13 @@
                                     <constraint firstItem="tkA-Uo-Tn7" firstAttribute="width" secondItem="cLa-oC-lUt" secondAttribute="width" id="xbv-St-TxN"/>
                                 </constraints>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Made with ❤️ in NYC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MlL-Le-IQd">
-                                <rect key="frame" x="115.5" y="599" width="144.5" height="18"/>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
-                                <color key="textColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.97647058823529409" green="0.97254901960784312" blue="0.97254901960784312" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" red="0.12560352683067322" green="0.75167614221572876" blue="0.88603806495666504" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="hqH-g9-i8v" firstAttribute="centerX" secondItem="MlL-Le-IQd" secondAttribute="centerX" id="1Jl-6w-s2G"/>
-                            <constraint firstItem="UYV-Us-6hb" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="jTf-v1-YLa" secondAttribute="trailing" constant="12" id="8yk-oz-gdI"/>
-                            <constraint firstItem="MlL-Le-IQd" firstAttribute="top" secondItem="hqH-g9-i8v" secondAttribute="bottom" constant="12" id="HUv-z4-0jZ"/>
                             <constraint firstItem="cLa-oC-lUt" firstAttribute="width" secondItem="HND-Eo-G97" secondAttribute="width" constant="-24" id="QGk-tg-cGt"/>
-                            <constraint firstItem="UYV-Us-6hb" firstAttribute="centerY" secondItem="jTf-v1-YLa" secondAttribute="centerY" id="YrA-Ah-Acg"/>
-                            <constraint firstItem="jTf-v1-YLa" firstAttribute="leading" secondItem="HND-Eo-G97" secondAttribute="leadingMargin" constant="93" id="dvs-RB-zCx"/>
                             <constraint firstItem="cLa-oC-lUt" firstAttribute="centerX" secondItem="HND-Eo-G97" secondAttribute="centerX" id="fDg-BD-iOv"/>
-                            <constraint firstItem="5Kq-2j-aL9" firstAttribute="top" secondItem="MlL-Le-IQd" secondAttribute="bottom" constant="50" id="kGZ-8m-vai"/>
                             <constraint firstItem="cLa-oC-lUt" firstAttribute="centerY" secondItem="HND-Eo-G97" secondAttribute="centerY" id="nLn-b6-EEU"/>
-                            <constraint firstItem="MlL-Le-IQd" firstAttribute="centerX" secondItem="HND-Eo-G97" secondAttribute="centerX" id="pcQ-9O-ACo"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="UYV-Us-6hb" secondAttribute="trailing" constant="92" id="tM7-Vj-I0n"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="JL3-N3-RR3"/>
