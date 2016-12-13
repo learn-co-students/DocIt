@@ -44,7 +44,7 @@
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d43-0g-tMD" customClass="DocItTextField" customModule="emeraldHail" customModuleProvider="target">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d43-0g-tMD" customClass="DocItTextField" customModule="emeraldHail" customModuleProvider="target">
                                         <rect key="frame" x="12" y="51" width="327" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="Wl2-zp-I59"/>
@@ -501,11 +501,11 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sunset" translatesAutoresizingMaskIntoConstraints="NO" id="hNa-6z-wVq">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Doc_It_BG" translatesAutoresizingMaskIntoConstraints="NO" id="hNa-6z-wVq">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
                                             <color key="backgroundColor" red="0.18267938489999999" green="0.75351297859999999" blue="0.87854671480000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </imageView>
-                                        <view alpha="0.34999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HKx-6P-0wu">
+                                        <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HKx-6P-0wu">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
                                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </view>
@@ -729,7 +729,7 @@
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="New Family Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HVM-12-ETb" customClass="DocItTextField" customModule="emeraldHail" customModuleProvider="target">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="New Family Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HVM-12-ETb" customClass="DocItTextField" customModule="emeraldHail" customModuleProvider="target">
                                         <rect key="frame" x="12" y="51" width="327" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="UDa-PG-xBf"/>
@@ -2442,6 +2442,7 @@
     </scenes>
     <resources>
         <image name="Doc-It-Logo" width="400" height="109"/>
+        <image name="Doc_It_BG" width="1629" height="1086"/>
         <image name="addFamilyMember" width="625" height="625"/>
         <image name="kid_silhouette" width="347" height="347"/>
         <image name="moderate" width="145" height="144"/>
@@ -2451,7 +2452,6 @@
         <image name="post_plus" width="625" height="625"/>
         <image name="post_symp" width="625" height="625"/>
         <image name="post_temp" width="625" height="625"/>
-        <image name="sunset" width="2250" height="1075"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="AyQ-2m-HY5"/>
