@@ -1071,6 +1071,7 @@
                             <constraint firstItem="iew-44-IJM" firstAttribute="centerX" secondItem="eX0-s4-7SX" secondAttribute="centerX" id="VlG-e7-Pac"/>
                             <constraint firstItem="ygH-Uw-Hiq" firstAttribute="centerX" secondItem="eX0-s4-7SX" secondAttribute="centerX" id="Y2o-dv-tHP"/>
                             <constraint firstItem="3nS-7x-yl5" firstAttribute="top" secondItem="iew-44-IJM" secondAttribute="bottom" constant="12" id="cYj-1G-CIL"/>
+                            <constraint firstItem="ygH-Uw-Hiq" firstAttribute="top" secondItem="3nS-7x-yl5" secondAttribute="bottom" constant="72.5" id="p2E-2N-4cJ"/>
                             <constraint firstItem="3nS-7x-yl5" firstAttribute="width" secondItem="eX0-s4-7SX" secondAttribute="width" constant="-24" id="rce-b3-hPS"/>
                         </constraints>
                     </view>
