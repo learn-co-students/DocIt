@@ -25,10 +25,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rlO-na-Nbi">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rlO-na-Nbi">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.1843137255" green="0.75294117650000003" blue="0.87843137250000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="iNH-BH-GNf" appends="YES" id="xQ8-C7-fx9"/>
@@ -97,11 +95,15 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.1843137255" green="0.75294117650000003" blue="0.87843137250000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="n3t-Ga-peI" firstAttribute="centerX" secondItem="owk-6N-gfa" secondAttribute="centerX" id="9ro-DP-bJ9"/>
+                            <constraint firstItem="rlO-na-Nbi" firstAttribute="height" secondItem="owk-6N-gfa" secondAttribute="height" id="AtA-xr-ghr"/>
+                            <constraint firstItem="rlO-na-Nbi" firstAttribute="centerX" secondItem="owk-6N-gfa" secondAttribute="centerX" id="Ifk-6u-Gbx"/>
                             <constraint firstItem="n3t-Ga-peI" firstAttribute="top" secondItem="Bz7-zi-Pn7" secondAttribute="bottom" constant="50" id="LoB-tl-62e"/>
                             <constraint firstItem="n3t-Ga-peI" firstAttribute="width" secondItem="owk-6N-gfa" secondAttribute="width" constant="-24" id="QE5-mA-NDK"/>
+                            <constraint firstItem="rlO-na-Nbi" firstAttribute="centerY" secondItem="owk-6N-gfa" secondAttribute="centerY" id="gR2-6M-BJf"/>
+                            <constraint firstItem="rlO-na-Nbi" firstAttribute="width" secondItem="owk-6N-gfa" secondAttribute="width" id="zHB-yD-fyj"/>
                         </constraints>
                     </view>
                     <connections>
