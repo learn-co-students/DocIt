@@ -11,8 +11,6 @@ import FirebaseStorage
 import FirebaseDatabase
 import Firebase
 
-
-
 class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     // Tanira: This data is to be used later with the beta version of the application. Please do not remove commented out section below. Thank you :D
@@ -26,7 +24,8 @@ class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     @IBOutlet weak var temperaturePickerView: UIPickerView!
     @IBOutlet weak var tempSegments: UISegmentedControl!
     @IBOutlet weak var postTitleLabel: UILabel!
-
+    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
     
     // MARK: - Methods 
     
@@ -78,15 +77,17 @@ class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         
         temperaturePickerView.selectRow(10, inComponent: 0, animated: false)
         
-        view.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.35)
+        view.backgroundColor = Constants.Colors.transBlack
         
-        noteView.layer.cornerRadius = 10
-        noteView.layer.borderColor = Constants.Colors.submarine.cgColor
-        noteView.layer.borderWidth = 1
+        noteView.docItStyleView()
+        
+        tempSegments.layer.cornerRadius = 2
         
         temperaturePickerView.backgroundColor = UIColor.white
         temperaturePickerView.tintColor = Constants.Colors.submarine
         
+        saveButton.docItStyle()
+        cancelButton.docItStyle()
         
     }
 

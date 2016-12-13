@@ -14,6 +14,8 @@ class AddNotesViewController: UIViewController, UITextViewDelegate {
 
     @IBOutlet weak var addNotesTextView: UITextView!
     @IBOutlet weak var noteView: UIView!
+    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
     
     // MARK: - Properties
     
@@ -50,11 +52,12 @@ class AddNotesViewController: UIViewController, UITextViewDelegate {
     
     func setupView() {
         
-        view.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.35)
+        view.backgroundColor = Constants.Colors.transBlack
         
-        noteView.layer.cornerRadius = 10
-        noteView.layer.borderColor = Constants.Colors.submarine.cgColor
-        noteView.layer.borderWidth = 1
+        noteView.docItStyleView()
+        
+        saveButton.docItStyle()
+        cancelButton.docItStyle()
     
     }
     

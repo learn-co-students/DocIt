@@ -19,6 +19,7 @@ class AddEventViewController: UIViewController, UIPickerViewDelegate, UITextFiel
     @IBOutlet weak var dateTextField: UITextField!
     @IBOutlet weak var eventView: UIView!
     @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
     
     // MARK: - Properties
     
@@ -31,19 +32,68 @@ class AddEventViewController: UIViewController, UIPickerViewDelegate, UITextFiel
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        
-        nameTextField.becomeFirstResponder()
-        
     }
     
     // MARK: - Actions
     
     @IBAction func dismissView(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        dismissViewController()
     }
     
     @IBAction func saveEvent(_ sender: UIButton) {
+       saveEvent()
+    }
+    
+    
+    @IBAction func cancelEvent(_ sender: UIButton) {
+        dismissViewController()
+    }
+    
+    @IBAction func startDateDidBeginEditing(_ sender: Any) {
+        formatDate()
+    }
+    
+    // MARK: - Methods
+    
+    func setupView() {
         
+        view.backgroundColor = Constants.Colors.transBlack
+        
+        saveButton.isEnabled = true
+        saveButton.docItStyle()
+        
+        cancelButton.docItStyle()
+        eventView.docItStyleView()
+        
+        nameTextField.docItStyle()
+
+        
+        
+        dateTextField.docItStyle()
+        
+        
+        eventViewTitle.text = store.buttonEvent
+        
+        dateTextField.delegate = self
+        
+        if eventViewTitle.text == "Modify Event" {
+            
+            nameTextField.text = store.event.name
+            dateTextField.text = store.event.startDate
+            
+        }
+        
+        saveButton.isEnabled = false
+        saveButton.backgroundColor = Constants.Colors.submarine
+        
+        nameTextField.becomeFirstResponder()
+    }
+    
+    func dismissViewController() {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func saveEvent() {
         saveButton.isEnabled = false
         
         if eventViewTitle.text == "Create Event" {
@@ -82,51 +132,16 @@ class AddEventViewController: UIViewController, UIPickerViewDelegate, UITextFiel
             
         }
         
-        dismiss(animated: true, completion: nil)
+        dismissViewController()
     }
     
-    
-    @IBAction func cancelEvent(_ sender: UIButton) {
-        
-        dismiss(animated: true, completion: nil)
-    }
-    
-    @IBAction func startDateDidBeginEditing(_ sender: Any) {
-        
+    func formatDate() {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
         formatter.timeStyle = .none
         formatter.dateFormat = "MMM dd, yyyy"
         dateTextField.text = formatter.string(from: dobSelection.date).uppercased()
-        
-    }
-    
-    // MARK: - Methods
-    
-    func setupView() {
-        
-        view.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.25)
-        
-        saveButton.isEnabled = true
-        
-        eventView.layer.cornerRadius = 10
-        eventView.layer.borderColor = Constants.Colors.submarine.cgColor
-        eventView.layer.borderWidth = 1
-        
-        eventViewTitle.text = store.buttonEvent
-        
-        dateTextField.delegate = self
-        
-        if eventViewTitle.text == "Modify Event" {
-            
-            nameTextField.text = store.event.name
-            dateTextField.text = store.event.startDate
-            
-        }
-        
-        saveButton.isEnabled = false
-        saveButton.backgroundColor = Constants.Colors.submarine
-        
+
     }
     
     

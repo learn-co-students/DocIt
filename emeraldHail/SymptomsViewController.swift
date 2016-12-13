@@ -16,11 +16,14 @@ class SymptomsViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBOutlet weak var symptomView: UIView!
     @IBOutlet weak var symptomTableView: UITableView!
+    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
+    
     
     // MARK: Properties
     
     let store = DataStore.sharedInstance
-    var database: FIRDatabaseReference = FIRDatabase.database().reference()
+    var database = FIRDatabase.database().reference()
     
     var symptoms: [Symptom] = [.bloodInStool, .chestPain, .constipation, .cough, .diarrhea, .dizziness, .earache, .eyeDiscomfort, .fever, .footPain, .footSwelling, .headache, .heartpalpitations, .itchiness, .kneePain, .legSwelling, .musclePain, .nasalcongestion, .nausea, .neckPain, .runnyNose, .shortBreath, .shoulderPain, .skinRashes, .soreThroat, .urinaryProblems, .vision, .vomiting, .wheezing]
     
@@ -30,7 +33,7 @@ class SymptomsViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        symptomTableView.allowsMultipleSelection = true
+        
         symptomTableView.reloadData()
         setupView()
     }
@@ -71,14 +74,21 @@ class SymptomsViewController: UIViewController, UITableViewDelegate, UITableView
     
     func setupView() {
         
-        view.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.35)
+        symptomTableView.allowsMultipleSelection = true
         
-        symptomView.layer.cornerRadius = 10
-        symptomView.layer.borderColor = Constants.Colors.submarine.cgColor
-        symptomView.layer.borderWidth = 1
+        view.backgroundColor = Constants.Colors.transBlack
+        
+        symptomView.docItStyleView()
 
         symptomTableView.tintColor = Constants.Colors.scooter
 
+        saveButton.docItStyle()
+        cancelButton.docItStyle()
+        
+        symptomTableView.separatorColor = Constants.Colors.athensGray
+        
+        
+        
     }
 
     

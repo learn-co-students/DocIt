@@ -19,6 +19,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var signIn: UIButton!
 
     // MARK: - Properties
@@ -86,7 +87,7 @@ class LoginViewController: UIViewController {
             signIn.backgroundColor = Constants.Colors.scooter
         } else {
             signIn.isEnabled = false
-            signIn.backgroundColor = UIColor.lightGray
+            signIn.backgroundColor = Constants.Colors.submarine
         }
     }
 

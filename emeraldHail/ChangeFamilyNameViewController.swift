@@ -16,6 +16,7 @@ class ChangeFamilyNameViewController: UIViewController {
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var changeNameTextField: UITextField!
     @IBOutlet weak var changeFamilyView: UIView!
+    @IBOutlet weak var cancelButton: UIButton!
     
     // MARK: - Properties
     
@@ -74,16 +75,21 @@ class ChangeFamilyNameViewController: UIViewController {
     
     func setupViews() {
         
-        view.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.25)
+        view.backgroundColor = Constants.Colors.transBlack
         changeFamilyView.layer.cornerRadius = 10
         changeFamilyView.layer.borderColor = Constants.Colors.submarine.cgColor
         changeFamilyView.layer.borderWidth = 1
         
         saveButton.isEnabled = false
         saveButton.backgroundColor = Constants.Colors.submarine
+        saveButton.docItStyle()
+        
+        cancelButton.docItStyle()
         
         changeNameTextField.text = store.family.name
         changeNameTextField.becomeFirstResponder()
+        
+        
         
     }
     

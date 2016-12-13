@@ -187,7 +187,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="A4G-Ut-Luz">
                                         <rect key="frame" x="12" y="141" width="327" height="160"/>
                                         <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First name" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="F2W-zO-Wee">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First name" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="F2W-zO-Wee">
                                                 <rect key="frame" x="0.0" y="0.0" width="327" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="i2U-P7-CD3"/>
@@ -196,7 +196,7 @@
                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last name" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KyO-eh-dLG">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last name" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KyO-eh-dLG">
                                                 <rect key="frame" x="0.0" y="55" width="327" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="PSr-qf-Fon"/>
@@ -208,7 +208,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Nfz-AX-kKm">
                                                 <rect key="frame" x="0.0" y="110" width="327" height="50"/>
                                                 <subviews>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Birthday" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kLu-D5-F3H">
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Birthday" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kLu-D5-F3H">
                                                         <rect key="frame" x="0.0" y="0.0" width="161" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="hlg-NZ-TL2"/>
@@ -220,7 +220,7 @@
                                                             <action selector="birthdayDidBeginEditing:" destination="MTa-HX-edf" eventType="editingDidBegin" id="Bvr-39-pf1"/>
                                                         </connections>
                                                     </textField>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Gender" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="L7N-Vv-sTC">
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Gender" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="L7N-Vv-sTC">
                                                         <rect key="frame" x="166" y="0.0" width="161" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="X5j-ck-u6L"/>
@@ -285,6 +285,7 @@
                     </view>
                     <connections>
                         <outlet property="addMember" destination="guT-kQ-bry" id="7VX-eY-cju"/>
+                        <outlet property="cancelButton" destination="iA2-3e-fmG" id="qWX-WI-iaf"/>
                         <outlet property="dateTextField" destination="kLu-D5-F3H" id="nob-EI-NyU"/>
                         <outlet property="firstNameField" destination="F2W-zO-Wee" id="K3D-zo-nhU"/>
                         <outlet property="genderTextField" destination="L7N-Vv-sTC" id="bu8-GX-nIr"/>
@@ -703,6 +704,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="cancelButton" destination="89w-61-XZr" id="l5p-v3-zC0"/>
                         <outlet property="changeFamilyView" destination="WdY-fK-o2m" id="5ze-R8-UI0"/>
                         <outlet property="changeNameTextField" destination="HVM-12-ETb" id="0ZI-lF-gCG"/>
                         <outlet property="saveButton" destination="Z7D-gR-3eu" id="0Jj-7B-asK"/>
@@ -1034,13 +1036,13 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ybK-78-U0n">
                                         <rect key="frame" x="12" y="46" width="327" height="105"/>
                                         <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Event name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LDB-r3-cZk">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Event name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LDB-r3-cZk">
                                                 <rect key="frame" x="0.0" y="0.0" width="327" height="50"/>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Start date" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aBZ-47-yXQ">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Start date" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aBZ-47-yXQ">
                                                 <rect key="frame" x="0.0" y="55" width="327" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="OLN-cJ-rLA"/>
@@ -1115,6 +1117,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="cancelButton" destination="Q0O-rd-Zzj" id="zNs-rI-LVg"/>
                         <outlet property="dateTextField" destination="aBZ-47-yXQ" id="wcn-Jo-zVy"/>
                         <outlet property="eventView" destination="RwM-af-gJ3" id="W4e-5M-gcm"/>
                         <outlet property="eventViewTitle" destination="6Dm-J1-y1q" id="yFR-qT-I6O"/>
@@ -1677,6 +1680,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="cancelButton" destination="kko-h0-SYX" id="Zh9-f3-k3Z"/>
+                        <outlet property="saveButton" destination="86I-Eo-ite" id="K33-c4-RcZ"/>
                         <outlet property="symptomTableView" destination="nqx-H7-96D" id="nFb-jb-CAT"/>
                         <outlet property="symptomView" destination="wX1-Oy-Yip" id="1IH-II-2Et"/>
                     </connections>
@@ -1834,6 +1839,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="cancelButton" destination="F8l-Wx-pBK" id="s1M-jB-iHk"/>
                         <outlet property="collectionViewFlowLayout" destination="9W7-8b-9y3" id="YGI-oZ-AWh"/>
                         <outlet property="painLevelCollectionView" destination="h1y-yL-S09" id="t2K-Lx-PbD"/>
                         <outlet property="painView" destination="YKP-7Y-Tbv" id="X5d-kW-iLY"/>
@@ -1945,7 +1951,9 @@
                     </view>
                     <connections>
                         <outlet property="addNotesTextView" destination="WgC-X0-MHs" id="ivv-dO-Lhk"/>
+                        <outlet property="cancelButton" destination="TIt-aO-P96" id="FwK-Xs-Mqg"/>
                         <outlet property="noteView" destination="at4-bz-T6Z" id="zoE-8z-Uk3"/>
+                        <outlet property="saveButton" destination="KWd-En-5GL" id="IzG-Rh-WQH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5tf-uz-2dn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2062,8 +2070,10 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="cancelButton" destination="gzC-yZ-6Ad" id="Pfl-xe-xTJ"/>
                         <outlet property="noteView" destination="HZx-rt-ZEL" id="8oy-lH-o8u"/>
                         <outlet property="postTitleLabel" destination="HL5-vK-VwO" id="Egy-7j-qeD"/>
+                        <outlet property="saveButton" destination="EAh-TB-Kqc" id="kl0-HK-9OR"/>
                         <outlet property="tempSegments" destination="mhn-Db-d6U" id="Cw5-wr-9nw"/>
                         <outlet property="temperaturePickerView" destination="qd7-6W-pN2" id="TEY-Vh-mUS"/>
                     </connections>

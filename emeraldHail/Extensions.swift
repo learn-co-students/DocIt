@@ -23,19 +23,39 @@ extension UIImageView {
 extension UIImageView {
     
     func setCornerRounded() {
-        self.layer.cornerRadius = 10
+        docItStyleView()
         self.layer.masksToBounds = true
     }
     
 }
 
+extension UITextField {
+    
+    func docItStyle() {
+
+        self.layer.borderWidth = 1
+        docItStyleView()
+        self.layer.borderColor = Constants.Colors.athensGray.cgColor
+        self.backgroundColor = UIColor.white
+        
+    }
+}
+
+extension UIView {
+    
+    func docItStyleView() {
+        
+        self.layer.cornerRadius = 2
+        
+    }
+    
+}
 
 extension UIButton {
     
     func docItStyle() {
         
-        self.layer.cornerRadius = 2
-        
+        docItStyleView()
     }
     
     func shadow() {

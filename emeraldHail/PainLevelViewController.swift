@@ -17,6 +17,7 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
     @IBOutlet weak var painView: UIView!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var postTitleLabel: UILabel!
+    @IBOutlet weak var cancelButton: UIButton!
 
     @IBOutlet weak var collectionViewFlowLayout: UICollectionViewFlowLayout!
     
@@ -95,12 +96,14 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
         
         postTitleLabel.text = "How does \(store.member.firstName) feel?"
         
-        view.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.35)
+        view.backgroundColor = Constants.Colors.transBlack
         
-        painView.layer.cornerRadius = 10
-        painView.layer.borderColor = Constants.Colors.submarine.cgColor
-        painView.layer.borderWidth = 1
+        painView.docItStyleView()
 
+        saveButton.docItStyle()
+        cancelButton.docItStyle()
+        painLevelCollectionView.docItStyleView()
+        
 //        painLevelCollectionView.tintColor = UIColor.darkGray
     
     }

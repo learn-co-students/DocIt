@@ -21,6 +21,7 @@ struct Constants {
         static let submarine = UIColor(red: 0.74, green: 0.76, blue: 0.78, alpha: 1.00)
         static let athensGray = UIColor(red: 0.93, green: 0.94, blue: 0.95, alpha: 1.00)
         static let corn = UIColor(red: 0.94, green: 0.74, blue: 0.07, alpha: 1.00)
+        static let transBlack = UIColor(red: 0.00, green: 0.00, blue: 0.00, alpha: 0.35)
     }
     
     struct CustomCell {

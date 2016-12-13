@@ -22,6 +22,7 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
     @IBOutlet weak var dateTextField: UITextField!
     @IBOutlet weak var genderTextField: UITextField!
     @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet var touchDismiss: UITapGestureRecognizer!
     
     // MARK: - Properties
@@ -59,6 +60,42 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
     }
     
     @IBAction func save(_ sender: UIButton) {
+        saveMember()
+    }
+    
+    @IBAction func cancel(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    // MARK: - Methods
+    
+    func setupView() {
+        
+        addGestureRecognizer(imageView: profileImageView)
+        profileImageView.isUserInteractionEnabled = true
+        profileImageView.setRounded()
+        
+        addMember.docItStyleView()
+        
+        saveButton.docItStyle()
+        cancelButton.docItStyle()
+        
+        firstNameField.docItStyle()
+        lastNameField.docItStyle()
+        dateTextField.docItStyle()
+        genderTextField.docItStyle()
+        
+        firstNameField.becomeFirstResponder()
+        view.backgroundColor = Constants.Colors.transBlack
+        
+        genderTextField.inputView = genderSelection
+        genderSelection.delegate = self
+        
+        dateTextField.delegate = self
+    
+    }
+
+    func saveMember() {
         
         saveButton.isEnabled = false
         profileImageView.isUserInteractionEnabled = false
@@ -102,34 +139,10 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
         })
         
         
-    }
-    
-    @IBAction func cancel(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    // MARK: - Methods
-    
-    func setupView() {
-        
-        addGestureRecognizer(imageView: profileImageView)
-        profileImageView.isUserInteractionEnabled = true
-        profileImageView.setRounded()
-        
-        addMember.layer.cornerRadius = 10
-        addMember.layer.borderColor = Constants.Colors.submarine.cgColor
-        addMember.layer.borderWidth = 1
-        
-        firstNameField.becomeFirstResponder()
-        view.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.25)
-        
-        genderTextField.inputView = genderSelection
-        genderSelection.delegate = self
-        
-        dateTextField.delegate = self
-    
-    }
 
+        
+    }
+    
     func addGestureRecognizer(imageView: UIImageView){
         imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleCameraImage)))
     }
