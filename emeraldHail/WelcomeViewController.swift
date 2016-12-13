@@ -67,11 +67,14 @@ class WelcomeViewController: UIViewController {
     func setupViews() {
 
         view.backgroundColor = Constants.Colors.desertStorm
-        createAccount.layer.cornerRadius = 2
+        
+        createAccount.docItStyle()
+        
+        signIn.docItStyle()
         signIn.layer.borderWidth = 1
-        signIn.layer.borderColor = UIColor.lightGray.cgColor
-        signIn.layer.cornerRadius = 2
-
+        signIn.layer.borderColor = Constants.Colors.submarine.cgColor
+        
+        
     }
 
     func updateFamilyId() {

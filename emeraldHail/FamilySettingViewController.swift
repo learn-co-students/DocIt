@@ -20,8 +20,11 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
     
     // MARK: - Outlets
     
+    @IBOutlet weak var inviteFamily: UIButton!
+    @IBOutlet weak var changeFamilyPicture: UIButton!
+    @IBOutlet weak var changeFamilyName: UIButton!
+    @IBOutlet weak var logout: UIButton!
     @IBOutlet weak var touchID: UISegmentedControl!
-    @IBOutlet weak var joinFamily: JoinFamily!
     
     // MARK: - Properties
     
@@ -33,6 +36,7 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupView()
         checkTouchID()
     }
     
@@ -44,14 +48,7 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
     
     
     @IBAction func logoutPressed(_ sender: Any) {
-        do {
-            try FIRAuth.auth()?.signOut()
-            store.clearDataStore()
-            
-            NotificationCenter.default.post(name: .openWelcomeVC, object: nil)
-        } catch let signOutError as NSError {
-            print ("Error signing out: \(signOutError.localizedDescription)")
-        }
+        logoutApp()
     }
     
     @IBAction func touchIDOnOff(_ sender: UISegmentedControl) {
@@ -75,19 +72,23 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
         sendEmail()
     }
     
-    @IBAction func joinFamily(_ sender: UIButton) {
-        
-        if joinFamily.isHidden == true {
-            joinFamily.isHidden = false
-        } else {
-            joinFamily.isHidden = true
-            
-        }
-    }
-    
     @IBAction func didPressInviteParent(_ sender: UIButton) {
         print("didPressInviteParent pressed")
+        inviteParent()
+    }
+    
+    // MARK: - Methods
+    
+    func setupView() {
         
+        inviteFamily.docItStyle()
+        changeFamilyPicture.docItStyle()
+        changeFamilyName.docItStyle()
+        logout.docItStyle()
+        
+    }
+    
+    func inviteParent() {
         let branchUniversalObject: BranchUniversalObject = BranchUniversalObject(canonicalIdentifier: "123123123")
         
         let newLinkProperties: BranchLinkProperties = BranchLinkProperties()
@@ -107,10 +108,22 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
         }
         
         print(branchUniversalObject)
-        
+
     }
     
-    // MARK: - Methods
+    func logoutApp() {
+        
+        do {
+            try FIRAuth.auth()?.signOut()
+            store.clearDataStore()
+            
+            NotificationCenter.default.post(name: .openWelcomeVC, object: nil)
+        } catch let signOutError as NSError {
+            print ("Error signing out: \(signOutError.localizedDescription)")
+        }
+
+    }
+    
     
     func changeFamilyCoverPic(photo: UIImage, handler: @escaping (Bool) -> Void) {
         

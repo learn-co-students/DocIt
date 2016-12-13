@@ -109,14 +109,14 @@ class LoginViewController: UIViewController {
         passwordField.text = nil
 
         emailField.layer.cornerRadius = 2
-        emailField.layer.borderColor = UIColor.lightGray.cgColor
+        emailField.layer.borderColor = Constants.Colors.athensGray.cgColor
 
         passwordField.layer.cornerRadius = 2
-        passwordField.layer.borderColor = UIColor.lightGray.cgColor
+        passwordField.layer.borderColor = Constants.Colors.athensGray.cgColor
 
         signIn.isEnabled = false
-        signIn.backgroundColor = UIColor.lightGray
-        signIn.layer.cornerRadius = 2
+        signIn.backgroundColor = Constants.Colors.submarine
+        signIn.docItStyle()
     }
 
     func hideKeyboardWhenTappedAround() {

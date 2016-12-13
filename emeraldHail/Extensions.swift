@@ -29,6 +29,28 @@ extension UIImageView {
     
 }
 
+
+extension UIButton {
+    
+    func docItStyle() {
+        
+        self.layer.cornerRadius = 2
+        
+    }
+    
+    func shadow() {
+        
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+        self.layer.masksToBounds = false
+        self.layer.shadowRadius = 1.0
+        self.layer.shadowOpacity = 0.3
+
+    }
+
+}
+
+
 // MARK: - Get random color
 
 extension UIColor {

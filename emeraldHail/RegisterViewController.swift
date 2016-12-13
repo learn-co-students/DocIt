@@ -87,14 +87,14 @@ class RegisterViewController: UIViewController {
         passwordField.text = nil
         
         emailField.layer.cornerRadius = 2
-        emailField.layer.borderColor = UIColor.lightGray.cgColor
+        emailField.layer.borderColor = Constants.Colors.athensGray.cgColor
         
         passwordField.layer.cornerRadius = 2
-        passwordField.layer.borderColor = UIColor.lightGray.cgColor
+        passwordField.layer.borderColor = Constants.Colors.athensGray.cgColor
         
         createAccount.isEnabled = false
-        createAccount.backgroundColor = UIColor.lightGray
-        createAccount.layer.cornerRadius = 2
+        createAccount.backgroundColor = Constants.Colors.submarine
+        createAccount.docItStyle()
     }
     
     func register() {

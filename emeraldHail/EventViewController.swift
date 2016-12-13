@@ -16,11 +16,10 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     // MARK: - Outlets
 
-    @IBOutlet weak var addEventButton: UIBarButtonItem!
     @IBOutlet weak var eventsTable: UITableView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
-    @IBOutlet weak var addEvent: UIView!
+    @IBOutlet weak var plusButton: UIButton!
 
     // MARK: - Properties
 
@@ -36,6 +35,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupView()
         eventsTable.delegate = self
         eventsTable.dataSource = self
         hideKeyboardWhenTappedAround()
@@ -56,7 +56,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     // MARK: - Actions
 
-    @IBAction func addEvent(_ sender: UIBarButtonItem) {
+    @IBAction func addEvent(_ sender: UIButton) {
         store.buttonEvent = "Create Event"
         performSegue(withIdentifier: "addEvent", sender: nil)
 
@@ -64,7 +64,14 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
 
     // MARK: TableView Methods
-
+    
+    func setupView() {
+        
+        plusButton.shadow()
+        
+    }
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return events.count
     }

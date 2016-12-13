@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Zwd-TP-Mtn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16C63a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Zwd-TP-Mtn">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -9,7 +9,6 @@
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
-        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Segues with Peek and Pop" minToolsVersion="7.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -591,6 +590,10 @@
                     <navigationItem key="navigationItem" title="Settings" id="JL3-N3-RR3"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="changeFamilyName" destination="tkA-Uo-Tn7" id="0nR-o5-7yo"/>
+                        <outlet property="changeFamilyPicture" destination="W30-XH-IpY" id="umh-ac-FSV"/>
+                        <outlet property="inviteFamily" destination="2F6-SI-HLP" id="QPR-cW-lt2"/>
+                        <outlet property="logout" destination="TgT-Sn-ZkG" id="B17-HM-p6l"/>
                         <outlet property="touchID" destination="UYV-Us-6hb" id="Lsy-xB-AXL"/>
                     </connections>
                 </viewController>
@@ -622,7 +625,7 @@
                                 <rect key="frame" x="12" y="70" width="351" height="175"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change Family Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ym8-se-Rrh">
-                                        <rect key="frame" x="96" y="12" width="160" height="20.5"/>
+                                        <rect key="frame" x="96" y="12" width="160" height="21"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -672,7 +675,6 @@
                                 <color key="backgroundColor" red="0.98039132360000003" green="0.97655218840000002" blue="0.97635632750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="Z7D-gR-3eu" secondAttribute="trailing" constant="12" id="0sX-gr-6qg"/>
-                                    <constraint firstAttribute="height" constant="210" id="3hV-v1-kJG"/>
                                     <constraint firstItem="HVM-12-ETb" firstAttribute="width" secondItem="WdY-fK-o2m" secondAttribute="width" constant="-24" id="7af-gS-C9u"/>
                                     <constraint firstItem="89w-61-XZr" firstAttribute="top" secondItem="HVM-12-ETb" secondAttribute="bottom" constant="12" id="9vp-af-9ZU"/>
                                     <constraint firstItem="89w-61-XZr" firstAttribute="height" secondItem="Z7D-gR-3eu" secondAttribute="height" id="CMQ-y0-8Ka"/>
@@ -1228,11 +1230,27 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4n8-vd-B9f">
+                                <rect key="frame" x="290" y="582" width="65" height="65"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="65" id="1ti-kH-dVN"/>
+                                    <constraint firstAttribute="width" constant="65" id="4Jz-G0-aRV"/>
+                                </constraints>
+                                <state key="normal" title="Add" image="post_plus">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="addEvent:" destination="ZlU-EQ-FGQ" eventType="touchUpInside" id="whv-QC-kfk"/>
+                                    <action selector="addPost:" destination="5Sa-dZ-5lG" eventType="touchUpInside" id="irH-u5-o3J"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.98039132356643677" green="0.97655218839645386" blue="0.97635632753372192" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="y38-9i-HW6" firstAttribute="height" secondItem="e58-fj-dk1" secondAttribute="height" id="3Fg-rg-20U"/>
+                            <constraint firstAttribute="bottom" secondItem="4n8-vd-B9f" secondAttribute="bottom" constant="20" id="CZl-Ig-tad"/>
+                            <constraint firstAttribute="trailing" secondItem="4n8-vd-B9f" secondAttribute="trailing" constant="20" id="Lja-YI-sNw"/>
                             <constraint firstItem="y38-9i-HW6" firstAttribute="centerX" secondItem="e58-fj-dk1" secondAttribute="centerX" id="uSL-me-OzY"/>
                             <constraint firstItem="y38-9i-HW6" firstAttribute="centerY" secondItem="e58-fj-dk1" secondAttribute="centerY" id="w4B-i4-ib8"/>
                             <constraint firstItem="y38-9i-HW6" firstAttribute="width" secondItem="e58-fj-dk1" secondAttribute="width" id="zeG-0K-IRK"/>
@@ -1240,26 +1258,18 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Events" id="EQZ-K7-hkh">
-                        <rightBarButtonItems>
-                            <barButtonItem systemItem="add" id="ZXI-9o-vIi">
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <action selector="addEvent:" destination="ZlU-EQ-FGQ" id="Yfc-S5-zHK"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem title="⋯" id="72m-3y-Lja">
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <segue destination="5vi-Bs-QCZ" kind="show" id="Co9-bL-fw8"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" title="⋯" id="72m-3y-Lja">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <segue destination="5vi-Bs-QCZ" kind="show" id="Co9-bL-fw8"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="addEventButton" destination="ZXI-9o-vIi" id="baZ-6e-009"/>
                         <outlet property="eventsTable" destination="y38-9i-HW6" id="Vys-mU-U0O"/>
                         <outlet property="nameLabel" destination="vyO-rN-E2I" id="vSt-Sk-TNW"/>
+                        <outlet property="plusButton" destination="4n8-vd-B9f" id="c0N-pR-Hgn"/>
                         <outlet property="profileImageView" destination="NAm-Dd-L9Z" id="vwr-1H-eqU"/>
                         <segue destination="nZm-vw-Pio" kind="presentation" identifier="addEvent" modalPresentationStyle="overCurrentContext" id="azk-eB-0y6"/>
                     </connections>
