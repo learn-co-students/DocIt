@@ -76,9 +76,7 @@ class ChangeFamilyNameViewController: UIViewController {
     func setupViews() {
         
         view.backgroundColor = Constants.Colors.transBlack
-        changeFamilyView.layer.cornerRadius = 10
-        changeFamilyView.layer.borderColor = Constants.Colors.submarine.cgColor
-        changeFamilyView.layer.borderWidth = 1
+        changeFamilyView.docItStyleView()
         
         saveButton.isEnabled = false
         saveButton.backgroundColor = Constants.Colors.submarine

@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Firebase
 
 struct Constants {
     
@@ -51,3 +52,4 @@ struct Constants {
     }
     
 }
+

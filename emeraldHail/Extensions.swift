@@ -34,7 +34,7 @@ extension UITextField {
     func docItStyle() {
 
         self.layer.borderWidth = 1
-        docItStyleView()
+        docItStyleView() 
         self.layer.borderColor = Constants.Colors.athensGray.cgColor
         self.backgroundColor = UIColor.white
         

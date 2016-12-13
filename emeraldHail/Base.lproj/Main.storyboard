@@ -25,7 +25,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="yourname@gmail.com" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="tGj-Eg-72C">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="yourname@gmail.com" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="tGj-Eg-72C" customClass="DocItTextField" customModule="emeraldHail" customModuleProvider="target">
                                 <rect key="frame" x="38" y="127" width="300" height="50"/>
                                 <color key="textColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
@@ -34,7 +34,7 @@
                                     <action selector="textDidChange:" destination="BYZ-38-t0r" eventType="editingChanged" id="6kf-km-Xne"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="HKX-dZ-sjJ">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="HKX-dZ-sjJ" customClass="DocItTextField" customModule="emeraldHail" customModuleProvider="target">
                                 <rect key="frame" x="38" y="209" width="300" height="50"/>
                                 <color key="textColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
@@ -187,7 +187,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="A4G-Ut-Luz">
                                         <rect key="frame" x="12" y="141" width="327" height="160"/>
                                         <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First name" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="F2W-zO-Wee">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First name" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="F2W-zO-Wee" customClass="DocItTextField" customModule="emeraldHail" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="327" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="i2U-P7-CD3"/>
@@ -196,7 +196,7 @@
                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last name" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KyO-eh-dLG">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last name" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KyO-eh-dLG" customClass="DocItTextField" customModule="emeraldHail" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="55" width="327" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="PSr-qf-Fon"/>
@@ -208,7 +208,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Nfz-AX-kKm">
                                                 <rect key="frame" x="0.0" y="110" width="327" height="50"/>
                                                 <subviews>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Birthday" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kLu-D5-F3H">
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Birthday" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kLu-D5-F3H" customClass="DocItTextField" customModule="emeraldHail" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="161" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="hlg-NZ-TL2"/>
@@ -220,7 +220,7 @@
                                                             <action selector="birthdayDidBeginEditing:" destination="MTa-HX-edf" eventType="editingDidBegin" id="Bvr-39-pf1"/>
                                                         </connections>
                                                     </textField>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Gender" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="L7N-Vv-sTC">
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Gender" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="L7N-Vv-sTC" customClass="DocItTextField" customModule="emeraldHail" customModuleProvider="target">
                                                         <rect key="frame" x="166" y="0.0" width="161" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="X5j-ck-u6L"/>
@@ -631,7 +631,7 @@
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="New Family Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HVM-12-ETb">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="New Family Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HVM-12-ETb" customClass="DocItTextField" customModule="emeraldHail" customModuleProvider="target">
                                         <rect key="frame" x="12" y="51" width="327" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="UDa-PG-xBf"/>
@@ -750,11 +750,12 @@
                                                 <color key="textColor" red="0.17254901959999999" green="0.75294117650000003" blue="0.88235294119999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="U1i-UG-Fu7">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="U1i-UG-Fu7" customClass="DocItTextField" customModule="emeraldHail" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="19.5" width="351" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="KPG-qe-leW"/>
                                                 </constraints>
+                                                <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                                 <color key="textColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
@@ -773,7 +774,7 @@
                                                 <color key="textColor" red="0.17254901959999999" green="0.75294117650000003" blue="0.88235294119999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="X1Z-jN-Cah">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="X1Z-jN-Cah" customClass="DocItTextField" customModule="emeraldHail" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="19.5" width="351" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="xRk-Gd-bpo"/>
@@ -799,7 +800,7 @@
                                                         <color key="textColor" red="0.17254901959999999" green="0.75294117650000003" blue="0.88235294119999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Birthday" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JT8-YU-hv9">
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Birthday" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JT8-YU-hv9" customClass="DocItTextField" customModule="emeraldHail" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="19.5" width="169.5" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="fbz-pB-Sgj"/>
@@ -825,7 +826,7 @@
                                                         <color key="textColor" red="0.17254901959999999" green="0.75294117650000003" blue="0.88235294119999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Gender" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="br9-b2-CWJ">
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Gender" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="br9-b2-CWJ" customClass="DocItTextField" customModule="emeraldHail" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="19.5" width="169.5" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="eWr-Xp-exk"/>
@@ -856,7 +857,7 @@
                                                         <color key="textColor" red="0.17254901959999999" green="0.75294117650000003" blue="0.88235294119999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Optional" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kks-aT-Pd2">
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Optional" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kks-aT-Pd2" customClass="DocItTextField" customModule="emeraldHail" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="19.5" width="109" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="xez-s0-kdG"/>
@@ -882,7 +883,7 @@
                                                         <color key="textColor" red="0.17254901959999999" green="0.75294117650000003" blue="0.88235294119999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Optional" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g47-L2-L6S">
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Optional" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g47-L2-L6S" customClass="DocItTextField" customModule="emeraldHail" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="19.5" width="109" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="dL9-mx-vMK"/>
@@ -908,7 +909,7 @@
                                                         <color key="textColor" red="0.17254901959999999" green="0.75294117650000003" blue="0.88235294119999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Optional" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3OG-Sl-f48">
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Optional" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3OG-Sl-f48" customClass="DocItTextField" customModule="emeraldHail" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="19.5" width="109" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="tfz-8X-gmW"/>
@@ -936,11 +937,12 @@
                                                 <color key="textColor" red="0.17254901959999999" green="0.75294117650000003" blue="0.88235294119999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Optional" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NED-gy-8HN">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Optional" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NED-gy-8HN" customClass="DocItTextField" customModule="emeraldHail" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="19.5" width="351" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="jI8-Ve-qjn"/>
                                                 </constraints>
+                                                <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                                 <color key="textColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
@@ -1036,13 +1038,13 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ybK-78-U0n">
                                         <rect key="frame" x="12" y="46" width="327" height="105"/>
                                         <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Event name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LDB-r3-cZk">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Event name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LDB-r3-cZk" customClass="DocItTextField" customModule="emeraldHail" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="327" height="50"/>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Start date" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aBZ-47-yXQ">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Start date" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aBZ-47-yXQ" customClass="DocItTextField" customModule="emeraldHail" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="55" width="327" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="OLN-cJ-rLA"/>
@@ -2099,7 +2101,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="at least six characters" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TK7-1i-ANf">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="at least six characters" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TK7-1i-ANf" customClass="DocItTextField" customModule="emeraldHail" customModuleProvider="target">
                                 <rect key="frame" x="38" y="209" width="300" height="50"/>
                                 <color key="textColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
@@ -2150,7 +2152,7 @@
                                 <color key="textColor" red="0.12549019610000001" green="0.75294117650000003" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="yourname@gmail.com" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="wHI-sV-xOK">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="yourname@gmail.com" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="wHI-sV-xOK" customClass="DocItTextField" customModule="emeraldHail" customModuleProvider="target">
                                 <rect key="frame" x="38" y="127" width="300" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="pyP-ay-gSU"/>

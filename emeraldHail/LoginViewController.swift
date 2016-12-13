@@ -109,11 +109,9 @@ class LoginViewController: UIViewController {
         emailField.text = nil
         passwordField.text = nil
 
-        emailField.layer.cornerRadius = 2
-        emailField.layer.borderColor = Constants.Colors.athensGray.cgColor
+        emailField.docItStyle()
 
-        passwordField.layer.cornerRadius = 2
-        passwordField.layer.borderColor = Constants.Colors.athensGray.cgColor
+        passwordField.docItStyle()
 
         signIn.isEnabled = false
         signIn.backgroundColor = Constants.Colors.submarine

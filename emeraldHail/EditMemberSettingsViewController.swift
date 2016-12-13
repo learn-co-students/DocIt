@@ -61,6 +61,8 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
         weightTextField.inputView = weightSelection
         heightTextField.inputView = heightSelection
         
+        setupViews()
+        
         
     }
     
@@ -203,6 +205,24 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
         dobTextField.inputView = dobSelection
         dobSelection.datePickerMode = UIDatePickerMode.date
         dobSelection.addTarget(self, action: #selector(self.datePickerChanged(sender:)) , for: .valueChanged)
+    }
+    
+    
+    func setupViews() {
+        
+        firstNameTextField.docItStyle()
+        lastNameTextField.docItStyle()
+        dobTextField.docItStyle()
+        bloodTextField.docItStyle()
+        genderTextField.docItStyle()
+        heightTextField.docItStyle()
+        weightTextField.docItStyle()
+        allergiesTextField.docItStyle()
+        
+        
+        
+        
+        
     }
     
     func deletePostImagesFromStorage(uniqueID: String){

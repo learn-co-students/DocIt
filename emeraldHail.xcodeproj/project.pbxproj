@@ -51,6 +51,7 @@
 		BB6DEDB51DE61C7D00D8B93A /* FamilySettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6DEDB41DE61C7D00D8B93A /* FamilySettingViewController.swift */; };
 		BB7BF58B1DECD13C00F290FB /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB7BF58A1DECD13C00F290FB /* LocalAuthentication.framework */; };
 		BB9286851DDE3D2100D3D9A6 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9286841DDE3D2100D3D9A6 /* DataStore.swift */; };
+		BB9C11B01DFF8A880022960F /* DocItTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9C11AF1DFF8A880022960F /* DocItTextField.swift */; };
 		BBAEF73E1DFF581B0064533A /* ChangeFamilyNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAEF73D1DFF581B0064533A /* ChangeFamilyNameViewController.swift */; };
 		BBAEF7401DFF5A670064533A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BBAEF73F1DFF5A670064533A /* GoogleService-Info.plist */; };
 		BBC8830B1DF918E70002A285 /* JoinFamily.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBC8830A1DF918E70002A285 /* JoinFamily.xib */; };
@@ -122,6 +123,7 @@
 		BB6DEDB41DE61C7D00D8B93A /* FamilySettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilySettingViewController.swift; sourceTree = "<group>"; };
 		BB7BF58A1DECD13C00F290FB /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		BB9286841DDE3D2100D3D9A6 /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
+		BB9C11AF1DFF8A880022960F /* DocItTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocItTextField.swift; sourceTree = "<group>"; };
 		BBAEF73D1DFF581B0064533A /* ChangeFamilyNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeFamilyNameViewController.swift; sourceTree = "<group>"; };
 		BBAEF73F1DFF5A670064533A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BBC8830A1DF918E70002A285 /* JoinFamily.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JoinFamily.xib; sourceTree = "<group>"; };
@@ -289,6 +291,7 @@
 				AA9FFBC01DDA667500847FCF /* LaunchScreen.storyboard */,
 				AA9FFBC31DDA667500847FCF /* Info.plist */,
 				AA6E4D221DE74B1400C8FEE3 /* Constants.swift */,
+				BB9C11AF1DFF8A880022960F /* DocItTextField.swift */,
 				DD3BD97B1DE7B9A800311BE9 /* emeraldHail-Bridging-Header.h */,
 				AA8A59011DF3AFAB0079AE69 /* Extensions.swift */,
 			);
@@ -511,6 +514,7 @@
 				B6ED5B361DDE4CDB00B56DFD /* TempViewController.swift in Sources */,
 				BB35032B1DFB6F24003561CE /* AddEventViewController.swift in Sources */,
 				DDDE224A1DF0C4A5006B234C /* PhotoCell.swift in Sources */,
+				BB9C11B01DFF8A880022960F /* DocItTextField.swift in Sources */,
 				BBAEF73E1DFF581B0064533A /* ChangeFamilyNameViewController.swift in Sources */,
 				AAFE44661DDF634800922FB0 /* PainLevel.swift in Sources */,
 				AAE7D3ED1DEF6DB300C59107 /* SymptomCell.swift in Sources */,
