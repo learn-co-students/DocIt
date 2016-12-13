@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16C63a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Zwd-TP-Mtn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Zwd-TP-Mtn">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -28,15 +28,14 @@
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rlO-na-Nbi">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.1843137255" green="0.75294117650000003" blue="0.87843137250000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="iNH-BH-GNf" appends="YES" id="xQ8-C7-fx9"/>
                                 </connections>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n3t-Ga-peI">
-                                <rect key="frame" x="12" y="246" width="351" height="255"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n3t-Ga-peI">
+                                <rect key="frame" x="12" y="70" width="351" height="175"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Forgot Password" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gFd-je-7hy">
                                         <rect key="frame" x="113" y="12" width="127" height="21"/>
@@ -45,9 +44,11 @@
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email address" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d43-0g-tMD" customClass="DocItTextField" customModule="emeraldHail" customModuleProvider="target">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d43-0g-tMD" customClass="DocItTextField" customModule="emeraldHail" customModuleProvider="target">
                                         <rect key="frame" x="12" y="51" width="327" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="Wl2-zp-I59"/>
+                                        </constraints>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
@@ -55,10 +56,12 @@
                                             <action selector="editingFamilyName:" destination="fAt-OM-gyd" eventType="editingChanged" id="Qsx-bL-7EN"/>
                                         </connections>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kdj-r4-4w5">
-                                        <rect key="frame" x="12" y="113" width="160" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kdj-r4-4w5">
+                                        <rect key="frame" x="12" y="113" width="160.5" height="50"/>
                                         <color key="backgroundColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="WUb-O0-YnP"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <state key="normal" title="Cancel">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -67,10 +70,12 @@
                                             <action selector="cancel:" destination="fAt-OM-gyd" eventType="touchUpInside" id="w4P-qT-rBk"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XpU-zo-Yp8">
-                                        <rect key="frame" x="179" y="113" width="160" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XpU-zo-Yp8">
+                                        <rect key="frame" x="178.5" y="113" width="160.5" height="50"/>
                                         <color key="backgroundColor" red="0.17254901959999999" green="0.75294117650000003" blue="0.88235294119999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="ahn-KV-Mjc"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                                         <state key="normal" title="Send">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -78,9 +83,26 @@
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.98039132360000003" green="0.97655218840000002" blue="0.97635632750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="XpU-zo-Yp8" secondAttribute="trailing" constant="12" id="8Bi-Tj-A84"/>
+                                    <constraint firstItem="kdj-r4-4w5" firstAttribute="leading" secondItem="n3t-Ga-peI" secondAttribute="leading" constant="12" id="HvV-ds-LC7"/>
+                                    <constraint firstAttribute="height" constant="175" id="K7q-y8-1T1"/>
+                                    <constraint firstItem="d43-0g-tMD" firstAttribute="width" secondItem="n3t-Ga-peI" secondAttribute="width" constant="-24" id="MEu-jK-5oJ"/>
+                                    <constraint firstItem="XpU-zo-Yp8" firstAttribute="width" secondItem="n3t-Ga-peI" secondAttribute="width" multiplier="0.5" constant="-15" id="ckl-Jh-2A5"/>
+                                    <constraint firstAttribute="bottom" secondItem="XpU-zo-Yp8" secondAttribute="bottom" constant="12" id="cnI-Fq-Ljo"/>
+                                    <constraint firstAttribute="bottom" secondItem="kdj-r4-4w5" secondAttribute="bottom" constant="12" id="fG4-13-Kf2"/>
+                                    <constraint firstItem="kdj-r4-4w5" firstAttribute="width" secondItem="n3t-Ga-peI" secondAttribute="width" multiplier="0.5" constant="-15" id="gbP-Hg-Ysb"/>
+                                    <constraint firstItem="d43-0g-tMD" firstAttribute="centerX" secondItem="n3t-Ga-peI" secondAttribute="centerX" id="pWa-HH-9bN"/>
+                                    <constraint firstItem="kdj-r4-4w5" firstAttribute="top" secondItem="d43-0g-tMD" secondAttribute="bottom" constant="12" id="xtO-kW-T0q"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="n3t-Ga-peI" firstAttribute="centerX" secondItem="owk-6N-gfa" secondAttribute="centerX" id="9ro-DP-bJ9"/>
+                            <constraint firstItem="n3t-Ga-peI" firstAttribute="top" secondItem="Bz7-zi-Pn7" secondAttribute="bottom" constant="50" id="LoB-tl-62e"/>
+                            <constraint firstItem="n3t-Ga-peI" firstAttribute="width" secondItem="owk-6N-gfa" secondAttribute="width" constant="-24" id="QE5-mA-NDK"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="cancelButton" destination="kdj-r4-4w5" id="9Ev-ww-iVk"/>
@@ -110,7 +132,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email address" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="tGj-Eg-72C" customClass="DocItTextField" customModule="emeraldHail" customModuleProvider="target">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="tGj-Eg-72C" customClass="DocItTextField" customModule="emeraldHail" customModuleProvider="target">
                                 <rect key="frame" x="38" y="127" width="300" height="50"/>
                                 <color key="textColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
@@ -119,7 +141,7 @@
                                     <action selector="textDidChange:" destination="BYZ-38-t0r" eventType="editingChanged" id="6kf-km-Xne"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="HKX-dZ-sjJ" customClass="DocItTextField" customModule="emeraldHail" customModuleProvider="target">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="HKX-dZ-sjJ" customClass="DocItTextField" customModule="emeraldHail" customModuleProvider="target">
                                 <rect key="frame" x="38" y="209" width="300" height="50"/>
                                 <color key="textColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
@@ -483,7 +505,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
                                             <color key="backgroundColor" red="0.18267938489999999" green="0.75351297859999999" blue="0.87854671480000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </imageView>
-                                        <view alpha="0.25" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HKx-6P-0wu">
+                                        <view alpha="0.34999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HKx-6P-0wu">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
                                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </view>
@@ -714,7 +736,7 @@
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="New Family Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HVM-12-ETb" customClass="DocItTextField" customModule="emeraldHail" customModuleProvider="target">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="New Family Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HVM-12-ETb" customClass="DocItTextField" customModule="emeraldHail" customModuleProvider="target">
                                         <rect key="frame" x="12" y="51" width="327" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="UDa-PG-xBf"/>
@@ -1830,8 +1852,8 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mild" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EGV-66-73F">
-                                                            <rect key="frame" x="0.0" y="100" width="121" height="21"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <rect key="frame" x="0.0" y="103" width="121" height="18"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -2180,7 +2202,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="at least six characters" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TK7-1i-ANf" customClass="DocItTextField" customModule="emeraldHail" customModuleProvider="target">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter at least six characters" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TK7-1i-ANf" customClass="DocItTextField" customModule="emeraldHail" customModuleProvider="target">
                                 <rect key="frame" x="38" y="209" width="300" height="50"/>
                                 <color key="textColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
@@ -2231,7 +2253,7 @@
                                 <color key="textColor" red="0.12549019610000001" green="0.75294117650000003" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email address" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="wHI-sV-xOK" customClass="DocItTextField" customModule="emeraldHail" customModuleProvider="target">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="wHI-sV-xOK" customClass="DocItTextField" customModule="emeraldHail" customModuleProvider="target">
                                 <rect key="frame" x="38" y="127" width="300" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="pyP-ay-gSU"/>
