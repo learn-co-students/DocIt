@@ -1072,6 +1072,10 @@
                                     <constraint firstItem="bdu-JJ-Aop" firstAttribute="width" secondItem="q4C-S9-Nmz" secondAttribute="width" id="qWU-eh-I6j"/>
                                 </constraints>
                             </stackView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="g9D-1T-NSE">
+                                <rect key="frame" x="169" y="315" width="37" height="37"/>
+                                <color key="color" red="0.28237730700000002" green="0.68787196510000004" blue="0.8862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ygH-Uw-Hiq">
                                 <rect key="frame" x="138" y="628" width="99" height="27"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -1092,8 +1096,10 @@
                             <constraint firstItem="iew-44-IJM" firstAttribute="centerX" secondItem="eX0-s4-7SX" secondAttribute="centerX" id="VlG-e7-Pac"/>
                             <constraint firstItem="ygH-Uw-Hiq" firstAttribute="centerX" secondItem="eX0-s4-7SX" secondAttribute="centerX" id="Y2o-dv-tHP"/>
                             <constraint firstItem="3nS-7x-yl5" firstAttribute="top" secondItem="iew-44-IJM" secondAttribute="bottom" constant="12" id="cYj-1G-CIL"/>
+                            <constraint firstItem="g9D-1T-NSE" firstAttribute="centerX" secondItem="eX0-s4-7SX" secondAttribute="centerX" id="oa1-OY-opH"/>
                             <constraint firstItem="ygH-Uw-Hiq" firstAttribute="top" secondItem="3nS-7x-yl5" secondAttribute="bottom" constant="72.5" id="p2E-2N-4cJ"/>
                             <constraint firstItem="3nS-7x-yl5" firstAttribute="width" secondItem="eX0-s4-7SX" secondAttribute="width" constant="-24" id="rce-b3-hPS"/>
+                            <constraint firstItem="g9D-1T-NSE" firstAttribute="centerY" secondItem="eX0-s4-7SX" secondAttribute="centerY" id="t6X-5v-hb3"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Edit Member" id="hKG-10-Dx9">
@@ -1112,6 +1118,7 @@
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="activityIndicatorView" destination="g9D-1T-NSE" id="zEl-k0-MnO"/>
                         <outlet property="allergiesTextField" destination="NED-gy-8HN" id="aQf-aF-d1w"/>
                         <outlet property="bloodTextField" destination="3OG-Sl-f48" id="9fv-wf-GDm"/>
                         <outlet property="deleteMember" destination="ygH-Uw-Hiq" id="kHz-Fj-74A"/>

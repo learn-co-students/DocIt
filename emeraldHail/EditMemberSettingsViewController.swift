@@ -27,6 +27,7 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
     @IBOutlet weak var allergiesTextField: UITextField!
     @IBOutlet weak var deleteMember: UIButton!
     @IBOutlet weak var save: UIBarButtonItem!
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     
     // MARK: - Properties
     
@@ -72,6 +73,7 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
     
     @IBAction func saveMemberSettings(_ sender: Any) {
         save.isEnabled = false
+        activityIndicatorView.startAnimating()
         updateFirebaseValues()
     }
     
@@ -295,40 +297,11 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
         let imageId = uniqueID
         let storageImageRef = storageRef.child(Constants.Storage.profileImages).child(imageId)
        
-        /*
-        if let uploadData = UIImageJPEGRepresentation(self.profilePicture.image!, 0.25) {
-            
-            storageImageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
-                if error != nil {
-                    print (error?.localizedDescription ?? "Error in saveButtonTapped in AddMembersViewController.swift" )
-                    return
-                }
-                guard let profileImageUrl = metadata?.downloadURL()?.absoluteString else { return }
-                
-                let updatedInfo: [String:Any] = ["firstName":name,
-                                                 "lastName": lastName,
-                                                 "birthday": dob,
-                                                 "gender": gender,
-                                                 "profileImage": profileImageUrl,
-                                                 "bloodType": blood,
-                                                 "height": height,
-                                                 "weight": weight,
-                                                 "allergies": allergies]
-                
-                
-                memberReference.updateChildValues(updatedInfo)
-                
-                let _ = self.navigationController?.popViewController(animated: true)
-                
-            })
-        }
- */
-        
         if let uploadData = UIImageJPEGRepresentation(profilePicture, 0.25) {
             
             storageImageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
                 if error != nil {
-                    print (error?.localizedDescription ?? "Error in saveButtonTapped in AddMembersViewController.swift" )
+                    print (error?.localizedDescription ?? "Error in saveButtonTapped in EditMembersViewController.swift" )
                     return
                 }
                 guard let profileImageUrl = metadata?.downloadURL()?.absoluteString else { return }
