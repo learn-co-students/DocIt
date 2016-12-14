@@ -8,6 +8,7 @@
 
 import UIKit
 import Photos
+
 fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
   switch (lhs, rhs) {
   case let (l?, r?):
@@ -292,6 +293,9 @@ public final class FusumaViewController: UIViewController {
     }
     
     @IBAction func doneButtonPressed(_ sender: UIButton) {
+        
+        doneButton.isEnabled = false
+        
         let view = albumView.imageCropView
 
         if fusumaCropImage {

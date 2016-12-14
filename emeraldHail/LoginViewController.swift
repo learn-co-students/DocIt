@@ -88,15 +88,15 @@ class LoginViewController: UIViewController {
     @IBAction func textDidChange(_ sender: UITextField) {
         
         if emailField.text == "" {
-            emailLabel.alpha = 0
+            // emailLabel.alpha = 0
             signIn.isEnabled = false
             signIn.backgroundColor = Constants.Colors.submarine
             
         } else {
             
-            UIView.animate(withDuration: 0.30) {
-                self.emailLabel.alpha = 1;
-            }
+            //UIView.animate(withDuration: 0.30) {
+              //  self.emailLabel.alpha = 1;
+            //}
             
             signIn.isEnabled = true
             signIn.backgroundColor = Constants.Colors.scooter
@@ -112,7 +112,7 @@ class LoginViewController: UIViewController {
     
     func setupViews() {
         
-        emailLabel.alpha = 0
+        // emailLabel.alpha = 0
         
         emailField.becomeFirstResponder()
         

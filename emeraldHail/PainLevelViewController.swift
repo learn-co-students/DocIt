@@ -11,14 +11,14 @@ import Firebase
 
 class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    // MARK: - Outlets 
+    // MARK: - Outlets
     
     @IBOutlet weak var painLevelCollectionView: UICollectionView!
     @IBOutlet weak var painView: UIView!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var postTitleLabel: UILabel!
     @IBOutlet weak var cancelButton: UIButton!
-
+    
     @IBOutlet weak var collectionViewFlowLayout: UICollectionViewFlowLayout!
     
     // MARK: - Properties
@@ -39,8 +39,8 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
     let store = DataStore.sharedInstance
     
     
-       // MARK: - Loads
-
+    // MARK: - Loads
+    
     
     override func viewDidLoad() {
         
@@ -58,14 +58,14 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
     // MARK: - Actions
     
     @IBAction func save(_ sender: UIButton) {
+        saveButton.isEnabled = false
+        addPainLevel()
         
-            addPainLevel()
-            saveButton.isEnabled = false
         
     }
     
     @IBAction func dismissController(_ sender: Any) {
-    dismiss(animated: true, completion: nil)    
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func cancel(_ sender: UIButton) {
@@ -90,8 +90,8 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
         self.collectionViewFlowLayout.sectionInset = insets
         
     }
-
-
+    
+    
     func setupView() {
         
         postTitleLabel.text = "How does \(store.member.firstName) feel?"
@@ -99,15 +99,17 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
         view.backgroundColor = Constants.Colors.transBlack
         
         painView.docItStyleView()
-
+        
         saveButton.docItStyle()
+        saveButton.isEnabled = false
+        saveButton.backgroundColor = Constants.Colors.submarine
         cancelButton.docItStyle()
         painLevelCollectionView.docItStyleView()
         
-//        painLevelCollectionView.tintColor = UIColor.darkGray
-    
+        //        painLevelCollectionView.tintColor = UIColor.darkGray
+        
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return painLevels.count
@@ -122,11 +124,11 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
         cell.painLevelDescription.text = painLevels[indexPath.row].description
         
         if cell.isSelected == true {
-//            cell.wasSelected()
+            //            cell.wasSelected()
             cell.backgroundColor = Constants.Colors.submarine
         }
         else if cell.isSelected == false {
-//            cell.wasDeselected()
+            //            cell.wasDeselected()
             cell.backgroundColor = UIColor.clear
         }
         
@@ -138,17 +140,20 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
         
         guard let cell = collectionView.cellForItem(at: indexPath) as? PainLevelCollectionViewCell else { return }
         selectedPainLevel = painLevels[indexPath.row]
-//        cell.wasSelected()
+        //        cell.wasSelected()
         
         cell.backgroundColor = Constants.Colors.submarine
         cell.layer.cornerRadius = 10
+        
+        saveButton.isEnabled = true
+        saveButton.backgroundColor = Constants.Colors.scooter
         
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         
         guard let cell = collectionView.cellForItem(at: indexPath) as? PainLevelCollectionViewCell else { return }
-//        cell.wasDeselected()
+        //        cell.wasDeselected()
         
         cell.backgroundColor = UIColor.clear
         
@@ -158,7 +163,7 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
     func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
         return true
     }
-
+    
     
     func addPainLevel(){
         

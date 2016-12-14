@@ -33,7 +33,10 @@ class AddNotesViewController: UIViewController, UITextViewDelegate {
         
         setupView()
         
+        
+        
         addNotesTextView.delegate = self
+        
         addNotesTextView.becomeFirstResponder()
     }
     
@@ -57,6 +60,10 @@ class AddNotesViewController: UIViewController, UITextViewDelegate {
         noteView.docItStyleView()
         
         saveButton.docItStyle()
+        
+        saveButton.isEnabled = false
+        saveButton.backgroundColor = Constants.Colors.submarine
+        
         cancelButton.docItStyle()
     
     }
@@ -64,9 +71,12 @@ class AddNotesViewController: UIViewController, UITextViewDelegate {
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         addNotesTextView.text = nil
+        
     }
 
     @IBAction func addNotes(_ sender: UIButton) {
+        
+        saveButton.isEnabled = false
         
         guard let noteText = addNotesTextView.text, noteText != "" else { return }
         
@@ -94,5 +104,16 @@ class AddNotesViewController: UIViewController, UITextViewDelegate {
     
     func dismissKeyboardView() {
         view.endEditing(true)
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        
+        if addNotesTextView.text != "" {
+            
+            saveButton.isEnabled = true
+            saveButton.backgroundColor = Constants.Colors.scooter
+            
+        }
+        
     }
 }

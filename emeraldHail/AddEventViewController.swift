@@ -59,7 +59,6 @@ class AddEventViewController: UIViewController, UIPickerViewDelegate, UITextFiel
         
         view.backgroundColor = Constants.Colors.transBlack
         
-        saveButton.isEnabled = true
         saveButton.docItStyle()
         
         cancelButton.docItStyle()
@@ -94,6 +93,7 @@ class AddEventViewController: UIViewController, UIPickerViewDelegate, UITextFiel
     }
     
     func saveEvent() {
+        
         saveButton.isEnabled = false
         
         if eventViewTitle.text == "Create Event" {

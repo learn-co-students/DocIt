@@ -87,11 +87,14 @@ class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         temperaturePickerView.tintColor = Constants.Colors.submarine
         
         saveButton.docItStyle()
+        saveButton.isEnabled = false
+        saveButton.backgroundColor = Constants.Colors.submarine
         cancelButton.docItStyle()
         
     }
 
     func saveTemp() {
+        saveButton.isEnabled = false
         let postsRef = database.child(Constants.Database.posts).child(store.eventID).childByAutoId()
         let uniqueID = postsRef.key
         
@@ -137,5 +140,7 @@ class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         //save the value for the pickerview temperature selected.
         selectedTemp = availableTemps[row]
+        saveButton.isEnabled = true
+        saveButton.backgroundColor = Constants.Colors.scooter
     }
 }

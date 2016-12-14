@@ -49,9 +49,11 @@ class SymptomsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     @IBAction func save(_ sender: UIButton) {
-        
+        saveButton.isEnabled = false
         // Prevent adding an empty ditionary to firebase
         if selectedSymtoms.isEmpty {
+            saveButton.backgroundColor = Constants.Colors.submarine
+
             return
         }
         
@@ -87,7 +89,9 @@ class SymptomsViewController: UIViewController, UITableViewDelegate, UITableView
         
         symptomTableView.separatorColor = Constants.Colors.athensGray
         
-        
+        saveButton.isEnabled = false
+        saveButton.backgroundColor = Constants.Colors.submarine
+
         
     }
 
@@ -111,6 +115,9 @@ class SymptomsViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedSymtoms["s\(indexPath.row)"] = symptoms[indexPath.row].rawValue
         print(selectedSymtoms)
+        saveButton.isEnabled = true
+        saveButton.backgroundColor = Constants.Colors.scooter
+        
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {

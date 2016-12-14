@@ -25,6 +25,7 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
     @IBOutlet weak var heightTextField: UITextField!
     @IBOutlet weak var weightTextField: UITextField!
     @IBOutlet weak var allergiesTextField: UITextField!
+    @IBOutlet weak var deleteMember: UIButton!
     @IBOutlet weak var save: UIBarButtonItem!
     
     // MARK: - Properties
@@ -79,6 +80,8 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
     }
     
     @IBAction func deleteMemberButtonTapped(_ sender: Any) {
+        
+        deleteMember.isEnabled = false
         
         // Alert Controller
         let alertController = UIAlertController(title: "Are you sure you want to delete this member?",  message: "This action cannot be undone.", preferredStyle: .alert)
