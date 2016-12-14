@@ -16,6 +16,7 @@ class RegisterViewController: UIViewController {
     
     // MARK: - Outlets
     
+    @IBOutlet weak var signIn: UIButton!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
@@ -42,12 +43,13 @@ class RegisterViewController: UIViewController {
     // MARK: - Actions
     
     @IBAction func createAccountPressed(_ sender: Any) {
+        createAccount.isEnabled = false
         register()
     }
     
     @IBAction func signInPressed(_ sender: Any) {
         // If on the create account screen, if they already have an account...take them to the sign in screen
-        
+        signIn.isEnabled = false
         NotificationCenter.default.post(name: .openLoginVC, object: nil)
         //  self.performSegue(withIdentifier: "showLogin", sender: nil)
         
