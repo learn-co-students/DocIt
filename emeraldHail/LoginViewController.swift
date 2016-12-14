@@ -18,6 +18,7 @@ class LoginViewController: UIViewController {
 
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
+    @IBOutlet weak var passwordLabel: UILabel!
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var signIn: UIButton!
@@ -26,21 +27,40 @@ class LoginViewController: UIViewController {
 
     let store = DataStore.sharedInstance
     var database: FIRDatabaseReference = FIRDatabase.database().reference()
-//    let loginManager = LoginManager()
+    let MyKeychainWrapper = KeychainWrapper()
+    let createLoginButtonTag = 0
+    let loginButtonTag = 1
 
     // MARK: - Loads
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setupViews()
         hideKeyboardWhenTappedAround()
 
         configureGoogleButton()
 
-        GIDSignIn.sharedInstance().uiDelegate = self
-        GIDSignIn.sharedInstance().delegate = self
-
+        // 1.
+        let hasLogin = UserDefaults.standard.bool(forKey: "hasLoginKey")
+        
+        // 2.
+        if hasLogin {
+//            loginButton.setTitle("Login", forState: UIControlState.Normal)
+//            loginButton.tag = loginButtonTag
+//            createInfoLabel.hidden = true
+        } else {
+//            loginButton.setTitle("Create", forState: UIControlState.Normal)
+//            loginButton.tag = createLoginButtonTag
+//            createInfoLabel.hidden = false
+        }
+        
+        // 3.
+        if let storedUsername = UserDefaults.standard.bool(forKey:"username") as? String {
+            emailField.text = storedUsername as String
+        }
+        
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -52,7 +72,6 @@ class LoginViewController: UIViewController {
 
     @IBAction func signIn(_ sender: UIButton) {
         login() 
-        signIn.isEnabled = false
     }
 
      @IBAction func createAccountPressed(_ sender: Any) {
@@ -62,54 +81,56 @@ class LoginViewController: UIViewController {
     }
 
     // This function enables/disables the signIn button when the fields are empty/not empty.
+    
     @IBAction func textDidChange(_ sender: UITextField) {
-        if !(emailField.text?.characters.isEmpty)! && !(passwordField.text?.characters.isEmpty)! {
-            signIn.isEnabled = true
-            signIn.backgroundColor = Constants.Colors.scooter
-        } else {
+       
+        if emailField.text == "" {
+            emailLabel.alpha = 0
             signIn.isEnabled = false
             signIn.backgroundColor = Constants.Colors.submarine
+            
+        } else {
+            
+            UIView.animate(withDuration: 0.30) {
+                self.emailLabel.alpha = 1;
+            }
+            
+            signIn.isEnabled = true
+            signIn.backgroundColor = Constants.Colors.scooter
         }
+        
     }
 
     @IBAction func pressedGoogleSignIn(_ sender: Any) {
         GIDSignIn.sharedInstance().signIn()
-        print("We are hitting the google button")
-
     }
 
     // MARK: - Methods
 
     func setupViews() {
-        // Make the email field become the first repsonder and show keyboard when this vc loads
+        
+        emailLabel.alpha = 0
+        
         emailField.becomeFirstResponder()
 
-        // Set error label to "" on viewDidLoad
-        // Clear the text fields when logging out and returning to the login screen
         errorLabel.text = nil
         emailField.text = nil
         passwordField.text = nil
 
         emailField.docItStyle()
-
         passwordField.docItStyle()
 
         signIn.isEnabled = false
         signIn.backgroundColor = Constants.Colors.submarine
         signIn.docItStyle()
-    }
-
-    func hideKeyboardWhenTappedAround() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboardView))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-
-    func dismissKeyboardView() {
-        view.endEditing(true)
+        
+        GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance().delegate = self
     }
 
     func login() {
+
+        signIn.isEnabled = false
 
         guard let email = emailField.text, let password = passwordField.text else { return }
 
@@ -147,6 +168,7 @@ class LoginViewController: UIViewController {
 
                     }
                 })
+                
             } else {
 
                 self.store.user.id = (user?.uid)!
@@ -166,11 +188,33 @@ class LoginViewController: UIViewController {
             }
 
         }
-
+        
+       
         //            NotificationCenter.default.post(name: .openfamilyVC, object: nil)
         //            self.performSegue(withIdentifier: "showFamily", sender: nil)
 
     }
+    
+    func checkLogin(username: String, password: String ) -> Bool {
+        if passwordField.text == MyKeychainWrapper.myObject(forKey: "v_Data") as? String &&
+            emailField.text == UserDefaults.standard.value(forKey: "username") as? String {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboardView))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboardView() {
+        view.endEditing(true)
+    }
+    
+
 }
 
 // MARK: - Google UI Delegate
@@ -198,11 +242,10 @@ extension LoginViewController: GIDSignInUIDelegate {
     func sign(_ signIn: GIDSignIn!, present viewController: UIViewController!) {
         present(viewController, animated: true, completion: nil)
     }
-    //TO DO: This method is suppoesed to allow the user to sign in through the app silently.
-    //        func signIn() {
-    //            GIDSignIn.sharedInstance().signIn()
-    //        }
-
+    
+    
+    
+    
 }
 
 // MARK: - Google Sign in

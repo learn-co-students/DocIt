@@ -26,6 +26,7 @@ class RegisterViewController: UIViewController {
     let store = DataStore.sharedInstance
     let database = FIRDatabase.database().reference()
     
+    
     // MARK: - Loads
     
     override func viewDidLoad() {

@@ -45,13 +45,13 @@ class WelcomeViewController: UIViewController {
     // MARK: - Actions
 
     @IBAction func createAccountPressed(_ sender: Any) {
-
+        createAccount.isEnabled = false
         NotificationCenter.default.post(name: Notification.Name.openRegisterVC, object: nil)
 
     }
 
     @IBAction func signInPressed(_ sender: Any) {
-
+        signIn.isEnabled = false
         NotificationCenter.default.post(name: Notification.Name.openLoginVC, object: nil)
 
     }
