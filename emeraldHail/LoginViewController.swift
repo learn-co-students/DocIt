@@ -21,7 +21,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var signIn: UIButton!
-
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
+    
     // MARK: - Properties
 
     let store = DataStore.sharedInstance
@@ -58,7 +59,7 @@ class LoginViewController: UIViewController {
      @IBAction func createAccountPressed(_ sender: Any) {
 
         NotificationCenter.default.post(name: .openRegisterVC, object: nil)
-        //  self.performSegue(withIdentifier: "showCreateAccount", sender: nil)
+       
     }
 
     // This function enables/disables the signIn button when the fields are empty/not empty.
@@ -114,9 +115,11 @@ class LoginViewController: UIViewController {
         guard let email = emailField.text, let password = passwordField.text else { return }
 
         FIRAuth.auth()?.signIn(withEmail: email, password: password) { (user, error) in
+            
             if let error = error {
-                // TODO: Format the error.localizedDescription for natural language, ex. "Invalid email", "Password must be 6 characters or more", etc.
+    
                 // Set errorLabel to the error.localizedDescription
+                // Activity indicator stops animating here
                 self.errorLabel.text = error.localizedDescription
                 print("======>\(error.localizedDescription)")
                 return
@@ -189,33 +192,18 @@ extension LoginViewController: GIDSignInUIDelegate {
         view.layoutIfNeeded()
     }
 
-    func sign(_ signIn: GIDSignIn!, dismiss viewController: UIViewController!) {
-        viewController.dismiss(animated: false, completion: { _ in
-        })
-
-    }
-
-    func sign(_ signIn: GIDSignIn!, present viewController: UIViewController!) {
-        present(viewController, animated: true, completion: nil)
-    }
-    //TO DO: This method is suppoesed to allow the user to sign in through the app silently.
-    //        func signIn() {
-    //            GIDSignIn.sharedInstance().signIn()
-    //        }
-
 }
 
 // MARK: - Google Sign in
 
 extension LoginViewController: GIDSignInDelegate {
 
-//    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
-//        // TODO
-//    }
-
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        
+        activityIndicatorView.startAnimating()
 
         if let err = error {
+            activityIndicatorView.stopAnimating()
             print("Failed to log into Google: ", err)
             return
         }
@@ -234,7 +222,7 @@ extension LoginViewController: GIDSignInDelegate {
 
                 if let data = snapshot.value as? [String:Any] {
 
-
+                    
                     guard let familyID = data["familyID"] as? String else { return }
 
                     print("======> \(familyID)")
@@ -249,7 +237,8 @@ extension LoginViewController: GIDSignInDelegate {
 
                     print(self.store.user.id)
                     print(self.store.user.familyId)
-
+                    
+                    self.activityIndicatorView.stopAnimating()
                     print("A family id exists already.")
 
 
@@ -274,6 +263,8 @@ extension LoginViewController: GIDSignInDelegate {
                     DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
 
                         NotificationCenter.default.post(name: Notification.Name.openfamilyVC, object: nil)
+                        
+                         self.activityIndicatorView.stopAnimating()
                     })
 
                 }
