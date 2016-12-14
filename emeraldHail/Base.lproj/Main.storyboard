@@ -1576,6 +1576,10 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="NUs-a6-2pG">
+                                <rect key="frame" x="169" y="315" width="37" height="37"/>
+                                <color key="color" red="0.28237730700000002" green="0.68787196510000004" blue="0.8862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ZqB-SB-rYG" userLabel="Buttons SV">
                                 <rect key="frame" x="290" y="232" width="65" height="415"/>
                                 <subviews>
@@ -1665,13 +1669,16 @@
                             <constraint firstItem="okO-wA-eOS" firstAttribute="top" secondItem="ZqB-SB-rYG" secondAttribute="bottom" constant="20" id="70V-Oc-Umj"/>
                             <constraint firstItem="QY9-3s-j0B" firstAttribute="centerY" secondItem="0PA-xm-J8G" secondAttribute="centerY" id="BHo-MT-PIy"/>
                             <constraint firstItem="QY9-3s-j0B" firstAttribute="width" secondItem="0PA-xm-J8G" secondAttribute="width" id="Tmc-HV-HTU"/>
+                            <constraint firstItem="NUs-a6-2pG" firstAttribute="centerX" secondItem="0PA-xm-J8G" secondAttribute="centerX" id="ecr-qa-X1i"/>
                             <constraint firstItem="QY9-3s-j0B" firstAttribute="centerX" secondItem="0PA-xm-J8G" secondAttribute="centerX" id="fGI-Kx-167"/>
+                            <constraint firstItem="NUs-a6-2pG" firstAttribute="centerY" secondItem="0PA-xm-J8G" secondAttribute="centerY" id="kqV-Ox-Il1"/>
                             <constraint firstItem="ZqB-SB-rYG" firstAttribute="trailing" secondItem="0PA-xm-J8G" secondAttribute="trailing" constant="-20" id="oZA-VF-wRU"/>
                             <constraint firstItem="QY9-3s-j0B" firstAttribute="height" secondItem="0PA-xm-J8G" secondAttribute="height" id="w7y-Tv-QM7"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="16Y-b3-0Lu"/>
                     <connections>
+                        <outlet property="activityIndicatorView" destination="NUs-a6-2pG" id="OTg-kG-YNX"/>
                         <outlet property="nameLabel" destination="MRU-uH-xhZ" id="9Ta-7T-E1e"/>
                         <outlet property="plusButton" destination="xkz-te-VXE" id="AmR-Dd-YNJ"/>
                         <outlet property="postTableView" destination="QY9-3s-j0B" id="3qW-Cp-Zkx"/>
