@@ -20,6 +20,7 @@
 		AA3985131DEFAAF90087F1BA /* Pain.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3985121DEFAAF90087F1BA /* Pain.swift */; };
 		AA57AC531DEE4CDB00DCA9BF /* TempView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA57AC521DEE4CDB00DCA9BF /* TempView.swift */; };
 		AA57AC551DEE4E9A00DCA9BF /* TempCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA57AC541DEE4E9A00DCA9BF /* TempCell.swift */; };
+		AA6190AC1E00ABFD00E33EF9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA6190AB1E00ABFD00E33EF9 /* GoogleService-Info.plist */; };
 		AA6E4D211DE7419B00C8FEE3 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6E4D201DE7419B00C8FEE3 /* WelcomeViewController.swift */; };
 		AA6E4D231DE74B1400C8FEE3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6E4D221DE74B1400C8FEE3 /* Constants.swift */; };
 		AA7ED5921DDF4C6F005F9AB2 /* Family.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7ED5911DDF4C6F005F9AB2 /* Family.swift */; };
@@ -54,7 +55,6 @@
 		BB9286851DDE3D2100D3D9A6 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9286841DDE3D2100D3D9A6 /* DataStore.swift */; };
 		BB9C11B01DFF8A880022960F /* DocItTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9C11AF1DFF8A880022960F /* DocItTextField.swift */; };
 		BBAEF73E1DFF581B0064533A /* ChangeFamilyNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAEF73D1DFF581B0064533A /* ChangeFamilyNameViewController.swift */; };
-		BBAEF7401DFF5A670064533A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BBAEF73F1DFF5A670064533A /* GoogleService-Info.plist */; };
 		BBC8830B1DF918E70002A285 /* JoinFamily.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBC8830A1DF918E70002A285 /* JoinFamily.xib */; };
 		BBC8830D1DF918FE0002A285 /* JoinFamily.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC8830C1DF918FE0002A285 /* JoinFamily.swift */; };
 		BBF453B91DE34ACD00E054E9 /* Symptom.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF453B81DE34ACD00E054E9 /* Symptom.swift */; };
@@ -91,6 +91,7 @@
 		AA3985121DEFAAF90087F1BA /* Pain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pain.swift; sourceTree = "<group>"; };
 		AA57AC521DEE4CDB00DCA9BF /* TempView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempView.swift; sourceTree = "<group>"; };
 		AA57AC541DEE4E9A00DCA9BF /* TempCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempCell.swift; sourceTree = "<group>"; };
+		AA6190AB1E00ABFD00E33EF9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AA6E4D201DE7419B00C8FEE3 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		AA6E4D221DE74B1400C8FEE3 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		AA7ED5911DDF4C6F005F9AB2 /* Family.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Family.swift; sourceTree = "<group>"; };
@@ -127,7 +128,6 @@
 		BB9286841DDE3D2100D3D9A6 /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		BB9C11AF1DFF8A880022960F /* DocItTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocItTextField.swift; sourceTree = "<group>"; };
 		BBAEF73D1DFF581B0064533A /* ChangeFamilyNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeFamilyNameViewController.swift; sourceTree = "<group>"; };
-		BBAEF73F1DFF5A670064533A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BBC8830A1DF918E70002A285 /* JoinFamily.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JoinFamily.xib; sourceTree = "<group>"; };
 		BBC8830C1DF918FE0002A285 /* JoinFamily.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinFamily.swift; sourceTree = "<group>"; };
 		BBF453B81DE34ACD00E054E9 /* Symptom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Symptom.swift; sourceTree = "<group>"; };
@@ -239,7 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				DD755E1B1DE3ACB2002478D0 /* emeraldHail.entitlements */,
-				BBAEF73F1DFF5A670064533A /* GoogleService-Info.plist */,
+				AA6190AB1E00ABFD00E33EF9 /* GoogleService-Info.plist */,
 				DD58FAE51DDBBB40004A7A22 /* Controllers */,
 				DD58FAE41DDBBB1D004A7A22 /* View */,
 				AA9FFBC91DDA6A8E00847FCF /* Model */,
@@ -402,7 +402,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Flatiron School";
 				TargetAttributes = {
 					AA9FFBB31DDA667500847FCF = {
@@ -444,12 +444,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA6190AC1E00ABFD00E33EF9 /* GoogleService-Info.plist in Resources */,
 				AA9892AE1DEA1C290092F3A8 /* NoteView.xib in Resources */,
 				AA9FFBC21DDA667500847FCF /* LaunchScreen.storyboard in Resources */,
 				AAFE44681DDF68BE00922FB0 /* SymptomView.xib in Resources */,
 				AA0BF2BE1DF4A9190062FA36 /* AddMemberView.xib in Resources */,
 				DDB88F871DEE1CD5002E9668 /* PainLevelView.xib in Resources */,
-				BBAEF7401DFF5A670064533A /* GoogleService-Info.plist in Resources */,
 				DDDE22481DF0C486006B234C /* PhotoView.xib in Resources */,
 				AA0BF2C51DF5C1540062FA36 /* FamilyMemberView.xib in Resources */,
 				B69466641DECCE3000F2E30C /* Assets.xcassets in Resources */,
@@ -691,6 +691,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A3EAC51EA2232492128E484E /* Pods-emeraldHail.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = emeraldHail/emeraldHail.entitlements;
@@ -703,6 +704,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "emeraldHail-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -710,6 +712,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 83A9624BD961F0F9D407BD5A /* Pods-emeraldHail.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = emeraldHail/emeraldHail.entitlements;
@@ -721,6 +724,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "emeraldHail-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
