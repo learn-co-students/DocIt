@@ -24,8 +24,9 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var signIn: UIButton!
     @IBOutlet weak var forgotPassword: UIButton!
     @IBOutlet weak var createAccount: UIButton!
-    
-    
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
+    @IBOutlet weak var signinActivityIndicator: UIActivityIndicatorView!
+
     // MARK: - Properties
     
     let store = DataStore.sharedInstance
@@ -133,12 +134,16 @@ class LoginViewController: UIViewController {
     
     func login() {
         
+        signinActivityIndicator.startAnimating()
+
         guard let email = emailField.text, let password = passwordField.text else { return }
         
         FIRAuth.auth()?.signIn(withEmail: email, password: password) { (user, error) in
+            
             if let error = error {
-                // TODO: Format the error.localizedDescription for natural language, ex. "Invalid email", "Password must be 6 characters or more", etc.
+    
                 // Set errorLabel to the error.localizedDescription
+                // Activity indicator stops animating here
                 self.errorLabel.text = error.localizedDescription
                 print("======>\(error.localizedDescription)")
                 return
@@ -164,7 +169,8 @@ class LoginViewController: UIViewController {
                         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
                             
                             NotificationCenter.default.post(name: .openfamilyVC, object: nil)
-                            
+                            self.signinActivityIndicator.stopAnimating()
+
                         })
                         
                     }
@@ -183,7 +189,8 @@ class LoginViewController: UIViewController {
                 DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
                     
                     NotificationCenter.default.post(name: .openfamilyVC, object: nil)
-                    
+
+                    self.signinActivityIndicator.stopAnimating()
                 })
                 
             }
@@ -233,33 +240,18 @@ extension LoginViewController: GIDSignInUIDelegate {
         googleSignInButton.topAnchor.constraint(equalTo: signIn.bottomAnchor, constant: 12).isActive = true
         view.layoutIfNeeded()
     }
-    
-    func sign(_ signIn: GIDSignIn!, dismiss viewController: UIViewController!) {
-        viewController.dismiss(animated: false, completion: { _ in
-        })
-        
-    }
-    
-    func sign(_ signIn: GIDSignIn!, present viewController: UIViewController!) {
-        present(viewController, animated: true, completion: nil)
-    }
-    
-    
-    
-    
 }
 
 // MARK: - Google Sign in
 
 extension LoginViewController: GIDSignInDelegate {
-    
-    //    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
-    //        // TODO
-    //    }
-    
+
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         
+        activityIndicatorView.startAnimating()
+
         if let err = error {
+            activityIndicatorView.stopAnimating()
             print("Failed to log into Google: ", err)
             return
         }
@@ -277,7 +269,7 @@ extension LoginViewController: GIDSignInDelegate {
             self.database.child(Constants.Database.user).child(userID).observe(.value, with: { snapshot in
                 
                 if let data = snapshot.value as? [String:Any] {
-                    
+
                     
                     guard let familyID = data["familyID"] as? String else { return }
                     
@@ -294,6 +286,9 @@ extension LoginViewController: GIDSignInDelegate {
                     print(self.store.user.id)
                     print(self.store.user.familyId)
                     
+
+                    self.activityIndicatorView.stopAnimating()
+
                     print("A family id exists already.")
                     
                     
@@ -318,6 +313,8 @@ extension LoginViewController: GIDSignInDelegate {
                     DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
                         
                         NotificationCenter.default.post(name: Notification.Name.openfamilyVC, object: nil)
+                        
+                         self.activityIndicatorView.stopAnimating()
                     })
                     
                 }

@@ -12,7 +12,7 @@ import FirebaseDatabase
 import SDWebImage
 
 class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
-
+    
     // MARK: Outlets
     
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
@@ -53,10 +53,10 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         refresher.tintColor = Constants.Colors.scooter
         refresher.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
         memberProfilesView.addSubview(refresher)
-    
+        
         
         configureLayout()
-
+        
         
         print("======================> \(store.family.coverImageStr)")
     }
@@ -65,7 +65,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         super.viewWillAppear(true)
         self.memberProfilesView.reloadData()
     }
- 
+    
     // MARK: - Methods
     
     func configureLayout() {
@@ -82,7 +82,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         self.flowLayout.minimumInteritemSpacing = spacing
         self.flowLayout.minimumLineSpacing = spacing
         self.flowLayout.sectionInset = insets
-
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -98,7 +98,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         default:
             break
         }
-    
+        
     }
     
     // MARK: - Collection view methods
@@ -132,7 +132,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
+        
         if indexPath.row < membersInFamily.count {
             
             let selectedMember = membersInFamily[indexPath.row]
@@ -151,7 +151,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
             
         } else {
             
-        performSegue(withIdentifier: "addMember", sender: nil)
+            performSegue(withIdentifier: "addMember", sender: nil)
             
         }
         
@@ -170,15 +170,10 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
             
             if store.family.coverImageStr != "" {
                 headerView.profileImage.sd_setImage(with: familyPictureUrl)
-            } 
-            
-            else {
-                headerView.profileImage?.image = UIImage(named: "sunset2")
-            
             }
-            
-            
-            
+            else {
+                headerView.profileImage?.image = UIImage(named: "Doc_It_BG")
+            }
             return headerView
         default:
             assert(false, "Unexpected element kind")
@@ -278,7 +273,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
 class MemberCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Outlets
-
+    
     @IBOutlet weak var memberNameLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
 }
