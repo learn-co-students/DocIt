@@ -251,6 +251,7 @@
                         <outlet property="errorLabel" destination="G0E-hT-X9b" id="CTg-Nm-k8T"/>
                         <outlet property="passwordField" destination="HKX-dZ-sjJ" id="gLZ-Le-4Jb"/>
                         <outlet property="signIn" destination="Gi7-d8-LyO" id="m0Y-YR-SCz"/>
+                        <outlet property="signinActivityIndicator" destination="MbA-Qb-cQb" id="dtc-PS-Rik"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

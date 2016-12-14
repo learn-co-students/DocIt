@@ -23,6 +23,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var signIn: UIButton!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     
+    @IBOutlet weak var signinActivityIndicator: UIActivityIndicatorView!
     // MARK: - Properties
 
     let store = DataStore.sharedInstance
@@ -111,6 +112,8 @@ class LoginViewController: UIViewController {
     }
 
     func login() {
+        
+        signinActivityIndicator.startAnimating()
 
         guard let email = emailField.text, let password = passwordField.text else { return }
 
@@ -145,6 +148,7 @@ class LoginViewController: UIViewController {
                         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
 
                             NotificationCenter.default.post(name: .openfamilyVC, object: nil)
+                            self.signinActivityIndicator.stopAnimating()
 
                         })
 
@@ -163,6 +167,7 @@ class LoginViewController: UIViewController {
                 DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
 
                     NotificationCenter.default.post(name: .openfamilyVC, object: nil)
+                    self.signinActivityIndicator.stopAnimating()
 
                 })
 
