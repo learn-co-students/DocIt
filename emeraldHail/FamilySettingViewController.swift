@@ -73,7 +73,6 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
     }
     
     @IBAction func didPressInviteParent(_ sender: UIButton) {
-        print("didPressInviteParent pressed")
         inviteParent()
     }
     
@@ -91,20 +90,13 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
     func inviteParent() {
         let branchUniversalObject: BranchUniversalObject = BranchUniversalObject(canonicalIdentifier: "123123123")
         
-        let newLinkProperties: BranchLinkProperties = BranchLinkProperties()
-        newLinkProperties.feature = "invite"
-        newLinkProperties.channel = "SMS"
-        newLinkProperties.addControlParam("$ios_url", withValue: "docit://")
-        newLinkProperties.addControlParam("inviteFamilyID", withValue: store.user.familyId)
+        branchUniversalObject.addMetadataKey("inviteFamilyID", value: store.user.familyId)
         
-        //        branchUniversalObject.getShortUrl(with: newLinkProperties) { (url, error) in
-        //            if error == nil {
-        //                print("2. got my Branch link to share: \(url)")
-        //            }
-        //        }
+        let linkProperties: BranchLinkProperties = BranchLinkProperties()
+        // This links to our app in the App Store via a Google short url for tracking. If they already have the app installed, it will open the app instead.
+        linkProperties.addControlParam("$ios_url", withValue: "https://goo.gl/6HDsNR")
         
-        branchUniversalObject.showShareSheet(with: newLinkProperties, andShareText: "Please join my family on Doc It!", from: self) { (activityType, completed) in
-            print("done showing share sheet!")
+        branchUniversalObject.showShareSheet(with: linkProperties, andShareText: "Please join my family on Doc It!", from: self) { (activityType, completed) in
         }
         
         print(branchUniversalObject)
