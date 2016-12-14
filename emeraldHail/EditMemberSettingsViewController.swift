@@ -25,6 +25,7 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
     @IBOutlet weak var heightTextField: UITextField!
     @IBOutlet weak var weightTextField: UITextField!
     @IBOutlet weak var allergiesTextField: UITextField!
+    @IBOutlet weak var save: UIBarButtonItem!
     
     // MARK: - Properties
     
@@ -69,6 +70,7 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
     // MARK: - Actions
     
     @IBAction func saveMemberSettings(_ sender: Any) {
+        save.isEnabled = false
         updateFirebaseValues()
     }
     
@@ -219,10 +221,6 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
         weightTextField.docItStyle()
         allergiesTextField.docItStyle()
         
-        
-        
-        
-        
     }
     
     func deletePostImagesFromStorage(uniqueID: String){
@@ -282,6 +280,7 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
             let height = heightTextField.text,
             let weight = weightTextField.text,
             let blood = bloodTextField.text,
+            let profilePicture = profilePicture.image,
             let allergies = allergiesTextField.text else { return }
         
         let memberReference = database.child(Constants.Database.members).child(store.user.familyId).child(store.member.id)
@@ -292,7 +291,8 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
         let storageRef = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
         let imageId = uniqueID
         let storageImageRef = storageRef.child(Constants.Storage.profileImages).child(imageId)
-        
+       
+        /*
         if let uploadData = UIImageJPEGRepresentation(self.profilePicture.image!, 0.25) {
             
             storageImageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
@@ -319,6 +319,36 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
                 
             })
         }
+ */
+        
+        if let uploadData = UIImageJPEGRepresentation(profilePicture, 0.25) {
+            
+            storageImageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
+                if error != nil {
+                    print (error?.localizedDescription ?? "Error in saveButtonTapped in AddMembersViewController.swift" )
+                    return
+                }
+                guard let profileImageUrl = metadata?.downloadURL()?.absoluteString else { return }
+                
+                let updatedInfo: [String:Any] = ["firstName":name,
+                                                 "lastName": lastName,
+                                                 "birthday": dob,
+                                                 "gender": gender,
+                                                 "profileImage": profileImageUrl,
+                                                 "bloodType": blood,
+                                                 "height": height,
+                                                 "weight": weight,
+                                                 "allergies": allergies]
+                
+                
+                memberReference.updateChildValues(updatedInfo)
+                
+                let _ = self.navigationController?.popViewController(animated: true)
+                
+            })
+        }
+        
+        
     }
     
     func displayMemberProfileEdits() {
