@@ -133,8 +133,6 @@ class LoginViewController: UIViewController {
     }
     
     func login() {
-        
-        signinActivityIndicator.startAnimating()
 
         guard let email = emailField.text, let password = passwordField.text else { return }
         
@@ -151,6 +149,8 @@ class LoginViewController: UIViewController {
             // Set the sharedInstance familyID to the current user.uid
             
             if self.store.inviteFamilyID == "" {
+                
+                self.signinActivityIndicator.startAnimating()
                 
                 self.database.child(Constants.Database.user).child((user?.uid)!).observe(.value, with: { snapshot in
                     
@@ -255,6 +255,8 @@ extension LoginViewController: GIDSignInDelegate {
             print("Failed to log into Google: ", err)
             return
         }
+        
+        activityIndicatorView.startAnimating()
         print("Successfully logged into Google", user)
         
         guard let idToken = user.authentication.idToken else { return }
@@ -287,7 +289,7 @@ extension LoginViewController: GIDSignInDelegate {
                     print(self.store.user.familyId)
                     
 
-                    self.activityIndicatorView.stopAnimating()
+                    //self.activityIndicatorView.stopAnimating()
 
                     print("A family id exists already.")
                     
@@ -311,12 +313,10 @@ extension LoginViewController: GIDSignInDelegate {
                     print("YEAHHH")
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
-                        
+
                         NotificationCenter.default.post(name: Notification.Name.openfamilyVC, object: nil)
                         
-                         self.activityIndicatorView.stopAnimating()
                     })
-                    
                 }
             })
         })
