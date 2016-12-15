@@ -26,7 +26,7 @@ class RegisterViewController: UIViewController {
     
     let store = DataStore.sharedInstance
     let database = FIRDatabase.database().reference()
-    
+    let MyKeychainWrapper = KeychainWrapper()
     
     // MARK: - Loads
     
@@ -101,6 +101,8 @@ class RegisterViewController: UIViewController {
     func register() {
         guard let email = emailField.text, let password = passwordField.text else { return }
         
+        
+        
         FIRAuth.auth()?.createUser(withEmail: email, password: password) { (user, error) in
             if let error = error {
                 // TODO: Format the error.localizedDescription for natural language, ex. "Invalid email", "Password must be 6 characters or more", etc.
@@ -115,6 +117,8 @@ class RegisterViewController: UIViewController {
                     print(error.localizedDescription)
                 }
                 
+                self.store.user.email = email
+                
                 if self.store.inviteFamilyID == "" {
                     // Set the sharedInstance familyID to the current user.uid
                     
@@ -122,20 +126,24 @@ class RegisterViewController: UIViewController {
                     
                     self.store.user.id = (user?.uid)!
                     
+                    
+                    
+                    
                     let familyID = self.database.child(Constants.Database.user).child(self.store.user.id).child("familyID").childByAutoId().key
                     
                     print("=========> \(familyID)")
                     
                     self.store.user.familyId = familyID
                     self.store.family.id = self.store.user.familyId
-                    self.store.inviteFamilyID = ""
+                    self.addDataToKeychain(userID: self.store.user.id, familyID: self.store.user.familyId, email: self.store.user.email)
+//                    self.store.inviteFamilyID = ""
                     
                     self.database.child(Constants.Database.user).child(self.store.user.id).child("familyID").setValue(familyID)
                     self.database.child(Constants.Database.user).child(self.store.user.id).child("email").setValue(email)
                     self.database.child(Constants.Database.family).child(self.store.user.familyId).child("name").setValue("New Family")
                     
                     self.touchID(activate: false)
-                    self.saveDataToCoreData()
+//                    self.saveDataToCoreData()
                     
                     
                 } else {
@@ -143,6 +151,9 @@ class RegisterViewController: UIViewController {
                     print("2")
                     
                     self.store.user.id = (user?.uid)!
+                    
+                    self.addDataToKeychain(userID: self.store.user.id, familyID: self.store.user.familyId, email: self.store.user.email)
+                    
                     self.store.user.familyId = self.store.inviteFamilyID
                     
                     self.store.family.id = self.store.user.familyId
@@ -165,45 +176,59 @@ class RegisterViewController: UIViewController {
         
     }
     
-    func saveDataToCoreData() {
-        
-        deleteAllData(entity: "CurrentUser")
-        
-        let managedContext = store.persistentContainer.viewContext
-        
-        let familyCoreData = CurrentUser(context: managedContext)
-        
-        familyCoreData.familyID = store.user.familyId
-        
-        do {
-            
-            try managedContext.save()
-            print("I just save the family ID in Core Data")
-            
-        } catch {
-            
-            print("error")
-        }
-    }
+//    func saveDataToCoreData() {
+//        
+//        deleteAllData(entity: "CurrentUser")
+//        
+//        let managedContext = store.persistentContainer.viewContext
+//        
+//        let familyCoreData = CurrentUser(context: managedContext)
+//        
+//        familyCoreData.familyID = store.user.familyId
+//        
+//        do {
+//            
+//            try managedContext.save()
+//            print("I just save the family ID in Core Data")
+//            
+//        } catch {
+//            
+//            print("error")
+//        }
+//    }
     
-    func deleteAllData(entity: String)
-    {
-        let managedContext = store.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
-        fetchRequest.returnsObjectsAsFaults = false
-        
-        do
-        {
-            let results = try managedContext.fetch(fetchRequest)
-            for managedObject in results
-            {
-                let managedObjectData:NSManagedObject = managedObject as! NSManagedObject
-                managedContext.delete(managedObjectData)
-            }
-        } catch let error as NSError {
-            print("Detele all data in \(entity) error : \(error) \(error.userInfo)")
-        }
-    }
+//    func deleteAllData(entity: String)
+//    {
+//        let managedContext = store.persistentContainer.viewContext
+//        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
+//        fetchRequest.returnsObjectsAsFaults = false
+//        
+//        do
+//        {
+//            let results = try managedContext.fetch(fetchRequest)
+//            for managedObject in results
+//            {
+//                let managedObjectData:NSManagedObject = managedObject as! NSManagedObject
+//                managedContext.delete(managedObjectData)
+//            }
+//        } catch let error as NSError {
+//            print("Detele all data in \(entity) error : \(error) \(error.userInfo)")
+//        }
+//    }
+//    
+    func addDataToKeychain(userID: String, familyID: String, email: String) {
     
+            UserDefaults.standard.setValue(userID, forKey: "user")
+            UserDefaults.standard.setValue(familyID, forKey: "family")
+            UserDefaults.standard.setValue(email, forKey: "email")
+        
+        
+        // 5.
+        MyKeychainWrapper.mySetObject(passwordField.text, forKey:kSecValueData)
+        MyKeychainWrapper.writeToKeychain()
+        UserDefaults.standard.set(true, forKey: "hasFamilyKey")
+        UserDefaults.standard.synchronize()
+
+    }
     
 }

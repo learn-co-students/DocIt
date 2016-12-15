@@ -165,6 +165,9 @@ class LoginViewController: UIViewController {
                         self.store.user.id = (user?.uid)!
                         self.store.user.familyId = familyID
                         self.store.family.id = familyID
+                        self.store.user.email = email
+                        
+                        self.addDataToKeychain(userID: self.store.user.id, familyID: self.store.user.familyId, email: self.store.user.email)
                         
                         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
                             
@@ -181,10 +184,13 @@ class LoginViewController: UIViewController {
                 self.store.user.id = (user?.uid)!
                 self.store.user.familyId = self.store.inviteFamilyID
                 self.store.family.id = self.store.user.familyId
+                self.store.user.email = email
                 self.database.child(Constants.Database.user).child(self.store.user.id).child("familyID").setValue(self.store.user.familyId)
                 
                 
                 self.store.inviteFamilyID = ""
+                
+                self.addDataToKeychain(userID: self.store.user.id, familyID: self.store.user.familyId, email: self.store.user.email)
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
                     
@@ -321,4 +327,18 @@ extension LoginViewController: GIDSignInDelegate {
             })
         })
     }
+    
+    func addDataToKeychain(userID: String, familyID: String, email: String) {
+        
+        UserDefaults.standard.setValue(userID, forKey: "user")
+        UserDefaults.standard.setValue(familyID, forKey: "family")
+        UserDefaults.standard.setValue(email, forKey: "email")
+        
+        MyKeychainWrapper.mySetObject(passwordField.text, forKey:kSecValueData)
+        MyKeychainWrapper.writeToKeychain()
+        UserDefaults.standard.set(true, forKey: "hasFamilyKey")
+        UserDefaults.standard.synchronize()
+        
+    }
+
 }

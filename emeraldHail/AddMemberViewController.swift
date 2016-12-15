@@ -38,20 +38,18 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("Add Member - initial load")
+        
         setupView()
-       
+        print("Add Member - setup view")
+        
         saveButton.isEnabled = false
+        print("Add Member - disabling the save button")
+        
         saveButton.backgroundColor = Constants.Colors.submarine
+        print("Add Member - change save button to gray")
         
-        
-        // Do any additional setup after loading the view.
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     
     // MARK: - Actions
     
@@ -61,6 +59,7 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
     
     @IBAction func save(_ sender: UIButton) {
         saveMember()
+        print("Add Member - I'm trying to save")
     }
     
     @IBAction func cancel(_ sender: UIButton) {
@@ -90,12 +89,15 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
         
         genderTextField.inputView = genderSelection
         genderSelection.delegate = self
-        
         dateTextField.delegate = self
+        
+        print("Add Member - finished setupView")
     
     }
 
     func saveMember() {
+        
+        print("Add Member - start saving")
         
         saveButton.isEnabled = false
         profileImageView.isUserInteractionEnabled = false
@@ -109,6 +111,7 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
         
         
         let databaseMembersRef = database.child(Constants.Database.members).child(store.user.familyId).childByAutoId()
+        
         let uniqueID = databaseMembersRef.key
         
         let storageRef = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
@@ -139,7 +142,7 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
         })
         
         
-
+        print("Add Member - finished saving")
         
     }
     
