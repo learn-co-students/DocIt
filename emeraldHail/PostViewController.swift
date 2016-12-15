@@ -28,6 +28,8 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     @IBOutlet weak var plusButton: UIButton!
     
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
+
     // MARK: - Properties
     
     var deletedPostRef: FIRDatabaseReference?
@@ -294,8 +296,9 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     // Return the image which is selected from camera roll or is taken via the camera.
     
     func fusumaImageSelected(_ image: UIImage) {
+     
         uploadImageURLtoFirebaseDatabaseAndStorage(image)
-        
+
         // present some alert with the image
         // add button to alert to send
         // upload from button
@@ -309,6 +312,8 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     func fusumaDismissedWithImage(_ image: UIImage) {
         
         // uploadImageURLtoFirebaseDatabaseAndStorage(image)
+        
+        activityIndicatorView.startAnimating()
         
         print("Called just after FusumaViewController is dismissed.")
         
@@ -366,7 +371,10 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
                 // Disable the save button after it's pressed once
                 
             })
+            self.activityIndicatorView.stopAnimating()
         })
+        
+
     }
     
 }
