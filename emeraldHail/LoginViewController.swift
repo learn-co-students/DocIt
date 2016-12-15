@@ -274,6 +274,10 @@ extension LoginViewController: GIDSignInDelegate {
             
             guard let userID = loggedInUser?.uid else {return}
             
+            guard let email = loggedInUser?.email else { return }
+            
+            self.store.user.email = email
+            
             self.database.child(Constants.Database.user).child(userID).observe(.value, with: { snapshot in
                 
                 if let data = snapshot.value as? [String:Any] {
@@ -286,6 +290,8 @@ extension LoginViewController: GIDSignInDelegate {
                     self.store.user.id = userID
                     self.store.user.familyId = familyID
                     self.store.family.id = familyID
+                    
+                    self.addDataToKeychain(userID: self.store.user.id, familyID: self.store.user.familyId, email: self.store.user.email)
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
                         NotificationCenter.default.post(name: Notification.Name.openfamilyVC, object: nil)
@@ -311,6 +317,8 @@ extension LoginViewController: GIDSignInDelegate {
                     
                     self.store.user.familyId = familyID
                     self.store.family.id = familyID
+                    
+                     self.addDataToKeychain(userID: self.store.user.id, familyID: self.store.user.familyId, email: self.store.user.email)
                     
                     self.database.child(Constants.Database.user).child(userID).child("familyID").setValue(familyID)
                     self.database.child(Constants.Database.family).child(familyID).child("name").setValue("New Family")
