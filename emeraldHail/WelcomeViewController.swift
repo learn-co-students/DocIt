@@ -40,20 +40,12 @@ class WelcomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("welcome - load")
-        //        fetchData()
         updateFamilyId()
         print("welcome - updateFamily done")
         setupViews()
         print("welcome - setupView done")
-        //        checkTouchID()
+        checkTouchID()
         store.fillWeightData()
-        
-        //        touchID.isHidden = true
-        //
-        //        if context.canEvaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, error: nil) && hasLoginKey == true {
-        //
-        //            touchID.isHidden = false
-        //        }
         
     }
     
@@ -115,7 +107,7 @@ class WelcomeViewController: UIViewController {
         var error: NSError?
         
         if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
-            let reason = "Identify yourself!"
+            let reason = "Touch the Home button to log on."
             
             context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason, reply: { (success, error) in
                 
@@ -127,8 +119,8 @@ class WelcomeViewController: UIViewController {
                     
                 } else {
                     if let error = error as? NSError {
-                        //                        let message = self.errorMessage(errorCode: error.code)
-                        //                        self.showAlertViewAfterEvaluatingPolicyWithMessage(message: message)
+                        let message = self.errorMessage(errorCode: error.code)
+                        self.showAlertViewAfterEvaluatingPolicyWithMessage(message: message)
                     }
                 }
             })
@@ -231,7 +223,7 @@ class WelcomeViewController: UIViewController {
         case LAError.userCancel.rawValue:
             message = "Authentication was canceled by user"
         case LAError.userFallback.rawValue:
-            message = "Authentication was canceled, because the user tapped the fallback button (Enter Password)."
+            message = "Authentication was canceled, because the user tapped the fallback button."
         case LAError.systemCancel.rawValue:
             message = "Authentication was canceled by system."
         case LAError.passcodeNotSet.rawValue:
@@ -249,34 +241,20 @@ class WelcomeViewController: UIViewController {
     }
     
     
-    //    func checkTouchID() {
-    //
-    //        if store.user.familyId != "" {
-    //
-    //            let database = FIRDatabase.database().reference().child(Constants.Database.settings).child(store.user.familyId).child("touchID")
-    //
-    //            database.observe(.value, with: { (snapshot) in
-    //
-    //                let value = snapshot.value as? Bool
-    //
-    //                if value == true {
-    //                    
-    //                    self.touchID.isHidden = false
-    //                    
-    //                }
-    //                    
-    //                else if value == false {
-    //                    
-    //                    self.touchID.isHidden = true
-    //                }
-    //                
-    //            })
-    //            
-    //        } else {
-    //        
-    //            print("no family id")
-    //        }
-    //    }
+    func checkTouchID() {
+        
+        let touchIDValue = UserDefaults.standard.value(forKey:"touchID") as? String
+        
+        touchID.isHidden = true
+        
+        if context.canEvaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, error: nil) && touchIDValue == "true" {
+            
+            touchID.isHidden = false
+            authenticateUser()
+            
+        }
+        
+    }
     
     
 }

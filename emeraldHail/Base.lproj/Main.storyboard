@@ -600,7 +600,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="cLa-oC-lUt">
-                                <rect key="frame" x="12" y="180" width="351" height="308"/>
+                                <rect key="frame" x="12" y="145" width="351" height="378"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2F6-SI-HLP">
                                         <rect key="frame" x="0.0" y="0.0" width="351" height="50"/>
@@ -658,14 +658,14 @@
                                             <action selector="logoutPressed:" destination="bHr-j8-e7W" eventType="touchUpInside" id="YMA-51-bqG"/>
                                         </connections>
                                     </button>
-                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Touch ID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jTf-v1-YLa">
-                                        <rect key="frame" x="146" y="242" width="60" height="0.0"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Touch ID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jTf-v1-YLa">
+                                        <rect key="frame" x="145.5" y="248" width="60" height="18"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                                         <color key="textColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <segmentedControl hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="UYV-Us-6hb">
-                                        <rect key="frame" x="141" y="242" width="69" height="1"/>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="UYV-Us-6hb">
+                                        <rect key="frame" x="141" y="278" width="69" height="29"/>
                                         <segments>
                                             <segment title="Off"/>
                                             <segment title="On"/>
@@ -675,7 +675,7 @@
                                         </connections>
                                     </segmentedControl>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hqH-g9-i8v">
-                                        <rect key="frame" x="115" y="248" width="122" height="30"/>
+                                        <rect key="frame" x="114.5" y="318" width="122" height="30"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                                         <state key="normal" title="Send us feedback">
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -685,7 +685,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Made with ❤️ in NYC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MlL-Le-IQd">
-                                        <rect key="frame" x="103" y="290" width="145" height="18"/>
+                                        <rect key="frame" x="103.5" y="360" width="144.5" height="18"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                                         <color key="textColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>

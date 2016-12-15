@@ -15,6 +15,7 @@ import SDWebImage
 import CoreData
 import MessageUI
 import Branch
+import LocalAuthentication
 
 class FamilySettingViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MFMailComposeViewControllerDelegate {
     
@@ -56,14 +57,14 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
         if touchID.selectedSegmentIndex == 0 {
             
             touchID(activate: false)
-            deleteAllData(entity: "CurrentUser")
+            UserDefaults.standard.setValue("false", forKey: "touchID")
             
         }
             
         else if touchID.selectedSegmentIndex == 1 {
             
             touchID(activate: true)
-            saveDataToCoreData()
+            UserDefaults.standard.setValue("true", forKey: "touchID")
             
         }
     }
@@ -205,6 +206,8 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
     
     func checkTouchID() {
         
+        let touchIDValue = UserDefaults.standard.value(forKey:"touchID") as? String
+
         
         let database = FIRDatabase.database().reference().child(Constants.Database.settings).child(store.user.familyId).child("touchID")
         
@@ -227,51 +230,17 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
         
     }
     
+//    func checkTouchIDIphone() {
+//        
+//        if context.canEvaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, error: nil) {
+////            touchID.isHidden =
+//        }
+//    }
+    
     func touchID(activate: Bool) {
         
         FIRDatabase.database().reference().child(Constants.Database.settings).child(store.user.familyId).child("touchID").setValue(activate)
         
-        
-    }
-    
-    func saveDataToCoreData() {
-        
-        deleteAllData(entity: "CurrentUser")
-        
-        let managedContext = store.persistentContainer.viewContext
-        
-        let familyCoreData = CurrentUser(context: managedContext)
-        
-        familyCoreData.familyID = DataStore.sharedInstance.user.familyId
-        
-        do {
-            
-            try managedContext.save()
-            print("I just save the family ID in Core Data")
-            
-        } catch {
-            
-            print("error")
-        }
-    }
-    
-    func deleteAllData(entity: String)
-    {
-        let managedContext = store.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
-        fetchRequest.returnsObjectsAsFaults = false
-        
-        do
-        {
-            let results = try managedContext.fetch(fetchRequest)
-            for managedObject in results
-            {
-                let managedObjectData:NSManagedObject = managedObject as! NSManagedObject
-                managedContext.delete(managedObjectData)
-            }
-        } catch let error as NSError {
-            print("Detele all data in \(entity) error : \(error) \(error.userInfo)")
-        }
     }
     
 }
