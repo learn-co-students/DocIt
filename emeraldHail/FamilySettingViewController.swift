@@ -26,6 +26,7 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
     @IBOutlet weak var changeFamilyName: UIButton!
     @IBOutlet weak var logout: UIButton!
     @IBOutlet weak var touchID: UISegmentedControl!
+    @IBOutlet weak var touchIDLabel: UILabel!
     
     // MARK: - Properties
     
@@ -39,6 +40,7 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
         
         setupView()
         checkTouchID()
+        checkTouchIDIphone()
     }
     
     // MARK: - Actions
@@ -208,34 +210,38 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
         
         let touchIDValue = UserDefaults.standard.value(forKey:"touchID") as? String
 
+        database.child(Constants.Database.settings).child(store.user.familyId).child("touchID").setValue(touchIDValue)
         
-        let database = FIRDatabase.database().reference().child(Constants.Database.settings).child(store.user.familyId).child("touchID")
-        
-        database.observe(.value, with: { (snapshot) in
             
-            let value = snapshot.value as? Bool
-            
-            if value == true {
+            if touchIDValue == "true" {
                 
                 self.touchID.selectedSegmentIndex = 1
                 
             }
                 
-            else if value == false {
+            else {
                 
                 self.touchID.selectedSegmentIndex = 0
             }
             
-        })
-        
-    }
+        }
     
-//    func checkTouchIDIphone() {
-//        
-//        if context.canEvaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, error: nil) {
-////            touchID.isHidden =
-//        }
-//    }
+    
+    func checkTouchIDIphone() {
+        
+        let context = LAContext()
+ 
+        if context.canEvaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, error: nil) {
+            
+            print("this person has touch id")
+            
+        } else {
+            
+            touchID.isHidden = true
+            touchIDLabel.isHidden = true
+            
+        }
+    }
     
     func touchID(activate: Bool) {
         
