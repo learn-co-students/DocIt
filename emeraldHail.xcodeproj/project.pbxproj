@@ -20,7 +20,6 @@
 		AA3985131DEFAAF90087F1BA /* Pain.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3985121DEFAAF90087F1BA /* Pain.swift */; };
 		AA57AC531DEE4CDB00DCA9BF /* TempView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA57AC521DEE4CDB00DCA9BF /* TempView.swift */; };
 		AA57AC551DEE4E9A00DCA9BF /* TempCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA57AC541DEE4E9A00DCA9BF /* TempCell.swift */; };
-		AA6190AC1E00ABFD00E33EF9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA6190AB1E00ABFD00E33EF9 /* GoogleService-Info.plist */; };
 		AA6E4D211DE7419B00C8FEE3 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6E4D201DE7419B00C8FEE3 /* WelcomeViewController.swift */; };
 		AA6E4D231DE74B1400C8FEE3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6E4D221DE74B1400C8FEE3 /* Constants.swift */; };
 		AA7ED5921DDF4C6F005F9AB2 /* Family.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7ED5911DDF4C6F005F9AB2 /* Family.swift */; };
@@ -54,6 +53,7 @@
 		BB6DEDB51DE61C7D00D8B93A /* FamilySettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6DEDB41DE61C7D00D8B93A /* FamilySettingViewController.swift */; };
 		BB7BF58B1DECD13C00F290FB /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB7BF58A1DECD13C00F290FB /* LocalAuthentication.framework */; };
 		BB9286851DDE3D2100D3D9A6 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9286841DDE3D2100D3D9A6 /* DataStore.swift */; };
+		BB945A1C1E04DD700038E8DA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB945A1B1E04DD700038E8DA /* GoogleService-Info.plist */; };
 		BB9C11B01DFF8A880022960F /* DocItTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9C11AF1DFF8A880022960F /* DocItTextField.swift */; };
 		BBAEF73E1DFF581B0064533A /* ChangeFamilyNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAEF73D1DFF581B0064533A /* ChangeFamilyNameViewController.swift */; };
 		BBC8830B1DF918E70002A285 /* JoinFamily.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBC8830A1DF918E70002A285 /* JoinFamily.xib */; };
@@ -92,7 +92,6 @@
 		AA3985121DEFAAF90087F1BA /* Pain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pain.swift; sourceTree = "<group>"; };
 		AA57AC521DEE4CDB00DCA9BF /* TempView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempView.swift; sourceTree = "<group>"; };
 		AA57AC541DEE4E9A00DCA9BF /* TempCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempCell.swift; sourceTree = "<group>"; };
-		AA6190AB1E00ABFD00E33EF9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AA6E4D201DE7419B00C8FEE3 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		AA6E4D221DE74B1400C8FEE3 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		AA7ED5911DDF4C6F005F9AB2 /* Family.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Family.swift; sourceTree = "<group>"; };
@@ -129,6 +128,7 @@
 		BB6DEDB41DE61C7D00D8B93A /* FamilySettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilySettingViewController.swift; sourceTree = "<group>"; };
 		BB7BF58A1DECD13C00F290FB /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		BB9286841DDE3D2100D3D9A6 /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
+		BB945A1B1E04DD700038E8DA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BB9C11AF1DFF8A880022960F /* DocItTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocItTextField.swift; sourceTree = "<group>"; };
 		BBAEF73D1DFF581B0064533A /* ChangeFamilyNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeFamilyNameViewController.swift; sourceTree = "<group>"; };
 		BBC8830A1DF918E70002A285 /* JoinFamily.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JoinFamily.xib; sourceTree = "<group>"; };
@@ -242,7 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				DD755E1B1DE3ACB2002478D0 /* emeraldHail.entitlements */,
-				AA6190AB1E00ABFD00E33EF9 /* GoogleService-Info.plist */,
+				BB945A1B1E04DD700038E8DA /* GoogleService-Info.plist */,
 				DD58FAE51DDBBB40004A7A22 /* Controllers */,
 				DD58FAE41DDBBB1D004A7A22 /* View */,
 				AA9FFBC91DDA6A8E00847FCF /* Model */,
@@ -449,12 +449,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA6190AC1E00ABFD00E33EF9 /* GoogleService-Info.plist in Resources */,
 				AA9892AE1DEA1C290092F3A8 /* NoteView.xib in Resources */,
 				AA9FFBC21DDA667500847FCF /* LaunchScreen.storyboard in Resources */,
 				AAFE44681DDF68BE00922FB0 /* SymptomView.xib in Resources */,
 				AA0BF2BE1DF4A9190062FA36 /* AddMemberView.xib in Resources */,
 				DDB88F871DEE1CD5002E9668 /* PainLevelView.xib in Resources */,
+				BB945A1C1E04DD700038E8DA /* GoogleService-Info.plist in Resources */,
 				DDDE22481DF0C486006B234C /* PhotoView.xib in Resources */,
 				AA0BF2C51DF5C1540062FA36 /* FamilyMemberView.xib in Resources */,
 				B69466641DECCE3000F2E30C /* Assets.xcassets in Resources */,

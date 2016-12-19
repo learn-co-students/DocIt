@@ -51,12 +51,9 @@ class RegisterViewController: UIViewController {
         // If on the create account screen, if they already have an account...take them to the sign in screen
         signIn.isEnabled = false
         NotificationCenter.default.post(name: .openLoginVC, object: nil)
-        //  self.performSegue(withIdentifier: "showLogin", sender: nil)
-        
         
     }
     
-    // This function enables/disables the createAccount button when the fields are empty/not empty.
     @IBAction func textDidChange(_ sender: UITextField) {
         if !(emailField.text?.characters.isEmpty)! && !(passwordField.text?.characters.isEmpty)! {
             createAccount.isEnabled = true
@@ -135,7 +132,7 @@ class RegisterViewController: UIViewController {
                     
                     self.store.user.familyId = familyID
                     self.store.family.id = self.store.user.familyId
-                    self.addDataToKeychain(userID: self.store.user.id, familyID: self.store.user.familyId, email: self.store.user.email)
+                    self.addDataToKeychain(userID: self.store.user.id, familyID: self.store.user.familyId, email: self.store.user.email, auth: "email")
                     //                    self.store.inviteFamilyID = ""
                     
                     self.database.child(Constants.Database.user).child(self.store.user.id).child("familyID").setValue(familyID)
@@ -152,7 +149,7 @@ class RegisterViewController: UIViewController {
                     
                     self.store.user.id = (user?.uid)!
                     
-                    self.addDataToKeychain(userID: self.store.user.id, familyID: self.store.user.familyId, email: self.store.user.email)
+                    self.addDataToKeychain(userID: self.store.user.id, familyID: self.store.user.familyId, email: self.store.user.email, auth: "email")
                     
                     self.store.user.familyId = self.store.inviteFamilyID
                     
@@ -176,11 +173,12 @@ class RegisterViewController: UIViewController {
         
     }
     
-    func addDataToKeychain(userID: String, familyID: String, email: String) {
+    func addDataToKeychain(userID: String, familyID: String, email: String, auth: String) {
         
         UserDefaults.standard.setValue(userID, forKey: "user")
         UserDefaults.standard.setValue(familyID, forKey: "family")
         UserDefaults.standard.setValue(email, forKey: "email")
+        UserDefaults.standard.setValue(auth, forKey: "auth")
         
         
         // 5.

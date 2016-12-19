@@ -7,8 +7,6 @@
 //
 
 import UIKit
-//import CoreData
-//import CoreFoundation
 import LocalAuthentication
 import GoogleSignIn
 import Firebase
@@ -23,41 +21,39 @@ class WelcomeViewController: UIViewController {
     @IBOutlet weak var signIn: UIButton!
     @IBOutlet weak var touchID: UIButton!
     
-    
     // MARK: - Properties
     
-    //    var userInfo = [CurrentUser]()
     var store = DataStore.sharedInstance
     let database = FIRDatabase.database().reference()
     var context = LAContext()
     let hasLoginKey = UserDefaults.standard.bool(forKey: "hasFamilyKey")
     let MyKeychainWrapper = KeychainWrapper()
     
-    
-    
     // MARK: - Loads
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("welcome - load")
+        
         updateFamilyId()
-        print("welcome - updateFamily done")
         setupViews()
-        print("welcome - setupView done")
         checkTouchID()
         store.fillWeightData()
+        GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance().delegate = self
         
     }
     
     // MARK: - Actions
     
     @IBAction func createAccountPressed(_ sender: Any) {
+        
         createAccount.isEnabled = false
         NotificationCenter.default.post(name: Notification.Name.openRegisterVC, object: nil)
         
     }
     
     @IBAction func signInPressed(_ sender: Any) {
+        
         signIn.isEnabled = false
         NotificationCenter.default.post(name: Notification.Name.openLoginVC, object: nil)
         
@@ -65,39 +61,59 @@ class WelcomeViewController: UIViewController {
     
     @IBAction func touchId(_ sender: UIButton) {
         
-        authenticateUser()
+        googleOrNot()
         
     }
     
     // MARK: - Methods
     
-    func setupViews() {
-        
-        view.backgroundColor = Constants.Colors.desertStorm
-        
-        createAccount.docItStyle()
-        
-        signIn.docItStyle()
-        signIn.layer.borderWidth = 1
-        signIn.layer.borderColor = Constants.Colors.submarine.cgColor
-        
-        
-    }
-    
     func updateFamilyId() {
         
         let familyID = UserDefaults.standard.value(forKey: "family") as? String
         
-        print("=======================>>>>>>>> THIS IS THE FREAKING FAMILY ID!!!!!!! \(familyID)")
-        
         if familyID != nil {
             store.user.familyId = familyID!
-            
-            
             
         }
     }
     
+    func setupViews() {
+        
+        view.backgroundColor = Constants.Colors.desertStorm
+        createAccount.docItStyle()
+        signIn.docItStyle()
+        signIn.layer.borderWidth = 1
+        signIn.layer.borderColor = Constants.Colors.submarine.cgColor
+        
+    }
+    
+    func checkTouchID() {
+        
+        touchID.isHidden = true
+        let touchIDValue = UserDefaults.standard.value(forKey:"touchID") as? String
+        
+        if context.canEvaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, error: nil) && touchIDValue == "true" {
+            
+            googleOrNot()
+            touchID.isHidden = false
+            
+        }
+    }
+    
+    func googleOrNot() {
+        
+        let accessKey = UserDefaults.standard.value(forKey:"auth") as? String
+        
+        if accessKey == "google" {
+            
+            authenticateUserGoogle()
+            
+        } else {
+            
+            authenticateUser()
+            
+        }
+    }
     
     // MARK: Methods Touch ID
     
@@ -112,8 +128,6 @@ class WelcomeViewController: UIViewController {
             context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason, reply: { (success, error) in
                 
                 if success {
-                    
-                    print("WE GOT HERE!!!")
                     
                     self.navigateToAuthenticatedVC()
                     
@@ -132,6 +146,36 @@ class WelcomeViewController: UIViewController {
         }
     }
     
+    func authenticateUserGoogle() {
+        
+        let context = LAContext()
+        var error: NSError?
+        
+        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+            let reason = "Touch the Home button to log on."
+            
+            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason, reply: { (success, error) in
+                
+                if success {
+                    
+                    GIDSignIn.sharedInstance().signIn()
+                    
+                }
+                    
+                else {
+                    if let error = error as? NSError {
+                        let message = self.errorMessage(errorCode: error.code)
+                        self.showAlertViewAfterEvaluatingPolicyWithMessage(message: message)
+                    }
+                }
+            })
+            
+        } else {
+            showAlertViewforNoBiometrics()
+            return
+            
+        }
+    }
     
     func navigateToAuthenticatedVC() {
         
@@ -139,9 +183,7 @@ class WelcomeViewController: UIViewController {
         
         let email = UserDefaults.standard.value(forKey:"email") as? String
         let userID = UserDefaults.standard.value(forKey: "user") as? String
-        let familyID = UserDefaults.standard.value(forKey:"family") as? String
         let password = MyKeychainWrapper.myObject(forKey: "v_Data") as? String
-        
         
         self.store.user.email = email!
         self.store.user.id = userID!
@@ -156,7 +198,6 @@ class WelcomeViewController: UIViewController {
                 print("======>\(error.localizedDescription)")
                 return
             }
-            // Set the sharedInstance familyID to the current user.uid
             
             //                self.signinActivityIndicator.startAnimating()
             
@@ -167,9 +208,7 @@ class WelcomeViewController: UIViewController {
                     var data = snapshot.value as? [String:Any]
                     
                     guard let familyID = data?["familyID"] as? String else { return }
-                    
-                    print("======> \(familyID)")
-                    
+                
                     self.store.user.id = (user?.uid)!
                     self.store.user.familyId = familyID
                     self.store.family.id = familyID
@@ -178,12 +217,10 @@ class WelcomeViewController: UIViewController {
                         
                         NotificationCenter.default.post(name: .openfamilyVC, object: nil)
                         //                            self.signinActivityIndicator.stopAnimating()
-                        
+    
                     })
-                    
                 }
             })
-            
         }
     }
     
@@ -239,22 +276,92 @@ class WelcomeViewController: UIViewController {
         return message
         
     }
+}
+
+extension WelcomeViewController: GIDSignInDelegate {
     
-    
-    func checkTouchID() {
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         
-        let touchIDValue = UserDefaults.standard.value(forKey:"touchID") as? String
+        //            activityIndicatorView.startAnimating()
+        //
+        //            if let err = error {
+        //                activityIndicatorView.stopAnimating()
+        //                print("Failed to log into Google: ", err)
+        //                return
+        //            }
+        //
+        //            activityIndicatorView.startAnimating()
+        //            print("Successfully logged into Google", user)
+        //
+        guard let idToken = user.authentication.idToken else { return }
+        guard let accessToken = user.authentication.accessToken else { return }
         
-        touchID.isHidden = true
+        let credential = FIRGoogleAuthProvider.credential(withIDToken: idToken, accessToken: accessToken)
         
-        if context.canEvaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, error: nil) && touchIDValue == "true" {
+        FIRAuth.auth()?.signIn(with: credential, completion: { loggedInUser, error in
             
-            touchID.isHidden = false
-            authenticateUser()
+            guard let userID = loggedInUser?.uid else {return}
             
-        }
-        
+            guard let email = loggedInUser?.email else { return }
+            
+            self.store.user.email = email
+            
+            self.database.child(Constants.Database.user).child(userID).observe(.value, with: { snapshot in
+                
+                if let data = snapshot.value as? [String:Any] {
+                    
+                    
+                    guard let familyID = data["familyID"] as? String else { return }
+                    
+                    self.store.user.id = userID
+                    self.store.user.familyId = familyID
+                    self.store.family.id = familyID
+                    
+                    self.addDataToKeychain(userID: self.store.user.id, familyID: self.store.user.familyId, email: self.store.user.email, auth: "google")
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+                        NotificationCenter.default.post(name: Notification.Name.openfamilyVC, object: nil)
+                    })
+                    
+                    //self.activityIndicatorView.stopAnimating()
+                    
+                }
+            })
+        })
     }
     
     
+    func addDataToKeychain(userID: String, familyID: String, email: String, auth: String) {
+        
+        let keyAccess = "google"
+        
+        UserDefaults.standard.setValue(userID, forKey: "user")
+        UserDefaults.standard.setValue(familyID, forKey: "family")
+        UserDefaults.standard.setValue(email, forKey: "email")
+        UserDefaults.standard.setValue(keyAccess, forKey: "auth")
+        
+        //        MyKeychainWrapper.mySetObject(passwordField.text, forKey:kSecValueData)
+        MyKeychainWrapper.writeToKeychain()
+        UserDefaults.standard.set(true, forKey: "hasFamilyKey")
+        UserDefaults.standard.synchronize()
+        
+    }
+}
+
+extension WelcomeViewController: GIDSignInUIDelegate {
+    
+    func configureGoogleButton() {
+        
+        let googleSignInButton = GIDSignInButton()
+        
+        googleSignInButton.colorScheme = .light
+        googleSignInButton.style = .wide
+        
+        self.view.addSubview(googleSignInButton)
+        googleSignInButton.translatesAutoresizingMaskIntoConstraints = false
+        googleSignInButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        googleSignInButton.topAnchor.constraint(equalTo: signIn.bottomAnchor, constant: 12).isActive = true
+        view.layoutIfNeeded()
+        
+    }
 }
