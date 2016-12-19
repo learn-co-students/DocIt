@@ -29,6 +29,9 @@ class FamilySettingViewController: UITableViewController, UIImagePickerControlle
     @IBOutlet weak var touchIDLabel: UILabel!
     @IBOutlet weak var touchIDCell: UITableViewCell!
     @IBOutlet weak var madeCell: UITableViewCell!
+    @IBOutlet weak var metricSystemButton: UIButton!
+    @IBOutlet weak var imperialSystemButton: UIButton!
+    
     
     // MARK: - Properties
     
@@ -72,6 +75,17 @@ class FamilySettingViewController: UITableViewController, UIImagePickerControlle
     @IBAction func didPressInviteParent(_ sender: UIButton) {
         inviteParent()
     }
+    
+    @IBAction func metricButtonTapped(_ sender: UIButton) {
+        print("metric button tapped")
+    }
+    
+    @IBAction func imperialButtonTapped(_ sender: UIButton) {
+        print("imperial button tapped")
+        
+    }
+    
+    
     
     // MARK: - Methods
     
