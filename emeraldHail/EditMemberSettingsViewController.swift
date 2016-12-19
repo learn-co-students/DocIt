@@ -12,7 +12,7 @@ import FirebaseStorage
 import Firebase
 import Fusuma
 
-class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDataSource, FusumaDelegate {
+class EditMemberSettingsViewController: UITableViewController, UIPickerViewDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDataSource, FusumaDelegate {
     
     // MARK: - Outlets
     
@@ -53,25 +53,12 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
         addProfileSettings()
         displayMemberProfileEdits()
         
-        bloodSelection.delegate = self
-        genderSelection.delegate = self
-        weightSelection.delegate = self
-        heightSelection.delegate = self
-        
-        
-        bloodTextField.inputView = bloodSelection
-        genderTextField.inputView = genderSelection
-        weightTextField.inputView = weightSelection
-        heightTextField.inputView = heightSelection
-        
         setupViews()
-        
-        
     }
     
     // MARK: - Actions
     
-    @IBAction func saveMemberSettings(_ sender: Any) {
+    @IBAction func didPressSave(_ sender: Any) {
         save.isEnabled = false
         activityIndicatorView.startAnimating()
         updateFirebaseValues()
@@ -81,8 +68,7 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
         let _ = navigationController?.popViewController(animated: true)
     }
     
-    @IBAction func deleteMemberButtonTapped(_ sender: Any) {
-        
+    @IBAction func didPressDeleteMember(_ sender: Any) {
         deleteMember.isEnabled = false
         
         // Alert Controller
@@ -185,8 +171,6 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
         
         // Present the controller
         self.present(alertController, animated: true, completion: nil)
-        
-        
     }
     
     // MARK: - Methods
@@ -214,33 +198,35 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
         dobSelection.addTarget(self, action: #selector(self.datePickerChanged(sender:)) , for: .valueChanged)
     }
     
-    
-    func setupViews() {
-        
-        firstNameTextField.docItStyle()
-        lastNameTextField.docItStyle()
-        dobTextField.docItStyle()
-        bloodTextField.docItStyle()
-        genderTextField.docItStyle()
-        heightTextField.docItStyle()
-        weightTextField.docItStyle()
-        allergiesTextField.docItStyle()
-        
+    @IBAction func didPressChangePhoto(_ sender: Any) {
+        handleCameraImage()
     }
     
-    func deletePostImagesFromStorage(uniqueID: String){
+    func setupViews() {
+        bloodSelection.delegate = self
+        genderSelection.delegate = self
+        weightSelection.delegate = self
+        heightSelection.delegate = self
         
-        storageRef.child(Constants.Storage.postsImages).child(uniqueID).delete(completion: { error -> Void in
+        bloodTextField.inputView = bloodSelection
+        genderTextField.inputView = genderSelection
+        weightTextField.inputView = weightSelection
+        heightTextField.inputView = heightSelection
+    }
+    
+    func deletePostImagesFromStorage(uniqueID: String) {
+        
+        storageRef.child(Constants.Storage.postsImages).child(uniqueID).delete { error -> Void in
             
             if error != nil {
                 print("******* Error occured while deleting post imgs from Firebase storage ******** \(uniqueID)")
             } else {
                 print("Post image removed from Firebase successfully! \(uniqueID)")
             }
-            
-        })
+        }
     }
-    func deleteProfileImagesFromStorage(){
+    
+    func deleteProfileImagesFromStorage() {
         
         storageRef.child(Constants.Storage.profileImages).child(self.store.member.id).delete { error -> Void in
             
@@ -250,7 +236,6 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
                 print("profile img removed successfully from the associated member")
             }
         }
-        
     }
     
     
@@ -260,7 +245,6 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
         addGestureRecognizer(imageView: profilePicture)
         profilePicture.isUserInteractionEnabled = true
         profilePicture.setRounded()
-        
     }
     
     func addGestureRecognizer(imageView: UIImageView){
@@ -296,7 +280,7 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
         let storageRef = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
         let imageId = uniqueID
         let storageImageRef = storageRef.child(Constants.Storage.profileImages).child(imageId)
-       
+        
         if let uploadData = UIImageJPEGRepresentation(profilePicture, 0.25) {
             
             storageImageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
@@ -366,7 +350,7 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
         return true
     }
     
-    func textFieldDidBeginEditing(_ textField: UITextField){
+    func textFieldDidBeginEditing(_ textField: UITextField) {
         let dobSelection = UIDatePicker()
         dobTextField.inputView = dobSelection
         dobSelection.datePickerMode = UIDatePickerMode.date
@@ -388,12 +372,11 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
         formatter.dateStyle = .medium
         formatter.timeStyle = .none
         formatter.dateFormat = "MMM dd, yyyy"
-
+        
         dobTextField.text = formatter.string(from: sender.date).uppercased()
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int{
-        
         switch pickerView {
         case bloodSelection:
             return 1
@@ -405,12 +388,10 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
             return 2
         default:
             return 1
-            
         }
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
-        
         switch pickerView {
         case bloodSelection:
             return store.bloodTypeSelections.count
@@ -431,8 +412,6 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
-        
         switch pickerView {
         case bloodSelection:
             bloodTextField.text = store.bloodTypeSelections[row]
@@ -454,7 +433,6 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        
         switch pickerView {
         case bloodSelection:
             return store.bloodTypeSelections[row]
@@ -521,6 +499,6 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
         print("Camera access denied")
         
     }
-
+    
     
 }

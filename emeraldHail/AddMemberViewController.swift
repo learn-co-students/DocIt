@@ -24,13 +24,13 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet var touchDismiss: UITapGestureRecognizer!
+    @IBOutlet weak var choosePhoto: UIButton!
     
     // MARK: - Properties
     
     let dobSelection = UIDatePicker()
     let genderSelection = UIPickerView()
     let database = FIRDatabase.database().reference()
-   
     
     let store = DataStore.sharedInstance
     
@@ -38,17 +38,7 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Add Member - initial load")
-        
         setupView()
-        print("Add Member - setup view")
-        
-        saveButton.isEnabled = false
-        print("Add Member - disabling the save button")
-        
-        saveButton.backgroundColor = Constants.Colors.submarine
-        print("Add Member - change save button to gray")
-        
     }
     
     // MARK: - Actions
@@ -59,11 +49,14 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
     
     @IBAction func save(_ sender: UIButton) {
         saveMember()
-        print("Add Member - I'm trying to save")
     }
     
     @IBAction func cancel(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func didPressChoosePhoto(_ sender: Any) {
+        handleCameraImage()
     }
     
     // MARK: - Methods
@@ -91,14 +84,13 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
         genderSelection.delegate = self
         dateTextField.delegate = self
         
-        print("Add Member - finished setupView")
-    
+        saveButton.isEnabled = false
+        saveButton.backgroundColor = Constants.Colors.submarine
+        
+        choosePhoto.setRounded()
     }
-
+    
     func saveMember() {
-        
-        print("Add Member - start saving")
-        
         saveButton.isEnabled = false
         profileImageView.isUserInteractionEnabled = false
         
@@ -109,7 +101,6 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
             
             else { return }
         
-        
         let databaseMembersRef = database.child(Constants.Database.members).child(store.user.familyId).childByAutoId()
         
         let uniqueID = databaseMembersRef.key
@@ -117,7 +108,6 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
         let storageRef = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
         let imageId = uniqueID
         let storageImageRef = storageRef.child(Constants.Storage.profileImages).child(imageId)
-        
         
         guard let uploadData = UIImageJPEGRepresentation(self.profileImageView.image!, 0.25) else { return }
         
@@ -137,20 +127,13 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
                 self.dismiss(animated: true, completion: nil)
                 
             })
-            
-            
         })
-        
-        
-        print("Add Member - finished saving")
-        
     }
     
     func addGestureRecognizer(imageView: UIImageView){
         imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleCameraImage)))
     }
     
-
     @IBAction func birthdayDidBeginEditing(_ sender: Any) {
         
         let formatter = DateFormatter()
@@ -174,7 +157,7 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
             saveButton.isEnabled = true
             saveButton.backgroundColor = Constants.Colors.scooter
             
-        }           
+        }
         
         return true
     }
@@ -192,14 +175,14 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         dateTextField.resignFirstResponder()
-
+        
         return true
     }
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-
+        
         return true
-    
+        
     }
     
     func datePickerChanged(sender: UIDatePicker) {
@@ -305,7 +288,7 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
         
     }
     
-
+    
     
     
 }

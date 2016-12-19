@@ -67,6 +67,12 @@ extension UIButton {
         self.layer.shadowOpacity = 0.3
 
     }
+    
+    func setRounded() {
+        let radius = self.frame.width / 2
+        self.layer.cornerRadius = radius
+        self.layer.masksToBounds = true
+    }
 
 }
 
