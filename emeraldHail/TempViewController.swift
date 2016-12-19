@@ -13,6 +13,8 @@ import Firebase
 
 class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
+    let store = DataStore.sharedInstance
+    
     // Tanira: This data is to be used later with the beta version of the application. Please do not remove commented out section below. Thank you :D
     // 0-2 years old rectal thermometer normal is 97.9-100.4 ->Armpit 94.5-99.1 -> Ear 97.5
     // 3-10 years oral thermometer normal is 95.9-99.5 -> Rectal 97.9-100.4-> Armpit 96.6-98.0 -> Ear 97.0-100.0
@@ -27,10 +29,6 @@ class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
     
-    // MARK: - Methods 
-    
-    let store = DataStore.sharedInstance
-    var availableTemps: [String] = ["96.6", "96.8", "97.0", "97.2", "97.4", "97.6", "97.8", "98.0", "98.2", "98.4", "98.6", "98.8", "99.0", "99.2", "99.4", "99.6", "99.8", "100.0", "100.2", "100.4", "100.6", "100.8", "101.0", "101.2", "101.4", "101.6", "101.8", "102.0", "102.2", "102.4", "102.6", "102.8", "103.0", "103.2", "103.4", "103.6", "103.8", "104.0", "104.2", "104.6", "104.8", "105.0"]
     
     var database: FIRDatabaseReference = FIRDatabase.database().reference()
     var postRef : FIRDatabaseReference = FIRDatabase.database().reference().child("posts")
@@ -89,6 +87,7 @@ class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         saveButton.docItStyle()
         saveButton.isEnabled = false
         saveButton.backgroundColor = Constants.Colors.submarine
+        
         cancelButton.docItStyle()
         
     }
@@ -125,7 +124,7 @@ class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return availableTemps.count
+        return store.tempsInF.count
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -134,12 +133,12 @@ class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         //var temperatures = availableTemps[row].description -> Attempt to change the color of the font in the UI PickerView
-        return availableTemps[row]
+        return store.tempsInF[row]
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         //save the value for the pickerview temperature selected.
-        selectedTemp = availableTemps[row]
+        selectedTemp = store.tempsInF[row]
         saveButton.isEnabled = true
         saveButton.backgroundColor = Constants.Colors.scooter
     }
