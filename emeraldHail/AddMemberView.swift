@@ -11,6 +11,7 @@ import UIKit
 class AddMemberView: UIView {
 
     @IBOutlet var contentView: UIView!
+    @IBOutlet weak var plusButton: UIImageView!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -33,6 +34,12 @@ class AddMemberView: UIView {
         contentView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         contentView.topAnchor.constraint(equalTo: topAnchor).isActive = true
         contentView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        
+        plusButton.layer.shadowColor = UIColor.black.cgColor
+        plusButton.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+        plusButton.layer.masksToBounds = false
+        plusButton.layer.shadowRadius = 1.0
+        plusButton.layer.shadowOpacity = 0.3
     }
     
 }

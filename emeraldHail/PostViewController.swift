@@ -55,7 +55,6 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         postTableView.estimatedRowHeight = 150
         
         self.title = self.store.event.name
-
         
         plusButton.layer.shadowColor = UIColor.black.cgColor
         plusButton.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
