@@ -17,7 +17,7 @@ import MessageUI
 import Branch
 import LocalAuthentication
 
-class FamilySettingViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MFMailComposeViewControllerDelegate {
+class FamilySettingViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MFMailComposeViewControllerDelegate {
     
     // MARK: - Outlets
     
@@ -25,7 +25,7 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
     @IBOutlet weak var changeFamilyPicture: UIButton!
     @IBOutlet weak var changeFamilyName: UIButton!
     @IBOutlet weak var logout: UIButton!
-    @IBOutlet weak var touchID: UISegmentedControl!
+    @IBOutlet weak var touchID: UISwitch!
     @IBOutlet weak var touchIDLabel: UILabel!
     
     // MARK: - Properties
@@ -49,27 +49,36 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
         handleSelectProfileImageView()
     }
     
-    
-    @IBAction func logoutPressed(_ sender: Any) {
+    @IBAction func didPressLogout(_ sender: Any) {
         logoutApp()
     }
     
-    @IBAction func touchIDOnOff(_ sender: UISegmentedControl) {
-        
-        if touchID.selectedSegmentIndex == 0 {
-            
+    @IBAction func touchIDSwitch(_ sender: Any) {
+        if !touchID.isOn {
             touchID(activate: false)
             UserDefaults.standard.setValue("false", forKey: "touchID")
-            
-        }
-            
-        else if touchID.selectedSegmentIndex == 1 {
-            
+        } else {
             touchID(activate: true)
             UserDefaults.standard.setValue("true", forKey: "touchID")
-            
         }
     }
+    
+    //    @IBAction func touchIDOnOff(_ sender: UISegmentedControl) {
+    //
+    //        if touchID.selectedSegmentIndex == 0 {
+    //
+    //            touchID(activate: false)
+    //            UserDefaults.standard.setValue("false", forKey: "touchID")
+    //
+    //        }
+    //
+    //        else if touchID.selectedSegmentIndex == 1 {
+    //
+    //            touchID(activate: true)
+    //            UserDefaults.standard.setValue("true", forKey: "touchID")
+    //
+    //        }
+    //    }
     
     @IBAction func sendEmail(_ sender: UIButton) {
         sendEmail()
@@ -103,7 +112,7 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
         }
         
         print(branchUniversalObject)
-
+        
     }
     
     func logoutApp() {
@@ -116,7 +125,7 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
         } catch let signOutError as NSError {
             print ("Error signing out: \(signOutError.localizedDescription)")
         }
-
+        
     }
     
     
@@ -180,11 +189,8 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        print("picked canceled")
         dismiss(animated: true, completion: nil)
     }
-    
-    
     
     func sendEmail() {
         if MFMailComposeViewController.canSendMail() {
@@ -193,6 +199,9 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
             mail.setToRecipients(["thedocitapp@gmail.com"])
             mail.setSubject("Feedback")
             mail.setMessageBody("", isHTML: true)
+            
+            mail.navigationItem.leftBarButtonItem?.tintColor = UIColor.white
+            mail.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
             
             present(mail, animated: true)
         } else {
@@ -204,49 +213,36 @@ class FamilySettingViewController: UIViewController, UIImagePickerControllerDele
         controller.dismiss(animated: true)
     }
     
-    // Mark: Methods Touch ID
+    // MARK: - Touch ID Methods
     
     func checkTouchID() {
         
         let touchIDValue = UserDefaults.standard.value(forKey:"touchID") as? String
-
+        
         database.child(Constants.Database.settings).child(store.user.familyId).child("touchID").setValue(touchIDValue)
         
-            
-            if touchIDValue == "true" {
-                
-                self.touchID.selectedSegmentIndex = 1
-                
-            }
-                
-            else {
-                
-                self.touchID.selectedSegmentIndex = 0
-            }
-            
+        if touchIDValue == "true" {
+            self.touchID.setOn(true, animated: false)
+        } else {
+            self.touchID.setOn(false, animated: false)
         }
+    }
     
     
     func checkTouchIDIphone() {
-        
         let context = LAContext()
- 
+        
         if context.canEvaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, error: nil) {
-            
             print("this person has touch id")
-            
         } else {
-            
+            // Hide Touch ID if user doesn't have the available hardware
             touchID.isHidden = true
             touchIDLabel.isHidden = true
-            
         }
     }
     
     func touchID(activate: Bool) {
-        
         FIRDatabase.database().reference().child(Constants.Database.settings).child(store.user.familyId).child("touchID").setValue(activate)
-        
     }
     
 }
