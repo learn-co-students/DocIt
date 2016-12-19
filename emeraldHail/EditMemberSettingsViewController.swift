@@ -68,20 +68,17 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
     
     // MARK: - Actions
     
-    @IBAction func saveMemberSettings(_ sender: Any) {
+    @IBAction func didPressSave(_ sender: Any) {
         save.isEnabled = false
         activityIndicatorView.startAnimating()
         updateFirebaseValues()
     }
     
-//    @IBAction func didPressCancel(_ sender: Any) {
-//        let _ = navigationController?.popViewController(animated: true)
-//    }
+    @IBAction func didPressCancel(_ sender: Any) {
+        let _ = navigationController?.popViewController(animated: true)
+    }
     
-    
-    
-    @IBAction func deleteMemberButtonTapped(_ sender: Any) {
-        
+    @IBAction func didPressDeleteMember(_ sender: Any) {
         deleteMember.isEnabled = false
         
         // Alert Controller
@@ -213,14 +210,14 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
     
     
     func setupViews() {
-        firstNameTextField.docItStyle()
-        lastNameTextField.docItStyle()
-        dobTextField.docItStyle()
-        bloodTextField.docItStyle()
-        genderTextField.docItStyle()
-        heightTextField.docItStyle()
-        weightTextField.docItStyle()
-        allergiesTextField.docItStyle()
+//        firstNameTextField.docItStyle()
+//        lastNameTextField.docItStyle()
+//        dobTextField.docItStyle()
+//        bloodTextField.docItStyle()
+//        genderTextField.docItStyle()
+//        heightTextField.docItStyle()
+//        weightTextField.docItStyle()
+//        allergiesTextField.docItStyle()
     }
     
     func deletePostImagesFromStorage(uniqueID: String) {

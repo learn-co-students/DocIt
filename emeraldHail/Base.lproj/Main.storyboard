@@ -1000,12 +1000,18 @@
                                                         <action selector="genderEditingDidBegin:" destination="5vi-Bs-QCZ" eventType="editingDidBegin" id="nUd-E2-fiP"/>
                                                     </connections>
                                                 </textField>
+                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="TTC-cJ-NbV">
+                                                    <rect key="frame" x="169" y="6.5" width="37" height="37"/>
+                                                    <color key="color" red="0.28237730700000002" green="0.68787196510000004" blue="0.8862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </activityIndicatorView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="NgS-ph-7AW" firstAttribute="centerY" secondItem="Aca-U1-KGI" secondAttribute="centerY" id="F6H-DG-X1J"/>
                                                 <constraint firstAttribute="trailing" secondItem="NgS-ph-7AW" secondAttribute="trailing" constant="12" id="VfT-BQ-kxl"/>
                                                 <constraint firstItem="NgS-ph-7AW" firstAttribute="leading" secondItem="Aca-U1-KGI" secondAttribute="leading" constant="125" id="a5S-pf-3FA"/>
+                                                <constraint firstItem="TTC-cJ-NbV" firstAttribute="centerY" secondItem="Aca-U1-KGI" secondAttribute="centerY" id="kZd-2p-y6a"/>
                                                 <constraint firstItem="8UL-qQ-2c0" firstAttribute="leading" secondItem="Aca-U1-KGI" secondAttribute="leading" constant="12" id="pB5-sK-B5g"/>
+                                                <constraint firstItem="TTC-cJ-NbV" firstAttribute="centerX" secondItem="Aca-U1-KGI" secondAttribute="centerX" id="w8q-jn-E2N"/>
                                                 <constraint firstItem="8UL-qQ-2c0" firstAttribute="centerY" secondItem="Aca-U1-KGI" secondAttribute="centerY" id="y5W-ko-M2J"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -1141,7 +1147,7 @@
                                                     <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -1165,13 +1171,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8cf-US-RbK">
-                                                    <rect key="frame" x="138" y="12" width="99" height="27"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <rect key="frame" x="137" y="12" width="101" height="27"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                                                     <state key="normal" title="DELETE MEMBER">
                                                         <color key="titleColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
                                                     <connections>
-                                                        <action selector="deleteMemberButtonTapped:" destination="5vi-Bs-QCZ" eventType="touchUpInside" id="FwM-6O-vkx"/>
+                                                        <action selector="didPressDeleteMember:" destination="2fv-6t-BkR" eventType="touchUpInside" id="fwK-7V-por"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -1192,22 +1198,29 @@
                     <navigationItem key="navigationItem" title="Edit Member" id="bYp-Wt-Ptl">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="BHQ-bY-nfB">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="didPressCancel:" destination="2fv-6t-BkR" id="nLj-GC-K1O"/>
+                            </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="gSn-nC-5gv">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="gSn-nC-5gv">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="didPressSave:" destination="2fv-6t-BkR" id="tHU-zd-4Ys"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicatorView" destination="TTC-cJ-NbV" id="V6Y-aI-hVF"/>
                         <outlet property="allergiesTextField" destination="714-i9-RTL" id="MiH-wn-OUU"/>
                         <outlet property="bloodTextField" destination="SN0-9c-UAH" id="mPJ-Ef-4g4"/>
-                        <outlet property="deleteMember" destination="8cf-US-RbK" id="rmH-2E-waA"/>
+                        <outlet property="deleteMember" destination="8cf-US-RbK" id="H3z-y6-sL2"/>
                         <outlet property="dobTextField" destination="7dv-tn-qFD" id="gra-w8-ecT"/>
                         <outlet property="firstNameTextField" destination="uVI-q2-uFw" id="gcs-cL-TBE"/>
                         <outlet property="genderTextField" destination="NgS-ph-7AW" id="1Ar-bg-TIo"/>
                         <outlet property="heightTextField" destination="bHj-pK-azA" id="EAo-hj-c80"/>
                         <outlet property="lastNameTextField" destination="CMX-70-t2S" id="hwi-F9-sGn"/>
                         <outlet property="profilePicture" destination="wPc-OM-0bq" id="aa7-zZ-TcT"/>
-                        <outlet property="save" destination="gSn-nC-5gv" id="Epx-bz-Tig"/>
+                        <outlet property="save" destination="gSn-nC-5gv" id="VBO-Ck-kUd"/>
                         <outlet property="weightTextField" destination="NMl-oI-m5N" id="ZiR-gr-YXU"/>
                     </connections>
                 </tableViewController>
