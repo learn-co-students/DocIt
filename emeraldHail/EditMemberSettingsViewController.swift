@@ -12,7 +12,7 @@ import FirebaseStorage
 import Firebase
 import Fusuma
 
-class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDataSource, FusumaDelegate {
+class EditMemberSettingsViewController: UITableViewController, UIPickerViewDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDataSource, FusumaDelegate {
     
     // MARK: - Outlets
     
@@ -58,15 +58,12 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
         weightSelection.delegate = self
         heightSelection.delegate = self
         
-        
         bloodTextField.inputView = bloodSelection
         genderTextField.inputView = genderSelection
         weightTextField.inputView = weightSelection
         heightTextField.inputView = heightSelection
         
         setupViews()
-        
-        
     }
     
     // MARK: - Actions
@@ -77,9 +74,11 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
         updateFirebaseValues()
     }
     
-    @IBAction func didPressCancel(_ sender: Any) {
-        let _ = navigationController?.popViewController(animated: true)
-    }
+//    @IBAction func didPressCancel(_ sender: Any) {
+//        let _ = navigationController?.popViewController(animated: true)
+//    }
+    
+    
     
     @IBAction func deleteMemberButtonTapped(_ sender: Any) {
         
@@ -185,8 +184,6 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
         
         // Present the controller
         self.present(alertController, animated: true, completion: nil)
-        
-        
     }
     
     // MARK: - Methods
@@ -216,7 +213,6 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
     
     
     func setupViews() {
-        
         firstNameTextField.docItStyle()
         lastNameTextField.docItStyle()
         dobTextField.docItStyle()
@@ -225,22 +221,21 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
         heightTextField.docItStyle()
         weightTextField.docItStyle()
         allergiesTextField.docItStyle()
-        
     }
     
-    func deletePostImagesFromStorage(uniqueID: String){
+    func deletePostImagesFromStorage(uniqueID: String) {
         
-        storageRef.child(Constants.Storage.postsImages).child(uniqueID).delete(completion: { error -> Void in
+        storageRef.child(Constants.Storage.postsImages).child(uniqueID).delete { error -> Void in
             
             if error != nil {
                 print("******* Error occured while deleting post imgs from Firebase storage ******** \(uniqueID)")
             } else {
                 print("Post image removed from Firebase successfully! \(uniqueID)")
             }
-            
-        })
+        }
     }
-    func deleteProfileImagesFromStorage(){
+    
+    func deleteProfileImagesFromStorage() {
         
         storageRef.child(Constants.Storage.profileImages).child(self.store.member.id).delete { error -> Void in
             
@@ -250,7 +245,6 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
                 print("profile img removed successfully from the associated member")
             }
         }
-        
     }
     
     
@@ -366,7 +360,7 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
         return true
     }
     
-    func textFieldDidBeginEditing(_ textField: UITextField){
+    func textFieldDidBeginEditing(_ textField: UITextField) {
         let dobSelection = UIDatePicker()
         dobTextField.inputView = dobSelection
         dobSelection.datePickerMode = UIDatePickerMode.date
@@ -393,7 +387,6 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int{
-        
         switch pickerView {
         case bloodSelection:
             return 1
@@ -405,12 +398,10 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
             return 2
         default:
             return 1
-            
         }
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
-        
         switch pickerView {
         case bloodSelection:
             return store.bloodTypeSelections.count
@@ -431,8 +422,6 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
-        
         switch pickerView {
         case bloodSelection:
             bloodTextField.text = store.bloodTypeSelections[row]
@@ -454,7 +443,6 @@ class EditMemberSettingsViewController: UIViewController, UIPickerViewDelegate, 
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        
         switch pickerView {
         case bloodSelection:
             return store.bloodTypeSelections[row]
