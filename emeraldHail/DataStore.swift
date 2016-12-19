@@ -10,6 +10,7 @@ import Foundation
 import CoreData
 
 class DataStore{
+    
     private init(){}
     static let sharedInstance = DataStore()
 
@@ -54,6 +55,10 @@ class DataStore{
     
     var buttonEvent = ""
     
+    // MARK: - Measurement system
+
+    var isMetric = false
+    
     // MARK: - Picker values
     
     var bloodTypeSelections : [String] = [BloodType.ABNeg.rawValue, BloodType.ABPos.rawValue, BloodType.ANeg.rawValue, BloodType.APos.rawValue, BloodType.BNeg.rawValue, BloodType.BPos.rawValue, BloodType.ONeg.rawValue, BloodType.OPos.rawValue]
@@ -61,6 +66,12 @@ class DataStore{
     var genderSelections: [String] = [Gender.female.rawValue, Gender.male.rawValue, Gender.other.rawValue] 
     
     var heightSelections : [String] = ["0\"","1\"","2\"","3\"","4\"","5\"","6\"", "7\"","8\"","9\"","11\""]
+    
+    var heightSelectionsinMeter: [String] = [
+        " - ", "1", "2"
+    ]
+    
+    var heightSelectionsinCm: [String] = []
     
     var heightSelectionsFeet : [String] = ["0'","1'","2'","3'","4'","5'","6'", "7'","8'","9'"]
     
@@ -77,6 +88,14 @@ class DataStore{
             weightSelections.append("\(i) LB")
         }
         
+    }
+    
+    func fillHeightData() {
+        
+        for i in 0...99 {
+            
+            heightSelectionsinCm.append("\(i) cm")
+        }
     }
 
     var eventID = ""

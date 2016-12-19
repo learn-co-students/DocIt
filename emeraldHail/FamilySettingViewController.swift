@@ -19,6 +19,9 @@ import LocalAuthentication
 
 class FamilySettingViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MFMailComposeViewControllerDelegate {
     
+    // MARK: - DataStore reference
+    let store = DataStore.sharedInstance
+    
     // MARK: - Outlets
     
     @IBOutlet weak var inviteFamily: UIButton!
@@ -32,20 +35,22 @@ class FamilySettingViewController: UITableViewController, UIImagePickerControlle
     @IBOutlet weak var metricSystemButton: UIButton!
     @IBOutlet weak var imperialSystemButton: UIButton!
     
+    @IBOutlet weak var metricCell: UITableViewCell!
+    @IBOutlet weak var imperialCell: UITableViewCell!
     
-    // MARK: - Properties
-    
-    let store = DataStore.sharedInstance
+    // MARK: - Firebase Database
+
     let database = FIRDatabase.database().reference()
     
     // MARK: - Loads
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupView()
         checkTouchID()
         checkTouchIDIphone()
+        metricCell.accessoryType = .none
+        
     }
     
     // MARK: - Actions
@@ -77,14 +82,21 @@ class FamilySettingViewController: UITableViewController, UIImagePickerControlle
     }
     
     @IBAction func metricButtonTapped(_ sender: UIButton) {
+        store.isMetric = true
+        imperialCell.accessoryType = .none
+        metricCell.accessoryType = .checkmark
         print("metric button tapped")
+        print(store.isMetric)
     }
     
     @IBAction func imperialButtonTapped(_ sender: UIButton) {
+        store.isMetric = false
+        metricCell.accessoryType = .none
+        imperialCell.accessoryType = .checkmark
         print("imperial button tapped")
+        print(store.isMetric)
         
     }
-    
     
     
     // MARK: - Methods
