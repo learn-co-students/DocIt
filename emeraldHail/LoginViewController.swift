@@ -45,26 +45,6 @@ class LoginViewController: UIViewController {
         
         configureGoogleButton()
         
-        // 1.
-        //  let hasLogin = UserDefaults.standard.bool(forKey: "hasLoginKey")
-        
-        // 2.
-        //if hasLogin {
-        //            loginButton.setTitle("Login", forState: UIControlState.Normal)
-        //            loginButton.tag = loginButtonTag
-        //            createInfoLabel.hidden = true
-        // } else {
-        //            loginButton.setTitle("Create", forState: UIControlState.Normal)
-        //            loginButton.tag = createLoginButtonTag
-        //            createInfoLabel.hidden = false
-        //}
-        
-        // 3.
-        // if let storedUsername = UserDefaults.standard.bool(forKey:"username") as? String {
-        //emailField.text = storedUsername as String
-        //}
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -167,7 +147,7 @@ class LoginViewController: UIViewController {
                         self.store.family.id = familyID
                         self.store.user.email = email
                         
-                        self.addDataToKeychain(userID: self.store.user.id, familyID: self.store.user.familyId, email: self.store.user.email)
+                        self.addDataToKeychain(userID: self.store.user.id, familyID: self.store.user.familyId, email: self.store.user.email, auth: "email")
                         
                         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
                             
@@ -190,7 +170,7 @@ class LoginViewController: UIViewController {
                 
                 self.store.inviteFamilyID = ""
                 
-                self.addDataToKeychain(userID: self.store.user.id, familyID: self.store.user.familyId, email: self.store.user.email)
+                self.addDataToKeychain(userID: self.store.user.id, familyID: self.store.user.familyId, email: self.store.user.email, auth: "email")
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
                     
@@ -202,11 +182,6 @@ class LoginViewController: UIViewController {
             }
             
         }
-        
-        
-        //            NotificationCenter.default.post(name: .openfamilyVC, object: nil)
-        //            self.performSegue(withIdentifier: "showFamily", sender: nil)
-        
     }
     
     func checkLogin(username: String, password: String ) -> Bool {
@@ -291,7 +266,7 @@ extension LoginViewController: GIDSignInDelegate {
                     self.store.user.familyId = familyID
                     self.store.family.id = familyID
                     
-                    self.addDataToKeychain(userID: self.store.user.id, familyID: self.store.user.familyId, email: self.store.user.email)
+                    self.addDataToKeychain(userID: self.store.user.id, familyID: self.store.user.familyId, email: self.store.user.email, auth: "google")
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
                         NotificationCenter.default.post(name: Notification.Name.openfamilyVC, object: nil)
@@ -299,7 +274,8 @@ extension LoginViewController: GIDSignInDelegate {
                     
                     print(self.store.user.id)
                     print(self.store.user.familyId)
-                    
+                    print(self.store.user.email)
+                    print("=========================> \(loggedInUser?.providerData)")
 
                     //self.activityIndicatorView.stopAnimating()
 
@@ -317,8 +293,9 @@ extension LoginViewController: GIDSignInDelegate {
                     
                     self.store.user.familyId = familyID
                     self.store.family.id = familyID
+                    print(self.store.user.email)
                     
-                     self.addDataToKeychain(userID: self.store.user.id, familyID: self.store.user.familyId, email: self.store.user.email)
+                    self.addDataToKeychain(userID: self.store.user.id, familyID: self.store.user.familyId, email: self.store.user.email, auth: "google")
                     
                     self.database.child(Constants.Database.user).child(userID).child("familyID").setValue(familyID)
                     self.database.child(Constants.Database.family).child(familyID).child("name").setValue("New Family")
@@ -336,11 +313,12 @@ extension LoginViewController: GIDSignInDelegate {
         })
     }
     
-    func addDataToKeychain(userID: String, familyID: String, email: String) {
+    func addDataToKeychain(userID: String, familyID: String, email: String, auth: String) {
         
         UserDefaults.standard.setValue(userID, forKey: "user")
         UserDefaults.standard.setValue(familyID, forKey: "family")
         UserDefaults.standard.setValue(email, forKey: "email")
+        UserDefaults.standard.setValue(auth, forKey: "auth")
         
         MyKeychainWrapper.mySetObject(passwordField.text, forKey:kSecValueData)
         MyKeychainWrapper.writeToKeychain()
