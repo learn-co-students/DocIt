@@ -53,16 +53,6 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
         addProfileSettings()
         displayMemberProfileEdits()
         
-        bloodSelection.delegate = self
-        genderSelection.delegate = self
-        weightSelection.delegate = self
-        heightSelection.delegate = self
-        
-        bloodTextField.inputView = bloodSelection
-        genderTextField.inputView = genderSelection
-        weightTextField.inputView = weightSelection
-        heightTextField.inputView = heightSelection
-        
         setupViews()
     }
     
@@ -208,16 +198,20 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
         dobSelection.addTarget(self, action: #selector(self.datePickerChanged(sender:)) , for: .valueChanged)
     }
     
+    @IBAction func didPressChangePhoto(_ sender: Any) {
+        handleCameraImage()
+    }
     
     func setupViews() {
-//        firstNameTextField.docItStyle()
-//        lastNameTextField.docItStyle()
-//        dobTextField.docItStyle()
-//        bloodTextField.docItStyle()
-//        genderTextField.docItStyle()
-//        heightTextField.docItStyle()
-//        weightTextField.docItStyle()
-//        allergiesTextField.docItStyle()
+        bloodSelection.delegate = self
+        genderSelection.delegate = self
+        weightSelection.delegate = self
+        heightSelection.delegate = self
+        
+        bloodTextField.inputView = bloodSelection
+        genderTextField.inputView = genderSelection
+        weightTextField.inputView = weightSelection
+        heightTextField.inputView = heightSelection
     }
     
     func deletePostImagesFromStorage(uniqueID: String) {
@@ -251,7 +245,6 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
         addGestureRecognizer(imageView: profilePicture)
         profilePicture.isUserInteractionEnabled = true
         profilePicture.setRounded()
-        
     }
     
     func addGestureRecognizer(imageView: UIImageView){
@@ -287,7 +280,7 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
         let storageRef = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
         let imageId = uniqueID
         let storageImageRef = storageRef.child(Constants.Storage.profileImages).child(imageId)
-       
+        
         if let uploadData = UIImageJPEGRepresentation(profilePicture, 0.25) {
             
             storageImageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
@@ -379,7 +372,7 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
         formatter.dateStyle = .medium
         formatter.timeStyle = .none
         formatter.dateFormat = "MMM dd, yyyy"
-
+        
         dobTextField.text = formatter.string(from: sender.date).uppercased()
     }
     
@@ -506,6 +499,6 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
         print("Camera access denied")
         
     }
-
+    
     
 }

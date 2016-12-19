@@ -27,6 +27,8 @@ class FamilySettingViewController: UITableViewController, UIImagePickerControlle
     @IBOutlet weak var logout: UIButton!
     @IBOutlet weak var touchID: UISwitch!
     @IBOutlet weak var touchIDLabel: UILabel!
+    @IBOutlet weak var touchIDCell: UITableViewCell!
+    @IBOutlet weak var madeCell: UITableViewCell!
     
     // MARK: - Properties
     
@@ -63,23 +65,6 @@ class FamilySettingViewController: UITableViewController, UIImagePickerControlle
         }
     }
     
-    //    @IBAction func touchIDOnOff(_ sender: UISegmentedControl) {
-    //
-    //        if touchID.selectedSegmentIndex == 0 {
-    //
-    //            touchID(activate: false)
-    //            UserDefaults.standard.setValue("false", forKey: "touchID")
-    //
-    //        }
-    //
-    //        else if touchID.selectedSegmentIndex == 1 {
-    //
-    //            touchID(activate: true)
-    //            UserDefaults.standard.setValue("true", forKey: "touchID")
-    //
-    //        }
-    //    }
-    
     @IBAction func sendEmail(_ sender: UIButton) {
         sendEmail()
     }
@@ -91,12 +76,12 @@ class FamilySettingViewController: UITableViewController, UIImagePickerControlle
     // MARK: - Methods
     
     func setupView() {
-        
         inviteFamily.docItStyle()
         changeFamilyPicture.docItStyle()
         changeFamilyName.docItStyle()
         logout.docItStyle()
         
+//        madeCell.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0)
     }
     
     func inviteParent() {
@@ -200,8 +185,7 @@ class FamilySettingViewController: UITableViewController, UIImagePickerControlle
             mail.setSubject("Feedback")
             mail.setMessageBody("", isHTML: true)
             
-            mail.navigationItem.leftBarButtonItem?.tintColor = UIColor.white
-            mail.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
+            mail.navigationBar.tintColor = UIColor.white
             
             present(mail, animated: true)
         } else {
@@ -238,6 +222,7 @@ class FamilySettingViewController: UITableViewController, UIImagePickerControlle
             // Hide Touch ID if user doesn't have the available hardware
             touchID.isHidden = true
             touchIDLabel.isHidden = true
+            touchIDCell.isHidden = true
         }
     }
     
