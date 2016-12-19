@@ -87,8 +87,8 @@ class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         temperaturePickerView.tintColor = Constants.Colors.submarine
         
         saveButton.docItStyle()
-        saveButton.isEnabled = false
-        saveButton.backgroundColor = Constants.Colors.submarine
+//        saveButton.isEnabled = false
+//        saveButton.backgroundColor = Constants.Colors.submarine
         cancelButton.docItStyle()
         
     }
@@ -108,8 +108,6 @@ class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
             tempType = "Ear"
         case 2:
             tempType = "Armpit"
-            
-            
         default: tempType = "Ear"
         }
         
@@ -118,11 +116,7 @@ class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         postsRef.setValue(newTemp.serialize(), withCompletionBlock: { error, ref in
             self.dismiss(animated: true, completion: nil)
         })
-        
-
     }
-    
-    
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return availableTemps.count
