@@ -37,8 +37,10 @@ class WelcomeViewController: UIViewController {
         updateFamilyId()
         setupViews()
         checkTouchID()
-        store.fillWeightData()
-        store.fillHeightData()
+        store.fillWeightDataInLbs()
+        store.fillHeightDataInCm()
+        store.fillWeightDataInKg()
+        store.fillWeightDataInG()
         GIDSignIn.sharedInstance().uiDelegate = self
         GIDSignIn.sharedInstance().delegate = self
         

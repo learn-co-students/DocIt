@@ -45,6 +45,10 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
     let heightSelection = UIPickerView()
     var feet = String()
     var inches = String()
+    var meter = String()
+    var centimeter = String()
+    var kg = String()
+    var g = String()
     
     // MARK: - Loads
     
@@ -57,6 +61,9 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
     }
     
     // MARK: - Actions
+    
+    
+    // SAVE, CANCEL and DELETE
     
     @IBAction func didPressSave(_ sender: Any) {
         save.isEnabled = false
@@ -180,11 +187,14 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
     }
     
     @IBAction func heightEditingDidBegin(_ sender: Any) {
-        heightTextField.text = store.heightSelectionsFeet[heightSelection.selectedRow(inComponent: 0)] + store.heightSelections[heightSelection.selectedRow(inComponent: 1)]
+        if store.isMetric == false {
+        heightTextField.text = store.heightsInInches[heightSelection.selectedRow(inComponent: 0)] + store.heightsInFeet[heightSelection.selectedRow(inComponent: 1)]
+        } else {
+            heightTextField.text = store.heightsInMeter[heightSelection.selectedRow(inComponent: 0)] + store.heightsInCm[heightSelection.selectedRow(inComponent: 1)]
+        }
     }
-    
     @IBAction func weightEditingDidBegin(_ sender: Any) {
-        weightTextField.text = store.weightSelections[weightSelection.selectedRow(inComponent: 0)]
+        weightTextField.text = store.weightsInLbs[weightSelection.selectedRow(inComponent: 0)]
     }
     
     @IBAction func bloodTypeEditingDidBegin(_ sender: Any) {
@@ -213,6 +223,8 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
         weightTextField.inputView = weightSelection
         heightTextField.inputView = heightSelection
     }
+    
+    // MARK: - Firebase Storage Image Deletion
     
     func deletePostImagesFromStorage(uniqueID: String) {
         
@@ -312,6 +324,7 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
     }
     
     func displayMemberProfileEdits() {
+        
         let member = databaseMember.child(store.user.familyId).child(store.member.id)
         
         member.observe(.value, with: { (snapshot) in
@@ -377,6 +390,7 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int{
+        if store.isMetric == false {
         switch pickerView {
         case bloodSelection:
             return 1
@@ -389,67 +403,170 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
         default:
             return 1
         }
+        } else {
+            switch pickerView {
+            case bloodSelection:
+                return 1
+            case genderSelection:
+                return 1
+            case weightSelection:
+                return 2
+            case heightSelection:
+                return 2
+            default:
+                return 1
+            }
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
+        
+        if store.isMetric == false {
         switch pickerView {
         case bloodSelection:
             return store.bloodTypeSelections.count
         case genderSelection:
             return store.genderSelections.count
         case weightSelection:
-            return store.weightSelections.count
+            return store.weightsInLbs.count
         case heightSelection:
             if component == 0 {
-                return store.heightSelectionsFeet.count
+                return store.heightsInFeet.count
             } else if component == 1 {
-                return store.heightSelections.count
+                return store.heightsInInches.count
             }
         default:
             break
         }
         return 0
+        } else {
+            switch pickerView {
+            case bloodSelection:
+                return store.bloodTypeSelections.count
+            case genderSelection:
+                return store.genderSelections.count
+            case weightSelection:
+                if component == 0 {
+                    return store.weightsInKg.count
+                } else if component == 1 {
+                    return store.weightsInG.count
+                }
+            case heightSelection:
+                if component == 0 {
+                    return store.heightsInMeter.count
+                } else if component == 1 {
+                    return store.heightsInCm.count
+                }
+            default:
+                break
+            }
+            return 0
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        switch pickerView {
-        case bloodSelection:
-            bloodTextField.text = store.bloodTypeSelections[row]
-        case genderSelection:
-            genderTextField.text = store.genderSelections[row]
-        case weightSelection:
-            weightTextField.text = store.weightSelections[row]
-        case heightSelection:
-            if component == 0 {
-                feet = store.heightSelectionsFeet[row]
-            } else if component == 1 {
-                inches = store.heightSelections[row]
+        
+        if store.isMetric == false {
+            switch pickerView {
+            case bloodSelection:
+                bloodTextField.text = store.bloodTypeSelections[row]
+            case genderSelection:
+                genderTextField.text = store.genderSelections[row]
+            case weightSelection:
+                weightTextField.text = store.weightsInLbs[row]
+            case heightSelection:
+                if component == 0 {
+                    feet = store.heightsInFeet[row]
+                } else if component == 1 {
+                    inches = store.heightsInInches[row]
+                }
+                heightTextField.text = "\(feet)\(inches)"
+            default:
+                break
             }
-            heightTextField.text = "\(feet)\(inches)"
-        default:
-            break
+        } else {
+            switch pickerView {
+            case bloodSelection:
+                bloodTextField.text = store.bloodTypeSelections[row]
+            case genderSelection:
+                genderTextField.text = store.genderSelections[row]
+            case weightSelection:
+                kg = "0."
+                if component == 0 {
+                    kg = store.weightsInKg[row]
+                } else if component == 1 {
+                    g = store.weightsInG[row]
+                }
+                
+                if kg == "0." {
+                    weightTextField.text = "\(kg)\(g)"
+                } else {
+                weightTextField.text = "\(kg).\(g)"
+                }
+            case heightSelection:
+                if component == 0 {
+                    meter = store.heightsInMeter[row]
+                } else if component == 1 {
+                    centimeter = store.heightsInCm[row]
+                }
+                if meter == " - " {
+                    heightTextField.text = "\(centimeter)"
+                } else {
+                heightTextField.text = "\(meter) \(centimeter)"
+                }
+            default:
+                break
+            }
+            
         }
         
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        switch pickerView {
-        case bloodSelection:
-            return store.bloodTypeSelections[row]
-        case genderSelection:
-            return store.genderSelections[row]
-        case weightSelection:
-            return store.weightSelections[row]
-        case heightSelection:
-            if component == 0 {
-                return store.heightSelectionsFeet[row]
-            } else if component == 1 {
-                return store.heightSelections[row]
+        
+        if store.isMetric == false {
+            
+            switch pickerView {
+            case bloodSelection:
+                return store.bloodTypeSelections[row]
+            case genderSelection:
+                return store.genderSelections[row]
+            case weightSelection:
+                return store.weightsInLbs[row]
+            case heightSelection:
+                if component == 0 {
+                    return store.heightsInInches[row]
+                } else if component == 1 {
+                    return store.heightsInFeet[row]
+                }
+            default:
+                break
             }
-        default:
-            break
+            return ""
+        } else {
+            
+            switch pickerView {
+            case bloodSelection:
+                return store.bloodTypeSelections[row]
+            case genderSelection:
+                return store.genderSelections[row]
+            case weightSelection:
+                if component == 0 {
+                    return store.weightsInKg[row]
+                } else if component == 1 {
+                    return store.weightsInG[row]
+                }
+            case heightSelection:
+                if component == 0 {
+                    return store.heightsInMeter[row]
+                } else if component == 1 {
+                    return store.heightsInCm[row]
+                }
+            default:
+                break
+            }
+            return ""
         }
-        return ""
     }
     
     
