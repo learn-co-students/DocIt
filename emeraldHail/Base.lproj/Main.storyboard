@@ -1235,15 +1235,15 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="MEASUREMENT SYSTEM" id="mCs-5O-RBh">
                                 <cells>
-                                    <tableViewCell opaque="NO" clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" selectionStyle="none" accessoryType="checkmark" indentationWidth="0.0" reuseIdentifier="metric" editingAccessoryType="checkmark" rowHeight="50" id="U4w-aV-NA5">
-                                        <rect key="frame" x="0.0" y="309" width="375" height="50"/>
+                                    <tableViewCell opaque="NO" clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" selectionStyle="none" indentationWidth="0.0" reuseIdentifier="metric" rowHeight="50" id="U4w-aV-NA5">
+                                        <rect key="frame" x="0.0" y="310" width="375" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="U4w-aV-NA5" id="oY5-qX-3mF">
-                                            <rect key="frame" x="0.0" y="0.0" width="336" height="49"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tQG-2w-67m" userLabel="Metric System">
-                                                    <rect key="frame" x="0.0" y="0.0" width="336" height="49"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                                                     <state key="normal" title="METRIC SYSTEM">
                                                         <color key="titleColor" red="0.1843137255" green="0.75294117650000003" blue="0.87843137250000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1264,15 +1264,15 @@
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
-                                    <tableViewCell opaque="NO" clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" selectionStyle="none" accessoryType="checkmark" indentationWidth="0.0" reuseIdentifier="imperial" rowHeight="50" id="uNL-Fb-DRq" userLabel="imperial">
-                                        <rect key="frame" x="0.0" y="359" width="375" height="50"/>
+                                    <tableViewCell opaque="NO" clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" selectionStyle="none" indentationWidth="0.0" reuseIdentifier="imperial" rowHeight="50" id="uNL-Fb-DRq" userLabel="imperial">
+                                        <rect key="frame" x="0.0" y="360" width="375" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uNL-Fb-DRq" id="EPq-GU-ESa">
-                                            <rect key="frame" x="0.0" y="0.0" width="336" height="49"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2W1-mu-UJb" userLabel="Imperial System">
-                                                    <rect key="frame" x="0.0" y="1" width="336" height="49"/>
+                                                    <rect key="frame" x="0.0" y="1" width="375" height="49"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                                                     <state key="normal" title="IMPERIAL SYSTEM">
                                                         <color key="titleColor" red="0.1843137255" green="0.75294117650000003" blue="0.87843137250000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1297,7 +1297,7 @@
                             <tableViewSection headerTitle="FEEDBACK" id="EI5-Vc-JFC">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="sendFeedback" rowHeight="50" id="OI3-S8-DVi">
-                                        <rect key="frame" x="0.0" y="462" width="375" height="50"/>
+                                        <rect key="frame" x="0.0" y="464" width="375" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OI3-S8-DVi" id="rqx-i4-Y9c">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
@@ -1328,7 +1328,7 @@
                             <tableViewSection id="b2c-T0-nUb">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="logout" rowHeight="50" id="fyf-Od-FCD">
-                                        <rect key="frame" x="0.0" y="542" width="375" height="50"/>
+                                        <rect key="frame" x="0.0" y="544" width="375" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fyf-Od-FCD" id="c67-FT-x5M">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
@@ -1358,14 +1358,14 @@
                             <tableViewSection id="FPi-h8-Nzw">
                                 <cells>
                                     <tableViewCell opaque="NO" clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" selectionStyle="none" indentationWidth="0.0" reuseIdentifier="made" rowHeight="50" id="QbM-0B-tfB">
-                                        <rect key="frame" x="0.0" y="622" width="375" height="50"/>
+                                        <rect key="frame" x="0.0" y="624" width="375" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QbM-0B-tfB" id="Qor-5a-4Qq">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Made with ❤️ in NYC" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sp1-VH-aGL">
-                                                    <rect key="frame" x="-1" y="16" width="376" height="18"/>
+                                                    <rect key="frame" x="-0.5" y="16" width="375" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>

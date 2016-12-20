@@ -14,7 +14,6 @@ class DataStore{
     private init(){}
     static let sharedInstance = DataStore()
 
-
     lazy var persistentContainer: NSPersistentContainer = {
 
         let container = NSPersistentContainer(name: "HealthCore")

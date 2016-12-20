@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11542" systemVersion="16C48b" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11542" systemVersion="15G1108" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="CurrentUser" representedClassName="CurrentUser" syncable="YES" codeGenerationType="class">
         <attribute name="familyID" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="MetricSystem" representedClassName="MetricSystem" syncable="YES" codeGenerationType="class">
+        <attribute name="isMetric" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
     <elements>
         <element name="CurrentUser" positionX="-54" positionY="-9" width="128" height="60"/>
+        <element name="MetricSystem" positionX="-54" positionY="0" width="128" height="60"/>
     </elements>
 </model>

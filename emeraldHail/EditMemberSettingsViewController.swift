@@ -52,6 +52,15 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
     
     // MARK: - Loads
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        if let measurementSystem = UserDefaults.standard.value(forKey: "isMetric") as? Bool {
+            if measurementSystem == true {
+                store.isMetric = true
+                
+            }
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         addProfileSettings()

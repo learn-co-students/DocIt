@@ -49,7 +49,17 @@ class FamilySettingViewController: UITableViewController, UIImagePickerControlle
         setupView()
         checkTouchID()
         checkTouchIDIphone()
-        metricCell.accessoryType = .none
+        if let measurementSystem = UserDefaults.standard.value(forKey: "isMetric") as? Bool {
+            if measurementSystem == true {
+                store.isMetric = true
+                metricCell.accessoryType = .checkmark
+                imperialCell.accessoryType = .none
+            } else {
+                store.isMetric = false
+                imperialCell.accessoryType = .checkmark
+                metricCell.accessoryType = .none
+            }
+        }
         
     }
     
@@ -82,20 +92,31 @@ class FamilySettingViewController: UITableViewController, UIImagePickerControlle
     }
     
     @IBAction func metricButtonTapped(_ sender: UIButton) {
+        if store.isMetric == true {
+            metricCell.accessoryType = .checkmark
+            imperialCell.accessoryType = .none
+        } else {
         store.isMetric = true
+        UserDefaults.standard.set(true, forKey: "isMetric")
         imperialCell.accessoryType = .none
         metricCell.accessoryType = .checkmark
         print("metric button tapped")
         print(store.isMetric)
+        }
     }
     
     @IBAction func imperialButtonTapped(_ sender: UIButton) {
+        if store.isMetric == false {
+            metricCell.accessoryType = .none
+            imperialCell.accessoryType = .checkmark
+        } else {
         store.isMetric = false
+        UserDefaults.standard.set(false, forKey: "isMetric")
         metricCell.accessoryType = .none
         imperialCell.accessoryType = .checkmark
         print("imperial button tapped")
         print(store.isMetric)
-        
+        }
     }
     
     

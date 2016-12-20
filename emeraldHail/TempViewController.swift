@@ -89,7 +89,7 @@ class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
 //        saveButton.isEnabled = false
 //        saveButton.backgroundColor = Constants.Colors.submarine
         cancelButton.docItStyle()
-
+        
     }
 
     func saveTemp() {
@@ -118,7 +118,13 @@ class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return store.tempsInF.count
+        var numberOfItems = 0
+        if store.isMetric == false {
+            numberOfItems = store.tempsInF.count
+        } else {
+            numberOfItems = store.tempsInC.count
+        }
+        return numberOfItems
     }
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -127,12 +133,22 @@ class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         //var temperatures = availableTemps[row].description -> Attempt to change the color of the font in the UI PickerView
-        return store.tempsInF[row]
+        var selectedTemps = ""
+        if store.isMetric == false {
+            selectedTemps = store.tempsInF[row]
+        } else {
+            selectedTemps = store.tempsInC[row]
+        }
+        return selectedTemps
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         //save the value for the pickerview temperature selected.
+        if store.isMetric == false {
         selectedTemp = store.tempsInF[row]
+        } else {
+            selectedTemp = store.tempsInC[row]
+        }
         saveButton.isEnabled = true
         saveButton.backgroundColor = Constants.Colors.scooter
     }
