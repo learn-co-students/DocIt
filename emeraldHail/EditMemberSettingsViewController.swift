@@ -47,8 +47,8 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
     var inches = String()
     var meter = String()
     var centimeter = String()
-    var kg = String()
-    var g = String()
+    var kg = "0."
+    var g = "0"
     
     // MARK: - Loads
     
@@ -500,8 +500,6 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
             case genderSelection:
                 genderTextField.text = store.genderSelections[row]
             case weightSelection:
-                kg = "0."
-                g = "0"
                 if component == 0 {
                     kg = store.weightsInKg[row]
                 } else if component == 1 {
@@ -511,15 +509,10 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
                 if kg == "0." {
                     weightTextField.text = "\(kg)\(g)"
                 } else {
-                weightTextField.text = "\(kg).\(g)"
+                    weightTextField.text = "\(kg).\(g)"
                 }
                 
-                if g == "0" {
-                    weightTextField.text = "\(kg).\(g) kg"
-                } else {
-                    weightTextField.text = "\(kg)\(g)"
-                }
-            case heightSelection:
+                case heightSelection:
                 if component == 0 {
                     meter = store.heightsInMeter[row]
                 } else if component == 1 {
