@@ -33,8 +33,8 @@ class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     var database: FIRDatabaseReference = FIRDatabase.database().reference()
     var postRef : FIRDatabaseReference = FIRDatabase.database().reference().child("posts")
 
-    // Set default temp
-    var selectedTemp = "98.6"
+    // Default temp
+    var selectedTemp:String = ""
 
     // MARK: - Loads
 
@@ -70,6 +70,13 @@ class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     // MARK: - Methods
 
     func setupView() {
+        
+        // default temp values in F and C
+        if store.isMetric == false {
+            selectedTemp = "98.6"
+        } else {
+            selectedTemp = "37.0"
+        }
 
         postTitleLabel.text = "What's \(store.member.firstName)'s Temp?"
 
@@ -133,6 +140,8 @@ class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         //var temperatures = availableTemps[row].description -> Attempt to change the color of the font in the UI PickerView
+        
+        // F vs C
         var selectedTemps = ""
         if store.isMetric == false {
             selectedTemps = store.tempsInF[row]
