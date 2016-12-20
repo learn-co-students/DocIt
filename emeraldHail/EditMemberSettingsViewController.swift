@@ -46,8 +46,8 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
     var feet = String()
     var inches = String()
     var meter = String()
-    var centimeter = String()
-    var kg = "0."
+    var centimeter = "0"
+    var kg = "0"
     var g = "0"
     
     // MARK: - Loads
@@ -506,11 +506,8 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
                     g = store.weightsInG[row]
                 }
                 
-                if kg == "0." {
-                    weightTextField.text = "\(kg)\(g)"
-                } else {
-                    weightTextField.text = "\(kg).\(g)"
-                }
+                weightTextField.text = "\(kg).\(g) kg"
+                
                 
                 case heightSelection:
                 if component == 0 {
@@ -531,6 +528,19 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
         
     }
     
+    func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
+        var width = CGFloat(100.0)
+        if store.isMetric == true {
+            switch pickerView {
+            case weightSelection:
+                width = 65.0
+            default:
+                width = 100.0
+            }
+        }
+        return width
+    }
+    
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
         if store.isMetric == false {
@@ -544,9 +554,9 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
                 return store.weightsInLbs[row]
             case heightSelection:
                 if component == 0 {
-                    return store.heightsInInches[row]
-                } else if component == 1 {
                     return store.heightsInFeet[row]
+                } else if component == 1 {
+                    return store.heightsInInches[row]
                 }
             default:
                 break
@@ -561,9 +571,9 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
                 return store.genderSelections[row]
             case weightSelection:
                 if component == 0 {
-                    return store.weightsInKg[row]
+                    return "\(store.weightsInKg[row]) ."
                 } else if component == 1 {
-                    return store.weightsInG[row]
+                    return "\(store.weightsInG[row]) kg"
                 }
             case heightSelection:
                 if component == 0 {

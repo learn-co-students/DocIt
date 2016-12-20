@@ -118,7 +118,7 @@ class DataStore{
     
     func fillWeightDataInG(){
         for i in 0...9 {
-            weightsInG.append("\(i) kg")
+            weightsInG.append("\(i)")
         }
     }
     
