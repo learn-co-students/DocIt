@@ -101,7 +101,7 @@ class FamilySettingViewController: UITableViewController, UIImagePickerControlle
         imperialCell.accessoryType = .none
         metricCell.accessoryType = .checkmark
         print("metric button tapped")
-        print(store.isMetric)
+        print("isMetric value in the store is \(store.isMetric)")
         }
     }
     
@@ -115,7 +115,7 @@ class FamilySettingViewController: UITableViewController, UIImagePickerControlle
         metricCell.accessoryType = .none
         imperialCell.accessoryType = .checkmark
         print("imperial button tapped")
-        print(store.isMetric)
+        print("isMetric value in the store is \(store.isMetric)")
         }
     }
     

@@ -501,6 +501,7 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
                 genderTextField.text = store.genderSelections[row]
             case weightSelection:
                 kg = "0."
+                g = "0"
                 if component == 0 {
                     kg = store.weightsInKg[row]
                 } else if component == 1 {
@@ -511,6 +512,12 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
                     weightTextField.text = "\(kg)\(g)"
                 } else {
                 weightTextField.text = "\(kg).\(g)"
+                }
+                
+                if g == "0" {
+                    weightTextField.text = "\(kg).\(g) kg"
+                } else {
+                    weightTextField.text = "\(kg)\(g)"
                 }
             case heightSelection:
                 if component == 0 {
