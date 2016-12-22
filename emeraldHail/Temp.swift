@@ -17,18 +17,14 @@ struct Temp {
     var tempType : String
 
     init(dictionary: [String : Any]) {
-
         content = dictionary["content"] as? String ?? "No Content"
         timestamp = dictionary["timestamp"] as? String ?? "No Time"
         uniqueID = dictionary["uniqueID"] as? String ?? "No UniqueID"
         naturalTime = dictionary["naturalTime"] as? String ?? "No Natural Time"
         tempType = dictionary["tempType"] as? String ?? "Not Temperature Type"
-
     }
 
     init(content: String, timestamp: String, uniqueID: String, tempType: String) {
-        print("Creating an instance of Temp")
-
         self.content = content
         self.timestamp = timestamp
         self.uniqueID = uniqueID
@@ -36,15 +32,12 @@ struct Temp {
     }
 
     func serialize() -> [String : Any] {
-        print("Serializing a Temp")
-
-        return ["content" : content,
-                "timestamp" : timestamp,
-                "uniqueID" : uniqueID,
-                "postType" : "temp",
-                "naturalTime" : getNaturalTime(),
+        return ["content": content,
+                "timestamp": timestamp,
+                "uniqueID": uniqueID,
+                "postType": "temp",
+                "naturalTime": getNaturalTime(),
                 "tempType": tempType]
-
     }
 
     func getNaturalTime() -> String {
@@ -52,7 +45,6 @@ struct Temp {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM d, yyyy @ h:mma"
         return dateFormatter.string(from: currentDate).uppercased()
-
     }
 
 }

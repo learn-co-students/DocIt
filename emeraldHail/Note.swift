@@ -16,32 +16,24 @@ struct Note {
     var naturalTime: String?
 
     init(dictionary: [String : Any]) {
-
         content = dictionary["content"] as? String ?? "No Content"
         timestamp = dictionary["timestamp"] as? String ?? "No Time"
         uniqueID = dictionary["uniqueID"] as? String ?? "No ID"
         naturalTime = dictionary["naturalTime"] as? String ?? "No Natural Time"
-
     }
 
     init(content: String, timestamp: String, uniqueID: String) {
-        print("Creating an instance of Note")
-
         self.content = content
         self.timestamp = timestamp
         self.uniqueID = uniqueID
-
     }
 
     func serialize() -> [String : Any] {
-        print("Serializing a Note")
-
-        return ["content" : content,
-                "timestamp" : timestamp,
-                "uniqueID" : uniqueID,
-                "postType" : "note",
-                "naturalTime" : getNaturalTime()]
-
+        return ["content": content,
+                "timestamp": timestamp,
+                "uniqueID": uniqueID,
+                "postType": "note",
+                "naturalTime": getNaturalTime()]
     }
 
     func getNaturalTime() -> String {
@@ -50,8 +42,5 @@ struct Note {
         dateFormatter.dateFormat = "MMM d, yyyy @ h:mma"
 
         return dateFormatter.string(from: currentDate).uppercased()
-
     }
-
-
 }

@@ -14,7 +14,7 @@ typealias TimeStamp = [AnyHashable : Any]
 
 enum Post {
     
-    // switch on instance of post to make computed property time
+    // Switch on instance of post to make computed property time
     // reach into the post type and set the time to the timestamp
     
     case note(Note)
@@ -23,8 +23,6 @@ enum Post {
     case symp(Symp)
     case photo(Photo)
     case noValue
-    
-    // Post now has uniqueID
     
     var description: String {
         
@@ -59,15 +57,12 @@ enum Post {
         let type = dictionary["postType"] as! String
         
         switch type {
-            
         case "note":
             let note = Note(dictionary: dictionary)
             self = .note(note)
-            
         case "temp":
             let temp = Temp(dictionary: dictionary)
             self = .temp(temp)
-            
         case "pain":
             let pain = Pain(dictionary: dictionary)
             self = .pain(pain)
