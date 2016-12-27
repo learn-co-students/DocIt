@@ -47,7 +47,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         
         FIRApp.configure()
         FIRDatabase.database().persistenceEnabled = true
+        
         IQKeyboardManager.sharedManager().enable = true
+        IQKeyboardManager.sharedManager().enableAutoToolbar = false
         
         //        if FIRAuth.auth()?.currentUser != nil{
         //            let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -75,9 +77,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         navigationBarAppearace.titleTextAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 14, weight: UIFontWeightLight)]
         
         navigationBarAppearace.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-        
-        
-        
+
         return true
     }
     
