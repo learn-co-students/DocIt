@@ -110,11 +110,12 @@ class WelcomeViewController: UIViewController {
         if accessKey == "google" {
             
             authenticateUserGoogle()
+            print("====================> GOOGLE")
             
         } else {
             
             authenticateUser()
-            
+            print("====================> EMAIL")
         }
     }
     
@@ -161,8 +162,9 @@ class WelcomeViewController: UIViewController {
                 
                 if success {
                     
+                    DispatchQueue.main.async {
                     GIDSignIn.sharedInstance().signIn()
-                    
+                    }
                 }
                     
                 else {
@@ -191,6 +193,7 @@ class WelcomeViewController: UIViewController {
         self.store.user.email = email!
         self.store.user.id = userID!
         
+        
         FIRAuth.auth()?.signIn(withEmail: email!, password: password!) { (user, error) in
             
             if let error = error {
@@ -211,7 +214,7 @@ class WelcomeViewController: UIViewController {
                     var data = snapshot.value as? [String:Any]
                     
                     guard let familyID = data?["familyID"] as? String else { return }
-                
+                    
                     self.store.user.id = (user?.uid)!
                     self.store.user.familyId = familyID
                     self.store.family.id = familyID
@@ -220,11 +223,12 @@ class WelcomeViewController: UIViewController {
                         
                         NotificationCenter.default.post(name: .openfamilyVC, object: nil)
                         //                            self.signinActivityIndicator.stopAnimating()
-    
+                        
                     })
                 }
             })
         }
+        
     }
     
     func showAlertViewforNoBiometrics() {
@@ -287,11 +291,14 @@ extension WelcomeViewController: GIDSignInDelegate {
         
         //            activityIndicatorView.startAnimating()
         //
-        //            if let err = error {
-        //                activityIndicatorView.stopAnimating()
-        //                print("Failed to log into Google: ", err)
-        //                return
-        //            }
+        
+        print("HELLO!!!!!!")
+        
+                    if let err = error {
+//                        activityIndicatorView.stopAnimating()
+                        print("Failed to log into Google: ", err)
+                        return
+                    }
         //
         //            activityIndicatorView.startAnimating()
         //            print("Successfully logged into Google", user)

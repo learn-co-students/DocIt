@@ -96,9 +96,8 @@ class RegisterViewController: UIViewController {
     }
     
     func register() {
+       
         guard let email = emailField.text, let password = passwordField.text else { return }
-        
-        
         
         FIRAuth.auth()?.createUser(withEmail: email, password: password) { (user, error) in
             if let error = error {
@@ -140,8 +139,6 @@ class RegisterViewController: UIViewController {
                     self.database.child(Constants.Database.family).child(self.store.user.familyId).child("name").setValue("New Family")
                     
                     self.touchID(activate: false)
-                    //                    self.saveDataToCoreData()
-                    
                     
                 } else {
                     
