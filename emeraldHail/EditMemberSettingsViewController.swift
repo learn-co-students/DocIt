@@ -57,7 +57,6 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
         if let measurementSystem = UserDefaults.standard.value(forKey: "isMetric") as? Bool {
             if measurementSystem == true {
                 store.isMetric = true
-                
             }
         }
     }
@@ -65,7 +64,6 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
         super.viewDidLoad()
         addProfileSettings()
         displayMemberProfileEdits()
-        
         setupViews()
     }
     

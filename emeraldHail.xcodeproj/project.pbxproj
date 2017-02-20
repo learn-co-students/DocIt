@@ -53,7 +53,6 @@
 		BB6DEDB51DE61C7D00D8B93A /* FamilySettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6DEDB41DE61C7D00D8B93A /* FamilySettingViewController.swift */; };
 		BB7BF58B1DECD13C00F290FB /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB7BF58A1DECD13C00F290FB /* LocalAuthentication.framework */; };
 		BB9286851DDE3D2100D3D9A6 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9286841DDE3D2100D3D9A6 /* DataStore.swift */; };
-		BB945A1C1E04DD700038E8DA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB945A1B1E04DD700038E8DA /* GoogleService-Info.plist */; };
 		BB9C11B01DFF8A880022960F /* DocItTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9C11AF1DFF8A880022960F /* DocItTextField.swift */; };
 		BBAEF73E1DFF581B0064533A /* ChangeFamilyNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAEF73D1DFF581B0064533A /* ChangeFamilyNameViewController.swift */; };
 		BBC8830B1DF918E70002A285 /* JoinFamily.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBC8830A1DF918E70002A285 /* JoinFamily.xib */; };
@@ -65,6 +64,7 @@
 		BBF4EEB51DDF59F900EBD3FE /* FamilyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF4EEB41DDF59F900EBD3FE /* FamilyViewController.swift */; };
 		BBF4EEB71DDF59FF00EBD3FE /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF4EEB61DDF59FF00EBD3FE /* EventViewController.swift */; };
 		BBF4EEB91DDF5A0600EBD3FE /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF4EEB81DDF5A0600EBD3FE /* PostViewController.swift */; };
+		DD22CCAC1E5B4F0B00314E65 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD22CCAB1E5B4F0B00314E65 /* GoogleService-Info.plist */; };
 		DD3BD9831DEB7C2800311BE9 /* PainLevelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3BD9821DEB7C2800311BE9 /* PainLevelCollectionViewCell.swift */; };
 		DDA93D201DDE412000F0A4D4 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA93D1F1DDE412000F0A4D4 /* Secrets.swift */; };
 		DDA93D221DDE508A00F0A4D4 /* PainLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA93D211DDE508A00F0A4D4 /* PainLevelViewController.swift */; };
@@ -128,7 +128,6 @@
 		BB6DEDB41DE61C7D00D8B93A /* FamilySettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilySettingViewController.swift; sourceTree = "<group>"; };
 		BB7BF58A1DECD13C00F290FB /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		BB9286841DDE3D2100D3D9A6 /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
-		BB945A1B1E04DD700038E8DA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BB9C11AF1DFF8A880022960F /* DocItTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocItTextField.swift; sourceTree = "<group>"; };
 		BBAEF73D1DFF581B0064533A /* ChangeFamilyNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeFamilyNameViewController.swift; sourceTree = "<group>"; };
 		BBC8830A1DF918E70002A285 /* JoinFamily.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JoinFamily.xib; sourceTree = "<group>"; };
@@ -141,6 +140,7 @@
 		BBF4EEB61DDF59FF00EBD3FE /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		BBF4EEB81DDF5A0600EBD3FE /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		D4BA12601A0F16DED58FEC5E /* Pods_emeraldHail.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_emeraldHail.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD22CCAB1E5B4F0B00314E65 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DD3BD97B1DE7B9A800311BE9 /* emeraldHail-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "emeraldHail-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		DD3BD9821DEB7C2800311BE9 /* PainLevelCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PainLevelCollectionViewCell.swift; sourceTree = "<group>"; };
 		DD755E1B1DE3ACB2002478D0 /* emeraldHail.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = emeraldHail.entitlements; sourceTree = "<group>"; };
@@ -242,7 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				DD755E1B1DE3ACB2002478D0 /* emeraldHail.entitlements */,
-				BB945A1B1E04DD700038E8DA /* GoogleService-Info.plist */,
+				DD22CCAB1E5B4F0B00314E65 /* GoogleService-Info.plist */,
 				DD58FAE51DDBBB40004A7A22 /* Controllers */,
 				DD58FAE41DDBBB1D004A7A22 /* View */,
 				AA9FFBC91DDA6A8E00847FCF /* Model */,
@@ -454,7 +454,7 @@
 				AAFE44681DDF68BE00922FB0 /* SymptomView.xib in Resources */,
 				AA0BF2BE1DF4A9190062FA36 /* AddMemberView.xib in Resources */,
 				DDB88F871DEE1CD5002E9668 /* PainLevelView.xib in Resources */,
-				BB945A1C1E04DD700038E8DA /* GoogleService-Info.plist in Resources */,
+				DD22CCAC1E5B4F0B00314E65 /* GoogleService-Info.plist in Resources */,
 				DDDE22481DF0C486006B234C /* PhotoView.xib in Resources */,
 				AA0BF2C51DF5C1540062FA36 /* FamilyMemberView.xib in Resources */,
 				B69466641DECCE3000F2E30C /* Assets.xcassets in Resources */,

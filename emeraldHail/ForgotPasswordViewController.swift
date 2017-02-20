@@ -29,12 +29,9 @@ class ForgotPasswordViewController: UIViewController {
         super.viewDidLoad()
         
         setupViews()
-        
     }
     
-    
     // MARK: - Actions
-    
 
     @IBAction func cancel(_ sender: UIButton) {
         

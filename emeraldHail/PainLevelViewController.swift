@@ -38,12 +38,10 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
     
     let store = DataStore.sharedInstance
     
-    
     // MARK: - Loads
     
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         self.navigationItem.title = "Pain Level"
         painLevelCollectionView.allowsMultipleSelection = false
@@ -52,7 +50,6 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
         
         setupView()
         configureLayout()
-        
     }
     
     // MARK: - Actions
@@ -60,7 +57,6 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
     @IBAction func save(_ sender: UIButton) {
         saveButton.isEnabled = false
         addPainLevel()
-        
         
     }
     
@@ -71,7 +67,6 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
     @IBAction func cancel(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
-    
     
     // MARK: - Methods
     
@@ -88,12 +83,9 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
         self.collectionViewFlowLayout.minimumInteritemSpacing = spacing
         self.collectionViewFlowLayout.minimumLineSpacing = spacing
         self.collectionViewFlowLayout.sectionInset = insets
-        
     }
     
-    
     func setupView() {
-        
         postTitleLabel.text = "How does \(store.member.firstName) feel?"
         
         view.backgroundColor = Constants.Colors.transBlack
@@ -105,15 +97,11 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
         saveButton.backgroundColor = Constants.Colors.submarine
         cancelButton.docItStyle()
         painLevelCollectionView.docItStyleView()
-        
-        //        painLevelCollectionView.tintColor = UIColor.darkGray
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return painLevels.count
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -124,15 +112,11 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
         cell.painLevelDescription.text = painLevels[indexPath.row].description
         
         if cell.isSelected == true {
-            //            cell.wasSelected()
             cell.backgroundColor = Constants.Colors.submarine
         }
         else if cell.isSelected == false {
-            //            cell.wasDeselected()
             cell.backgroundColor = UIColor.clear
         }
-        
-        
         return cell
     }
     
@@ -140,7 +124,6 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
         
         guard let cell = collectionView.cellForItem(at: indexPath) as? PainLevelCollectionViewCell else { return }
         selectedPainLevel = painLevels[indexPath.row]
-        //        cell.wasSelected()
         
         cell.backgroundColor = Constants.Colors.submarine
         cell.layer.cornerRadius = 10
@@ -153,7 +136,6 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         
         guard let cell = collectionView.cellForItem(at: indexPath) as? PainLevelCollectionViewCell else { return }
-        //        cell.wasDeselected()
         
         cell.backgroundColor = UIColor.clear
         
@@ -166,15 +148,7 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
     
     
     func addPainLevel(){
-        
         guard let painLevelDescription = selectedPainLevel?.description else { return }
-        
-        //let currentDate = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM d, yyyy HH:mm:ss a"
-        //let timestamp = dateFormatter.string(from: currentDate)
-        
-        // uniqueID added
         
         let databasePostContentRef = postRef.child(store.eventID).childByAutoId()
         let uniqueID = databasePostContentRef.key
@@ -185,7 +159,5 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
             self.dismiss(animated: true, completion: nil)
             
         })
-        
     }
-    
 }
