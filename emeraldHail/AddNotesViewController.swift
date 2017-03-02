@@ -25,7 +25,6 @@ class AddNotesViewController: UIViewController, UITextViewDelegate {
     // MARK: - Loads
     override func viewDidLoad() {
         super.viewDidLoad()
-    
         setupView()
     }
     
