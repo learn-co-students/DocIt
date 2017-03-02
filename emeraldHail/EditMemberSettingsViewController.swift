@@ -15,7 +15,6 @@ import Fusuma
 class EditMemberSettingsViewController: UITableViewController, UIPickerViewDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDataSource, FusumaDelegate {
     
     // MARK: - Outlets
-    
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
@@ -30,7 +29,6 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     
     // MARK: - Properties
-    
     let store = DataStore.sharedInstance
     let bloodSelection = UIPickerView()
     let database = FIRDatabase.database().reference()
@@ -51,13 +49,11 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
     var g = "0"
     
     // MARK: - Loads
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         if let measurementSystem = UserDefaults.standard.value(forKey: "isMetric") as? Bool {
             if measurementSystem == true {
                 store.isMetric = true
-                
             }
         }
     }
@@ -70,10 +66,6 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
     }
     
     // MARK: - Actions
-    
-    
-    // SAVE, CANCEL and DELETE
-    
     @IBAction func didPressSave(_ sender: Any) {
         save.isEnabled = false
         activityIndicatorView.startAnimating()
@@ -91,7 +83,6 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
         let alertController = UIAlertController(title: "Are you sure you want to delete this member?",  message: "This action cannot be undone.", preferredStyle: .alert)
         
         // Action
-        
         let deleteAction = UIAlertAction(title: "Delete", style: .default, handler: { action -> Void in
             
             // Database
@@ -108,72 +99,51 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
             eventsRef.observe(.value, with: { snapshot in
                 
                 for child in snapshot.children {
-                    
                     let event = Event(snapshot: child as! FIRDataSnapshot)
-                    
                     let eventID = event.uniqueID
                     
                     eventIDs.append(eventID)
                 }
                 
                 for eventID in eventIDs {
-                    
-                    print("Event ID is: \(eventID)")
-                    
                     self.deletePostImagesFromStorage(uniqueID: eventID)
                     
                     postsRef.child(eventID).observeSingleEvent(of: .value, with: { snapshot in
-                        
                         let oldPosts = snapshot.value as? [String : Any]
-                        
                         guard let allKeys = oldPosts?.keys else { return }
                         
                         for key in allKeys {
-                            
                             let dictionary = oldPosts?[key] as! [String : Any]
-                            
                             let post = Post(dictionary: dictionary)
                             
                             posts.append(post)
-                            
-                            print(post.description)
                         }
-                        
                     })
                     
                     for post in posts {
-                        
                         switch post {
                         case .photo(_):
                             self.deletePostImagesFromStorage(uniqueID: post.description)
-                            
                         default:
                             break
                         }
-                        
                     }
                     
                     postsRef.child(eventID).removeValue()
                     // All posts under event erased
-                    
                 }
                 
                 // Delete events associated with the member
-                
                 eventsRef.removeValue()
                 
                 // Delete the member from storage
-                
-                
                 self.deleteProfileImagesFromStorage()
                 
                 // Delete the member from database
                 memberRef.child(self.store.member.id).removeValue()
                 
                 let _ = self.navigationController?.popToRootViewController(animated: true)
-                
             })
-            
         })
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) {
@@ -190,14 +160,13 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
     }
     
     // MARK: - Methods
-    
     @IBAction func genderEditingDidBegin(_ sender: Any) {
         genderTextField.text = store.genderSelections[genderSelection.selectedRow(inComponent: 0)]
     }
     
     @IBAction func heightEditingDidBegin(_ sender: Any) {
         if store.isMetric == false {
-        heightTextField.text = store.heightsInInches[heightSelection.selectedRow(inComponent: 0)] + store.heightsInFeet[heightSelection.selectedRow(inComponent: 1)]
+            heightTextField.text = store.heightsInInches[heightSelection.selectedRow(inComponent: 0)] + store.heightsInFeet[heightSelection.selectedRow(inComponent: 1)]
         } else {
             heightTextField.text = store.heightsInMeter[heightSelection.selectedRow(inComponent: 0)] + store.heightsInCm[heightSelection.selectedRow(inComponent: 1)]
         }
@@ -234,11 +203,8 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
     }
     
     // MARK: - Firebase Storage Image Deletion
-    
     func deletePostImagesFromStorage(uniqueID: String) {
-        
         storageRef.child(Constants.Storage.postsImages).child(uniqueID).delete { error -> Void in
-            
             if error != nil {
                 print("******* Error occured while deleting post imgs from Firebase storage ******** \(uniqueID)")
             } else {
@@ -248,9 +214,7 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
     }
     
     func deleteProfileImagesFromStorage() {
-        
         storageRef.child(Constants.Storage.profileImages).child(self.store.member.id).delete { error -> Void in
-            
             if error != nil {
                 print("******* Error occured while deleting profile imgs from Firebase storage ******** \(self.store.member.id)")
             } else {
@@ -259,9 +223,7 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
         }
     }
     
-    
     // MARK: - Methods
-    
     func addProfileSettings() {
         addGestureRecognizer(imageView: profilePicture)
         profilePicture.isUserInteractionEnabled = true
@@ -294,53 +256,43 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
             let allergies = allergiesTextField.text else { return }
         
         let memberReference = database.child(Constants.Database.members).child(store.user.familyId).child(store.member.id)
-        
         let databaseMembersRef = database.child(Constants.Database.members).child(store.user.familyId).childByAutoId()
         let uniqueID = databaseMembersRef.key
-        
         let storageRef = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
         let imageId = uniqueID
         let storageImageRef = storageRef.child(Constants.Storage.profileImages).child(imageId)
         
         if let uploadData = UIImageJPEGRepresentation(profilePicture, 0.25) {
-            
             storageImageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
                 if error != nil {
                     print (error?.localizedDescription ?? "Error in saveButtonTapped in EditMembersViewController.swift" )
                     return
                 }
                 guard let profileImageUrl = metadata?.downloadURL()?.absoluteString else { return }
-                
-                let updatedInfo: [String:Any] = ["firstName":name,
-                                                 "lastName": lastName,
-                                                 "birthday": dob,
-                                                 "gender": gender,
-                                                 "profileImage": profileImageUrl,
-                                                 "bloodType": blood,
-                                                 "height": height,
-                                                 "weight": weight,
-                                                 "allergies": allergies]
-                
+                let updatedInfo: [String : Any] = ["firstName":name,
+                                                   "lastName": lastName,
+                                                   "birthday": dob,
+                                                   "gender": gender,
+                                                   "profileImage": profileImageUrl,
+                                                   "bloodType": blood,
+                                                   "height": height,
+                                                   "weight": weight,
+                                                   "allergies": allergies]
                 
                 memberReference.updateChildValues(updatedInfo)
                 
                 let _ = self.navigationController?.popViewController(animated: true)
-                
             })
         }
-        
-        
     }
     
     func displayMemberProfileEdits() {
-        
         let member = databaseMember.child(store.user.familyId).child(store.member.id)
         
         member.observe(.value, with: { (snapshot) in
-            
             let value = snapshot.value as? [String : Any]
             let imageString = value?["profileImage"] as? String
-            guard let imgUrl = imageString else {return}
+            guard let imgUrl = imageString else { return }
             let profileImgUrl = URL(string: imgUrl)
             let firstName = value?["firstName"] as? String
             let lastName = value?["lastName"] as? String
@@ -362,12 +314,10 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
             self.profilePicture.sd_setImage(with: profileImgUrl)
             self.profilePicture.setRounded()
             self.profilePicture.contentMode = .scaleAspectFill
-            
         })
     }
     
     // MARK: Methods Picker View
-    
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool{
         return true
     }
@@ -388,7 +338,6 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
         return self.view.endEditing(true)
     }
     
-    
     func datePickerChanged(sender: UIDatePicker) {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
@@ -400,27 +349,19 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int{
         if store.isMetric == false {
-        switch pickerView {
-        case bloodSelection:
-            return 1
-        case genderSelection:
-            return 1
-        case weightSelection:
-            return 1
-        case heightSelection:
-            return 2
-        default:
-            return 1
-        }
+            switch pickerView {
+            case bloodSelection, genderSelection, weightSelection:
+                return 1
+            case heightSelection:
+                return 2
+            default:
+                return 1
+            }
         } else {
             switch pickerView {
-            case bloodSelection:
+            case bloodSelection, genderSelection:
                 return 1
-            case genderSelection:
-                return 1
-            case weightSelection:
-                return 2
-            case heightSelection:
+            case weightSelection, heightSelection:
                 return 2
             default:
                 return 1
@@ -431,23 +372,23 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
         
         if store.isMetric == false {
-        switch pickerView {
-        case bloodSelection:
-            return store.bloodTypeSelections.count
-        case genderSelection:
-            return store.genderSelections.count
-        case weightSelection:
-            return store.weightsInLbs.count
-        case heightSelection:
-            if component == 0 {
-                return store.heightsInFeet.count
-            } else if component == 1 {
-                return store.heightsInInches.count
+            switch pickerView {
+            case bloodSelection:
+                return store.bloodTypeSelections.count
+            case genderSelection:
+                return store.genderSelections.count
+            case weightSelection:
+                return store.weightsInLbs.count
+            case heightSelection:
+                if component == 0 {
+                    return store.heightsInFeet.count
+                } else if component == 1 {
+                    return store.heightsInInches.count
+                }
+            default:
+                break
             }
-        default:
-            break
-        }
-        return 0
+            return 0
         } else {
             switch pickerView {
             case bloodSelection:
@@ -474,7 +415,6 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
         if store.isMetric == false {
             switch pickerView {
             case bloodSelection:
@@ -505,11 +445,10 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
                 } else if component == 1 {
                     g = store.weightsInG[row]
                 }
-                
+    
                 weightTextField.text = "\(kg).\(g) kg"
                 
-                
-                case heightSelection:
+            case heightSelection:
                 if component == 0 {
                     meter = store.heightsInMeter[row]
                 } else if component == 1 {
@@ -518,14 +457,12 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
                 if meter == " - " {
                     heightTextField.text = "\(centimeter)"
                 } else {
-                heightTextField.text = "\(meter) \(centimeter)"
+                    heightTextField.text = "\(meter) \(centimeter)"
                 }
             default:
                 break
             }
-            
         }
-        
     }
     
     func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
@@ -542,9 +479,7 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        
         if store.isMetric == false {
-            
             switch pickerView {
             case bloodSelection:
                 return store.bloodTypeSelections[row]
@@ -563,7 +498,6 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
             }
             return ""
         } else {
-            
             switch pickerView {
             case bloodSelection:
                 return store.bloodTypeSelections[row]
@@ -588,20 +522,15 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
         }
     }
     
-    
     // MARK: Fusuma
-    
     func handleCameraImage() {
-        
         let fusuma = FusumaViewController()
         fusuma.delegate = self
         self.present(fusuma, animated: true, completion: nil)
         fusumaCropImage = true
-        
     }
     
     // Return the image which is selected from camera roll or is taken via the camera.
-    
     func fusumaImageSelected(_ image: UIImage) {
         
         // present some alert with the image
@@ -609,32 +538,21 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
         // upload from button
         
         print("Image selected")
-        
     }
     
     // Return the image but called after is dismissed.
-    
     func fusumaDismissedWithImage(_ image: UIImage) {
-        
         profilePicture.image = image
-        
-        print("Called just after FusumaViewController is dismissed.")
-        
     }
     
     func fusumaVideoCompleted(withFileURL fileURL: URL) {
-        
         print("Called just after a video has been selected.")
-        
     }
     
     // When camera roll is not authorized, this method is called.
-    
     func fusumaCameraRollUnauthorized() {
-        
+        // TODO: Handle what happens when the camera is not authorized
         print("Camera access denied")
-        
     }
-    
-    
+
 }
