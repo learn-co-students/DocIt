@@ -18,26 +18,15 @@ class AddNotesViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var cancelButton: UIButton!
     
     // MARK: - Properties
-    
     let store = DataStore.sharedInstance
     var database: FIRDatabaseReference = FIRDatabase.database().reference()
     var postVC = PostViewController()
     
     // MARK: - Loads
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-                
-        hideKeyboardWhenTappedAround()
-        
+    
         setupView()
-        
-        
-        
-        addNotesTextView.delegate = self
-        
-        addNotesTextView.becomeFirstResponder()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -45,44 +34,37 @@ class AddNotesViewController: UIViewController, UITextViewDelegate {
     }
     
     // MARK: - Actions
-    
     @IBAction func dismissController(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
     
     // MARK: - Methods
-    
     func setupView() {
-        
         view.backgroundColor = Constants.Colors.transBlack
-        
+        hideKeyboardWhenTappedAround()
         noteView.docItStyleView()
-        
         saveButton.docItStyle()
+        cancelButton.docItStyle()
         
         saveButton.isEnabled = false
         saveButton.backgroundColor = Constants.Colors.submarine
         
-        cancelButton.docItStyle()
-    
+        addNotesTextView.delegate = self
+        addNotesTextView.becomeFirstResponder()
     }
     
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         addNotesTextView.text = nil
-        
     }
 
     @IBAction func addNotes(_ sender: UIButton) {
-        
         saveButton.isEnabled = false
         
         guard let noteText = addNotesTextView.text, noteText != "" else { return }
-        
         let postsRef = database.child(Constants.Database.posts).child(store.eventID).childByAutoId()
         let uniqueID = postsRef.key
-        
         let newNote = Note(content: noteText, timestamp: getTimestamp(), uniqueID: uniqueID)
         
         postsRef.setValue(newNote.serialize(), withCompletionBlock: { error, ref in
@@ -95,7 +77,6 @@ class AddNotesViewController: UIViewController, UITextViewDelegate {
     }
     
     // MARK: - Methods
-    
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboardView))
         tap.cancelsTouchesInView = false
@@ -107,13 +88,11 @@ class AddNotesViewController: UIViewController, UITextViewDelegate {
     }
     
     func textViewDidChange(_ textView: UITextView) {
-        
         if addNotesTextView.text != "" {
             
             saveButton.isEnabled = true
             saveButton.backgroundColor = Constants.Colors.scooter
-            
         }
-        
     }
+    
 }
