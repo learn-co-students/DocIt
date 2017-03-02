@@ -333,10 +333,10 @@
 		DD58FAE51DDBBB40004A7A22 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B674039B1DF1CC2E00172ACD /* AppController.swift */,
 				BB5FB2871DFB4CA6008CAB7A /* AddMemberViewController.swift */,
 				BB35032A1DFB6F24003561CE /* AddEventViewController.swift */,
 				B69638D11DE602FD00FE7023 /* AddNotesViewController.swift */,
-				B674039B1DF1CC2E00172ACD /* AppController.swift */,
 				BBAEF73D1DFF581B0064533A /* ChangeFamilyNameViewController.swift */,
 				B6F44C071DEE080000995237 /* EditMemberSettingsViewController.swift */,
 				BBF4EEB61DDF59FF00EBD3FE /* EventViewController.swift */,
