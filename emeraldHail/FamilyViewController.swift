@@ -14,13 +14,11 @@ import SDWebImage
 class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
     
     // MARK: Outlets
-    
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     @IBOutlet weak var memberProfilesView: UICollectionView!
     @IBOutlet weak var familySettings: UIBarButtonItem!
     
     // MARK: Properties
-    
     let store = DataStore.sharedInstance
     var database = FIRDatabase.database().reference()
     
@@ -34,42 +32,19 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("Inside FamilyVC, the familyID is: \(store.user.familyId)")
-        
         hideKeyboardWhenTappedAround()
-        
-        imageSelected.delegate = self
-        memberProfilesView.delegate = self
-        memberProfilesView.dataSource = self
-        
         configDatabaseFamily()
         configDatabaseMember()
-        
-        
-        
-        memberProfilesView.reloadData()
-        
-        self.memberProfilesView.alwaysBounceVertical = true
-        refresher.tintColor = Constants.Colors.scooter
-        refresher.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
-        memberProfilesView.addSubview(refresher)
-        
-        
         configureLayout()
-        
-        
-        print("======================> \(store.family.coverImageStr)")
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        self.memberProfilesView.reloadData()
+        memberProfilesView.reloadData()
     }
     
     // MARK: - Methods
-    
     func configureLayout() {
-        
         let screenWidth = UIScreen.main.bounds.width
         let numberOfColumns: CGFloat = 2
         let spacing: CGFloat = 12
@@ -78,16 +53,24 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         let heightDeductionPerItem: CGFloat = (spacing*(numberOfColumns-1) + insets.top + insets.bottom)/numberOfColumns
         let itemSize = CGSize(width: screenWidth/numberOfColumns - widthDeductionPerItem, height: screenWidth/numberOfColumns - heightDeductionPerItem)
         
-        self.flowLayout.itemSize = itemSize
-        self.flowLayout.minimumInteritemSpacing = spacing
-        self.flowLayout.minimumLineSpacing = spacing
-        self.flowLayout.sectionInset = insets
+        flowLayout.itemSize = itemSize
+        flowLayout.minimumInteritemSpacing = spacing
+        flowLayout.minimumLineSpacing = spacing
+        flowLayout.sectionInset = insets
         
+        imageSelected.delegate = self
+        memberProfilesView.delegate = self
+        memberProfilesView.dataSource = self
+        
+        memberProfilesView.alwaysBounceVertical = true
+        refresher.tintColor = Constants.Colors.scooter
+        refresher.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        memberProfilesView.addSubview(refresher)
+        
+        memberProfilesView.reloadData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("Prepare for segue...")
-        
         switch sender {
         case is UICollectionViewCell:
             guard let indexPath = memberProfilesView.indexPath(for: sender as! UICollectionViewCell) else { return }
@@ -98,11 +81,9 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         default:
             break
         }
-        
     }
     
     // MARK: - Collection view methods
-    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -119,8 +100,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
             
             cell.profileImageView.setRounded()
             cell.profileImageView.contentMode = .scaleAspectFill
-//            cell.profileImageView.sd_setImage(with: profileImgUrl)
-            
+
             cell.profileImageView.sd_setImage(with: profileImgUrl, completed: { (image, error, cacheType, url) in
                 cell.profileImageView.alpha = 0
                 UIView.animate(withDuration: 0.25, animations: { 
@@ -136,13 +116,10 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
             
             return addMemberCell
         }
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
         if indexPath.row < membersInFamily.count {
-            
             let selectedMember = membersInFamily[indexPath.row]
             
             store.member.id = selectedMember.id
@@ -154,21 +131,13 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
             store.member.gender = selectedMember.gender
             store.member.height = selectedMember.height
             store.member.weight = selectedMember.weight
-            
-            print(store.member)
-            
         } else {
-            
             performSegue(withIdentifier: "addMember", sender: nil)
-            
         }
-        
     }
     
     // MARK: - Header resuable view
-    
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        
         switch kind {
         case UICollectionElementKindSectionHeader:
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) as! HeaderCollectionReusableView
@@ -177,7 +146,12 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
             headerView.familyNameLabel.text = store.family.name
             
             if store.family.coverImageStr != "" {
-                headerView.profileImage.sd_setImage(with: familyPictureUrl)
+                headerView.profileImage.sd_setImage(with: familyPictureUrl, completed: { (image, error, cacheType, url) in
+                    headerView.profileImage.alpha = 0
+                    UIView.animate(withDuration: 0.25, animations: { 
+                        headerView.profileImage.alpha = 1
+                    })
+                })
             }
             else {
                 headerView.profileImage?.image = UIImage(named: "Doc_It_BG")
@@ -204,13 +178,10 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     // TODO: Rethink some of the variable names here and in configDatabaseFamily for clarity
-    
     func configDatabaseMember() {
-        
         let familyRef = database.child(Constants.Database.members).child(store.user.familyId)
         
         familyRef.observe(.value, with: { snapshot in
-            
             var newItem = [Member]()
             
             for item in snapshot.children {
@@ -221,13 +192,10 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
             self.membersInFamily = newItem
             self.memberProfilesView.reloadData()
         })
-        
     }
     
     // TODO: Rethink some of the variable names here for clarity
-    
     func configDatabaseFamily() {
-        
         let familyRef = database.child("family").child(store.user.familyId)
         
         familyRef.observe(.value, with: { snapshot in
@@ -243,19 +211,15 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     func changeFamilyName() {
-        
         var nameTextField: UITextField?
-        
         let alertController = UIAlertController(title: nil, message: "Change your family name", preferredStyle: .alert)
         let save = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
             guard let name = nameTextField?.text, name != "" else { return }
             let eventsRef = self.database.child(Constants.Database.family).child(self.store.user.familyId)
             
-            // TODO: We shoul be handling all the errors properly
+            // TODO: We should be handling all the errors properly
             eventsRef.updateChildValues(["name": name], withCompletionBlock: { (error, dataRef) in
             })
-            
-            print("Save Button Pressed")
         })
         
         let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
@@ -279,9 +243,6 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
 }
 
 class MemberCollectionViewCell: UICollectionViewCell {
-    
-    // MARK: - Outlets
-    
     @IBOutlet weak var memberNameLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
 }
