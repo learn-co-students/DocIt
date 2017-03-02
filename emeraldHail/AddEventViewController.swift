@@ -37,7 +37,7 @@ class AddEventViewController: UIViewController, UIPickerViewDelegate, UITextFiel
     }
     
     @IBAction func saveEvent(_ sender: UIButton) {
-       saveEvent()
+        saveEvent()
     }
     
     @IBAction func cancelEvent(_ sender: UIButton) {

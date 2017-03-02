@@ -2639,6 +2639,8 @@
             <objects>
                 <navigationController storyboardIdentifier="family-nav-controller" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="XIF-ae-qWP" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="667"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ixB-h9-CxZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

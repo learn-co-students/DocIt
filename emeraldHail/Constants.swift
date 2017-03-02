@@ -26,16 +26,13 @@ struct Constants {
     }
     
     struct CustomCell {
-        
         static let offset: CGFloat = 40.0
         static let bulletRadius: CGFloat = 10.0
         static let lineWidth: CGFloat = 1.0
         static let lineColor: CGColor = Constants.Colors.athensGray.cgColor
-        
     }
     
     struct Database {
-        
         static let events = "events"
         static let family = "family"
         static let members = "members"
@@ -45,11 +42,9 @@ struct Constants {
     }
     
     struct Storage {
-        
         static let familyImages = "familyImages"
         static let postsImages = "postsImages"
         static let profileImages = "profileImages"
     }
     
 }
-

@@ -10,12 +10,12 @@ import UIKit
 import Firebase
 
 class ForgotPasswordViewController: UIViewController {
-
+    
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var forgotView: UIView!
- 
+    
     let store = DataStore.sharedInstance
     
     override func viewDidLoad() {
@@ -29,7 +29,7 @@ class ForgotPasswordViewController: UIViewController {
     
     
     @IBAction func save(_ sender: Any) {
-            sendEmail()
+        sendEmail()
     }
     
     @IBAction func tapDismiss(_ sender: Any) {
@@ -45,7 +45,7 @@ class ForgotPasswordViewController: UIViewController {
             sendButton.backgroundColor = Constants.Colors.scooter
         }
     }
-
+    
     // MARK: - Methods
     func setupViews() {
         view.backgroundColor = Constants.Colors.transBlack
@@ -57,7 +57,7 @@ class ForgotPasswordViewController: UIViewController {
         
         sendButton.isEnabled = false
         sendButton.backgroundColor = Constants.Colors.submarine
-
+        
         emailTextField.becomeFirstResponder()
     }
     
@@ -65,7 +65,7 @@ class ForgotPasswordViewController: UIViewController {
         sendButton.isEnabled = false
         
         guard let userInput = emailTextField.text else { return }
-    
+        
         FIRAuth.auth()?.sendPasswordReset(withEmail: userInput, completion: { (error) in
             if let error = error {
                 // TODO: Handle errors

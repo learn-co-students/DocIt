@@ -15,7 +15,6 @@ class TempView: UIView {
     @IBOutlet weak var timestampLabel: UILabel!
     @IBOutlet weak var tempTypeLabel: UILabel!
     
-    
     var temp: Temp! {
         didSet {
             tempLabel.text = temp.content + "º"
@@ -42,8 +41,6 @@ class TempView: UIView {
         addSubview(contentView)
         
         timestampLabel.textColor = Constants.Colors.submarine
-        
-//        contentView.backgroundColor = UIColor.getRandomColor()
         
         contentView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         contentView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true

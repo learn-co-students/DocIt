@@ -11,11 +11,9 @@ import Firebase
 import CoreData
 import GoogleSignIn
 
-
 class LoginViewController: UIViewController {
     
     // MARK: - Outlets
-    
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var passwordLabel: UILabel!
@@ -26,9 +24,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var createAccount: UIButton!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak var signinActivityIndicator: UIActivityIndicatorView!
-
-    // MARK: - Properties
     
+    // MARK: - Properties
     let store = DataStore.sharedInstance
     var database: FIRDatabaseReference = FIRDatabase.database().reference()
     let MyKeychainWrapper = KeychainWrapper()
@@ -36,24 +33,16 @@ class LoginViewController: UIViewController {
     let loginButtonTag = 1
     
     // MARK: - Loads
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupViews()
-        hideKeyboardWhenTappedAround()
-        
-        configureGoogleButton()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         setupViews()
-        
     }
     
     // MARK: - Actions
-    
     @IBAction func signIn(_ sender: UIButton) {
         signIn.isEnabled = false
         login()
@@ -65,24 +54,14 @@ class LoginViewController: UIViewController {
     }
     
     // This function enables/disables the signIn button when the fields are empty/not empty.
-    
     @IBAction func textDidChange(_ sender: UITextField) {
-        
         if emailField.text == "" {
-            // emailLabel.alpha = 0
             signIn.isEnabled = false
             signIn.backgroundColor = Constants.Colors.submarine
-            
         } else {
-            
-            //UIView.animate(withDuration: 0.30) {
-              //  self.emailLabel.alpha = 1;
-            //}
-            
             signIn.isEnabled = true
             signIn.backgroundColor = Constants.Colors.scooter
         }
-        
     }
     
     @IBAction func pressedGoogleSignIn(_ sender: Any) {
@@ -90,10 +69,9 @@ class LoginViewController: UIViewController {
     }
     
     // MARK: - Methods
-    
     func setupViews() {
-        
-        // emailLabel.alpha = 0
+        hideKeyboardWhenTappedAround()
+        configureGoogleButton()
         
         emailField.becomeFirstResponder()
         
@@ -113,74 +91,48 @@ class LoginViewController: UIViewController {
     }
     
     func login() {
-
         guard let email = emailField.text, let password = passwordField.text else { return }
         
         FIRAuth.auth()?.signIn(withEmail: email, password: password) { (user, error) in
-            
             if let error = error {
-    
-                // Set errorLabel to the error.localizedDescription
-                // Activity indicator stops animating here
                 self.errorLabel.text = error.localizedDescription
-                print("======>\(error.localizedDescription)")
                 return
             }
-            // Set the sharedInstance familyID to the current user.uid
             
+            // Set the sharedInstance familyID to the current user.uid
             if self.store.inviteFamilyID == "" {
-                
                 self.signinActivityIndicator.startAnimating()
-                
                 self.database.child(Constants.Database.user).child((user?.uid)!).observe(.value, with: { snapshot in
-                    
                     DispatchQueue.main.async {
-                        
                         var data = snapshot.value as? [String:Any]
-                        
                         guard let familyID = data?["familyID"] as? String else { return }
-                        
-                        print("======> \(familyID)")
                         
                         self.store.user.id = (user?.uid)!
                         self.store.user.familyId = familyID
                         self.store.family.id = familyID
                         self.store.user.email = email
-                        
                         self.addDataToKeychain(userID: self.store.user.id, familyID: self.store.user.familyId, email: self.store.user.email, auth: "email")
                         
                         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
-                            
                             NotificationCenter.default.post(name: .openfamilyVC, object: nil)
                             self.signinActivityIndicator.stopAnimating()
-
                         })
-                        
                     }
                 })
-                
             } else {
-                
                 self.store.user.id = (user?.uid)!
                 self.store.user.familyId = self.store.inviteFamilyID
                 self.store.family.id = self.store.user.familyId
                 self.store.user.email = email
                 self.database.child(Constants.Database.user).child(self.store.user.id).child("familyID").setValue(self.store.user.familyId)
-                
-                
                 self.store.inviteFamilyID = ""
-                
                 self.addDataToKeychain(userID: self.store.user.id, familyID: self.store.user.familyId, email: self.store.user.email, auth: "email")
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
-                    
                     NotificationCenter.default.post(name: .openfamilyVC, object: nil)
-
                     self.signinActivityIndicator.stopAnimating()
                 })
-                
             }
-            
         }
     }
     
@@ -203,12 +155,10 @@ class LoginViewController: UIViewController {
         view.endEditing(true)
     }
     
-    
 }
 
 // MARK: - Google UI Delegate
 extension LoginViewController: GIDSignInUIDelegate {
-    
     func configureGoogleButton() {
         let googleSignInButton = GIDSignInButton()
         
@@ -223,14 +173,12 @@ extension LoginViewController: GIDSignInUIDelegate {
     }
 }
 
-// MARK: - Google Sign in
-
+// MARK: - Google Sign In
 extension LoginViewController: GIDSignInDelegate {
-
+    
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        
         activityIndicatorView.startAnimating()
-
+        // TODO: Handle error
         if let err = error {
             activityIndicatorView.stopAnimating()
             print("Failed to log into Google: ", err)
@@ -246,67 +194,36 @@ extension LoginViewController: GIDSignInDelegate {
         let credential = FIRGoogleAuthProvider.credential(withIDToken: idToken, accessToken: accessToken)
         
         FIRAuth.auth()?.signIn(with: credential, completion: { loggedInUser, error in
-            
             guard let userID = loggedInUser?.uid else {return}
-            
             guard let email = loggedInUser?.email else { return }
             
             self.store.user.email = email
-            
             self.database.child(Constants.Database.user).child(userID).observe(.value, with: { snapshot in
                 
                 if let data = snapshot.value as? [String:Any] {
-
-                    
                     guard let familyID = data["familyID"] as? String else { return }
-                    
-                    print("======> \(familyID)")
                     
                     self.store.user.id = userID
                     self.store.user.familyId = familyID
                     self.store.family.id = familyID
-                    
                     self.addDataToKeychain(userID: self.store.user.id, familyID: self.store.user.familyId, email: self.store.user.email, auth: "google")
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
                         NotificationCenter.default.post(name: Notification.Name.openfamilyVC, object: nil)
                     })
-                    
-                    print(self.store.user.id)
-                    print(self.store.user.familyId)
-                    print(self.store.user.email)
-                    print("=========================> \(loggedInUser?.providerData)")
-
-                    //self.activityIndicatorView.stopAnimating()
-
-                    print("A family id exists already.")
-                    
-                    
                 } else {
-                    
-                    
-                    self.store.user.id = userID
-                    
                     let familyID = self.database.child(Constants.Database.user).child(userID).child("familyID").childByAutoId().key
                     
-                    print("THIS IS THE FAMILY ID \(familyID)")
-                    
+                    self.store.user.id = userID
                     self.store.user.familyId = familyID
                     self.store.family.id = familyID
-                    print(self.store.user.email)
-                    
                     self.addDataToKeychain(userID: self.store.user.id, familyID: self.store.user.familyId, email: self.store.user.email, auth: "google")
-                    
                     self.database.child(Constants.Database.user).child(userID).child("familyID").setValue(familyID)
                     self.database.child(Constants.Database.family).child(familyID).child("name").setValue("New Family")
                     self.database.child(Constants.Database.user).child(self.store.user.id).child("email").setValue((loggedInUser?.email)!)
                     
-                    print("YEAHHH")
-                    
                     DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
-
                         NotificationCenter.default.post(name: Notification.Name.openfamilyVC, object: nil)
-                        
                     })
                 }
             })
@@ -314,7 +231,6 @@ extension LoginViewController: GIDSignInDelegate {
     }
     
     func addDataToKeychain(userID: String, familyID: String, email: String, auth: String) {
-        
         UserDefaults.standard.setValue(userID, forKey: "user")
         UserDefaults.standard.setValue(familyID, forKey: "family")
         UserDefaults.standard.setValue(email, forKey: "email")
@@ -324,7 +240,6 @@ extension LoginViewController: GIDSignInDelegate {
         MyKeychainWrapper.writeToKeychain()
         UserDefaults.standard.set(true, forKey: "hasFamilyKey")
         UserDefaults.standard.synchronize()
-        
     }
-
+    
 }

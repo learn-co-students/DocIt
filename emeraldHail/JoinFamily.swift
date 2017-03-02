@@ -12,18 +12,14 @@ import Firebase
 class JoinFamily: UIView {
     
     // MARK: - Outlets
-    
     @IBOutlet var contentView: UIView!
-    
     @IBOutlet weak var familyTextField: UITextField!
     
     // MARK: - Properties
-    
     var database: FIRDatabaseReference = FIRDatabase.database().reference()
     var store = DataStore.sharedInstance
     
     // MARK: - Loads
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -37,14 +33,12 @@ class JoinFamily: UIView {
         self.isHidden = true
     }
     
-    
     @IBAction func join(_ sender: UIButton) {
         joinFamily()
         self.isHidden = true
     }
     
     // MARK: - Methods
-    
     func commonInit() {
         Bundle.main.loadNibNamed("JoinFamily", owner: self, options: nil)
         
@@ -63,7 +57,6 @@ class JoinFamily: UIView {
     }
     
     func joinFamily() {
-        
         guard let familyID = familyTextField.text, familyID != "" else { return }
         
         print(store.user.id)
@@ -75,11 +68,6 @@ class JoinFamily: UIView {
         self.database.child(Constants.Database.user).child(store.user.id).child("familyID").setValue(store.user.familyId)
         
         NotificationCenter.default.post(name: .openfamilyVC, object: nil)
-        
-        }
     }
-
-
-
-
-
+    
+}

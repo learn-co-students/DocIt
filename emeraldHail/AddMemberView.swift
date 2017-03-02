@@ -9,7 +9,7 @@
 import UIKit
 
 class AddMemberView: UIView {
-
+    
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var plusButton: UIImageView!
     

@@ -11,8 +11,7 @@ import Foundation
 
 struct Photo {
 
-    // Content is image URL
-    var content: String
+    var content: String // Content is image URL
     var timestamp: String
     var uniqueID: String
     var naturalTime: String?

@@ -10,11 +10,10 @@ import UIKit
 
 class AddMemberCollectionViewCell: UICollectionViewCell {
     
-    // Is this supposed to be blank?
     @IBOutlet weak var addMemberView: AddMemberView!
     
-    // Henry added this:
     override func awakeFromNib() {
         super.awakeFromNib()
     }
+    
 }

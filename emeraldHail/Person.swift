@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 
-
 struct Person {
     
     var id: String
@@ -17,16 +16,12 @@ struct Person {
     var email: String
     
     init(id: String, familyId: String, email: String) {
-        
         self.id = id
         self.familyId = familyId
         self.email = email
-        
     }
     
 }
-
-
 
 enum BloodType: String {
     case OPos = "O+", ONeg = "O-", APos = "A+", ANeg = "A-", BPos = "B+", BNeg = "B-", ABPos = "AB+", ABNeg = "AB-"
@@ -35,4 +30,3 @@ enum BloodType: String {
 enum Gender: String {
     case female = "Female", male = "Male", other = "Not specified"
 }
-

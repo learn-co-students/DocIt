@@ -43,21 +43,9 @@ class Family {
     }
     
     func changeImage(to imageStr: String) {
-        
-        
         self.coverImageStr = imageStr
-        
     }
     
-    //    init(snapshot: FIRDataSnapshot) {
-    //
-    //        let snapshotValue = snapshot.value as! String : AnyObject]
-    //
-    //        name = snapshotValue["name"] as! String
-    //
-    //    }
-    
-    // TODO: Why are we forcing this? Enrique
     func serialize() -> [String:Any] {
         return ["name":name!, "coverImageStr": coverImageStr!]
     }
@@ -82,48 +70,14 @@ extension Family {
 extension Family {
     
     func getFamilyMetaData(handler: (Bool) -> Void) {
-        
-        
-        
-        
-        
-        
-        
-        
-        
         downloadProfileImage { success, image in
-            
-            
-            
-            
+            // TODO:
         }
-        
-        
-        
-        
-        
-        
-        
     }
-    
-    
-    
-    
-    
+
     func getMembersFromFamily(handler: (Bool) -> Void) {
-        
-        
-        
-        
-        
-        // loop through the array of members and for each one download their image.
-        // The member object itself should be able to download their own image.
-        
-        
-        
-        
+        // TODO:
     }
-    
     
 }
 
@@ -131,11 +85,7 @@ extension Family {
 extension Family {
     
     func downloadProfileImage(handler: (Bool, UIImage?) -> Void) {
-        
-        
-        
+        // TODO:
     }
-    
-    
     
 }

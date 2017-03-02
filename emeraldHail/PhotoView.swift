@@ -18,12 +18,10 @@ class PhotoView: UIView {
     
     var photo: Photo! {
         didSet {
-            
             let photoUrl = URL(string: photo.content)
             photoImageView.sd_setImage(with: photoUrl)
             photoImageView.setCornerRounded()
             timestampLabel.text = photo.naturalTime
-            
         }
     }
     
@@ -46,8 +44,6 @@ class PhotoView: UIView {
         
         timestampLabel.textColor = Constants.Colors.submarine
         
-//        contentView.backgroundColor = UIColor.getRandomColor()
-        
         contentView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         contentView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         contentView.topAnchor.constraint(equalTo: topAnchor).isActive = true
@@ -57,6 +53,5 @@ class PhotoView: UIView {
     override func draw(_ rect: CGRect) {
         drawTimeline(circleColor: Constants.Colors.purpleCake.cgColor, lineColor: Constants.Colors.submarine.cgColor)
     }
-    
     
 }

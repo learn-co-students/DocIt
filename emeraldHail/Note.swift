@@ -43,4 +43,5 @@ struct Note {
 
         return dateFormatter.string(from: currentDate).uppercased()
     }
+    
 }

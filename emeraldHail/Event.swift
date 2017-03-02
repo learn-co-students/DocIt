@@ -12,40 +12,29 @@ import Firebase
 
 struct Event {
     
-    // properties
-    
     var name: String
     var startDate: String
     var isComplete: Bool = false
     var uniqueID: String
     
-    // initializers
-    
     init(name: String, startDate: String, uniqueID: String = "") {
-        
         self.name = name
         self.startDate = startDate
         self.uniqueID = uniqueID
-        
     }
     
     init(dictionary: [String : Any], uniqueID: String) {
-        
         name = dictionary["name"] as? String ?? "No name"
         startDate = dictionary["startDate"] as? String ?? "No start date"
         self.uniqueID = uniqueID
-        
     }
     
-    
     init(snapshot: FIRDataSnapshot) {
-        
         let snapshotValue = snapshot.value as! [String : AnyObject]
         
         name = snapshotValue["name"] as! String
         startDate = snapshotValue["startDate"] as! String
         uniqueID = snapshotValue["uniqueID"] as! String
-        
     }
     
     func serialize() -> [String : Any] {
@@ -54,6 +43,7 @@ struct Event {
     
 }
 
+// Used to sort events
 extension Event: Hashable {
     
     var hashValue: Int {

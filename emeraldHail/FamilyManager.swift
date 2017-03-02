@@ -19,23 +19,13 @@ final class FamilyManager {
     var members: [Member] = []
     var familyName: String?
     var familyPhoto: UIImage?
-    
     var posts: [Event : [Post]]?
-    
-    
+
     func createFamily(with id: String, handler: (Bool) -> Void) {
-        
         familyID = id
         
         // TODO: Go to firebase, get more stuff!
-        
-        
         // TODO: Get the members and populate the members array
-        
-        
     }
-    
-    
-    
     
 }

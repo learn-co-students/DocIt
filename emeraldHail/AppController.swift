@@ -39,7 +39,6 @@ class AppController: UIViewController {
     
 }
 
-
 // MARK: - Notification Observers
 extension AppController {
     

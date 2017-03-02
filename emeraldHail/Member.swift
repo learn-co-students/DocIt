@@ -16,10 +16,6 @@ struct Member {
     var profileImage: String
     var firstName: String
     var lastName: String
-//    var fullName: String {
-//        
-//        return firstName + " " + lastName
-//    }
     var gender: String
     var birthday: String
     var bloodType: String
@@ -56,7 +52,6 @@ struct Member {
     }
     
     init(snapshot: FIRDataSnapshot) {
-        
         let snapshotValue = snapshot.value as? [String : AnyObject]
         
         profileImage = snapshotValue?["profileImage"] as? String ?? "No Image URL"
@@ -69,25 +64,17 @@ struct Member {
         weight = snapshotValue?["weight"] as? String ?? "No Weight"
         allergies = snapshotValue?["allergies"] as? String ?? "No Allergies"
         id = snapshotValue?["uniqueID"] as? String ?? "No ID"
-        
     }
-    
-    
-    
-    
     
     func serialize() -> [String : Any] {
         return  ["profileImage" : profileImage, "firstName" : firstName, "lastName": lastName, "gender" : gender, "birthday" : birthday,  "bloodType": bloodType, "height": height, "weight": weight, "allergies": allergies,  "uniqueID" : id]
     }
     
     func saveToFireBase(handler: (Bool) -> Void) {
-        
+        // TODO:
         // get the firebase ref through the shared manager
         // updateValue should be called but on the right ref. child("VALUE") replacing value with the correct location
         // call update value on that ref then in that completion handler of that, if successfull, call handler here and pass in true.
-        
-        
-        
     }
+    
 }
-

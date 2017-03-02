@@ -12,16 +12,13 @@ import FirebaseDatabase
 
 class SymptomsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    // MARK: - Outlets 
-    
+    // MARK: - Outlets
     @IBOutlet weak var symptomView: UIView!
     @IBOutlet weak var symptomTableView: UITableView!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
     
-    
     // MARK: Properties
-    
     let store = DataStore.sharedInstance
     var database = FIRDatabase.database().reference()
     
@@ -29,17 +26,13 @@ class SymptomsViewController: UIViewController, UITableViewDelegate, UITableView
     
     var selectedSymtoms: [String : String] = [:]
     
-    // MARK: - Loads 
-    
+    // MARK: - Loads
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        symptomTableView.reloadData()
         setupView()
     }
     
-    // MARK: - Actions 
-    
+    // MARK: - Actions
     @IBAction func cancel(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
@@ -53,48 +46,41 @@ class SymptomsViewController: UIViewController, UITableViewDelegate, UITableView
         // Prevent adding an empty ditionary to firebase
         if selectedSymtoms.isEmpty {
             saveButton.backgroundColor = Constants.Colors.submarine
-
             return
         }
         
         let postsRef = database.child(Constants.Database.posts).child(store.eventID).childByAutoId()
         let uniqueID = postsRef.key
-        
         let newSymp = Symp(content: selectedSymtoms, uniqueID: uniqueID, timestamp: getTimestamp())
         
         postsRef.setValue(newSymp.serialize(), withCompletionBlock: { error, ref in
             self.dismiss(animated: true, completion: nil)
         })
-        
     }
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
-    // MARK: Methods 
-    
+    // MARK: Methods
     func setupView() {
-        
         symptomTableView.allowsMultipleSelection = true
         
         view.backgroundColor = Constants.Colors.transBlack
         
         symptomView.docItStyleView()
-
         symptomTableView.tintColor = Constants.Colors.scooter
-
+        symptomTableView.separatorColor = Constants.Colors.athensGray
+        
         saveButton.docItStyle()
         cancelButton.docItStyle()
         
-        symptomTableView.separatorColor = Constants.Colors.athensGray
-        
         saveButton.isEnabled = false
         saveButton.backgroundColor = Constants.Colors.submarine
-
         
+        symptomTableView.reloadData()
     }
-
+    
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -117,7 +103,6 @@ class SymptomsViewController: UIViewController, UITableViewDelegate, UITableView
         print(selectedSymtoms)
         saveButton.isEnabled = true
         saveButton.backgroundColor = Constants.Colors.scooter
-        
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
@@ -128,10 +113,5 @@ class SymptomsViewController: UIViewController, UITableViewDelegate, UITableView
 }
 
 class SymptomViewCell: UITableViewCell {
-    
-    // MARK: - Outlets
-    
     @IBOutlet weak var symptomLabel: UILabel!
-    
-    
 }

@@ -34,5 +34,5 @@ class FamilyMemberView: UIView {
         contentView.topAnchor.constraint(equalTo: topAnchor).isActive = true
         contentView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     }
-
+    
 }

@@ -18,7 +18,7 @@ import Branch
 import LocalAuthentication
 
 class FamilySettingViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MFMailComposeViewControllerDelegate {
-
+    
     // MARK: - Outlets
     @IBOutlet weak var inviteFamily: UIButton!
     @IBOutlet weak var changeFamilyPicture: UIButton!
@@ -87,12 +87,12 @@ class FamilySettingViewController: UITableViewController, UIImagePickerControlle
             metricCell.accessoryType = .checkmark
             imperialCell.accessoryType = .none
         } else {
-        store.isMetric = true
-        UserDefaults.standard.set(true, forKey: "isMetric")
-        imperialCell.accessoryType = .none
-        metricCell.accessoryType = .checkmark
-        print("metric button tapped")
-        print("isMetric value in the store is \(store.isMetric)")
+            store.isMetric = true
+            UserDefaults.standard.set(true, forKey: "isMetric")
+            imperialCell.accessoryType = .none
+            metricCell.accessoryType = .checkmark
+            print("metric button tapped")
+            print("isMetric value in the store is \(store.isMetric)")
         }
     }
     
@@ -101,12 +101,12 @@ class FamilySettingViewController: UITableViewController, UIImagePickerControlle
             metricCell.accessoryType = .none
             imperialCell.accessoryType = .checkmark
         } else {
-        store.isMetric = false
-        UserDefaults.standard.set(false, forKey: "isMetric")
-        metricCell.accessoryType = .none
-        imperialCell.accessoryType = .checkmark
-        print("imperial button tapped")
-        print("isMetric value in the store is \(store.isMetric)")
+            store.isMetric = false
+            UserDefaults.standard.set(false, forKey: "isMetric")
+            metricCell.accessoryType = .none
+            imperialCell.accessoryType = .checkmark
+            print("imperial button tapped")
+            print("isMetric value in the store is \(store.isMetric)")
         }
     }
     
@@ -135,7 +135,7 @@ class FamilySettingViewController: UITableViewController, UIImagePickerControlle
         do {
             try FIRAuth.auth()?.signOut()
             store.clearDataStore()
-        
+            
             NotificationCenter.default.post(name: .openWelcomeVC, object: nil)
         } catch let signOutError as NSError {
             print ("Error signing out: \(signOutError.localizedDescription)")

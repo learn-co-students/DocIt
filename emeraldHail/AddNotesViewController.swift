@@ -11,7 +11,7 @@ import FirebaseDatabase
 import Firebase
 
 class AddNotesViewController: UIViewController, UITextViewDelegate {
-
+    
     @IBOutlet weak var addNotesTextView: UITextView!
     @IBOutlet weak var noteView: UIView!
     @IBOutlet weak var saveButton: UIButton!
@@ -57,7 +57,7 @@ class AddNotesViewController: UIViewController, UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         addNotesTextView.text = nil
     }
-
+    
     @IBAction func addNotes(_ sender: UIButton) {
         saveButton.isEnabled = false
         

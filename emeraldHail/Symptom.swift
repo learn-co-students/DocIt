@@ -42,7 +42,6 @@ enum Symptom: String {
     case vomiting = "Vomiting"
     case wheezing = "Wheezing"
     
-    
     var description: String {
         switch self {
         case .bloodInStool: return "Blood in stool"
@@ -75,11 +74,7 @@ enum Symptom: String {
         case .vision : return "Vision Problems"
         case .vomiting : return "Vomiting"
         case .wheezing : return "Wheezing"
-            
-            
         }
-        
     }
-    
     
 }

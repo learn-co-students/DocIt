@@ -101,7 +101,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
             
             cell.profileImageView.setRounded()
             cell.profileImageView.contentMode = .scaleAspectFill
-
+            
             cell.profileImageView.sd_setImage(with: profileImgUrl, completed: { (image, error, cacheType, url) in
                 cell.profileImageView.alpha = 0
                 UIView.animate(withDuration: 0.3, animations: {
@@ -150,7 +150,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
             
             if store.family.coverImageStr != "" {
                 headerView.profileImage.sd_setImage(with: familyPictureUrl, completed: { (image, error, cacheType, url) in
-
+                    
                     UIView.animate(withDuration: 0.5, animations: {
                         headerView.alpha = 1
                     })

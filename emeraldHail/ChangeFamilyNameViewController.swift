@@ -26,7 +26,7 @@ class ChangeFamilyNameViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
     }
-
+    
     // MARK: - Actions
     
     @IBAction func cancel(_ sender: Any) {
@@ -50,7 +50,7 @@ class ChangeFamilyNameViewController: UIViewController {
             saveButton.backgroundColor = Constants.Colors.scooter
         }
     }
-   
+    
     // MARK: - Methods
     func setupViews() {
         view.backgroundColor = Constants.Colors.transBlack
@@ -70,7 +70,7 @@ class ChangeFamilyNameViewController: UIViewController {
         saveButton.isEnabled = false
         
         let ref = database.child(Constants.Database.family).child(self.store.user.familyId)
-    
+        
         guard let name = changeNameTextField.text, name != "" else { return }
         
         ref.updateChildValues(["name": name], withCompletionBlock: { (error, dataRef) in

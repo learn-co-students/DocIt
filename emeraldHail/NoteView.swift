@@ -16,10 +16,8 @@ class NoteView: UIView {
     
     var note: Note! {
         didSet {
-            
             noteLabel.text = note.content
             timestampLabel.text = note.naturalTime
-            
         }
     }
     
@@ -42,8 +40,6 @@ class NoteView: UIView {
         
         timestampLabel.textColor = Constants.Colors.submarine
         
-//        contentView.backgroundColor = UIColor.getRandomColor()
-        
         contentView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         contentView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         contentView.topAnchor.constraint(equalTo: topAnchor).isActive = true
@@ -53,6 +49,5 @@ class NoteView: UIView {
     override func draw(_ rect: CGRect) {
         drawTimeline(circleColor: Constants.Colors.corn.cgColor, lineColor: Constants.Colors.submarine.cgColor)
     }
-    
     
 }

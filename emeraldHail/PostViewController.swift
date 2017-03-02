@@ -14,7 +14,6 @@ import Fusuma
 class PostViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, FusumaDelegate {
     
     // MARK: - Outlets
-    
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var postTableView: UITableView!
@@ -27,21 +26,17 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     @IBOutlet weak var plusButton: UIButton!
-    
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
-
-    // MARK: - Properties
     
+    // MARK: - Properties
     var deletedPostRef: FIRDatabaseReference?
     var uniqueID: String?
     var posts = [Post]()
     var store = DataStore.sharedInstance
     let postsRef = FIRDatabase.database().reference().child(Constants.Database.posts)
-    
     var plusButtonIsRotated = false
     
     // MARK: - Loads
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -50,11 +45,11 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         postTableView.separatorStyle = .none
         
         // Self-sizing Table View Cells
-        // TODO: Maybe limit the size of the cell or number of characters. Then implement
+        // TODO: Maybe limit the size of the cell or number of characters.
         postTableView.rowHeight = UITableViewAutomaticDimension
         postTableView.estimatedRowHeight = 150
         
-        self.title = self.store.event.name
+        title = self.store.event.name
         
         plusButton.layer.shadowColor = UIColor.black.cgColor
         plusButton.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
@@ -82,11 +77,8 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     // MARK: - Actions
-    
     @IBAction func addPost(_ sender: UIButton) {
-        
         animatePostButtons()
-
     }
     
     @IBAction func addPhoto(_ sender: UIButton) {
@@ -99,40 +91,28 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func animatePostButtons() {
-        
-        // usingSpringWithDamping: 0.1, initialSpringVelocity: 0.2,
-        
         self.view.layoutIfNeeded()
         
         UIView.animate(withDuration: 0.15, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.2, options: .curveLinear, animations: {
-            
             if !self.plusButtonIsRotated {
                 self.plusButton.transform = CGAffineTransform(rotationAngle: CGFloat(45).degreesToRadians)
-                
                 self.postButtons.forEach {
                     $0.isHidden = false
                     $0.alpha = 1.0
                 }
-                
                 self.plusButtonIsRotated = true
             } else {
                 self.plusButton.transform = CGAffineTransform(rotationAngle: CGFloat(0).degreesToRadians)
-                
                 self.postButtons.forEach {
                     $0.isHidden = true
                     $0.alpha = 0.0
                 }
-                
                 self.plusButtonIsRotated = false
             }
-            
-            
         }, completion: nil)
-        
     }
     
     // MARK: - Methods
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -142,11 +122,9 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let eachPost = posts[indexPath.row]
         
         switch eachPost {
-            
         case .note(let note):
             let noteCell = tableView.dequeueReusableCell(withIdentifier: "NoteCell", for: indexPath) as! NoteCell
             noteCell.noteView.note = note
@@ -178,9 +156,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        
         let databasePosts = postsRef.child(store.eventID)
-        
         if editingStyle == .delete {
             
             // Deleting post data from Firebase using UniquePostID
@@ -190,44 +166,32 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
             store.postID = uniquePostID
             databasePosts.child(store.postID).removeValue()
             
-            // databasePosts.child(store.imagePostID).removeValue()
-            
             // Deleting images from storge
-            
             let storageRef = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
-            //            let storageImgRef = storageRef.child("postsImages").child(store.imagePostID)
-            
             let storageImgRef = storageRef.child(Constants.Storage.postsImages).child(store.postID)
             
             storageImgRef.delete(completion: { error -> Void in
-                
                 if error != nil {
                     print("Error occured while deleting imgs from Firebase storage")
                 } else {
                     print("Image removed from Firebase successfully!")
                 }
-                
             })
             
             // Deleting posts from tableviews
-            
             posts.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
     
     // MARK: Firebase
-    
     func reloadTable() {
         postTableView.reloadData()
     }
     
     func fetchPosts() {
-        
         postsRef.child(store.eventID).observe(.value, with: { [unowned self] snapshot in
-            
             DispatchQueue.main.async {
-                
                 // Guard to protect an empty dictionary (no posts yet)
                 guard let value = snapshot.value as? [String : Any] else { return }
                 
@@ -264,7 +228,6 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func fetchMemberDetails() {
-        
         let member = FIRDatabase.database().reference().child(Constants.Database.members).child(store.user.familyId).child(store.member.id)
         
         member.observe(.value, with: { snapshot in
@@ -282,81 +245,52 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     // MARK: Fusuma
-    
     func handleCameraImage() {
-        
         let fusuma = FusumaViewController()
         fusuma.delegate = self
         self.present(fusuma, animated: true, completion: nil)
         fusumaCropImage = true
-        
     }
     
     // Return the image which is selected from camera roll or is taken via the camera.
-    
     func fusumaImageSelected(_ image: UIImage) {
-     
         uploadImageURLtoFirebaseDatabaseAndStorage(image)
-
         // present some alert with the image
         // add button to alert to send
         // upload from button
         
         print("Image selected")
-        
     }
     
     // Return the image but called after is dismissed.
     
     func fusumaDismissedWithImage(_ image: UIImage) {
-        
-        // uploadImageURLtoFirebaseDatabaseAndStorage(image)
-        
         activityIndicatorView.startAnimating()
         
         print("Called just after FusumaViewController is dismissed.")
-        
     }
     
     func fusumaVideoCompleted(withFileURL fileURL: URL) {
-        
         print("Called just after a video has been selected.")
-        
     }
     
     // When camera roll is not authorized, this method is called.
-    
     func fusumaCameraRollUnauthorized() {
-        
         print("Camera access denied")
-        
     }
     
-    
     func uploadImageURLtoFirebaseDatabaseAndStorage(_ image: UIImage) {
-        
-        //guard let image = imageView.image, image != UIImage(named: "addImageIcon") else { return }
-        
-        // database
-        
         let database: FIRDatabaseReference = FIRDatabase.database().reference()
-        
         let databasePostsRef = database.child(Constants.Database.posts).child(store.eventID).childByAutoId()
-        
         let uniqueID = databasePostsRef.key
-        
-        // storage
-        
         let storageRef = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
         
         store.imagePostID = uniqueID
         
         let storageImageRef = storageRef.child(Constants.Storage.postsImages).child(store.imagePostID)
-        
         guard let uploadData = UIImageJPEGRepresentation(image, 0.25) else { return }
         
         storageImageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
-            
             if error != nil {
                 print (error?.localizedDescription ?? "Error occured while uploading img to Firebase" )
                 return
@@ -367,13 +301,10 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
             let photo = Photo(content: postImageUrl, timestamp: self.getTimestamp(), uniqueID: uniqueID)
             
             databasePostsRef.setValue(photo.serialize(), withCompletionBlock: { error, dataRef in
-                // Disable the save button after it's pressed once
-                
+                // TODO: Disable the save button after it's pressed once
             })
             self.activityIndicatorView.stopAnimating()
         })
-        
-
     }
     
 }

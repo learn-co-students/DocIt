@@ -15,14 +15,11 @@ class PainLevelView: UIView {
     @IBOutlet weak var timestampLabel: UILabel!
     @IBOutlet weak var faceImageView: UIImageView!
     
-    
     var pain: Pain! {
-        
         didSet {
-            
             painLevelLabel.text = pain.content.uppercased()
             timestampLabel.text = pain.naturalTime
-      
+            
             switch pain.content {
             case "No Pain" :
                 faceImageView.image = UIImage(named: "noPain")
@@ -39,14 +36,12 @@ class PainLevelView: UIView {
             default:
                 break
             }
-            
         }
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
-
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -72,6 +67,5 @@ class PainLevelView: UIView {
     override func draw(_ rect: CGRect) {
         drawTimeline(circleColor: Constants.Colors.neonCarrot.cgColor, lineColor: Constants.Colors.submarine.cgColor)
     }
-    
     
 }

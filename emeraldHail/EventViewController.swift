@@ -105,12 +105,12 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 // Delete item at indexPath
                 // Deleting selected events and related posts from Firebase
                 databaseEvents.child(uniqueEventID).removeValue()
-            
+                
                 databasePosts.observeSingleEvent(of: .value, with: { snapshot in
                     let oldPosts = snapshot.value as? [String: Any]
                     let allKeys = oldPosts?.keys
                     guard let keys = allKeys else { return }
-    
+                    
                     for key in keys {
                         let dictionary = oldPosts?[key] as? [String: Any]
                         let post = Post(dictionary: dictionary!)

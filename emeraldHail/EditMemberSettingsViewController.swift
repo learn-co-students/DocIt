@@ -445,7 +445,7 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
                 } else if component == 1 {
                     g = store.weightsInG[row]
                 }
-    
+                
                 weightTextField.text = "\(kg).\(g) kg"
                 
             case heightSelection:
@@ -554,5 +554,5 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
         // TODO: Handle what happens when the camera is not authorized
         print("Camera access denied")
     }
-
+    
 }

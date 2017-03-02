@@ -19,7 +19,6 @@ class SymptomView: UIView {
     
     var symp: Symp! {
         didSet {
-            
             for key in symp.content.keys {
                 guard let value = symp.content[key] else { return }
                 symptoms.append(value)
@@ -27,9 +26,7 @@ class SymptomView: UIView {
             
             symptomLabel.text = symptoms.joined(separator: ", ")
             symptoms.removeAll()
-            
             timestampLabel.text = symp.naturalTime
-            
         }
     }
     
@@ -51,8 +48,6 @@ class SymptomView: UIView {
         addSubview(contentView)
         
         timestampLabel.textColor = Constants.Colors.submarine
-        
-//        contentView.backgroundColor = UIColor.getRandomColor()
         
         contentView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         contentView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true

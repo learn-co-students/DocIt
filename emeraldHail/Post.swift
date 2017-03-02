@@ -25,7 +25,6 @@ enum Post {
     case noValue
     
     var description: String {
-        
         switch self {
         case .note(let note): return note.uniqueID
         case .temp(let temp): return temp.uniqueID
@@ -33,13 +32,10 @@ enum Post {
         case .photo(let photo): return photo.uniqueID
         case .symp(let symp): return symp.uniqueID
         case .noValue: return "NO UNIQUE ID"
-            
         }
-        
     }
     
     var timestamp: String {
-        
         switch self {
         case .note(let note): return note.timestamp
         case .temp(let temp): return temp.timestamp
@@ -47,13 +43,10 @@ enum Post {
         case .photo(let photo): return photo.timestamp
         case .symp(let symp): return symp.timestamp
         case .noValue: return "NO TIMESTAMP"
-            
         }
-        
     }
     
     init(dictionary: [String : Any]) {
-        
         let type = dictionary["postType"] as! String
         
         switch type {
@@ -74,10 +67,7 @@ enum Post {
             self = .photo(photo)
         default:
             self = .noValue
-            
         }
-        
     }
     
 }
-
