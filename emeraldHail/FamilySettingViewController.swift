@@ -18,12 +18,8 @@ import Branch
 import LocalAuthentication
 
 class FamilySettingViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MFMailComposeViewControllerDelegate {
-    
-    // MARK: - DataStore reference
-    let store = DataStore.sharedInstance
-    
+
     // MARK: - Outlets
-    
     @IBOutlet weak var inviteFamily: UIButton!
     @IBOutlet weak var changeFamilyPicture: UIButton!
     @IBOutlet weak var changeFamilyName: UIButton!
@@ -34,16 +30,13 @@ class FamilySettingViewController: UITableViewController, UIImagePickerControlle
     @IBOutlet weak var madeCell: UITableViewCell!
     @IBOutlet weak var metricSystemButton: UIButton!
     @IBOutlet weak var imperialSystemButton: UIButton!
-    
     @IBOutlet weak var metricCell: UITableViewCell!
     @IBOutlet weak var imperialCell: UITableViewCell!
     
-    // MARK: - Firebase Database
-
+    let store = DataStore.sharedInstance
     let database = FIRDatabase.database().reference()
     
     // MARK: - Loads
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -60,11 +53,9 @@ class FamilySettingViewController: UITableViewController, UIImagePickerControlle
                 metricCell.accessoryType = .none
             }
         }
-        
     }
     
     // MARK: - Actions
-    
     @IBAction func changeFamilyPic(_ sender: UIButton) {
         handleSelectProfileImageView()
     }
@@ -119,16 +110,12 @@ class FamilySettingViewController: UITableViewController, UIImagePickerControlle
         }
     }
     
-    
     // MARK: - Methods
-    
     func setupView() {
         inviteFamily.docItStyle()
         changeFamilyPicture.docItStyle()
         changeFamilyName.docItStyle()
         logout.docItStyle()
-        
-//        madeCell.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0)
     }
     
     func inviteParent() {
@@ -142,27 +129,20 @@ class FamilySettingViewController: UITableViewController, UIImagePickerControlle
         
         branchUniversalObject.showShareSheet(with: linkProperties, andShareText: "Please join my family on Doc It!", from: self) { (activityType, completed) in
         }
-        
-        print(branchUniversalObject)
-        
     }
     
     func logoutApp() {
-        
         do {
             try FIRAuth.auth()?.signOut()
             store.clearDataStore()
-            
+        
             NotificationCenter.default.post(name: .openWelcomeVC, object: nil)
         } catch let signOutError as NSError {
             print ("Error signing out: \(signOutError.localizedDescription)")
         }
-        
     }
     
-    
     func changeFamilyCoverPic(photo: UIImage, handler: @escaping (Bool) -> Void) {
-        
         let familyDatabase = database.child(Constants.Database.family).child(store.user.familyId)
         let storageRef = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
         let storeImageRef = storageRef.child(Constants.Storage.familyImages).child(store.user.familyId)
@@ -179,9 +159,7 @@ class FamilySettingViewController: UITableViewController, UIImagePickerControlle
             guard let familyPicString = metadata?.downloadURL()?.absoluteString else { return }
             
             familyDatabase.updateChildValues(["coverImageStr": familyPicString], withCompletionBlock: { (error, dataRef) in
-                
                 DispatchQueue.main.async {
-                    
                     handler(true)
                 }
             })
@@ -195,27 +173,20 @@ class FamilySettingViewController: UITableViewController, UIImagePickerControlle
         picker.allowsEditing = true
         
         self.present(picker, animated: true, completion: nil)
-        
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]){
-        
         var selectedImageFromPicker: UIImage?
         
         if let editImage = info[UIImagePickerControllerEditedImage] as? UIImage {
-            
             selectedImageFromPicker = editImage
-            
         } else if let originalImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             selectedImageFromPicker = originalImage
         }
         
         if let selectedImage = selectedImageFromPicker {
-            
             changeFamilyCoverPic(photo: selectedImage, handler: { success in
-                
                 self.dismiss(animated: true, completion: nil)
-                
             })
         }
     }
@@ -236,7 +207,7 @@ class FamilySettingViewController: UITableViewController, UIImagePickerControlle
             
             present(mail, animated: true)
         } else {
-            // show failure alert
+            // TODO: Show failure alert
         }
     }
     
@@ -245,9 +216,7 @@ class FamilySettingViewController: UITableViewController, UIImagePickerControlle
     }
     
     // MARK: - Touch ID Methods
-    
     func checkTouchID() {
-        
         let touchIDValue = UserDefaults.standard.value(forKey:"touchID") as? String
         
         database.child(Constants.Database.settings).child(store.user.familyId).child("touchID").setValue(touchIDValue)
