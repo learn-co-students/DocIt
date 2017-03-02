@@ -20,7 +20,7 @@ final class FamilyManager {
     var familyName: String?
     var familyPhoto: UIImage?
     var posts: [Event : [Post]]?
-
+    
     func createFamily(with id: String, handler: (Bool) -> Void) {
         familyID = id
         

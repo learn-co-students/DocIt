@@ -51,7 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         navBarAppearance.shadowImage = UIImage()
         navBarAppearance.isTranslucent = false
         navBarAppearance.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-
+        
         return true
     }
     

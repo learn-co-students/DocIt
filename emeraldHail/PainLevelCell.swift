@@ -11,13 +11,13 @@ import UIKit
 class PainLevelCell: UITableViewCell {
     
     @IBOutlet weak var painLevelView: PainLevelView!
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-
+    
 }
