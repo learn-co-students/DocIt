@@ -17,6 +17,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     @IBOutlet weak var memberProfilesView: UICollectionView!
     @IBOutlet weak var familySettings: UIBarButtonItem!
+    @IBOutlet weak var imageDarkOverlay: UIView!
     
     // MARK: Properties
     let store = DataStore.sharedInstance
@@ -148,8 +149,10 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
             if store.family.coverImageStr != "" {
                 headerView.profileImage.sd_setImage(with: familyPictureUrl, completed: { (image, error, cacheType, url) in
                     headerView.profileImage.alpha = 0
+                    headerView.darkOverlay.alpha = 0
                     UIView.animate(withDuration: 0.25, animations: { 
                         headerView.profileImage.alpha = 1
+                        headerView.darkOverlay.alpha = 0.5
                     })
                 })
             }

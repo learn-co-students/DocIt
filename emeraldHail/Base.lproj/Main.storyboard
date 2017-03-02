@@ -539,7 +539,7 @@
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Doc_It_BG" translatesAutoresizingMaskIntoConstraints="NO" id="hNa-6z-wVq">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
-                                            <color key="backgroundColor" red="0.18267938489999999" green="0.75351297859999999" blue="0.87854671480000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         </imageView>
                                         <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HKx-6P-0wu">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
@@ -568,6 +568,7 @@
                                         <constraint firstItem="hNa-6z-wVq" firstAttribute="width" secondItem="fPh-it-nY7" secondAttribute="width" id="ohh-mE-y0y"/>
                                     </constraints>
                                     <connections>
+                                        <outlet property="darkOverlay" destination="HKx-6P-0wu" id="0SJ-32-gk3"/>
                                         <outlet property="familyNameLabel" destination="cLw-J8-NoL" id="jKV-WN-jxc"/>
                                         <outlet property="profileImage" destination="hNa-6z-wVq" id="etb-yK-Wd8"/>
                                     </connections>

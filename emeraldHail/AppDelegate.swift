@@ -20,30 +20,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     let store = DataStore.sharedInstance
     var window: UIWindow?
     
-    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        
         // MARK: - Branch.io
-        
         let branch = Branch.getInstance()
         
         branch?.initSession(launchOptions: launchOptions, andRegisterDeepLinkHandler: { (params, error) in
             if error == nil {
-                // params are the deep linked params associated with the link that the user clicked -> was re-directed to this app
-                
+                // Params are the deep linked params associated with the link that the user clicked -> was re-directed to this app
                 if let inviteFamilyID = params["inviteFamilyID"] as? String {
-                    
                     self.store.inviteFamilyID = inviteFamilyID
-                    print("🔥🔥🔥🔥🔥")
-                    print(inviteFamilyID)
-                    print("🔥🔥🔥🔥🔥")
                 }
-                
-                print("params: \(params.description)")
             }
         })
-        
         
         FIRApp.configure()
         FIRDatabase.database().persistenceEnabled = true
@@ -51,19 +39,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         IQKeyboardManager.sharedManager().enable = true
         IQKeyboardManager.sharedManager().enableAutoToolbar = false
         
-        //        if FIRAuth.auth()?.currentUser != nil{
-        //            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        //            let controller = storyboard.instantiateViewController(withIdentifier: "FamilyViewController")
-        //            window?.rootViewController = controller
-        //            window?.makeKeyAndVisible()
-        //            //self.presentViewController(controller, animated: true , completion: nil)
-        //
-        //            //            print("\n\n\nUSER LOGGED IN\n\n\n\n")
-        //        }
-        
         GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
-        
         
         let navigationBarAppearace = UINavigationBar.appearance()
         navigationBarAppearace.barTintColor = Constants.Colors.scooter
@@ -74,38 +51,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         navigationBarAppearace.shadowImage = UIImage()
         navigationBarAppearace.isTranslucent = false
         
-        navigationBarAppearace.titleTextAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 14, weight: UIFontWeightLight)]
+        let navBarAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 14, weight: UIFontWeightLight),
+                                NSForegroundColorAttributeName: UIColor.white]
         
-        navigationBarAppearace.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        navigationBarAppearace.titleTextAttributes = navBarAttributes
 
         return true
     }
     
-    //MARK: Returns the user back to the application after validating gmail. 
-    
+    //MARK: Returns the user back to the application after validating gmail.
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-
-        
-        
         guard let sourceApplication = options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String else {return false}
         
-        print("\n\nsource app: \(sourceApplication)\n\n")
-        
+        // Pass the url to the handle deep link call
         if GIDSignIn.sharedInstance().handle(url, sourceApplication: sourceApplication, annotation: options[UIApplicationOpenURLOptionsKey.annotation]) || Branch.getInstance().handleDeepLink(url) {
-            
-            // ^ pass the url to the handle deep link call
-        
             return true
-            
         }
-        
         return false
-
     }
     
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
         Branch.getInstance().continue(userActivity)
-        
         return true
     }
     
@@ -115,45 +81,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     }
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        
-        print("\n\nhit didSignInFor in the app delegate\n\n")
-        
         if let error = error {
             print("\(error.localizedDescription)")
         }
     }
     
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
-        // Perform any operations when the user disconnects from app here.
+        print("✌🏼")
     }
-    
-    func applicationWillResignActive(_ application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
-    }
-    
-    func applicationDidEnterBackground(_ application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    }
-    
-    func applicationWillEnterForeground(_ application: UIApplication) {
-        // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
-    }
-    
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    }
-    
-    func applicationWillTerminate(_ application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    }
-    
-    
-    
-    
     
 }
-
-
-

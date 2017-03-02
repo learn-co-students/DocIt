@@ -16,6 +16,7 @@ class HeaderCollectionReusableView: UICollectionReusableView {
     // MARK: - Outlets
     @IBOutlet weak var familyNameLabel: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var darkOverlay: UIView!
     
     // MARK: - Properties
 
