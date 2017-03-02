@@ -119,7 +119,15 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
             
             cell.profileImageView.setRounded()
             cell.profileImageView.contentMode = .scaleAspectFill
-            cell.profileImageView.sd_setImage(with: profileImgUrl)
+//            cell.profileImageView.sd_setImage(with: profileImgUrl)
+            
+            cell.profileImageView.sd_setImage(with: profileImgUrl, completed: { (image, error, cacheType, url) in
+                cell.profileImageView.alpha = 0
+                UIView.animate(withDuration: 0.25, animations: { 
+                    cell.profileImageView.alpha = 1
+                })
+            })
+            
             cell.memberNameLabel?.text = member.firstName
             
             return cell
