@@ -12,7 +12,6 @@ import Firebase
 // N -> L -> S -> A || Notify -> Load -> Switch -> Add
 
 extension Notification.Name {
-    
     static let openLoginVC = Notification.Name("open-login-view-controller")
     static let openfamilyVC = Notification.Name("open-family-view-controller")
     static let openWelcomeVC = Notification.Name("open-welcome-view-controller")
@@ -20,7 +19,6 @@ extension Notification.Name {
 }
 
 enum StoryboardID: String {
-    
     case loginViewController = "login-view-controller"
     case welcomeViewController = "welcome-view-controller"
     case familyViewController = "family-nav-controller"
@@ -49,10 +47,7 @@ extension AppController {
         NotificationCenter.default.addObserver(self, selector: #selector(switchViewController(withNotification:)), name: .openLoginVC, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(switchViewController(withNotification:)), name: .openfamilyVC, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(switchViewController(withNotification:)), name: .openWelcomeVC, object: nil)
-
         NotificationCenter.default.addObserver(self, selector: #selector(switchViewController(withNotification:)), name: .openRegisterVC, object: nil)
-        
-        // NotificationCenter.default.post(name: .closeLoginVC, object: nil)  -> notification of a post.
     }
     
 }
@@ -60,7 +55,7 @@ extension AppController {
 // MARK: - Loading View Controllers
 extension AppController {
     
-    //loads viewControllers based on identifier. need to create id -> pass value to activeVC -> add viewController
+    // Loads viewControllers based on identifier. need to create id -> pass value to activeVC -> add viewController
     func loadInitialViewController() {
         let id: StoryboardID = .welcomeViewController
         activeVC = loadViewController(withStoryboardID: id)
@@ -76,30 +71,22 @@ extension AppController {
     
 }
 
-
 // MARK: - Switching View Controllers
 extension AppController {
     
-    // switch the view of the appcontroller based ont he storyboard id
+    // Switch the view of the appcontroller based ont he storyboard id
     func switchViewController(withNotification notification: Notification) {
-        
         switch notification.name {
-            
         case Notification.Name.openLoginVC:
             switchToViewController(withStoryboardID: .loginViewController)
-            
         case Notification.Name.openfamilyVC:
             switchToViewController(withStoryboardID: .familyViewController)
-            
         case Notification.Name.openWelcomeVC:
             switchToViewController(withStoryboardID: .welcomeViewController)
-            
         case Notification.Name.openRegisterVC:
             switchToViewController(withStoryboardID: .registerViewController)
-            
         default:
             fatalError("No notifcation exists.")
-            
         }
     }
     
@@ -111,26 +98,19 @@ extension AppController {
         addChildViewController(activeVC)
         add(viewController: activeVC)
         
-        activeVC.view.alpha = 0.0
+        activeVC.view.alpha = 0
         
         UIView.animate(withDuration: 0.5, animations: {
-            
-            self.activeVC.view.alpha = 1.0
-            existingVC?.view.alpha = 0.0
-            
+            self.activeVC.view.alpha = 1
+            existingVC?.view.alpha = 0
         }, completion: { _ in
-            
-            print("Am I even being called")
-            
             existingVC?.view.removeFromSuperview()
             existingVC?.removeFromParentViewController()
             self.activeVC.didMove(toParentViewController: self)
-            
         })
     }
     
 }
-
 
 // MARK: - Adding View Controllers
 extension AppController {
@@ -143,17 +123,16 @@ extension AppController {
         
         viewController.view.frame = containerView.bounds
         viewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        
         viewController.didMove(toParentViewController: self)
         
-        guard animated else { containerView.alpha = 1.0; return }
+        guard animated else {
+            containerView.alpha = 1.0
+            return
+        }
         
         UIView.animate(withDuration: 0.5, animations: {
-            
             self.containerView.alpha = 1.0
         })
-        
-    
     }
     
 }
