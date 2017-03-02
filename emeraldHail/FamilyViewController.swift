@@ -104,7 +104,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
 
             cell.profileImageView.sd_setImage(with: profileImgUrl, completed: { (image, error, cacheType, url) in
                 cell.profileImageView.alpha = 0
-                UIView.animate(withDuration: 0.25, animations: { 
+                UIView.animate(withDuration: 0.3, animations: {
                     cell.profileImageView.alpha = 1
                 })
             })
@@ -146,13 +146,13 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
             
             headerView.familyNameLabel.text = store.family.name
             
+            headerView.alpha = 0
+            
             if store.family.coverImageStr != "" {
                 headerView.profileImage.sd_setImage(with: familyPictureUrl, completed: { (image, error, cacheType, url) in
-                    headerView.profileImage.alpha = 0
-                    headerView.darkOverlay.alpha = 0
-                    UIView.animate(withDuration: 0.25, animations: { 
-                        headerView.profileImage.alpha = 1
-                        headerView.darkOverlay.alpha = 0.5
+
+                    UIView.animate(withDuration: 0.5, animations: {
+                        headerView.alpha = 1
                     })
                 })
             }

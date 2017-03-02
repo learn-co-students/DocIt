@@ -42,19 +42,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
         
-        let navigationBarAppearace = UINavigationBar.appearance()
-        navigationBarAppearace.barTintColor = Constants.Colors.scooter
-        navigationBarAppearace.tintColor = UIColor.white
-        navigationBarAppearace.layer.borderWidth = 0
-        navigationBarAppearace.layer.borderColor = Constants.Colors.scooter.cgColor
-        navigationBarAppearace.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        navigationBarAppearace.shadowImage = UIImage()
-        navigationBarAppearace.isTranslucent = false
-        
-        let navBarAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 14, weight: UIFontWeightLight),
-                                NSForegroundColorAttributeName: UIColor.white]
-        
-        navigationBarAppearace.titleTextAttributes = navBarAttributes
+        let navBarAppearance = UINavigationBar.appearance()
+        navBarAppearance.barTintColor = Constants.Colors.scooter
+        navBarAppearance.tintColor = .white
+        navBarAppearance.layer.borderWidth = 0
+        navBarAppearance.layer.borderColor = Constants.Colors.scooter.cgColor
+        navBarAppearance.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navBarAppearance.shadowImage = UIImage()
+        navBarAppearance.isTranslucent = false
+        navBarAppearance.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
 
         return true
     }
