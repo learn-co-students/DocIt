@@ -168,6 +168,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A08554141E68AD73003FB484 /* Join Family */ = {
+			isa = PBXGroup;
+			children = (
+				BBC8830A1DF918E70002A285 /* JoinFamily.xib */,
+				BBC8830C1DF918FE0002A285 /* JoinFamily.swift */,
+			);
+			name = "Join Family";
+			sourceTree = "<group>";
+		};
 		AA0BF2BC1DF4A8F00062FA36 /* AddMemberCollectionCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -316,8 +325,7 @@
 				AAE7D3EB1DEF6CBE00C59107 /* Symptom */,
 				AA9892B31DEA31D60092F3A8 /* Note */,
 				AA57AC561DEE5A4B00DCA9BF /* Temp */,
-				BBC8830A1DF918E70002A285 /* JoinFamily.xib */,
-				BBC8830C1DF918FE0002A285 /* JoinFamily.swift */,
+				A08554141E68AD73003FB484 /* Join Family */,
 			);
 			name = View;
 			sourceTree = "<group>";

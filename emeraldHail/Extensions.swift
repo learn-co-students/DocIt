@@ -9,63 +9,45 @@
 import Foundation
 
 // MARK: - Make circle profile pictures
-
 extension UIImageView {
-    
     func setRounded() {
         let radius = self.frame.width / 2
         self.layer.cornerRadius = radius
         self.layer.masksToBounds = true
     }
-    
-}
-
-extension UIImageView {
     
     func setCornerRounded() {
         docItStyleView()
         self.layer.masksToBounds = true
     }
-    
 }
 
 extension UITextField {
-    
     func docItStyle() {
-
         self.layer.borderWidth = 1
         docItStyleView() 
         self.layer.borderColor = Constants.Colors.athensGray.cgColor
         self.backgroundColor = UIColor.white
-        
     }
 }
 
 extension UIView {
-    
     func docItStyleView() {
-        
         self.layer.cornerRadius = 2
-        
     }
-    
 }
 
 extension UIButton {
-    
     func docItStyle() {
-        
         docItStyleView()
     }
     
     func shadow() {
-        
         self.layer.shadowColor = UIColor.black.cgColor
         self.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
         self.layer.masksToBounds = false
         self.layer.shadowRadius = 1.0
         self.layer.shadowOpacity = 0.3
-
     }
     
     func setRounded() {
@@ -73,22 +55,17 @@ extension UIButton {
         self.layer.cornerRadius = radius
         self.layer.masksToBounds = true
     }
-
 }
 
 
 // MARK: - Get random color
-
 extension UIColor {
-    
     class func getDocitColor() -> UIColor {
         let docitColors: [UIColor] = [Constants.Colors.purpleCake, Constants.Colors.neonCarrot,  Constants.Colors.cinnabar, Constants.Colors.ufoGreen]
-        
         let randomNum = arc4random_uniform(5)
         let randomColor = docitColors[Int(randomNum)]
         
         return randomColor
-        
     }
     
     class func getRandomColor() -> UIColor {
@@ -101,11 +78,8 @@ extension UIColor {
 }
 
 // MARK: - Drawing the timeline
-
 extension UIView {
-    
     func drawTimeline(circleColor: CGColor, lineColor: CGColor) {
-
         let shapeLayer = CAShapeLayer()
         let lineLayer = CAShapeLayer()
         
@@ -134,25 +108,19 @@ extension UIView {
         lineLayer.strokeColor = lineColor
         lineLayer.lineWidth = Constants.CustomCell.lineWidth
         linePath.stroke()
-        
     }
-    
 }
 
 extension UIViewController {
-    
     func getTimestamp() -> String {
         let currentDate = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyyMMddHHmmss"
         return dateFormatter.string(from: currentDate).uppercased()
     }
-    
 }
 
-
 // For rotation
-
 extension Int {
     var degreesToRadians: Double { return Double(self) * .pi / 180 }
     var radiansToDegrees: Double { return Double(self) * 180 / .pi }
@@ -162,4 +130,3 @@ extension FloatingPoint {
     var degreesToRadians: Self { return self * .pi / 180 }
     var radiansToDegrees: Self { return self * 180 / .pi }
 }
-
