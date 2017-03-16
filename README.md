@@ -1,5 +1,7 @@
 # Flatiron School iOS-0916 Final Project
 
+![docit](https://cloud.githubusercontent.com/assets/19986066/23983323/ba761c68-09e9-11e7-8de3-9069f9d1a444.png)
+
 ## Description
 - Doc It is the easiest way to monitor your family's health.<br />
 - Now available on the <strong>App Store</strong>: http://bit.ly/DownloadDocIt
