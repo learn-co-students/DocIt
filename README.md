@@ -3,11 +3,21 @@
 ## Team name
 🍪 Cookie Heart ❤️
 
-## Team members
-Tanira Wiggins ([@TaniraWrites](https://github.com/TaniraWrites)), Luna An ([@mimicatcodes](https://github.com/mimicatcodes)), Enrique Torrendell ([@EnriqueTor](https://github.com/EnriqueTor)), Henry M Ly ([@henrymly](https://github.com/henrymly))
+## Proudly made by:
+Luna An ([@mimicatcodes](https://github.com/mimicatcodes)), 
+Henry M Ly ([@henrymly](https://github.com/henrymly))
+Enrique Torrendell ([@EnriqueTor](https://github.com/EnriqueTor)), 
+Tanira Wiggins ([@TaniraWrites](https://github.com/TaniraWrites)), 
 
 ## Project manager
 Jim Campagno ([@JimCampagno](https://github.com/JimCampagno))
 
 ## Description
-// TODO: Write product description
+Doc It is the easiest way to monitor your family's health.
+
+## Features:
+- Create a new family and add your family members
+- Add, edit, or delete health events you wish to track
+- Add notes, symptoms, temperature, pain level, and photos to the event timeline
+- Invite other family members to help monitor your family's health
+- Use Touch ID to login and protect your private health information
