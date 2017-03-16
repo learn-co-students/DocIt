@@ -4,10 +4,10 @@
 🍪 Cookie Heart ❤️
 
 ## Proudly made by:
-Luna An ([@mimicatcodes](https://github.com/mimicatcodes)), 
-Henry M Ly ([@henrymly](https://github.com/henrymly))
-Enrique Torrendell ([@EnriqueTor](https://github.com/EnriqueTor)), 
-Tanira Wiggins ([@TaniraWrites](https://github.com/TaniraWrites)), 
+Luna An ([@mimicatcodes](https://github.com/mimicatcodes)) <br /> 
+Henry M Ly ([@henrymly](https://github.com/henrymly)) <br />
+Enrique Torrendell ([@EnriqueTor](https://github.com/EnriqueTor)) <br />
+Tanira Wiggins ([@TaniraWrites](https://github.com/TaniraWrites))
 
 ## Project manager
 Jim Campagno ([@JimCampagno](https://github.com/JimCampagno))
