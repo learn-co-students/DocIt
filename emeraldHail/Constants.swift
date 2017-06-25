@@ -51,6 +51,7 @@ public struct Store {
     static var family = DataStore.sharedInstance.family
     static var member = DataStore.sharedInstance.member
     static var event = DataStore.sharedInstance.event
+    static var events = DataStore.sharedInstance.events
     static var genderSelection = DataStore.sharedInstance.genderSelection
     static var buttonEvent = DataStore.sharedInstance.buttonEvent
     static var eventID = DataStore.sharedInstance.eventID
@@ -63,10 +64,6 @@ public struct Store {
     static var weightsInLbs = DataStore.sharedInstance.weightsInLbs
     static var weightsInKg = DataStore.sharedInstance.weightsInKg
     static var weightsInG = DataStore.sharedInstance.weightsInG
-
-
-
-
 }
 
 public enum Path: String {

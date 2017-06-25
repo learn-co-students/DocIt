@@ -20,7 +20,6 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var imageDarkOverlay: UIView!
     
     // MARK: Properties
-    let store = DataStore.sharedInstance    
     let imageSelected = UIImagePickerController()
     var membersInFamily = [Member]()
     var family = [Family]()
@@ -74,7 +73,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         case is UICollectionViewCell:
             guard let indexPath = memberProfilesView.indexPath(for: sender as! UICollectionViewCell) else { return }
             if indexPath.row < membersInFamily.count {
-                store.member.id = membersInFamily[indexPath.row].id
+                Store.member.id = membersInFamily[indexPath.row].id
             }
         default:
             break
@@ -114,7 +113,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.row < membersInFamily.count {
             let selectedMember = membersInFamily[indexPath.row]
-            store.member = selectedMember
+            Store.member = selectedMember
         } else {
             performSegue(withIdentifier: "addMember", sender: nil)
         }
@@ -125,13 +124,13 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         switch kind {
         case UICollectionElementKindSectionHeader:
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) as! HeaderCollectionReusableView
-            let familyPictureUrl = URL(string: store.family.coverImageStr!)
+            let familyPictureUrl = URL(string: Store.family.coverImageStr!)
             
-            headerView.familyNameLabel.text = store.family.name
+            headerView.familyNameLabel.text = Store.family.name
             
             headerView.alpha = 0
             
-            if store.family.coverImageStr != "" {
+            if Store.family.coverImageStr != "" {
                 headerView.profileImage.sd_setImage(with: familyPictureUrl, completed: { (image, error, cacheType, url) in
                     
                     UIView.animate(withDuration: 0.5, animations: {
@@ -183,9 +182,9 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         familyRef.observe(.value, with: { snapshot in
             var dic = snapshot.value as? [String : Any]
             guard let familyName = dic?["name"] else { return }
-            self.store.family.name = familyName as? String
+            Store.family.name = familyName as? String
             guard let coverImgStr = dic?["coverImageStr"] else { return }
-            self.store.family.coverImageStr = coverImgStr as? String
+            Store.family.coverImageStr = coverImgStr as? String
         })
     }
 

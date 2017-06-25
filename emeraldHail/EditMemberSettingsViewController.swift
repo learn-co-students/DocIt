@@ -54,7 +54,6 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
         super.viewDidLoad()
         addProfileSettings()
         displayMemberProfileEdits()
-        
         setupViews()
     }
     
@@ -391,27 +390,22 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
     
     // Return the image which is selected from camera roll or is taken via the camera.
     func fusumaImageSelected(_ image: UIImage) {
-        
         // present some alert with the image
         // add button to alert to send
-        // upload from button
-        
-        print("Image selected")
+        // upload from button)
     }
     
     // Return the image but called after is dismissed.
     func fusumaDismissedWithImage(_ image: UIImage) {
         profilePicture.image = image
     }
-    
+
+    //Called just after a video has been selected.
     func fusumaVideoCompleted(withFileURL fileURL: URL) {
-        print("Called just after a video has been selected.")
     }
     
-    // When camera roll is not authorized, this method is called.
+    // When camera roll is not authorized, this method is called. Camera access denied
     func fusumaCameraRollUnauthorized() {
         // TODO: Handle what happens when the camera is not authorized
-        print("Camera access denied")
     }
-    
 }

@@ -40,6 +40,7 @@ class DataStore{
     var family = Family(id: "", name: "", coverImage: nil, coverImageStr: "", members: [])
     var member = Member(profileImage: "", firstName: "", lastName: "", gender: "", birthday: "", bloodType: "", height: "", weight: "", allergies: "", id: "")
     var event = Event(name: "", startDate: "", uniqueID: "")
+    var events: [Event] = []
     var buttonEvent = ""
     
     // MARK: - Measurement system
