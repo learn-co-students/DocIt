@@ -60,9 +60,9 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
     
     // MARK: - Actions
     @IBAction func didPressSave(_ sender: UIButton) {
-        save.isEnabled = false
-        activityIndicatorView.startAnimating()
-        Member.updateFirebaseValues(
+        Member.saveEditedMember(
+            sender: sender,
+            indicatorView: activityIndicatorView,
             firstName: firstNameTextField,
             lastName: lastNameTextField,
             dob: dobTextField,

@@ -238,5 +238,32 @@ extension Member {
             })
         }
     }
+
+    static func saveEditedMember(sender: UIButton,
+                             indicatorView: UIActivityIndicatorView!,
+                             firstName: UITextField,
+                             lastName: UITextField,
+                             dob: UITextField,
+                             gender: UITextField,
+                             height: UITextField,
+                             weight: UITextField,
+                             blood: UITextField,
+                             profilePicture: UIImageView,
+                             allergies: UITextField,
+                             controller: UIViewController) {
+        sender.isEnabled = false
+        indicatorView.startAnimating()
+        Member.updateFirebaseValues(
+            firstName: firstName,
+            lastName: lastName,
+            dob: dob,
+            gender: gender,
+            height: height,
+            weight: weight,
+            blood: blood,
+            profilePicture: profilePicture,
+            allergies: allergies,
+            controller: controller)
+    }
 }
 
