@@ -59,16 +59,6 @@ class RegisterViewController: UIViewController {
     }
     
     // MARK: - Methods
-    func hideKeyboardWhenTappedAround() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(RegisterViewController.dismissKeyboardView))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-    
-    func dismissKeyboardView() {
-        view.endEditing(true)
-    }
-    
     func setupViews() {
         hideKeyboardWhenTappedAround()
         

@@ -135,17 +135,7 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
     func addGestureRecognizer(imageView: UIImageView){
         imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleCameraImage)))
     }
-    
-    func hideKeyboardWhenTappedAround() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboardView))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-    
-    func dismissKeyboardView() {
-        view.endEditing(true)
-    }
-    
+ 
     func displayMemberProfileEdits() {
         let member = Database.members.child(Store.user.familyId).child(Store.member.id)
         member.observe(.value, with: { (snapshot) in

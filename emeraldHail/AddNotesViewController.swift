@@ -64,16 +64,6 @@ class AddNotesViewController: UIViewController, UITextViewDelegate {
     }
     
     // MARK: - Methods
-    func hideKeyboardWhenTappedAround() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboardView))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-    
-    func dismissKeyboardView() {
-        view.endEditing(true)
-    }
-    
     func textViewDidChange(_ textView: UITextView) {
         if addNotesTextView.text != "" {
             saveButton.isEnabled = true

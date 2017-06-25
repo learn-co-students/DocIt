@@ -89,24 +89,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch sender {
-        case is UITableViewCell:
-            guard let indexPath = eventsTable.indexPath(for: sender as! UITableViewCell) else { return }
-            Store.eventID = Store.events[indexPath.row].uniqueID
-        default:
-            break
-        }
-    }
-    
-    // MARK: - Methods
-    func hideKeyboardWhenTappedAround() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(EventViewController.dismissKeyboardView))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-    
-    func dismissKeyboardView() {
-        view.endEditing(true)
+        Event.prepare(for: segue, tableView: eventsTable, sender: sender)
     }
 }
 

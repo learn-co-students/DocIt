@@ -55,6 +55,8 @@ public struct Store {
     static var genderSelection = DataStore.sharedInstance.genderSelection
     static var buttonEvent = DataStore.sharedInstance.buttonEvent
     static var eventID = DataStore.sharedInstance.eventID
+    static var postID = DataStore.sharedInstance.postID
+    static var imagePostID = DataStore.sharedInstance.imagePostID
     static var isMetric = DataStore.sharedInstance.isMetric
     static var heightsInInches = DataStore.sharedInstance.heightsInInches
     static var heightsInFeet = DataStore.sharedInstance.heightsInFeet

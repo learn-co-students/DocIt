@@ -152,16 +152,6 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         return none
     }
     
-    func hideKeyboardWhenTappedAround() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(FamilyViewController.dismissKeyboardView))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-    
-    func dismissKeyboardView() {
-        view.endEditing(true)
-    }
-    
     // TODO: Rethink some of the variable names here and in configDatabaseFamily for clarity
     func configDatabaseMember() {
         let familyRef = Database.members.child(Store.user.familyId)

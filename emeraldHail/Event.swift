@@ -184,4 +184,14 @@ extension Event {
             print(error.localizedDescription)
         })
     }
+
+    static func prepare(for segue: UIStoryboardSegue, tableView: UITableView, sender: Any?) {
+        switch sender {
+        case is UITableViewCell:
+            guard let indexPath = tableView.indexPath(for: sender as! UITableViewCell) else { return }
+            Store.eventID = Store.events[indexPath.row].uniqueID
+        default:
+            break
+        }
+    }
 }

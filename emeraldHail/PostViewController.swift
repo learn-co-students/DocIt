@@ -32,7 +32,6 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     var deletedPostRef: FIRDatabaseReference?
     var uniqueID: String?
     var posts = [Post]()
-    var store = DataStore.sharedInstance
     let postsRef = Database.posts
     var plusButtonIsRotated = false
     
@@ -49,7 +48,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         postTableView.rowHeight = UITableViewAutomaticDimension
         postTableView.estimatedRowHeight = 150
         
-        title = self.store.event.name
+        title = Store.event.name
         
         plusButton.layer.shadowColor = UIColor.black.cgColor
         plusButton.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
@@ -156,17 +155,13 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        let databasePosts = postsRef.child(store.eventID)
-        if editingStyle == .delete {
-            
+        let databasePosts = postsRef.child(Store.eventID)
+        if editingStyle == .delete {            
             // Deleting post data from Firebase using UniquePostID
-            
-            store.postID = posts[indexPath.row].description
-            databasePosts.child(store.postID).removeValue()
-            
+            Store.postID = posts[indexPath.row].description
+            databasePosts.child(Store.postID).removeValue()
             // Deleting images from storge
-            let storageImgRef = Database.storagePosts.child(store.postID)
-            
+            let storageImgRef = Database.storagePosts.child(Store.postID)
             storageImgRef.delete(completion: { error -> Void in
                 guard let error = error else {
                     print("Image removed from Firebase successfully!")
@@ -174,7 +169,6 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
                 }
                 print(error.localizedDescription)
             })
-            
             // Deleting posts from tableviews
             posts.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
@@ -187,37 +181,28 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func fetchPosts() {
-        postsRef.child(store.eventID).observe(.value, with: { [unowned self] snapshot in
+        postsRef.child(Store.eventID).observe(.value, with: { [unowned self] snapshot in
             DispatchQueue.main.async {
                 // Guard to protect an empty dictionary (no posts yet)
                 guard let value = snapshot.value as? [String : Any] else { return }
-                
                 // TODO: Clear the posts array so we do not append duplicates to the array. This is inefficient, so we should probably think about a better way to do this. Sets instead of Array?
                 self.posts.removeAll()
-                
                 // allKeys is all of the keys returned from the snapshot
                 let allKeys = value.keys
-                
                 // We look through all the keys
                 for key in allKeys {
-                    
                     // Inside each key os another dictionary from Firebase
                     let dictionary = value[key] as! [String : Any]
-                    
                     // Create an instance of a Post with the dictionary
                     let post = Post(dictionary: dictionary)
-                    
                     // Append to the posts array
                     self.posts.insert(post, at: 0)
                 }
-                
                 // Sorting the posts in reverse chronological order
                 let sortedPosts = self.posts.sorted(by: { (postOne, postTwo) -> Bool in
                     return postOne.timestamp > postTwo.timestamp
                 })
-                
                 self.posts = sortedPosts
-                
                 self.postTableView.reloadData()
             }
         })
@@ -225,8 +210,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func fetchMemberDetails() {
-        let member = Database.members.child(Store.user.familyId).child(store.member.id)
-        
+        let member = Database.members.child(Store.user.familyId).child(Store.member.id)
         member.observe(.value, with: { snapshot in
             var member = snapshot.value as? [String:Any]
             let imageString = member?["profileImage"] as? String
@@ -277,23 +261,18 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func uploadImageURLtoFirebaseDatabaseAndStorage(_ image: UIImage) {
-        let databasePostsRef = Database.posts.child(store.eventID).childByAutoId()
+        let databasePostsRef = Database.posts.child(Store.eventID).childByAutoId()
         let uniqueID = databasePostsRef.key
-        store.imagePostID = uniqueID
-        
-        let storageImageRef = Database.storagePosts.child(store.imagePostID)
+        Store.imagePostID = uniqueID
+        let storageImageRef = Database.storagePosts.child(Store.imagePostID)
         guard let uploadData = UIImageJPEGRepresentation(image, 0.25) else { return }
-        
         storageImageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
             if error != nil {
                 print (error?.localizedDescription ?? "Error occured while uploading img to Firebase" )
                 return
             }
-            
             guard let postImageUrl = metadata?.downloadURL()?.absoluteString else { return }
-            
             let photo = Photo(content: postImageUrl, timestamp: self.getTimestamp(), uniqueID: uniqueID)
-            
             databasePostsRef.setValue(photo.serialize(), withCompletionBlock: { error, dataRef in
                 // TODO: Disable the save button after it's pressed once
             })
