@@ -21,8 +21,6 @@ class AddEventViewController: UIViewController, UIPickerViewDelegate, UITextFiel
     @IBOutlet weak var cancelButton: UIButton!
     
     // MARK: - Properties
-    var database: FIRDatabaseReference = FIRDatabase.database().reference()
-    var store = DataStore.sharedInstance
     let dobSelection = UIDatePicker()
     
     // MARK: - Loads
@@ -33,15 +31,20 @@ class AddEventViewController: UIViewController, UIPickerViewDelegate, UITextFiel
     
     // MARK: - Actions
     @IBAction func dismissView(_ sender: Any) {
-        dismissViewController()
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func saveEvent(_ sender: UIButton) {
-        saveEvent()
+        Event.saveEvent(
+            button: saveButton,
+            eventViewTitle: eventViewTitle,
+            nameTextField: nameTextField,
+            dateTextField: dateTextField,
+            controller: self)
     }
     
     @IBAction func cancelEvent(_ sender: UIButton) {
-        dismissViewController()
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func startDateDidBeginEditing(_ sender: Any) {
@@ -51,57 +54,26 @@ class AddEventViewController: UIViewController, UIPickerViewDelegate, UITextFiel
     // MARK: - Methods
     func setupView() {
         view.backgroundColor = Constants.Colors.transBlack
-        
+        eventView.docItStyleView()
         saveButton.docItStyle()
         cancelButton.docItStyle()
-        eventView.docItStyleView()
         nameTextField.docItStyle()
         dateTextField.docItStyle()
-        
-        eventViewTitle.text = store.buttonEvent
-        
+        eventViewTitle.text = Store.buttonEvent
         dateTextField.delegate = self
-        
         if eventViewTitle.text == "Modify Event" {
-            nameTextField.text = store.event.name
-            dateTextField.text = store.event.startDate
+            nameTextField.text = Store.event.name
+            dateTextField.text = Store.event.startDate
         }
-        
         saveButton.isEnabled = false
         saveButton.backgroundColor = Constants.Colors.submarine
-        
         nameTextField.becomeFirstResponder()
     }
     
     func dismissViewController() {
         dismiss(animated: true, completion: nil)
     }
-    
-    func saveEvent() {
-        saveButton.isEnabled = false
-        if eventViewTitle.text == "Create Event" {
-            guard let name = nameTextField?.text, name != "", let date = dateTextField?.text, date != "" else { return }
-            let databaseEventsRef = Database.events.child(self.store.member.id).childByAutoId()
-            let uniqueID = databaseEventsRef.key
-            let event = Event(name: name, startDate: date, uniqueID: uniqueID)
-            
-            databaseEventsRef.setValue(event.serialize(), withCompletionBlock: { error, dataRef in
-                self.nameTextField.text = ""
-                self.dateTextField.text = ""
-            })
-        } else {
-            guard let name = nameTextField?.text, name != "", let date = dateTextField?.text, date != "" else { return }
-            let databaseEventsRef = Database.events.child(self.store.member.id).child(self.store.eventID)
-            let uniqueID = databaseEventsRef.key
-            let event = Event(name: name, startDate: date, uniqueID: uniqueID)
-            
-            databaseEventsRef.updateChildValues(event.serialize(), withCompletionBlock: { error, dataRef in
-                // TODO: Handle error
-            })
-        }
-        dismissViewController()
-    }
-    
+
     func formatDate() {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
@@ -115,7 +87,6 @@ class AddEventViewController: UIViewController, UIPickerViewDelegate, UITextFiel
             saveButton.isEnabled = true
             saveButton.backgroundColor = Constants.Colors.scooter
         }
-        
         return true
     }
     
@@ -127,7 +98,6 @@ class AddEventViewController: UIViewController, UIPickerViewDelegate, UITextFiel
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         dateTextField.resignFirstResponder()
-        
         return true
     }
     
@@ -142,5 +112,4 @@ class AddEventViewController: UIViewController, UIPickerViewDelegate, UITextFiel
         formatter.dateFormat = "MMM dd, yyyy"
         dateTextField.text = formatter.string(from: sender.date).uppercased()
     }
-    
 }

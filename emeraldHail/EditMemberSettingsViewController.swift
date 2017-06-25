@@ -29,9 +29,7 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     
     // MARK: - Properties
-    let store = DataStore.sharedInstance
     let bloodSelection = UIPickerView()
-    let database = FIRDatabase.database().reference()
     let dobSelection = UIDatePicker()
     let genderSelection = UIPickerView()
     let weightSelection = UIPickerView()
@@ -48,7 +46,7 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
         super.viewWillAppear(true)
         if let measurementSystem = UserDefaults.standard.value(forKey: "isMetric") as? Bool {
             if measurementSystem == true {
-                store.isMetric = true
+                Store.isMetric = true
             }
         }
     }
@@ -61,97 +59,28 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
     }
     
     // MARK: - Actions
-    @IBAction func didPressSave(_ sender: Any) {
+    @IBAction func didPressSave(_ sender: UIButton) {
         save.isEnabled = false
         activityIndicatorView.startAnimating()
-        updateFirebaseValues()
+        Member.updateFirebaseValues(
+            firstName: firstNameTextField,
+            lastName: lastNameTextField,
+            dob: dobTextField,
+            gender: genderTextField,
+            height: heightTextField,
+            weight: weightTextField,
+            blood: bloodTextField,
+            profilePicture: profilePicture,
+            allergies: allergiesTextField,
+            controller: self)
     }
     
-    @IBAction func didPressCancel(_ sender: Any) {
+    @IBAction func didPressCancel(_ sender: UIButton) {
         let _ = navigationController?.popViewController(animated: true)
     }
     
-    @IBAction func didPressDeleteMember(_ sender: Any) {
-        deleteMember.isEnabled = false
-        
-        // Alert Controller
-        let alertController = UIAlertController(title: "Are you sure you want to delete this member?",  message: "This action cannot be undone.", preferredStyle: .alert)
-        
-        // Action
-        let deleteAction = UIAlertAction(title: "Delete", style: .default, handler: { action -> Void in
-            
-            // Database
-            let memberRef = Database.members.child(Store.userFamily)
-            let eventsRef = Database.events.child(self.store.member.id)
-            let postsRef = Database.posts
-            
-            var posts = [Post]()
-            
-            // Remove members and related events
-            
-            var eventIDs = [String]()
-            
-            eventsRef.observe(.value, with: { snapshot in
-                
-                for child in snapshot.children {
-                    let event = Event(snapshot: child as! FIRDataSnapshot)
-                    let eventID = event.uniqueID
-                    
-                    eventIDs.append(eventID)
-                }
-                
-                for eventID in eventIDs {
-                    self.deletePostImagesFromStorage(uniqueID: eventID)
-                    
-                    postsRef.child(eventID).observeSingleEvent(of: .value, with: { snapshot in
-                        let oldPosts = snapshot.value as? [String : Any]
-                        guard let allKeys = oldPosts?.keys else { return }
-                        
-                        for key in allKeys {
-                            let dictionary = oldPosts?[key] as! [String : Any]
-                            let post = Post(dictionary: dictionary)
-                            
-                            posts.append(post)
-                        }
-                    })
-                    
-                    for post in posts {
-                        switch post {
-                        case .photo(_):
-                            self.deletePostImagesFromStorage(uniqueID: post.description)
-                        default:
-                            break
-                        }
-                    }
-                    
-                    postsRef.child(eventID).removeValue()
-                    // All posts under event erased
-                }
-                
-                // Delete events associated with the member
-                eventsRef.removeValue()
-                
-                // Delete the member from storage
-                self.deleteProfileImagesFromStorage()
-                
-                // Delete the member from database
-                memberRef.child(self.store.member.id).removeValue()
-                
-                let _ = self.navigationController?.popToRootViewController(animated: true)
-            })
-        })
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) {
-            UIAlertAction in
-            print("Cancel Pressed")
-        }
-        
-        // Add the actions
-        alertController.addAction(deleteAction)
-        alertController.addAction(cancelAction)
-        
-        // Present the controller
-        self.present(alertController, animated: true, completion: nil)
+    @IBAction func didPressDeleteMember(_ sender: UIButton) {
+        Member.deleteMember(button: sender, controller: self)
     }
     
     // MARK: - Methods
@@ -160,18 +89,18 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
     }
     
     @IBAction func heightEditingDidBegin(_ sender: Any) {
-        if store.isMetric == false {
-            heightTextField.text = store.heightsInInches[heightSelection.selectedRow(inComponent: 0)] + store.heightsInFeet[heightSelection.selectedRow(inComponent: 1)]
+        if Store.isMetric == false {
+            heightTextField.text = Store.heightsInInches[heightSelection.selectedRow(inComponent: 0)] + Store.heightsInFeet[heightSelection.selectedRow(inComponent: 1)]
         } else {
-            heightTextField.text = store.heightsInMeter[heightSelection.selectedRow(inComponent: 0)] + store.heightsInCm[heightSelection.selectedRow(inComponent: 1)]
+            heightTextField.text = Store.heightsInMeter[heightSelection.selectedRow(inComponent: 0)] + Store.heightsInCm[heightSelection.selectedRow(inComponent: 1)]
         }
     }
     @IBAction func weightEditingDidBegin(_ sender: Any) {
-        weightTextField.text = store.weightsInLbs[weightSelection.selectedRow(inComponent: 0)]
+        weightTextField.text = Store.weightsInLbs[weightSelection.selectedRow(inComponent: 0)]
     }
     
     @IBAction func bloodTypeEditingDidBegin(_ sender: Any) {
-        bloodTextField.text = store.bloodTypeSelections[bloodSelection.selectedRow(inComponent: 0)]
+        bloodTextField.text = Store.bloodTypeSelections[bloodSelection.selectedRow(inComponent: 0)]
     }
     
     @IBAction func birthdayEditingDidBegin(_ sender: Any) {
@@ -196,28 +125,7 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
         weightTextField.inputView = weightSelection
         heightTextField.inputView = heightSelection
     }
-    
-    // MARK: - Firebase Storage Image Deletion
-    func deletePostImagesFromStorage(uniqueID: String) {
-        Database.storagePosts.child(uniqueID).delete { error -> Void in
-            if error != nil {
-                print("******* Error occured while deleting post imgs from Firebase storage ******** \(uniqueID)")
-            } else {
-                print("Post image removed from Firebase successfully! \(uniqueID)")
-            }
-        }
-    }
-    
-    func deleteProfileImagesFromStorage() {
-        Database.storageProfile.child(self.store.member.id).delete { error -> Void in
-            if error != nil {
-                print("******* Error occured while deleting profile imgs from Firebase storage ******** \(self.store.member.id)")
-            } else {
-                print("profile img removed successfully from the associated member")
-            }
-        }
-    }
-    
+
     // MARK: - Methods
     func addProfileSettings() {
         addGestureRecognizer(imageView: profilePicture)
@@ -239,49 +147,8 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
         view.endEditing(true)
     }
     
-    func updateFirebaseValues() {
-        guard let name = firstNameTextField.text, name != "",
-            let lastName = lastNameTextField.text, lastName != "",
-            let dob = dobTextField.text, dob != "",
-            let gender = genderTextField.text, gender != "",
-            let height = heightTextField.text,
-            let weight = weightTextField.text,
-            let blood = bloodTextField.text,
-            let profilePicture = profilePicture.image,
-            let allergies = allergiesTextField.text else { return }
-        
-        let memberReference = Database.members.child(Store.userFamily).child(store.member.id)
-        let databaseMembersRef = Database.members.child(Store.userFamily).childByAutoId()
-        let uniqueID = databaseMembersRef.key
-        let imageId = uniqueID
-        let storageImageRef = Database.storageProfile.child(imageId)
-        
-        if let uploadData = UIImageJPEGRepresentation(profilePicture, 0.25) {
-            storageImageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
-                if error != nil {
-                    print (error?.localizedDescription ?? "Error in saveButtonTapped in EditMembersViewController.swift" )
-                    return
-                }
-                guard let profileImageUrl = metadata?.downloadURL()?.absoluteString else { return }
-                let updatedInfo: [String : Any] = ["firstName":name,
-                                                   "lastName": lastName,
-                                                   "birthday": dob,
-                                                   "gender": gender,
-                                                   "profileImage": profileImageUrl,
-                                                   "bloodType": blood,
-                                                   "height": height,
-                                                   "weight": weight,
-                                                   "allergies": allergies]
-                
-                memberReference.updateChildValues(updatedInfo)
-                
-                let _ = self.navigationController?.popViewController(animated: true)
-            })
-        }
-    }
-    
     func displayMemberProfileEdits() {
-        let member = Database.members.child(Store.userFamily).child(store.member.id)
+        let member = Database.members.child(Store.user.familyId).child(Store.member.id)
         member.observe(.value, with: { (snapshot) in
             let value = snapshot.value as? [String : Any]
             let imageString = value?["profileImage"] as? String
@@ -341,7 +208,7 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int{
-        if store.isMetric == false {
+        if Store.isMetric == false {
             switch pickerView {
             case bloodSelection, genderSelection, weightSelection:
                 return 1
@@ -363,20 +230,19 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
-        
-        if store.isMetric == false {
+        if Store.isMetric == false {
             switch pickerView {
             case bloodSelection:
-                return store.bloodTypeSelections.count
+                return Store.bloodTypeSelections.count
             case genderSelection:
                 return Store.genderSelection.count
             case weightSelection:
-                return store.weightsInLbs.count
+                return Store.weightsInLbs.count
             case heightSelection:
                 if component == 0 {
-                    return store.heightsInFeet.count
+                    return Store.heightsInFeet.count
                 } else if component == 1 {
-                    return store.heightsInInches.count
+                    return Store.heightsInInches.count
                 }
             default:
                 break
@@ -385,20 +251,20 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
         } else {
             switch pickerView {
             case bloodSelection:
-                return store.bloodTypeSelections.count
+                return Store.bloodTypeSelections.count
             case genderSelection:
                 return Store.genderSelection.count
             case weightSelection:
                 if component == 0 {
-                    return store.weightsInKg.count
+                    return Store.weightsInKg.count
                 } else if component == 1 {
-                    return store.weightsInG.count
+                    return Store.weightsInG.count
                 }
             case heightSelection:
                 if component == 0 {
-                    return store.heightsInMeter.count
+                    return Store.heightsInMeter.count
                 } else if component == 1 {
-                    return store.heightsInCm.count
+                    return Store.heightsInCm.count
                 }
             default:
                 break
@@ -408,19 +274,19 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if store.isMetric == false {
+        if Store.isMetric == false {
             switch pickerView {
             case bloodSelection:
-                bloodTextField.text = store.bloodTypeSelections[row]
+                bloodTextField.text = Store.bloodTypeSelections[row]
             case genderSelection:
                 genderTextField.text = Store.genderSelection[row]
             case weightSelection:
-                weightTextField.text = store.weightsInLbs[row]
+                weightTextField.text = Store.weightsInLbs[row]
             case heightSelection:
                 if component == 0 {
-                    feet = store.heightsInFeet[row]
+                    feet = Store.heightsInFeet[row]
                 } else if component == 1 {
-                    inches = store.heightsInInches[row]
+                    inches = Store.heightsInInches[row]
                 }
                 heightTextField.text = "\(feet)\(inches)"
             default:
@@ -429,23 +295,23 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
         } else {
             switch pickerView {
             case bloodSelection:
-                bloodTextField.text = store.bloodTypeSelections[row]
+                bloodTextField.text = Store.bloodTypeSelections[row]
             case genderSelection:
                 genderTextField.text = Store.genderSelection[row]
             case weightSelection:
                 if component == 0 {
-                    kg = store.weightsInKg[row]
+                    kg = Store.weightsInKg[row]
                 } else if component == 1 {
-                    g = store.weightsInG[row]
+                    g = Store.weightsInG[row]
                 }
                 
                 weightTextField.text = "\(kg).\(g) kg"
                 
             case heightSelection:
                 if component == 0 {
-                    meter = store.heightsInMeter[row]
+                    meter = Store.heightsInMeter[row]
                 } else if component == 1 {
-                    centimeter = store.heightsInCm[row]
+                    centimeter = Store.heightsInCm[row]
                 }
                 if meter == " - " {
                     heightTextField.text = "\(centimeter)"
@@ -460,7 +326,7 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
     
     func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
         var width = CGFloat(100.0)
-        if store.isMetric == true {
+        if Store.isMetric == true {
             switch pickerView {
             case weightSelection:
                 width = 65.0
@@ -472,19 +338,19 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if store.isMetric == false {
+        if Store.isMetric == false {
             switch pickerView {
             case bloodSelection:
-                return store.bloodTypeSelections[row]
+                return Store.bloodTypeSelections[row]
             case genderSelection:
                 return Store.genderSelection[row]
             case weightSelection:
-                return store.weightsInLbs[row]
+                return Store.weightsInLbs[row]
             case heightSelection:
                 if component == 0 {
-                    return store.heightsInFeet[row]
+                    return Store.heightsInFeet[row]
                 } else if component == 1 {
-                    return store.heightsInInches[row]
+                    return Store.heightsInInches[row]
                 }
             default:
                 break
@@ -493,20 +359,20 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
         } else {
             switch pickerView {
             case bloodSelection:
-                return store.bloodTypeSelections[row]
+                return Store.bloodTypeSelections[row]
             case genderSelection:
                 return Store.genderSelection[row]
             case weightSelection:
                 if component == 0 {
-                    return "\(store.weightsInKg[row]) ."
+                    return "\(Store.weightsInKg[row]) ."
                 } else if component == 1 {
-                    return "\(store.weightsInG[row]) kg"
+                    return "\(Store.weightsInG[row]) kg"
                 }
             case heightSelection:
                 if component == 0 {
-                    return store.heightsInMeter[row]
+                    return Store.heightsInMeter[row]
                 } else if component == 1 {
-                    return store.heightsInCm[row]
+                    return Store.heightsInCm[row]
                 }
             default:
                 break

@@ -18,8 +18,6 @@ class AddNotesViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var cancelButton: UIButton!
     
     // MARK: - Properties
-    let store = DataStore.sharedInstance
-    var database: FIRDatabaseReference = FIRDatabase.database().reference()
     var postVC = PostViewController()
     
     // MARK: - Loads
@@ -45,10 +43,8 @@ class AddNotesViewController: UIViewController, UITextViewDelegate {
         noteView.docItStyleView()
         saveButton.docItStyle()
         cancelButton.docItStyle()
-        
         saveButton.isEnabled = false
         saveButton.backgroundColor = Constants.Colors.submarine
-        
         addNotesTextView.delegate = self
         addNotesTextView.becomeFirstResponder()
     }
@@ -59,16 +55,8 @@ class AddNotesViewController: UIViewController, UITextViewDelegate {
     }
     
     @IBAction func addNotes(_ sender: UIButton) {
+        Note.addNote(button: sender, noteTextView: addNotesTextView, timeStamp: getTimestamp(), controller: self)
         saveButton.isEnabled = false
-        
-        guard let noteText = addNotesTextView.text, noteText != "" else { return }
-        let postsRef = Database.posts.child(store.eventID).childByAutoId()
-        let uniqueID = postsRef.key
-        let newNote = Note(content: noteText, timestamp: getTimestamp(), uniqueID: uniqueID)
-        
-        postsRef.setValue(newNote.serialize(), withCompletionBlock: { error, ref in
-            self.dismiss(animated: true, completion: nil)
-        })
     }
     
     @IBAction func cancel(_ sender: UIButton) {
@@ -88,10 +76,8 @@ class AddNotesViewController: UIViewController, UITextViewDelegate {
     
     func textViewDidChange(_ textView: UITextView) {
         if addNotesTextView.text != "" {
-            
             saveButton.isEnabled = true
             saveButton.backgroundColor = Constants.Colors.scooter
         }
     }
-    
 }

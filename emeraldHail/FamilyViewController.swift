@@ -165,7 +165,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     // TODO: Rethink some of the variable names here and in configDatabaseFamily for clarity
     func configDatabaseMember() {
-        let familyRef = Database.members.child(Store.userFamily)
+        let familyRef = Database.members.child(Store.user.familyId)
         familyRef.observe(.value, with: { snapshot in
             var newItem = [Member]()
             for item in snapshot.children {
@@ -179,7 +179,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     // TODO: Rethink some of the variable names here for clarity
     func configDatabaseFamily() {
-        let familyRef = Database.family.child(Store.userFamily)
+        let familyRef = Database.family.child(Store.user.familyId)
         familyRef.observe(.value, with: { snapshot in
             var dic = snapshot.value as? [String : Any]
             guard let familyName = dic?["name"] else { return }

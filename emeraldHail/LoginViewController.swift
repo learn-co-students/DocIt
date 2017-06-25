@@ -107,14 +107,14 @@ class LoginViewController: UIViewController {
                         var data = snapshot.value as? [String:Any]
                         guard let familyID = data?["familyID"] as? String else { return }
                         
-                        Store.userId = (user?.uid)!
-                        Store.userFamily = familyID
-                        Store.familyId = familyID
-                        Store.userEmail = email
+                        Store.user.id = (user?.uid)!
+                        Store.user.familyId = familyID
+                        Store.family.id = familyID
+                        Store.user.email = email
                         self.addDataToKeychain(
-                            userID: Store.userId,
-                            familyID: Store.userFamily,
-                            email: Store.userEmail,
+                            userID: Store.user.id,
+                            familyID: Store.user.familyId,
+                            email: Store.user.email,
                             auth: "email")
                         
                         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
@@ -124,16 +124,16 @@ class LoginViewController: UIViewController {
                     }
                 })
             } else {
-                Store.userId = (user?.uid)!
-                Store.userFamily = self.store.inviteFamilyID
-                Store.familyId = Store.userFamily
-                Store.userEmail = email
-                Database.user.child(Store.userId).child("familyID").setValue(Store.userFamily)
+                Store.user.id = (user?.uid)!
+                Store.user.familyId = self.store.inviteFamilyID
+                Store.family.id = Store.user.familyId
+                Store.user.email = email
+                Database.user.child(Store.user.id).child("familyID").setValue(Store.user.familyId)
                 self.store.inviteFamilyID = ""
                 self.addDataToKeychain(
-                    userID: Store.userId,
-                    familyID: Store.userFamily,
-                    email: Store.userEmail,
+                    userID: Store.user.id,
+                    familyID: Store.user.familyId,
+                    email: Store.user.email,
                     auth: "email")
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
@@ -205,19 +205,19 @@ extension LoginViewController: GIDSignInDelegate {
             guard let userID = loggedInUser?.uid else {return}
             guard let email = loggedInUser?.email else { return }
             
-            Store.userEmail = email
+            Store.user.email = email
             Database.user.child(userID).observe(.value, with: { snapshot in
                 
                 if let data = snapshot.value as? [String:Any] {
                     guard let familyID = data["familyID"] as? String else { return }
                     
-                    Store.userId = userID
-                    Store.userFamily = familyID
-                    Store.familyId = familyID
+                    Store.user.id = userID
+                    Store.user.familyId = familyID
+                    Store.family.id = familyID
                     self.addDataToKeychain(
-                        userID: Store.userId,
-                        familyID: Store.userFamily,
-                        email: Store.userEmail,
+                        userID: Store.user.id,
+                        familyID: Store.user.familyId,
+                        email: Store.user.email,
                         auth: "google")
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
@@ -226,13 +226,13 @@ extension LoginViewController: GIDSignInDelegate {
                 } else {
                     let familyID = Database.user.child(userID).child("familyID").childByAutoId().key
                     
-                    Store.userId = userID
-                    Store.userFamily = familyID
-                    Store.familyId = familyID
-                    self.addDataToKeychain(userID: Store.userId, familyID: Store.userFamily, email: Store.userEmail, auth: "google")
+                    Store.user.id = userID
+                    Store.user.familyId = familyID
+                    Store.family.id = familyID
+                    self.addDataToKeychain(userID: Store.user.id, familyID: Store.user.familyId, email: Store.user.email, auth: "google")
                     Database.user.child(userID).child("familyID").setValue(familyID)
                     Database.family.child(familyID).child("name").setValue("New Family")
-                    Database.user.child(Store.userId).child("email").setValue((loggedInUser?.email)!)
+                    Database.user.child(Store.user.id).child("email").setValue((loggedInUser?.email)!)
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
                         NotificationCenter.default.post(name: Notification.Name.openfamilyVC, object: nil)

@@ -58,7 +58,7 @@ class WelcomeViewController: UIViewController {
     func updateFamilyId() {
         let familyID = UserDefaults.standard.value(forKey: "family") as? String
         if familyID != nil {
-            Store.userFamily = familyID!
+            Store.user.familyId = familyID!
         }
     }
     
@@ -132,8 +132,8 @@ class WelcomeViewController: UIViewController {
         let email = UserDefaults.standard.value(forKey:"email") as? String
         let userID = UserDefaults.standard.value(forKey: "user") as? String
         let password = MyKeychainWrapper.myObject(forKey: "v_Data") as? String
-        Store.userEmail = email!
-        Store.userId = userID!
+        Store.user.email = email!
+        Store.user.id = userID!
         
         FIRAuth.auth()?.signIn(withEmail: email!, password: password!) { (user, error) in
             if error != nil {
@@ -144,9 +144,9 @@ class WelcomeViewController: UIViewController {
                 DispatchQueue.main.async {
                     var data = snapshot.value as? [String:Any]
                     guard let familyID = data?["familyID"] as? String else { return }
-                    Store.userId = (user?.uid)!
-                    Store.userFamily = familyID
-                    Store.familyId = familyID
+                    Store.user.id = (user?.uid)!
+                    Store.user.familyId = familyID
+                    Store.family.id = familyID
                     DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
                         NotificationCenter.default.post(name: .openfamilyVC, object: nil)
                     })
@@ -182,17 +182,17 @@ extension WelcomeViewController: GIDSignInDelegate {
         let credential = FIRGoogleAuthProvider.credential(withIDToken: idToken, accessToken: accessToken)
         FIRAuth.auth()?.signIn(with: credential, completion: { loggedInUser, error in
             guard let userID = loggedInUser?.uid, let email = loggedInUser?.email else { return }
-            Store.userEmail = email
-            Store.userId = userID
+            Store.user.email = email
+            Store.user.id = userID
             Database.user.child(userID).observe(.value, with: { snapshot in
                 if let data = snapshot.value as? [String:Any] {
                     guard let familyID = data["familyID"] as? String else { return }
-                    Store.userFamily = familyID
-                    Store.familyId = familyID
+                    Store.user.familyId = familyID
+                    Store.family.id = familyID
                     self.addDataToKeychain(
-                        userID: Store.userId,
-                        familyID: Store.userFamily,
-                        email: Store.userEmail,
+                        userID: Store.user.id,
+                        familyID: Store.user.familyId,
+                        email: Store.user.email,
                         auth: "google")
                     DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
                         NotificationCenter.default.post(name: Notification.Name.openfamilyVC, object: nil)

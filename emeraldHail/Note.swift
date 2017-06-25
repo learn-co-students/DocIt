@@ -43,5 +43,18 @@ struct Note {
         
         return dateFormatter.string(from: currentDate).uppercased()
     }
-    
+}
+
+extension Note {
+
+    static func addNote(button: UIButton, noteTextView: UITextView, timeStamp: String, controller: UIViewController) {
+        button.isEnabled = false
+        guard let noteText = noteTextView.text, noteText != "" else { return }
+        let postsRef = Database.posts.child(Store.eventID).childByAutoId()
+        let uniqueID = postsRef.key
+        let newNote = Note(content: noteText, timestamp: timeStamp, uniqueID: uniqueID)
+        postsRef.setValue(newNote.serialize(), withCompletionBlock: { error, ref in
+            controller.dismiss(animated: true, completion: nil)
+        })
+    }
 }

@@ -120,7 +120,7 @@ class FamilySettingViewController: UITableViewController, UIImagePickerControlle
     
     func inviteParent() {
         let branchUniversalObject: BranchUniversalObject = BranchUniversalObject(canonicalIdentifier: "123123123")
-        branchUniversalObject.addMetadataKey("inviteFamilyID", value: Store.userFamily)
+        branchUniversalObject.addMetadataKey("inviteFamilyID", value: Store.user.familyId)
         let linkProperties: BranchLinkProperties = BranchLinkProperties()
         // This links to our app in the App Store via a Google short url for tracking. If they already have the app installed, it will open the app instead.
         linkProperties.addControlParam("$ios_url", withValue: "https://goo.gl/6HDsNR")
@@ -172,7 +172,7 @@ class FamilySettingViewController: UITableViewController, UIImagePickerControlle
             selectedImageFromPicker = originalImage
         }
         if let selectedImage = selectedImageFromPicker {
-            changeFamilyCoverPic(photo: selectedImage, familyId: Store.userFamily, handler: { success in
+            changeFamilyCoverPic(photo: selectedImage, familyId: Store.user.familyId, handler: { success in
                 self.dismiss(animated: true, completion: nil)
             })
         }
@@ -207,7 +207,7 @@ class FamilySettingViewController: UITableViewController, UIImagePickerControlle
     // MARK: - Touch ID Methods
     func checkTouchID() {
         let touchIDValue = UserDefaults.standard.value(forKey:"touchID") as? String
-        Database.settings.child(Store.userFamily).child("touchID").setValue(touchIDValue)
+        Database.settings.child(Store.user.familyId).child("touchID").setValue(touchIDValue)
         touchIDValue == "true" ? self.touchID.setOn(true, animated: false) : self.touchID.setOn(false, animated: false)
     }
     
@@ -224,6 +224,6 @@ class FamilySettingViewController: UITableViewController, UIImagePickerControlle
     }
     
     func touchID(activate: Bool) {
-        Database.settings.child(Store.userFamily).child("touchID").setValue(activate)
+        Database.settings.child(Store.user.familyId).child("touchID").setValue(activate)
     }
 }

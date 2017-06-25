@@ -103,27 +103,27 @@ class RegisterViewController: UIViewController {
                     print(error.localizedDescription)
                 }
                 
-                Store.userEmail = email
+                Store.user.email = email
                 
                 if self.store.inviteFamilyID == "" {
                     // Set the sharedInstance familyID to the current user.uid
-                    let familyID = Database.user.child(Store.userId).child("familyID").childByAutoId().key
-                    Store.userId = (user?.uid)!
-                    Store.userFamily = familyID
-                    Store.familyId = Store.userFamily
-                    self.addDataToKeychain(userID: Store.userId, familyID: Store.userFamily, email: Store.userEmail, auth: "email")
-                    Database.user.child(Store.userId).child("familyID").setValue(familyID)
-                    Database.user.child(Store.userId).child("email").setValue(email)
-                    Database.family.child(Store.userFamily).child("name").setValue("New Family")
+                    let familyID = Database.user.child(Store.user.id).child("familyID").childByAutoId().key
+                    Store.user.id = (user?.uid)!
+                    Store.user.familyId = familyID
+                    Store.family.id = Store.user.familyId
+                    self.addDataToKeychain(userID: Store.user.id, familyID: Store.user.familyId, email: Store.user.email, auth: "email")
+                    Database.user.child(Store.user.id).child("familyID").setValue(familyID)
+                    Database.user.child(Store.user.id).child("email").setValue(email)
+                    Database.family.child(Store.user.familyId).child("name").setValue("New Family")
                     self.touchID(activate: false)
                 } else {
-                    Store.userId = (user?.uid)!
-                    self.addDataToKeychain(userID: Store.userId, familyID: Store.userFamily, email: Store.userEmail, auth: "email")
-                    Store.userFamily = self.store.inviteFamilyID
-                    Store.familyId = Store.userFamily
-                    Database.user.child(Store.userId).child("familyID").setValue(Store.userFamily)
+                    Store.user.id = (user?.uid)!
+                    self.addDataToKeychain(userID: Store.user.id, familyID: Store.user.familyId, email: Store.user.email, auth: "email")
+                    Store.user.familyId = self.store.inviteFamilyID
+                    Store.family.id = Store.user.familyId
+                    Database.user.child(Store.user.id).child("familyID").setValue(Store.user.familyId)
                     self.store.inviteFamilyID = ""
-                    Database.user.child((Store.userId)).child("email").setValue(email)
+                    Database.user.child((Store.user.id)).child("email").setValue(email)
                 }
                 NotificationCenter.default.post(name: .openfamilyVC, object: nil)
             }
@@ -131,7 +131,7 @@ class RegisterViewController: UIViewController {
     }
     
     func touchID(activate: Bool) {
-        Database.settings.child(Store.userFamily).child("touchID").setValue(activate)
+        Database.settings.child(Store.user.familyId).child("touchID").setValue(activate)
     }
     
     func addDataToKeychain(userID: String, familyID: String, email: String, auth: String) {

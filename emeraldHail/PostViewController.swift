@@ -225,7 +225,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func fetchMemberDetails() {
-        let member = Database.members.child(Store.userFamily).child(store.member.id)
+        let member = Database.members.child(Store.user.familyId).child(store.member.id)
         
         member.observe(.value, with: { snapshot in
             var member = snapshot.value as? [String:Any]

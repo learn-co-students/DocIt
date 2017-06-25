@@ -48,8 +48,8 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
             firstName: firstNameField.text,
             lastName: lastNameField.text,
             dob: dateTextField.text,
-            gender: genderTextField.text)
-        dismiss(animated: true, completion: nil)
+            gender: genderTextField.text,
+            controller: self)
     }
     
     @IBAction func cancel(_ sender: UIButton) {
@@ -169,27 +169,19 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
         fusuma.delegate = self
         self.present(fusuma, animated: true, completion: nil)
         fusumaCropImage = true
-        
     }
     
-    // Return the image which is selected from camera roll or is taken via the camera.
-    func fusumaImageSelected(_ image: UIImage) {
-        // present some alert with the image, add button to alert to send, upload from button
-        print("Image selected")
-    }
+    // Return the image which is selected from camera roll or is taken via the camera (Image selected, present some alert with the image, add button to alert to send, upload from button)
+    func fusumaImageSelected(_ image: UIImage) {}
 
-    // Return the image but called after is dismissed.
+    // Return the image but called after is dismissed (Called just after FusumaViewController is dismissed)
     func fusumaDismissedWithImage(_ image: UIImage) {
         profileImageView.image = image
-        print("Called just after FusumaViewController is dismissed.")
     }
-    
-    func fusumaVideoCompleted(withFileURL fileURL: URL) {
-        print("Called just after a video has been selected.")
-    }
+
+    // Called just after a video has been selected
+    func fusumaVideoCompleted(withFileURL fileURL: URL) {}
     
     // When camera roll is not authorized, this method is called.
-    func fusumaCameraRollUnauthorized() {
-        print("Camera access denied")
-    }
+    func fusumaCameraRollUnauthorized() {}
 }

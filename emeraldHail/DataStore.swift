@@ -104,7 +104,6 @@ class DataStore{
     var inviteFamilyID = ""
     
     // METHODS
-    
     func clearDataStore() {
         eventID = ""
         postID = ""

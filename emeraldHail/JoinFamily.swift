@@ -50,8 +50,8 @@ class JoinFamily: UIView {
     func joinFamily() {
         guard let familyID = familyTextField.text, familyID != "" else { return }
         // Set the sharedInstance familyID to the current user.uid
-        Store.userFamily = familyID
-        Database.user.child(Store.userId).child(Path.familyId.rawValue).setValue(Store.userFamily)
+        Store.user.familyId = familyID
+        Database.user.child(Store.user.id).child(Path.familyId.rawValue).setValue(Store.user.familyId)
         NotificationCenter.default.post(name: .openfamilyVC, object: nil)
     }
     

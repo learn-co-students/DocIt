@@ -31,7 +31,6 @@ struct Event {
     
     init(snapshot: FIRDataSnapshot) {
         let snapshotValue = snapshot.value as! [String : AnyObject]
-        
         name = snapshotValue["name"] as! String
         startDate = snapshotValue["startDate"] as! String
         uniqueID = snapshotValue["uniqueID"] as! String
@@ -40,7 +39,6 @@ struct Event {
     func serialize() -> [String : Any] {
         return  ["name" : name, "startDate": startDate, "isComplete" : isComplete, "uniqueID": uniqueID]
     }
-    
 }
 
 // Used to sort events
@@ -53,5 +51,35 @@ extension Event: Hashable {
     static func ==(lhs: Event, rhs: Event) -> Bool {
         return lhs.uniqueID == rhs.uniqueID
     }
-    
+}
+
+extension Event {
+
+    static func saveEvent(button: UIButton,
+                          eventViewTitle: UILabel,
+                          nameTextField: UITextField?,
+                          dateTextField: UITextField?,
+                          controller: UIViewController) {
+        button.isEnabled = false
+        if eventViewTitle.text == "Create Event" {
+            guard let name = nameTextField?.text, name != "", let date = dateTextField?.text, date != "" else { return }
+            let databaseEventsRef = Database.events.child(Store.member.id).childByAutoId()
+            let uniqueID = databaseEventsRef.key
+            let event = Event(name: name, startDate: date, uniqueID: uniqueID)
+            databaseEventsRef.setValue(event.serialize(), withCompletionBlock: { error, dataRef in
+                guard let nameTextField = nameTextField, let dateTextField = dateTextField else { return }
+                nameTextField.text = ""
+                dateTextField.text = ""
+            })
+        } else {
+            guard let name = nameTextField?.text, name != "", let date = dateTextField?.text, date != "" else { return }
+            let databaseEventsRef = Database.events.child(Store.member.id).child(Store.eventID)
+            let uniqueID = databaseEventsRef.key
+            let event = Event(name: name, startDate: date, uniqueID: uniqueID)
+            databaseEventsRef.updateChildValues(event.serialize(), withCompletionBlock: { error, dataRef in
+                // TODO: Handle error
+            })
+        }
+        controller.dismiss(animated: true, completion: nil)
+    }
 }

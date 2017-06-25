@@ -56,7 +56,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         plusButton.shadow()
         eventsTable.separatorStyle = .none
         eventsTable.reloadData()
-        showPictureAndName(database: Database.members, familyId: Store.userFamily, memberId: store.member.id)
+        showPictureAndName(database: Database.members, familyId: Store.user.familyId, memberId: store.member.id)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

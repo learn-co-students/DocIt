@@ -47,11 +47,26 @@ public struct Database {
 }
 
 public struct Store {
-    static var userId = DataStore.sharedInstance.user.id
-    static var userFamily = DataStore.sharedInstance.user.familyId
-    static var userEmail = DataStore.sharedInstance.user.email
-    static var familyId = DataStore.sharedInstance.family.id
+    static var user = DataStore.sharedInstance.user
+    static var family = DataStore.sharedInstance.family
+    static var member = DataStore.sharedInstance.member
+    static var event = DataStore.sharedInstance.event
     static var genderSelection = DataStore.sharedInstance.genderSelection
+    static var buttonEvent = DataStore.sharedInstance.buttonEvent
+    static var eventID = DataStore.sharedInstance.eventID
+    static var isMetric = DataStore.sharedInstance.isMetric
+    static var heightsInInches = DataStore.sharedInstance.heightsInInches
+    static var heightsInFeet = DataStore.sharedInstance.heightsInFeet
+    static var heightsInMeter = DataStore.sharedInstance.heightsInMeter
+    static var heightsInCm = DataStore.sharedInstance.heightsInCm
+    static var bloodTypeSelections = DataStore.sharedInstance.bloodTypeSelections
+    static var weightsInLbs = DataStore.sharedInstance.weightsInLbs
+    static var weightsInKg = DataStore.sharedInstance.weightsInKg
+    static var weightsInG = DataStore.sharedInstance.weightsInG
+
+
+
+
 }
 
 public enum Path: String {

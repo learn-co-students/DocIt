@@ -17,10 +17,6 @@ class ChangeFamilyNameViewController: UIViewController {
     @IBOutlet weak var changeFamilyView: UIView!
     @IBOutlet weak var cancelButton: UIButton!
     
-    // MARK: - Properties
-    let store = DataStore.sharedInstance
-    let database =  FIRDatabase.database().reference()
-    
     // MARK: - Loads
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,7 +57,7 @@ class ChangeFamilyNameViewController: UIViewController {
         changeFamilyView.docItStyleView()
         saveButton.isEnabled = false
         saveButton.backgroundColor = Constants.Colors.submarine
-        changeNameTextField.text = store.family.name
+        changeNameTextField.text = Store.family.name
         changeNameTextField.becomeFirstResponder()
     }
 }
