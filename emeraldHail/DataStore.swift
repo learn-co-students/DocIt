@@ -13,11 +13,8 @@ class DataStore{
     
     private init(){}
     static let sharedInstance = DataStore()
-    
     lazy var persistentContainer: NSPersistentContainer = {
-        
         let container = NSPersistentContainer(name: "HealthCore")
-        
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
@@ -38,7 +35,6 @@ class DataStore{
         }
     }
     
-    
     // MARK: - Instances
     var user = Person(id: "", familyId: "", email: "")
     var family = Family(id: "", name: "", coverImage: nil, coverImageStr: "", members: [])
@@ -51,7 +47,6 @@ class DataStore{
     
     // MARK: - Picker values
     var bloodTypeSelections: [String] = [BloodType.ABNeg.rawValue, BloodType.ABPos.rawValue, BloodType.ANeg.rawValue, BloodType.APos.rawValue, BloodType.BNeg.rawValue, BloodType.BPos.rawValue, BloodType.ONeg.rawValue, BloodType.OPos.rawValue]
-    
     var genderSelections: [String] = [Gender.female.rawValue, Gender.male.rawValue, Gender.other.rawValue]
     
     // Imperial System
@@ -115,5 +110,4 @@ class DataStore{
         postID = ""
         imagePostID = ""
     }
-    
 }

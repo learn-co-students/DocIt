@@ -69,7 +69,7 @@ class ChangeFamilyNameViewController: UIViewController {
     func saveNewFamilyName() {
         saveButton.isEnabled = false
         
-        let ref = database.child(Constants.Database.family).child(self.store.user.familyId)
+        let ref = Database.family.child(self.store.user.familyId)
         
         guard let name = changeNameTextField.text, name != "" else { return }
         

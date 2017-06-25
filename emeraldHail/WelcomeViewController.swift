@@ -15,14 +15,12 @@ import FirebaseDatabase
 class WelcomeViewController: UIViewController {
     
     // MARK: - Outlets
-    @IBOutlet weak var googleContainerView: UIImageView!
     @IBOutlet weak var createAccount: UIButton!
     @IBOutlet weak var signIn: UIButton!
     @IBOutlet weak var touchID: UIButton!
     
     // MARK: - Properties
     var store = DataStore.sharedInstance
-    let database = FIRDatabase.database().reference()
     var context = LAContext()
     let hasLoginKey = UserDefaults.standard.bool(forKey: "hasFamilyKey")
     let MyKeychainWrapper = KeychainWrapper()
@@ -30,7 +28,6 @@ class WelcomeViewController: UIViewController {
     // MARK: - Loads
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         updateFamilyId()
         setupViews()
         checkTouchID()
@@ -76,7 +73,6 @@ class WelcomeViewController: UIViewController {
     func checkTouchID() {
         touchID.isHidden = true
         let touchIDValue = UserDefaults.standard.value(forKey:"touchID") as? String
-        
         if context.canEvaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, error: nil) && touchIDValue == "true" {
             googleOrNot()
             touchID.isHidden = false
@@ -85,7 +81,6 @@ class WelcomeViewController: UIViewController {
     
     func googleOrNot() {
         let accessKey = UserDefaults.standard.value(forKey:"auth") as? String
-        
         accessKey == "google" ? authenticateUserGoogle() : authenticateUser()
     }
     
@@ -93,16 +88,14 @@ class WelcomeViewController: UIViewController {
     func authenticateUser() {
         let context = LAContext()
         var error: NSError?
-        
         if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
             let reason = "Log in with Touch ID"
-            
             context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason, reply: { (success, error) in
                 if success {
                     self.navigateToAuthenticatedVC()
                 } else {
-                    if let error = error as? NSError {
-                        let message = self.errorMessage(errorCode: error.code)
+                    if let error = error as NSError? {
+                        let message = self.errorMessageAuthentication(errorCode: error.code)
                         self.showAlertViewAfterEvaluatingPolicyWithMessage(message: message)
                     }
                 }
@@ -119,19 +112,15 @@ class WelcomeViewController: UIViewController {
         
         if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
             let reason = "Touch the Home button to log on."
-            
             context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason, reply: { (success, error) in
-                if success {
-                    DispatchQueue.main.async {
-                        GIDSignIn.sharedInstance().signIn()
-                    }
-                }
-                else {
-                    if let error = error as? NSError {
-                        let message = self.errorMessage(errorCode: error.code)
+                    if let error = error as NSError? {
+                        let message = self.errorMessageAuthentication(errorCode: error.code)
                         self.showAlertViewAfterEvaluatingPolicyWithMessage(message: message)
+                    } else {
+                        DispatchQueue.main.async {
+                            GIDSignIn.sharedInstance().signIn()
+                        }
                     }
-                }
             })
         } else {
             showAlertViewforNoBiometrics()
@@ -143,7 +132,6 @@ class WelcomeViewController: UIViewController {
         let email = UserDefaults.standard.value(forKey:"email") as? String
         let userID = UserDefaults.standard.value(forKey: "user") as? String
         let password = MyKeychainWrapper.myObject(forKey: "v_Data") as? String
-        
         self.store.user.email = email!
         self.store.user.id = userID!
         
@@ -152,16 +140,13 @@ class WelcomeViewController: UIViewController {
                 // TODO: Handle error
                 return
             }
-            self.database.child(Constants.Database.user).child((user?.uid)!).observe(.value, with: { snapshot in
-                
+            Database.user.child((user?.uid)!).observe(.value, with: { snapshot in
                 DispatchQueue.main.async {
                     var data = snapshot.value as? [String:Any]
                     guard let familyID = data?["familyID"] as? String else { return }
-                    
                     self.store.user.id = (user?.uid)!
                     self.store.user.familyId = familyID
                     self.store.family.id = familyID
-                    
                     DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
                         NotificationCenter.default.post(name: .openfamilyVC, object: nil)
                     })
@@ -177,42 +162,13 @@ class WelcomeViewController: UIViewController {
     func showAlertViewWithTitle(title: String, message: String) {
         let ac = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
-        
         ac.addAction(ok)
-        
         present(ac, animated: true, completion: nil)
     }
     
     func showAlertViewAfterEvaluatingPolicyWithMessage(message: String) {
         showAlertViewWithTitle(title: "Error", message: message)
     }
-    
-    func errorMessage(errorCode: Int) -> String {
-        var message = ""
-        
-        switch errorCode {
-        case LAError.appCancel.rawValue:
-            message = "Authentication was canceled by application."
-        case LAError.authenticationFailed.rawValue:
-            message = "Authentication was not successful, because user failed to provide valid credentials."
-        case LAError.userCancel.rawValue:
-            message = "Authentication was canceled by user"
-        case LAError.userFallback.rawValue:
-            message = "Authentication was canceled, because the user tapped the fallback button."
-        case LAError.systemCancel.rawValue:
-            message = "Authentication was canceled by system."
-        case LAError.passcodeNotSet.rawValue:
-            message = "Authentication could not start, because passcode is not set on the device."
-        case LAError.touchIDNotAvailable.rawValue:
-            message = "Authentication could not start, because Touch ID is not available on the device."
-        case LAError.touchIDNotEnrolled.rawValue:
-            message = "Authentication could not start, because Touch ID has no enrolled fingers."
-        default:
-            message = "Did not find any error in LAError."
-        }
-        return message
-    }
-    
 }
 
 extension WelcomeViewController: GIDSignInDelegate {
@@ -226,7 +182,6 @@ extension WelcomeViewController: GIDSignInDelegate {
         
         guard let idToken = user.authentication.idToken else { return }
         guard let accessToken = user.authentication.accessToken else { return }
-        
         let credential = FIRGoogleAuthProvider.credential(withIDToken: idToken, accessToken: accessToken)
         
         FIRAuth.auth()?.signIn(with: credential, completion: { loggedInUser, error in
@@ -234,7 +189,7 @@ extension WelcomeViewController: GIDSignInDelegate {
             guard let email = loggedInUser?.email else { return }
             
             self.store.user.email = email
-            self.database.child(Constants.Database.user).child(userID).observe(.value, with: { snapshot in
+            Database.user.child(userID).observe(.value, with: { snapshot in
                 
                 if let data = snapshot.value as? [String:Any] {
                     guard let familyID = data["familyID"] as? String else { return }
@@ -254,32 +209,25 @@ extension WelcomeViewController: GIDSignInDelegate {
     
     func addDataToKeychain(userID: String, familyID: String, email: String, auth: String) {
         let keyAccess = "google"
-        
         UserDefaults.standard.setValue(userID, forKey: "user")
         UserDefaults.standard.setValue(familyID, forKey: "family")
         UserDefaults.standard.setValue(email, forKey: "email")
         UserDefaults.standard.setValue(keyAccess, forKey: "auth")
-        
         MyKeychainWrapper.writeToKeychain()
         UserDefaults.standard.set(true, forKey: "hasFamilyKey")
         UserDefaults.standard.synchronize()
     }
-    
 }
 
 extension WelcomeViewController: GIDSignInUIDelegate {
-    
     func configureGoogleButton() {
         let googleSignInButton = GIDSignInButton()
-        
         googleSignInButton.colorScheme = .light
         googleSignInButton.style = .wide
-        
         self.view.addSubview(googleSignInButton)
         googleSignInButton.translatesAutoresizingMaskIntoConstraints = false
         googleSignInButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         googleSignInButton.topAnchor.constraint(equalTo: signIn.bottomAnchor, constant: 12).isActive = true
         view.layoutIfNeeded()
     }
-    
 }

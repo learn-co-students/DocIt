@@ -102,7 +102,7 @@ class LoginViewController: UIViewController {
             // Set the sharedInstance familyID to the current user.uid
             if self.store.inviteFamilyID == "" {
                 self.signinActivityIndicator.startAnimating()
-                self.database.child(Constants.Database.user).child((user?.uid)!).observe(.value, with: { snapshot in
+                Database.user.child((user?.uid)!).observe(.value, with: { snapshot in
                     DispatchQueue.main.async {
                         var data = snapshot.value as? [String:Any]
                         guard let familyID = data?["familyID"] as? String else { return }
@@ -124,7 +124,7 @@ class LoginViewController: UIViewController {
                 self.store.user.familyId = self.store.inviteFamilyID
                 self.store.family.id = self.store.user.familyId
                 self.store.user.email = email
-                self.database.child(Constants.Database.user).child(self.store.user.id).child("familyID").setValue(self.store.user.familyId)
+                Database.user.child(self.store.user.id).child("familyID").setValue(self.store.user.familyId)
                 self.store.inviteFamilyID = ""
                 self.addDataToKeychain(userID: self.store.user.id, familyID: self.store.user.familyId, email: self.store.user.email, auth: "email")
                 
@@ -198,7 +198,7 @@ extension LoginViewController: GIDSignInDelegate {
             guard let email = loggedInUser?.email else { return }
             
             self.store.user.email = email
-            self.database.child(Constants.Database.user).child(userID).observe(.value, with: { snapshot in
+            Database.user.child(userID).observe(.value, with: { snapshot in
                 
                 if let data = snapshot.value as? [String:Any] {
                     guard let familyID = data["familyID"] as? String else { return }
@@ -212,15 +212,15 @@ extension LoginViewController: GIDSignInDelegate {
                         NotificationCenter.default.post(name: Notification.Name.openfamilyVC, object: nil)
                     })
                 } else {
-                    let familyID = self.database.child(Constants.Database.user).child(userID).child("familyID").childByAutoId().key
+                    let familyID = Database.user.child(userID).child("familyID").childByAutoId().key
                     
                     self.store.user.id = userID
                     self.store.user.familyId = familyID
                     self.store.family.id = familyID
                     self.addDataToKeychain(userID: self.store.user.id, familyID: self.store.user.familyId, email: self.store.user.email, auth: "google")
-                    self.database.child(Constants.Database.user).child(userID).child("familyID").setValue(familyID)
-                    self.database.child(Constants.Database.family).child(familyID).child("name").setValue("New Family")
-                    self.database.child(Constants.Database.user).child(self.store.user.id).child("email").setValue((loggedInUser?.email)!)
+                    Database.user.child(userID).child("familyID").setValue(familyID)
+                    Database.family.child(familyID).child("name").setValue("New Family")
+                    Database.user.child(self.store.user.id).child("email").setValue((loggedInUser?.email)!)
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
                         NotificationCenter.default.post(name: Notification.Name.openfamilyVC, object: nil)

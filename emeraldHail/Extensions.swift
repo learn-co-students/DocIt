@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import LocalAuthentication
 
 // MARK: - Make circle profile pictures
 extension UIImageView {
@@ -112,11 +113,37 @@ extension UIView {
 }
 
 extension UIViewController {
+    
     func getTimestamp() -> String {
         let currentDate = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyyMMddHHmmss"
         return dateFormatter.string(from: currentDate).uppercased()
+    }
+    
+    func errorMessageAuthentication(errorCode: Int) -> String {
+        var message = ""
+        switch errorCode {
+        case LAError.appCancel.rawValue:
+            message = "Authentication was canceled by application."
+        case LAError.authenticationFailed.rawValue:
+            message = "Authentication was not successful, because user failed to provide valid credentials."
+        case LAError.userCancel.rawValue:
+            message = "Authentication was canceled by user"
+        case LAError.userFallback.rawValue:
+            message = "Authentication was canceled, because the user tapped the fallback button."
+        case LAError.systemCancel.rawValue:
+            message = "Authentication was canceled by system."
+        case LAError.passcodeNotSet.rawValue:
+            message = "Authentication could not start, because passcode is not set on the device."
+        case LAError.touchIDNotAvailable.rawValue:
+            message = "Authentication could not start, because Touch ID is not available on the device."
+        case LAError.touchIDNotEnrolled.rawValue:
+            message = "Authentication could not start, because Touch ID has no enrolled fingers."
+        default:
+            message = "Did not find any error in LAError."
+        }
+        return message
     }
 }
 

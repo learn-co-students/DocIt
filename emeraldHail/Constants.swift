@@ -31,20 +31,17 @@ struct Constants {
         static let lineWidth: CGFloat = 1.0
         static let lineColor: CGColor = Constants.Colors.athensGray.cgColor
     }
-    
-    struct Database {
-        static let events = "events"
-        static let family = "family"
-        static let members = "members"
-        static let posts = "posts"
-        static let settings = "settings"
-        static let user = "user"
-    }
-    
-    struct Storage {
-        static let familyImages = "familyImages"
-        static let postsImages = "postsImages"
-        static let profileImages = "profileImages"
-    }
-    
+}
+
+public struct Database {
+    static let url = "gs://emerald-860cb.appspot.com"
+    static let events = FIRDatabase.database().reference().child("events")
+    static let family = FIRDatabase.database().reference().child("family")
+    static let members = FIRDatabase.database().reference().child("members")
+    static let posts = FIRDatabase.database().reference().child("posts")
+    static let settings = FIRDatabase.database().reference().child("settings")
+    static let user = FIRDatabase.database().reference().child("user")
+    static let storageFamily = FIRStorage.storage().reference(forURL: Database.url).child("familyImages")
+    static let storagePosts = FIRStorage.storage().reference(forURL: Database.url).child("postsImage")
+    static let storageProfile = FIRStorage.storage().reference(forURL: Database.url).child("profileImages")
 }

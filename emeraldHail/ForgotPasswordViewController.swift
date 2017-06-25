@@ -27,11 +27,6 @@ class ForgotPasswordViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    
-    @IBAction func save(_ sender: Any) {
-        sendEmail()
-    }
-    
     @IBAction func tapDismiss(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
@@ -53,19 +48,14 @@ class ForgotPasswordViewController: UIViewController {
         cancelButton.docItStyle()
         emailTextField.docItStyle()
         sendButton.docItStyle()
-        
-        
         sendButton.isEnabled = false
         sendButton.backgroundColor = Constants.Colors.submarine
-        
         emailTextField.becomeFirstResponder()
     }
     
     func sendEmail() {
         sendButton.isEnabled = false
-        
         guard let userInput = emailTextField.text else { return }
-        
         FIRAuth.auth()?.sendPasswordReset(withEmail: userInput, completion: { (error) in
             if let error = error {
                 // TODO: Handle errors
@@ -75,5 +65,4 @@ class ForgotPasswordViewController: UIViewController {
         })
         dismiss(animated: true, completion: nil)
     }
-    
 }

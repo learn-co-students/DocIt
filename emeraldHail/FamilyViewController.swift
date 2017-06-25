@@ -75,7 +75,6 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         switch sender {
         case is UICollectionViewCell:
             guard let indexPath = memberProfilesView.indexPath(for: sender as! UICollectionViewCell) else { return }
-            
             if indexPath.row < membersInFamily.count {
                 store.member.id = membersInFamily[indexPath.row].id
             }
@@ -98,23 +97,18 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
             let cell = memberProfilesView.dequeueReusableCell(withReuseIdentifier: "memberCell", for: indexPath) as! MemberCollectionViewCell
             let member = membersInFamily[indexPath.row]
             let profileImgUrl = URL(string: member.profileImage)
-            
             cell.profileImageView.setRounded()
             cell.profileImageView.contentMode = .scaleAspectFill
-            
             cell.profileImageView.sd_setImage(with: profileImgUrl, completed: { (image, error, cacheType, url) in
                 cell.profileImageView.alpha = 0
                 UIView.animate(withDuration: 0.3, animations: {
                     cell.profileImageView.alpha = 1
                 })
             })
-            
             cell.memberNameLabel?.text = member.firstName
-            
             return cell
         } else {
             let addMemberCell = memberProfilesView.dequeueReusableCell(withReuseIdentifier: "addMemberCell", for: indexPath) as! AddMemberCollectionViewCell
-            
             return addMemberCell
         }
     }
@@ -122,7 +116,6 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.row < membersInFamily.count {
             let selectedMember = membersInFamily[indexPath.row]
-            
             store.member.id = selectedMember.id
             store.member.firstName = selectedMember.firstName
             store.member.lastName = selectedMember.lastName
@@ -182,7 +175,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     // TODO: Rethink some of the variable names here and in configDatabaseFamily for clarity
     func configDatabaseMember() {
-        let familyRef = database.child(Constants.Database.members).child(store.user.familyId)
+        let familyRef = Database.members.child(store.user.familyId)
         
         familyRef.observe(.value, with: { snapshot in
             var newItem = [Member]()
@@ -199,7 +192,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     // TODO: Rethink some of the variable names here for clarity
     func configDatabaseFamily() {
-        let familyRef = database.child("family").child(store.user.familyId)
+        let familyRef = Database.family.child(store.user.familyId)
         
         familyRef.observe(.value, with: { snapshot in
             
@@ -218,23 +211,19 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         let alertController = UIAlertController(title: nil, message: "Change your family name", preferredStyle: .alert)
         let save = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
             guard let name = nameTextField?.text, name != "" else { return }
-            let eventsRef = self.database.child(Constants.Database.family).child(self.store.user.familyId)
-            
+            let eventsRef = Database.family.child(self.store.user.familyId)
             // TODO: We should be handling all the errors properly
             eventsRef.updateChildValues(["name": name], withCompletionBlock: { (error, dataRef) in
             })
         })
-        
         let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
             print("Cancel Button Pressed")
         }
-        
         alertController.addAction(save)
         alertController.addAction(cancel)
         alertController.addTextField { (textField) -> Void in
             nameTextField = textField
         }
-        
         present(alertController, animated: true, completion: nil)
     }
     

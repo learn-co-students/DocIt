@@ -33,7 +33,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     var uniqueID: String?
     var posts = [Post]()
     var store = DataStore.sharedInstance
-    let postsRef = FIRDatabase.database().reference().child(Constants.Database.posts)
+    let postsRef = Database.posts
     var plusButtonIsRotated = false
     
     // MARK: - Loads
@@ -167,8 +167,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
             databasePosts.child(store.postID).removeValue()
             
             // Deleting images from storge
-            let storageRef = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
-            let storageImgRef = storageRef.child(Constants.Storage.postsImages).child(store.postID)
+            let storageImgRef = Database.storagePosts.child(store.postID)
             
             storageImgRef.delete(completion: { error -> Void in
                 if error != nil {
@@ -228,7 +227,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func fetchMemberDetails() {
-        let member = FIRDatabase.database().reference().child(Constants.Database.members).child(store.user.familyId).child(store.member.id)
+        let member = Database.members.child(store.user.familyId).child(store.member.id)
         
         member.observe(.value, with: { snapshot in
             var member = snapshot.value as? [String:Any]
@@ -280,14 +279,11 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func uploadImageURLtoFirebaseDatabaseAndStorage(_ image: UIImage) {
-        let database: FIRDatabaseReference = FIRDatabase.database().reference()
-        let databasePostsRef = database.child(Constants.Database.posts).child(store.eventID).childByAutoId()
+        let databasePostsRef = Database.posts.child(store.eventID).childByAutoId()
         let uniqueID = databasePostsRef.key
-        let storageRef = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
-        
         store.imagePostID = uniqueID
         
-        let storageImageRef = storageRef.child(Constants.Storage.postsImages).child(store.imagePostID)
+        let storageImageRef = Database.storagePosts.child(store.imagePostID)
         guard let uploadData = UIImageJPEGRepresentation(image, 0.25) else { return }
         
         storageImageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in

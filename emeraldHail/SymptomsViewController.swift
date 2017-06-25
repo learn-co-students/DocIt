@@ -49,7 +49,7 @@ class SymptomsViewController: UIViewController, UITableViewDelegate, UITableView
             return
         }
         
-        let postsRef = database.child(Constants.Database.posts).child(store.eventID).childByAutoId()
+        let postsRef = Database.posts.child(store.eventID).childByAutoId()
         let uniqueID = postsRef.key
         let newSymp = Symp(content: selectedSymtoms, uniqueID: uniqueID, timestamp: getTimestamp())
         

@@ -101,13 +101,9 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
             
             else { return }
         
-        let databaseMembersRef = database.child(Constants.Database.members).child(store.user.familyId).childByAutoId()
-        
+        let databaseMembersRef = Database.members.child(store.user.familyId).childByAutoId()
         let uniqueID = databaseMembersRef.key
-        
-        let storageRef = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
-        let imageId = uniqueID
-        let storageImageRef = storageRef.child(Constants.Storage.profileImages).child(imageId)
+        let storageImageRef = Database.storageProfile.child(uniqueID)
         
         guard let uploadData = UIImageJPEGRepresentation(self.profileImageView.image!, 0.25) else { return }
         
@@ -151,100 +147,71 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
     }
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool{
-        
         if firstNameField.text != "" && lastNameField.text != "" && dateTextField.text != "" && genderTextField.text != "" {
-            
             saveButton.isEnabled = true
             saveButton.backgroundColor = Constants.Colors.scooter
-            
         }
-        
         return true
     }
     
-    
     func textFieldDidBeginEditing(_ textField: UITextField){
-        
         dateTextField.inputView = dobSelection
-        
         dobSelection.datePickerMode = UIDatePickerMode.date
-        
         dobSelection.addTarget(self, action: #selector(self.datePickerChanged(sender:)) , for: .valueChanged)
-        
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         dateTextField.resignFirstResponder()
-        
         return true
     }
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        
         return true
-        
     }
     
     func datePickerChanged(sender: UIDatePicker) {
-        
         let formatter = DateFormatter()
         formatter.dateStyle = .short
         formatter.timeStyle = .none
         formatter.dateFormat = "MMM dd, yyyy"
         dateTextField.text = formatter.string(from: sender.date).uppercased()
-        
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int{
         return 1
     }
     
-    
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
-        
         switch pickerView {
-            
         case genderSelection:
             return store.genderSelections.count
-            
         default:
             break
         }
         return 0
-        
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
         switch pickerView {
-            
         case genderSelection:
             genderTextField.text = store.genderSelections[row]
-            
         default:
             break
         }
-        
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        
         switch pickerView {
-            
         case genderSelection:
             return store.genderSelections[row]
-            
         default:
             break
         }
-        
         return ""
     }
     
     // MARK: Fusuma
-    
     func handleCameraImage() {
-        
         let fusuma = FusumaViewController()
         fusuma.delegate = self
         self.present(fusuma, animated: true, completion: nil)
@@ -253,42 +220,25 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
     }
     
     // Return the image which is selected from camera roll or is taken via the camera.
-    
     func fusumaImageSelected(_ image: UIImage) {
-        
         // present some alert with the image
         // add button to alert to send
         // upload from button
-        
         print("Image selected")
-        
     }
     
     // Return the image but called after is dismissed.
-    
     func fusumaDismissedWithImage(_ image: UIImage) {
-        
         profileImageView.image = image
-        
         print("Called just after FusumaViewController is dismissed.")
-        
     }
     
     func fusumaVideoCompleted(withFileURL fileURL: URL) {
-        
         print("Called just after a video has been selected.")
-        
     }
     
     // When camera roll is not authorized, this method is called.
-    
     func fusumaCameraRollUnauthorized() {
-        
         print("Camera access denied")
-        
     }
-    
-    
-    
-    
 }

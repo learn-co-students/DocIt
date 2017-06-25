@@ -27,7 +27,6 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
     var verySevere: PainLevel = .verySevere
     var excruciating: PainLevel = .excruciating
     var painLevels = [PainLevel]()
-    let storage = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
     var selectedPainLevel: PainLevel?
     let postRef : FIRDatabaseReference = FIRDatabase.database().reference().child("posts")
     let store = DataStore.sharedInstance

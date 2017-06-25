@@ -67,27 +67,20 @@ class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         } else {
             selectedTemp = "37.0"
         }
-        
         postTitleLabel.text = "What's \(store.member.firstName)'s Temp?"
-        
         temperaturePickerView.selectRow(10, inComponent: 0, animated: false)
-        
         view.backgroundColor = Constants.Colors.transBlack
-        
         noteView.docItStyleView()
-        
         tempSegments.layer.cornerRadius = 2
-        
         temperaturePickerView.backgroundColor = UIColor.white
         temperaturePickerView.tintColor = Constants.Colors.submarine
-        
         saveButton.docItStyle()
         cancelButton.docItStyle()
     }
     
     func saveTemp() {
         saveButton.isEnabled = false
-        let postsRef = database.child(Constants.Database.posts).child(store.eventID).childByAutoId()
+        let postsRef = Database.posts.child(store.eventID).childByAutoId()
         let uniqueID = postsRef.key
         
         var tempType: String

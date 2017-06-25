@@ -65,7 +65,7 @@ class JoinFamily: UIView {
         // Set the sharedInstance familyID to the current user.uid
         self.store.user.familyId = familyID
         
-        self.database.child(Constants.Database.user).child(store.user.id).child("familyID").setValue(store.user.familyId)
+        Database.user.child(store.user.id).child("familyID").setValue(store.user.familyId)
         
         NotificationCenter.default.post(name: .openfamilyVC, object: nil)
     }

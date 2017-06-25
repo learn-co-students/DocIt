@@ -12,7 +12,7 @@ import FirebaseStorage
 import Firebase
 import Fusuma
 
-class EditMemberSettingsViewController: UITableViewController, UIPickerViewDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDataSource, FusumaDelegate {
+class EditMemberSettingsVaiewController: UITableViewController, UIPickerViewDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDataSource, FusumaDelegate {
     
     // MARK: - Outlets
     @IBOutlet weak var profilePicture: UIImageView!
@@ -32,11 +32,6 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
     let store = DataStore.sharedInstance
     let bloodSelection = UIPickerView()
     let database = FIRDatabase.database().reference()
-    let databaseFamily = FIRDatabase.database().reference().child(Constants.Database.family)
-    let databaseMember = FIRDatabase.database().reference().child(Constants.Database.members)
-    let databaseEvents = FIRDatabase.database().reference().child(Constants.Database.events)
-    let databasePosts = FIRDatabase.database().reference().child(Constants.Database.posts)
-    let storageRef = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
     let dobSelection = UIDatePicker()
     let genderSelection = UIPickerView()
     let weightSelection = UIPickerView()
@@ -86,9 +81,9 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
         let deleteAction = UIAlertAction(title: "Delete", style: .default, handler: { action -> Void in
             
             // Database
-            let memberRef = self.databaseMember.child(self.store.user.familyId)
-            let eventsRef = self.databaseEvents.child(self.store.member.id)
-            let postsRef = self.database.child(Constants.Database.posts)
+            let memberRef = Database.members.child(self.store.user.familyId)
+            let eventsRef = Database.events.child(self.store.member.id)
+            let postsRef = Database.posts
             
             var posts = [Post]()
             
@@ -204,7 +199,7 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
     
     // MARK: - Firebase Storage Image Deletion
     func deletePostImagesFromStorage(uniqueID: String) {
-        storageRef.child(Constants.Storage.postsImages).child(uniqueID).delete { error -> Void in
+        Database.storagePosts.child(uniqueID).delete { error -> Void in
             if error != nil {
                 print("******* Error occured while deleting post imgs from Firebase storage ******** \(uniqueID)")
             } else {
@@ -214,7 +209,7 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
     }
     
     func deleteProfileImagesFromStorage() {
-        storageRef.child(Constants.Storage.profileImages).child(self.store.member.id).delete { error -> Void in
+        Database.storageProfile.child(self.store.member.id).delete { error -> Void in
             if error != nil {
                 print("******* Error occured while deleting profile imgs from Firebase storage ******** \(self.store.member.id)")
             } else {
@@ -255,12 +250,11 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
             let profilePicture = profilePicture.image,
             let allergies = allergiesTextField.text else { return }
         
-        let memberReference = database.child(Constants.Database.members).child(store.user.familyId).child(store.member.id)
-        let databaseMembersRef = database.child(Constants.Database.members).child(store.user.familyId).childByAutoId()
+        let memberReference = Database.members.child(store.user.familyId).child(store.member.id)
+        let databaseMembersRef = Database.members.child(store.user.familyId).childByAutoId()
         let uniqueID = databaseMembersRef.key
-        let storageRef = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
         let imageId = uniqueID
-        let storageImageRef = storageRef.child(Constants.Storage.profileImages).child(imageId)
+        let storageImageRef = Database.storageProfile.child(imageId)
         
         if let uploadData = UIImageJPEGRepresentation(profilePicture, 0.25) {
             storageImageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
@@ -287,8 +281,7 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
     }
     
     func displayMemberProfileEdits() {
-        let member = databaseMember.child(store.user.familyId).child(store.member.id)
-        
+        let member = Database.members.child(store.user.familyId).child(store.member.id)
         member.observe(.value, with: { (snapshot) in
             let value = snapshot.value as? [String : Any]
             let imageString = value?["profileImage"] as? String

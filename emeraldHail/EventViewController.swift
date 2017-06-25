@@ -22,7 +22,6 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     // MARK: - Properties
     var store = DataStore.sharedInstance
     var events = [Event]()
-    var database: FIRDatabaseReference = FIRDatabase.database().reference()
     var memberID = ""
     var member = [Member]()
     let notificationCenter = NotificationCenter.default
@@ -36,7 +35,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        configDatabase()
+        configureDatabase()
         self.eventsTable.reloadData()
     }
     
@@ -51,16 +50,13 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func setupView() {
         eventsTable.delegate = self
         eventsTable.dataSource = self
-        
         title = "Events"
-        
         hideKeyboardWhenTappedAround()
-        configDatabase()
-        
+        configureDatabase()
         plusButton.shadow()
         eventsTable.separatorStyle = .none
         eventsTable.reloadData()
-        showPictureAndName()
+        showPictureAndName(database: Database.members, familyId: store.user.familyId, memberId: store.member.id)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -70,16 +66,12 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath) as! EventTableViewCell
         let event = events[indexPath.row]
-        
         cell.eventName.text = event.name
         cell.eventDate.text = event.startDate.uppercased()
-        
         store.eventID = event.uniqueID
-        
         if profileImageView.bounds.origin.y < 0 {
             self.title = store.member.firstName
         }
-        
         return cell
     }
     
@@ -90,9 +82,9 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     // MARK: - Methods
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let databaseEvents = self.database.child(Constants.Database.events).child(store.member.id)
+        let databaseEvents = Database.events.child(store.member.id)
         let uniqueEventID = events[indexPath.row].uniqueID
-        let databasePosts = self.database.child(Constants.Database.posts).child(uniqueEventID)
+        let databasePosts = Database.posts.child(uniqueEventID)
         var posts = [Post]()
         let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
             // Alert Controller
@@ -166,16 +158,13 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     // MARK: - Methods
-    func deleteImagesFromStorage(uniqueID: String){
-        let storageRef = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
-        let storageImageRef = storageRef.child(Constants.Storage.postsImages).child(uniqueID)
-        
+    func deleteImagesFromStorage(uniqueID: String) {
+        let storageImageRef = Database.storagePosts.child(uniqueID)
         storageImageRef.delete(completion: { error -> Void in
-            if error != nil {
-                print("Error occured while deleting imgs from Firebase storage")
-            } else {
-                print("Image removed from Firebase successfully!")
+            guard let error = error else {
+                return print("Image removed from Firebase successfully!")
             }
+            print(error.localizedDescription)
         })
     }
     
@@ -189,39 +178,33 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         view.endEditing(true)
     }
     
-    func showPictureAndName() {
-        let member = FIRDatabase.database().reference().child(Constants.Database.members).child(store.user.familyId).child(store.member.id)
-        
+    func showPictureAndName(database: FIRDatabaseReference, familyId: String, memberId: String) {
+        let member = database
+            .child(familyId)
+            .child(memberId)
         member.observe(.value, with: { snapshot in
             var member = snapshot.value as? [String : Any]
-            let name = member?["firstName"] as? String
-            let imageString = member?["profileImage"] as? String
-            guard let imgUrl = imageString else {return}
-            let profileImgUrl = URL(string: imgUrl)
-            self.profileImageView.sd_setImage(with: profileImgUrl)
+            self.nameLabel.text = member?["firstName"] as? String
+            guard let image = member?["profileImage"] as? String else { return }
+            let imageURL = URL(string: image)
+            self.profileImageView.sd_setImage(with: imageURL)
             self.profileImageView.setRounded()
             self.profileImageView.contentMode = .scaleAspectFill
-            self.nameLabel.text = name
         })
     }
     
-    func configDatabase() {
-        let memberID: String = store.member.id
-        let eventsRef = FIRDatabase.database().reference().child(Constants.Database.events).child(memberID)
-        
+    func configureDatabase() {
+        let eventsRef = Database.events.child(store.member.id)
         eventsRef.observe(.value, with: { snapshot in
             var newEvents = [Event]()
-            
             for event in snapshot.children {
                 let newEvent = Event(snapshot: event as! FIRDataSnapshot)
                 newEvents.insert(newEvent, at: 0)
             }
-            
             self.events = newEvents
             self.eventsTable.reloadData()
         })
     }
-    
 }
 
 class EventTableViewCell: UITableViewCell {

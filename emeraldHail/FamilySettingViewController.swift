@@ -120,13 +120,10 @@ class FamilySettingViewController: UITableViewController, UIImagePickerControlle
     
     func inviteParent() {
         let branchUniversalObject: BranchUniversalObject = BranchUniversalObject(canonicalIdentifier: "123123123")
-        
         branchUniversalObject.addMetadataKey("inviteFamilyID", value: store.user.familyId)
-        
         let linkProperties: BranchLinkProperties = BranchLinkProperties()
         // This links to our app in the App Store via a Google short url for tracking. If they already have the app installed, it will open the app instead.
         linkProperties.addControlParam("$ios_url", withValue: "https://goo.gl/6HDsNR")
-        
         branchUniversalObject.showShareSheet(with: linkProperties, andShareText: "Please join my family on Doc It!", from: self) { (activityType, completed) in
         }
     }
@@ -135,29 +132,22 @@ class FamilySettingViewController: UITableViewController, UIImagePickerControlle
         do {
             try FIRAuth.auth()?.signOut()
             store.clearDataStore()
-            
             NotificationCenter.default.post(name: .openWelcomeVC, object: nil)
         } catch let signOutError as NSError {
             print ("Error signing out: \(signOutError.localizedDescription)")
         }
     }
     
-    func changeFamilyCoverPic(photo: UIImage, handler: @escaping (Bool) -> Void) {
-        let familyDatabase = database.child(Constants.Database.family).child(store.user.familyId)
-        let storageRef = FIRStorage.storage().reference(forURL: "gs://emerald-860cb.appspot.com")
-        let storeImageRef = storageRef.child(Constants.Storage.familyImages).child(store.user.familyId)
-        
+    func changeFamilyCoverPic(photo: UIImage, familyId: String, handler: @escaping (Bool) -> Void) {
+        let familyDatabase = Database.family.child(familyId)
+        let storeImageRef = Database.storageFamily.child(familyId)
         guard let uploadData = UIImageJPEGRepresentation(photo, 0.25) else { return }
-        
         storeImageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
             if error != nil {
                 print(error?.localizedDescription ?? "Error in changeFamilyCoverPic")
-                
                 return
             }
-            
             guard let familyPicString = metadata?.downloadURL()?.absoluteString else { return }
-            
             familyDatabase.updateChildValues(["coverImageStr": familyPicString], withCompletionBlock: { (error, dataRef) in
                 DispatchQueue.main.async {
                     handler(true)
@@ -171,21 +161,18 @@ class FamilySettingViewController: UITableViewController, UIImagePickerControlle
         picker.delegate = self
         picker.sourceType = .photoLibrary
         picker.allowsEditing = true
-        
         self.present(picker, animated: true, completion: nil)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]){
         var selectedImageFromPicker: UIImage?
-        
         if let editImage = info[UIImagePickerControllerEditedImage] as? UIImage {
             selectedImageFromPicker = editImage
         } else if let originalImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             selectedImageFromPicker = originalImage
         }
-        
         if let selectedImage = selectedImageFromPicker {
-            changeFamilyCoverPic(photo: selectedImage, handler: { success in
+            changeFamilyCoverPic(photo: selectedImage, familyId: self.store.user.familyId, handler: { success in
                 self.dismiss(animated: true, completion: nil)
             })
         }
@@ -211,27 +198,21 @@ class FamilySettingViewController: UITableViewController, UIImagePickerControlle
         }
     }
     
-    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+    func mailComposeController(_ controller: MFMailComposeViewController,
+                               didFinishWith result: MFMailComposeResult,
+                               error: Error?) {
         controller.dismiss(animated: true)
     }
     
     // MARK: - Touch ID Methods
     func checkTouchID() {
         let touchIDValue = UserDefaults.standard.value(forKey:"touchID") as? String
-        
-        database.child(Constants.Database.settings).child(store.user.familyId).child("touchID").setValue(touchIDValue)
-        
-        if touchIDValue == "true" {
-            self.touchID.setOn(true, animated: false)
-        } else {
-            self.touchID.setOn(false, animated: false)
-        }
+        Database.settings.child(store.user.familyId).child("touchID").setValue(touchIDValue)
+        touchIDValue == "true" ? self.touchID.setOn(true, animated: false) : self.touchID.setOn(false, animated: false)
     }
-    
     
     func checkTouchIDIphone() {
         let context = LAContext()
-        
         if context.canEvaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, error: nil) {
             print("this person has touch id")
         } else {
@@ -243,7 +224,6 @@ class FamilySettingViewController: UITableViewController, UIImagePickerControlle
     }
     
     func touchID(activate: Bool) {
-        FIRDatabase.database().reference().child(Constants.Database.settings).child(store.user.familyId).child("touchID").setValue(activate)
+        Database.settings.child(store.user.familyId).child("touchID").setValue(activate)
     }
-    
 }

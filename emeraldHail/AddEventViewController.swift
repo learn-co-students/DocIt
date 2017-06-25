@@ -81,7 +81,7 @@ class AddEventViewController: UIViewController, UIPickerViewDelegate, UITextFiel
         saveButton.isEnabled = false
         if eventViewTitle.text == "Create Event" {
             guard let name = nameTextField?.text, name != "", let date = dateTextField?.text, date != "" else { return }
-            let databaseEventsRef = self.database.child(Constants.Database.events).child(self.store.member.id).childByAutoId()
+            let databaseEventsRef = Database.events.child(self.store.member.id).childByAutoId()
             let uniqueID = databaseEventsRef.key
             let event = Event(name: name, startDate: date, uniqueID: uniqueID)
             
@@ -91,7 +91,7 @@ class AddEventViewController: UIViewController, UIPickerViewDelegate, UITextFiel
             })
         } else {
             guard let name = nameTextField?.text, name != "", let date = dateTextField?.text, date != "" else { return }
-            let databaseEventsRef = self.database.child(Constants.Database.events).child(self.store.member.id).child(self.store.eventID)
+            let databaseEventsRef = Database.events.child(self.store.member.id).child(self.store.eventID)
             let uniqueID = databaseEventsRef.key
             let event = Event(name: name, startDate: date, uniqueID: uniqueID)
             
