@@ -28,13 +28,14 @@ class ChangeFamilyNameViewController: UIViewController {
     }
     
     // MARK: - Actions
-    
     @IBAction func cancel(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction func save(_ sender: Any) {
-        saveNewFamilyName()
+        saveButton.isEnabled = false
+        Family.saveNewFamilyName(newName: changeNameTextField.text)
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func dismissController(_ sender: Any) {
@@ -58,28 +59,9 @@ class ChangeFamilyNameViewController: UIViewController {
         cancelButton.docItStyle()
         changeNameTextField.docItStyle()
         changeFamilyView.docItStyleView()
-        
         saveButton.isEnabled = false
         saveButton.backgroundColor = Constants.Colors.submarine
-        
         changeNameTextField.text = store.family.name
         changeNameTextField.becomeFirstResponder()
     }
-    
-    func saveNewFamilyName() {
-        saveButton.isEnabled = false
-        
-        let ref = Database.family.child(self.store.user.familyId)
-        
-        guard let name = changeNameTextField.text, name != "" else { return }
-        
-        ref.updateChildValues(["name": name], withCompletionBlock: { (error, dataRef) in
-            if let error = error {
-                print(error.localizedDescription)
-            }
-        })
-        
-        dismiss(animated: true, completion: nil)
-    }
-    
 }

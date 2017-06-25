@@ -116,15 +116,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.row < membersInFamily.count {
             let selectedMember = membersInFamily[indexPath.row]
-            store.member.id = selectedMember.id
-            store.member.firstName = selectedMember.firstName
-            store.member.lastName = selectedMember.lastName
-            store.member.allergies = selectedMember.allergies
-            store.member.birthday = selectedMember.birthday
-            store.member.bloodType = selectedMember.bloodType
-            store.member.gender = selectedMember.gender
-            store.member.height = selectedMember.height
-            store.member.weight = selectedMember.weight
+            store.member = selectedMember
         } else {
             performSegue(withIdentifier: "addMember", sender: nil)
         }
@@ -205,28 +197,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
             self.store.family.coverImageStr = coverImgStr as? String
         })
     }
-    
-    func changeFamilyName() {
-        var nameTextField: UITextField?
-        let alertController = UIAlertController(title: nil, message: "Change your family name", preferredStyle: .alert)
-        let save = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
-            guard let name = nameTextField?.text, name != "" else { return }
-            let eventsRef = Database.family.child(self.store.user.familyId)
-            // TODO: We should be handling all the errors properly
-            eventsRef.updateChildValues(["name": name], withCompletionBlock: { (error, dataRef) in
-            })
-        })
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
-            print("Cancel Button Pressed")
-        }
-        alertController.addAction(save)
-        alertController.addAction(cancel)
-        alertController.addTextField { (textField) -> Void in
-            nameTextField = textField
-        }
-        present(alertController, animated: true, completion: nil)
-    }
-    
+
     func handleRefresh() {
         memberProfilesView.reloadData()
         refresher.endRefreshing()

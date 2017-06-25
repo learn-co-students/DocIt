@@ -132,8 +132,8 @@ class WelcomeViewController: UIViewController {
         let email = UserDefaults.standard.value(forKey:"email") as? String
         let userID = UserDefaults.standard.value(forKey: "user") as? String
         let password = MyKeychainWrapper.myObject(forKey: "v_Data") as? String
-        self.store.user.email = email!
-        self.store.user.id = userID!
+        Store.userEmail = email!
+        Store.userId = userID!
         
         FIRAuth.auth()?.signIn(withEmail: email!, password: password!) { (user, error) in
             if error != nil {
@@ -144,9 +144,9 @@ class WelcomeViewController: UIViewController {
                 DispatchQueue.main.async {
                     var data = snapshot.value as? [String:Any]
                     guard let familyID = data?["familyID"] as? String else { return }
-                    self.store.user.id = (user?.uid)!
-                    self.store.user.familyId = familyID
-                    self.store.family.id = familyID
+                    Store.userId = (user?.uid)!
+                    Store.userFamily = familyID
+                    Store.familyId = familyID
                     DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
                         NotificationCenter.default.post(name: .openfamilyVC, object: nil)
                     })
@@ -172,33 +172,28 @@ class WelcomeViewController: UIViewController {
 }
 
 extension WelcomeViewController: GIDSignInDelegate {
-    
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        if let err = error {
-            // TODO: Handle error
-            print("Failed to log into Google: ", err)
+        if let error = error {
+            print(error.localizedDescription)
             return
         }
-        
-        guard let idToken = user.authentication.idToken else { return }
-        guard let accessToken = user.authentication.accessToken else { return }
+        guard let idToken = user.authentication.idToken,
+            let accessToken = user.authentication.accessToken else { return }
         let credential = FIRGoogleAuthProvider.credential(withIDToken: idToken, accessToken: accessToken)
-        
         FIRAuth.auth()?.signIn(with: credential, completion: { loggedInUser, error in
-            guard let userID = loggedInUser?.uid else {return}
-            guard let email = loggedInUser?.email else { return }
-            
-            self.store.user.email = email
+            guard let userID = loggedInUser?.uid, let email = loggedInUser?.email else { return }
+            Store.userEmail = email
+            Store.userId = userID
             Database.user.child(userID).observe(.value, with: { snapshot in
-                
                 if let data = snapshot.value as? [String:Any] {
                     guard let familyID = data["familyID"] as? String else { return }
-                    
-                    self.store.user.id = userID
-                    self.store.user.familyId = familyID
-                    self.store.family.id = familyID
-                    self.addDataToKeychain(userID: self.store.user.id, familyID: self.store.user.familyId, email: self.store.user.email, auth: "google")
-                    
+                    Store.userFamily = familyID
+                    Store.familyId = familyID
+                    self.addDataToKeychain(
+                        userID: Store.userId,
+                        familyID: Store.userFamily,
+                        email: Store.userEmail,
+                        auth: "google")
                     DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
                         NotificationCenter.default.post(name: Notification.Name.openfamilyVC, object: nil)
                     })
@@ -209,10 +204,8 @@ extension WelcomeViewController: GIDSignInDelegate {
     
     func addDataToKeychain(userID: String, familyID: String, email: String, auth: String) {
         let keyAccess = "google"
-        UserDefaults.standard.setValue(userID, forKey: "user")
-        UserDefaults.standard.setValue(familyID, forKey: "family")
-        UserDefaults.standard.setValue(email, forKey: "email")
-        UserDefaults.standard.setValue(keyAccess, forKey: "auth")
+        let values: [String: String] = [userID: "user", familyID: "family", email: "email", keyAccess: "auth"]
+        values.map({ value in UserDefaults.standard.setValue(value.value, forKey: value.key) })
         MyKeychainWrapper.writeToKeychain()
         UserDefaults.standard.set(true, forKey: "hasFamilyKey")
         UserDefaults.standard.synchronize()

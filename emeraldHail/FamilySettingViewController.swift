@@ -172,7 +172,7 @@ class FamilySettingViewController: UITableViewController, UIImagePickerControlle
             selectedImageFromPicker = originalImage
         }
         if let selectedImage = selectedImageFromPicker {
-            changeFamilyCoverPic(photo: selectedImage, familyId: self.store.user.familyId, handler: { success in
+            changeFamilyCoverPic(photo: selectedImage, familyId: Store.userFamily, handler: { success in
                 self.dismiss(animated: true, completion: nil)
             })
         }

@@ -12,7 +12,7 @@ import FirebaseStorage
 import Firebase
 import Fusuma
 
-class EditMemberSettingsVaiewController: UITableViewController, UIPickerViewDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDataSource, FusumaDelegate {
+class EditMemberSettingsViewController: UITableViewController, UIPickerViewDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDataSource, FusumaDelegate {
     
     // MARK: - Outlets
     @IBOutlet weak var profilePicture: UIImageView!
@@ -81,7 +81,7 @@ class EditMemberSettingsVaiewController: UITableViewController, UIPickerViewDele
         let deleteAction = UIAlertAction(title: "Delete", style: .default, handler: { action -> Void in
             
             // Database
-            let memberRef = Database.members.child(self.store.user.familyId)
+            let memberRef = Database.members.child(Store.userFamily)
             let eventsRef = Database.events.child(self.store.member.id)
             let postsRef = Database.posts
             

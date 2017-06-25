@@ -13,7 +13,6 @@ import Fusuma
 class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UITextFieldDelegate, FusumaDelegate {
     
     // MARK: Outlets
-    
     @IBOutlet weak var addMember: UIView!
     @IBOutlet weak var touchView: UIView!
     @IBOutlet weak var profileImageView: UIImageView!
@@ -27,7 +26,6 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
     @IBOutlet weak var choosePhoto: UIButton!
     
     // MARK: - Properties
-    
     let dobSelection = UIDatePicker()
     let genderSelection = UIPickerView()
     let database = FIRDatabase.database().reference()

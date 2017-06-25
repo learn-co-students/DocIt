@@ -63,7 +63,7 @@ class JoinFamily: UIView {
         print(store.user.familyId)
         
         // Set the sharedInstance familyID to the current user.uid
-        self.store.user.familyId = familyID
+        Store.userFamily = familyID
         
         Database.user.child(store.user.id).child("familyID").setValue(store.user.familyId)
         

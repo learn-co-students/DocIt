@@ -45,3 +45,11 @@ public struct Database {
     static let storagePosts = FIRStorage.storage().reference(forURL: Database.url).child("postsImage")
     static let storageProfile = FIRStorage.storage().reference(forURL: Database.url).child("profileImages")
 }
+
+public struct Store {
+    static var userId = DataStore.sharedInstance.user.id
+    static var userFamily = DataStore.sharedInstance.user.familyId
+    static var userEmail = DataStore.sharedInstance.user.email
+    static var familyId = DataStore.sharedInstance.family.id
+}
+

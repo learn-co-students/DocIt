@@ -107,11 +107,15 @@ class LoginViewController: UIViewController {
                         var data = snapshot.value as? [String:Any]
                         guard let familyID = data?["familyID"] as? String else { return }
                         
-                        self.store.user.id = (user?.uid)!
-                        self.store.user.familyId = familyID
-                        self.store.family.id = familyID
-                        self.store.user.email = email
-                        self.addDataToKeychain(userID: self.store.user.id, familyID: self.store.user.familyId, email: self.store.user.email, auth: "email")
+                        Store.userId = (user?.uid)!
+                        Store.userFamily = familyID
+                        Store.familyId = familyID
+                        Store.userEmail = email
+                        self.addDataToKeychain(
+                            userID: Store.userId,
+                            familyID: Store.userFamily,
+                            email: Store.userEmail,
+                            auth: "email")
                         
                         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
                             NotificationCenter.default.post(name: .openfamilyVC, object: nil)
@@ -120,13 +124,17 @@ class LoginViewController: UIViewController {
                     }
                 })
             } else {
-                self.store.user.id = (user?.uid)!
-                self.store.user.familyId = self.store.inviteFamilyID
-                self.store.family.id = self.store.user.familyId
-                self.store.user.email = email
-                Database.user.child(self.store.user.id).child("familyID").setValue(self.store.user.familyId)
+                Store.userId = (user?.uid)!
+                Store.userFamily = self.store.inviteFamilyID
+                Store.familyId = Store.userFamily
+                Store.userEmail = email
+                Database.user.child(Store.userId).child("familyID").setValue(Store.userFamily)
                 self.store.inviteFamilyID = ""
-                self.addDataToKeychain(userID: self.store.user.id, familyID: self.store.user.familyId, email: self.store.user.email, auth: "email")
+                self.addDataToKeychain(
+                    userID: Store.userId,
+                    familyID: Store.userFamily,
+                    email: Store.userEmail,
+                    auth: "email")
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
                     NotificationCenter.default.post(name: .openfamilyVC, object: nil)
@@ -197,16 +205,20 @@ extension LoginViewController: GIDSignInDelegate {
             guard let userID = loggedInUser?.uid else {return}
             guard let email = loggedInUser?.email else { return }
             
-            self.store.user.email = email
+            Store.userEmail = email
             Database.user.child(userID).observe(.value, with: { snapshot in
                 
                 if let data = snapshot.value as? [String:Any] {
                     guard let familyID = data["familyID"] as? String else { return }
                     
-                    self.store.user.id = userID
-                    self.store.user.familyId = familyID
-                    self.store.family.id = familyID
-                    self.addDataToKeychain(userID: self.store.user.id, familyID: self.store.user.familyId, email: self.store.user.email, auth: "google")
+                    Store.userId = userID
+                    Store.userFamily = familyID
+                    Store.familyId = familyID
+                    self.addDataToKeychain(
+                        userID: Store.userId,
+                        familyID: Store.userFamily,
+                        email: Store.userEmail,
+                        auth: "google")
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
                         NotificationCenter.default.post(name: Notification.Name.openfamilyVC, object: nil)
@@ -214,13 +226,13 @@ extension LoginViewController: GIDSignInDelegate {
                 } else {
                     let familyID = Database.user.child(userID).child("familyID").childByAutoId().key
                     
-                    self.store.user.id = userID
-                    self.store.user.familyId = familyID
-                    self.store.family.id = familyID
-                    self.addDataToKeychain(userID: self.store.user.id, familyID: self.store.user.familyId, email: self.store.user.email, auth: "google")
+                    Store.userId = userID
+                    Store.userFamily = familyID
+                    Store.familyId = familyID
+                    self.addDataToKeychain(userID: Store.userId, familyID: Store.userFamily, email: Store.userEmail, auth: "google")
                     Database.user.child(userID).child("familyID").setValue(familyID)
                     Database.family.child(familyID).child("name").setValue("New Family")
-                    Database.user.child(self.store.user.id).child("email").setValue((loggedInUser?.email)!)
+                    Database.user.child(Store.userId).child("email").setValue((loggedInUser?.email)!)
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
                         NotificationCenter.default.post(name: Notification.Name.openfamilyVC, object: nil)
@@ -231,11 +243,8 @@ extension LoginViewController: GIDSignInDelegate {
     }
     
     func addDataToKeychain(userID: String, familyID: String, email: String, auth: String) {
-        UserDefaults.standard.setValue(userID, forKey: "user")
-        UserDefaults.standard.setValue(familyID, forKey: "family")
-        UserDefaults.standard.setValue(email, forKey: "email")
-        UserDefaults.standard.setValue(auth, forKey: "auth")
-        
+        let values: [String: String] = [userID: "user", familyID: "family", email: "email", auth: "auth"]
+        values.map({ value in UserDefaults.standard.setValue(value.value, forKey: value.key) })
         MyKeychainWrapper.mySetObject(passwordField.text, forKey:kSecValueData)
         MyKeychainWrapper.writeToKeychain()
         UserDefaults.standard.set(true, forKey: "hasFamilyKey")

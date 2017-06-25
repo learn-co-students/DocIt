@@ -10,14 +10,14 @@ import Foundation
 import UIKit
 import Firebase
 
-class Family {
+public class Family {
     
     var id: String
     var name: String?
     var coverImage: UIImage?
     var coverImageStr: String?
     var members: [Member]?
-    
+
     init(id: String) {
         self.id = id
     }
@@ -54,7 +54,18 @@ class Family {
 
 // MARK: - Update Functions
 extension Family {
-    
+
+    static func saveNewFamilyName(newName: String?) {
+        let store = DataStore.sharedInstance
+        let database = Database.family.child(store.user.familyId)
+        guard let newName = newName else { return }
+        database.updateChildValues(["name": newName], withCompletionBlock: { (error, _) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+        })
+    }
+
     func updateName(to name: String) {
         self.name = name
     }
