@@ -161,20 +161,18 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             // Deleting post data from Firebase using UniquePostID
             
-            let uniquePostID = posts[indexPath.row].description
-            
-            store.postID = uniquePostID
+            store.postID = posts[indexPath.row].description
             databasePosts.child(store.postID).removeValue()
             
             // Deleting images from storge
             let storageImgRef = Database.storagePosts.child(store.postID)
             
             storageImgRef.delete(completion: { error -> Void in
-                if error != nil {
-                    print("Error occured while deleting imgs from Firebase storage")
-                } else {
+                guard let error = error else {
                     print("Image removed from Firebase successfully!")
+                    return
                 }
+                print(error.localizedDescription)
             })
             
             // Deleting posts from tableviews

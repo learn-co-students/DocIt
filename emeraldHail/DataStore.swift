@@ -47,7 +47,7 @@ class DataStore{
     
     // MARK: - Picker values
     var bloodTypeSelections: [String] = [BloodType.ABNeg.rawValue, BloodType.ABPos.rawValue, BloodType.ANeg.rawValue, BloodType.APos.rawValue, BloodType.BNeg.rawValue, BloodType.BPos.rawValue, BloodType.ONeg.rawValue, BloodType.OPos.rawValue]
-    var genderSelections: [String] = [Gender.female.rawValue, Gender.male.rawValue, Gender.other.rawValue]
+    var genderSelection: [String] = [Gender.female.rawValue, Gender.male.rawValue, Gender.other.rawValue]
     
     // Imperial System
     

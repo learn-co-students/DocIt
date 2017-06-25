@@ -28,12 +28,8 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
     // MARK: - Properties
     let dobSelection = UIDatePicker()
     let genderSelection = UIPickerView()
-    let database = FIRDatabase.database().reference()
-    
-    let store = DataStore.sharedInstance
-    
+
     // MARK: - Loads
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -46,7 +42,14 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
     }
     
     @IBAction func save(_ sender: UIButton) {
-        saveMember()
+        Member.saveMember(
+            button: saveButton,
+            imageView: profileImageView,
+            firstName: firstNameField.text,
+            lastName: lastNameField.text,
+            dob: dateTextField.text,
+            gender: genderTextField.text)
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func cancel(_ sender: UIButton) {
@@ -60,76 +63,29 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
     // MARK: - Methods
     
     func setupView() {
-        
         addGestureRecognizer(imageView: profileImageView)
         profileImageView.isUserInteractionEnabled = true
         profileImageView.setRounded()
-        
         addMember.docItStyleView()
-        
-        saveButton.docItStyle()
-        cancelButton.docItStyle()
-        
-        firstNameField.docItStyle()
-        lastNameField.docItStyle()
-        dateTextField.docItStyle()
-        genderTextField.docItStyle()
-        
+        let buttons: [UIButton] = [saveButton, cancelButton]
+        let textFields: [UITextField] = [firstNameField, lastNameField, dateTextField, genderTextField]
+        buttons.map { button in button.docItStyle() }
+        textFields.map { textField in textField.docItStyle() }
         firstNameField.becomeFirstResponder()
         view.backgroundColor = Constants.Colors.transBlack
-        
         genderTextField.inputView = genderSelection
         genderSelection.delegate = self
         dateTextField.delegate = self
-        
         saveButton.isEnabled = false
         saveButton.backgroundColor = Constants.Colors.submarine
-        
         choosePhoto.setRounded()
     }
-    
-    func saveMember() {
-        saveButton.isEnabled = false
-        profileImageView.isUserInteractionEnabled = false
-        
-        guard let name = firstNameField.text, name != "",
-            let lastName = lastNameField.text, lastName != "",
-            let dob = dateTextField.text, dob != "",
-            let gender = genderTextField.text, gender != ""
-            
-            else { return }
-        
-        let databaseMembersRef = Database.members.child(Store.userFamily).childByAutoId()
-        let uniqueID = databaseMembersRef.key
-        let storageImageRef = Database.storageProfile.child(uniqueID)
-        
-        guard let uploadData = UIImageJPEGRepresentation(self.profileImageView.image!, 0.25) else { return }
-        
-        storageImageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
-            if error != nil {
-                print (error?.localizedDescription ?? "Error in saveButtonTapped in AddMembersViewController.swift" )
-                return
-            }
-            guard let profileImageUrl = metadata?.downloadURL()?.absoluteString else { return }
-            
-            let member = Member(profileImage: profileImageUrl, firstName: name, lastName: lastName, gender: gender, birthday: dob, bloodType: "", height: "", weight: "", allergies: "", id: uniqueID)
-            
-            
-            databaseMembersRef.setValue(member.serialize(), withCompletionBlock: { error, dataRef in
-                
-                self.saveButton.isEnabled = false
-                self.dismiss(animated: true, completion: nil)
-                
-            })
-        })
-    }
-    
+
     func addGestureRecognizer(imageView: UIImageView){
         imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleCameraImage)))
     }
     
     @IBAction func birthdayDidBeginEditing(_ sender: Any) {
-        
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
         formatter.timeStyle = .none
@@ -139,8 +95,7 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
     }
     
     @IBAction func generDidBeginEditing(_ sender: Any) {
-        
-        genderTextField.text = store.genderSelections[genderSelection.selectedRow(inComponent: 0)]
+        genderTextField.text = Store.genderSelection[genderSelection.selectedRow(inComponent: 0)]
         
     }
     
@@ -182,7 +137,7 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
         switch pickerView {
         case genderSelection:
-            return store.genderSelections.count
+            return Store.genderSelection.count
         default:
             break
         }
@@ -192,7 +147,7 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         switch pickerView {
         case genderSelection:
-            genderTextField.text = store.genderSelections[row]
+            genderTextField.text = Store.genderSelection[row]
         default:
             break
         }
@@ -201,7 +156,7 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         switch pickerView {
         case genderSelection:
-            return store.genderSelections[row]
+            return Store.genderSelection[row]
         default:
             break
         }
@@ -219,12 +174,10 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
     
     // Return the image which is selected from camera roll or is taken via the camera.
     func fusumaImageSelected(_ image: UIImage) {
-        // present some alert with the image
-        // add button to alert to send
-        // upload from button
+        // present some alert with the image, add button to alert to send, upload from button
         print("Image selected")
     }
-    
+
     // Return the image but called after is dismissed.
     func fusumaDismissedWithImage(_ image: UIImage) {
         profileImageView.image = image

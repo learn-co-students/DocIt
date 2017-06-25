@@ -71,10 +71,43 @@ struct Member {
     }
     
     func saveToFireBase(handler: (Bool) -> Void) {
+
+
         // TODO:
         // get the firebase ref through the shared manager
         // updateValue should be called but on the right ref. child("VALUE") replacing value with the correct location
         // call update value on that ref then in that completion handler of that, if successfull, call handler here and pass in true.
     }
-    
+
+    static func saveMember(button: UIButton,
+                    imageView: UIImageView,
+                    firstName: String?,
+                    lastName: String?,
+                    dob: String?,
+                    gender: String?) {
+        button.isEnabled = false
+        imageView.isUserInteractionEnabled = false
+        guard let name = firstName, name != "",
+            let lastName = lastName, lastName != "",
+            let dob = dob, dob != "",
+            let gender = gender, gender != ""
+            else { return }
+        let databaseMembersRef = Database.members.child(Store.userFamily).childByAutoId()
+        let uniqueID = databaseMembersRef.key
+        let storageImageRef = Database.storageProfile.child(uniqueID)
+        guard let uploadData = UIImageJPEGRepresentation(imageView.image!, 0.25) else { return }
+        storageImageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
+            if error != nil {
+                print (error?.localizedDescription ?? "Error in saveButtonTapped in AddMembersViewController.swift" )
+                return
+            }
+            guard let profileImageUrl = metadata?.downloadURL()?.absoluteString else { return }
+
+            let member = Member(profileImage: profileImageUrl, firstName: name, lastName: lastName, gender: gender, birthday: dob, bloodType: "", height: "", weight: "", allergies: "", id: uniqueID)
+
+            databaseMembersRef.setValue(member.serialize(), withCompletionBlock: { error, dataRef in
+                button.isEnabled = false
+            })
+        })
+    }
 }

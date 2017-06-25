@@ -51,6 +51,7 @@ public struct Store {
     static var userFamily = DataStore.sharedInstance.user.familyId
     static var userEmail = DataStore.sharedInstance.user.email
     static var familyId = DataStore.sharedInstance.family.id
+    static var genderSelection = DataStore.sharedInstance.genderSelection
 }
 
 public enum Path: String {

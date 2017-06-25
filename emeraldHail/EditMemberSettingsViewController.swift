@@ -156,7 +156,7 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
     
     // MARK: - Methods
     @IBAction func genderEditingDidBegin(_ sender: Any) {
-        genderTextField.text = store.genderSelections[genderSelection.selectedRow(inComponent: 0)]
+        genderTextField.text = Store.genderSelection[genderSelection.selectedRow(inComponent: 0)]
     }
     
     @IBAction func heightEditingDidBegin(_ sender: Any) {
@@ -369,7 +369,7 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
             case bloodSelection:
                 return store.bloodTypeSelections.count
             case genderSelection:
-                return store.genderSelections.count
+                return Store.genderSelection.count
             case weightSelection:
                 return store.weightsInLbs.count
             case heightSelection:
@@ -387,7 +387,7 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
             case bloodSelection:
                 return store.bloodTypeSelections.count
             case genderSelection:
-                return store.genderSelections.count
+                return Store.genderSelection.count
             case weightSelection:
                 if component == 0 {
                     return store.weightsInKg.count
@@ -413,7 +413,7 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
             case bloodSelection:
                 bloodTextField.text = store.bloodTypeSelections[row]
             case genderSelection:
-                genderTextField.text = store.genderSelections[row]
+                genderTextField.text = Store.genderSelection[row]
             case weightSelection:
                 weightTextField.text = store.weightsInLbs[row]
             case heightSelection:
@@ -431,7 +431,7 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
             case bloodSelection:
                 bloodTextField.text = store.bloodTypeSelections[row]
             case genderSelection:
-                genderTextField.text = store.genderSelections[row]
+                genderTextField.text = Store.genderSelection[row]
             case weightSelection:
                 if component == 0 {
                     kg = store.weightsInKg[row]
@@ -477,7 +477,7 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
             case bloodSelection:
                 return store.bloodTypeSelections[row]
             case genderSelection:
-                return store.genderSelections[row]
+                return Store.genderSelection[row]
             case weightSelection:
                 return store.weightsInLbs[row]
             case heightSelection:
@@ -495,7 +495,7 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
             case bloodSelection:
                 return store.bloodTypeSelections[row]
             case genderSelection:
-                return store.genderSelections[row]
+                return Store.genderSelection[row]
             case weightSelection:
                 if component == 0 {
                     return "\(store.weightsInKg[row]) ."
