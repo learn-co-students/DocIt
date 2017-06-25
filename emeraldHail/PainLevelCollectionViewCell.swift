@@ -24,5 +24,4 @@ class PainLevelCollectionViewCell: UICollectionViewCell {
         painLevelImage.layer.borderColor = UIColor.clear.cgColor
         painLevelImage.layer.cornerRadius = 10
     }
-    
 }

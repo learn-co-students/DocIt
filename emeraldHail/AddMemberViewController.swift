@@ -99,7 +99,7 @@ class AddMemberViewController: UIViewController, UIImagePickerControllerDelegate
             
             else { return }
         
-        let databaseMembersRef = Database.members.child(store.user.familyId).childByAutoId()
+        let databaseMembersRef = Database.members.child(Store.userFamily).childByAutoId()
         let uniqueID = databaseMembersRef.key
         let storageImageRef = Database.storageProfile.child(uniqueID)
         

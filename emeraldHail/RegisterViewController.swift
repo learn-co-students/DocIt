@@ -131,7 +131,7 @@ class RegisterViewController: UIViewController {
     }
     
     func touchID(activate: Bool) {
-        Database.settings.child(store.user.familyId).child("touchID").setValue(activate)
+        Database.settings.child(Store.userFamily).child("touchID").setValue(activate)
     }
     
     func addDataToKeychain(userID: String, familyID: String, email: String, auth: String) {

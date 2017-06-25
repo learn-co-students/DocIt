@@ -15,5 +15,4 @@ class AddMemberCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-    
 }

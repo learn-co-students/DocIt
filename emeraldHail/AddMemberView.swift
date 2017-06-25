@@ -25,16 +25,8 @@ class AddMemberView: UIView {
     
     func commonInit() {
         Bundle.main.loadNibNamed("AddMemberView", owner: self, options: nil)
-        
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        
         addSubview(contentView)
-        
-        contentView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        contentView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-        contentView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        contentView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        
+        contentView.setConstraintEqualTo(left: leftAnchor, right: rightAnchor, top: topAnchor, bottom: bottomAnchor)
         plusButton.layer.shadowColor = UIColor.black.cgColor
         plusButton.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
         plusButton.layer.masksToBounds = false

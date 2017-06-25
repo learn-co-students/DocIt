@@ -35,21 +35,12 @@ class TempView: UIView {
     
     func commonInit() {
         Bundle.main.loadNibNamed("TempView", owner: self, options: nil)
-        
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        
         addSubview(contentView)
-        
         timestampLabel.textColor = Constants.Colors.submarine
-        
-        contentView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        contentView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-        contentView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        contentView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        contentView.setConstraintEqualTo(left: leftAnchor, right: rightAnchor, top: topAnchor, bottom: bottomAnchor)
     }
     
     override func draw(_ rect: CGRect) {
         drawTimeline(circleColor: Constants.Colors.cinnabar.cgColor, lineColor: Constants.Colors.submarine.cgColor)
     }
-    
 }

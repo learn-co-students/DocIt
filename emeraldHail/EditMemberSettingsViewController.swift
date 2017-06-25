@@ -250,8 +250,8 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
             let profilePicture = profilePicture.image,
             let allergies = allergiesTextField.text else { return }
         
-        let memberReference = Database.members.child(store.user.familyId).child(store.member.id)
-        let databaseMembersRef = Database.members.child(store.user.familyId).childByAutoId()
+        let memberReference = Database.members.child(Store.userFamily).child(store.member.id)
+        let databaseMembersRef = Database.members.child(Store.userFamily).childByAutoId()
         let uniqueID = databaseMembersRef.key
         let imageId = uniqueID
         let storageImageRef = Database.storageProfile.child(imageId)
@@ -281,7 +281,7 @@ class EditMemberSettingsViewController: UITableViewController, UIPickerViewDeleg
     }
     
     func displayMemberProfileEdits() {
-        let member = Database.members.child(store.user.familyId).child(store.member.id)
+        let member = Database.members.child(Store.userFamily).child(store.member.id)
         member.observe(.value, with: { (snapshot) in
             let value = snapshot.value as? [String : Any]
             let imageString = value?["profileImage"] as? String

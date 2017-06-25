@@ -58,7 +58,7 @@ class WelcomeViewController: UIViewController {
     func updateFamilyId() {
         let familyID = UserDefaults.standard.value(forKey: "family") as? String
         if familyID != nil {
-            store.user.familyId = familyID!
+            Store.userFamily = familyID!
         }
     }
     

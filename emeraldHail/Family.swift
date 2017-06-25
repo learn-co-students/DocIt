@@ -57,7 +57,7 @@ extension Family {
 
     static func saveNewFamilyName(newName: String?) {
         let store = DataStore.sharedInstance
-        let database = Database.family.child(store.user.familyId)
+        let database = Database.family.child(Store.userFamily)
         guard let newName = newName else { return }
         database.updateChildValues(["name": newName], withCompletionBlock: { (error, _) in
             if let error = error {

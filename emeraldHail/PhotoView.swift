@@ -37,21 +37,12 @@ class PhotoView: UIView {
     
     func commonInit() {
         Bundle.main.loadNibNamed("PhotoView", owner: self, options: nil)
-        
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        
         addSubview(contentView)
-        
+        contentView.setConstraintEqualTo(left: leftAnchor, right: rightAnchor, top: topAnchor, bottom: bottomAnchor)
         timestampLabel.textColor = Constants.Colors.submarine
-        
-        contentView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        contentView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-        contentView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        contentView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     }
     
     override func draw(_ rect: CGRect) {
         drawTimeline(circleColor: Constants.Colors.purpleCake.cgColor, lineColor: Constants.Colors.submarine.cgColor)
     }
-    
 }

@@ -110,6 +110,17 @@ extension UIView {
         lineLayer.lineWidth = Constants.CustomCell.lineWidth
         linePath.stroke()
     }
+
+    func setConstraintEqualTo(left:  NSLayoutXAxisAnchor,
+                              right:  NSLayoutXAxisAnchor,
+                              top:  NSLayoutYAxisAnchor,
+                              bottom:  NSLayoutYAxisAnchor) {
+        self.translatesAutoresizingMaskIntoConstraints = false
+        self.leftAnchor.constraint(equalTo: left).isActive = true
+        self.rightAnchor.constraint(equalTo: right).isActive = true
+        self.topAnchor.constraint(equalTo: top).isActive = true
+        self.bottomAnchor.constraint(equalTo: bottom).isActive = true
+    }
 }
 
 extension UIViewController {

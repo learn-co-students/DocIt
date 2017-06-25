@@ -20,9 +20,7 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var imageDarkOverlay: UIView!
     
     // MARK: Properties
-    let store = DataStore.sharedInstance
-    var database = FIRDatabase.database().reference()
-    
+    let store = DataStore.sharedInstance    
     let imageSelected = UIImagePickerController()
     var membersInFamily = [Member]()
     var family = [Family]()
@@ -167,16 +165,13 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     // TODO: Rethink some of the variable names here and in configDatabaseFamily for clarity
     func configDatabaseMember() {
-        let familyRef = Database.members.child(store.user.familyId)
-        
+        let familyRef = Database.members.child(Store.userFamily)
         familyRef.observe(.value, with: { snapshot in
             var newItem = [Member]()
-            
             for item in snapshot.children {
                 let newMember = Member(snapshot: item as! FIRDataSnapshot)
                 newItem.append(newMember)
             }
-            
             self.membersInFamily = newItem
             self.memberProfilesView.reloadData()
         })
@@ -184,15 +179,11 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     // TODO: Rethink some of the variable names here for clarity
     func configDatabaseFamily() {
-        let familyRef = Database.family.child(store.user.familyId)
-        
+        let familyRef = Database.family.child(Store.userFamily)
         familyRef.observe(.value, with: { snapshot in
-            
             var dic = snapshot.value as? [String : Any]
-            
             guard let familyName = dic?["name"] else { return }
             self.store.family.name = familyName as? String
-            
             guard let coverImgStr = dic?["coverImageStr"] else { return }
             self.store.family.coverImageStr = coverImgStr as? String
         })
@@ -202,7 +193,6 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         memberProfilesView.reloadData()
         refresher.endRefreshing()
     }
-    
 }
 
 class MemberCollectionViewCell: UICollectionViewCell {

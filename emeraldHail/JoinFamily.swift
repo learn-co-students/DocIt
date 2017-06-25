@@ -16,7 +16,6 @@ class JoinFamily: UIView {
     @IBOutlet weak var familyTextField: UITextField!
     
     // MARK: - Properties
-    var database: FIRDatabaseReference = FIRDatabase.database().reference()
     var store = DataStore.sharedInstance
     
     // MARK: - Loads
@@ -41,32 +40,18 @@ class JoinFamily: UIView {
     // MARK: - Methods
     func commonInit() {
         Bundle.main.loadNibNamed("JoinFamily", owner: self, options: nil)
-        
         addSubview(contentView)
-        
         contentView.layer.cornerRadius = 10
         contentView.layer.borderColor = Constants.Colors.submarine.cgColor
         contentView.layer.borderWidth = 1
-        
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        
-        contentView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        contentView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-        contentView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        contentView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        contentView.setConstraintEqualTo(left: leftAnchor, right: rightAnchor, top: topAnchor, bottom: bottomAnchor)
     }
     
     func joinFamily() {
         guard let familyID = familyTextField.text, familyID != "" else { return }
-        
-        print(store.user.id)
-        print(store.user.familyId)
-        
         // Set the sharedInstance familyID to the current user.uid
         Store.userFamily = familyID
-        
-        Database.user.child(store.user.id).child("familyID").setValue(store.user.familyId)
-        
+        Database.user.child(Store.userId).child(Path.familyId.rawValue).setValue(Store.userFamily)
         NotificationCenter.default.post(name: .openfamilyVC, object: nil)
     }
     

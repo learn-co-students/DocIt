@@ -21,7 +21,7 @@ class HeaderCollectionReusableView: UICollectionReusableView {
     let database = FIRDatabase.database().reference()
     
     func configDatabaseFamily() {
-        let familyRef = Database.family.child(store.user.familyId)
+        let familyRef = Database.family.child(Store.userFamily)
         familyRef.observe(.value, with: { snapshot in
             var dic = snapshot.value as! [String : Any]
             let imageString = dic["coverImageStr"] as! String

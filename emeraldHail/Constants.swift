@@ -53,3 +53,7 @@ public struct Store {
     static var familyId = DataStore.sharedInstance.family.id
 }
 
+public enum Path: String {
+    case familyId = "familyId"
+}
+
