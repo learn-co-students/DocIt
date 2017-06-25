@@ -66,6 +66,9 @@ public struct Store {
     static var weightsInLbs = DataStore.sharedInstance.weightsInLbs
     static var weightsInKg = DataStore.sharedInstance.weightsInKg
     static var weightsInG = DataStore.sharedInstance.weightsInG
+    static var tempsInF = DataStore.sharedInstance.tempsInF
+    static var tempsInC = DataStore.sharedInstance.tempsInC
+    
 }
 
 public enum Path: String {

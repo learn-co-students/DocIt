@@ -20,24 +20,16 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
     @IBOutlet weak var collectionViewFlowLayout: UICollectionViewFlowLayout!
     
     // MARK: - Properties
-    var noPain: PainLevel = .noPain
-    var mild:PainLevel = .mild
-    var moderate:PainLevel = .moderate
-    var severe: PainLevel = .severe
-    var verySevere: PainLevel = .verySevere
-    var excruciating: PainLevel = .excruciating
     var painLevels = [PainLevel]()
     var selectedPainLevel: PainLevel?
-    let postRef : FIRDatabaseReference = FIRDatabase.database().reference().child("posts")
-    let store = DataStore.sharedInstance
-    
+
     // MARK: - Loads
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Pain Level"
         painLevelCollectionView.allowsMultipleSelection = false
         
-        painLevels = [noPain, mild, moderate, severe, verySevere, excruciating]
+        painLevels = [.noPain, .mild, .moderate, .severe, .verySevere, .excruciating]
         
         setupView()
         configureLayout()
@@ -76,7 +68,7 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
     
     
     func setupView() {
-        postTitleLabel.text = "How does \(store.member.firstName) feel?"
+        postTitleLabel.text = "How does \(Store.member.firstName) feel?"
         
         view.backgroundColor = Constants.Colors.transBlack
         
@@ -131,22 +123,15 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
         return true
     }
     
-    
     func addPainLevel() {
         guard let painLevelDescription = selectedPainLevel?.description else { return }
-        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM d, yyyy HH:mm:ss a"
-        
-        let databasePostContentRef = postRef.child(store.eventID).childByAutoId()
-        let uniqueID = databasePostContentRef.key
-        
-        let newPain = Pain(content: painLevelDescription, timestamp: getTimestamp(), uniqueID: uniqueID)
-        
-        databasePostContentRef.setValue(newPain.serialize(), withCompletionBlock: {error, ref in
+        let databasePostRef = Database.posts.child(Store.eventID).childByAutoId()
+        let newPain = Pain(content: painLevelDescription, timestamp: getTimestamp(), uniqueID: databasePostRef.key)
+        databasePostRef.setValue(newPain.serialize(), withCompletionBlock: {error, ref in
             self.dismiss(animated: true, completion: nil)
             // TODO: Handle error
         })
     }
-    
 }

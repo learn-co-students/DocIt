@@ -25,14 +25,10 @@ class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     @IBOutlet weak var postTitleLabel: UILabel!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
-    
-    var database: FIRDatabaseReference = FIRDatabase.database().reference()
-    var postRef : FIRDatabaseReference = FIRDatabase.database().reference().child("posts")
-    
+
     // Default temp
     var selectedTemp:String = ""
-    let store = DataStore.sharedInstance
-    
+
     // MARK: - Loads
     
     override func viewDidLoad() {
@@ -62,12 +58,12 @@ class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     
     func setupView() {
         // Default temp values in F and C
-        if store.isMetric == false {
+        if Store.isMetric == false {
             selectedTemp = "98.6"
         } else {
             selectedTemp = "37.0"
         }
-        postTitleLabel.text = "What's \(store.member.firstName)'s Temp?"
+        postTitleLabel.text = "What's \(Store.member.firstName)'s Temp?"
         temperaturePickerView.selectRow(10, inComponent: 0, animated: false)
         view.backgroundColor = Constants.Colors.transBlack
         noteView.docItStyleView()
@@ -80,9 +76,8 @@ class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     
     func saveTemp() {
         saveButton.isEnabled = false
-        let postsRef = Database.posts.child(store.eventID).childByAutoId()
+        let postsRef = Database.posts.child(Store.eventID).childByAutoId()
         let uniqueID = postsRef.key
-        
         var tempType: String
         // created Temp Type and switch instance based on selection.
         switch tempSegments.selectedSegmentIndex {
@@ -105,10 +100,10 @@ class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         var numberOfItems = 0
-        if store.isMetric == false {
-            numberOfItems = store.tempsInF.count
+        if Store.isMetric == false {
+            numberOfItems = Store.tempsInF.count
         } else {
-            numberOfItems = store.tempsInC.count
+            numberOfItems = Store.tempsInC.count
         }
         return numberOfItems
     }
@@ -121,20 +116,20 @@ class TempViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         // Var temperatures = availableTemps[row].description -> Attempt to change the color of the font in the UI PickerView
         // F vs C
         var selectedTemps = ""
-        if store.isMetric == false {
-            selectedTemps = store.tempsInF[row]
+        if Store.isMetric == false {
+            selectedTemps = Store.tempsInF[row]
         } else {
-            selectedTemps = store.tempsInC[row]
+            selectedTemps = Store.tempsInC[row]
         }
         return selectedTemps
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         // Save the value for the pickerview temperature selected.
-        if store.isMetric == false {
-            selectedTemp = store.tempsInF[row]
+        if Store.isMetric == false {
+            selectedTemp = Store.tempsInF[row]
         } else {
-            selectedTemp = store.tempsInC[row]
+            selectedTemp = Store.tempsInC[row]
         }
         saveButton.isEnabled = true
         saveButton.backgroundColor = Constants.Colors.scooter

@@ -19,9 +19,6 @@ class SymptomsViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var cancelButton: UIButton!
     
     // MARK: Properties
-    let store = DataStore.sharedInstance
-    var database = FIRDatabase.database().reference()
-    
     var symptoms: [Symptom] = [.bloodInStool, .chestPain, .constipation, .cough, .diarrhea, .dizziness, .earache, .eyeDiscomfort, .fever, .footPain, .footSwelling, .headache, .heartpalpitations, .itchiness, .kneePain, .legSwelling, .musclePain, .nasalcongestion, .nausea, .neckPain, .runnyNose, .shortBreath, .shoulderPain, .skinRashes, .soreThroat, .stomachache, .urinaryProblems, .vision, .vomiting, .wheezing]
     
     var selectedSymtoms: [String : String] = [:]
@@ -49,7 +46,7 @@ class SymptomsViewController: UIViewController, UITableViewDelegate, UITableView
             return
         }
         
-        let postsRef = Database.posts.child(store.eventID).childByAutoId()
+        let postsRef = Database.posts.child(Store.eventID).childByAutoId()
         let uniqueID = postsRef.key
         let newSymp = Symp(content: selectedSymtoms, uniqueID: uniqueID, timestamp: getTimestamp())
         
