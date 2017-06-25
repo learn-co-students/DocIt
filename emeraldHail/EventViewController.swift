@@ -18,14 +18,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var plusButton: UIButton!
-    
-    // MARK: - Properties
-//    var events = [Event]()
-    var memberID = ""
-    var member = [Member]()
-    let notificationCenter = NotificationCenter.default
-    var navigationBarAppearace = UINavigationBar.appearance()
-    
+
     // MARK: - Loads
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,7 +79,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     // MARK: - Methods
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        return Event.deleteEvent(
+        return Event.deleteOrEditEvent(
             databaseEvent: Database.events,
             databasePost: Database.posts,
             member: Store.member.id,

@@ -115,7 +115,7 @@ extension Event {
         })
     }
 
-    static func deleteEvent(databaseEvent: FIRDatabaseReference,
+    static func deleteOrEditEvent(databaseEvent: FIRDatabaseReference,
                             databasePost: FIRDatabaseReference,
                             member: String,
                             tableView: UITableView,
