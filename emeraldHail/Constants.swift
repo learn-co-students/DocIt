@@ -50,6 +50,7 @@ public struct Store {
     static var user = DataStore.sharedInstance.user
     static var family = DataStore.sharedInstance.family
     static var member = DataStore.sharedInstance.member
+    static var members = DataStore.sharedInstance.members
     static var event = DataStore.sharedInstance.event
     static var events = DataStore.sharedInstance.events
     static var genderSelection = DataStore.sharedInstance.genderSelection
@@ -68,6 +69,7 @@ public struct Store {
     static var weightsInG = DataStore.sharedInstance.weightsInG
     static var tempsInF = DataStore.sharedInstance.tempsInF
     static var tempsInC = DataStore.sharedInstance.tempsInC
+    static var inviteFamilyID = DataStore.sharedInstance.inviteFamilyID
     
 }
 

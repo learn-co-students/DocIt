@@ -28,9 +28,7 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
         super.viewDidLoad()
         self.navigationItem.title = "Pain Level"
         painLevelCollectionView.allowsMultipleSelection = false
-        
         painLevels = [.noPain, .mild, .moderate, .severe, .verySevere, .excruciating]
-        
         setupView()
         configureLayout()
     }
@@ -59,7 +57,6 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
         let widthDeductionPerItem: CGFloat = (spacing*(numberOfColumns-1) + insets.left + insets.right)/numberOfColumns
         let heightDeductionPerItem: CGFloat = (spacing*(numberOfColumns-1) + insets.top + insets.bottom)/numberOfColumns
         let itemSize = CGSize(width: viewWidth/numberOfColumns - widthDeductionPerItem, height: viewWidth/numberOfColumns - heightDeductionPerItem)
-        
         self.collectionViewFlowLayout.itemSize = itemSize
         self.collectionViewFlowLayout.minimumInteritemSpacing = spacing
         self.collectionViewFlowLayout.minimumLineSpacing = spacing
@@ -69,14 +66,11 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
     
     func setupView() {
         postTitleLabel.text = "How does \(Store.member.firstName) feel?"
-        
         view.backgroundColor = Constants.Colors.transBlack
-        
         painView.docItStyleView()
         saveButton.docItStyle()
         cancelButton.docItStyle()
         painLevelCollectionView.docItStyleView()
-        
         saveButton.isEnabled = false
         saveButton.backgroundColor = Constants.Colors.submarine
     }
@@ -87,37 +81,30 @@ class PainLevelViewController: UIViewController, UICollectionViewDelegate, UICol
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! PainLevelCollectionViewCell
-        
         cell.painLevelImage.image = painLevels[indexPath.row].image
         cell.painLevelDescription.text = painLevels[indexPath.row].description
-        
         if cell.isSelected == true {
             cell.backgroundColor = Constants.Colors.submarine
         }
         else if cell.isSelected == false {
             cell.backgroundColor = UIColor.clear
         }
-        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let cell = collectionView.cellForItem(at: indexPath) as? PainLevelCollectionViewCell else { return }
         selectedPainLevel = painLevels[indexPath.row]
-        
         cell.backgroundColor = Constants.Colors.submarine
         cell.layer.cornerRadius = 10
-        
         saveButton.isEnabled = true
         saveButton.backgroundColor = Constants.Colors.scooter
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         guard let cell = collectionView.cellForItem(at: indexPath) as? PainLevelCollectionViewCell else { return }
-        
         cell.backgroundColor = UIColor.clear
     }
-    
     
     func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
         return true

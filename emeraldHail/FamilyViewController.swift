@@ -20,19 +20,14 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var imageDarkOverlay: UIView!
     
     // MARK: Properties
-    let imageSelected = UIImagePickerController()
-    var membersInFamily = [Member]()
-    var family = [Family]()
     var refresher = UIRefreshControl()
-    var profileImage: UIImageView!
-    var imageString = ""
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         hideKeyboardWhenTappedAround()
-        configDatabaseFamily()
-        configDatabaseMember()
+        Family.configDatabaseFamily(database: Database.family, familyId: Store.user.familyId)
+//        configDatabaseMember()
+                Family.configDatabaseMember(database: Database.members, familyId: Store.family.id, collectionView: memberProfilesView)
         configureLayout()
     }
     
@@ -56,7 +51,6 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         flowLayout.minimumLineSpacing = spacing
         flowLayout.sectionInset = insets
         
-        imageSelected.delegate = self
         memberProfilesView.delegate = self
         memberProfilesView.dataSource = self
         
@@ -72,8 +66,8 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         switch sender {
         case is UICollectionViewCell:
             guard let indexPath = memberProfilesView.indexPath(for: sender as! UICollectionViewCell) else { return }
-            if indexPath.row < membersInFamily.count {
-                Store.member.id = membersInFamily[indexPath.row].id
+            if indexPath.row < Store.members.count {
+                Store.member.id = Store.members[indexPath.row].id
             }
         default:
             break
@@ -86,13 +80,13 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return membersInFamily.count + 1
+        return Store.members.count + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if indexPath.row < membersInFamily.count {
+        if indexPath.row < Store.members.count {
             let cell = memberProfilesView.dequeueReusableCell(withReuseIdentifier: "memberCell", for: indexPath) as! MemberCollectionViewCell
-            let member = membersInFamily[indexPath.row]
+            let member = Store.members[indexPath.row]
             let profileImgUrl = URL(string: member.profileImage)
             cell.profileImageView.setRounded()
             cell.profileImageView.contentMode = .scaleAspectFill
@@ -111,8 +105,8 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if indexPath.row < membersInFamily.count {
-            let selectedMember = membersInFamily[indexPath.row]
+        if indexPath.row < Store.members.count {
+            let selectedMember = Store.members[indexPath.row]
             Store.member = selectedMember
         } else {
             performSegue(withIdentifier: "addMember", sender: nil)
@@ -150,32 +144,6 @@ class FamilyViewController: UIViewController, UIImagePickerControllerDelegate, U
         let none = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "none", for: indexPath) as! HeaderCollectionReusableView
         
         return none
-    }
-    
-    // TODO: Rethink some of the variable names here and in configDatabaseFamily for clarity
-    func configDatabaseMember() {
-        let familyRef = Database.members.child(Store.user.familyId)
-        familyRef.observe(.value, with: { snapshot in
-            var newItem = [Member]()
-            for item in snapshot.children {
-                let newMember = Member(snapshot: item as! FIRDataSnapshot)
-                newItem.append(newMember)
-            }
-            self.membersInFamily = newItem
-            self.memberProfilesView.reloadData()
-        })
-    }
-    
-    // TODO: Rethink some of the variable names here for clarity
-    func configDatabaseFamily() {
-        let familyRef = Database.family.child(Store.user.familyId)
-        familyRef.observe(.value, with: { snapshot in
-            var dic = snapshot.value as? [String : Any]
-            guard let familyName = dic?["name"] else { return }
-            Store.family.name = familyName as? String
-            guard let coverImgStr = dic?["coverImageStr"] else { return }
-            Store.family.coverImageStr = coverImgStr as? String
-        })
     }
 
     func handleRefresh() {

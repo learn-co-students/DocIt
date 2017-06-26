@@ -26,8 +26,6 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var signinActivityIndicator: UIActivityIndicatorView!
     
     // MARK: - Properties
-    let store = DataStore.sharedInstance
-    var database: FIRDatabaseReference = FIRDatabase.database().reference()
     let MyKeychainWrapper = KeychainWrapper()
     let createLoginButtonTag = 0
     let loginButtonTag = 1
@@ -100,7 +98,7 @@ class LoginViewController: UIViewController {
             }
             
             // Set the sharedInstance familyID to the current user.uid
-            if self.store.inviteFamilyID == "" {
+            if Store.inviteFamilyID == "" {
                 self.signinActivityIndicator.startAnimating()
                 Database.user.child((user?.uid)!).observe(.value, with: { snapshot in
                     DispatchQueue.main.async {
@@ -125,11 +123,11 @@ class LoginViewController: UIViewController {
                 })
             } else {
                 Store.user.id = (user?.uid)!
-                Store.user.familyId = self.store.inviteFamilyID
+                Store.user.familyId = Store.inviteFamilyID
                 Store.family.id = Store.user.familyId
                 Store.user.email = email
                 Database.user.child(Store.user.id).child("familyID").setValue(Store.user.familyId)
-                self.store.inviteFamilyID = ""
+                Store.inviteFamilyID = ""
                 self.addDataToKeychain(
                     userID: Store.user.id,
                     familyID: Store.user.familyId,

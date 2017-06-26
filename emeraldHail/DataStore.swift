@@ -39,6 +39,7 @@ class DataStore{
     var user = Person(id: "", familyId: "", email: "")
     var family = Family(id: "", name: "", coverImage: nil, coverImageStr: "", members: [])
     var member = Member(profileImage: "", firstName: "", lastName: "", gender: "", birthday: "", bloodType: "", height: "", weight: "", allergies: "", id: "")
+    var members: [Member] = []
     var event = Event(name: "", startDate: "", uniqueID: "")
     var events: [Event] = []
     var buttonEvent = ""

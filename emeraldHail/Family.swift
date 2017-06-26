@@ -55,8 +55,30 @@ public class Family {
 // MARK: - Update Functions
 extension Family {
 
+    static func configDatabaseMember(database: FIRDatabaseReference, familyId: String, collectionView: UICollectionView) {
+        let familyRef = database.child(familyId)
+        familyRef.observe(.value, with: { snapshot in
+            Store.members = []
+            for item in snapshot.children {
+                let newMember = Member(snapshot: item as! FIRDataSnapshot)
+                Store.members.append(newMember)
+            }
+            collectionView.reloadData()
+        })
+    }
+
+    static func configDatabaseFamily(database: FIRDatabaseReference, familyId: String) {
+        let familyRef = database.child(familyId)
+        familyRef.observe(.value, with: { snapshot in
+            var dic = snapshot.value as? [String : Any]
+            guard let familyName = dic?["name"] else { return }
+            Store.family.name = familyName as? String
+            guard let coverImgStr = dic?["coverImageStr"] else { return }
+            Store.family.coverImageStr = coverImgStr as? String
+        })
+    }
+
     static func saveNewFamilyName(newName: String?) {
-        let store = DataStore.sharedInstance
         let database = Database.family.child(Store.user.familyId)
         guard let newName = newName else { return }
         database.updateChildValues(["name": newName], withCompletionBlock: { (error, _) in
